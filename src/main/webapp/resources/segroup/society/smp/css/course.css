@@ -1,0 +1,30 @@
+/* @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css); */
+   
+/* =======================================================
+*
+*    Template Style 
+*
+* ======================================================= */
+.fontChange {
+   font-family: "궁서", Gulim, Arial, sans-serif;
+}
+
+.title{
+   text-align: center;
+   padding: 5px 1px 5px 1px;
+}
+
+.index{
+   padding: 5px 5px 5px 100px;"
+}
+
+.content{
+   text-align: center;
+   padding: 5px 5px 5px 5px;
+   
+}
+.last{
+   text-align: right;
+   padding: 5px 5px 5px 150px;
+}

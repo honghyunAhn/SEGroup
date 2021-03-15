@@ -1,0 +1,56 @@
+/* common_footer_style.css */
+
+/* Footer Common Layout */
+.footerWrap {
+    width: 100%;
+    padding: 40px 0;
+    cursor: default;
+}
+
+.footerWrap>.footer {
+    width: 1200px;
+    margin: 0 auto;
+    line-height: 30px;
+}
+
+.footerWrap a {
+    cursor: pointer;
+}
+
+/* Footer Logo Image */
+.footerWrap>.footer .footer_logoImg {
+    width: 150px;
+    height: 20px;
+    background-image: url('/resources/css/img/SES_logo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 5px 0;
+}
+
+/* Footer Nav Group */
+.footer_navWrap>.navGroup .gnb a {
+    opacity: .7;
+}
+
+.footer_navWrap>.navGroup .gnb a:hover {
+    opacity: 1;
+}
+
+.footer_navWrap>.navGroup>.gnb:nth-child(1)~* {
+    margin-left: 20px;
+}
+
+.footerWrap>.copyright {
+    margin-top: 40px;
+}
+
+/* Footer Scroll Top Button */
+.img-icon.scrollTop {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    z-index: 99;
+    bottom: 20px;
+    right: 20px;
+}

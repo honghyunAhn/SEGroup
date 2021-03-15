@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 도서 관리 회원정보 처리 SQL -->
+<mapper namespace="global.segroup.school.book.util.dao.SchoolBookUtilMapper">
+
+<select id="getCategory" resultType="String">
+	select CONCAT(GROUP_ID, CODE) 
+	from COM_CODE_TB 
+	where GROUP_ID = 'B01'
+</select>
+
+<select id="getDivision" resultType="String">
+	select CONCAT(GROUP_ID, CODE)
+	from COM_CODE_TB 
+	where GROUP_ID = 'B02'
+</select>
+
+</mapper>

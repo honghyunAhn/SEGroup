@@ -1,0 +1,1297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SEGroup 지원신청 SQL -->
+<mapper namespace="global.segroup.society.edu.apply.dao.SocietyEduApplyMapper">
+	
+	<!-- 모집홍보 지원신청서 폼 등록 시작 -->
+	<insert id="insertEduApplyForm" parameterType="SEAForm" useGeneratedKeys="true" keyProperty="app_seq">
+		insert into 
+			EDU_MASTERAPPLY_FORM_TB
+			(
+				app_id
+				,gisu_seq
+				,app_mt_ck
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_mt_etc)">
+				,app_mt_etc
+				</if>
+				,app_zipcode
+				,app_address
+				,app_address_detail
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_em_phone)">
+				,app_em_phone
+				</if>
+				,app_take_ck
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_take_dt)">
+				,app_take_dt
+				</if>
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_take_rt)">
+				,app_take_rt
+				</if>
+				,app_abroad_ck
+				,app_kmove_ck
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_kmove_nm)">
+				,app_kmove_nm
+				</if>
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_kmove_ag)">
+				,app_kmove_ag
+				</if>
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_kmove_st)">
+				,app_kmove_st
+				</if>
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_kmove_et)">
+				,app_kmove_et
+				</if>
+<!--                 ,app_domitory_ck -->
+				,app_self_intro
+				,app_photo_saved
+				,app_photo_origin
+				<if test="app_edu_file_saved != null and app_edu_file_origin != null">
+				,app_edu_file_saved
+				,app_edu_file_origin
+				</if>
+				<if test="app_isr_file_saved != null and app_isr_file_origin != null">
+				,app_isr_file_saved
+				,app_isr_file_origin
+				</if>
+                <if test="app_imm_file_saved != null and app_imm_file_origin != null">
+                ,app_imm_file_saved
+                ,app_imm_file_origin
+                </if>
+                <if test="app_worknet_file_saved != null and app_worknet_file_origin != null">
+                ,app_worknet_file_saved
+                ,app_worknet_file_origin
+                </if>
+				,app_ins_id
+				,app_ins_dt
+				,app_udt_id
+				,app_udt_dt
+			) values (
+				#{app_id}
+				,#{gisu_seq}
+				,#{app_mt_ck}
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_mt_etc)">
+				,#{app_mt_etc}
+				</if>
+				,#{app_zipcode}
+				,#{app_address}
+				,#{app_address_detail}
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_em_phone)">
+				,#{app_em_phone}
+				</if>
+				,#{app_take_ck}
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_take_dt)">
+				,#{app_take_dt}
+				</if>
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_take_rt)">
+				,#{app_take_rt}
+				</if>
+				,#{app_abroad_ck}
+				,#{app_kmove_ck}
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_kmove_nm)">
+				,#{app_kmove_nm}
+				</if>
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_kmove_ag)">
+				,#{app_kmove_ag}
+				</if>
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_kmove_st)">
+				,#{app_kmove_st}
+				</if>
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_kmove_et)">
+				,#{app_kmove_et}
+				</if>
+<!--                 ,#{app_domitory_ck} -->
+				,#{app_self_intro}
+				,#{app_photo_saved}
+				,#{app_photo_origin}
+				<if test="app_edu_file_saved != null and app_edu_file_origin != null">
+				,#{app_edu_file_saved}
+				,#{app_edu_file_origin}
+				</if>
+				<if test="app_isr_file_saved != null and app_isr_file_origin != null">
+				,#{app_isr_file_saved}
+				,#{app_isr_file_origin}
+				</if>
+                <if test="app_imm_file_saved != null and app_imm_file_origin != null">
+                ,#{app_imm_file_saved}
+                ,#{app_imm_file_origin}
+                </if>
+                <if test="app_worknet_file_saved != null and app_worknet_file_origin != null">
+                ,#{app_worknet_file_saved}
+                ,#{app_worknet_file_origin}
+                </if>
+				,#{app_ins_id}
+				<if test="@global.segroup.util.Comparator@isNotEmpty(app_ins_dt_forupdate)">
+				,#{app_ins_dt_forupdate}
+				</if>
+				<if test="@global.segroup.util.Comparator@isEmpty(app_ins_dt_forupdate)">
+				,now()
+				</if>
+				,#{app_udt_id}
+				,now()
+			)
+	</insert>
+	<!-- 모집홍보 지원신청서 폼 등록 종료 -->
+	
+	<!-- 모집홍보 지원신청서 학력사항 등록 시작 -->
+	<insert id="insertEduApplyEduHistory" parameterType="hashmap">
+		insert into
+			EDU_MASTERAPPLY_EDUHISTORY_TB
+				(
+					app_seq,
+					app_edu_sc_nm,
+					app_edu_major,
+					app_edu_gd_ck,
+					app_edu_gd_dt,
+					app_edu_sc_lo,
+					app_edu_gd_rq,
+					app_edu_ins_id,
+					app_edu_ins_dt,
+					app_edu_udt_id,
+					app_edu_udt_dt										
+				)values
+				<foreach item="eduHistory" index="index" collection="list" open=" " separator="," close=" ">
+				(
+					#{app_seq},
+					#{eduHistory.app_edu_sc_nm},
+					#{eduHistory.app_edu_major},
+					#{eduHistory.app_edu_gd_ck},
+					#{eduHistory.app_edu_gd_dt},
+					#{eduHistory.app_edu_sc_lo},
+					#{eduHistory.app_edu_gd_rq},
+					#{app_id},
+					now(),
+					#{app_id},
+					now()	
+				)
+				</foreach>
+	</insert>
+	<!-- 모집홍보 지원신청서 학력사항 등록 종료 -->
+	
+	<!-- 모집홍보 지원신청서 경력사항 등록 시작 -->
+	<insert id="insertEduApplyCareer" parameterType="hashmap">
+		insert into
+			EDU_MASTERAPPLY_CAREER_TB
+				(
+					app_seq,
+					app_crr_place,
+					app_crr_position,
+					app_crr_st,
+					app_crr_et,
+					app_crr_dept,
+					app_crr_phone,
+					app_crr_ins_id,
+					app_crr_ins_dt,
+					app_crr_udt_id,
+					app_crr_udt_dt
+				)values
+				<foreach item="career" index="index" collection="list" open=" " separator="," close=" ">
+				(
+					#{app_seq},
+					#{career.app_crr_place},
+					#{career.app_crr_position},
+					#{career.app_crr_st},
+					#{career.app_crr_et},
+					#{career.app_crr_dept},
+					#{career.app_crr_phone},
+					#{app_id},
+					now(),
+					#{app_id},
+					now()
+				)
+				</foreach>
+	</insert>
+	<!-- 모집홍보 지원신청서 경력사항 등록 종료 -->
+	
+	<!-- 모집홍보 지원신청서 교육이수 등록 시작 -->
+	<insert id="insertEduApplyStudy" parameterType="hashmap">
+		insert into
+			EDU_MASTERAPPLY_STUDY_TB
+				(
+					app_seq,
+					app_study_nm,
+					app_study_st,
+					app_study_et,
+					app_study_ag,
+					app_study_detail,
+					app_study_ins_id,
+					app_study_ins_dt,
+					app_study_udt_id,
+					app_study_udt_dt
+				)values
+				<foreach item="study" index="index" collection="list" open=" " separator="," close=" ">
+				(
+					#{app_seq},
+					#{study.app_study_nm},
+					#{study.app_study_st},
+					#{study.app_study_et},
+					#{study.app_study_ag},
+					#{study.app_study_detail},
+					#{app_id},
+					now(),
+					#{app_id},
+					now()
+				)
+				</foreach>
+	</insert>
+	<!-- 모집홍보 지원신청서 교육이수 등록 종료 -->
+	
+	<!-- 모집홍보 지원신청서 언어능력 등록 시작 -->
+	<insert id="insertEduApplyLanguage" parameterType="hashmap">
+		insert into
+			EDU_MASTERAPPLY_LANGUAGE_TB
+				(
+					app_seq,
+					app_lang_nm,
+					app_lang_test_nm,
+					app_lang_grade,
+					app_lang_ag,
+					app_lang_obtain_dt,
+					app_lang_ins_id,
+					app_lang_ins_dt,
+					app_lang_udt_id,
+					app_lang_udt_dt
+				)values
+				<foreach item="language" index="index" collection="list" open=" " separator="," close=" ">
+				(
+					#{app_seq},
+					#{language.app_lang_nm},
+					#{language.app_lang_test_nm},
+					#{language.app_lang_grade},
+					#{language.app_lang_ag},
+					#{language.app_lang_obtain_dt},
+					#{app_id},
+					now(),
+					#{app_id},
+					now()
+				)
+				</foreach>
+	</insert>
+	<!-- 모집홍보 지원신청서 언어능력 등록 종료 -->
+	
+	<!-- 모집홍보 지원신청서 자격증 등록 시작 -->
+	<insert id="insertEduApplyLicense" parameterType="hashmap">
+		insert into
+			EDU_MASTERAPPLY_LICENSE_TB
+				(
+					app_seq,
+					app_license_nm,
+					app_license_grade,
+					app_license_ag,
+					app_license_obtain_dt,
+					app_license_ins_id,
+					app_license_ins_dt,
+					app_license_udt_id,
+					app_license_udt_dt
+				)values
+				<foreach item="license" index="index" collection="list" open=" " separator="," close=" ">
+				(
+					#{app_seq},
+					#{license.app_license_nm},
+					#{license.app_license_grade},
+					#{license.app_license_ag},
+					#{license.app_license_obtain_dt},
+					#{app_id},
+					now(),
+					#{app_id},
+					now()
+				)
+				</foreach>
+	</insert>
+	<!-- 모집홍보 지원신청서 자격증 등록 종료 -->
+	
+	<!-- 모집홍보 지원신청서 해외체류 등록 시작 -->
+	<insert id="insertEduApplyOverseas" parameterType="hashmap">
+		insert into
+			EDU_MASTERAPPLY_OVERSEAS_TB
+				(
+					app_seq,
+					app_overseas_nm,
+					app_overseas_st,
+					app_overseas_et,
+					app_overseas_purpose,
+					app_overseas_ins_id,
+					app_overseas_ins_dt,
+					app_overseas_udt_id,
+					app_overseas_udt_dt
+				)values
+				<foreach item="overseas" index="index" collection="list" open=" " separator="," close=" ">
+				(
+					#{app_seq},
+					#{overseas.app_overseas_nm},
+					#{overseas.app_overseas_st},
+					#{overseas.app_overseas_et},
+					#{overseas.app_overseas_purpose},
+					#{app_id},
+					now(),
+					#{app_id},
+					now()
+				)
+				</foreach>
+	</insert>
+	<!-- 모집홍보 지원신청서 해외체류 등록 종료 -->
+	
+	<!-- 모집홍보 지원신청서 기타 증명 파일 등록 시작 -->
+	<insert id="insertEduApplyFile" parameterType="hashmap">
+		insert into
+			EDU_MASTERAPPLY_FILE_TB
+				(
+					app_seq,
+					app_file_origin,
+					app_file_saved,
+					app_file_ins_id,
+					app_file_ins_dt,
+					app_file_udt_id,
+					app_file_udt_dt
+				)values
+				<foreach item="file" index="index" collection="list" open=" " separator="," close=" ">
+				(
+					#{app_seq},
+					#{file.app_file_origin},
+					#{file.app_file_saved},
+					#{app_id},
+					now(),
+					#{app_id},
+					now()
+				)
+				</foreach>
+	</insert>
+	<!-- 모집홍보 지원신청서 기타 증명 파일 등록 종료 -->
+	
+	<!-- 모집홍보 지원신청 결과 등록 시작 -->
+	<insert id="insertEduApplyResult" parameterType="int">
+		insert into
+			EDU_MASTERAPPLY_RESULT_TB
+				(
+					app_seq
+				)values
+				(
+					#{app_seq}
+				)
+	</insert>
+	<!-- 모집홍보 지원신청 결과 등록 종료 -->
+	
+	<!-- 승인된 장기 과정 기수 리스트 검색 시작 -->
+	<!-- 
+		and
+            gisu.gisu_crc_class = #{1}
+	 이 부분 수정
+	 	cur.crc_class
+	 -->
+	
+	<select id="selectLongTermList" parameterType="string" resultType="hashmap">
+	<![CDATA[
+		select
+			gisu.gisu_seq as gisu_seq,
+		    gisu.gisu_num as gisu_num,
+            gisu.gisu_crc_nm as gisu_crc_nm,
+            gisu.gisu_crc_month as gisu_crc_month,
+            gisu.gisu_crc_days as gisu_crc_days,
+            gisu.gisu_crc_times as gisu_crc_times,
+            gisu.gisu_crc_pay as gisu_crc_pay,
+            gisu.gisu_crc_personnel as gisu_crc_personnel,
+            gisu.gisu_crc_location as gisu_crc_location,
+		    gisu.gisu_app_st as gisu_app_st,
+		    gisu.gisu_app_et as gisu_app_et,
+		    gisu.gisu_crc_st as gisu_crc_st,
+            gisu.gisu_crc_et as gisu_crc_et,
+		    (
+		    	select 
+					CASE
+				WHEN DATE_FORMAT(now(), '%Y-%m-%d') between gisu.gisu_app_st and gisu.gisu_app_et THEN 
+					IF(gisu.gisu_seq in(
+						select
+							apply.gisu_seq
+						from
+							edu_masterapply_form_tb apply
+						where
+							apply.app_id = #{0}
+					) = 1, 'B1601','B1600')
+		        WHEN DATE_FORMAT(now(), '%Y-%m-%d') <= gisu.gisu_app_st THEN 'B1602'
+		        WHEN DATE_FORMAT(now(), '%Y-%m-%d') >= gisu.gisu_app_et THEN 'B1603' END
+			) as gisu_result
+		from
+			edu_curriculum_tb cur,
+		    edu_curriculum_gisu_tb gisu
+		where
+			cur.crc_seq = gisu.crc_seq
+		and
+			cur.crc_tp = 'B1200'
+		and
+			cur.crc_per = 'B1301'
+		and
+			gisu.gisu_per = 'B1501'
+        and
+			DATE_FORMAT(now(), '%Y-%m-%d') between gisu.gisu_app_st and gisu.gisu_app_et
+        and
+            gisu.gisu_crc_class = #{1}
+        and
+        	gisu.gisu_crc_division = #{2}
+        order by
+            gisu.gisu_crc_st desc
+	]]>
+	</select>
+	<!-- 승인된 장기 과정 기수 리스트 검색 종료 -->
+    
+    <!-- 승인된 단기 과정 기수 리스트 검색 시작 -->
+    <select id="selectShortTermList" parameterType="string" resultType="hashmap">
+    <![CDATA[
+        select
+            gisu.gisu_seq as gisu_seq,
+            gisu.gisu_crc_nm as gisu_crc_nm,
+            gisu.gisu_num as gisu_num,
+            gisu.gisu_crc_month as gisu_crc_month,
+            gisu.gisu_crc_days as gisu_crc_days,
+            gisu.gisu_crc_times as gisu_crc_times,
+            gisu.gisu_app_st as gisu_app_st,
+            gisu.gisu_app_et as gisu_app_et,
+            gisu.gisu_crc_st as gisu_crc_st,
+            gisu.gisu_crc_et as gisu_crc_et,
+            gisu.gisu_crc_pay,
+            (
+                select 
+                    CASE
+                WHEN DATE_FORMAT(now(), '%Y-%m-%d') between gisu.gisu_app_st and gisu.gisu_app_et THEN 
+                    IF(gisu.gisu_seq in(
+                        select
+                            apply.gisu_seq
+                        from
+                            edu_masterapply_form_tb apply
+                        where
+                            apply.app_id = #{0}
+                    ) = 1, 'B1601','B1600')
+                WHEN DATE_FORMAT(now(), '%Y-%m-%d') <= gisu.gisu_app_st THEN 'B1602'
+                WHEN DATE_FORMAT(now(), '%Y-%m-%d') >= gisu.gisu_app_et THEN 'B1603' END
+            ) as gisu_result
+        from
+            edu_curriculum_tb cur,
+            edu_curriculum_gisu_tb gisu
+        where
+            cur.crc_seq = gisu.crc_seq
+        and
+            cur.crc_tp = 'B1201'
+        and
+            cur.crc_per = 'B1301'
+        and
+            gisu.gisu_per = 'B1501'
+        and
+            DATE_FORMAT(now(), '%Y-%m-%d') between gisu.gisu_app_st and gisu.gisu_app_et
+        and
+            gisu.gisu_crc_class = #{1}
+        order by
+            gisu.gisu_crc_st desc
+    ]]>
+    </select>
+    <!-- 승인된 단기 과정 기수 리스트 검색 종료 -->
+    
+    <!-- 단기과정에서 사용할 결제정보 조회 시작 -->
+    
+    <select id="selectShortTermPayInfo" parameterType="string" resultType="SEAPayInfo">
+    	select
+    		pay_crc_seq as seq
+    		,pay_crc_start as pay_st
+    		,pay_crc_end as pay_end
+    		,pay_crc_amount as amount
+    	from
+    		edu_curriculum_pay_tb
+    	where
+    		gisu_seq = #{gisu_seq}
+    </select>
+    
+    <!-- 단기과정에서 사용할 결제정보 조회 종료 -->
+    
+    <!-- 과정분류별, 승인된 단기 과정 기수 리스트 검색 시작 -->
+    <select id="selectShortTermInfo" parameterType="string" resultType="hashmap">
+    <![CDATA[
+        select
+            gisu.gisu_seq as gisu_seq,
+            gisu.gisu_num as gisu_num,
+            gisu.gisu_crc_nm as gisu_crc_nm,
+            gisu.gisu_crc_intro as gisu_crc_intro,
+            gisu.gisu_app_st as gisu_app_st,
+            gisu.gisu_app_et as gisu_app_et
+        from
+            edu_curriculum_tb cur,
+            edu_curriculum_gisu_tb gisu
+        where
+            cur.crc_seq = gisu.crc_seq
+        and
+            cur.crc_tp = 'B1201'
+        and
+            cur.crc_per = 'B1301'
+        and
+            gisu.gisu_per = 'B1501'
+        and
+            now() < gisu.gisu_app_et
+        and
+            gisu.gisu_crc_class = #{gisu_crc_class}
+        order by
+            gisu.gisu_app_et
+    ]]>
+    </select>
+    <!-- 승인된 단기 과정 기수 리스트 검색 종료 -->
+    
+    <!-- 특정 과정의 특정 기수 검색 시작 -->
+    <select id="searchCurGisu" parameterType="int" resultType="SEACurGisu">
+        select
+            *
+        from
+            EDU_CURRICULUM_GISU_TB
+        where
+            gisu_seq = #{gisu_seq}
+    </select>
+    <!-- 특정 과정의 특정 기수 검색 종료 -->
+	
+	<!-- 이미지 게시판 내용리스트 검색 시작 -->
+	
+	<select id="selectImageNoticeList" parameterType="string" resultType="hashmap">
+	<![CDATA[
+		select
+			board_content_seq,
+			board_seq,
+			board_content_title,
+			board_content_ct,
+			board_content_nm,
+			board_content_hit,
+			board_content_udt_dt,
+			board_content_udt_id
+		from
+			com_board_content_tb
+		where
+			board_seq='7'
+	]]>
+	</select>
+	<!-- 이미지 게시판 내용리스트 검색 종료 -->
+	
+	
+	<!-- 지원 이력 조회 시작 -->
+	<select id="selectEduApplyResult" parameterType="hashmap" resultType="hashmap">
+		select
+			apply.app_id as app_id,
+			apply.gisu_seq as gisu_seq,
+			gisu.gisu_crc_nm as gisu_crc_nm
+		from
+			edu_curriculum_gisu_tb gisu,
+			edu_masterapply_form_tb apply
+		where
+			apply.gisu_seq = gisu.gisu_seq
+		and
+			apply.app_id = #{user_id}
+		and
+			apply.gisu_seq = #{gisu_seq}
+	</select>
+	<!-- 지원 이력 조회 종료 -->
+
+	<!-- 모집홍보 지원신청서 검색 관련 시작 -->
+	<resultMap type="hashmap" id="eduApplyMap">
+		<id property="app_seq" column="app_seq" />
+		<result property="app_id" column="app_id" />
+		<result property="gisu_seq" column="gisu_seq" />
+		<result property="app_mt_ck" column="app_mt_ck" />
+		<result property="app_mt_etc" column="app_mt_etc" />
+		<result property="app_zipcode" column="app_zipcode" />
+		<result property="app_address" column="app_address" />
+		<result property="app_address_detail" column="app_address_detail" />
+		<result property="app_em_phone" column="app_em_phone" />
+		<result property="app_take_ck" column="app_take_ck" />
+		<result property="app_take_dt" column="app_take_dt" />
+		<result property="app_take_rt" column="app_take_rt" />
+		<result property="app_abroad_ck" column="app_abroad_ck" />
+		<result property="app_kmove_ck" column="app_kmove_ck" />
+		<result property="app_kmove_nm" column="app_kmove_nm" />
+		<result property="app_kmove_ag" column="app_kmove_ag" />
+		<result property="app_kmove_st" column="app_kmove_st" />
+		<result property="app_kmove_et" column="app_kmove_et" />
+<!--         <result property="app_domitory_ck" column="app_domitory_ck" /> -->
+		<result property="app_self_intro" column="app_self_intro" />
+		<result property="app_photo_saved" column="app_photo_saved" />
+		<result property="app_photo_origin" column="app_photo_origin" />
+		<result property="app_edu_file_saved" column="app_edu_file_saved" />
+		<result property="app_edu_file_origin" column="app_edu_file_origin" />
+		<result property="app_isr_file_saved" column="app_isr_file_saved" />
+		<result property="app_isr_file_origin" column="app_isr_file_origin" />
+		<result property="app_imm_file_saved" column="app_imm_file_saved" />
+		<result property="app_imm_file_origin" column="app_imm_file_origin" />
+        <result property="app_worknet_file_saved" column="app_worknet_file_saved" />
+        <result property="app_worknet_file_origin" column="app_worknet_file_origin" />
+        <result property="app_ins_dt" column="app_ins_dt" />
+		<collection property="eduHistoryList" javaType="java.util.ArrayList" resultMap="eduApplyEduHistory" />
+		<collection property="languageList" javaType="java.util.ArrayList" resultMap="eduApplyLanguage" />
+		<collection property="careerList" javaType="java.util.ArrayList" resultMap="eduApplyCareer" />
+		<collection property="licenseList" javaType="java.util.ArrayList" resultMap="eduApplyLicense" />
+		<collection property="overseasList" javaType="java.util.ArrayList" resultMap="eduApplyOverseas" />
+		<collection property="studyList" javaType="java.util.ArrayList" resultMap="eduApplyStudy" />
+		<collection property="fileList" javaType="java.util.ArrayList" resultMap="eduApplyFile" />
+	</resultMap>
+	<resultMap type="hashmap" id="eduApplyEduHistory">
+		<id property="app_edu_seq" column="app_edu_seq" />
+		<result property="app_edu_sc_nm" column="app_edu_sc_nm" />
+		<result property="app_edu_major" column="app_edu_major" />
+		<result property="app_edu_gd_ck" column="app_edu_gd_ck" />
+		<result property="app_edu_gd_dt" column="app_edu_gd_dt" />
+		<result property="app_edu_sc_lo" column="app_edu_sc_lo" />
+		<result property="app_edu_gd_rq" column="app_edu_gd_rq" />
+	</resultMap>
+	<resultMap type="hashmap" id="eduApplyCareer">
+		<id property="app_crr_seq" column="app_crr_seq" />
+		<result property="app_crr_place" column="app_crr_place" />
+		<result property="app_crr_position" column="app_crr_position" />
+		<result property="app_crr_st" column="app_crr_st" />
+		<result property="app_crr_et" column="app_crr_et" />
+		<result property="app_crr_dept" column="app_crr_dept" />
+		<result property="app_crr_phone" column="app_crr_phone" />
+	</resultMap>
+	<resultMap type="hashmap" id="eduApplyLanguage">
+		<id property="app_lang_seq" column="app_lang_seq" />
+		<result property="app_lang_nm" column="app_lang_nm" />
+		<result property="app_lang_test_nm" column="app_lang_test_nm" />
+		<result property="app_lang_grade" column="app_lang_grade" />
+		<result property="app_lang_ag" column="app_lang_ag" />
+		<result property="app_lang_obtain_dt" column="app_lang_obtain_dt" />
+	</resultMap>
+	<resultMap type="hashmap" id="eduApplyLicense">
+		<id property="app_license_seq" column="app_license_seq" />
+		<result property="app_license_nm" column="app_license_nm" />
+		<result property="app_license_grade" column="app_license_grade" />
+		<result property="app_license_ag" column="app_license_ag" />
+		<result property="app_license_obtain_dt" column="app_license_obtain_dt" />
+	</resultMap>
+	<resultMap type="hashmap" id="eduApplyOverseas">
+		<id property="app_overseas_seq" column="app_overseas_seq" />
+		<result property="app_overseas_nm" column="app_overseas_nm" />
+		<result property="app_overseas_st" column="app_overseas_st" />
+		<result property="app_overseas_et" column="app_overseas_et" />
+		<result property="app_overseas_purpose" column="app_overseas_purpose" />
+	</resultMap>
+	<resultMap type="hashmap" id="eduApplyStudy">
+		<id property="app_study_seq" column="app_study_seq" />
+		<result property="app_study_nm" column="app_study_nm" />
+		<result property="app_study_st" column="app_study_st" />
+		<result property="app_study_et" column="app_study_et" />
+		<result property="app_study_ag" column="app_study_ag" />
+		<result property="app_study_detail" column="app_study_detail" />
+	</resultMap>
+	<resultMap type="hashmap" id="eduApplyFile">
+		<id property="app_file_seq" column="app_file_seq" />
+		<result property="app_file_origin" column="app_file_origin" />
+		<result property="app_file_saved" column="app_file_saved" />
+	</resultMap>
+	
+	<select id="selectEduApply" parameterType="hashmap" resultMap="eduApplyMap">
+		select
+			form.app_seq
+			,form.app_id
+			,form.gisu_seq
+			,form.app_mt_ck
+			,form.app_mt_etc
+			,form.app_zipcode
+			,form.app_address
+			,form.app_address_detail
+			,form.app_em_phone
+			,form.app_take_ck
+			,DATE_FORMAT(form.app_take_dt, '%Y-%m-%d') as app_take_dt
+			,form.app_take_rt
+			,form.app_abroad_ck
+			,form.app_kmove_ck
+			,form.app_kmove_nm
+			,form.app_kmove_ag
+			,DATE_FORMAT(form.app_kmove_st, '%Y-%m-%d') as app_kmove_st
+			,DATE_FORMAT(form.app_kmove_et, '%Y-%m-%d') as app_kmove_et
+<!--             ,form.app_domitory_ck -->
+			,form.app_self_intro
+			,form.app_photo_saved
+			,form.app_photo_origin
+			,form.app_edu_file_saved
+			,form.app_edu_file_origin
+			,form.app_isr_file_saved
+			,form.app_isr_file_origin
+            ,form.app_imm_file_saved
+            ,form.app_imm_file_origin
+            ,form.app_worknet_file_saved
+            ,form.app_worknet_file_origin
+            ,form.app_ins_dt
+			,eduhistory.app_edu_seq
+			,eduhistory.app_edu_sc_nm
+		    ,eduhistory.app_edu_major
+		    ,eduhistory.app_edu_gd_ck
+		    ,DATE_FORMAT(eduhistory.app_edu_gd_dt, '%Y-%m-%d') as app_edu_gd_dt
+		    ,eduhistory.app_edu_sc_lo
+		    ,eduhistory.app_edu_gd_rq
+			,language.app_lang_seq
+			,language.app_lang_nm
+		    ,language.app_lang_test_nm
+		    ,language.app_lang_grade
+		    ,language.app_lang_ag
+		    ,DATE_FORMAT(language.app_lang_obtain_dt, '%Y-%m-%d') as app_lang_obtain_dt
+		    ,career.app_crr_seq
+		    ,career.app_crr_place
+		    ,career.app_crr_position
+		    ,DATE_FORMAT(career.app_crr_st, '%Y-%m-%d') as app_crr_st
+		    ,DATE_FORMAT(career.app_crr_et, '%Y-%m-%d') as app_crr_et
+		    ,career.app_crr_dept
+		    ,career.app_crr_phone
+		    ,study.app_study_seq
+		    ,study.app_study_nm
+		    ,DATE_FORMAT(study.app_study_st, '%Y-%m-%d') as app_study_st
+		    ,DATE_FORMAT(study.app_study_et, '%Y-%m-%d') as app_study_et
+		    ,study.app_study_ag
+		    ,study.app_study_detail
+		    ,license.app_license_seq
+		    ,license.app_license_nm
+		    ,license.app_license_grade
+		    ,license.app_license_ag
+		    ,DATE_FORMAT(license.app_license_obtain_dt, '%Y-%m-%d') as app_license_obtain_dt
+		    ,overseas.app_overseas_seq
+		    ,overseas.app_overseas_nm
+		    ,DATE_FORMAT(overseas.app_overseas_st, '%Y-%m-%d') as app_overseas_st
+		    ,DATE_FORMAT(overseas.app_overseas_et, '%Y-%m-%d') as app_overseas_et
+		    ,overseas.app_overseas_purpose
+			,file.app_file_seq
+			,file.app_file_origin
+			,file.app_file_saved
+		from
+			EDU_MASTERAPPLY_FORM_TB form 
+		LEFT JOIN EDU_MASTERAPPLY_EDUHISTORY_TB eduhistory
+		ON
+			form.app_seq = eduhistory.app_seq
+		LEFT JOIN EDU_MASTERAPPLY_LANGUAGE_TB language
+		ON
+			form.app_seq = language.app_seq
+		LEFT JOIN EDU_MASTERAPPLY_CAREER_TB career
+		ON
+			form.app_seq = career.app_seq
+		LEFT JOIN EDU_MASTERAPPLY_STUDY_TB study
+		ON
+			form.app_seq = study.app_seq
+		LEFT JOIN EDU_MASTERAPPLY_LICENSE_TB license
+		ON
+			form.app_seq = license.app_seq
+		LEFT JOIN EDU_MASTERAPPLY_OVERSEAS_TB overseas
+		ON
+			form.app_seq = overseas.app_seq
+		LEFT JOIN EDU_MASTERAPPLY_FILE_TB file
+		ON
+			form.app_seq = file.app_seq
+		where
+			app_id = #{user_id}
+		and
+			gisu_seq = #{gisu_seq}
+	</select>
+	<!-- 모집홍보 지원신청서 검색 관련 종료 -->
+	
+	<!-- 모집홍보 지원신청서 삭제 시작 -->
+	<delete id="deleteEduApplyForm" parameterType="hashmap">
+		delete from
+			EDU_MASTERAPPLY_FORM_TB
+		where
+			gisu_seq = #{gisu_seq}
+		and
+			app_id = #{user_id}
+	</delete>
+	<!-- 모집홍보 지원신청서 삭제 종료 -->
+	
+	
+	<!-- 이미지게시판 검색 갯수쿼리 시작 -->
+	<select id="countBoard" parameterType="hashmap" resultType="int">
+	<bind name="pattern" value="'%' + keyword + '%'" />
+		select
+			count(*)
+		from
+			com_board_content_tb
+		where
+			board_seq=#{boardSeq}
+		
+		<choose>
+        <!-- 검색옵션이 제목 검색일 경우 -->
+        <when test="searchOption == 'title'">
+           and
+            board_content_title like #{pattern}
+        </when>
+        <!-- 검색옵션이 내용 검색일 경우 -->
+        <otherwise>
+        and
+            board_content_ct like #{pattern}
+        </otherwise>
+        </choose> 
+
+	</select>
+	
+	<!-- 이미지게시판 검색 갯수쿼리 종료 -->
+	
+	
+	<!-- 게시글 전체 목록 조회 및 검색조회까지 -->
+	<select id="boardListAll" resultType="hashmap" parameterType="hashmap">
+	<bind name="pattern" value="'%' + keyword + '%'" />
+   	 <!-- 목록 조회 및 페이징 전체 쿼리 -->
+   	 
+   	 <include refid="pagingHeader"></include>
+   	     SELECT   board_content_seq, board_seq, board_content_title, board_content_ct, board_content_nm, board_content_hit 
+   	     ,DATE_FORMAT(board_content_ins_dt, '%Y-%m-%d') as board_content_ins_dt,DATE_FORMAT(board_content_udt_dt, '%Y-%m-%d') as board_content_udt_dt,board_content_udt_id
+   	     FROM com_board_content_tb B
+   	     where
+			board_seq=#{boardSeq}
+			
+   	     <include refid="search"></include>
+   	  
+   	 <include refid="pagingFooter"></include>    
+   	 order by board_content_ins_dt desc
+	</select>
+	
+	<!-- 검색 조건 sql -->
+	<sql id="search">
+	 <choose>
+        <!-- 검색옵션이 제목 검색일 경우 -->
+     
+        <!-- 검색옵션이 제목 검색일 경우 -->
+        <when test="searchOption == 'title'">
+          and  board_content_title like #{pattern}
+          
+        </when>
+        <!-- 검색옵션이 내용 검색일 경우 -->
+        <otherwise>
+          and  board_content_ct like #{pattern}
+            
+        </otherwise>
+    </choose>
+       
+	</sql>
+ 
+	<!-- 페이징 sql -->
+	<sql id="pagingHeader">
+   	 SELECT * FROM (
+   	     SELECT  (@ROWNUM := @ROWNUM + 1) AS rn, A.* FROM (
+	</sql>
+	<sql id="pagingFooter">
+	
+   	     ) A, (SELECT @ROWNUM := 0) B 
+   	     order by CAST(A.board_content_seq AS INTEGER) desc
+   	 ) C WHERE rn BETWEEN #{start} AND #{end}
+	</sql>
+	
+	
+	<select id="boardDetail" parameterType="hashmap" resultType="hashmap">
+        SELECT
+            board_content_seq
+            , board_seq
+            , board_content_title
+            , board_content_ct
+            , board_content_nm
+            , board_content_hit
+            , DATE_FORMAT(board_content_udt_dt, '%Y-%m-%d') as board_content_udt_dt
+            , board_content_udt_id
+            , (
+                select
+                    max(board_content_seq)
+                from
+                    com_board_content_tb
+                where
+                    board_seq = #{boardSeq}
+            ) as board_content_seq_max
+            , (
+                select
+                    min(board_content_seq)
+                from
+                    com_board_content_tb
+                where
+                    board_seq = #{boardSeq}
+            ) as board_content_seq_min
+        FROM
+            com_board_content_tb B
+        where
+            board_content_seq = (
+                select
+                    <choose>
+                        <when test="searchOption=='next'">
+                            min(board_content_seq)
+                        </when>
+                        <when test="searchOption=='previous'">
+                            max(board_content_seq)
+                        </when>
+                        <otherwise>
+                            board_content_seq
+                        </otherwise>
+                    </choose>
+                from
+                    com_board_content_tb c
+                where
+                    board_seq = #{boardSeq}
+                    <choose>
+                        <when test="searchOption=='next'">
+                            and board_content_seq <![CDATA[>]]> #{seq}
+                        </when>
+                        <when test="searchOption=='previous'">
+                            and board_content_seq <![CDATA[<]]> #{seq}
+                        </when>
+                        <otherwise>
+                            and board_content_seq = #{seq}
+                        </otherwise>
+                    </choose>
+            )
+	</select>
+	
+	<update id="boardHit" parameterType="int">
+		update
+			com_board_content_tb
+		set
+			board_content_hit = board_content_hit + 1
+		where
+			board_content_seq = #{seq}
+	</update>	
+	
+	
+	<select id="boardFile" parameterType="hashmap" resultType="hashmap">
+	
+	 SELECT board_file_seq, board_content_seq, board_file_saved,board_file_origin,board_file_ins_dt,board_file_ins_id,board_file_udt_dt,board_file_udt_id
+	 FROM COM_BOARD_FILE_TB
+	 WHERE board_content_seq=#{boardSeq}
+	</select>
+
+
+     <select id="boardFileDetail" parameterType="hashmap" resultType="hashmap">
+	
+	 SELECT board_file_seq, board_content_seq, board_file_saved,board_file_origin,board_file_ins_dt,board_file_ins_id,board_file_udt_dt,board_file_udt_id
+	 FROM COM_BOARD_FILE_TB
+	 WHERE board_file_seq=#{fileSeq}
+	</select>
+    
+    <!-- 탈퇴할 회원의 개인정보를 삭제(임의의값으로 수정) 종료 -->
+    <update id="deleteUserDataRemoveMasterApply" parameterType="User">
+        UPDATE
+            EDU_MASTERAPPLY_FORM_TB
+        SET
+            PAY_USER_ID = #{user_pw}
+        WHERE
+            PAY_USER_ID = #{user_id}
+    </update>
+    <!-- 탈퇴할 회원의 개인정보를 삭제(임의의값으로 수정) 종료 -->
+    
+	<!-- FAQ 상담 게시글 전체 목록 조회 및 검색조회까지 -->
+	<!-- FAQ 상담 게시판 검색 갯수쿼리 시작 -->
+	<select id="faq_consulting_countBoard" parameterType="hashmap" resultType="int">
+	<bind name="pattern" value="'%' + keyword + '%'" />
+		select
+			count(*)
+		from
+			com_faq_tb
+		where
+			consulting_tp = 'A0501'
+		<choose>
+        <!-- 검색옵션이 제목 검색일 경우 -->
+        <when test="searchOption == 'title'">
+           and
+            consulting_title like #{pattern}
+        </when>
+        <!-- 검색옵션이 내용 검색일 경우 -->
+        <otherwise>
+        and
+            consulting_ct like #{pattern}
+        </otherwise>
+        </choose> 
+
+	</select>
+	
+	<select id="faq_consulting_boardListAll" resultType="hashmap" parameterType="hashmap">
+	<bind name="pattern" value="'%' + keyword + '%'" />
+   	 <!-- 목록 조회 및 페이징 전체 쿼리 -->
+   	 
+   	 <include refid="consulting_pagingHeader"></include>
+   	     SELECT   consulting_seq, consulting_title, consulting_tp, consulting_ct, consulting_ins_id 
+   	     ,DATE_FORMAT(consulting_udt_dt, '%Y-%m-%d') as consulting_udt_dt, consulting_udt_id
+   	        	     FROM com_faq_tb B
+   	     WHERE 1=1
+   	     AND consulting_tp = 'A0501'
+   	     <include refid="consulting_search"></include>
+   	  
+   	 <include refid="consulting_pagingFooter"></include>    
+	</select>
+	<!-- FAQ 상담 게시글 전체 목록 조회 및 검색조회 종료 -->
+	
+	<!-- 온라인 상담 게시글 전체 목록 조회 및 검색조회까지 -->
+	<!-- 온라인 상담 게시판 검색 갯수쿼리 시작 -->
+	<select id="online_consulting_countBoard" parameterType="hashmap" resultType="int">
+	<bind name="pattern" value="'%' + keyword + '%'" />
+		select
+			count(*)
+		from
+			com_online_tb
+		where
+			consulting_check != 0
+		<choose>
+        <!-- 검색옵션이 제목 검색일 경우 -->
+        <when test="searchOption == 'title'">
+           and
+            consulting_title like #{pattern}
+        </when>
+        <!-- 검색옵션이 내용 검색일 경우 -->
+        <otherwise>
+        and
+            consulting_ct like #{pattern}
+        </otherwise>
+        </choose> 
+
+	</select>
+	<!-- 온라인 상담 게시판 검색 갯수쿼리 종료 -->
+	
+	<select id="online_consulting_boardListAll" resultType="hashmap" parameterType="hashmap">
+	<bind name="pattern" value="'%' + keyword + '%'" />
+   	 <!-- 목록 조회 및 페이징 전체 쿼리 -->
+   	 
+    <include refid="consulting_pagingHeader"></include>
+	    SELECT
+	        consulting_seq
+	        , consulting_title
+	        , consulting_ct
+            , consulting_open
+            , consulting_check
+            , consulting_ins_id
+            , consulting_udt_id
+            , DATE_FORMAT(consulting_udt_dt, '%Y-%m-%d') as consulting_ins_dt
+            , DATE_FORMAT(consulting_udt_dt, '%Y-%m-%d') as consulting_udt_dt
+	        , re_ct
+	        , re_ins_id
+	        , re_udt_id
+	        , DATE_FORMAT(re_ins_dt, '%Y-%m-%d') as re_ins_dt
+            , DATE_FORMAT(re_udt_dt, '%Y-%m-%d') as re_udt_dt
+	        , (
+	            select
+	                count(*) + 1 
+	            from
+	                com_online_tb 
+	            where
+	                consulting_check != 0 
+	                and consulting_seq <![CDATA[<]]> B.consulting_seq
+	        ) as consulting_count 
+	    FROM
+	        com_online_tb B 
+	    where
+	        consulting_check != 0
+    <include refid="consulting_search"></include>
+   	  
+   	<include refid="consulting_pagingFooter"></include>
+        order by
+            consulting_ins_dt desc
+	</select>
+	<!-- 온라인 상담 게시글 전체 목록 조회 및 검색조회 종료 -->
+	
+	<!-- FAQ 및 온라인 상담 검색 조건 sql 시작 -->
+	<sql id="consulting_search">
+	 <choose>
+        <!-- 검색옵션이 제목 검색일 경우 -->
+     
+        <!-- 검색옵션이 제목 검색일 경우 -->
+        <when test="searchOption == 'title'">
+          and  consulting_title like #{pattern}
+        </when>
+        <!-- 검색옵션이 내용 검색일 경우 -->
+        <otherwise>
+          and  consulting_ct like #{pattern}
+        </otherwise>
+    </choose>
+       
+	</sql>
+	<!-- FAQ 및 온라인 상담 검색 조건 sql 종료-->
+ 
+	<!-- FAQ 및 온라인 상담 페이징 sql -->
+	<sql id="consulting_pagingHeader">
+   	 SELECT * FROM (
+   	     SELECT  (@ROWNUM := @ROWNUM + 1) AS rn, A.* FROM (
+	</sql>
+	<sql id="consulting_pagingFooter">
+	
+   	     ) A, (SELECT @ROWNUM := 0) B 
+   	     order by CAST(A.consulting_seq AS INTEGER) desc
+   	 ) C WHERE rn BETWEEN #{start} AND #{end}
+	</sql>
+	<!-- FAQ 및 온라인 상담 페이징 sql 종료-->
+	<!-- FAQ 및 온라인 상담 게시글 전체 목록 조회 및 검색조회 종료 -->
+	
+	<!-- 온라인 상담 게시판 상세내용보기 쿼리 시작 -->
+	<select id="online_consulting_boardDetail" parameterType="hashmap" resultType="hashmap">
+	  SELECT   consulting_seq, consulting_title, consulting_ct, consulting_ins_id 
+   	     ,DATE_FORMAT(consulting_udt_dt, '%Y-%m-%d') as consulting_udt_dt, consulting_udt_id
+   	     ,consulting_open, consulting_check, re_ct, re_ins_id, re_udt_id
+   	     ,DATE_FORMAT(re_ins_dt, '%Y-%m-%d') as re_ins_dt, DATE_FORMAT(re_udt_dt, '%Y-%m-%d') as re_udt_dt
+   	     FROM com_online_tb B
+   	     where
+	         <choose>
+	          <when test="searchOption==null">
+	          consulting_seq=#{consulting_seq}
+	          </when>
+	          <otherwise>
+	              <choose>
+	         		 <when test="searchOption=='previous'">
+	         		consulting_seq=(select min(consulting_seq) from com_online_tb c where consulting_seq > #{consulting_seq})
+	        		  </when>
+	        		  <otherwise>
+	        		  consulting_seq=(select max(consulting_seq) from com_online_tb c where #{consulting_seq} > consulting_seq)
+	        		  </otherwise>
+	        		  </choose>
+	          </otherwise>
+	          </choose>
+	</select>    
+    <!-- 온라인 상담 게시판 상세내용보기 쿼리 종료 -->
+    
+    <!-- 온라인 상담 신청 정보를 DB에 저장 시작 -->
+    <insert id="insertApplyOnlineContents" parameterType="OnlineConsultingContents">
+		INSERT INTO 
+		com_online_tb ( 
+            consulting_ins_id
+            , consulting_open
+            , consulting_title
+            , consulting_ct
+            , consulting_udt_id
+		) VALUES ( 
+            #{consulting_ins_id}
+            , #{consulting_open}
+            , #{consulting_title}
+            , #{consulting_ct}
+            , #{consulting_udt_id}
+		) 
+    </insert>
+    <!-- 온라인 상담 신청 정보를 DB에 저장 종료 -->
+    
+    <!-- 온라인 상담 수정 정보를 DB에 저장 시작 -->
+    <update id="updateApplyOnlineContents" parameterType="OnlineConsultingContents">
+		update
+			com_online_tb
+		set
+			consulting_title = #{consulting_title}
+			, consulting_ct = #{consulting_ct}
+			, consulting_open = #{consulting_open}
+			, consulting_udt_id = #{consulting_udt_id}
+			, consulting_udt_dt = now()
+		where
+			consulting_seq = #{consulting_seq}
+    </update>
+    <!-- 온라인 상담 수정 정보를 DB에 저장 종료 -->
+    
+    <!-- 온라인 상담 삭제 정보를 DB에 저장 시작 -->
+    <update id="deleteApplyOnlineContents" parameterType="OnlineConsultingContents">
+		update
+			com_online_tb
+		set
+			consulting_check = 0
+			, consulting_udt_dt = now()
+		where
+			consulting_seq = #{consulting_seq}
+    </update>
+    <!-- 온라인 상담 수정 및 삭제 정보를 DB에 저장 종료 -->   
+    
+	<!-- 온라인 상담 게시판 조회수 증가 시작 -->
+	<update id="online_consulting_hit_update" parameterType="int">
+		update
+			com_online_tb
+		set
+			consulting_hit = consulting_hit + 1
+		where
+			consulting_seq = #{consulting_seq}
+	</update>	
+	<!-- 온라인 상담 게시판 조회수 증가 종료 -->    
+
+    <!-- 오프라인 상담 신청 정보를 DB에 저장 시작 -->
+    <update id="insertApplyOfflineContents" parameterType="OfflineConsultingContents">
+		INSERT INTO 
+		COM_OFFLINE_TB ( 
+            USER_NM
+            , USER_SEX
+            , USER_AGE
+            , USER_MAJOR
+            , USER_PHONE
+            , USER_EMAIL
+            , APPLY_DATETIME
+            , APPLY_TITLE
+            , APPLY_CONTENTS
+		) VALUES ( 
+            #{user_nm}
+            , #{user_sex}
+            , #{user_age}
+            , #{user_major}
+            , #{user_phone}
+            , #{user_email}
+            , #{apply_datetime}
+            , #{apply_title}
+            , #{apply_contents}
+		) 
+    </update>
+    <!-- 오프라인 상담 신청 정보를 DB에 저장 종료 -->
+    
+    <select id="main_mediainit_list" resultType="hashmap">
+        SELECT BOARD_CONTENT_TITLE, BOARD_CONTENT_SEQ
+        FROM COM_BOARD_CONTENT_TB
+        WHERE BOARD_SEQ='10'
+        ORDER BY BOARD_CONTENT_INS_DT DESC LIMIT 6
+    </select>
+    <select id="main_graduate_list" resultType="hashmap">
+        SELECT BOARD_CONTENT_TITLE, BOARD_CONTENT_SEQ
+        FROM COM_BOARD_CONTENT_TB
+        WHERE BOARD_SEQ='9'
+        ORDER BY BOARD_CONTENT_INS_DT DESC LIMIT 6
+    </select>
+    <select id="main_notice_list" resultType="hashmap">
+        SELECT BOARD_CONTENT_TITLE, BOARD_CONTENT_SEQ
+        FROM COM_BOARD_CONTENT_TB
+        WHERE BOARD_SEQ='8'
+        ORDER BY BOARD_CONTENT_INS_DT DESC LIMIT 6
+    </select>
+    <select id="main_faq_list" resultType="hashmap">
+        SELECT CONSULTING_TITLE, CONSULTING_SEQ
+        FROM COM_FAQ_TB
+        ORDER BY CONSULTING_INS_DT DESC LIMIT 6
+    </select>
+    
+    <!-- FAQ 게시판 목록 카테고리로 검색 시작 (기본값: 9999[전체보기])-->
+	<select id="faq_test_search" parameterType="FaqConsultingContents" resultType="FaqConsultingContents">
+		select
+			consulting_seq
+			,consulting_title
+			,consulting_ins_id
+			,DATE_FORMAT(consulting_ins_dt, '%Y-%m-%d %T') as consulting_ins_dt			
+			,consulting_udt_id
+			,DATE_FORMAT(consulting_udt_dt, '%Y-%m-%d %T') as consulting_udt_dt
+		from com_faq_tb
+		<if test="consulting_tp != null and consulting_tp != ''">
+		where consulting_tp = #{consulting_tp}
+		</if>
+	</select>
+	<!-- FAQ 게시판 목록 카테고리 검색 종료 -->
+	
+	<!-- 서울 이미지 링크 클릭시 서울에 관한 이미지 불러오기 시작; 2018. 10. 10. 김준영 -->
+	<select id="seoul_img_select" resultType="String">
+		select
+			gisu_img_tb.gisu_crc_img_saved
+		from 
+			edu_curriculum_gisu_img_tb gisu_img_tb
+		where
+			(select
+				gisu_tb.gisu_seq
+			 from 
+				edu_curriculum_gisu_tb gisu_tb
+			 where
+				gisu_tb.gisu_crc_division = 'B2501') = gisu_img_tb.gisu_seq
+		order by
+			gisu_crc_img_saved_file_od;
+	</select>
+	<!-- 서울 이미지 링크 클릭시 서울에 관한 이미지 불러오기 종료 -->
+	
+	<!-- 서울 이미지 링크 클릭시 광주에 관한 이미지 불러오기 시작; 2018. 10. 10. 김준영 -->
+	<select id="gwangju_img_select" resultType="String">
+		select
+			gisu_img_tb.gisu_crc_img_saved
+		from 
+			edu_curriculum_gisu_img_tb gisu_img_tb
+		where
+			(select
+				gisu_tb.gisu_seq
+			 from 
+				edu_curriculum_gisu_tb gisu_tb
+			 where
+				gisu_tb.gisu_crc_division = 'B2502') = gisu_img_tb.gisu_seq
+		order by
+			gisu_crc_img_saved_file_od;
+	</select>
+	<!-- 서울 이미지 링크 클릭시 광주에 관한 이미지 불러오기 종료 -->
+	
+	
+</mapper>

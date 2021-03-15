@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.mypage.dao.DeliveryDAO">
+
+	<select id="selectDeliveryListCnt" parameterType="com.aracomm.changbi.mypage.vo.DeliverySearchVo" resultType="int">
+		SELECT COUNT(1)
+		FROM CB_BOOK_APP AS CBA
+			LEFT JOIN CB_COURSE AS CCA ON CBA.COURSE_ID = CCA.ID
+		WHERE 1=1
+			AND CBA.USE_YN = 'Y' /*기본조건 조회*/
+			AND CBA.USER_ID = #{user_id} /*개인조건 조회*/
+			<if test="(startDate != null and startDate != '') and (endDate != null and endDate != '')">
+				AND STR_TO_DATE(CBA.REG_DATE,'%Y%m%d%H%i%s') BETWEEN #{startDate} AND #{endDate}
+			</if>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				AND (CCA.NAME LIKE CONCAT('%',#{searchKeyword},'%') OR CBA.DELIV_NUM LIKE CONCAT('%',#{searchKeyword},'%'))
+			</if>
+	</select>
+
+	<select id="selectDeliveryList" parameterType="com.aracomm.changbi.mypage.vo.DeliverySearchVo" resultType="hashmap">
+		SELECT
+			DATE_FORMAT(STR_TO_DATE(CBA.REG_DATE,'%Y%m%d%H%i%s'),'%Y.%m.%d.') AS REQ_DATE /*신청일자*/
+			, DATE_FORMAT(STR_TO_DATE(CBA.PAYMENT_DATE,'%Y%m%d%H%i%s'),'%Y.%m.%d.') AS PAYMENT_DATE /*결제일자*/
+			, DATE_FORMAT(STR_TO_DATE(CBA.DELIV_DATE,'%Y%m%d%H%i%s'),'%Y.%m.%d.') AS PAYMENT_DATE /*배송일자*/
+			, CCA.NAME AS COURSE_NAME /*과정명*/
+			, CBA.AMOUNT /*교제수량*/
+			, CBA.DELIV_NUM /*송장번호*/
+			, CBA.DELIV_YN /*배용유무*/
+		FROM CB_BOOK_APP AS CBA
+			LEFT JOIN CB_COURSE AS CCA ON CBA.COURSE_ID = CCA.ID
+		WHERE 1=1
+			AND CBA.USE_YN = 'Y' /*기본조건 조회*/
+			AND CBA.USER_ID = #{user_id} /*개인조건 조회*/
+			<if test="(startDate != null and startDate != '') and (endDate != null and endDate != '')">
+				AND STR_TO_DATE(CBA.REG_DATE,'%Y%m%d%H%i%s') BETWEEN #{startDate} AND #{endDate}
+			</if>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				AND (CCA.NAME LIKE CONCAT('%',#{searchKeyword},'%') OR CBA.DELIV_NUM LIKE CONCAT('%',#{searchKeyword},'%'))
+			</if>
+			ORDER BY CBA.REG_DATE DESC
+			LIMIT ${visiblePages} OFFSET ${skipRows}
+	</select>
+
+
+</mapper>

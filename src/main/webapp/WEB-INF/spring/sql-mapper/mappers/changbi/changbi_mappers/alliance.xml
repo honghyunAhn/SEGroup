@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.serviceCenter.dao.AllianceAppDao">
+	<insert id="insertAllianceApp" parameterType="map">
+		INSERT INTO CB_ALLIANCE_APP (
+			  USER_ID
+			, NAME
+			, COMPANY_NAME
+			, PHONE
+			, EMAIL
+			, ALLIANCE_TYPE
+			, COMMENT
+			, USE_YN
+			, REG_DATE
+		) VALUES (
+			  #{user_id }
+			, #{name }
+			, #{company_name }
+			, #{phone }
+			, #{email }
+			, #{alliance_type }
+			, #{comment }
+			, 'Y'
+			, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s')
+		)
+	</insert>
+</mapper>

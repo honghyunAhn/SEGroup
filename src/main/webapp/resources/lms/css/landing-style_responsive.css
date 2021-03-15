@@ -1,0 +1,158 @@
+@charset "UTF-8";
+/* landing-style_responsive.css */
+
+/*--------------------------------------------------------------
+  [1] pc 1024px - 1920px >> 기준 1200px
+----------------------------------------------------------------*/
+@media(max-width:1500px){
+    .landing-container>.bgWrap>.fullWrapper>.full-navGroup{
+        width: 50%;
+        margin-left: calc(100% - 50%);
+    }
+    .landing-container>.bgWrap>.headerWrap,
+    .landing-container>.bgWrap>.contentWrap>.content>.section,
+    .landing-container>.bgWrap>.contentWrap>.content>.bannerWrap>.btnWrap,
+    .landing-container>.bgWrap>.footerWrap{
+        width: calc(100% - 80px);
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.section>.linkWrap{
+        justify-content: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.section>.linkWrap>.linkBox{
+        width: 300px;
+        margin: 0 5px;
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.bannerWrap>.swiper-wrapper>.swiper-slide>a{
+        width: 1200px;
+        height: 96px;
+    }
+    /* .landing-container>.bgWrap>.contentWrap>.content>.bannerWrap>.swiper-wrapper>.swiper-slide>a>img{
+        
+    } */
+
+}
+@media(max-width:1200px){
+
+    .landing-container>.bgWrap>.contentWrap>.content>.bannerWrap>.swiper-wrapper>.swiper-slide>a{
+        width: 900px;
+        height: 72px;
+    }
+    /* .landing-container>.bgWrap>.contentWrap>.content>.bannerWrap>.swiper-wrapper>.swiper-slide>a>img{
+       
+    } */
+    .landing-container>.bgWrap>.footerWrap>.d-flex{
+        /* display: block; */
+    }
+    .landing-container>.bgWrap>.footerWrap .companyInfo{
+        -webkit-box-lines: multiple;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+    .landing-container>.bgWrap>.footerWrap .btnInfo{
+        width: 80px;
+        height: 25px;
+    }
+}
+/*--------------------------------------------------------------
+  [2] 태블릿 768px - 1023px >> 기준 730px
+----------------------------------------------------------------*/
+@media(max-width:1024px){
+    html {
+        font-size: 13px;
+    }
+
+    .landing-container>.bgWrap>.contentWrap>.content>.section>.main-text{
+        line-height: 60px;
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.section>.linkWrap{
+        -webkit-box-lines: multiple;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.section>.linkWrap>.linkBox{
+        width: 480px;
+        height: 160px;
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.section>.linkWrap>.linkBox:nth-child(1)~*{
+        margin-top: 20px;
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.bannerWrap>.swiper-wrapper>.swiper-slide>a{
+        width: 700px;
+        height: 56px;
+    }
+    /* .landing-container>.bgWrap>.contentWrap>.content>.bannerWrap>.swiper-wrapper>.swiper-slide>a>img{
+        
+    } */
+}
+/*--------------------------------------------------------------
+  [3] 모바일  320px - 767px >> 기준 300px
+----------------------------------------------------------------*/
+@media(max-width:767px){
+
+    html {
+        font-size: 12px;
+    }
+
+    .landing-container>.bgWrap>.fullWrapper>.full-navGroup{
+        width: 100%;
+        margin-left: auto;
+    }
+    .landing-container>.bgWrap>.headerWrap,
+    .landing-container>.bgWrap>.contentWrap>.content>.section,
+    .landing-container>.bgWrap>.contentWrap>.content>.bannerWrap>.btnWrap,
+    .landing-container>.bgWrap>.footerWrap{
+        width: calc(100% - 40px);
+    }
+    .landing-container>.bgWrap>.headerWrap,
+    .landing-container>.bgWrap>.footerWrap{
+        padding: 20px 0;
+    }
+
+    .landing-container>.bgWrap>.headerWrap .bars-2line{
+        width: 20px;
+    }
+    .landing-container>.bgWrap>.contentWrap{
+        height: calc(100vh - 130px);
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.section>.main-text{
+        display: none;
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.section>.linkWrap{
+        padding: 20px 0;
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.section>.linkWrap>.linkBox{
+        width: 100%;
+        height: 150px;
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.section>.linkWrap>.linkBox>a>.linkText>p{
+        margin-top: 10px;
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.section>.linkWrap>.linkBox>a>.linkBtn{
+        display: none;
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.bannerWrap>.swiper-wrapper>.swiper-slide>a{
+        width: calc(100% - 40px);
+        height: 100px;
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.bannerWrap>.swiper-wrapper>.banner1>a{
+        background-image: url('../img/m-banner1.png');
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.bannerWrap>.swiper-wrapper>.banner2>a{
+        background-image: url('../img/m-banner2.png');
+    }
+    .landing-container>.bgWrap>.contentWrap>.content>.bannerWrap>.swiper-wrapper>.swiper-slide{
+        margin-right: 0 !important;
+    }
+    /* .landing-container>.bgWrap>.contentWrap>.content>.bannerWrap>.swiper-wrapper>.swiper-slide>a>img{
+        display: none;
+    } */
+
+    .landing-container>.bgWrap>.contentWrap>.content>.bannerWrap>.btnWrap{
+        display: none;
+    }
+    .landing-container>.bgWrap>.footerWrap .companyInfo>li:nth-child(1)~*{
+        display: none;
+    }
+}

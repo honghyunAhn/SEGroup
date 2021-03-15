@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+/* 검색 */
+div .search_box label{font-size: 120%}
+div .search_box {padding: 0.9rem;}
+div .search_box_button {text-align: center;}
+
+/* 상세 검색 */
+div .search_box_detail label{font-size: 110%;}
+div .search_box_detail {padding: 0.5rem;}
+
+/* 리스트 */
+div .pageSelect {margin-bottom: 1rem;}
+.pagination_wrap {overflow: hidden; text-align: center;}
+.pagination_con {display: inline-block;}
+.pagination_wrap li {float: left;}
+.pagination_wrap input {background-color:  #fff;border:  1px solid #ccc; height:  2rem; width:  2rem; margin:  0.2rem;}
+.pagination_wrap .pagn_center {margin:  0 12px;}
+.pagination_con ul, ol {list-style: none; display: table; padding: 0px; margin: 0px;}
+#adminList {white-space: nowrap;}
+#adminList td span {line-height: 0px;}

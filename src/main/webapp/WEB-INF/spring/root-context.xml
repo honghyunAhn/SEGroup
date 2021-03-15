@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"	
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<util:properties id="config" location="/WEB-INF/spring/prop/config.properties" />
+	<aop:aspectj-autoproxy/>
+
+	<context:component-scan base-package="com.aracomm.base.security" use-default-filters="false">
+		<context:include-filter expression="org.springframework.stereotype.Service" type="annotation"/>
+		<context:include-filter expression="org.springframework.stereotype.Repository" type="annotation"/>
+		<context:include-filter expression="org.springframework.stereotype.Component" type="annotation"/>
+	</context:component-scan>
+
+	<!-- db.properties 읽어오기 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:db.properties</value>
+		</property>
+	</bean>
+
+	<!-- db.properties의 설정 값을 읽어서 setting -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${user}" />
+		<property name="password" value="${password}" />
+		<property name="initialSize" value="50" />
+		<property name="maxActive" value="50" />
+		<property name="maxWait" value="6000" />
+		<property name="maxIdle" value="10" />
+		<property name="minIdle" value="10" />
+		<property name="validationQuery" value="select 1 from dual" />
+		<property name="testWhileIdle" value="true" />
+		<property name="timeBetweenEvictionRunsMillis" value="30000" />
+	</bean>
+
+	<!-- 트랙잭션 관리를 위한 빈설정 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- sqlSessionTemplete -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+
+	<!-- sqlSession -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" >
+		<constructor-arg index="0" name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- file upload를 위한 bean 설정 350M 설정-->
+	<bean name="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<property name="maxUploadSize" value="367001600"></property>
+	</bean>
+	
+    <!-- 메일보내기 -->
+    <bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+      <property name="host" value="smtp.gmail.com" />
+      <property name="port" value="587" />
+      <property name="username" value="sesoc2019@gmail.com" />
+      <property name="password" value="lstbswwefzloosqo" />
+      <property name="javaMailProperties">
+         <props>
+               <prop key="mail.transport.protocol">smtp</prop>
+               <prop key="mail.smtp.auth">true</prop>
+               <prop key="mail.smtp.starttls.enable">true</prop>
+               <prop key="mail.debug">true</prop>
+         </props>
+      </property>
+    </bean>
+    
+    <!-- 메일보내기 -->
+    <bean id="bizMailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+      <property name="host" value="smtp.gmail.com" />
+      <property name="port" value="587" />
+      <property name="username" value="searpier@gmail.com" />
+      <property name="password" value="wjstkdtntkdtn0" />
+      <property name="javaMailProperties">
+         <props>
+               <prop key="mail.transport.protocol">smtp</prop>
+               <prop key="mail.smtp.auth">true</prop>
+               <prop key="mail.smtp.starttls.enable">true</prop>
+               <prop key="mail.debug">true</prop>
+         </props>
+      </property>
+    </bean>
+	
+   <!-- 언어 Message 파일 설정 -->
+	<!-- 주석 확인 : SEGroup의 bean 설정 내용을 -> message_context에서 병합 -->
+<!--
+    <bean id="messageSource"  
+        class="org.springframework.context.support.ReloadableResourceBundleMessageSource">   
+        <property name="basename">
+ 			<list>
+                <value>classpath:/messages/message_common</value>
+ 			</list>       
+        </property>               
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+-->
+    
+    <!-- localeResolver 설정 -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="ko" />
+    </bean>
+ 
+	<mvc:interceptors>
+		 <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+	        <property name="paramName" value="lang" />
+	    </bean> 
+	</mvc:interceptors>
+
+
+</beans>

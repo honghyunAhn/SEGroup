@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.guide.dao.CardinalDao">
+
+	<sql id="selectCardinalList_sql">
+			<choose>
+				<when test='appPossibles == "1,2"'>
+		   		AND (APP_POSSIBLES LIKE '%1%' OR APP_POSSIBLES LIKE '%2%')
+				</when>
+				<otherwise>
+		   		AND APP_POSSIBLES LIKE CONCAT('%', #{appPossibles },'%')
+				</otherwise>
+			</choose>
+		   AND USE_YN = 'Y'
+	</sql>
+
+	<!-- 기수 조회 -->
+	<select id="selectCardinalList" parameterType="map" resultType="hashmap">
+		SELECT ID
+			 , NAME
+			 , LEARN_TYPE
+			 , COURSE_TYPE
+			 , APP_START_DATE
+			 , APP_END_DATE
+			 , LEARN_START_DATE
+			 , LEARN_END_DATE
+			 , ISSUE_DATE
+			 , ATT_EVAL_DATE
+			 , ATT_EVAL_TIME
+			 , APP_POSSIBLES
+			 , COMPLATE_YN
+			 , CASE WHEN APP_START_DATE &gt; DATE_FORMAT(NOW(),'%Y-%m-%d') THEN 'N'
+			 		WHEN APP_END_DATE &lt; DATE_FORMAT(NOW(),'%Y-%m-%d') THEN 'E'
+			 		ELSE  'Y' END STATUS
+			 , CASE WHEN LEARN_END_DATE &lt; DATE_FORMAT(NOW(),'%Y-%m-%d') THEN '연수 종료'
+			 		WHEN DATE_FORMAT(NOW(),'%Y-%m-%d') BETWEEN APP_START_DATE AND APP_END_DATE THEN '신청 가능'
+			 		WHEN APP_START_DATE &gt; DATE_FORMAT(NOW(),'%Y-%m-%d') THEN '연수 예정'
+			 		WHEN APP_END_DATE &lt; DATE_FORMAT(NOW(),'%Y-%m-%d') THEN '신청 마감'
+			 		ELSE '' END STATUS_NAME
+		  FROM CB_CARDINAL A
+		 WHERE 1 = 1
+		 <include refid="selectCardinalList_sql"/>
+		 ORDER BY ORDER_NUM
+	</select>
+
+	<select id="selectCardinalListTotCnt" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		  FROM CB_CARDINAL A
+		 WHERE 1 = 1
+		 <include refid="selectCardinalList_sql"/>
+	</select>
+
+	<!-- 메인화면 좌측 배너영역의 다음연수일정 -->
+	<select id="selectMainCardinalList" resultType="hashmap">
+		SELECT *
+		  FROM (
+			SELECT ID
+				 , NAME
+				 , APP_START_DATE
+				 , APP_END_DATE
+				 , LEARN_START_DATE
+				 , LEARN_END_DATE
+				 , '1,2' AS APP_POSSIBLES
+				 , DATEDIFF(NOW(), DATE(APP_START_DATE)) AS DIFF1
+				 , ABS(DATEDIFF(NOW(), DATE(APP_END_DATE))) AS DIFF2
+			  FROM CB_CARDINAL A
+			 WHERE DATE_FORMAT(NOW(),'%Y-%m-%d') BETWEEN APP_START_DATE AND APP_END_DATE
+			   AND (
+			   		APP_POSSIBLES LIKE '%1%' OR
+			   		APP_POSSIBLES LIKE '%2%'
+			     )
+			   AND USE_YN = 'Y'
+			 ORDER BY
+			 	CASE WHEN DIFF2 &gt; DIFF1 THEN DIFF1 ELSE DIFF2 END
+			 LIMIT 1
+		  ) R
+	     UNION ALL
+		SELECT *
+		  FROM (
+			SELECT ID
+				 , NAME
+				 , APP_START_DATE
+				 , APP_END_DATE
+				 , LEARN_START_DATE
+				 , LEARN_END_DATE
+				 , '3' AS APP_POSSIBLES
+				 , DATEDIFF(NOW(), DATE(APP_START_DATE)) AS DIFF1
+				 , ABS(DATEDIFF(NOW(), DATE(APP_END_DATE))) AS DIFF2
+			  FROM CB_CARDINAL A
+			 WHERE APP_START_DATE &gt;= DATE_FORMAT(NOW(),'%Y-%m-%d')
+			   AND APP_POSSIBLES LIKE '%3%'
+			   AND USE_YN = 'Y'
+			 ORDER BY
+			 	CASE WHEN DIFF2 &gt; DIFF1 THEN DIFF1 ELSE DIFF2 END
+			 LIMIT 1
+		  ) R
+		 UNION ALL
+		SELECT *
+		  FROM (
+			SELECT ID
+				 , NAME
+				 , APP_START_DATE
+				 , APP_END_DATE
+				 , LEARN_START_DATE
+				 , LEARN_END_DATE
+				 , '4' AS APP_POSSIBLES
+				 , DATEDIFF(NOW(), DATE(APP_START_DATE)) AS DIFF1
+				 , ABS(DATEDIFF(NOW(), DATE(APP_END_DATE))) AS DIFF2
+			  FROM CB_CARDINAL A
+			 WHERE APP_START_DATE &gt;= DATE_FORMAT(NOW(),'%Y-%m-%d')
+			   AND APP_POSSIBLES LIKE '%4%'
+			   AND USE_YN = 'Y'
+			 ORDER BY
+			 	CASE WHEN DIFF2 &gt; DIFF1 THEN DIFF1 ELSE DIFF2 END
+			 LIMIT 1
+		  ) R
+	</select>
+</mapper>

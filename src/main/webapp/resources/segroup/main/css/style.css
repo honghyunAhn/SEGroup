@@ -1,0 +1,1633 @@
+@CHARSET "UTF-8";
+
+nav{display: none;}
+
+/* 공통사항 */
+*{color: #444; letter-spacing: -1px; transition: all 0.5s;}
+body{font-size: 16px; font-family: '맑은 고딕', malgun gothic, MeiryoUI; width: 100%; overflow-x: hidden; word-break: keep-all;}
+
+
+ol, ul, li{list-style: none;}
+
+.fl{float: left;}
+.fr{float: right;}
+.cb{clear: both;}
+a{text-decoration: none;}	
+.nav_wrapper{display: none;}	
+	
+body{min-width: 320px;}	
+	
+/* 시작 */
+	
+.nav_wrapper{display: none;}	
+	
+/* gnb */
+header{width: 100%; height: 110px; position: fixed; top: 0; left: 0; right: 0; background: #fff; z-index: 1000;}
+header .gnb{width: 1600px; height: 30px; margin: 0 auto; background: #fff;}
+header .gnb li{padding: 10px;}
+header img{width: 30px; box-shadow: 6px 6px 10px #d5d5d5;}
+
+/* 로고 */
+header .logoLnb{width: 1600px; height: 80px; margin: 0 auto; background: #fff;}
+header .logoLnb .logo{width: 25%; height: 95%; background: url(../img/logo.png); background-size: 100%; background-position: 0 0; background-repeat: no-repeat; cursor: pointer;}
+header .logoLnb .logo h1{display: none;}
+
+/* lnb */
+header .logoLnb .lnb{width: 75%; margin-top: 10px; font-size: 1.5rem; font-weight: bold;}
+header .logoLnb .lnb li{padding: 10px 50px; cursor: pointer;}
+
+/* 베너 */
+.slider{
+	margin-top: 100px;
+}
+
+section{width: 100%;}
+
+/* contentsBox1 */
+.contentsBox1{
+	width: 1604px;
+	height: 725px;
+	margin: 0 auto;
+	background: url(../img/section1_bg.png);
+	background-repeat: no-repeat;
+	background-position: 2px -40px;
+	background-size: cover;
+	}
+
+.contentsBox1 .noticeBox1, .noticeBox2{
+	box-shadow: 50px 15px 40px #5e5e5e;
+}	
+	
+.contentsBox1 h2{
+	width: 100%;
+	height: 30px;
+	padding-bottom: 20px;
+	padding-top: 130px;
+	font-size: 2.5rem;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	float: left;
+	}
+.contentsBox1 h2 span{
+	color: #0aa1e0;
+}
+
+.contentsBox1 h2 span+span{
+	color: #0aa1e0;
+}
+
+.contentsBox1 h3, h4{
+	color:#0aa1e0; 
+	}
+
+.contentsBox1 h3{
+	font-size: 1.5rem;
+	font-weight:bold;
+	text-align: center;
+}
+
+.contentsBox1 h4{
+	font-size: 1rem;
+	font-weight:600;
+	text-align: center;
+	line-height: 32px;
+}
+	
+.contentsBox1 h5{font-weight: bold;}	
+	
+.contentsBox1 .noticeBox1 h5,p{
+	/* color: #fff; */
+	color: #000;
+}
+
+.contentsBox1>p{
+	float: left;
+	width: 100%; 
+	height: 5%;
+	margin-top: 3%;
+	margin-left: 3%;
+	color: #fff;
+	font-weight: bold;
+	text-shadow:0 0 10px #000;
+	display: block;
+}
+
+.contentsBox1 .buttonWrap{position: absolute; bottom: 3%; right: 21%; transform:translateX(-50%); margin: 0;}
+
+.contentsBox1 button{
+	padding: 8px 40px;
+	border: 0px;
+	color: #fff;
+	background: #0aa1e0;
+	font-size: 1rem;
+	font-weight: bold;
+    letter-spacing: 7px;
+	box-shadow: 1px 1px 0px #444;
+	cursor: pointer;
+	}
+
+/* .contentsBox1 .noticeBox1 */
+.contentsBox1 .noticeBox1{
+	position: relative;
+	float: left;
+	width: 37%;
+	height: 450px;
+	margin: 3% 100px;
+	margin-bottom: -20px;
+	padding: 20px;
+	border-top: 5px solid #0aa1e0;
+	box-sizing: border-box;
+	background: #fff;
+}
+
+
+.contentsBox1 .noticeBox1 p{
+	padding: 5px;
+	color: #444;
+	line-height: 20px;
+	text-shadow: none;
+}
+/* .contentsBox1 .noticeBox2 */
+.contentsBox1 .noticeBox2{
+	position: relative;
+	float: left;
+	width: 37%;
+	height: 450px;
+	margin: 3% 100px;
+	margin-bottom: -20px;
+	padding: 20px;
+	border-top: 5px solid #0aa1e0;
+	box-sizing: border-box;
+	background: #fff;
+}
+
+.contentsBox1 .noticeBox2 b{
+	font-weight: bold;
+}
+.contentsBox1 .noticeBox2 p{
+	padding: 5px;
+	color: #444;
+	line-height: 22px;
+	text-shadow: none;	
+	display: block;
+}
+
+/*
+.contentsBox1 .noticeBox2 a{
+	font-weight: bold;
+	color: #0aa1e0;
+	cursor: pointer;
+}
+*/
+
+.contentsBox1 .noticeBox2 .textAlign{
+	line-height: 24px;
+	padding: 5px;
+	padding-left: 50px;
+}
+
+/* contentsBox2 */
+.contentsBox2{width: 1600px; height: 1200px; margin: 0 auto;  	
+	background: url(../img/section2_bg.png);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-size: cover;
+	}
+
+.contentsBox2 .titleHead1{    
+    display: block;
+    margin-bottom: -2px;
+    width: 156px;
+    height: 5px;
+    clear: both;
+    margin-left: 43%;
+    background: #0aa1e0;
+	}	
+	
+.contentsBox2 h2{
+	width: 100%;
+	height: 1.5%;
+	padding: 30px 0;
+	padding-top: 8%;
+	color: #ffff;
+	font-size: 3rem;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	clear: both;
+	}
+
+.contentsBox2 .subTitleBox{width: 100%;}
+	
+.contentsBox2 .subTitleBox p{
+	width: 83%;
+	margin: 0 auto;	
+	color: #fff;
+	font-size: 1.4rem;
+	text-align: left;
+	text-shadow: 0.5px 0.5px 3px #000;
+	line-height: 2rem;
+	display: block;
+}
+
+/* 소개박스 */
+.contentsBox2 .introduceBoxes{
+	width: 65%;
+	height: 73%;
+	margin: 0 auto;
+	margin-top: 1.8%;
+	box-shadow: 21px 21px 41px #555;
+	background: #ffffff;
+}
+
+.contentsBox2 .introduceBoxes span{
+	color: #0aa1e0;
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+
+.contentsBox2 .introduceBoxes .introduceBox1, .introduceBox2, .introduceBox3, .introduceBox4, .introduceBox5{
+	padding-left: 90px;
+	padding-top: 15px;
+}
+
+.contentsBox2 .introduceBoxes ul{
+	padding-top: 10px;
+	font-size: 1rem;
+}
+
+.contentsBox2 .introduceBoxes ul li{
+	padding: 8px;
+}
+
+
+/* contentsBox3 */
+.contentsBox3{width: 1600px; height: 915px; margin: 0 auto; background: #eaeaea;}
+
+.contentsBox3 h2{
+	width: 100%;
+	height: 25px;
+	padding: 20px 0;
+	padding-top: 60px;
+	font-size: 3rem;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	}
+	
+.contentsBox3 .titleHead2{    
+    display: block;
+    margin-bottom: -2px;
+    width: 150px;
+    height: 5px;
+    clear: both;
+    margin-left: 47%;
+    background: #0aa1e0;
+	}	
+	
+.contentsBox3 span{
+	color: #0aa1e0;
+	font-weight: bold;
+	font-size: 2.5rem;
+}
+
+.contentsBox3 .historyBox1, .historyBox2{
+	float: left;
+	width: 38.5%;
+	padding-top: 5%;
+	padding-left: 9%;
+}
+
+.contentsBox3 ul{padding-top: 2.3%;}
+.contentsBox3 ul li{padding: 8px; font-size: 1.1rem;}
+	
+/* contentsBox4 */
+.contentsBox4{width: 1600px; height: 575px; margin: 0 auto;
+	background: url(../img/section3_bg.png);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.contentsBox4 .titleHead3{    
+    display: block;
+    margin-bottom: -2px;
+    width: 184px;
+    height: 5px;
+    clear: both;
+    margin-left: 42.5%;
+    background: #0aa1e0;
+	}	
+
+.contentsBox4 h2{
+	width: 100%;
+	height: 30px;
+	padding: 30px 0;
+	color: #fff;
+	font-size: 2.5rem;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	}
+
+/*  contentsBox4  지도시작 */	
+.contentsBox4 .mapboxWrap{width: 1200px; margin: 0 auto;}
+
+/* 버튼 탭메뉴 */
+.contentsBox4 .mapboxWrap .buttons{
+	width: 800px;
+	margin-bottom: -20px;
+    margin-top: 20px;
+    margin-left: 50px;
+	}
+
+.contentsBox4 .mapboxWrap .buttons span{
+	padding-top: 10px;
+    display: block;
+    text-align: center;
+	}	
+	
+.contentsBox4 .mapboxWrap .buttons .button1{
+	width: 100px;
+	height: 35px;
+}	
+
+.buttonEffect1{	
+	border-top: 3px solid #0aa1e0;
+	box-sizing: border-box;
+	background: #fff;
+	cursor: default;
+	}
+	
+.buttonEffect2{	
+	box-sizing: border-box;
+	background: #d6d6d6;
+	cursor: pointer;
+	}	
+
+.contentsBox4 .mapboxWrap .buttons .button2{
+	width: 100px;
+	height: 35px;
+}	
+
+/* map1 */
+.contentsBox4 #mapBox1{
+	background: #efefef;
+	width: 1200px;
+	height: 430px;
+	margin: 0 auto;
+	}
+
+.contentsBox4 #map1{
+	float: left;
+	margin-top: 20px;
+	margin-left: 50px;
+}	
+/* map2 */
+.contentsBox4 #mapBox2{
+	background: #efefef;
+	width: 1200px;
+	height: 430px;
+	margin: 0 auto;
+	}
+
+.contentsBox4 #map2{
+	float: left;
+	margin-top: 20px;
+	margin-left: 50px;
+}	
+
+/* map 공통사항 */	
+.contentsBox4 .addressBox{
+	float: left;
+	width: 300px;
+	height: 360px;
+	margin-top: 20px;
+	background: #fff;
+	}
+	
+.contentsBox4 .addressBox span{
+	width: 230px;
+	line-height: 30px;
+	font-weight: bold;
+	font-size: 1.2rem;
+	margin-left: 40px;
+	padding-top: 30px;
+	border-bottom: 3px solid #0aa1e0;
+	display: block;
+}	
+
+.contentsBox4 .addressBox ul li{
+	padding-left: 40px;
+	line-height: 40px;
+}
+
+
+/* footer */
+footer{width: 100%; height: 160px; background: #e6e6e6;}
+footer .footerWrap{width: 1600px; height: 160px; margin: 0 auto; background: #e6e6e6;}
+footer .footerLogo{float: left; width: 25%; margin-top: 40px; padding: 0 100px; padding-left: 240px;}
+footer .footerLogo img{width: 100%;}
+footer .footerText{float: left; width: 50%; margin-top: 20px; padding-left: 30px; border-left: 3px solid #efefef;}
+footer .footerText li{padding: 5px;}
+
+
+/* section{background: url(../img/layout.png); margin: 0 auto;} */
+
+/* 기본형 마무리 */
+
+
+
+
+
+
+/* ******미디어 쿼리 시작***** */
+@media screen and (min-width:1451px) and (max-width:1600px){
+body{width: 100%; overflow-x: hidden;}	
+
+	
+/* gnb */
+header{width: 100%; height: 7rem;}
+header .gnb{width: 100%; height: 2rem;}
+header .gnb li{padding: 0.8rem;}
+
+/* 로고 */
+header .logoLnb{width: 100%; height: 4.3rem;}
+header .logoLnb .logo{
+	width: 25%;
+	height: 100%;
+	margin: 0 2%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+	background-position: 80%;
+	}
+
+/* lnb */
+header .logoLnb .lnb{width: 70%; margin-top: 1%; margin-right: -1%;}
+header .logoLnb .lnb li{padding: 0.7rem 3rem; font-size: 1.5rem;}
+
+#main{height: 518px;}
+
+/* contentsBox1 */
+.contentsBox1{
+	width: 1600px;
+	}
+	
+.contentsBox1>p{
+	margin-top: 2.5%;
+	width: 100%; 
+}
+
+/* .contentsBox1 .noticeBox1 */
+.contentsBox1 .noticeBox1{
+	width: 37%;
+	height: 62%;
+	margin-left: 10%;
+}
+
+
+/* .contentsBox1 .noticeBox2 */
+.contentsBox1 .noticeBox2{
+	width: 37%;
+	height: 62%;
+	margin-left: 1%;
+}
+
+.contentsBox2 > p {
+    width: 100%;
+}
+
+}/* @media screen and (min-width:1451px) and (max-width:1600px) */
+
+
+
+
+
+
+
+@media screen and (min-width:1281px) and (max-width:1450px){
+body{width: 100%; overflow-x: hidden;}	
+
+#main{height: 440px;}
+
+/* 헤더부분 */
+header .logoLnb{width: 100%;}
+
+header .logoLnb .logo{
+	width: 23%;
+	height: 100%;
+	margin-left: 1rem;
+	padding-left: 1rem;
+	}
+
+header .logoLnb .lnb{width: 65%;}
+
+header .gnb{width: 96%;}
+
+
+
+
+ /* contentsBox1 */ 
+.contentsBox1{width: 100%; background-position: 0;} 
+ 
+.contentsBox1 h2 {
+    font-size: 2.3rem;
+	height: 45px;
+}
+
+.contentsBox1 .noticeBox1{width: 46%; margin: 3% 2%; margin-bottom: 0;}
+.contentsBox1 .noticeBox2{width: 46%; margin: 3% 2%; margin-bottom: 0;}
+
+.contentsBox1 > p{margin-top: 1.2%;}
+
+
+
+/* .contentsBox2 */
+.contentsBox2{width: 100%;}
+
+.contentsBox2 .titleHead1{margin-left: 42.3%;}
+
+.contentsBox2 .subTitleBox p{font-size: 1.2rem;}
+
+.contentsBox2 .subTitleBox p{width: 91%;}
+
+.contentsBox2 p{width: 100%; padding: 0; text-align: center;}
+
+
+
+
+
+/* .contentsBox3 */
+.contentsBox3{width: 100%;}
+.contentsBox3 .titleHead2{margin-left: 46.5%;}
+.contentsBox3 .historyBox1, .historyBox2{width: 47%; padding-left: 3%;}
+.contentsBox3 ul li{line-height: normal; padding: 5px;}
+
+/* .contentsBox4 */
+.contentsBox4{width: 100%;}
+.contentsBox4 .titleHead3{margin-left: 41.5%;}
+
+.contentsBox4 .mapboxWrap{width: 100%;}
+.contentsBox4 .tabItem1, .tabItem2{width: 100%;}
+.contentsBox4 #mapBox1{height: 450px;}
+.contentsBox4 #mapBox2{height: 450px;}
+
+
+.contentsBox4 .mapboxWrap .buttons{margin-left: 11%;}
+
+/* footer */
+footer .footerLogo{padding-left: 220px;}
+
+
+.gnb{display: block;}
+.logoLnb{display: block;}
+}/* @media screen and (min-width:1281px) and (max-width:1450px) */
+
+
+
+
+
+
+
+@media screen and (min-width:1025px) and (max-width:1280px){
+
+body{width: 100%; overflow-x: hidden;}	
+
+
+#main{height: 460px;}
+
+/* 헤더부분 */
+header .logoLnb{width: 100%;}
+
+header .logoLnb .logo{
+	width: 23%;
+	height: 100%;
+	margin-left: 1rem;
+	padding-left: 1rem;
+	}
+
+header .logoLnb .lnb{width: 65%;}
+
+header .gnb{width: 96%;}
+
+
+/* .contentsBox1 */
+.contentsBox1{width: 100%; height: 700px; margin-top: -3%; background-position: 0;}
+.contentsBox1 h2{font-size: 2.1rem;}
+.contentsBox1 .noticeBox1{width: 45%; height: 60%; margin: 2% 2%; margin-bottom: 0; padding: 0; padding-top: 10px;}
+.contentsBox1 .noticeBox2{width: 45%; height: 60%; margin: 2% 2%; margin-bottom: 0; padding: 0; padding-top: 10px;}
+.contentsBox1>p{margin-top: 25px;}
+
+/* .contentsBox2 */
+.contentsBox2{width:100%; background-position: 0;}
+.contentsBox2 .titleHead1{margin-left: 41.3%;}
+.contentsBox2 > p{width: 100%; padding-left: 30px; font-size: 1.3rem;}
+.contentsBox2 .subTitleBox p{width: 90%; font-size: 1.23rem;}
+
+/* .contentsBox3 */
+.contentsBox3{width: 100%;}
+.contentsBox3 .titleHead2{margin-left: 46%;}
+.contentsBox3 .historyBox1, .historyBox2{width: 45%; padding-top: 6%; padding-left: 4%;}
+.contentsBox3 ul li{font-size: 1.06rem;}
+
+/* .contentsBox4 */
+.contentsBox4{width: 100%;}
+.contentsBox4 .titleHead3{margin-left: 40.5%;;}
+.contentsBox4 #mapBox1, #mapBox2{height: 450px;}
+
+
+/* footer */
+footer .footerWrap{width: 1280px;}
+footer  .footerLogo{padding-left: 120px;}
+	
+.gnb{display: block;}
+.logoLnb{display: block;}	
+}/* @media screen and (min-width:1025px) and (max-width:1280px) */
+
+
+
+
+
+
+@media screen and (min-width:769px) and (max-width:1024px){
+
+body{width: 100%; overflow-x: hidden;}	
+
+#main{height: 360px;}
+
+header{height: 40px;}
+header .gnb{width: 100%; height: 20px; font-size: 0.8rem;}
+
+header .logoLnb{width: 100%; height: 70px;}
+header .gnb li{padding: 5px;}
+header .logoLnb .logo{width: 240px; height: 35px; background-size: 240px; margin-left: 25px; margin-top: 1%;}
+header .logoLnb .lnb{width: 65%; margin-right: 0; font-size: 1.2rem;}
+header .logoLnb .lnb li{padding: 7px 30px;}
+
+#container{margin-top: -20px;}
+
+/* contentsBox1 */
+.contentsBox1{width: 100%; height: 1140px; background-position: 0;}
+.contentsBox1 h2{font-size: 2rem;}
+.contentsBox1 .noticeBox1{clear: both; width: 60%; margin-left: 20%;}
+.contentsBox1 .noticeBox2{clear: both; width: 60%; margin-left: 20%;}
+.contentsBox1>p{width: 100%; margin-top: 60px;}
+
+
+
+/* contentsBox2 */
+.contentsBox2{width: 100%; background-position: -65px;}
+.contentsBox2 .titleHead1{margin-left: 40.5%;}
+.contentsBox2 .subTitleBox p{width: 90%; font-size: 1rem;}
+.contentsBox2>p{width: 915px; font-size: 1rem; padding: 0;}
+.contentsBox2 .introduceBoxes{width: 85%;}
+
+/* contentsBox3 */
+.contentsBox3{width: 100%; height: 1230px;}
+.contentsBox3 .titleHead2{margin-left: 46%;}
+.contentsBox3 .historyBox1, .historyBox2{width: 80%; margin: 0 180px; padding: 0; padding-top: 40px; float: none; clear: both;}
+.contentsBox3 ul{padding-top: 20px;}
+
+/* contentsBox4 */
+.contentsBox4{width: 100%; height: 550px; background-position: 0 -85px; background-size: auto 1500px;}
+.contentsBox4 .titleHead3{margin-left: 38%;}
+.contentsBox4 #map1{width: 600px !important; height: 340px !important;}
+.contentsBox4 #map2{width: 600px !important; height: 340px !important;}
+.contentsBox4 .addressBox{height: 340px; font-size: 1rem;}
+.contentsBox4 .addressBox span{font-size: 1rem;}
+
+footer .footerWrap{padding-top: 2%; height: 140px;}
+footer .footerLogo{padding-left: 30px; padding: 0 2%;}
+footer .footerLogo img{width: 100%;}
+footer .footerText{font-size: 0.85rem;}
+
+
+} /* @media screen and (min-width:769px) and (max-width:1024px) */
+
+
+
+
+
+
+
+@media screen and (min-width:641px) and (max-width:768px){
+
+nav{display: block; position: fixed; top: 0; left: 0; background: #fff; z-index:123123; width: 100%; height: 50px;}
+nav img{width: 200px; position: absolute; top: 12px; left:50%; transform:translateX(-50%);}
+header{display: none;}
+
+
+#main{padding-top: 24px;}
+a:hover
+{
+  color: tomato;
+}
+
+#menuToggle
+{
+  display: block;
+  position: relative;
+  top: 15px;
+  left: 20px;  
+  z-index: 1;  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;  
+  cursor: pointer;  
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */  
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #cdcdcd;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu
+{
+  position: absolute;
+  width: 300px;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  
+  background: #ededed;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+
+
+.cf{margin-top:-70px;}
+
+
+
+
+body{width: 100%; overflow-x: hidden;}	
+
+#main{height: 300px;}
+
+header{height: 40px;}
+header .gnb{width: 100%; height: 20px; font-size: 0.8rem;}
+
+header .logoLnb{width: 100%; height: 70px;}
+header .gnb li{padding: 5px;}
+header .logoLnb .logo{background-size: 100%; margin-left: 25px; margin-top: 2%;}
+header .logoLnb .lnb{width: 60%; margin-right: 0; font-size: 1.2rem;}
+header .logoLnb .lnb li{padding: 7px 30px;}
+
+#container{margin-top: -20px;}
+
+/* contentsBox1 */
+.contentsBox1{width: 100%; height: 1140px; background-position: 0;}
+.contentsBox1 h2{font-size: 1.8rem;}
+.contentsBox1 .noticeBox1{clear: both; width: 75%; margin-left: 12%;}
+.contentsBox1 .noticeBox2{clear: both; width: 75%; margin-left: 12%;}
+.contentsBox1>p{width: 100%; margin-top: 60px;}
+
+
+
+/* contentsBox2 */
+.contentsBox2{width: 100%; background-position: -65px;}
+.contentsBox2 .titleHead1{margin-left: 34.5%;}
+.contentsBox2 .subTitleBox p {width: 94%; font-size: 0.8rem; line-height: 1.2rem;}
+.contentsBox2>p{width: 915px; font-size: 1rem; padding: 0; color: #fff; width: 90%; font-size: 1rem; text-align: center;}
+.contentsBox2 .introduceBoxes{width: 93%; height: auto; overflow: hidden; padding-top: 3%;}
+.contentsBox2 .introduceBoxes .introduceBox1, .introduceBox2, .introduceBox3, .introduceBox4, .introduceBox5
+{padding-left: 50px;}
+
+
+/* contentsBox3 */
+.contentsBox3{width: 100%; height: 1230px;}
+.contentsBox3 .titleHead2{margin-left: 43%;}
+.contentsBox3 .historyBox1, .historyBox2{width: 80%; margin: 0 9%; padding: 0; padding-top: 40px; float: none; clear: both;}
+.contentsBox3 ul{padding-top: 20px;}
+
+/* contentsBox4 */
+.contentsBox4{width: 100%; height: 550px; background-position: 0 -85px; background-size: auto 1500px;}
+.contentsBox4 .titleHead3{margin-left: 34%;}
+.contentsBox4 #map1{width: 400px !important; height: 340px !important;}
+.contentsBox4 #map2{width: 400px !important; height: 340px !important;}
+.contentsBox4 .addressBox{height: 340px; font-size: 1rem;}
+.contentsBox4 .addressBox span{font-size: 1rem;}
+
+footer .footerWrap{width: 100%; padding-top: 2%;}
+footer .footerLogo{width: 25%; padding: 0 2%;}
+footer .footerLogo img{width: 100%;}
+footer .footerText{width: 63%; font-size: 0.85rem;}
+
+	
+}/* @media screen and (min-width:360px) and (max-width:768px) */
+
+
+
+@media screen and (min-width:481px) and (max-width:640px){
+
+nav{display: block; position: fixed; top: 0; left: 0; background: #fff; z-index:123123; width: 100%; height: 50px;}
+nav img{width: 200px; position: absolute; top: 12px; left:50%; transform:translateX(-50%);}
+header{display: none;}
+
+
+#main{padding-top: 24px; height: 268px;}
+
+a:hover
+{
+  color: tomato;
+}
+
+#menuToggle
+{
+  display: block;
+  position: relative;
+  top: 15px;
+  left: 20px;  
+  z-index: 1;  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;  
+  cursor: pointer;  
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */  
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #cdcdcd;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu
+{
+  position: absolute;
+  width: 300px;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  
+  background: #ededed;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+
+
+.cf{margin-top:-70px;}
+
+
+
+
+body{width: 100%; overflow-x: hidden;}	
+
+header{height: 40px;}
+header .gnb{width: 100%; height: 20px; font-size: 0.8rem;}
+
+header .logoLnb{width: 100%; height: 70px;}
+header .gnb li{padding: 5px;}
+header .logoLnb .logo{background-size: 100%; margin-left: 25px; margin-top: 2%;}
+header .logoLnb .lnb{width: 60%; margin-right: 0; font-size: 1.2rem;}
+header .logoLnb .lnb li{padding: 7px 30px;}
+
+#container{margin-top: -20px;}
+
+/* contentsBox1 */
+.contentsBox1{width: 100%; height: 1140px; background-position: 0;}
+.contentsBox1 h2{font-size: 1.7rem; padding-top: 80px;}
+.contentsBox1 .noticeBox1{clear: both; width: 90%; margin: 0;left: 50%;transform: translateX(-50%);}
+.contentsBox1 .noticeBox2{clear: both; width: 90%; margin: 0;top:4%;left: 50%;transform: translateX(-50%);}
+.contentsBox1>p{width: 100%; margin-top: 100px;}
+
+
+
+/* contentsBox2 */
+.contentsBox2{width: 100%; background-position: -65px;}
+.contentsBox2 .titleHead1{display: none;}
+.contentsBox2 .subTitleBox p {width: 94%; font-size: 1rem; line-height: 1.2rem; text-align: justify;}
+.contentsBox2>p{padding: 0; color: #fff; width: 90%; font-size: 1rem; text-align: justify;}
+.contentsBox2 .introduceBoxes{width: 93%; height: auto; overflow: hidden; padding-top: 3%;}
+.contentsBox2 .introduceBoxes .introduceBox1, .introduceBox2, .introduceBox3, .introduceBox4, .introduceBox5
+{padding-left: 50px;}
+
+
+/* contentsBox3 */
+.contentsBox3{width: 100%; height: auto; overflow: hidden; padding-bottom: 20px;}
+.contentsBox3 .titleHead2{display: none;}
+.contentsBox3 h2{padding-top: 75px;}
+.contentsBox3 .historyBox1, .historyBox2{width: 80%; margin: 0 9%; padding: 0; padding-top: 40px; float: none; clear: both;}
+.contentsBox3 ul{padding-top: 20px;}
+.contentsBox3 ul li{line-height: 1.2rem; font-size: 0.95rem;}
+
+/* contentsBox4 */
+.contentsBox4{width: 100%; height: 550px; background-position: 0 -85px; background-size: auto 1500px;}
+.contentsBox4 .titleHead3{display: none;}
+.contentsBox4 #map1{width: 400px !important; height: 340px !important;}
+.contentsBox4 #map2{width: 400px !important; height: 340px !important;}
+.contentsBox4 .addressBox{width: 175px; height: 340px; font-size: 1rem;}
+.contentsBox4 .addressBox span{width: 100px; margin: 0; margin-left: 10px; font-size: 1rem;}
+.contentsBox4 .addressBox ul li{padding-left: 15px;}
+
+
+footer{height: 130px;}
+footer .footerWrap{width: 100%; height: auto;}
+footer .footerLogo{width: 25%; padding: 0 2%;}
+footer .footerLogo img{width: 100%;}
+footer .footerText{width: 63%; font-size: 0.7rem;}
+
+
+}/* @media screen and (min-width:480px) and (max-width:640px) */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:480px){
+nav{display: block; position: fixed; top: 0; left: 0; background: #fff; z-index:123123; width: 100%; height: 50px;}
+nav img{width: 200px;  position: absolute; top: 12px; left:50%; transform:translateX(-50%);}
+header{display: none;}
+
+
+#main{padding-top: 24px;}
+a:hover
+{
+  color: tomato;
+}
+
+#menuToggle
+{
+  display: block;
+  position: relative;
+  top: 15px;
+  left: 20px;  
+  z-index: 1;  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;  
+  cursor: pointer;  
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */  
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #cdcdcd;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu
+{
+  position: absolute;
+  width: 300px;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  
+  background: #ededed;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+
+
+.cf{margin-top:-70px;}
+
+
+
+body{width: 100%; overflow-x: hidden;}	
+
+#main{height: 225px;}
+
+header{height: 40px;}
+header .gnb{width: 100%; height: 20px; font-size: 0.8rem;}
+
+header .logoLnb{width: 100%; height: 70px;}
+header .gnb li{padding: 5px;}
+header .logoLnb .logo{background-size: 100%; margin-left: 25px; margin-top: 2%;}
+header .logoLnb .lnb{width: 60%; margin-right: 0; font-size: 1.2rem;}
+header .logoLnb .lnb li{padding: 7px 30px;}
+
+#container{margin-top: -20px;}
+
+/* contentsBox1 */
+.contentsBox1{width: 94%; height: 1100px; background: none;}
+.contentsBox1 h2{font-size: 1.2rem; padding-top: 20px;}
+.contentsBox1 h3{font-size: 1.6rem;}
+.contentsBox1 h4{font-size: 1rem;}
+.contentsBox1 .noticeBox1, .noticeBox2{box-shadow: 2px 2px 30px #ddd;}
+.contentsBox1 .noticeBox1{width: 100%; height: 480px; margin: 0; font-size: 0.85rem;}
+.contentsBox1 .noticeBox2{width: 100%; height: 480px; margin: 0; margin-top: 20px; font-size: 0.85rem;}
+.contentsBox1 .buttonWrap{top: 83%; left:45%; right: 0; transform:translateX(-48%); position: absolute;}
+.contentsBox1 button{padding: 10px 100px; font-size: 1.25rem;}
+.contentsBox1>p{width: 100%; margin-top: 10px; color: #0aa1e0; text-shadow: none;}
+
+
+
+/* contentsBox2 */
+.contentsBox2{width: 100%; height: 1100px; background-position: -65px;}
+.contentsBox2 .titleHead1{margin-left: 34.5%;}
+.contentsBox2 h2{font-size: 2rem;}
+.contentsBox2 .subTitleBox p {width: 94%; font-size: 0.8rem; line-height: 1.2rem; text-align: justify;}
+.contentsBox2>p{width: 915px; font-size: 1rem; padding: 0; color: #fff; width: 90%; font-size: 1rem; text-align: center;}
+.contentsBox2 .introduceBoxes{width: 96.5%; height: auto; padding-top: 3%; padding-bottom: 3%;}
+.contentsBox2 .introduceBoxes ul{font-size: 0.85rem;}
+.contentsBox2 .introduceBoxes .introduceBox1, .introduceBox2, .introduceBox3, .introduceBox4, .introduceBox5
+{padding-left: 6px;}
+
+
+/* contentsBox3 */
+.contentsBox3{width: 100%; height: 1000px;}
+.contentsBox3 h2{font-size: 2rem; padding-top: 20px;}
+.contentsBox3 .titleHead2{display: none;}
+.contentsBox3 .historyBox1, .historyBox2{width: 90%; margin: 0 9%; padding: 0; float: none; clear: both;}
+.contentsBox3 .historyBox2{padding-top: 35px;}
+.contentsBox3 ul{padding-top: 20px;}
+.contentsBox3 ul li{font-size: 0.8rem; line-height: 1rem;}
+
+/* contentsBox4 */
+.contentsBox4{width: 100%; height: 950px; background-position: 0 -85px; background-size: auto 1500px;}
+.contentsBox4 .titleHead3{display: none;}
+.contentsBox4 #map1{width: 400px !important; height: 440px !important;}
+.contentsBox4 #map2{width: 400px !important; height: 440px !important;}
+.contentsBox4 .addressBox{width: 100%; height: 900px; font-size: 1rem; float: none;}
+.contentsBox4 .addressBox span{font-size: 1rem;}
+
+footer .footerWrap{width: 100%; padding-top: 2%;}
+footer .footerLogo{width: 60%; margin: 0; padding: 0 1%; float: none;}
+footer .footerLogo img{width: 100%;}
+footer .footerText{width: 100%; font-size: 0.85rem; margin: 0; padding: 0; border: 0;}
+
+}/* @media screen and (max-width:480px) */
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:320px){
+nav{display: block; position: fixed; top: 0; left: 0; background: #fff; z-index:123123; width: 100%; height: 50px;}
+header{display: none;}
+
+
+#main{padding-top: 24px;}
+a:hover
+{
+  color: tomato;
+}
+
+#menuToggle
+{
+  display: block;
+  position: relative;
+  top: 20px;
+  left: 20px;  
+  z-index: 1;  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;  
+  cursor: pointer;  
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */  
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #cdcdcd;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu
+{
+  position: absolute;
+  width: 300px;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  
+  background: #ededed;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+
+
+.cf{margin-top:-70px;}
+
+
+
+body{width: 100%; overflow-x: hidden;}	
+
+#main{height: 194px;}
+
+header{height: 40px;}
+header .gnb{width: 100%; height: 20px; font-size: 0.8rem;}
+
+header .logoLnb{width: 100%; height: 70px;}
+header .gnb li{padding: 5px;}
+header .logoLnb .logo{background-size: 100%; margin-left: 25px; margin-top: 2%;}
+header .logoLnb .lnb{width: 60%; margin-right: 0; font-size: 1.2rem;}
+header .logoLnb .lnb li{padding: 7px 30px;}
+
+#container{margin-top: -20px;}
+
+/* contentsBox1 */
+.contentsBox1{width: 100%; height: 1140px; background-position: 0;}
+.contentsBox1 h2{font-size: 1rem; padding-top: 20px;}
+.contentsBox1 h3{font-size: 1rem;}
+.contentsBox1 h4{font-size: 1rem;}
+.contentsBox1 .noticeBox1{width: 100%; height: 560px; margin-left: 0%; font-size: 1rem;}
+.contentsBox1 .noticeBox2{clear: both; width: 75%; margin-left: 12%;}
+.contentsBox1>p{width: 100%; margin-top: 60px;}
+
+
+
+/* contentsBox2 */
+.contentsBox2{width: 100%; background-position: -65px;}
+.contentsBox2 .titleHead1{margin-left: 34.5%;}
+.contentsBox2 .subTitleBox p {width: 94%; font-size: 0.8rem; line-height: 1.2rem;}
+.contentsBox2>p{width: 915px; font-size: 1rem; padding: 0; color: #fff; width: 90%; font-size: 1rem; text-align: center;}
+.contentsBox2 .introduceBoxes{width: 93%; padding-top: 3%;}
+.contentsBox2 .introduceBoxes .introduceBox1, .introduceBox2, .introduceBox3, .introduceBox4, .introduceBox5
+{padding-left: 50px;}
+
+
+/* contentsBox3 */
+.contentsBox3{width: 100%; height: 1230px;}
+.contentsBox3 .titleHead2{margin-left: 43%;}
+.contentsBox3 .historyBox1, .historyBox2{width: 80%; margin: 0 9%; padding: 0; padding-top: 40px; float: none; clear: both;}
+.contentsBox3 ul{padding-top: 20px;}
+
+/* contentsBox4 */
+.contentsBox4{width: 100%; height: 550px; background-position: 0 -85px; background-size: auto 1500px;}
+.contentsBox4 .titleHead3{margin-left: 34%;}
+.contentsBox4 h2{2rem;}
+.contentsBox4 #map1{width: 400px !important; height: 340px !important;}
+.contentsBox4 #map2{width: 400px !important; height: 340px !important;}
+.contentsBox4 .addressBox{height: 340px; font-size: 1rem;}
+.contentsBox4 .addressBox span{font-size: 1rem;}
+
+footer .footerWrap{width: 100%; padding-top: 2%;}
+footer .footerLogo{width: 25%; padding: 0 2%;}
+footer .footerLogo img{width: 100%;}
+footer .footerText{width: 63%; font-size: 0.85rem;}
+
+	
+
+}
+
+
+/*
+191028 메인화면 슬라이더부분 CSS 적용 
+*/
+ul.slides li{
+	position:relative;
+}
+.slide-txt{
+    position: absolute;
+    z-index: 100;
+    font-size: 80px;
+    font-weight: bold;
+    left: 0;
+    right: 0;
+    top: 90px;
+    bottom: 0;
+    text-align: center;
+    color: #fff;
+    text-shadow: 5px 5px 5px rgba(0,0,0,0.9);
+    line-height:90px;
+    font-family: 'BMJUA', 'Jua';
+}
+.slide-txt .fz60{
+    font-size: 60px;
+    line-height:60px;
+    color:#fff;
+}
+.slide-txt02{
+	color:#0aa1e0;
+}
+.slide-txt03 {
+	top:70px;
+	color:#4e976e;
+	line-height:60px;
+	font-size:60px;
+	text-shadow:5px 5px 5px rgba(255,255,255,0.9);
+}
+/* jua-regular - korean_latin -FireFox*/
+@font-face {
+    font-family: 'BMJUA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* jua-regular - korean_latin */
+@font-face {
+    font-family: 'Jua';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../../fonts/jua-v7-korean_latin-regular.eot');
+    /* IE9 Compat Modes */
+    src: local('Jua Regular'), local('Jua-Regular'),
+        url('../../fonts/jua-v7-korean_latin-regular.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('../../fonts/jua-v7-korean_latin-regular.woff2') format('woff2'),
+        /* Super Modern Browsers */
+        url('../../fonts/jua-v7-korean_latin-regular.woff') format('woff'),
+        /* Modern Browsers */
+        url('../../fonts/jua-v7-korean_latin-regular.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('../../fonts/jua-v7-korean_latin-regular.svg#Jua') format('svg');
+    /* Legacy iOS */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1500 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SEGroup 통합잡페어 관리자(회사) SQL -->
+<mapper namespace="global.segroup.society.fap.admincompany.dao.SocietyFapAdminCompanyMapper">
+	
+<!-- 채용공고 저장 시작 -->
+	<!-- 채용공고 기본 정보 입력  12.24. 이재준 -->
+	<insert id ="insert_job_ad" parameterType="JobAd" useGeneratedKeys="true" keyProperty="fap_job_ad_seq">
+		insert into fap_job_ad_tb(
+			fap_job_ad_major_business
+			,fap_job_ad_homepage
+			,fap_job_ad_est_dt
+			,fap_job_ad_stock
+			,fap_job_ad_3years_avg_sales
+			,fap_job_ad_employee_num
+			,fap_job_ad_foreigner_num
+			,fap_job_ad_korean_num
+			,fap_job_ad_postcode
+			,fap_job_ad_address
+			,fap_job_ad_address_dtl
+			,fap_job_ad_title
+			,fap_job_ad_worktime
+			,fap_job_ad_overtime
+			,fap_job_ad_hire_type
+			,fap_job_ad_intern
+			,fap_job_ad_recruit_num
+			,fap_job_ad_ideal_person
+			,fap_job_ad_age
+			,fap_job_ad_gender
+			,fap_job_ad_isdorm
+			,fap_job_ad_promotion
+			,fap_job_ad_vacation
+			,fap_job_ad_welfare
+			,fap_job_ad_open_grade
+			,fap_job_ad_qual_dpe
+			,fap_job_ad_terms_dpe
+			,fap_job_ad_coc_agree
+			,fap_job_ad_per
+			<if test="fap_job_ad_overlap != null and fap_job_ad_overlap != '' ">
+			,fap_job_ad_overlap
+			</if>
+			,fap_job_ad_groupcode
+			,fap_job_ad_state
+			,fap_job_ad_is_mismatching
+			,fap_job_ad_ins_id
+			,fap_job_ad_ins_dt
+			,fap_job_ad_udt_id
+			,fap_job_ad_udt_dt
+			,fap_comp_id
+			,fap_jobfair_divide_seq
+			,fap_jobfair_seq
+		)
+		values(
+			#{fap_job_ad_major_business}
+			,#{fap_job_ad_homepage}
+			,#{fap_job_ad_est_dt}
+			,#{fap_job_ad_stock}
+			,#{fap_job_ad_3years_avg_sales}
+			,#{fap_job_ad_employee_num}
+			,#{fap_job_ad_foreigner_num}
+			,#{fap_job_ad_korean_num}
+			,#{fap_job_ad_postcode}
+			,#{fap_job_ad_address}
+			,#{fap_job_ad_address_dtl}
+			,#{fap_job_ad_title}
+			,#{fap_job_ad_worktime}
+			,#{fap_job_ad_overtime}
+			,#{fap_job_ad_hire_type}
+			,#{fap_job_ad_intern}
+			,#{fap_job_ad_recruit_num}
+			,#{fap_job_ad_ideal_person}
+			,#{fap_job_ad_age}
+			,#{fap_job_ad_gender}
+			,#{fap_job_ad_isdorm}
+			,#{fap_job_ad_promotion}
+			,#{fap_job_ad_vacation}
+			,#{fap_job_ad_welfare}
+			,#{fap_job_ad_open_grade}
+			,#{fap_job_ad_qual_dpe}
+			,#{fap_job_ad_terms_dpe}
+			,#{fap_job_ad_coc_agree}
+			,#{fap_job_ad_per}
+			<if test="fap_job_ad_overlap != null and fap_job_ad_overlap != '' ">
+			,#{fap_job_ad_overlap}
+			</if>
+			,#{fap_job_ad_groupcode}
+			,#{fap_job_ad_state}
+			,#{fap_job_ad_is_mismatching}
+			,#{fap_job_ad_ins_id}
+			,now()
+			,#{fap_job_ad_udt_id}
+			,now()
+			,#{fap_comp_id}
+			,#{fap_jobfair_divide_seq}
+			,#{fap_jobfair_seq}
+		)
+		
+	</insert>
+	<!-- 채용공고 기본 정보 입력 종료--> 
+	
+	<!-- 기숙사 정보 입력 시작  12.26. 이재준 -->
+	<insert id ="insert_job_dorm" parameterType="JobDorm">
+		insert into fap_job_dorm_tb(
+			fap_job_dorm_seq
+			,fap_job_dorm_lo
+			,fap_job_dorm_cost
+			,fap_job_dorm_ins_id
+			,fap_job_dorm_ins_dt
+			,fap_job_dorm_udt_id
+			,fap_job_dorm_udt_dt
+			,fap_job_ad_seq
+		)
+		values(	
+			#{fap_job_dorm_seq}
+			,#{fap_job_dorm_lo}
+			,#{fap_job_dorm_cost}
+			,#{fap_job_dorm_ins_id}
+			,#{fap_job_dorm_ins_dt}
+			,#{fap_job_dorm_udt_id}
+			,#{fap_job_dorm_udt_dt}
+			,#{fap_job_ad_seq}
+		)
+	</insert>
+	<!-- 기숙사 정보 입력 종료  12.26. 이재준 -->
+	
+	<!-- 계약사원 정보 입력 시작  12.26. 이재준 -->
+	<insert id ="insert_job_jit_employee" parameterType="JobJitEmployee">
+		insert into fap_job_jit_employee_tb(
+			fap_job_jit_employee_seq
+			,fap_job_jit_employee_isswitch
+			,fap_job_jit_employee_term
+			,fap_job_jit_employee_dtl
+			,fap_job_jit_employee_ins_id
+			,fap_job_jit_employee_ins_dt
+			,fap_job_jit_employee_udt_id
+			,fap_job_jit_employee_udt_dt
+			,fap_job_ad_seq
+		)
+		values(	
+			#{fap_job_jit_employee_seq}
+			,#{fap_job_jit_employee_isswitch}
+			,#{fap_job_jit_employee_term}
+			,#{fap_job_jit_employee_dtl}
+			,#{fap_job_jit_employee_ins_id}
+			,#{fap_job_jit_employee_ins_dt}
+			,#{fap_job_jit_employee_udt_id}
+			,#{fap_job_jit_employee_udt_dt}
+			,#{fap_job_ad_seq}
+		)
+	</insert>
+	<!-- 기숙사 정보 입력 종료  12.26. 이재준 -->
+	
+	<!-- 업무에 필요한 일본어 정보 입력 시작  12.26. 이재준 -->
+	<insert id ="insert_job_ja_level" parameterType="JobJaLevel">
+		insert into fap_job_ja_level_tb(
+			fap_job_ja_level_seq
+			,fap_job_ja_level_gb
+			,fap_job_ja_level_dtl
+			,fap_job_ja_level_ins_id
+			,fap_job_ja_level_ins_dt
+			,fap_job_ja_level_udt_id
+			,fap_job_ja_level_udt_dt
+			,fap_job_ad_seq
+		)
+		values(	
+			#{fap_job_ja_level_seq}
+			,#{fap_job_ja_level_gb}
+			,#{fap_job_ja_level_dtl}
+			,#{fap_job_ja_level_ins_id}
+			,#{fap_job_ja_level_ins_dt}
+			,#{fap_job_ja_level_udt_id}
+			,#{fap_job_ja_level_udt_dt}
+			,#{fap_job_ad_seq}
+		)
+	</insert>
+	<!-- 업무에 필요한 일본어 정보 입력 종료  12.26. 이재준 -->
+	
+	<!-- 시용기간 정보 입력 시작  12.26. 이재준 -->
+	<insert id ="insert_job_trial" parameterType="JobTrial">
+		insert into fap_job_trial_tb(
+			fap_job_trial_seq
+			,fap_job_trial_pd
+			,fap_job_trial_pay
+			,fap_job_trial_pay_equal
+			,fap_job_trial_ins_id
+			,fap_job_trial_ins_dt
+			,fap_job_trial_udt_id
+			,fap_job_trial_udt_dt
+			,fap_job_ad_seq
+		)
+		values(	
+			#{fap_job_trial_seq}
+			,#{fap_job_trial_pd}
+			,#{fap_job_trial_pay}
+			,#{fap_job_trial_pay_equal}
+			,#{fap_job_trial_ins_id}
+			,#{fap_job_trial_ins_dt}
+			,#{fap_job_trial_udt_id}
+			,#{fap_job_trial_udt_dt}
+			,#{fap_job_ad_seq}
+		)
+	</insert>
+	<!-- 시용기간 정보 입력 종료  12.26. 이재준 -->
+	
+	<!-- 회사명 정보 입력 시작 12.27 이재준  -->
+	<insert id ="insert_job_comp" parameterType="JobComp">
+		insert into fap_job_comp_tb(
+			fap_job_comp_seq
+			,fap_job_comp_nm
+			,fap_job_comp_gb
+			,fap_job_comp_ins_id
+			,fap_job_comp_ins_dt
+			,fap_job_comp_udt_id
+			,fap_job_comp_udt_dt
+			,fap_job_ad_seq
+		)
+		values
+		<foreach item ="JobComp" collection="jobCompList" index="index" open=" " separator="," close=" ">
+		(	
+			#{JobComp.fap_job_comp_seq}
+			,#{JobComp.fap_job_comp_nm}
+			,#{JobComp.fap_job_comp_gb}
+			,#{JobComp.fap_job_comp_ins_id}
+			,now()
+			,#{JobComp.fap_job_comp_udt_id}
+			,now()
+			,#{JobComp.fap_job_ad_seq}
+		)
+		</foreach>
+	</insert>
+	<!-- 회사명 정보 입력 완료  --> 
+	
+	<!-- 채용공고 파일 정보 입력 시작 12.30 이재준 -->
+	<insert id="insert_job_file" parameterType="JobFile">
+		insert into fap_job_file_tb(
+			fap_job_file_seq
+			,fap_job_file_gb
+			,fap_job_file_saved
+			,fap_job_file_origin
+			,fap_job_file_ins_id
+			,fap_job_file_ins_dt
+			,fap_job_file_udt_id
+			,fap_job_file_udt_dt
+			,fap_job_ad_seq
+		)
+		values 
+		<foreach item ="JobFile" collection="jobFileList" index="index" open=" " separator="," close=" ">
+		(
+			#{JobFile.fap_job_file_seq}
+			,#{JobFile.fap_job_file_gb}
+			,#{JobFile.fap_job_file_saved}
+			,#{JobFile.fap_job_file_origin}
+			,#{JobFile.fap_job_file_ins_id}
+			,now()
+			,#{JobFile.fap_job_file_udt_id}
+			,now()
+			,#{JobFile.fap_job_ad_seq}
+		)
+		</foreach>
+	</insert>
+	<!-- 채용공고 파일 정보 입력 완료 -->
+	
+	<!-- 보험 정보 입력 시작 12.31 이재준  -->
+	<insert id ="insert_job_isr" parameterType="JobIsr">
+		insert into fap_job_isr_tb(
+			fap_job_isr_seq
+			,fap_job_isr_gb
+			,fap_job_isr_note
+			,fap_job_isr_ins_id
+			,fap_job_isr_ins_dt
+			,fap_job_isr_udt_id
+			,fap_job_isr_udt_dt
+			,fap_job_ad_seq
+		)
+		values
+		<foreach item ="JobIsr" collection="jobIsrList" index="index" open=" " separator="," close=" ">
+		(	
+			#{JobIsr.fap_job_isr_seq}
+			,#{JobIsr.fap_job_isr_gb}
+			,#{JobIsr.fap_job_isr_note}
+			,#{JobIsr.fap_job_isr_ins_id}
+			,now()
+			,#{JobIsr.fap_job_isr_udt_id}
+			,now()
+			,#{JobIsr.fap_job_ad_seq}
+		)
+		</foreach>
+	</insert>
+	<!-- 보험 정보 입력 완료  --> 
+	
+	<!-- 입사예정일 정보 입력 시작 12.31 이재준  -->
+	<insert id ="insert_job_join_dt" parameterType="JobJoinDt">
+		insert into fap_job_join_dt_tb(
+			fap_job_join_dt_seq
+			,fap_job_join_dt_gb
+			,fap_job_join_dt_dtl
+			,fap_job_join_dt_ins_id
+			,fap_job_join_dt_ins_dt
+			,fap_job_join_dt_udt_id
+			,fap_job_join_dt_udt_dt
+			,fap_job_ad_seq
+		)
+		values
+		<foreach item ="JobJoinDt" collection="jobJoinDtList" index="index" open=" " separator="," close=" ">
+		(	
+			#{JobJoinDt.fap_job_join_dt_seq}
+			,#{JobJoinDt.fap_job_join_dt_gb}
+			,#{JobJoinDt.fap_job_join_dt_dtl}
+			,#{JobJoinDt.fap_job_join_dt_ins_id}
+			,now()
+			,#{JobJoinDt.fap_job_join_dt_udt_id}
+			,now()
+			,#{JobJoinDt.fap_job_ad_seq}
+		)
+		</foreach>
+	</insert>
+	<!-- 입사예정일 정보 입력 완료  --> 
+	
+	<!-- 주요업무 정보 입력 시작 12.31 이재준  -->
+	<insert id ="insert_job_work" parameterType="JobWork">
+		insert into fap_job_work_tb(
+			fap_job_work_seq
+			,fap_job_work_gb
+			,fap_job_work_dtl
+			,fap_job_work_ins_id
+			,fap_job_work_ins_dt
+			,fap_job_work_udt_id
+			,fap_job_work_udt_dt
+			,fap_job_ad_seq
+		)
+		values
+		<foreach item ="JobWork" collection="jobWorkList" index="index" open=" " separator="," close=" ">
+		(	
+			#{JobWork.fap_job_work_seq}
+			,#{JobWork.fap_job_work_gb}
+			,#{JobWork.fap_job_work_dtl}
+			,#{JobWork.fap_job_work_ins_id}
+			,now()
+			,#{JobWork.fap_job_work_udt_id}
+			,now()
+			,#{JobWork.fap_job_ad_seq}
+		)
+		</foreach>
+	</insert>
+	<!-- 주요업무 정보 입력 완료  --> 
+	
+	<!-- 모집직종 정보 입력 시작 12.31 이재준  -->
+	<insert id ="insert_job_category" parameterType="JobCategory">
+		insert into fap_job_category_tb(
+			fap_job_category_seq
+			,fap_job_category_gb
+			,fap_job_category_dtl
+			,fap_job_category_ins_id
+			,fap_job_category_ins_dt
+			,fap_job_category_udt_id
+			,fap_job_category_udt_dt
+			,fap_job_ad_seq
+		)
+		values
+		<foreach item ="JobCategory" collection="jobCategoryList" index="index" open=" " separator="," close=" ">
+		(	
+			#{JobCategory.fap_job_category_seq}
+			,#{JobCategory.fap_job_category_gb}
+			,#{JobCategory.fap_job_category_dtl}
+			,#{JobCategory.fap_job_category_ins_id}
+			,now()
+			,#{JobCategory.fap_job_category_udt_id}
+			,now()
+			,#{JobCategory.fap_job_ad_seq}
+		)
+		</foreach>
+	</insert>
+	<!-- 모집직종 정보 입력 완료  --> 
+	
+	<!-- 우대사항 정보 입력 시작 12.31 이재준  -->
+	<insert id ="insert_job_pref" parameterType="JobPref">
+		insert into fap_job_pref_tb(
+			fap_job_pref_seq
+			,fap_job_pref_gb
+			,fap_job_pref_dtl
+			,fap_job_pref_ins_id
+			,fap_job_pref_ins_dt
+			,fap_job_pref_udt_id
+			,fap_job_pref_udt_dt
+			,fap_job_ad_seq
+		)
+		values
+		<foreach item ="JobPref" collection="jobPrefList" index="index" open=" " separator="," close=" ">
+		(	
+			#{JobPref.fap_job_pref_seq}
+			,#{JobPref.fap_job_pref_gb}
+			,#{JobPref.fap_job_pref_dtl}
+			,#{JobPref.fap_job_pref_ins_id}
+			,now()
+			,#{JobPref.fap_job_pref_udt_id}
+			,now()
+			,#{JobPref.fap_job_ad_seq}
+		)
+		</foreach>
+	</insert>
+	<!-- 우대사항 정보 입력 완료  --> 
+	
+	<!-- 근무예정지 정보 입력 시작 1.2 이재준  -->
+	<insert id ="insert_job_workplace" parameterType="list" useGeneratedKeys="true" keyProperty="fap_job_workplace_seq">
+		insert into fap_job_workplace_tb(
+			fap_job_workplace_gb
+			,fap_job_workplace_ins_id
+			,fap_job_workplace_ins_dt
+			,fap_job_workplace_udt_id
+			,fap_job_workplace_udt_dt
+			,fap_job_ad_seq
+		)
+		values
+		<foreach item ="JobWorkplace" collection="list" index="index" open=" " separator="," close=" ">
+		(	
+			#{JobWorkplace.fap_job_workplace_gb}
+			,#{JobWorkplace.fap_job_workplace_ins_id}
+			,now()
+			,#{JobWorkplace.fap_job_workplace_udt_id}
+			,now()
+			,#{JobWorkplace.fap_job_ad_seq}
+		)
+		</foreach>
+	</insert>
+	<!-- 근무예정지 정보 입력 완료  --> 
+	
+	<!-- 상세근무예정지 정보 입력 시작 1.2 이재준  -->
+	<insert id ="insert_job_workplace_dtl" parameterType="list">
+		insert into fap_job_workplace_dtl_tb(
+			fap_job_workplace_dtl_gb
+			,fap_job_workplace_dtl_address
+			,fap_job_workplace_dtl_ins_id
+			,fap_job_workplace_dtl_ins_dt
+			,fap_job_workplace_dtl_udt_id
+			,fap_job_workplace_dtl_udt_dt
+			,fap_job_workplace_seq
+		)
+		values
+		<foreach item ="JobWorkplaceDtl" collection="list" index="index" open=" " separator="," close=" ">
+		(	
+			#{JobWorkplaceDtl.fap_job_workplace_dtl_gb}
+			,#{JobWorkplaceDtl.fap_job_workplace_dtl_address}
+			,#{JobWorkplaceDtl.fap_job_workplace_dtl_ins_id}
+			,now()
+			,#{JobWorkplaceDtl.fap_job_workplace_dtl_udt_id}
+			,now()
+			,#{JobWorkplaceDtl.fap_job_workplace_seq}
+		)
+		</foreach>
+	</insert>
+	<!-- 상세근무예정지 정보 입력 완료  --> 
+	<!-- 채용전형 정보 입력 시작 1.7 이재준  -->
+	<insert id ="insert_job_recruitpcs" parameterType="JobRecruitPcs" useGeneratedKeys="true" keyProperty="fap_job_recruit_pcs_seq">
+		insert into fap_job_recruit_pcs_tb(
+			fap_job_recruit_pcs_gb
+			,fap_job_recruit_pcs_dtl
+			,fap_job_recruit_pcs_od
+			,fap_job_recruit_pcs_ins_id
+			,fap_job_recruit_pcs_ins_dt
+			,fap_job_recruit_pcs_udt_id
+			,fap_job_recruit_pcs_udt_dt
+			,fap_job_ad_seq
+		)
+		values
+		<foreach item ="JobRecruitPcs" collection="jobRecruitPcsList" index="index" open=" " separator="," close=" ">
+		(	
+			#{JobRecruitPcs.fap_job_recruit_pcs_gb}
+			,#{JobRecruitPcs.fap_job_recruit_pcs_dtl}
+			,#{JobRecruitPcs.fap_job_recruit_pcs_od}
+			,#{JobRecruitPcs.fap_job_recruit_pcs_ins_id}
+			,now()
+			,#{JobRecruitPcs.fap_job_recruit_pcs_udt_id}
+			,now()
+			,#{JobRecruitPcs.fap_job_ad_seq}
+		)
+		</foreach>
+	</insert>
+	<!-- 채용전형 정보 입력 완료  --> 
+	<!-- 면접전형 정보 입력 시작 1.7 이재준 -->
+	<insert id ="insert_job_itv" parameterType="JobItv" useGeneratedKeys="true" keyProperty="fap_job_itv_seq">
+		insert into fap_job_itv_tb(
+			fap_job_itv_gb
+			,fap_job_itv_obj
+			,fap_job_itv_tp
+			,fap_job_itv_tm
+			,fap_job_itv_skype
+			,fap_job_itv_ins_id
+			,fap_job_itv_ins_dt
+			,fap_job_itv_udt_id
+			,fap_job_itv_udt_dt
+			,fap_job_recruit_pcs_seq
+		)
+		values(	
+			#{fap_job_itv_gb}
+			,#{fap_job_itv_obj}
+			,#{fap_job_itv_tp}
+			,#{fap_job_itv_tm}
+			,#{fap_job_itv_skype}
+			,#{fap_job_itv_ins_id}
+			,now()
+			,#{fap_job_itv_udt_id}
+			,now()
+			,#{fap_job_recruit_pcs_seq}
+		)
+	</insert>
+	<!-- 면접전형 정보 입력 종료 -->
+	<!-- 기타전형 정보 입력 시작 1.8 이재준 -->
+	<insert id ="insert_job_test_etc" parameterType="JobTestEtc" useGeneratedKeys="true" keyProperty="fap_job_test_etc_seq">
+		insert into fap_job_test_etc_tb(
+			fap_job_test_etc_obj
+			,fap_job_test_etc_dtl
+			,fap_job_test_etc_ins_id
+			,fap_job_test_etc_ins_dt
+			,fap_job_test_etc_udt_id
+			,fap_job_test_etc_udt_dt
+			,fap_job_recruit_pcs_seq
+		)
+		values(	
+			#{fap_job_test_etc_obj}
+			,#{fap_job_test_etc_dtl}
+			,#{fap_job_test_etc_ins_id}
+			,now()
+			,#{fap_job_test_etc_udt_id}
+			,now()
+			,#{fap_job_recruit_pcs_seq}
+		)
+	</insert>
+	<!-- 기타전형 정보 입력 종료 -->
+	<!-- 기타전형대상자(기타) 정보 입력 시작 1.8 이재준 -->
+	<insert id ="insert_job_test_etc_obj" parameterType="JobTestEtcObj">
+		insert into fap_job_test_etc_obj_tb(
+			fap_job_test_etc_obj_seq
+			,fap_job_test_etc_obj_dtl
+			,fap_job_test_etc_obj_ins_id
+			,fap_job_test_etc_obj_ins_dt
+			,fap_job_test_etc_obj_udt_id
+			,fap_job_test_etc_obj_udt_dt
+			,fap_job_test_etc_seq
+		)
+		values(	
+			#{fap_job_test_etc_obj_seq}
+			,#{fap_job_test_etc_obj_dtl}
+			,#{fap_job_test_etc_obj_ins_id}
+			,now()
+			,#{fap_job_test_etc_obj_udt_id}
+			,now()
+			,#{fap_job_test_etc_seq}
+		)
+	</insert>
+	<!-- 기타전형대상자(기타) 정보 입력 종료 -->
+	<!-- 면접방식(기타) 정보 입력 시작 1.8 이재준 -->
+	<insert id ="insert_job_itv_tp_etc" parameterType="JobItvTpEtc">
+		insert into fap_job_itv_tp_etc_tb(
+			fap_job_itv_tp_etc_seq
+			,fap_job_itv_tp_etc_dtl
+			,fap_job_itv_tp_etc_ins_id
+			,fap_job_itv_tp_etc_ins_dt
+			,fap_job_itv_tp_etc_udt_id
+			,fap_job_itv_tp_etc_udt_dt
+			,fap_job_itv_seq
+		)
+		values(	
+			#{fap_job_itv_tp_etc_seq}
+			,#{fap_job_itv_tp_etc_dtl}
+			,#{fap_job_itv_tp_etc_ins_id}
+			,now()
+			,#{fap_job_itv_tp_etc_udt_id}
+			,now()
+			,#{fap_job_itv_seq}
+		)
+	</insert>
+	<!-- 면접방식(기타) 정보 입력 종료 -->
+	<!-- 면접대상자(기타) 정보 입력 시작 1.8 이재준 -->
+	<insert id ="insert_job_itv_obj_etc" parameterType="JobItvObjEtc">
+		insert into fap_job_itv_obj_etc_tb(
+			fap_job_itv_obj_etc_seq
+			,fap_job_itv_obj_etc_dtl
+			,fap_job_itv_obj_etc_ins_id
+			,fap_job_itv_obj_etc_ins_dt
+			,fap_job_itv_obj_etc_udt_id
+			,fap_job_itv_obj_etc_udt_dt
+			,fap_job_itv_seq
+		)
+		values(	
+			#{fap_job_itv_obj_etc_seq}
+			,#{fap_job_itv_obj_etc_dtl}
+			,#{fap_job_itv_obj_etc_ins_id}
+			,now()
+			,#{fap_job_itv_obj_etc_udt_id}
+			,now()
+			,#{fap_job_itv_seq}
+		)
+	</insert>
+	<!-- 면접대상자(기타) 정보 입력 종료 -->
+	
+	<!-- 급여정보 입력 1. 9 원병호 -->
+	<insert id ="insert_job_pay" parameterType="list" useGeneratedKeys="true" keyProperty="fap_job_pay_seq">
+		insert into
+			fap_job_pay_tb(
+				fap_job_pay_gb
+		        , fap_job_pay_info
+		        , fap_job_pay_dtl
+		        , fap_job_pay_ins_id
+		        , fap_job_pay_ins_dt
+		        , fap_job_pay_udt_id
+		        , fap_job_pay_udt_dt
+		        , fap_job_ad_seq
+			)values
+		<foreach item ="JobPay" collection="list" index="index" open=" " separator="," close=" ">
+			(
+			#{JobPay.fap_job_pay_gb}
+	        , #{JobPay.fap_job_pay_info}
+	        , #{JobPay.fap_job_pay_dtl}
+	        , #{JobPay.fap_job_pay_ins_id}
+	        , now()
+	        , #{JobPay.fap_job_pay_udt_id}
+	        , now()
+		    , #{JobPay.fap_job_ad_seq}
+		)
+		</foreach>
+	</insert>
+	<!-- 급여정보 입력 종료 1. 8 원병호 -->
+	
+	<!-- 기본급 정보 입력 1. 9 원병호 -->
+	<insert id ="insert_job_pay_base" parameterType="list"  useGeneratedKeys="true" keyProperty="fap_job_pay_base_seq">
+		insert into
+			fap_job_pay_base_tb(
+				fap_job_pay_base_gb
+		        , fap_job_pay_base_info
+		        , fap_job_pay_base_ins_id
+		        , fap_job_pay_base_ins_dt
+		        , fap_job_pay_base_udt_id
+		        , fap_job_pay_base_udt_dt
+		        , fap_job_pay_seq
+		        )
+			values
+		<foreach item ="JobPayBase" collection="list" index="index" open=" " separator="," close=" ">
+				(
+				#{JobPayBase.fap_job_pay_base_gb}
+		        , #{JobPayBase.fap_job_pay_base_info}
+		        , #{JobPayBase.fap_job_pay_base_ins_id}
+		        , now()
+		        , #{JobPayBase.fap_job_pay_base_udt_id}
+		        , now()
+		        , #{JobPayBase.fap_job_pay_seq}
+		        )
+		</foreach>
+	</insert>
+	<!-- 기본급 정보 입력 종료 1. 9 원병호 -->
+	
+	<!-- 잔업수당 정보 입력 1. 9 원병호-->
+	<insert id ="insert_job_pay_extra" parameterType="JobPayExtra"  useGeneratedKeys="true" keyProperty="fap_job_pay_extra_seq">
+		insert into
+			fap_job_pay_extra_tb(
+		        fap_job_pay_extra_tm
+		        , fap_job_pay_extra_ins_id
+		        , fap_job_pay_extra_ins_dt
+		        , fap_job_pay_extra_udt_id
+		        , fap_job_pay_extra_udt_dt
+		        , fap_job_pay_seq
+		        )
+			values(
+				#{fap_job_pay_extra_tm}
+		        , #{fap_job_pay_extra_ins_id}
+		        , now()
+		        , #{fap_job_pay_extra_udt_id}
+		        , now()
+		        , #{fap_job_pay_seq}
+		    )
+	</insert>
+	<!-- 잔업수당 정보 입력 끝 1. 9 원병호-->
+	
+	<!-- 서비스 잔업수당 정보 입력  1. 9 원병호-->
+	<insert id ="insert_job_service_work" parameterType="JobServiceWork"  useGeneratedKeys="true" keyProperty="fap_job_service_work_seq">
+		insert into
+			fap_job_service_work_tb(
+		        , fap_job_service_work_tm
+		        , fap_job_service_work_ins_id
+		        , fap_job_service_work_ins_dt
+		        , fap_job_service_work_udt_id
+		        , fap_job_service_work_udt_dt
+		        , fap_job_pay_base_seq)
+			values(
+		        , #{fap_job_service_work_tm}
+		        , #{fap_job_service_work_ins_id}
+		        , now()
+		        , #{fap_job_service_work_udt_id}
+		        , now()
+		        , #{fap_job_pay_base_seq}
+		    )
+	</insert>
+	<!-- 서비스 잔업수당 정보 입력 끝  1. 9 원병호-->
+	
+	<!-- 기타수당 정보 입력  1. 9 원병호-->
+	<insert id ="insert_job_pay_etc" parameterType="list"  useGeneratedKeys="true" keyProperty="fap_job_pay_etc_seq">
+		insert into
+			fap_job_pay_etc_tb(
+				fap_job_pay_etc_nm
+		        , fap_job_pay_etc_info
+		        , fap_job_pay_etc_ins_id
+		        , fap_job_pay_etc_ins_dt
+		        , fap_job_pay_etc_udt_id
+		        , fap_job_pay_etc_udt_dt
+		        , fap_job_pay_base_seq
+		        )
+		<foreach item ="JobPayEtc" collection="list" index="index" open=" " separator="," close=" ">
+			values(
+				#{JobPayEtc.fap_job_pay_etc_nm}
+		        , #{JobPayEtc.fap_job_pay_etc_info}
+		        , #{JobPayEtc.fap_job_pay_etc_ins_id}
+		        , now()
+		        , #{JobPayEtc.fap_job_pay_etc_udt_id}
+		        , now()
+		        , #{JobPayEtc.fap_job_pay_base_seq}
+		        )
+		</foreach>
+	</insert>
+	<!-- 기타수당 정보 입력 끝  1. 9 원병호-->
+	
+	
+	
+	
+	
+	
+	
+	<!-- 시험전형 정보 입력 시작 1.8 이재준 -->
+	<insert id ="insert_job_exam" parameterType="JobExam" useGeneratedKeys="true" keyProperty="fap_job_exam_seq">
+		insert into fap_job_exam_tb(
+			fap_job_exam_gb
+			,fap_job_exam_obj
+			,fap_job_exam_mail
+			,fap_job_exam_tm
+			,fap_job_exam_sv
+			,fap_job_exam_need
+			,fap_job_exam_ins_id
+			,fap_job_exam_ins_dt
+			,fap_job_exam_udt_id
+			,fap_job_exam_udt_dt
+			,fap_job_recruit_pcs_seq
+		)
+		values(	
+			#{fap_job_exam_gb}
+			,#{fap_job_exam_obj}
+			,#{fap_job_exam_mail}
+			,#{fap_job_exam_tm}
+			,#{fap_job_exam_sv}
+			,#{fap_job_exam_need}
+			,#{fap_job_exam_ins_id}
+			,now()
+			,#{fap_job_exam_udt_id}
+			,now()
+			,#{fap_job_recruit_pcs_seq}
+		)
+	</insert>
+	<!-- 시험전형 정보 입력 종료 -->
+	<!-- 시험대상자(기타) 정보 입력 시작 1.9 이재준 -->
+	<insert id ="insert_job_exam_obj_etc" parameterType="JobExamObjEtc">
+		insert into fap_job_exam_obj_etc_tb(
+			fap_job_exam_obj_etc_seq
+			,fap_job_exam_obj_etc_dtl
+			,fap_job_exam_obj_etc_ins_id
+			,fap_job_exam_obj_etc_ins_dt
+			,fap_job_exam_obj_etc_udt_id
+			,fap_job_exam_obj_etc_udt_dt
+			,fap_job_exam_seq
+		)
+		values(	
+			#{fap_job_exam_obj_etc_seq}
+			,#{fap_job_exam_obj_etc_dtl}
+			,#{fap_job_exam_obj_etc_ins_id}
+			,now()
+			,#{fap_job_exam_obj_etc_udt_id}
+			,now()
+			,#{fap_job_exam_seq}
+		)
+	</insert>
+	<!-- 시험대상자(기타) 정보 입력 종료 -->
+	<!-- 시험감독관(기타) 정보 입력 시작 1.9 이재준 -->
+	<insert id ="insert_job_exam_sv_etc" parameterType="JobExamSvEtc">
+		insert into fap_job_exam_sv_etc_tb(
+			fap_job_exam_sv_etc_seq
+			,fap_job_exam_sv_etc_dtl
+			,fap_job_exam_sv_etc_ins_id
+			,fap_job_exam_sv_etc_ins_dt
+			,fap_job_exam_sv_etc_udt_id
+			,fap_job_exam_sv_etc_udt_dt
+			,fap_job_exam_seq
+		)
+		values(	
+			#{fap_job_exam_sv_etc_seq}
+			,#{fap_job_exam_sv_etc_dtl}
+			,#{fap_job_exam_sv_etc_ins_id}
+			,now()
+			,#{fap_job_exam_sv_etc_udt_id}
+			,now()
+			,#{fap_job_exam_seq}
+		)
+	</insert>
+	<!-- 시험대상자(기타) 정보 입력 종료 -->
+	<!-- 시험준비물(기타) 정보 입력 시작 1.9 이재준 -->
+	<insert id ="insert_job_exam_need_etc" parameterType="JobExamNeedEtc">
+		insert into fap_job_exam_need_etc_tb(
+			fap_job_exam_need_etc_seq
+			,fap_job_exam_need_etc_dtl
+			,fap_job_exam_need_etc_ins_id
+			,fap_job_exam_need_etc_ins_dt
+			,fap_job_exam_need_etc_udt_id
+			,fap_job_exam_need_etc_udt_dt
+			,fap_job_exam_seq
+		)
+		values(	
+			#{fap_job_exam_need_etc_seq}
+			,#{fap_job_exam_need_etc_dtl}
+			,#{fap_job_exam_need_etc_ins_id}
+			,now()
+			,#{fap_job_exam_need_etc_udt_id}
+			,now()
+			,#{fap_job_exam_seq}
+		)
+	</insert>
+	<!-- 시험대상자(기타) 정보 입력 종료 -->
+	
+	<!-- FAP 시험 파일 저장 시작; 2019. 1. 9. 김준영 -->
+	<insert id="insert_job_exam_file" parameterType="JobExamFile">
+		insert into
+			fap_job_exam_file_tb
+			(
+				fap_job_exam_seq
+				, fap_job_exam_file_saved
+				, fap_job_exam_file_origin
+				, fap_job_exam_file_ins_id
+				, fap_job_exam_file_ins_dt
+				, fap_job_exam_file_udt_id
+				, fap_job_exam_file_udt_dt
+			) values (
+				#{fap_job_exam_seq}
+				, #{fap_job_exam_file_saved}
+				, #{fap_job_exam_file_origin}
+				, #{fap_job_exam_file_ins_id}
+				, now()
+				, #{fap_job_exam_file_udt_id}
+				, now()
+			)
+	</insert>
+	<!-- FAP 시험 파일 저장 종료 -->
+	<!-- 시험종류 정보 입력 시작 1.9 이재준  -->
+	<insert id ="insert_job_exam_type" parameterType="list">
+		insert into fap_job_exam_type_tb(
+			fap_job_exam_type_gb
+			,fap_job_exam_type_dtl
+			,fap_job_exam_type_ins_id
+			,fap_job_exam_type_ins_dt
+			,fap_job_exam_type_udt_id
+			,fap_job_exam_type_udt_dt
+			,fap_job_exam_seq
+		)
+		values
+		<foreach item ="JobExamType" collection="list" index="index" open=" " separator="," close=" ">
+		(	
+			#{JobExamType.fap_job_exam_type_gb}
+			,#{JobExamType.fap_job_exam_type_dtl}
+			,#{JobExamType.fap_job_exam_type_ins_id}
+			,now()
+			,#{JobExamType.fap_job_exam_type_udt_id}
+			,now()
+			,#{JobExamType.fap_job_exam_seq}
+		)
+		</foreach>
+	</insert>
+	<!-- 시험종류 정보 입력 완료  --> 
+<!-- 채용공고 저장 완료 -->		
+
+
+	<!-- FAP 채용공고 관리 리스트 출력 시작; 2019.1.10. 이재준-->
+	<select id="select_job_ad_list" resultType="JobAd" parameterType="String">
+		select 
+			fap_job_ad_seq
+			,fap_comp_id
+			,fap_job_ad_title
+		from 
+			fap_job_ad_tb
+		where
+			fap_comp_id = #{fap_comp_id}
+		order by fap_job_ad_udt_dt desc
+	</select>
+	<!-- FAP 채용공고 관리 리스트 출력 종료 -->
+
+	<!-- 급여정보 select 원병호-->
+	<resultMap type="hashmap" id="JobPayMap">
+		<id property="fap_job_pay_seq" column="fap_job_pay_seq" />
+		<result property="fap_job_pay_seq" column="fap_job_pay_seq" />
+		<result property="fap_job_pay_gb" column="fap_job_pay_gb" />
+		<result property="fap_job_pay_info" column="fap_job_pay_info" />
+		<result property="fap_job_pay_dtl" column="fap_job_pay_dtl" />
+		<!-- <result property="fap_job_ad_seq" column="fap_job_ad_seq" /> -->
+		<collection property="JobPayBaseList" javaType="java.util.ArrayList" resultMap="JobPayBaseMap" />
+		<collection property="JobPayExtraList" javaType="java.util.ArrayList" resultMap="JobPayExtraMap" />
+	</resultMap>
+		<resultMap type="hashmap" id="JobPayBaseMap">
+			<id property="fap_job_pay_base_seq" column="fap_job_pay_base_seq" />
+			<result property="fap_job_pay_base_seq" column="fap_job_pay_base_seq" />
+			<result property="fap_job_pay_base_gb" column="fap_job_pay_base_gb" />
+			<result property="fap_job_pay_base_info" column="fap_job_pay_base_info" />
+			<!-- <result property="fap_job_pay_seq" column="fap_job_pay_seq" /> -->
+			<collection property="JobServiceWorkList" javaType="java.util.ArrayList" resultMap="JobServiceWorkMap" />
+			<collection property="JobPayEtcList" javaType="java.util.ArrayList" resultMap="JobPayEtcMap" />
+		</resultMap>
+			<resultMap type="hashmap" id="JobServiceWorkMap">
+				<id property="fap_job_service_work_seq" column="fap_job_service_work_seq" />
+				<result property="fap_job_service_work_seq" column="fap_job_service_work_seq" />
+				<!-- <result property="fap_job_service_work_info" column="fap_job_service_work_info" /> -->
+				<result property="fap_job_service_work_tm" column="fap_job_service_work_tm" />
+				<!-- <result property="fap_job_pay_base_seq" column="fap_job_pay_base_seq" /> -->
+			</resultMap>
+			<resultMap type="hashmap" id="JobPayEtcMap">
+				<id property="fap_job_pay_etc_seq" column="fap_job_pay_etc_seq" />
+				<result property="fap_job_pay_etc_seq" column="fap_job_pay_etc_seq" />
+				<result property="fap_job_pay_etc_nm" column="fap_job_pay_etc_nm" />
+				<result property="fap_job_pay_etc_info" column="fap_job_pay_etc_info" />
+				<!-- <result property="fap_job_pay_base_seq" column="fap_job_pay_base_seq" /> -->
+			</resultMap>
+		<resultMap type="hashmap" id="JobPayExtraMap">
+			<id property="fap_job_pay_extra_seq" column="fap_job_pay_extra_seq" />
+			<result property="fap_job_pay_extra_tm" column="fap_job_pay_extra_tm" />
+			<!-- <result property="fap_job_pay_seq" column="fap_job_pay_seq" /> -->
+		</resultMap>
+	<select id="select_job_pay" resultMap="JobPayMap" parameterType="int">
+		select
+			pay.fap_job_pay_seq
+		    , pay.fap_job_pay_gb
+		    , pay.fap_job_pay_info
+		    , pay.fap_job_pay_dtl
+		    , base.fap_job_pay_base_seq
+		    , base.fap_job_pay_base_gb
+		    , base.fap_job_pay_base_info
+		    , extra.fap_job_pay_extra_seq
+		    , extra.fap_job_pay_extra_tm
+		    , service.fap_job_service_work_seq
+		    , service.fap_job_service_work_tm
+		    , etc.fap_job_pay_etc_seq
+		    , etc.fap_job_pay_etc_nm
+		    , etc.fap_job_pay_etc_info
+		from
+			fap_job_pay_tb pay
+		left join
+			fap_job_pay_base_tb base
+		on
+			pay.fap_job_pay_seq = base.fap_job_pay_seq
+		left join
+			fap_job_pay_extra_tb extra
+		on
+			pay.fap_job_pay_seq = extra.fap_job_pay_seq
+		left join
+			fap_job_service_work_tb service
+		on
+			base.fap_job_pay_base_seq = service.fap_job_pay_base_seq
+		left join
+			fap_job_pay_etc_tb etc
+		on
+			base.fap_job_pay_base_seq = etc.fap_job_pay_base_seq
+		where
+			pay.fap_job_ad_seq = #{fap_job_ad_seq}
+	</select>
+	<!-- 급여정보 select 끝 원병호-->
+	
+	<!-- FAP 관리자 채용공고 정보 가져오기 시작; 2019. 1. 16. 정대영 -> 2019.08.20. 김경아-->
+	<select id="admin_select_per_state_job_ad_list" resultType="hashmap" parameterType="hashmap">
+		select
+			ad.fap_job_ad_seq as fap_job_ad_seq
+		    ,ad.fap_job_ad_title as fap_job_ad_title
+		    ,ad.fap_job_ad_state as fap_job_ad_state
+		    ,ad.fap_jobfair_seq as fap_jobfair_seq
+		    ,ad.fap_jobfair_divide_seq as fap_jobfair_divide_seq
+		    ,ad.fap_job_ad_is_mismatching as fap_job_ad_is_mismatching
+		    ,ad.fap_job_ad_groupcode as fap_job_ad_groupcode
+		    ,ad.fap_job_ad_rule_type as fap_job_ad_rule_type
+		    ,user.fap_comp_ja_nm as fap_comp_ja_nm
+			,user.fap_comp_en_nm as fap_comp_en_nm
+			,user.fap_comp_id as fap_comp_id
+			,apply_per.FAP_JOB_APP_PER_SEQ as fap_job_app_per_seq
+            ,apply_per.FAP_JOB_APP_PER_AUTO_GB as fap_job_app_per_auto_gb
+            ,apply_per.FAP_JOB_APP_PER_SETTLED_NUM as fap_job_app_per_settled_num
+            ,itv_per.FAP_JOB_ITV_PER_SEQ as fap_job_itv_per_seq
+            ,itv_per.FAP_JOB_ITV_PER_SETTLED_NUM as fap_job_itv_per_settled_num
+		    ,(select
+				 count(*)
+			  from
+				 fap_job_apply_info_tb info
+			  left join
+				 com_user_tb com
+			  on
+                 info.user_id = com.user_id
+			  where
+				 ad.fap_job_ad_seq = info.fap_job_ad_seq
+			  and
+                 com.user_flag = 'A0101'
+			  ) as fap_job_ad_apply_num_sc
+			,(select
+				 count(*)
+			  from
+				 fap_job_apply_info_tb info
+			  left join
+				 com_user_tb com
+			  on
+                 info.user_id = com.user_id
+			  where
+				 ad.fap_job_ad_seq = info.fap_job_ad_seq
+			  and
+                 com.user_flag = 'A0106'
+			  ) as fap_job_ad_apply_num_sw
+			  ,(select
+				 count(*)
+			  from
+				 fap_job_apply_info_tb info
+			  left join
+				 com_user_tb com
+			  on
+                 info.user_id = com.user_id
+			  where
+				 ad.fap_job_ad_seq = info.fap_job_ad_seq
+			  and
+                 com.user_flag = 'A0100'
+			  ) as fap_job_ad_apply_num_general
+			  ,(select
+				 count(*)
+			  from
+				 fap_job_apply_info_tb info
+			  left join
+				 com_user_tb com
+			  on
+                 info.user_id = com.user_id
+			  where
+				 ad.fap_job_ad_seq = info.fap_job_ad_seq
+			  and
+                 com.user_flag = 'A0108'
+			  ) as fap_job_ad_apply_num_japexp
+			,(select
+				 count(*)
+			  from
+				 fap_job_qna_question_tb q
+			  where
+				 ad.fap_job_ad_seq = q.fap_job_ad_seq
+			  ) as fap_job_ad_question_num
+		from
+			fap_job_ad_tb ad
+		natural join
+			fap_jobfair_comp_tb comp
+		natural join
+			fap_jobfair_divide_tb divide
+		natural join
+			fap_company_user_tb user		
+		left join
+			fap_job_apply_per_tb apply_per
+		on
+			ad.fap_job_ad_seq = apply_per.fap_job_ad_seq
+		left join
+			fap_job_interview_per_tb itv_per
+		on
+			ad.fap_job_ad_seq = itv_per.fap_job_ad_seq
+		where
+				ad.fap_jobfair_seq = #{fap_jobfair_seq}
+			and
+				ad.fap_jobfair_divide_seq = #{fap_jobfair_divide_seq}
+			<if test="stateFlag == 'standby'">
+				and	
+					ad.fap_job_ad_state = 'C2100'
+			</if>
+			<if test="stateFlag == 'progressing'">
+				and	
+					ad.fap_job_ad_state = 'C2101'
+			</if>
+			<if test="stateFlag == 'completed'">
+				and	
+					ad.fap_job_ad_state = 'C2102'
+			</if>
+			<if test="stateFlag == 'approvalRequest'">
+				and	
+					ad.fap_job_ad_state = 'C2104'		
+			</if>
+			<if test="searchKey!=null and searchKey !=''">							
+					<if test='searchKey=="searchJaNm"'>
+							and 
+							  fap_comp_ja_nm like concat('%',#{searchValue},'%')
+					</if>  
+						<if test='searchKey=="searchEnNm"'>
+							and
+								fap_comp_en_nm like concat('%',#{searchValue},'%')
+					</if> 
+			</if>	 
+			<if test="orderType==null ">
+				order by  
+							fap_job_ad_udt_dt asc		
+			</if>
+			<if test="orderType!=null and orderType.equals('fap_comp_ja_nm') ">
+				 <if test="orderValue.equals('desc') ">
+						order by fap_comp_ja_nm desc
+				 </if>
+				 <if test="orderValue.equals('asc') ">
+						order by fap_comp_ja_nm asc
+				 </if>
+		 </if>
+		<if test="orderType!=null and orderType.equals('fap_comp_en_nm') ">
+		       <if test="orderValue.equals('desc') ">
+					order by fap_comp_en_nm desc
+				</if>
+				<if test="orderValue.equals('asc') ">
+					order by fap_comp_en_nm asc
+				</if>
+		</if>		
+		<if test="orderType!=null and orderType.equals('fap_job_ad_groupcode') ">
+		       <if test="orderValue.equals('desc') ">
+					order by fap_job_ad_groupcode desc
+				</if>
+				<if test="orderValue.equals('asc') ">
+					order by fap_job_ad_groupcode asc
+				</if>
+		</if>		
+		<if test="orderType!=null and orderType.equals('fap_job_ad_apply_num') ">
+		       <if test="orderValue.equals('desc') ">
+					order by (fap_job_ad_apply_num_sc+fap_job_ad_apply_num_sw+fap_job_ad_apply_num_general) desc
+				</if>
+				<if test="orderValue.equals('asc') ">
+					order by (fap_job_ad_apply_num_sc+fap_job_ad_apply_num_sw+fap_job_ad_apply_num_general) asc
+				</if>
+		</if>		
+	</select>
+	<!-- FAP 관리자 채용공고 정보 가져오기 끝 -->
+	
+	<!-- FAP 관리자 채용공고 상태 수정 시작; 2019. 2. 12. 정대영-->
+	<update id="admin_update_job_ad_state" parameterType="JobAd">
+		update
+			fap_job_ad_tb
+		set
+			fap_job_ad_state = #{fap_job_ad_state}
+		<if test="fap_job_ad_is_mismatching != null and fap_job_ad_is_mismatching != ''">
+			,fap_job_ad_is_mismatching = #{fap_job_ad_is_mismatching}
+		</if>
+		<if test="fap_job_ad_rule_type != null and fap_job_ad_rule_type != ''">
+			,fap_job_ad_rule_type = #{fap_job_ad_rule_type}
+		</if>
+		<if test="fap_job_ad_groupcode != null and fap_job_ad_groupcode != ''">
+			,fap_job_ad_groupcode = #{fap_job_ad_groupcode}
+		</if>
+		where
+			fap_job_ad_seq = #{fap_job_ad_seq}
+	</update>
+	<!-- FAP 관리자 채용공고 상태 수정 끝 -->
+	
+	<!-- FAP 관리자 해당 잡페어 그룹코드 셀렉트 시작; 2019. 2. 12. 정대영-->
+	<select id="select_current_jobfair_group_code" parameterType="Int" resultType="hashmap">
+		select
+			fap_jobfair_seq
+			,fap_comp_groupcode
+			,fap_comp_stock
+			,fap_comp_3years_avg_sales
+			,fap_comp_employee_num
+		from
+			fap_comp_group_set_tb
+		where
+			fap_jobfair_seq = #{fap_jobfair_seq}
+		order by
+			fap_comp_stock desc
+			,fap_comp_3years_avg_sales desc
+			,fap_comp_employee_num desc
+	</select>
+	<!-- FAP 관리자 해당 잡페어 그룹코드 셀렉트 종료 -->
+	
+	<!-- FAP 관리자 해당 채용공고 그룹코드에 필요한 정보 셀렉트 시작; 2019. 2. 12. 정대영-->
+	<select id="select_current_job_ad_info_for_group_code" parameterType="long" resultType="hashmap">
+		select
+			fap_job_ad_seq
+			,fap_job_ad_stock
+			,fap_job_ad_3years_avg_sales
+			,fap_job_ad_employee_num
+		from
+			fap_job_ad_tb
+		where
+			fap_job_ad_seq = #{fap_job_ad_seq}
+			and
+			fap_job_ad_groupcode is null
+	</select>
+	<!-- FAP 관리자 해당 채용공고 그룹코드에 필요한 정보 셀렉트 종료 -->
+	
+	<!-- FAP 관리자 채용공고 채용예정인원으로 현지면접인원 등록 시작 -->
+	<insert id="admin_insert_itv_nums_per_ad" parameterType="JobAd">
+		insert into fap_job_interview_per_tb(
+			fap_job_ad_seq
+			,fap_comp_id
+			,fap_job_itv_per_settled_num
+			,fap_job_itv_per_auto_gb
+			,fap_job_itv_per_ins_id
+			,fap_job_itv_per_ins_dt
+			,fap_job_itv_per_udt_id
+			,fap_job_itv_per_udt_dt
+		)
+		values (	
+			#{fap_job_ad_seq}
+			,(
+				select
+					fap_comp_id
+				from
+					fap_job_ad_tb
+				where
+					fap_job_ad_seq = #{fap_job_ad_seq}
+			  )
+			,(
+				select
+					fap_job_ad_recruit_num * (
+											    select
+													fap_limit_interview_count
+												from
+													fap_limit_interview_set_tb
+												where
+													fap_jobfair_seq = #{fap_jobfair_seq}
+											  )
+				from
+					fap_job_ad_tb
+				where
+					fap_job_ad_seq = #{fap_job_ad_seq}
+			  )
+			,'D0100'
+			<!-- 여기서 comp_id는 관리자 아이디 -->
+			,#{fap_comp_id}
+			,now()
+			,#{fap_comp_id}
+			,now()
+		)
+	</insert>
+	<!-- FAP 관리자 채용공고 채용예정인원으로 현지면접인원 등록 종료 -->
+	
+	<!-- FAP 관리자 채용공고 채용예정인원으로 채용가능인원 인서트 시작; 2019. 2. 14. 정대영-->
+	<insert id="admin_insert_apply_nums_per_ad" parameterType="JobAd">
+		insert into fap_job_apply_per_tb(
+			fap_job_ad_seq
+			,fap_comp_id
+			,fap_job_app_per_settled_num
+			,fap_job_app_per_auto_gb
+			,fap_job_app_per_ins_id
+			,fap_job_app_per_ins_dt
+			,fap_job_app_per_udt_id
+			,fap_job_app_per_udt_dt
+		)
+		values (	
+			#{fap_job_ad_seq}
+			,(
+				select
+					fap_comp_id
+				from
+					fap_job_ad_tb
+				where
+					fap_job_ad_seq = #{fap_job_ad_seq}
+			  )
+			,(
+				select
+					fap_job_ad_recruit_num * (
+											    select
+													fap_apply_max_multiple
+												from
+													fap_apply_max_num_set_tb
+												where
+													fap_jobfair_seq = #{fap_jobfair_seq}
+											  )
+				from
+					fap_job_ad_tb
+				where
+					fap_job_ad_seq = #{fap_job_ad_seq}
+			  )
+			,'D0100'
+			<!-- 여기서 comp_id는 관리자 아이디 -->
+			,#{fap_comp_id}
+			,now()
+			,#{fap_comp_id}
+			,now()
+		)
+	</insert>
+	<!-- FAP 관리자 채용공고 채용예정인원으로 채용가능인원 인서트 종료-->
+	
+	<!-- FAP 관리자 현지면접인원이 설정되어있는지 여부 확인 시작 -->
+	<select id="admin_select_flag_itv_nums_per_ad" parameterType="long" resultType="int">
+		select
+			count(fap_job_ad_seq)
+		from
+			fap_job_interview_per_tb
+		where
+			fap_job_ad_seq = #{fap_job_ad_seq}
+	</select>
+	<!-- FAP 관리자 현지면접인원이 설정되어있는지 여부 확인 종료 -->
+	
+	<!-- FAP 관리자 지원가능인원이 설정되어있는지 여부 확인 시작; 2019. 2. 12. 정대영-->
+	<select id="admin_select_flag_apply_nums_per_ad" parameterType="long" resultType="int">
+		select
+			count(fap_job_ad_seq)
+		from 
+			fap_job_apply_per_tb
+		where
+			fap_job_ad_seq = #{fap_job_ad_seq}
+	</select>
+	<!-- FAP 관리자 지원가능인원이 설정되어있는지 여부 확인 종료 -->
+	<!-- FAP 관리자 기업그룹코드 수정; 2019. 2. 26. 남유송-->
+	<update id="admin_update_groupcode" parameterType="hashmap">
+		update
+			fap_job_ad_tb
+		set
+			fap_job_ad_groupcode = #{fap_job_ad_groupcode}
+		where
+			fap_job_ad_seq = #{fap_job_ad_seq}
+	</update>
+	<!-- FAP 관리자 기업그룹코드 수정 종료 -->
+	<!-- FAP 관리자 기업그룹코드 별 갯수 가져오기 시작; 2019. 2. 26. 남유송-->
+	<select id="select_count_per_group" parameterType="int" resultType="hashmap">
+		select 
+			fap_job_ad_groupcode
+			, count(fap_job_ad_groupcode) as count_per_group 
+    	from 
+    		fap_job_ad_tb
+    	where 
+    		fap_jobfair_divide_seq = #{fap_jobfair_divide_seq}
+   		group by 
+   			fap_job_ad_groupcode;
+	</select>
+	<!-- FAP 관리자 기업그룹코드 별 갯수 가져오기 종료 -->
+	
+	<!-- FAP 관리자 기업순위 수정; 2021. 03. 09. 안홍현-->
+	<update id="admin_select_rank" parameterType="hashmap">
+		update	fap_job_ad_tb
+		set fap_job_ad_rank = #{fap_job_ad_rank}
+		where fap_job_ad_seq = #{fap_job_ad_seq}
+	</update>
+	<!-- FAP 관리자 기업순위 수정 종료 -->
+	
+	<!-- FAP 관리자 현지제한 인원 수정 시작 -->
+	<update id="admin_job_itv_per_update" parameterType="hashmap">
+		update
+			fap_job_interview_per_tb
+		set
+			fap_job_itv_per_settled_num = #{fap_job_itv_per_settled_num}
+			,fap_job_itv_per_auto_gb = 'D0101'
+		where
+			fap_job_itv_per_seq = #{fap_job_itv_per_seq}
+	</update>
+	<!-- FAP 관리자 현지제한 인원 수정 종료 -->
+	
+	<!-- FAP 관리자 지원가능 인원 수정 시작 -->
+	<update id="admin_job_app_per_update" parameterType="hashmap">
+		update
+			fap_job_apply_per_tb
+		set
+			fap_job_app_per_settled_num = #{fap_job_app_per_settled_num}
+			,fap_job_app_per_auto_gb = 'D0101'
+		where
+			fap_job_app_per_seq = #{fap_job_app_per_seq}
+	</update>
+	<!-- FAP 관리자 지원가능 인원 수정 종료 -->
+	
+	<!-- FAP 관리자 일반지원/미스매칭 수정 시작; 2019. 2. 27. 이재준-->
+	<update id="admin_update_mismatching" parameterType="hashmap">
+		update
+			fap_job_ad_tb
+		set
+			fap_job_ad_is_mismatching = #{fap_job_ad_is_mismatching}
+		where
+			fap_job_ad_seq = #{fap_job_ad_seq}
+	</update>
+	<!-- FAP 관리자 일반지원/미스매칭 수정 종료 -->
+	
+	<!-- FAP 관리자 기업별 지원자 리스트 승인전 지원자 리스트 시작 -->
+	<select id="admin_job_apply_approval_yet" parameterType="hashmap" resultType="hashmap">
+		select
+			apply_info.fap_job_app_info_seq as fap_job_app_info_seq
+			, apply_info.fap_job_ad_seq as fap_job_ad_seq
+			, apply_info.fap_comp_id as fap_comp_id
+			, apply_info.user_id as user_id
+			, DATE_FORMAT(apply_info.fap_job_app_info_ins_dt, '%Y-%m-%d') as fap_job_app_info_ins_dt
+			, apply_info.fap_job_ad_is_mismatching as fap_job_ad_is_mismatching
+			, resume.fap_resume_seq as fap_resume_seq
+			, resume.fap_resume_gender as fap_resume_gender
+			, DATE_FORMAT(resume.fap_resume_birth, '%Y') as fap_resume_birth
+			, resume.fap_resume_pic_saved as fap_resume_pic_saved
+			, resume_name.fap_resume_nm_seq as fap_resume_nm_seq
+			, resume_name.fap_resume_nm as fap_resume_nm
+			, resume_name.fap_resume_lang_gb as fap_resume_lang_gb
+			, cuser.user_flag as user_flag
+		from
+			fap_job_apply_info_tb apply_info
+		inner join fap_resume_tb resume
+			on resume.user_id = apply_info.user_id
+			and resume.fap_resume_seq = apply_info.fap_resume_seq
+		inner join fap_resume_name_tb resume_name
+			on resume_name.fap_resume_seq = resume.fap_resume_seq
+		inner join com_user_tb cuser
+			on apply_info.user_id = cuser.user_id
+		where
+			apply_info.fap_job_ad_seq = #{fap_job_ad_seq}
+			and apply_info.fap_comp_id = #{fap_comp_id}
+		    and resume_name.fap_resume_lang_gb = 'B3100'
+		order by
+			apply_info.fap_job_app_info_seq
+			,resume_name.fap_resume_lang_gb
+	</select>
+	<!-- FAP 관리자 기업별 지원자 리스트 승인전 지원자 리스트 종료 -->
+	
+	<!-- 채용공고 승인 시 지원룰 대상 등록여부 확인 시작 -->
+	<select id="select_jobfair_apply_rule_count" parameterType="long" resultType="int">
+		select
+			count(*)
+		from
+			fap_jobfair_apply_rule_tb rule
+		inner join
+			fap_jobfair_applicable_time_tb app
+		on
+			app.fap_jobfair_applicable_time_seq = rule.fap_jobfair_applicable_time_seq
+		where
+			rule.fap_job_ad_seq = #{fap_job_ad_seq}
+		and
+			app.fap_jobfair_applicable_time_deadline_gb = 'D0400'
+	</select>
+	<!-- 채용공고 승인 시 지원룰 대상 등록여부 확인 종료 -->
+	
+	<!-- 채용공고 승인 취소시 지원룰 대상 삭제 시작 -->
+	<delete id="delete_jobfair_apply_rule" parameterType="long">
+		delete from
+			fap_jobfair_apply_rule_tb
+		where
+			fap_jobfair_apply_rule_seq = (
+																	select
+																		*
+																	from
+																		(
+																			select
+																				sub.fap_jobfair_apply_rule_seq
+																			from
+																				fap_jobfair_apply_rule_tb sub
+																			inner join
+																				fap_jobfair_applicable_time_tb app
+																			on
+																				app.fap_jobfair_applicable_time_seq = sub.fap_jobfair_applicable_time_seq
+																			where
+																				sub.fap_job_ad_seq = #{fap_job_ad_seq}
+																			and
+																				app.fap_jobfair_applicable_time_deadline_gb = 'D0400'
+																			) rule
+															)
+	</delete>
+	<!-- 채용공고 승인 취소시 지원룰 대상 삭제 종료 -->
+	
+	<!-- 세부잡페어별 진행중인 지원가능시간 시퀀스 조회 시작 -->
+	<select id="select_jobfair_applicable_time" parameterType="long" resultType="long">
+		select
+			fap_jobfair_applicable_time_seq
+		from
+			fap_jobfair_applicable_time_tb
+		where
+			fap_jobfair_applicable_time_deadline_gb = 'D0400'
+		and
+			fap_jobfair_divide_seq = (select
+															fap_jobfair_divide_seq
+														from
+															fap_job_ad_tb
+														where
+															fap_job_ad_seq = #{fap_job_ad_seq})
+	</select>
+	<!-- 세부잡페어별 진행중인 지원가능시간 시퀀스 조회 종료 -->
+	
+	<!-- 지원룰 정보 등록 시작 -->
+	<insert id="insert_jobfair_apply_rule" parameterType="FAPAdminJobfairApplyRule">
+		insert into
+			fap_jobfair_apply_rule_tb
+			(
+				fap_job_ad_seq
+		        ,fap_jobfair_applicable_time_seq
+		        ,fap_jobfair_apply_rule_gb
+		        ,fap_jobfair_apply_rule_ins_id
+		        ,fap_jobfair_apply_rule_udt_id
+			)values(
+				#{fap_job_ad_seq}
+				,#{fap_jobfair_applicable_time_seq}
+				,'D1900'
+				,#{fap_jobfair_apply_rule_ins_id}
+				,#{fap_jobfair_apply_rule_udt_id}
+			)
+	</insert>
+	<!-- 지원룰 정보 등록 종료 -->
+	
+	<!--기업이름출력 시작-->
+	<select id="select_comp_nm" parameterType="String" resultType="hashmap">
+			select
+				fap_comp_en_nm
+				,fap_comp_ja_nm
+			from
+				fap_company_user_tb
+			where
+				fap_comp_id = #{fap_comp_id}
+	</select>
+	<!--기업이름출력 종료-->
+
+	
+</mapper>

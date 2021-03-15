@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="global.segroup.society.edu.user.dao.SocietyEduUserMapper">
+
+	<!-- 공통 유저 신규 등록 시작 -->
+	<insert id="insertUser" parameterType="User">
+		INSERT INTO
+			com_user_tb
+			(
+				USER_ID			
+				, USER_PW
+				, USER_NM		
+				, USER_PHONE	
+				, USER_EMAIL	
+				, USER_BIRTH			
+				, USER_SEX		
+				, USER_FLAG	
+				, USER_INS_ID	
+				, USER_INS_DT	
+				, USER_UDT_ID	
+				, USER_UDT_DT
+				, USER_TERMS_CK
+			)
+		VALUES
+			(
+				#{user_id}
+				, #{user_pw}
+				, #{user_nm}
+				, #{user_phone}
+				, #{user_email}
+				, #{user_birth}
+				, #{user_sex}
+				, #{user_flag}
+				, #{user_id}
+				, NOW()
+				, #{user_id}
+				, NOW()
+				, #{user_terms_ck}
+			)
+	</insert>
+	
+	<!-- 공통 유저 신규 등록 시작 -->
+	<insert id="insertUserVeri" parameterType="UserVeri">
+	
+		INSERT INTO
+			com_veri_tb
+			(
+				VERICI			
+				, VERIDI
+				, VERIPHONE		
+				, VERICOM	
+				, VERIBIRTH	
+				, VERINATION			
+				, VERINAME		
+				, VERINUM	
+				, VERITIME	
+				, VERIGENDER	
+				, USER_ID
+				, VERI_INS_DATE	
+			)
+		VALUES
+			(
+				#{veriCi}
+				, #{veriDi}
+				, #{veriPhone}
+				, #{veriCom}
+				, #{veriBirth}
+				, #{veriNation}
+				, #{veriName}
+				, #{veriNum}
+				, #{veriTime}
+				, #{veriGender}
+				, #{user_id}
+				, NOW()
+			)
+	</insert>  
+	
+	
+	<select id="userveri_phone_select" parameterType="UserVeri" resultType="UserVeri">
+	
+		select
+			
+		      	VERICI			
+				, VERIDI
+				, VERIPHONE		
+				, VERICOM	
+				, VERIBIRTH	
+				, VERINATION			
+				, VERINAME		
+				, VERINUM	
+				, VERITIME	
+				, VERIGENDER	
+				, USER_ID
+				, VERI_INS_DATE	
+			
+			
+			 from
+			com_veri_tb
+		where
+				VERIPHONE= #{veriPhone}
+				
+			
+	</select> 
+	
+	<!-- 공통 유저 정보 수정 시작 -->
+	<update id="updateUser" parameterType="User">
+		update
+			COM_USER_TB
+		set
+			USER_PW = #{user_pw}
+			, USER_NM	= #{user_nm}
+			, USER_PHONE = #{user_phone}	
+			, USER_EMAIL	 = #{user_email}
+			, USER_BIRTH	 = #{user_birth}
+			, USER_SEX = #{user_sex}
+			, USER_UDT_ID = #{user_id}	
+			, USER_UDT_DT = now()
+		where
+			USER_ID = #{user_id}
+	</update>
+	<!-- 공통 유저 정보 수정 종료 -->
+	
+	
+     <!-- 유저 신청목록 정보 시작 -->
+	<select id="user_apply_history" parameterType="String" resultType="HashMap">
+	
+	SELECT  
+	     a.app_rt_seq
+	     ,a.app_seq
+	     ,a.app_rt_doc
+	     ,a.app_rt_itv
+	     ,b.gisu_seq
+	     ,b.app_udt_dt
+	     ,b.app_ins_id
+	     ,b.app_mt_ck
+	     ,c.gisu_num
+	     ,c.gisu_crc_nm
+	     ,c.gisu_crc_pay
+	     ,c.gisu_per
+	     ,d.crc_tp
+	
+	FROM edu_masterapply_result_tb a,
+      	 edu_masterapply_form_tb b,
+      	 edu_curriculum_gisu_tb c,
+      	 edu_curriculum_tb d
+	
+	WHERE a.app_seq=b.app_seq 
+	
+	and b.gisu_seq=c.gisu_seq
+	
+	and c.crc_seq=d.crc_seq
+	 
+	AND b.app_id=#{id}
+	</select>
+	<!-- 유저 신청목록 정보 종료 -->
+    
+    <!--회원 정보를 이름만 남겨놓고 공백처리, 회원 상태(A0202) 탈퇴로변경 , 아이디+난수(30글자) 변경 시작 -->
+    <update id="deleteUserDataRemove" parameterType="HashMap">
+        UPDATE
+            COM_USER_TB
+        SET
+            USER_ID = #{user_delete_id}
+            , USER_PW = ''
+            , USER_PHONE = ''
+            , USER_EMAIL = ''
+            , USER_BIRTH = now()
+            , USER_SEX = ''
+            , USER_STATE = #{user_state}
+            , USER_INS_ID = #{user_delete_id}
+            , USER_INS_DT = now()
+            , USER_UDT_ID = #{user_delete_id}
+            , USER_UDT_DT = now()
+        WHERE
+            USER_ID = #{user_id}
+    </update>
+    <!--회원 정보를 이름만 남겨놓고 공백처리, 회원 상태(A0202) 탈퇴로변경 , 아이디+난수(30글자) 변경 종료 -->
+	
+	<insert id="user_pay_info" parameterType="HashMap">
+	insert into edu_user_pay_tb
+    (
+    pay_crc_seq
+    ,pay_user_method
+    ,pay_user_status
+    ,pay_user_id
+    ,pay_bankname
+    ,pay_accnum
+    ,pay_tid
+    ,pay_moid
+    ,pay_ins_dt
+    ,pay_rtn_data
+    ,pay_product_name
+    )
+    values
+    (
+    #{seq}
+    ,#{payMethod}
+    ,#{status}
+    ,#{id}
+    ,#{vactBankName}
+    ,#{VACT_Num}
+    ,#{tid}
+    ,#{MOID}
+    ,NOW()
+    ,#{pay_rtn_data}
+    ,#{goodsName}
+    )
+	</insert>
+	
+	<!-- 유저 마이페이지 > 결제현황에 출력되는 데이터 -->
+	<!-- <select id="user_pay_status" parameterType="String" resultType="HashMap">
+	select 
+		A.PAY_USER_SEQ 
+		,A.PAY_CRC_SEQ 
+		,A.PAY_USER_STATUS
+		,A.PAY_USER_ID 
+		,A.PAY_ACCNAME 
+		,A.PAY_ACCNUM 
+		,A.PAY_BANKNAME 
+		,A.PAY_USER_METHOD 
+		,A.PAY_TID 
+		,A.PAY_MOID 
+		,A.PAY_PRODUCT_NAME 
+		,A.PAY_INS_DT
+		,B.PAY_CRC_AMOUNT
+	from
+	   edu_user_pay_tb A,
+	   edu_curriculum_pay_tb B
+	where 
+	   A.PAY_USER_ID=#{id}
+	   and A.PAY_CRC_SEQ=B.PAY_CRC_SEQ
+	</select> -->
+	
+	<!-- 유저 마이페이지 > 결제현황에 출력되는 데이터 -->
+	<select id="user_pay_status" parameterType="String" resultType="HashMap">
+		SELECT * FROM(
+			SELECT
+				A.PAY_USER_SEQ 
+				,A.PAY_CRC_SEQ 
+				,A.PAY_USER_STATUS
+				,A.PAY_USER_ID 
+				,A.PAY_ACCNAME 
+				,A.PAY_ACCNUM 
+				,A.PAY_BANKNAME 
+				,A.PAY_USER_METHOD 
+				,A.PAY_TID 
+				,A.PAY_MOID 
+				,A.PAY_PRODUCT_NAME 
+				,A.PAY_INS_DT
+				,B.PAY_REFUND_SEQ
+				,B.PAY_REFUND_STATUS
+				,B.PAY_REFUND_REQDT
+				,B.PAY_REFUND_COMDT
+				,B.PAY_REFUND_ACCNAME
+				,B.PAY_REFUND_ACCNUM
+				,B.PAY_REFUND_REASON
+				,B.PAY_REFUND_BANK
+				,(SELECT PAY_CRC_AMOUNT FROM edu_curriculum_pay_tb WHERE PAY_CRC_SEQ=A.PAY_CRC_SEQ) PAY_CRC_AMOUNT
+				,(SELECT PAY_CRC_PAYORDER FROM edu_curriculum_pay_tb WHERE PAY_CRC_SEQ=A.PAY_CRC_SEQ) PAY_CRC_PAYORDER
+			FROM
+				edu_user_pay_tb A
+			LEFT JOIN
+				edu_user_refund_tb B
+			ON
+				A.pay_user_seq = B.pay_user_seq
+			WHERE
+				A.pay_user_id=#{id}
+			UNION
+			SELECT
+				B.PAY_USER_SEQ 
+				,B.PAY_CRC_SEQ 
+				,A.PAY_USER_STATUS
+				,B.PAY_USER_ID 
+				,B.PAY_ACCNAME 
+				,B.PAY_ACCNUM 
+				,B.PAY_BANKNAME 
+				,B.PAY_USER_METHOD 
+				,B.PAY_TID 
+				,B.PAY_MOID 
+				,B.PAY_PRODUCT_NAME 
+				,B.PAY_INS_DT
+				,B.PAY_REFUND_SEQ
+				,B.PAY_REFUND_STATUS
+				,B.PAY_REFUND_REQDT
+				,B.PAY_REFUND_COMDT
+				,B.PAY_REFUND_ACCNAME
+				,B.PAY_REFUND_ACCNUM
+				,B.PAY_REFUND_REASON
+				,B.PAY_REFUND_BANK
+				,B.PAY_CRC_AMOUNT
+				,B.PAY_CRC_PAYORDER
+			FROM
+				edu_user_pay_tb A
+			RIGHT JOIN
+				edu_user_refund_tb B
+			ON
+				A.pay_user_seq = B.pay_user_seq
+			WHERE
+				B.pay_user_id=#{id}
+		) total
+		ORDER BY
+			total.pay_crc_seq asc
+	</select>
+	<!-- 유저 마이페이지 > 결제현황에 출력되는 데이터 -->
+	
+     <!--해당 결제내역에 환불요청을 이미 했는지 확인하는 쿼리 -->
+	<select id="user_check_refund" parameterType="String" resultType="int">
+	select 
+		count(pay_refund_seq)
+	from
+	   edu_user_refund_tb
+	where 
+	   pay_user_seq=#{seq}
+	</select>
+	
+	<!-- 환불 테이블에 insert -->
+	<insert id="user_refund_req" parameterType="RefundInfo">
+	insert into edu_user_refund_tb
+    (
+     PAY_USER_SEQ 
+     ,PAY_REFUND_STATUS 
+     ,PAY_REFUND_REQDT 
+     ,PAY_REFUND_ACCNAME 
+     ,PAY_REFUND_ACCNUM 
+     ,PAY_REFUND_REASON 
+     ,PAY_REFUND_BANK 
+     ,PAY_INS_DT
+     ,PAY_USER_ID
+     ,PAY_CRC_SEQ
+     ,PAY_USER_METHOD
+     ,PAY_MODULE_NAME
+     ,PAY_ACCNAME
+     ,PAY_ACCNUM
+     ,PAY_BANKNAME
+     ,PAY_TID
+     ,PAY_MOID
+     ,PAY_PRODUCT_NAME
+     ,PAY_RTN_DATA
+     ,PAY_CRC_AMOUNT
+     ,PAY_CRC_PAYORDER
+     ,GISU_SEQ
+    )
+    values
+    (
+    #{seq}
+    ,'0'
+    ,NOW()
+    ,#{accName}
+    ,#{accNum}
+    ,#{reason}
+    ,#{bank}
+    ,(SELECT PAY_INS_DT FROM edu_user_pay_tb WHERE pay_user_seq = #{seq})
+    ,#{reqId}
+    ,(SELECT PAY_CRC_SEQ FROM edu_user_pay_tb WHERE pay_user_seq = #{seq})
+    ,(SELECT PAY_USER_METHOD FROM edu_user_pay_tb WHERE pay_user_seq = #{seq})
+    ,(SELECT PAY_MODULE_NAME FROM edu_user_pay_tb WHERE pay_user_seq = #{seq})
+    ,(SELECT PAY_ACCNAME FROM edu_user_pay_tb WHERE pay_user_seq = #{seq})
+    ,(SELECT PAY_ACCNUM FROM edu_user_pay_tb WHERE pay_user_seq = #{seq})
+    ,(SELECT PAY_BANKNAME FROM edu_user_pay_tb WHERE pay_user_seq = #{seq})
+    ,(SELECT PAY_TID FROM edu_user_pay_tb WHERE pay_user_seq = #{seq})
+    ,(SELECT PAY_MOID FROM edu_user_pay_tb WHERE pay_user_seq = #{seq})
+    ,(SELECT PAY_PRODUCT_NAME FROM edu_user_pay_tb WHERE pay_user_seq = #{seq})
+    ,(SELECT PAY_RTN_DATA FROM edu_user_pay_tb WHERE pay_user_seq = #{seq})
+    ,(SELECT PAY_CRC_AMOUNT FROM edu_curriculum_pay_tb WHERE PAY_CRC_SEQ = (SELECT PAY_CRC_SEQ FROM edu_user_pay_tb WHERE pay_user_seq = #{seq}))
+    ,(SELECT PAY_CRC_PAYORDER FROM edu_curriculum_pay_tb WHERE PAY_CRC_SEQ = (SELECT PAY_CRC_SEQ FROM edu_user_pay_tb WHERE pay_user_seq = #{seq}))
+    ,(SELECT GISU_SEQ FROM edu_curriculum_pay_tb WHERE PAY_CRC_SEQ = (SELECT PAY_CRC_SEQ FROM edu_user_pay_tb WHERE pay_user_seq = #{seq}))
+    )
+	</insert>
+	
+	<!-- 환불 테이블에 update -->
+	<update id='user_refund_udt' parameterType="RefundInfo">
+	
+	update edu_user_refund_tb set
+	PAY_REFUND_ACCNAME=#{accName}
+	,PAY_REFUND_ACCNUM=#{accNum}
+	,PAY_REFUND_REASON=#{reason}
+	,PAY_REFUND_BANK=#{bank}
+	where
+	PAY_USER_SEQ=#{seq} 
+	
+	</update>
+	
+    <select id='user_refund_status' parameterType="string" resultType="RefundInfo">
+    
+    select 
+    
+    PAY_USER_SEQ seq
+    ,PAY_REFUND_STATUS status 
+    ,PAY_REFUND_REQDT reqDt
+    ,PAY_REFUND_COMDT comDt
+    ,PAY_REFUND_ACCNAME accName
+    ,PAY_REFUND_ACCNUM accNum
+    ,PAY_REFUND_REASON reason 
+    ,PAY_REFUND_BANK bank
+
+    from
+     edu_user_refund_tb
+    where
+	 PAY_USER_SEQ=#{seq} 
+    </select>
+	
+	
+	
+	
+	<!-- 유저 결제가능목록 정보 시작 -->
+	<select id="user_payment" parameterType="HashMap" resultType="HashMap">
+	   
+	   select DISTINCT
+	             a.GISU_SEQ
+				,a.PAY_CRC_START
+				,a.PAY_CRC_END
+				,a.PAY_CRC_AMOUNT
+				,a.PAY_CRC_PAYORDER
+				,a.PAY_INS_DT
+				,a.PAY_INS_ID
+				,a.PAY_UDT_DT
+				,a.PAY_UDT_ID
+				,a.PAY_CRC_SEQ
+				,(select pay_user_status from edu_user_pay_tb where pay_crc_seq=a.PAY_CRC_SEQ and pay_user_id=#{id}) pay_status
+				,(select DISTINCT pay_refund_status refund_status from edu_user_refund_tb where pay_user_id=#{id} and gisu_seq=#{seq} and pay_crc_seq=a.PAY_CRC_SEQ order by pay_refund_seq desc LIMIT 1)  refund_status 
+             
+	   
+	   from edu_curriculum_pay_tb a
+	   left outer join edu_user_refund_tb b
+	   on a.pay_crc_seq = b.pay_crc_seq
+	   where a.gisu_seq=#{seq}
+       
+       order by pay_crc_payorder asc
+	   
+	</select>
+	<!-- 유저 결제가능목록 정보 종료 -->
+	
+	
+	<!-- 유저 결제목록 정보 시작 -->
+	<select id="user_payed_contents" parameterType="HashMap" resultType="HashMap">
+	 select 
+	            PAY_USER_SEQ 
+				,PAY_CRC_SEQ
+				,PAY_USER_STATUS 
+				,PAY_USER_ID 
+				,PAY_ACCNAME
+				,PAY_ACCNUM 
+				,PAY_BANKNAME
+				,PAY_USER_METHOD 
+				,PAY_TID 
+				,PAY_MOID 
+				,PAY_RTN_DATA 
+				,PAY_INS_DT 
+	   
+	   from edu_user_pay_tb
+	   
+	   where PAY_USER_ID=#{id}
+	   and PAY_CRC_SEQ=#{seq}
+	   
+	</select>
+	<!-- 유저 결제목록 정보 종료 -->
+	
+	<update id="user_udate_payinfo" parameterType="HashMap">
+	update edu_user_pay_tb 
+	set PAY_USER_STATUS='1',
+		PAY_INS_DT=now()
+	 where 
+	 PAY_MOID=#{p_moid}
+	</update>
+	
+	<!-- 결제ID로 회원ID 검색 시작 -->
+	<select id="select_pay_user_id" parameterType="String" resultType="String">
+		select
+			pay_user_id
+		from
+			EDU_USER_PAY_TB
+		where
+			PAY_MOID = #{pay_moid}
+	</select>
+	<!-- 결제ID로 회원ID 검색 종료 -->
+	
+	<delete id="user_refund_cancel" parameterType="int">
+		DELETE FROM
+			edu_user_refund_tb
+		WHERE
+			pay_refund_seq = #{pay_refund_seq}
+	</delete>
+	
+	<delete id="user_pay_cancel" parameterType="int">
+		DELETE FROM
+			edu_user_pay_tb
+		WHERE
+			pay_user_seq = #{pay_user_seq}
+	</delete>
+	
+	<!-- 유저 온라인상담 내역 조회 시작-->
+	<select id='user_consulting_list' parameterType="string" resultType="HashMap">
+    
+    select 
+	    consulting_seq
+	    ,consulting_check
+	    ,consulting_title
+	    ,consulting_open
+	    ,consulting_ins_id
+        ,DATE_FORMAT(consulting_udt_dt, '%Y-%m-%d %T') as consulting_ins_dt
+        ,DATE_FORMAT(consulting_udt_dt, '%Y-%m-%d %T') as consulting_udt_dt
+	    ,DATE_FORMAT(re_udt_dt, '%Y-%m-%d %T') as re_udt_dt
+    
+    from
+		com_online_tb
+    where
+		consulting_ins_id=#{id} and consulting_check > 0 
+    order by
+        consulting_ins_dt desc
+    </select>
+	
+	<!-- 유저 온라인상담 내역 조회 종료 -->
+</mapper>

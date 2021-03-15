@@ -1,0 +1,1072 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.course.dao.LmsCourseDao">
+
+
+	<!-- 대분류 리스트에서 과정에 맞는 중, 소분류를 출력 -->
+	<!-- 대분류 리스트에 대한 정보가 view에 없기 때문에, 외국어, it 등의 대분류의 seq를 바탕으로 검색 -->
+	<select id="selectCourseList" resultType="hashmap">
+	
+	SELECT GRAND.NAME AS grand, PARENT.NAME AS parent, SON.NAME AS son FROM
+	(SELECT * FROM FF_CODE WHERE GROUP_ID='CATEGORYSEQUENCE') GRAND,
+	(SELECT * FROM FF_CODE WHERE GROUP_ID='CATEGORYSEQUENCE') PARENT,
+	(SELECT * FROM FF_CODE WHERE GROUP_ID='CATEGORYSEQUENCE') SON
+	WHERE
+	GRAND.CODE = PARENT.PARENT_CODE 
+	AND PARENT.USE_YN = 'Y' 
+	AND SON.USE_YN = 'Y'
+	AND PARENT.CODE = SON.PARENT_CODE	
+	
+	</select>
+
+	<!-- 과정분류에 맞는 과정목록을 출력 -->
+	<select id="selectCourseBoardList" parameterType="hashmap" resultType="hashmap" useCache="false">
+	/*::::selectCourseList::::*/
+		select
+			a.seq ,			a.id as course_id,	a.course_code ,		a.target_types ,	a.teach_id,
+			a.name ,		a.main_yn ,			a.main_display ,	a.icon_displays ,	a.complete_time ,
+			a.learn_types ,	a.credit ,			a.learn_target ,	a.price ,			a.prog_check ,
+			a.open_date ,	a.app_date ,		a.recruit ,			a.exam_period ,		a.main_tb_id ,
+			a.sub_tb_id ,	a.main_price ,		a.sub_price ,		a.link_server ,		a.group_yn ,
+			a.mobile_yn ,	a.index_url ,		a.tasting_url ,		a.sample_url ,		a.selp_period ,
+			a.dup_dis_yn ,	a.accept_yn ,		a.purpose ,			a.summary ,			a.instructor ,
+			DATE_FORMAT(a.reg_date, "%Y.%c.%e %T") as reg_date,
+			DATE_FORMAT(a.upd_date, "%Y.%c.%e %T") as reg_date,
+			a.credit*15 as credit_time, a.applyform_yn,
+			(
+				SELECT name FROM FF_MEMBER WHERE ID = a.teach_id AND use_yn = 'Y'
+             ) AS teacher_name, 
+             (
+             	SELECT NAME FROM CB_BOOK WHERE ID = a.main_tb_id
+             ) AS main_tb_name, 
+             (
+			 	SELECT URL_PATH FROM FF_ATTACH_FILE_DETAIL WHERE FILE_ID = a.MAIN_IMG_FILE LIMIT 1
+			 ) AS photo_url 
+		from CB_COURSE a
+		where 1=1
+		and a.use_yn = 'Y'
+		and a.course_code like '%CATESEQ%'
+
+ 		and a.course_code in 
+		(select code from FF_CODE where use_yn = 'y' and parent_code in
+		(select code from FF_CODE where use_yn = 'y' and parent_code = 
+		(select code from FF_CODE where parent_code is null and name=#{grand})
+		)
+		)	
+
+
+
+		<include refid="sql_selectCourseList"/>
+
+
+ 		<choose>
+			<when test='main_recommend_order != null and main_recommend_order != ""'>
+				ORDER BY a.reg_date DESC
+			</when>
+			<otherwise>
+				ORDER BY a.name ASC
+			</otherwise>
+		</choose>
+
+
+
+<!-- 		<choose>
+			<when test='sort == null or sort == "" or sort == "H"'>
+		 ORDER BY HITS_ORDER
+			</when>
+			<when test='sort == "S"'>
+		 ORDER BY SELL_ORDER
+			</when>
+			<otherwise>
+		 ORDER BY REG_DATE DESC
+			</otherwise>
+		</choose>
+ -->
+		limit ${startPage}, ${visiblePages}
+
+	</select>
+<!-- 		order by a.reg_date desc
+	limit ${startPage}, ${visiblePages}
+ -->
+
+	
+
+
+	
+	<select id="selectCourseDetail" parameterType="string" resultType="hashmap">
+
+		SELECT
+		a.seq, a.id, a.course_code, a.com_id, a.com_cal, a.teach_id, a.teach_cal, a.tutor_cal, a.tb_code, 
+		a.name, a.short_name, a.main_yn, a.main_display, a.icon_displays, a.complete_time, a.learn_types, 
+		a.target_types, a.credit, a.learn_target, a.price, a.prog_check, a.open_date, a.app_date, a.recruit, 
+		a.exam_period, a.main_tb_id, a.sub_tb_id, a.main_price, a.sub_price, a.link_server, a.group_yn, a.mobile_yn, 
+		a.index_url, a.tasting_url, a.sample_url, a.width, a.height, a.selp_period, a.main_img_file, a.dup_dis_yn, 
+		a.accept_yn, a.purpose, a.summary, a.instructor, a.note, a.mobile_summary, a.developer, a.res_tel, a.com_name, 
+		a.com_tel, a.produce_date, a.storage_loc, a.history, a.remarks, a.order_num, a.sell_order, a.hits_order, a.use_yn, 
+		a.reg_user, a.reg_date, a.upd_user, a.upd_date, a.page_codes,
+		(
+		SELECT URL_PATH FROM FF_ATTACH_FILE_DETAIL WHERE FILE_ID = a.MAIN_IMG_FILE LIMIT 1
+		) AS photo_url,
+		a.comp_percent_quiz, a.comp_percent_exam, a.comp_percent_prog, a.comp_score_quiz, a.comp_score_exam, a.comp_score_prog, a.complete_total, a.applyform_yn
+
+		FROM
+		CB_COURSE a
+		
+		WHERE
+		id = #{course_id}
+	</select>
+
+
+	<sql id="sql_selectCourseList">
+
+
+		<!-- 중분류 탭 선택시 중분류에 해당하는 과정리스트만 출력하는 옵션 -->
+		<if test='parent_category_opt != null and parent_category_opt != ""'>
+		and a.course_code in 		
+		(select code from FF_CODE where parent_code =
+		(select code from FF_CODE where name = #{parent_category_opt} and parent_code= 
+		(select code from FF_CODE where parent_code is null and name= #{grand})		
+		)
+		)	
+		</if>
+
+		<if test='main_recommend_chk != null and main_recommend_chk != ""'>
+			and (
+			<if test='main_recommend1 != null and main_recommend1 != ""'>
+			a.icon_displays like CONCAT('%',#{main_recommend1},'%')
+			</if>
+			<if test='main_recommend2 != null and main_recommend2 != ""'>
+			or a.icon_displays like CONCAT('%',#{main_recommend2},'%')
+			</if>
+			<if test='main_recommend3 != null and main_recommend3 != ""'>
+			or a.icon_displays like CONCAT('%',#{main_recommend3},'%')
+			</if>
+			<if test='main_recommend4 != null and main_recommend4 != ""'>
+			or a.icon_displays like CONCAT('%',#{main_recommend4},'%')
+			</if>
+			<if test='main_recommend5 != null and main_recommend5 != ""'>
+			or a.icon_displays like CONCAT('%',#{main_recommend5},'%')
+			</if>
+			)
+		</if>
+		
+		<!-- 소분류 탭 선택시 소분류에 해당하는 과정리스트만 출력하는 옵션 -->
+		<if test='category_opt != null and category_opt != ""'>
+		and a.course_code in (select code from FF_CODE where name = #{category_opt})	
+		</if>
+
+		<!-- 과정관련 검색 조건 중 아이콘필터에 따른 검색조건만 선택 -->
+		<if test='display_icons_1 != null and display_icons_1 != ""'>
+		and a.icon_displays like CONCAT('%',#{display_icons_1},'%')
+		</if>
+		<if test='display_icons_2 != null and display_icons_2 != ""'>
+		and a.icon_displays like CONCAT('%',#{display_icons_2},'%')
+		</if>
+		<if test='display_icons_3 != null and display_icons_3 != ""'>
+		and a.icon_displays like CONCAT('%',#{display_icons_3},'%')
+		</if>
+		<if test='display_icons_4 != null and display_icons_4 != ""'>
+		and a.icon_displays like CONCAT('%',#{display_icons_4},'%')
+		</if>
+		<if test='display_icons_5 != null and display_icons_5 != ""'>
+		and a.icon_displays like CONCAT('%',#{display_icons_5},'%')
+		</if>
+
+
+
+
+		<if test='learn_types != "" and learn_types != null'>
+		and a.learn_types like CONCAT('%',#{learn_types},'%')
+		</if>
+		<if test='course_code != "0" and course_code != null'>
+		and a.course_code = #{course_code}
+		</if>
+		<if test='credit != "0" and credit != null'>
+		and a.credit = #{credit}
+		</if>
+		<if test='target_types != "0" and target_types != null'>
+		and a.target_types like CONCAT('%',#{target_types},'%')
+		</if>
+		<if test='search != null and search != ""'>
+				AND (
+					a.name LIKE CONCAT('%', #{search} ,'%')
+					OR a.summary LIKE CONCAT('%', #{search} ,'%')
+					OR (
+						a.teach_id IS NOT NULL
+						AND EXISTS (
+							SELECT 1
+							  FROM FF_MEMBER
+							 WHERE grade = 2
+							   AND id = a.teach_id
+							   AND name LIKE CONCAT('%', #{search} ,'%')
+						)
+					)
+				)
+		</if>
+		and a.accept_yn = 'Y'
+		and a.use_yn = 'Y'
+	</sql>
+
+
+	<select id="selectCourseListTotCnt" parameterType="hashmap" resultType="int" useCache="false">
+		/*::::selectCourseListTotCnt::::*/
+		select
+			count(a.seq) as cnt
+		from CB_COURSE a
+		where 1=1
+		and a.use_yn = 'Y'
+		and a.course_code like '%CATESEQ%'
+		
+		<if test='grand != null and grand !=""'>
+	 		and a.course_code in 
+			(select code from FF_CODE where use_yn = 'y' and parent_code in
+			(select code from FF_CODE where use_yn = 'y' and parent_code = 
+			(select code from FF_CODE where parent_code is null and name=#{grand})
+			)
+			)	
+		</if>
+		<include refid="sql_selectCourseList"/>
+	</select>
+
+
+	<select id="getUserInfo" parameterType="string" resultType="hashmap">
+      SELECT a.user_id, a.user_pw, a.user_nm, a.user_phone, a.user_email, a.user_birth, a.user_sex, b.user_belong_to, b.user_tel, b.user_zipcode, b.user_addr1, b.user_addr2
+		  FROM COM_USER_TB AS a
+		  	LEFT OUTER JOIN CB_USER_INFO AS b
+		  	ON a.USER_ID = b.USER_ID 
+		 WHERE a.USER_ID = #{user_id}
+		   AND a.USER_STATE = 'A0200'
+    </select>
+
+
+	<!-- 과정에 매칭된 기수가 존재하는지 브릿지 테이블에서 확인하는 쿼리 -->
+	<select id="checkCardinalMatched" parameterType="hashmap" resultType="hashmap">
+		
+		SELECT course_id, cardinal_id
+		FROM CB_CN_COURSE
+		WHERE
+		COURSE_ID = #{id}	
+
+	</select>
+
+
+	<!-- 기수 접수 시작일을 기준으로 기수가 존재하는지 안하는지 확인 -->
+<!-- 	<select id="checkValidCardinalExist" parameterType="hashmap" resultType="int">
+	
+		SELECT COUNT(ID)
+		FROM CB_CARDINAL
+		WHERE
+		ID = #{cardinal_id}
+		and LEARN_START_DATE = #{learnStartDate}
+
+	</select>
+ -->	
+<!-- 	<select id="selectCardinalId" parameterType="hashmap" resultType="string">
+
+		SELECT 
+		id
+		FROM CB_CARDINAL
+		WHERE
+		ID = #{cardinal_id}
+		and LEARN_START_DATE = #{learnStartDate}
+
+	</select>
+ -->
+	<select id="selectCardinalList" parameterType="hashmap" resultType="hashmap">
+
+		SELECT 
+		seq, id, name, learn_type, credits, course_type, app_start_date, app_end_date, 
+		learn_start_date, learn_end_date, issue_date, att_eval_date, att_eval_time, 
+		att_exam_type, cancel, dup_limit, add_exam_period, open_results, app_possibles, 
+		expect_exam, preview, complate_yn, order_num, use_yn, reg_user, reg_date, upd_user, upd_date
+		, comp_percent_quiz, comp_percent_exam, comp_percent_prog, comp_score_quiz, comp_score_exam, comp_score_prog, complete_total, price, recruit
+		,class_day, class_start_time, class_end_time
+		FROM CB_CARDINAL
+		WHERE
+		ID = #{cardinal_id}
+		<if test="today != null">
+		and STR_TO_DATE(#{today}, '%Y-%m-%d') BETWEEN STR_TO_DATE(app_start_date, '%Y-%m-%d') AND STR_TO_DATE(app_end_date, '%Y-%m-%d')
+		</if>
+
+	</select>
+
+
+
+
+	<insert id="insertCardinal" parameterType="hashmap">
+	    
+		INSERT INTO CB_CARDINAL
+			( ID, NAME, LEARN_TYPE, CREDITS, COURSE_TYPE, APP_START_DATE, APP_END_DATE, LEARN_START_DATE, LEARN_END_DATE
+			, ISSUE_DATE, ATT_EVAL_DATE, ATT_EVAL_TIME, ATT_EXAM_TYPE, CANCEL, DUP_LIMIT, ADD_EXAM_PERIOD
+			, OPEN_RESULTS, APP_POSSIBLES, EXPECT_EXAM, PREVIEW, COMPLATE_YN
+			, ORDER_NUM, USE_YN, REG_DATE, UPD_DATE
+			, COMP_PERCENT_QUIZ, COMP_PERCENT_EXAM, COMP_PERCENT_PROG, COMP_SCORE_QUIZ, COMP_SCORE_EXAM, COMP_SCORE_PROG, COMPLETE_TOTAL, PRICE )
+		VALUES
+			( #{id}, #{name}, #{learn_type}, #{credits}, #{course_type}, #{appStartDate}, #{appEndDate}, #{learnStartDate}, #{learnEndDate}
+			, #{issue_date}, #{att_eval_date}, #{att_eval_time}, #{att_exam_type}, #{cancel}, #{dup_limit}, #{add_exam_period}
+			, #{openResults}, #{appPossibles}, #{expectExam}, #{preview}, #{complateYn}
+			, #{order_num}, #{use_yn}, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s'), DATE_FORMAT(NOW(),'%Y%m%d%H%i%s')
+			, #{compPercentQuiz}, #{compPercentExam}, #{compPercentProg}, #{compScoreQuiz}, #{compScoreExam}, #{compScoreProg}, #{completeTotal}, #{price} )
+
+	</insert>
+	
+	<insert id="insertCardinalCourseInfo" parameterType="hashmap">
+		INSERT INTO CB_CN_COURSE(
+		CARDINAL_ID,
+		COURSE_ID
+		) VALUES (
+		#{cardinal_id},
+		#{course_id}
+		)
+
+
+	</insert>
+	
+	<select id="selectMaxCardinalSeq" resultType="Integer">
+	
+		SELECT MAX(SEQ)
+		FROM
+		CB_CARDINAL
+		
+	</select>
+
+	<!--  
+	<insert id="insertApply" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+		insert into CB_LEARN_APP
+		(user_id, group_id, cardinal_id, course_id, neis_num, des_num, school_name
+		, tel, phone, email, region_code, jurisdiction, s_type, e_type, post_type
+		, order_idx, payment_type, payment_state, payment_date
+		, app_num, coupon_num, dis_coupon, dis_point, dis_group, payment, real_payment
+		, reg_user, upd_user)
+		values
+		(#{user_id}
+		<choose>
+		<when test='group_id == ""'>, null</when>
+		<otherwise>, #{group_id}</otherwise>
+		</choose>
+		
+		, #{cardinal_id}, #{course_id}, #{neis_num}, #{des_num}, #{school_name}
+		, #{tel}, #{phone}, #{email}, #{region_code}, #{jurisdiction}, #{s_type}, #{e_type}, #{post_type}
+		, #{order_idx}, #{payment_type}, #{payment_state}
+		<choose>
+		<when test='payment_state == "1"'>, null</when>
+		<otherwise>, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s')</otherwise>
+		</choose>
+		, #{app_num}, #{coupon_num}, #{dis_coupon}, #{dis_point}, #{dis_group}, #{payment}, #{real_payment}
+		, #{user_id}, #{user_id})
+	</insert>
+	-->
+	
+	<!-- 수강신청, 복습기간 설정 -->
+	<insert id="insertApply" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+		insert into CB_LEARN_APP
+		(user_id, group_id, cardinal_id, course_id, neis_num, des_num, school_name
+		, tel, phone, email, region_code, jurisdiction, s_type, e_type, post_type
+		, order_idx, payment_type, payment_state, payment_date
+		, app_num, coupon_num, dis_coupon, dis_point, dis_group, payment, real_payment
+		, reg_user, upd_user 
+		, real_end_date )		
+		SELECT #{user_id}
+		<choose>
+		<when test='group_id == ""'>, null</when>
+		<otherwise>, #{group_id}</otherwise>
+		</choose>
+		, #{cardinal_id}, #{course_id}, #{neis_num}, #{des_num}, #{school_name}
+		, #{tel}, #{phone}, #{email}, #{region_code}, #{jurisdiction}, #{s_type}, #{e_type}, #{post_type}
+		, #{order_idx}, #{payment_type}, #{payment_state}
+		<choose>
+		<when test='payment_state == "1"'>, null</when>
+		<otherwise>, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s')</otherwise>
+		</choose>
+		, #{app_num}, #{coupon_num}, #{dis_coupon}, #{dis_point}, #{dis_group}, #{payment}, #{real_payment}
+		, #{user_id}, #{user_id}
+		, DATE_ADD(C.LEARN_END_DATE, INTERVAL C.REVIEW_PERIOD DAY)
+		FROM (
+			SELECT A.LEARN_END_DATE, B.REVIEW_PERIOD 
+			FROM CB_CN_COURSE CN
+				INNER JOIN CB_CARDINAL A ON CN.CARDINAL_ID = A.ID
+    			INNER JOIN CB_COURSE B ON CN.COURSE_ID = B.ID
+    		WHERE CARDINAL_ID = #{cardinal_id}
+		) C
+	</insert>
+	<!-- 전체 챕터/세부페이지 조회(포팅) -->
+	<select id="getChapPage" parameterType="hashmap" resultType="hashmap">
+		SELECT 
+			M.ID
+			, M.COURSE_ID
+			, M.NAME
+			, M.STUDY
+			, M.CHK
+			, M.MAIN_URL
+			, M.MOBILE_URL
+			, M.TEACHER
+			, M.FILE_INFO
+			, M.SERVICE_TYPE
+			, M.ORDER_NUM
+			, s.seq
+			, s.occ_num
+			, s.name
+			, s.depth
+			, s.order_num
+			, s.content_type
+		FROM CB_CHAPTER M
+		inner join cb_sub_chapter S
+		on m.id = S.chap_id
+		where m.course_id = #{course_id}
+	</select>
+	<!-- 전체 챕터/세부페이지 조회(링크) -->
+	<select id="getChapPage2" parameterType="hashmap" resultType="hashmap">
+		SELECT 
+			M.ID
+			, M.COURSE_ID
+			, M.NAME
+			, M.STUDY
+			, M.CHK
+			, M.MAIN_URL
+			, M.MOBILE_URL
+			, M.TEACHER
+			, M.FILE_INFO
+			, M.SERVICE_TYPE
+			, M.ORDER_NUM
+		FROM CB_CHAPTER M
+		where m.course_id = #{course_id}
+	</select>
+<!-- 	수강이력정보 생성 -->
+	<insert id="insertAttLec" parameterType="hashmap">
+		INSERT INTO CB_ATT_LEC (
+			LEARN_APP_ID
+			, USER_ID
+			, CARDINAL_ID
+			, COURSE_ID
+			, CHAPTER
+			, SUBCHAP
+			, CHASI
+			, PROG_YN
+		) VALUES (
+			#{learn_app_id}
+			,#{user_id}
+			,#{cardinal_id}
+			,#{course_id}
+			,#{chapter}
+			,#{subchap}
+			,#{chasi}
+			,'N'
+		)
+		ON DUPLICATE KEY UPDATE
+			LEARN_APP_ID = VALUES(LEARN_APP_ID)
+			, USER_ID = VALUES(USER_ID)
+			, CHAPTER = VALUES(CHAPTER)
+			, SUBCHAP = VALUES(SUBCHAP)
+	</insert>
+
+	<select id="selectCourseChapterListAll" parameterType="string" resultType="hashmap" useCache="false">
+		SELECT name, study, teacher
+			 , CONCAT(LPAD(ROUND(STUDY/60), 2, '0'), '분 ', LPAD(STUDY%60, 2, '0'), '초') AS study2
+		  FROM CB_CHAPTER
+		 WHERE COURSE_ID = #{course_id}
+		 ORDER BY ORDER_NUM
+	</select>
+
+
+	<select id="selectSearchCourseList" parameterType="hashmap" resultType="hashmap" useCache="false">
+		select
+			a.seq ,			a.id as course_id,	a.course_code ,		a.target_types ,	a.teach_id,
+			a.name ,		a.main_yn ,			a.main_display ,	a.icon_displays ,	a.complete_time ,
+			a.learn_types ,	a.credit ,			a.learn_target ,	a.price ,			a.prog_check ,
+			a.open_date ,	a.app_date ,		a.recruit ,			a.exam_period ,		a.main_tb_id ,
+			a.sub_tb_id ,	a.main_price ,		a.sub_price ,		a.link_server ,		a.group_yn ,
+			a.mobile_yn ,	a.index_url ,		a.tasting_url ,		a.sample_url ,		a.selp_period ,
+			a.dup_dis_yn ,	a.accept_yn ,		a.purpose ,			a.summary ,			a.instructor ,
+			DATE_FORMAT(a.reg_date, "%Y.%c.%e %T") as reg_date,
+			DATE_FORMAT(a.upd_date, "%Y.%c.%e %T") as reg_date,
+			a.credit*15 as credit_time,
+			(
+				SELECT name FROM FF_MEMBER WHERE ID = a.teach_id AND use_yn = 'Y'
+             ) AS teacher_name,
+             (
+             	SELECT NAME FROM CB_BOOK WHERE ID = a.main_tb_id
+             ) AS main_tb_name,
+             (
+			 	SELECT URL_PATH FROM FF_ATTACH_FILE_DETAIL WHERE FILE_ID = a.MAIN_IMG_FILE LIMIT 1
+			 ) AS photo_url,
+			 (
+				SELECT NAME FROM FF_CODE WHERE CODE = 
+				(
+					SELECT PARENT_CODE FROM FF_CODE WHERE CODE = (
+						SELECT PARENT_CODE FROM FF_CODE WHERE CODE = a.COURSE_CODE 
+					)
+				) 
+			<!-- 현재 지역전문가, sw master 메뉴 사용하지 않기 때문에 조건 추가함 -->
+				and name not in('Biz Expert(지역전문가)','글로벌 S/W Master', '')
+			 ) AS grand_name			 
+		from CB_COURSE a
+		where a.name LIKE CONCAT('%', #{keyWord} ,'%')
+		and a.CHECKONLINE = 'online'
+		and a.use_yn = 'Y'
+
+		<include refid="sql_searchCourseList"/>
+		order by reg_date desc
+		limit ${startPage}, ${visiblePages}
+
+	</select>
+
+	<select id="searchCourseListTotCnt" parameterType="hashmap" resultType="int" useCache="false">
+		select
+			count(a.seq) as cnt
+		from CB_COURSE a
+		where 1=1
+		and a.use_yn = 'Y'
+		and a.name LIKE CONCAT('%', #{keyWord} ,'%')
+		and a.CHECKONLINE = 'online'
+		<include refid="sql_searchCourseList"/>
+		
+	</select>
+
+		<sql id="sql_searchCourseList">
+		<if test='grand != null and grand != ""'>
+ 		and a.course_code in 
+		(select code from FF_CODE where use_yn = 'y' and parent_code in
+		(select code from FF_CODE where use_yn = 'y' and parent_code = 
+		(select code from FF_CODE where parent_code is null and name=#{grand})
+		)
+		)	
+		</if>		
+		<!-- 과정관련 검색 조건 중 아이콘필터에 따른 검색조건만 선택 -->
+		<if test='display_icons_1 != null and display_icons_1 != ""'>
+		and a.icon_displays like CONCAT('%',#{display_icons_1},'%')
+		</if>
+		<if test='display_icons_2 != null and display_icons_2 != ""'>
+		and a.icon_displays like CONCAT('%',#{display_icons_2},'%')
+		</if>
+		<if test='display_icons_3 != null and display_icons_3 != ""'>
+		and a.icon_displays like CONCAT('%',#{display_icons_3},'%')
+		</if>
+		<if test='display_icons_4 != null and display_icons_4 != ""'>
+		and a.icon_displays like CONCAT('%',#{display_icons_4},'%')
+		</if>
+		<if test='display_icons_5 != null and display_icons_5 != ""'>
+		and a.icon_displays like CONCAT('%',#{display_icons_5},'%')
+		</if>
+		
+		<if test='free_lecture == "on"'>
+		and a.price = 0
+		</if>
+		
+
+		</sql>
+
+		<!-- user_id, course_id, cardinal_id를 받아서 cb_learn_app의 시퀀스(id)를 가져온다. -->
+		<select id="selectLearnAppId" parameterType="hashmap" resultType="int">
+
+		select 
+		id
+		
+		from 
+		cb_learn_app
+		
+		where
+		user_id = #{user_id}
+		and course_id = #{course_id}
+		and cardinal_id = #{cardinal_id}
+		
+
+		</select>
+
+
+		<select id="selectEnrolledListCnt" parameterType="hashmap" resultType="int">
+
+		SELECT
+		count(id)
+		
+		FROM
+		CB_LEARN_APP
+		
+		WHERE
+		USER_ID = #{user_id}
+		and COURSE_ID = #{course_id}
+		and CARDINAL_ID = #{cardinal_id}
+
+		</select>
+
+		<select id="selectCbCnCardinalCnt" parameterType="hashmap" resultType="int">
+
+		SELECT
+		count(SEQ)
+		
+		FROM
+		CB_CN_COURSE
+		
+		WHERE
+		COURSE_ID = #{id}
+
+
+		</select>
+		
+		
+	<!-- CB_LEARN_CANCEL_APP의 취소신청 정보 저장 -->
+	<insert id="insertLearnCancelApp" parameterType="hashmap">
+		INSERT INTO CB_LEARN_CANCEL_APP (
+			USER_ID, LEARN_APP_ID
+			, TEL, PHONE, EMAIL
+			, BOOK_TYPE, MEMO
+			, BANK, ACCOUNT, OWNER
+			, REG_USER, REG_DATE
+			, UPD_USER, UPD_DATE
+		)
+		VALUES (
+			#{user_id}, #{learnAppId}
+			, #{tel}, #{phone}, #{email}
+			, #{bookReturn}, #{memo}
+			, #{bank}, #{account}, #{owner}
+			, #{user_id}, NOW()
+			, #{user_id}, NOW()
+		)
+
+	</insert>		
+		
+	<update id="changeLearnPaymentState" parameterType="String">	
+	
+	UPDATE
+	CB_LEARN_APP
+	
+	SET
+	PAYMENT_STATE = '5'
+	
+	WHERE
+	ID = #{id}
+	
+	<!-- 현재 쿼리 말고 edu_user_pay_tb의 pay_user_status를 2로 바꿔야 함 파라미터는 seq -->
+	
+	</update>
+	
+	<update id="refundUpdate" parameterType="string">
+		UPDATE
+			EDU_USER_PAY_TB
+		SET
+			PAY_USER_STATUS = "F0002"
+		WHERE
+			PAY_USER_SEQ = #{pay_user_seq}
+	</update>
+	
+	<update id="updateEduUserPayTb" parameterType="string">
+		UPDATE
+			EDU_USER_PAY_TB
+		SET
+			PAY_USER_STATUS = "F0001"
+		WHERE
+			PAY_USER_SEQ = #{pay_user_seq}
+	</update>
+
+	<select id="selectLearnCancelInfo" parameterType="hashmap" resultType="hashmap">
+
+	SELECT
+	ID, USER_ID, LEARN_APP_ID, TEL, EMAIL, BOOK_TYPE, BANK, ACCOUNT, OWNER, MEMO, STATE, USE_YN,
+	REG_USER, REG_DATE, UPD_USER, UPD_DATE
+
+	FROM CB_LEARN_CANCEL_APP
+
+	WHERE
+	USER_ID = #{user_id}
+	AND LEARN_APP_ID = #{learn_app_id}
+	
+	</select>
+
+	<update id="updateLearnCancelInfo">
+
+	UPDATE
+	CB_LEARN_CANCEL_APP
+	
+	SET
+	BANK = #{bank}
+	,ACCOUNT = #{account}
+	,OWNER = #{owner}
+	,UPD_DATE = NOW()	
+
+	WHERE
+	USER_ID = #{user_id}
+	AND LEARN_APP_ID = #{learn_app_id}
+		
+	</update>	
+
+	<delete id="deleteRefundInfo" parameterType="string">
+
+	DELETE FROM
+	CB_LEARN_CANCEL_APP
+	
+	WHERE
+	LEARN_APP_ID = #{learn_id}
+		
+	</delete>	
+
+	<update id="updateLearnAppState" parameterType="string">
+
+	UPDATE
+	CB_LEARN_APP
+	
+	SET
+	PAYMENT_STATE = '2'
+
+	WHERE
+	ID = #{learn_id}
+		
+	</update>	
+	
+	<!-- 회원정보수정-->
+	<update id="updateUserInfo" parameterType="hashmap">
+		UPDATE COM_USER_TB AS A
+			LEFT OUTER JOIN CB_USER_INFO AS B
+			ON A.USER_ID = B.USER_ID
+		SET A.USER_EMAIL = #{email}
+		    , A.USER_PHONE = #{phone}
+		    , A.USER_UDT_ID = #{user_id}				 
+			, A.USER_UDT_DT = now()		
+		WHERE A.USER_ID = #{user_id}
+		AND A.USER_STATE = 'A0200'
+	</update> 
+	
+<!-- 회원정보 수정(선택) 2-1  -->
+ 	<update id="updateAdditionalUserInfo"  parameterType="hashmap">
+ 		UPDATE 
+ 			     CB_USER_INFO
+ 			 SET 
+ 			 	 USER_BELONG_TO = #{belong_to}				
+				, USER_ZIPCODE =  #{post_code}
+				, USER_ADDR1 = #{addr1}
+				, USER_ADDR2 = #{addr2}
+				, USER_UDT_ID = #{user_id}
+				, USER_UDT_DT = now()
+		WHERE USER_ID = #{user_id}
+ 	</update>
+
+ <!-- 회원정보 수정(선택) 2-2 -->	
+	<insert id="insertAdditionalUserInfo"  parameterType="hashmap">
+			INSERT INTO 
+						 CB_USER_INFO
+								(	USER_ID
+								, USER_BELONG_TO
+								, USER_ZIPCODE
+					            , USER_ADDR1
+					            , USER_ADDR2
+					            , USER_UDT_ID
+					            , USER_UDT_DT 
+							)VALUES(
+							     #{user_id}
+							    , #{belong_to}
+								, #{post_code}
+								, #{addr1}
+								, #{addr2}
+								, #{user_id}
+								, now()		        
+							)			 
+	</insert>
+	
+	<select id="getCourse" parameterType="String" resultType="String">
+		SELECT
+			DISTINCT(COURSE_ID)
+		FROM
+			CB_LEARN_APP
+		WHERE
+			CARDINAL_ID = #{gisu}
+	</select>
+	
+	<select id="getCardinalDetail" parameterType="String" resultType="HashMap">
+		SELECT
+			CC.NAME, CC.APP_START_DATE, CC.APP_END_DATE, CC.LEARN_START_DATE
+			, CC.LEARN_END_DATE, CC.PRICE
+			, ET.PAY_CRC_SEQ, ET.PAY_CRC_AMOUNT
+		FROM
+			CB_CARDINAL CC
+		INNER JOIN
+			EDU_CURRICULUM_PAY_TB ET
+		ON
+			CC.ID = ET.CARDINAL_ID
+		WHERE 
+			CC.ID = #{cardinalId}
+		AND
+			date_format(NOW(), '%Y-%m-%d') between date_format(ET.PAY_CRC_START, '%Y-%m-%d') and date_format(ET.PAY_CRC_END, '%Y-%m-%d')
+	</select>
+	
+	<update id="payBackUpdateSubmit">
+		UPDATE
+			EDU_USER_REFUND_TB
+		SET
+			PAY_REFUND_REQDT = NOW()
+			, PAY_REFUND_ACCNAME = #{owner}
+			, PAY_REFUND_ACCNUM = #{account}
+			, PAY_REFUND_BANK = #{bank}
+		WHERE
+			PAY_REFUND_SEQ = #{pay_refund_seq}
+	</update>
+	
+<!-- 		<select id="searchCoursePage" parameterType="String" resultType="String">
+
+		SELECT NAME FROM FF_CODE WHERE CODE = 
+		(
+			SELECT PARENT_CODE FROM FF_CODE WHERE CODE = 
+			(
+				SELECT PARENT_CODE FROM FF_CODE WHERE CODE = 
+				(
+					SELECT COURSE_CODE FROM CB_COURSE WHERE ID = #{course_id}
+				)
+			)
+		)
+
+
+		</select> -->
+		
+	<insert id="insertCurriculumPayInfo" parameterType="hashmap">
+		INSERT INTO 
+			EDU_CURRICULUM_PAY_TB
+		(
+			COURSE_ID,
+			CARDINAL_ID,
+			PAY_CRC_START,
+			PAY_CRC_END,
+			PAY_CRC_AMOUNT,
+			PAY_CRC_PAYORDER,
+			PAY_INS_DT,
+			PAY_UDT_DT
+		)
+		VALUES
+		(
+			#{course_id},
+			#{cardinal_id},
+			#{start},
+			#{end},
+			#{price},
+			1,
+			now(),
+			now()
+		)
+	</insert>
+		
+	<insert id="insertEduUserRefundTb" parameterType="hashmap">
+		INSERT INTO
+			EDU_USER_REFUND_TB
+			(PAY_REFUND_STATUS, PAY_REFUND_REQDT, PAY_REFUND_ACCNAME
+			, PAY_REFUND_ACCNUM, PAY_REFUND_BANK, PAY_USER_SEQ, PAY_CRC_SEQ)
+		VALUES
+			("F0002", NOW(), #{pay_refund_accname}
+			, #{pay_refund_accnum}, #{pay_refund_bank}, #{pay_user_seq}, #{pay_crc_seq})
+	</insert>
+		
+	<delete id="deletePayUserRefundTb" parameterType="string">
+		DELETE FROM
+			EDU_USER_REFUND_TB
+		WHERE
+			PAY_USER_SEQ = #{pay_user_seq}
+	</delete>
+	
+	<select id="selectCurriculumPayInfo" parameterType="hashmap" resultType="int">
+		select
+			count(*)
+		from
+			EDU_CURRICULUM_PAY_TB
+		where
+			COURSE_ID = #{course_id} and CARDINAL_ID = #{cardinal_id}
+	</select>
+	
+	<!-- 현재 지원가능한 모든 과정 -->
+	<select id="selectAvailableCourse" resultType="hashmap">
+		SELECT
+			CAR.SEQ AS CARDINAL_SEQ
+            ,CCC.SEQ AS CBCN_SEQ
+            ,COU.SEQ AS COURSE_SEQ
+            ,(SELECT CODE FROM FF_CODE WHERE CODE = 
+            	((SELECT PARENT_CODE FROM FF_CODE WHERE CODE = 
+            		(SELECT PARENT_CODE FROM FF_CODE WHERE CODE = COU.COURSE_CODE)))) AS CATE_CODE
+			,CCC.CARDINAL_ID
+            ,CCC.COURSE_ID
+            ,COU.COURSE_CODE
+            ,FAFD.URL_PATH
+			,CAR.NAME
+            ,CAR.APP_START_DATE
+            ,CAR.APP_END_DATE
+            ,CAR.LEARN_START_DATE
+            ,CAR.LEARN_END_DATE
+		FROM CB_CARDINAL CAR
+		JOIN CB_CN_COURSE CCC ON CCC.CARDINAL_ID = CAR.ID
+        JOIN CB_COURSE COU ON CCC.COURSE_ID = COU.ID
+        JOIN (SELECT * FROM FF_CODE F1 WHERE PARENT_CODE IN 
+			(SELECT F2.CODE FROM FF_CODE F2 WHERE F2.PARENT_CODE IN ('CATESEQ292','CATESEQ293','CATESEQ294'))) F ON F.CODE = COU.COURSE_CODE
+		JOIN FF_ATTACH_FILE_DETAIL FAFD ON FAFD.FILE_ID = COU.MAIN_IMG_FILE
+        WHERE
+        	COU.CHECKONLINE in ('blended', 'offline')
+        <![CDATA[
+			AND
+			CAR.APP_START_DATE < NOW()
+            AND
+           	CAR.APP_END_DATE > NOW() ]]>
+	</select>
+	<!-- 모의토플 리스트 조회 -->
+	<select id="selectToefl" parameterType="hashmap" resultType="hashmap">
+		select
+			a.TOEFL_ID, a.TOEFL_TYPE, a.TOEFL_TITLE, a.TOEFL_PRICE, a.TOEFL_VOLUM,
+			DATE_FORMAT(a.TOEFL_INS_DT, "%Y.%c.%e %T") as reg_date,
+			DATE_FORMAT(a.TOEFL_UPD_DT, "%Y.%c.%e %T") as reg_date,
+           	(
+		 	SELECT URL_PATH FROM FF_ATTACH_FILE_DETAIL WHERE FILE_ID = a.TOEFL_IMG_FILE LIMIT 1
+			 ) AS photo_url
+		from CB_TOEFL a
+		where
+			1=1
+		<!-- 과정관련 검색 조건 중 아이콘필터에 따른 검색조건만 선택 -->
+		<choose>
+			<when test='display_icons_1 != null and display_icons_1 != "" and display_icons_2 != null and display_icons_2 != "" and display_icons_3 != null and display_icons_3 != ""'>
+				and a.TOEFL_TYPE in (#{display_icons_1}, #{display_icons_2}, #{display_icons_3})
+			</when>
+			<when test='display_icons_2 != null and display_icons_2 != "" and display_icons_3 != null and display_icons_3 != ""'>
+				and a.TOEFL_TYPE in (#{display_icons_2}, #{display_icons_3})
+			</when>
+			<when test='display_icons_1 != null and display_icons_1 != "" and display_icons_3 != null and display_icons_3 != ""'>
+				and a.TOEFL_TYPE in (#{display_icons_1}, #{display_icons_3})
+			</when>
+			<when test='display_icons_1 != null and display_icons_1 != "" and display_icons_2 != null and display_icons_2 != ""'>
+				and a.TOEFL_TYPE in (#{display_icons_1}, #{display_icons_2})
+			</when>
+			<when test='display_icons_3 != null and display_icons_3 != ""'>
+				and a.TOEFL_TYPE in (#{display_icons_3})
+			</when>
+			<when test='display_icons_2 != null and display_icons_2 != ""'>
+				and a.TOEFL_TYPE in (#{display_icons_2})
+			</when>
+			<when test='display_icons_1 != null and display_icons_1 != ""'>
+				and a.TOEFL_TYPE in (#{display_icons_1})
+			</when>
+		</choose>
+		ORDER BY a.TOEFL_ID ASC
+		limit ${startPage}, ${visiblePages}
+	</select>
+	<!-- 모의토플 리스트 총갯수 -->
+	<select id="selectToeflCnt" parameterType="hashmap" resultType="int">
+		select
+			count(a.TOEFL_ID) as cnt
+		from CB_TOEFL a
+		where
+			1=1
+		<!-- 과정관련 검색 조건 중 아이콘필터에 따른 검색조건만 선택 -->
+		<choose>
+			<when test='display_icons_1 != null and display_icons_1 != "" and display_icons_2 != null and display_icons_2 != "" and display_icons_3 != null and display_icons_3 != ""'>
+				and a.TOEFL_TYPE in (#{display_icons_1}, #{display_icons_2}, #{display_icons_3})
+			</when>
+			<when test='display_icons_2 != null and display_icons_2 != "" and display_icons_3 != null and display_icons_3 != ""'>
+				and a.TOEFL_TYPE in (#{display_icons_2}, #{display_icons_3})
+			</when>
+			<when test='display_icons_1 != null and display_icons_1 != "" and display_icons_3 != null and display_icons_3 != ""'>
+				and a.TOEFL_TYPE in (#{display_icons_1}, #{display_icons_3})
+			</when>
+			<when test='display_icons_1 != null and display_icons_1 != "" and display_icons_2 != null and display_icons_2 != ""'>
+				and a.TOEFL_TYPE in (#{display_icons_1}, #{display_icons_2})
+			</when>
+			<when test='display_icons_3 != null and display_icons_3 != ""'>
+				and a.TOEFL_TYPE in (#{display_icons_3})
+			</when>
+			<when test='display_icons_2 != null and display_icons_2 != ""'>
+				and a.TOEFL_TYPE in (#{display_icons_2})
+			</when>
+			<when test='display_icons_1 != null and display_icons_1 != ""'>
+				and a.TOEFL_TYPE in (#{display_icons_1})
+			</when>
+		</choose>
+	</select>
+	<insert id="user_pay_toefl" parameterType="hashmap">
+		insert into CB_TOEFL_PAY_TB 
+		(
+			TOEFL_ID,
+			PAY_USER_METHOD,
+			PAY_USER_STATUS,
+			PAY_USER_ID,
+			PAY_ACCNUM,
+			PAY_BANKNAME,
+			PAY_PRODUCT_NAME,
+			<if test="payMethod != null and payMethod.equalsIgnoreCase('Card')">
+				REAL_PAY_AMOUNT,
+			</if>
+			<if test="point != null and point !=''">
+				DIS_POINT,
+			</if>
+			PAY_TID,
+			PAY_MOID,
+			PAY_INS_ID,
+			PAY_INS_DT,
+			PAY_UDT_ID,
+			PAY_UDT_DT
+		)
+		VALUES
+		(
+			#{toeflId},
+			#{payMethod},
+			#{status},
+			#{id},
+			#{VACT_Num},
+    		#{vactBankName},
+			#{goodsName},
+    		<if test="payMethod != null and payMethod.equalsIgnoreCase('Card')">
+    			,#{TotPrice}
+    		</if>
+			<if test="point != null and point !=''">
+				#{point},
+			</if>
+    		#{tid},
+    		#{MOID},
+			#{id},
+			NOW(),
+			#{id},
+			NOW()
+		)
+	</insert>
+	<select id="selectToeflPay" parameterType="hashmap" resultType="hashmap"> 
+		SELECT
+			CTP.PAY_TOEFL_SEQ, /*sequence*/ 
+            CTP.pay_user_method as PAYMENT_TYPE,
+            CTP.pay_user_status as PAYMENT_STATUS,
+            CTP.PAY_ACCNUM as ACCNUM,
+            CTP.PAY_BANKNAME as BANKNAME,
+            CTP.REAL_PAY_AMOUNT,
+            CTP.DIS_POINT AS DIS_POINT, /*마일리지 사용금액*/
+            date_format(CTP.PAY_UDT_DT, '%Y-%m-%d') as PAY_UDT_DT,
+            CC1.TOEFL_TITLE,
+            CC1.TOEFL_PRICE,
+            CC1.TOEFL_ID
+		FROM CB_TOEFL_PAY_TB AS CTP
+		LEFT OUTER JOIN CB_TOEFL CC1
+		ON CTP.TOEFL_ID = CC1.TOEFL_ID
+		WHERE CTP.PAY_USER_ID = #{user_id}
+		<if test='search != null and search !=""'>
+		AND CC1.TOEFL_TITLE LIKE CONCAT('%', #{search} ,'%')
+		</if>
+		ORDER BY CTP.PAY_UDT_DT DESC
+		limit ${startPage}, ${visiblePages}
+	</select>
+	<select id="selectToeflPayCnt" parameterType="hashmap" resultType="int"> 
+		SELECT
+			count(*) as CNT
+		FROM CB_TOEFL_PAY_TB AS CTP
+		LEFT OUTER JOIN CB_TOEFL CC1
+		ON CTP.TOEFL_ID = CC1.TOEFL_ID
+		WHERE CTP.PAY_USER_ID = #{user_id}
+		<if test='search != null and search !=""'>
+		AND CC1.TOEFL_TITLE LIKE CONCAT('%', #{search} ,'%')
+		</if>
+	</select>
+	
+	<insert id="insertToeflUserRefundTb" parameterType="hashmap">
+		INSERT INTO
+			CB_TOEFL_REFUND_TB
+			(TOEFL_REFUND_STATUS, TOEFL_REFUND_REQDT, TOEFL_REFUND_ACCNAME
+			, TOEFL_REFUND_ACCNUM, TOEFL_REFUND_BANK, PAY_TOEFL_SEQ)
+		VALUES
+			("F0002", NOW(), #{owner}
+			, #{account}, #{bank}, #{PAY_TOEFL_SEQ})
+	</insert>
+	
+	<update id="refundToeflUpdate" parameterType="string">
+		UPDATE
+			CB_TOEFL_PAY_TB
+		SET
+			PAY_USER_STATUS = #{status}
+		WHERE
+			PAY_TOEFL_SEQ = #{PAY_TOEFL_SEQ}
+	</update>
+</mapper>

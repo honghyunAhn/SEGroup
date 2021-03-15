@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.mypage.dao.CouponDao">
+
+	<!-- 개인 유효쿠폰 갯수 조회  -->
+	<select id="selectCouponInfo" resultType="hashmap">
+		SELECT COUNT(*) AS CNT
+		FROM CB_COUPON
+		WHERE USER_ID = #{userid}
+			AND USE_YN = 'Y'
+			AND EXP_DATE > NOW()
+	</select>
+
+	<!-- 개인 유효쿠폰 목록 조회  -->
+	<select id="selectCouponList" parameterType="com.aracomm.changbi.mypage.vo.PointSearchVo" resultType="hashmap">
+		SELECT
+			ID
+			, COUPON_NUM /*쿠폰번호*/
+			, USER_ID /*사용자 ID*/
+			, COURSE_ID /*적용과정 ID*/
+			, COND /*쿠폰사용조건*/
+			, COUPON /*신청금액*/
+			, COUPON_TYPE /*적용단위 1:금액할인 2:할인율할인*/
+			, USE_YN /*사용유무*/
+			, USE_DATE /*사용일자*/
+			, EXP_DATE /*만료일자*/
+			, REG_DATE /*등록일자*/
+			, '나는쿠폰이야' AS NAME /* TODO 쿠폰명 필드확정 후 수정할 것 */
+		FROM CB_COUPON
+		WHERE USER_ID = #{user_id}
+			AND USE_YN = 'Y'
+			AND EXP_DATE > NOW()
+		ORDER BY REG_DATE ASC
+		LIMIT #{couponVisiblePages} OFFSET #{couponSkipRows}
+	</select>
+
+	<select id="selectCouponByCouponNum" parameterType="string" resultType="hashmap">
+		SELECT
+			ID
+			, COUPON_NUM /*쿠폰번호*/
+			, USER_ID /*사용자 ID*/
+			, COURSE_ID /*적용과정 ID*/
+			, COND /*쿠폰사용조건*/
+			, COUPON /*신청금액*/
+			, COUPON_TYPE /*적용단위 1:금액할인 2:할인율할인*/
+			, USE_YN /*사용유무*/
+			, USE_DATE /*사용일자*/
+			, EXP_DATE /*만료일자*/
+			, REG_DATE /*등록일자*/
+			, '나는쿠폰이야' AS NAME /* TODO 쿠폰명 필드확정 후 수정할 것 */
+		 FROM CB_COUPON
+		WHERE COUPON_NUM = #{coupon_num}
+		  AND USE_YN = 'Y'
+	</select>
+
+	<sql id="sql_selectUserCouponList">
+		AND  USER_ID = #{user_id}
+		AND EXP_DATE >  DATE_FORMAT(NOW(),'%Y-%m-%d')
+		<if test='course_id != null and course_id != ""'>
+		AND COURSE_ID = #{course_id}
+		</if>
+		AND USE_YN = 'Y'
+	</sql>
+	<select id="selectUserCouponListTotCnt" parameterType="com.aracomm.changbi.mypage.vo.CouponSearchVo" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM CB_COUPON
+		WHERE 1=1
+			<include refid="sql_selectUserCouponList"/>
+	</select>
+	<select id="selectUserCouponList" parameterType="com.aracomm.changbi.mypage.vo.CouponSearchVo" resultType="hashmap">
+		SELECT
+			ID
+			, COUPON_NUM /*쿠폰번호*/
+			, USER_ID /*사용자 ID*/
+			, COURSE_ID /*적용과정 ID*/
+			, COND /*쿠폰사용조건*/
+			, COUPON /*신청금액*/
+			, COUPON_TYPE /*적용단위 1:금액할인 2:할인율할인*/
+			, USE_YN /*사용유무*/
+			, USE_DATE /*사용일자*/
+			, EXP_DATE /*만료일자*/
+			, REG_DATE /*등록일자*/
+			, '나는쿠폰이야' AS NAME /* TODO 쿠폰명 필드확정 후 수정할 것 */
+		FROM CB_COUPON
+		WHERE 1=1
+			<include refid="sql_selectUserCouponList"/>
+		ORDER BY REG_DATE ASC
+		LIMIT #{visiblePages} OFFSET #{skipRows}
+	</select>
+
+	<!-- 쿠폰사용 처리 -->
+	<update id="updateCouponUse" parameterType="string">
+		UPDATE CB_COUPON
+		   SET USE_YN = 'Y'
+		     , USE_DATE = DATE_FORMAT(NOW(),'%Y-%m-%d')
+		 WHERE COUPON_NUM = #{coupon_num}
+	</update>
+
+	<!-- 미사용 쿠폰 조회  -->
+	<select id="selectValidCouponInfo" resultType="hashmap">
+	<![CDATA[
+			SELECT
+				ID
+				, COUPON_NUM
+				, USER_ID
+				, COURSE_ID
+				, COND
+				, COUPON
+				, COUPON_TYPE
+				, USE_YN
+				, USE_DATE
+				, EXP_DATE
+				, REG_DATE
+				, IF((TO_DAYS(NOW()) - TO_DAYS(EXP_DATE) + 1)  < 0, 'N', 'Y') AS EXP_YN
+			FROM CB_COUPON
+			WHERE 1=1
+				AND COUPON_NUM = #{coupon_num}
+			]]>
+				<!-- AND USER_ID IS NULL
+				AND USE_DATE IS NULL
+				AND USE_YN = 'N' -->
+	</select>
+
+	<!-- 사용자 쿠폰 등록 -->
+	<update id="registCouponInfo">
+		UPDATE CB_COUPON
+			SET USER_ID = #{user_id}
+		WHERE COUPON_NUM = #{coupon_num}
+	</update>
+
+</mapper>

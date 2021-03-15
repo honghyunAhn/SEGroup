@@ -1,0 +1,89 @@
+@CHARSET "UTF-8";
+
+body {
+	display: table-cell;
+	vertical-align: middle;
+	background-color: #e0f2f1 !important;
+}
+
+html {
+	display: table;
+	margin: auto;
+}
+
+html, body {
+	height: 100%;
+}
+
+i{
+	user-select: none;
+}
+
+.medium-small {
+	font-size: 0.9rem;
+	margin: 0;
+	padding: 0;
+}
+
+.join-form {
+	width: 420px;
+}
+
+.login-form {
+	width: 360px;
+}
+
+.login-form-text {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 0.8rem;
+}
+
+.login-text {
+	margin-top: -6px;
+	margin-left: -6px !important;
+}
+
+.margin {
+	margin: 0 !important;
+}
+
+.pointer-events {
+	pointer-events: auto !important;
+}
+
+.input-field>.material-icons {
+	padding-top: 10px;
+}
+
+.input-field div.error {
+	position: relative;
+	top: -1rem;
+	left: 3rem;
+	font-size: 0.8rem;
+	color: #FF4081;
+	-webkit-transform: translateY(0%);
+	-ms-transform: translateY(0%);
+	-o-transform: translateY(0%);
+	transform: translateY(0%);
+}
+
+.state {
+	padding-left: 4.2em;
+	color: red;
+	font-size: 8pt;
+}
+
+.visible_icon {
+	position: absolute;
+	margin: 3% 0 0 88%;
+	cursor: pointer;
+	z-index: 99;
+	user-select: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

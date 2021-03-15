@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.user.dao.MyLectureInfoDao">
+<select id="TestListAll" parameterType="com.aracomm.changbi.user.vo.GisuCategoryVO" resultType="hashmap">
+		SELECT
+		A.ID,
+		A.USER_ID
+		, A.CARDINAL_ID
+		, A.COURSE_ID
+		, (SELECT NAME FROM CB_COURSE WHERE ID = A.COURSE_ID) AS COURSE_NAME
+		, (SELECT NAME FROM CB_CARDINAL WHERE ID = A.CARDINAL_ID) AS CARDINAL_NAME
+		, (SELECT USER_NM FROM COM_USER_TB WHERE USER_ID = A.USER_ID) AS USER_NAME
+		, (SELECT USER_BIRTH FROM COM_USER_TB WHERE USER_ID = A.USER_ID) AS BIRTH_DAY
+		, (SELECT DATE_FORMAT(LEARN_START_DATE, "%Y-%m-%d") FROM CB_CARDINAL WHERE ID = A.CARDINAL_ID) AS START_DATE
+		, (SELECT DATE_FORMAT(LEARN_END_DATE, "%Y-%m-%d") FROM CB_CARDINAL WHERE ID = A.CARDINAL_ID) AS END_DATE
+		,(select stu_state_ck from smtp_info_basic_tb where user_id = A.user_id and gisu_id = #{gisu_id} and crc_id =#{crc_id}) as state
+		FROM
+		CB_LEARN_APP A
+		WHERE A.CARDINAL_ID = #{gisu_id}
+		AND	A.COURSE_ID = #{crc_id}
+		AND A.ACCEPTANCE_YN = 'Y'
+		ORDER BY USER_NAME ASC
+	</select>
+	<select id="searchtUserTestInfo" parameterType="com.aracomm.changbi.user.vo.UserScoreVO" resultType="hashmap">
+	SELECT ST.TEST_SEQ, ST.USER_ID, ST.SCORE, ST.PLUS_SCORE,ST.RETEST,ST.CONTENT, TB.*
+	FROM STU_TEST_SCORE_TB ST
+	RIGHT JOIN (SELECT CT.CAT_SEQ,CT.CAT_PERCENT,CT.BIG_CAT_SEQ,CT.MID_CAT_SEQ,TT.TEST_NM,TT.TEST_SEQ,TT.TOTAL_SCORE,TT.RETEST_TIME
+	FROM STU_CAT_TB CT
+	RIGHT JOIN STU_TEST_TB TT
+	<!-- ON CT.MID_CAT_SEQ = TT.CAT_SEQ
+	AND CT.CAT_NM = TT.TEST_NM -->
+	ON CT.CAT_SEQ = TT.CAT_SEQ
+	WHERE CT.CRC_ID = #{crc_id}
+	AND CT.GISU_ID = #{gisu_id}) TB
+	ON TB.TEST_SEQ = ST.TEST_SEQ
+	<if test="user_id != null and user_id != ''">
+	AND USER_ID = #{user_id}
+	</if>
+	ORDER BY ST.SCORE_REGDATE ASC, ST.TEST_SEQ ASC
+	</select>
+	
+	<select id="searchtCategoryInfo" parameterType="com.aracomm.changbi.user.vo.UserScoreVO" resultType="hashmap">
+	SELECT CT.*
+	FROM STU_CAT_TB CT
+	WHERE CT.CRC_ID = #{crc_id}
+	AND CT.GISU_ID = #{gisu_id}
+	</select>
+	
+<select id="createUpperCategory" parameterType="com.aracomm.changbi.user.vo.GisuCategoryVO" resultType="hashmap">
+	SELECT  TB11.CAT_NM, TB11.CAT_PERCENT, TB11.big_cat_nm, IFNULL(TB22.CAT_NM,'') mid_cat_nm   
+	FROM 	(SELECT TB1.*, IFNULL(TB2.CAT_NM,'') big_cat_nm  
+		 FROM STU_CAT_TB TB1
+		 LEFT JOIN STU_CAT_TB TB2
+		 ON TB1.BIG_CAT_SEQ = TB2.CAT_SEQ) TB11
+	LEFT JOIN STU_CAT_TB TB22
+	ON TB11.MID_CAT_SEQ = TB22.CAT_SEQ
+	WHERE		TB11.CRC_ID 		= 	#{crc_id} 
+		AND		TB11.GISU_ID 		= 	#{gisu_id}
+	ORDER BY TB11.BIG_CAT_SEQ, TB11.MID_CAT_SEQ, TB11.CAT_SEQ
+</select>
+
+<!-- 김성미 : 설문페이지에서 성적페이지로 이동시 필요-->
+<select id="selectCheckOnline" parameterType="String" resultType="String">
+	SELECT  CHECKONLINE
+	FROM	CB_COURSE
+	WHERE	ID = #{crc_id}
+</select>
+
+<!-- 퀴즈 다시 제출 시 응답 업데이트 -->
+<update id="updateReportReply" parameterType="hashmap">
+	UPDATE	CB_QUIZ_REPLY
+	SET
+		O_REPLY = #{reply}
+		<if test="tscore != null and tscore != ''">T_SCORE = #{tscore}</if>
+	WHERE
+		1=1
+		<if test="report != null and report != ''">
+		AND REPORT_ID = #{report}
+		</if>
+		<if test="bank != null and bank != ''">
+		AND QUIZ_BANK_ID = #{bank}
+		</if>
+		<if test="item != null and item != ''">
+		AND QUIZ_ITEM_ID = #{item}
+		</if>
+</update>
+
+<update id="updateReport" parameterType="hashmap">
+UPDATE	CB_REPORT
+SET
+	SCORE		= #{score}
+	,SUBMIT_YN 	= #{submit}
+	,MARK_YN	= #{markyn}
+WHERE
+	ID = #{report_id}
+</update>
+
+<select id="selectLearnAppId" parameterType="hashmap" resultType="String">
+	SELECT	ID
+	FROM	CB_LEARN_APP
+	WHERE
+		USER_ID = #{user_id} 
+		AND CARDINAL_ID = #{cardinal}
+		AND COURSE_iD	= #{course}
+</select>
+
+	<select id="searchGrade" parameterType="hashmap" resultType="hashmap">
+	SELECT t.*
+	from STU_GRADE_TB t
+	WHERE
+		t.cardinal_id = #{gisu_id}
+	AND
+		t.course_id	= #{crc_id}
+	</select>
+	
+	<select id="selectExamTime" parameterType="hashmap" resultType="hashmap">
+	SELECT
+		ID,
+		DATE_FORMAT(REG_DATE, "%Y-%m-%d %H:%i:%s") AS TIME
+	from CB_EXAM_TAKE_HISTORY
+	WHERE
+		learn_app_id = #{id}
+	AND
+		quiz_id = #{quiz}
+	AND
+		reg_user = #{user_id}
+	order by REG_DATE
+	</select>
+	
+		<select id="testCount" parameterType="String" resultType="int">
+	SELECT COUNT(*)
+	FROM
+		STU_TEST_TB
+	WHERE
+		CAT_SEQ = #{seq}
+	</select>
+	
+	<select id="callSmallCategory" parameterType="com.aracomm.changbi.user.vo.GisuCategoryVO" resultType="hashmap">
+SELECT T2.CAT_SEQ,T2.CAT_PERCENT, T2.CAT_NM SMALL_CAT_NM, TTB.CRC_ID, TTB.GISU_ID,
+        TTB.CAT_PERCENT, TTB.BIG_CAT_SEQ, TTB.MID_CAT_SEQ, TTB.TEST_NM, TTB.TEST_SEQ,
+        TTB.TOTAL_SCORE,TTB.TEST_CONTENT,TTB.RETEST_TIME, TTB.TEST_YN,TTB.TEST_START_DATE, TTB.TEST_END_DATE, TTB.TEST_REGDATE
+        FROM (SELECT TB.CRC_ID,TB.GISU_ID,TB.CAT_NM,TB.CAT_PERCENT,TB.BIG_CAT_SEQ,TB.MID_CAT_SEQ, TT.*
+        FROM (SELECT T.*
+    		  FROM STU_CAT_TB T
+              WHERE T.CRC_ID = #{crc_id}
+              AND T.GISU_ID = #{gisu_id}
+              AND Not(T.MID_CAT_SEQ = 0)
+			  AND NOT(T.BIG_CAT_SEQ = 0)) TB
+		LEFT JOIN STU_TEST_TB TT
+        ON TT.CAT_SEQ = TB.CAT_SEQ) TTB
+        LEFT JOIN STU_CAT_TB T2
+        ON T2.CAT_SEQ = TTB.CAT_SEQ
+</select>
+</mapper>

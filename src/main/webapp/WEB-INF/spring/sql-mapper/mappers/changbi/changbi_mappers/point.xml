@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.member.dao.PointDao">
+
+<!-- 	<insert id="insertPoint" parameterType="map">
+		INSERT INTO CB_POINT (
+			USER_ID
+			, LEARN_APP_ID
+			, NAME
+			, GIVE
+			, WITHDRAW
+			, BALANCE
+			, NOTE
+			, REG_DATE
+		)
+		VALUES (
+			#{user_id}
+			,#{learn_app_id}
+			,(SELECT IFNULL(NAME, #{user_id}) FROM CB_MEMBER WHERE ID = #{user_id} AND USE_YN = 'Y' LIMIT 1)
+			,#{give}
+			,#{withdraw}
+			, IFNULL((SELECT BALANCE FROM CB_POINT AS CP WHERE USER_ID = #{user_id} ORDER BY ID DESC LIMIT 1), 0) + #{give} - #{withdraw}
+			,#{note}
+			,DATE_FORMAT(NOW(), "%Y%m%d%H%i%s")
+		)
+	</insert> -->
+
+	<!-- 수강 신청 취소에 따른  포인트 환급 -->
+	<insert id="insertPointForApplyCancel" parameterType="map">
+		INSERT INTO CB_POINT (
+			USER_ID
+			, LEARN_APP_ID
+			, NAME
+			, GIVE
+			, WITHDRAW
+			, BALANCE
+			, NOTE
+			, REG_DATE
+		)
+		SELECT T.USER_ID
+			  , T.LEARN_APP_ID
+			  , T.NAME
+			  , WITHDRAW
+			  , GIVE
+			  , IFNULL((SELECT BALANCE FROM CB_POINT AS CP WHERE USER_ID = T.USER_ID ORDER BY ID DESC LIMIT 1), 0) + WITHDRAW - GIVE
+			  , #{note}
+			  , DATE_FORMAT(NOW(), "%Y%m%d%H%i%s")
+		  FROM (
+				SELECT
+					    MAX(LA.ID) AS LEARN_APP_ID, MAX(LA.USER_ID) AS USER_ID, MAX(P.NAME) AS NAME, SUM(P.GIVE) AS GIVE, SUM(P.WITHDRAW) AS WITHDRAW
+				  FROM CB_LEARN_APP LA
+				 INNER JOIN CB_POINT P
+				    ON P.LEARN_APP_ID = LA.ID
+				 WHERE LA.ID = #{learn_app_id}
+			  ) T
+		 WHERE T.GIVE > 0 OR T.WITHDRAW > 0
+	</insert>
+
+	<select id="selectMemberPointList" parameterType="string" resultType="hashmap">
+		SELECT USER_ID, LEARN_APP_ID, NAME, GIVE, WITHDRAW, BALANCE, NOTE, REG_DATE
+		  FROM CB_POINT
+		 WHERE USER_ID = #{user_id}
+		 ORDER BY REG_DATE DESC
+	</select>
+
+	<select id="selectPolicyPoint" parameterType="string" resultType="hashmap">
+		SELECT ID
+			 , SAVE_JOIN_POINT
+			 , SAVE_JOIN_USE
+			 , SAVE_LECTURE_POINT
+			 , SAVE_LECTURE_TYPE
+			 , SAVE_LECTURE_USE
+			 , SAVE_TRAIN_POINT
+			 , SAVE_TRAIN_USE
+			 , USE_LECTURE_POINT
+			 , USE_LECTURE_UNIT
+			 , USE_LECTURE_USE
+		  FROM CB_POLICY_POINT
+		 LIMIT 1
+	</select>
+
+	<!-- 포인트 목록의 총갯수 조회 -->
+	<select id="selectPointListCnt" parameterType="com.aracomm.changbi.mypage.vo.PointSearchVo" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM CB_POINT
+		WHERE 1= 1
+			AND USER_ID = #{user_id}
+	</select>
+
+	<!-- 포인트 목록 조회 -->
+	<select id="selectPointList" parameterType="com.aracomm.changbi.mypage.service.PointService" resultType="hashmap">
+		SELECT
+			ID
+			, IFNULL(GIVE, 0) AS GIVE	/*적립포인트*/
+			, IFNULL(WITHDRAW, 0) AS WITHDRAW /*회수포인트(사용포인트)*/
+			, BALANCE /*잔여포인트*/
+			, LEARN_APP_ID /*연수신청ID*/
+			, `NAME` /*이름*/
+			, NOTE /*비고(사유)*/
+			, DATE_FORMAT(REG_DATE, "%Y-%m-%d") AS REG_DATE /*등록일자*/
+		FROM CB_POINT
+		WHERE 1 = 1
+			AND USER_ID = #{user_id}
+		ORDER BY ID DESC
+		LIMIT ${pointVisiblePages} OFFSET ${pointSkipRows}
+	</select>
+
+	<!-- 포인트 총합 조회 -->
+	<select id="selectPointSummary" parameterType="string" resultType="hashmap">
+		SELECT IFNULL(
+			(SELECT
+				BALANCE
+			FROM CB_POINT
+			WHERE 1= 1
+				AND USER_ID = #{user_id}
+			ORDER BY ID DESC
+			LIMIT 1), 0) AS BALANCE
+	</select>
+	
+	
+	<!-- LMS 회원가입 포인트 등록 -->
+	<insert id="insertPoint" parameterType="map">
+		INSERT INTO CB_POINT (
+			USER_ID
+			, LEARN_APP_ID
+			, NAME
+			, GIVE
+			, WITHDRAW
+			, BALANCE
+			, NOTE
+			, REG_DATE
+		)
+		VALUES (
+			#{user_id}
+			,#{learn_app_id}
+			,(SELECT IFNULL(USER_NM, #{user_id}) FROM COM_USER_TB WHERE USER_ID = #{user_id} AND USER_STATE = 'A0200' LIMIT 1)
+			,#{give}
+			,#{withdraw}
+			, IFNULL((SELECT BALANCE FROM CB_POINT AS CP WHERE USER_ID = #{user_id} ORDER BY ID DESC LIMIT 1), 0) + #{give} - #{withdraw}
+			,#{note}
+			,DATE_FORMAT(NOW(), "%Y%m%d%H%i%s")
+		)
+	</insert>
+
+
+
+</mapper>

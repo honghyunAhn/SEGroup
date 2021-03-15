@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.member.dao.MemberDao">
+
+	<!-- 회원등록 -->
+	 <insert id="insertUser" parameterType="com.aracomm.changbi.member.vo.MemberForm">
+		INSERT INTO CB_MEMBER
+			( ID
+			, PW
+			, NAME
+			, PHONE
+			, EMAIL
+			, GENDER
+			, BIRTH_DAY
+			, POST_CODE
+			, ADDR1
+			, ADDR2
+			, GRADE
+			, SCHOOL_NAME
+			, IDEN_DI
+			, REG_DATE
+			, UPD_DATE 
+		)VALUES(
+			#{id}
+			, #{enc_pw}
+			, #{name}
+			, #{phone}
+			, #{email}
+ 			, #{gender}
+ 			, #{birth_day}
+ 			, #{post_code}
+ 			, #{addr1}
+ 			, #{addr2}
+ 			, #{grade}
+			, #{schoolForm.school_name}
+			, #{iden_di}
+			, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s')
+			, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s') 
+		)
+	</insert>
+
+	<!-- 회원정보조회1 -->
+	<select id="selectMember1" parameterType="string" resultType="hashmap">
+		SELECT ID, NAME, TEL, PHONE, FAX, EMAIL, EMAIL_YN, GENDER, BIRTH_DAY, POST_CODE, ADDR1, ADDR2, REG_DATE
+		  FROM CB_MEMBER
+		 WHERE ID = #{id}
+		   AND USE_YN = 'Y'
+	</select>
+
+	<!-- 중복가입체크 :: 본인인증di 중복 회원 조회  -->
+	<select id="selectValidMemberByDi" parameterType="string" resultType="hashmap">
+		SELECT ID
+			 , REG_DATE
+		  FROM CB_MEMBER
+		 WHERE IDEN_DI = #{iden_di}
+		   AND IDEN_CO = '1'
+		   AND USE_YN = 'Y'
+		 ORDER BY REG_DATE
+		 LIMIT 1
+	</select>
+
+	<!-- 중복아이디 체크 :: 탈퇴여부 무관
+ 	<select id="selectMemberCountById" parameterType="string" resultType="int">
+		SELECT COUNT(1) AS CNT
+		  FROM CB_MEMBER
+		 WHERE ID = #{id}
+	</select>-->
+	
+	<!-- LMS 중복아이디 체크 :: 탈퇴여부 무관 -->
+	<select id="selectMemberCountById" parameterType="string" resultType="int">
+		SELECT COUNT(1) AS CNT
+		  FROM COM_USER_TB
+		 WHERE USER_ID = #{id}
+	</select>
+	
+	<!-- 정상 아이디 체크  -->
+ 	<select id="selectValidMemberCountById" parameterType="string" resultType="int">
+		SELECT COUNT(1) AS CNT
+		  FROM CB_MEMBER
+		 WHERE ID = #{id}
+		   AND USE_YN = 'Y'
+	</select>
+
+	<!-- 중복NEIS번호 체크  -->
+	<select id="selectMemberCountByNeis" parameterType="map" resultType="int">
+		SELECT COUNT(1) AS CNT
+		  FROM CB_MEMBER
+		 WHERE NEIS_NUM = UPPER(#{neis_num})
+		   <if test='user_id != null and user_id != ""'>
+		   AND (ID &lt;&gt; #{user_id} OR NEIS_NUM &lt;&gt; UPPER(#{neis_num}))
+		   </if>
+	</select>
+	
+	<!-- 중복 이메일 체크 -->
+	  <select id="checkEmailDuplicated" parameterType="string" resultType="int">
+	  	  SELECT COUNT(1) 
+	  	    FROM COM_USER_TB
+	  	  WHERE USER_EMAIL = #{email}
+	  </select>
+	
+
+	<!-- 아이디 찾기를 위한 회원 정보 조회 -->
+ 	<select id="selectMemberForFindId" parameterType="map" resultType="hashmap">
+		SELECT ID, PHONE
+		  FROM CB_MEMBER
+		 WHERE NAME = #{name}
+		   AND PHONE = #{phone}
+		   AND USE_YN = 'Y'
+		 ORDER BY REG_DATE
+		 LIMIT 1
+	</select>
+
+	<!-- 비번 찾기를 위한 회원 정보 조회 -->
+	<select id="selectMemberForFindPw" parameterType="map" resultType="hashmap">
+		SELECT ID, PHONE
+		  FROM CB_MEMBER
+		 WHERE ID = #{id}
+		   AND PHONE = #{phone}
+		   AND USER_STATE = 'A0200'
+		 ORDER BY REG_DATE
+		 LIMIT 1
+	</select>
+
+	<!-- 아이디 비번에 대한 회원수 조회 -->
+ 	<select id="selectMemberCountByIdPasswd" parameterType="map" resultType="int">
+		SELECT COUNT(1)
+		  FROM CB_MEMBER
+		 WHERE ID = #{id}
+		   AND PW = #{pw}
+		   AND USE_YN = 'Y'
+		 ORDER BY REG_DATE
+	</select> 
+
+	<update id="updateTempPassword" parameterType="map">
+		UPDATE CB_MEMBER
+		   SET PW = #{pw}
+		     , PW_INIT_YN = 'Y'
+		 WHERE ID = #{id}
+		   AND PHONE = #{phone}
+		   AND USE_YN = 'Y'
+	</update>
+
+ 	<update id="updatePassword" parameterType="map">
+		UPDATE CB_MEMBER
+		   SET PW = #{pw}
+		     , PW_INIT_YN = 'N'
+		 WHERE ID = #{id}
+		   AND USE_YN = 'Y'
+	</update> 
+	
+	
+
+
+</mapper>

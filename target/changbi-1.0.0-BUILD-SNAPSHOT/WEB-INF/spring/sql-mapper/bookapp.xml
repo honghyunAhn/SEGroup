@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.mypage.dao.BookAppDao">
+
+	<insert id="insertBookApp" parameterType="map">
+		INSERT INTO CB_BOOK_APP (
+			  ID
+			, COURSE_ID
+			, USER_ID
+			, LEARN_APP_ID
+			, REC_NAME
+			, TEL
+			, PHONE
+			, EMAIL
+			, DELIV_TYPE
+			, POST_CODE
+			, ORDER_IDX
+			, ADDR1
+			, ADDR2
+			, REMARKS
+			, PAYMENT_TYPE
+			, AMOUNT
+			, PRICE
+			, PAYMENT_YN
+			, PAYMENT_DATE
+			, REG_USER
+			, REG_DATE
+		) VALUES (
+			  #{id }
+			, #{course_id }
+			, #{user_id }
+			, #{learn_app_id }
+			, #{rec_name }
+			, #{tel }
+			, #{phone }
+			, #{email }
+			, #{deliv_type }
+			, #{post_code }
+			, #{order_idx }
+			, #{addr1 }
+			, #{addr2 }
+			, #{remarks }
+			, #{payment_type }
+			, #{amount }
+			, #{price }
+			, #{payment_yn }
+			, #{payment_date }
+			, #{user_id }
+			, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s')
+		)
+	</insert>
+
+	<insert id="insertBookAppFromLearnApp" parameterType="map">
+		INSERT INTO CB_BOOK_APP (
+			  COURSE_ID
+			, USER_ID
+			, LEARN_APP_ID
+			, REC_NAME
+			, TEL
+			, PHONE
+			, EMAIL
+			, DELIV_TYPE
+			, POST_CODE
+			, ORDER_IDX
+			, ADDR1
+			, ADDR2
+			, PAYMENT_TYPE
+			, AMOUNT
+			, PRICE
+			, PAYMENT_YN
+			, PAYMENT_DATE
+			, REG_USER
+			, REG_DATE
+		)
+		SELECT
+			  LA.COURSE_ID
+			, LA.USER_ID
+			, LA.ID
+			, M.NAME
+			, M.TEL
+			, M.PHONE
+			, M.EMAIL
+			, 'H'
+			, M.POST_CODE
+			, LA.ORDER_IDX
+			, M.ADDR1
+			, M.ADDR2
+			, LA.PAYMENT_TYPE
+			, 1
+			, #{main_price }
+			, CASE LA.PAYMENT_TYPE WHEN '1' THEN 'N' ELSE 'Y' END
+			, LA.PAYMENT_DATE
+			, LA.REG_USER
+			, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s')
+		  FROM CB_LEARN_APP LA
+		  JOIN CB_MEMBER M
+		    ON M.ID = LA.USER_ID
+		 WHERE LA.ID = #{id}
+	</insert>
+
+	<!-- 가상계좌 입금 통보 등으로 결제완료 처리 -->
+	<update id="updateDonePayment" parameterType="string">
+		UPDATE CB_BOOK_APP
+		   SET PAYMENT_YN = 'Y'
+		     , PAYMENT_DATE = DATE_FORMAT(NOW(),'%Y%m%d%H%i%s')
+		 WHERE ID = #{appId}
+	</update>
+</mapper>

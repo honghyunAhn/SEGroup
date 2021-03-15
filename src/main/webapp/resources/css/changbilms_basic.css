@@ -1,0 +1,72 @@
+/*--------------------------------------------------------------
+0.0 Import Font
+----------------------------------------------------------------*/
+	/* nanum square - light */
+	@font-face {
+		font-family: 'NanumSquare';
+		src: url('font/nanumSquare/nanumsquareL.eot');/* IE9 Compat Modes */
+		src: url('font/nanumSquare/nanumsquareL.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+			url('font/nanumSquare/nanumsquareL.woff') format('woff'),/* Modern Browsers */
+			url('font/nanumSquare/nanumsquareL.ttf') format('truetype'),/* Safari, Android, iOS */
+			url('font/nanumSquare/nanumsquareL.svg#017f9c78318bcde3d1dc4451e8eaca0a') format('svg');/* Legacy iOS */
+		 
+		font-weight: normal;
+		font-weight:  300;
+	}
+/* nanum square - regular */
+	@font-face {
+		font-family: 'NanumSquare';
+		src: url('font/nanumSquare/nanumsquareR.eot');
+		src: url('font/nanumSquare/nanumsquareR.eot?#iefix') format('embedded-opentype'),
+			url('font/nanumSquare/nanumsquareR.woff2') format('woff2'),
+			url('font/nanumSquare/nanumsquareR.woff') format('woff'),
+			url('font/nanumSquare/nanumsquareR.ttf') format('truetype'),
+			url('font/nanumSquare/nanumsquareR.svg#nanumsquarerregular') format('svg');
+		font-weight: normal;
+		font-weight:  400;
+	}
+	/* nanum square - bold */
+	@font-face {
+		font-family: 'NanumSquare';
+		src: url('font/nanumSquare/nanumsquareB.eot');
+		src: url('font/nanumSquare/nanumsquareB.eot?#iefix') format('embedded-opentype'),
+			url('font/nanumSquare/nanumsquareB.woff2') format('woff2'),
+			url('font/nanumSquare/nanumsquareB.woff') format('woff'),
+			url('font/nanumSquare/nanumsquareeB.ttf') format('truetype'),
+			url('font/nanumSquare/nanumsquareB.svg#nanumsquarebregular') format('svg');
+		font-weight: 700;
+	}
+	/* nanum square - extra bold */
+	@font-face {
+		font-family: 'NanumSquare';
+		src: url('font/nanumSquare/nanumsquareEB.eot');
+		src: url('font/nanumSquare/nanumsquareEB.eot?#iefix') format('embedded-opentype'),
+			url('font/nanumSquare/nanumsquareEB.woff') format('woff'),
+			url('font/nanumSquare/nanumsquareEB.ttf') format('truetype'),
+			url('font/nanumSquare/nanumSquareEB.svg#090d6763bc81b49309446d23fbd10e87') format('svg');
+		font-weight: 900;
+	}
+
+/*--------------------------------------------------------------
+1.0 Genericons 일반
+----------------------------------------------------------------*/
+/* 1.1 Normalize  표준화 */
+	/* 1.1.0 ALL Element */
+		* {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			vertical-align: baseline;
+		
+			font-size-adjust: none;
+			-webkit-text-size-adjust: none;
+			-moz-text-size-adjust: none;
+			-ms-text-size-adjust: none;
+			font-family:"NanumSquare", AppleSDGothic, sans-serif;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			
+		}
+		*,*:after,*:before {	-webkit-box-sizing: border-box;	-moz-box-sizing: border-box;	box-sizing: border-box;	padding: 0;	margin: 0;}
+/* 1.2 Genericons 일반 */
+	.sr-only, .alt-txt { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;}

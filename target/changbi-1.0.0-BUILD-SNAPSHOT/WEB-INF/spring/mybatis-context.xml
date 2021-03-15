@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
+
+	<!-- Data Source -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="#{config['datasource.driver']}" />
+		<property name="url" value="#{config['datasource.url']}" />
+		<property name="username" value="#{config['datasource.username']}" />
+		<property name="password" value="#{config['datasource.password']}" />
+	</bean>
+
+	<!-- MyBatis Sql Session Template -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="/WEB-INF/spring/sql-mapper/*.xml" />
+		<property name="configLocation" value="/WEB-INF/spring/sql-mapper/config/config.xml" />
+	</bean>
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.aracomm.changbi" />
+	</bean> -->
+	<mybatis:scan base-package="com.aracomm.changbi" factory-ref="sqlSessionFactory"  />
+
+	<!-- Transaction Manager -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- SMS/MMS 발송 DB 설정 -->
+
+	<!-- Data Source -->
+	<bean id="dataSource_sms" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="#{config['datasource.sms.driver']}" />
+		<property name="url" value="#{config['datasource.sms.url']}" />
+		<property name="username" value="#{config['datasource.sms.username']}" />
+		<property name="password" value="#{config['datasource.sms.password']}" />
+	</bean>
+
+	<!-- MyBatis Sql Session Template -->
+	<bean id="sqlSessionFactory_sms" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource_sms" />
+		<property name="mapperLocations" value="/WEB-INF/spring/sql-mapper/sms/*.xml" />
+		<property name="configLocation" value="/WEB-INF/spring/sql-mapper/config/config.xml" />
+	</bean>
+	<bean id="sqlSessionTemplate_sms" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory_sms" />
+	</bean>
+	<mybatis:scan base-package="com.aracomm.sms" factory-ref="sqlSessionFactory_sms"  />
+
+	<!-- Transaction Manager -->
+	<bean id="transactionManager_sms"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource_sms" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager_sms" />
+</beans>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+ 	<!-- globals configuration information --> 
+	<util:map id="seconfig" key-type="java.lang.String" value-type="java.lang.Object">
+
+		<!-- 접근 권한 오류페이지 -->
+		<beans:entry key="accessDeniedUrl" value="/error/accessDenied"/>
+
+	</util:map>
+
+	<http pattern="/lms/user/player" security="none" />
+	<http pattern="/favicon.ico" security="none" />
+	<http pattern="/resources/**" security="none" />
+	<http pattern="/upload/**" security="none" />
+	<http pattern="/error/**" security="none" />
+	<http pattern="/app/**" security="none" /> <!-- app 다운로드 관련 -->
+	<http pattern="/iden/**" security="none" /> <!-- 본인인증 -->
+
+
+	<!-- segroup과 changbi를 통합하면서  entry-point-ref 속성을 제거 -->
+	<!-- 
+	<http auto-config="true" use-expressions="true" entry-point-ref="authenticationEntryPoint"> 
+     -->
+<!--   	<http auto-config="true" use-expressions="true"> -->
+	<http pattern="/edu/**" auto-config="true" use-expressions="true" entry-point-ref="authenticationEntryPoint">
+	
+		<headers>
+        		<frame-options policy="SAMEORIGIN"/>
+    	</headers>
+	
+	
+<!-- 		<intercept-url pattern="/" access="permitAll"/> -->
+		<intercept-url pattern="/mypage/**" access="hasAnyRole('ROLE_USER')" />
+<!-- 		<intercept-url pattern="/**" access="permitAll" /> -->
+		
+		
+		
+		<!-- 인터셉터 복사  -->		
+<!-- 		<intercept-url pattern="/" access="permitAll" /> -->
+		<intercept-url pattern="/edu/user/user_pay_ini" access="hasAnyRole('A0100','A0101','A0105','A0106','A0600','A0601','A0602')" />
+        <intercept-url pattern="/edu/user/user_delete" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+		<intercept-url pattern="/edu/user/user_update_form" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+		<intercept-url pattern="/edu/user/user_update_json" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_update" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_delete" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_apply_history" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_pay_status" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_refund_req" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_refund_cancel" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_pay_cancel" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_consulting_list" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_pay_info" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+		<intercept-url pattern="/edu/user/**" access="permitAll" />
+		<intercept-url pattern="/edu/apply/apply_main" access="permitAll" />
+		<intercept-url pattern="/edu/apply/apply_guide" access="permitAll" />
+		<intercept-url pattern="/edu/apply/apply_teacher" access="permitAll" />
+        <intercept-url pattern="/edu/apply/kmove" access="permitAll" />
+        <intercept-url pattern="/edu/apply/cup" access="permitAll" />
+        <intercept-url pattern="/edu/apply/kmove_cup" access="permitAll" />
+        <intercept-url pattern="/edu/apply/scitmaster_seoul" access="permitAll" />
+        <intercept-url pattern="/edu/apply/it101_menu" access="permitAll" />
+        <intercept-url pattern="/edu/apply/it101_detail" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_c1" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_c2" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_springboot2" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_python" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_java1" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_java2" access="permitAll" />
+
+        <intercept-url pattern="/edu/apply/short_term_work_in_japan" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_japan_oa" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_japan_on_demand" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_japan_employment" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_japan_sjpt" access="permitAll" />
+        
+        <intercept-url pattern="/edu/community/notice2" access="hasAnyRole('A0101','A0105','A0106')" />
+        
+        <intercept-url pattern="/edu/apply/long/edu/apply/it101_detail_term_list" access="permitAll" />
+		<intercept-url pattern="/edu/apply/**" access="hasAnyRole('A0100','A0101','A0105','A0106','A0600','A0601','A0602')" />
+
+		<csrf disabled="true"/>
+
+
+		<form-login
+			login-page="/edu/user/user_login_form"
+			username-parameter="user_id"
+			password-parameter="user_pw"
+			login-processing-url="/edu/user/login"
+			authentication-failure-url="/edu/user/user_login_form?error=1"
+			default-target-url="/edu/user/user_login_success"/>
+		
+		<logout
+			logout-url="/edu/logout"
+			logout-success-url="/ictcenter"
+			invalidate-session="true"	/>
+		<access-denied-handler error-page="/edu/user/user_access_denied"/>
+		
+		<!-- <session-management>
+			<concurrency-control 
+				max-sessions="1"
+				expired-url="/edu/user/user_login_form"
+				session-registry-alias="sessionRegistry" />
+		</session-management> -->
+
+
+		
+		<headers>
+			<frame-options       policy="SAMEORIGIN" />
+		</headers>
+
+
+
+		<custom-filter ref="concurrentSessionFilter" position="CONCURRENT_SESSION_FILTER" /> <!-- 중복로그인 처리 filter -->
+		<custom-filter ref="usernamePasswordAuthenticationFilter" before="FORM_LOGIN_FILTER" />
+		<custom-filter ref="certAuthenticationFilter" after="FORM_LOGIN_FILTER" /> <!-- 인증서로그인필터 -->
+		<custom-filter after="EXCEPTION_TRANSLATION_FILTER" ref="ajaxSessionTimeoutFilter"/>
+
+ 		<logout logout-url="/user/signout" logout-success-url="/"/>
+		<access-denied-handler ref="accessDeniedHandler" />
+		<session-management invalid-session-url="/" session-authentication-strategy-ref="sas" />
+
+
+	</http> 
+	
+	<!-- smtp 설정 이전해오면서 각 url별 구분을 위해서 pattern 추가,
+	 spring-context에서 사용하던 authentication-manager 사용하도록 함 -->
+	<http pattern="/smtp/**" auto-config="true" use-expressions="true" authentication-manager-ref="authUser">
+		<headers>
+        		<frame-options policy="SAMEORIGIN"/>
+    	</headers>
+	
+		<intercept-url pattern="/rainbow" access="permitAll"/>
+		
+		<intercept-url pattern="/smtp/user/smtpNotice" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
+		<intercept-url pattern="/smtp/user/smtpSurvey" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
+		<intercept-url pattern="/smtp/mypage/smtp_regist" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
+		<intercept-url pattern="/smtp/user/smtpScore" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
+		<intercept-url pattern="/smtp/user/sub05-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
+		<intercept-url pattern="/smtp/user/sub05-02" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
+		<intercept-url pattern="/smtp/user/sub05-02-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
+		<intercept-url pattern="/smtp/user/sub05-03" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
+		<intercept-url pattern="/smtp/user/sub05-04" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
+		<intercept-url pattern="/smtp/user/sub05-05" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
+		<intercept-url pattern="/smtp/user/sub05-06" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
+		<intercept-url pattern="/smtp/user/sub05-07" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
+		<intercept-url pattern="/smtp/user/payback" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
+		<intercept-url pattern="/smtp/apply" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
+		<intercept-url pattern="/smtp/apply/sub00-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
+		<intercept-url pattern="/smtp/apply/sub00-02" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
+		
+		<intercept-url pattern="/smtp/course/**" access="permitAll"/>
+		<intercept-url pattern="/**" access="permitAll" />
+		
+		<csrf disabled="true"/>		
+		
+		<form-login
+			login-page="/smtp/user/sub01-01"
+			username-parameter="user_id"
+			password-parameter="user_pw"
+			login-processing-url="/smtp/user/login"
+			authentication-failure-url="/smtp/user/sub01-01?error=1"
+			default-target-url="/smtp/user/user_login_success"	/>
+		
+		<logout
+			logout-url="/smtp/logout"
+			logout-success-url="/rainbow"
+			invalidate-session="true"	/>
+		<access-denied-handler error-page="/smtp/user/user_access_denied"/>		
+		
+		<custom-filter ref="concurrentSessionFilter" position="CONCURRENT_SESSION_FILTER" /> <!-- 중복로그인 처리 filter -->
+		<custom-filter ref="usernamePasswordAuthenticationFilter" before="FORM_LOGIN_FILTER" />
+		<custom-filter ref="certAuthenticationFilter" after="FORM_LOGIN_FILTER" /> <!-- 인증서로그인필터 -->
+<!-- 		<custom-filter ref="setCookieFilter" before="SECURITY_CONTEXT_FILTER"/>setCookie 설정 필터 -->
+		<custom-filter after="EXCEPTION_TRANSLATION_FILTER" ref="ajaxSessionTimeoutFilter"/>
+		
+		<logout logout-url="/user/signout" logout-success-url="/"/>
+		<access-denied-handler ref="accessDeniedHandler" />
+		
+		<session-management invalid-session-url="/rainbow" session-authentication-strategy-ref="sas" />
+		
+	</http>
+	
+	<beans:bean id="ajaxSessionTimeoutFilter" class="com.aracomm.base.security.filter.AjaxSessionTimeoutFilter">
+		<beans:property name="ajaxHeader" value="AJAX" />
+	</beans:bean>
+ 
+	<beans:bean id="authenticationEntryPoint" class="com.aracomm.base.security.handler.UnauthorizedAccessHandler">
+		<beans:constructor-arg name="loginFormUrl" value="/" />
+		<beans:constructor-arg name="errorPage" value="#{seconfig.accessDeniedUrl}" /><!-- 커스텀함 -->
+		<beans:property name="redirect" value="false" />
+		<beans:constructor-arg name="doitFormUrl" value="/lms/user/sub00-01"/>
+		<beans:constructor-arg name="rainbowFormUrl" value="/smtp/user/sub01-01"/>
+		<beans:constructor-arg name="eduFormUrl" value="/edu/user/user_login_form"/>
+	</beans:bean>
+
+	<beans:bean id="loginSuccessHandler" class="com.aracomm.changbi.security.handler.SignInSuccessHandler">
+		<beans:property name="defaultTargetUrl" value="/" /><!-- 로그인 후 페이지 이동 설정 -->
+		<beans:property name="httpRedirect" value="false" /><!-- https요청으로 로그인 후 http로 바꿔 이동할 것인지 여부 -->
+		<beans:property name="httpPort" value="#{config['http.port']}" /><!-- http 포트 -->
+	</beans:bean>
+
+	<beans:bean id="loginFailureHandler" class="com.aracomm.base.security.handler.SignInFailureHandler">
+		<beans:constructor-arg name="defaultFailureUrl" value="/error/loginFailure" />
+	</beans:bean>
+
+	<beans:bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+		<beans:property name="errorPage" value="#{seconfig.accessDeniedUrl}" />
+	</beans:bean>
+
+	<!-- 아이디/비밀번호 로그인 처리 filter (ajax, ssl 환경에서 CORS문제 처리) -->
+	<beans:bean id="usernamePasswordAuthenticationFilter" class="com.aracomm.base.security.authentication.CorsAwareUsernamePasswordAuthenticationFilter">
+		<beans:property name="filterProcessesUrl" value="/user/signin" />
+
+		<!-- ajax 구현을 위한 커스텀 헨들러 적용 -->
+		<beans:property name="authenticationFailureHandler" ref="loginFailureHandler" />
+		<beans:property name="authenticationSuccessHandler" ref="loginSuccessHandler" />
+
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="sessionAuthenticationStrategy" ref="sas" />
+	</beans:bean>
+
+ 	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="userDetailsService">
+			<password-encoder ref="bcryptPasswordEncoder">
+<!-- 				<salt-source user-property="username" /> -->
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+
+	<beans:bean id="userDetailsService" class="com.aracomm.changbi.security.authentication.UserAuthenticationDetailService"/>
+
+ 	<!-- 비밀번호 hash 모듈 지정 -->
+	<beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	
+	<!-- AES 모듈(양방향 암호화)-->
+	<beans:bean id="aesEncryptor" class="global.segroup.util.AESEncryptor">
+		<beans:constructor-arg name="key" value="QtCqeCO7rvzRDOtcq7hHZxNzUSbpnSg7STQbZNKfb0WgC"/>
+	</beans:bean>
+	
+	<!-- 스프링 시큐리티에서 기본으로 사용하는 중복로그인 체크 필터 -->
+	<beans:bean id="concurrentSessionFilter" class="org.springframework.security.web.session.ConcurrentSessionFilter">
+		<beans:constructor-arg name="sessionRegistry" ref="sessionRegistry" />
+		<beans:constructor-arg name="sessionInformationExpiredStrategy" ref="sessionInformationExpiredStrategy" />
+	</beans:bean>
+ 
+ 	<!-- 중복로그인으로 세션이 만료된 경우 처리 handler -->
+	<beans:bean id="sessionInformationExpiredStrategy" class="com.aracomm.base.security.authentication.DuplLoginSessionExpiredHandler">
+		<beans:constructor-arg name="expiredUrl" value="/" />
+	</beans:bean>
+ 
+	<beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
+	<beans:bean id="sas" class="org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy">
+		<beans:constructor-arg>
+			<beans:list>
+				<beans:bean class="org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy">
+					<beans:constructor-arg ref="sessionRegistry"/>
+				</beans:bean>
+				<beans:bean class="org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy">
+					<beans:constructor-arg ref="sessionRegistry"/>
+					<beans:property name="maximumSessions" value="1" />
+				</beans:bean>
+			</beans:list>
+		</beans:constructor-arg>
+	</beans:bean>
+
+	<!-- 인증서로그인 Filter 정의 -->
+	<beans:bean id="certAuthenticationFilter" class="com.aracomm.base.security.filter.CertAuthenticationFilter">
+		<!-- usernameAuthenticationFilter 와 동일 -->
+		<beans:property name="filterProcessesUrl" value="/user/certsignin" /> <!-- 인증서로그인처리 url -->
+		<beans:property name="authenticationFailureHandler" ref="loginFailureHandler" />
+		<beans:property name="authenticationSuccessHandler" ref="loginSuccessHandler" />
+		<beans:property name="sessionAuthenticationStrategy" ref="sas" />
+		<!-- usernameAuthenticationFilter 와 동일 -->
+
+		<beans:property name="authenticationManager" ref="certAuthenticationManager" />
+	</beans:bean>
+ 
+ 	<!-- 인증서로그인 manager 정의 -->
+	<beans:bean id="certAuthenticationManager" class="org.springframework.security.authentication.ProviderManager">
+	    <beans:constructor-arg>
+	        <beans:list>
+	            <beans:bean class="com.aracomm.changbi.security.authentication.CertAuthenticationProvider"/>
+	        </beans:list>
+	    </beans:constructor-arg>
+	</beans:bean>
+	
+	<!-- Set-cookie fileter(SameSite=None) -->
+	<beans:bean id="setCookieFilter" class="com.aracomm.base.security.filter.SameSiteFilter"/>
+	
+	<beans:bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/> 
+	
+    <authentication-manager id="authUser">
+        <authentication-provider ref="segroupAuthenticationProvider"/>
+    </authentication-manager>
+    <beans:bean id="segroupAuthenticationProvider" class="global.segroup.util.SEGroupAuthenticationProvider"/>
+ </beans:beans>

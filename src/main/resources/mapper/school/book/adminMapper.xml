@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="global.segroup.school.book.admin.dao.SchoolBookAdminMapper">
+
+	<select id="overdueList" resultType="RentalState">
+	select
+		CUT.user_nm,
+		BBIT.bookinfo_book_nm,
+		BRST.rental_req_id,
+		BRST.rental_rtn_due_dt
+	from
+		BOOK_RENTAL_STATE_TB BRST
+		,COM_USER_TB CUT
+		,BOOK_BOOK_TB BBT
+		,BOOK_BOOKINFO_TB BBIT
+	where
+		BRST.rental_req_id = CUT.user_id
+		and BRST.book_seq = BBT.book_seq
+		and BBT.bookinfo_isbn = BBIT.bookinfo_isbn
+		and BRST.RENTAL_RTN_STATE is null
+		and TIMESTAMPDIFF(SECOND, BRST.RENTAL_RTN_DUE_DT, now()) > 0
+		and BRST.RENTAL_REQ_STATE != 'B0300'
+	</select>
+
+	<select id="returnList" resultType="RentalState">
+	select
+		CUT.user_nm,
+		BBIT.bookinfo_book_nm,
+		BRST.rental_rtn_due_dt,
+		BRST.rental_req_id
+	from
+		(	select book_seq, rental_rtn_due_dt, rental_req_id
+			from BOOK_RENTAL_STATE_TB
+			where
+				TIMESTAMPDIFF(DAY, now(), rental_rtn_due_dt) between 0 and 1) as BRST
+		,COM_USER_TB CUT
+		,BOOK_BOOK_TB BBT
+		,BOOK_BOOKINFO_TB BBIT
+	where
+		BRST.rental_req_id = CUT.user_id
+		and BRST.book_seq = BBT.book_seq
+		and BBT.bookinfo_isbn = BBIT.bookinfo_isbn
+	</select>
+	
+	<select id="getStudentInfo" resultType="SchoolBookUser">
+	select
+		CUT.USER_ID,
+		CUT.USER_NM,
+		CUT.USER_PHONE,	
+		CUT.USER_EMAIL,
+		CUT.USER_SEX,
+		CUT.USER_FLAG
+	from
+		COM_USER_TB CUT
+	where
+		CUT.USER_ID = #{user_id}
+	</select>
+
+	<select id="myList" parameterType="String" resultType="RentalState">
+	select
+		BBIT.bookinfo_book_nm,
+		BRST.rental_seq,
+		BRST.rental_req_permit_dt,
+		BRST.rental_rtn_due_dt,
+		BRST.rental_rtn_state
+	from
+		BOOK_RENTAL_STATE_TB BRST,
+		BOOK_BOOKINFO_TB BBIT,
+		BOOK_BOOK_TB BBT
+	where
+		BRST.rental_req_id = #{user_id}
+		and BRST.book_seq = BBT.book_seq
+		and BBT.bookinfo_isbn = BBIT.bookinfo_isbn
+		and BRST.RENTAL_RTN_STATE is null
+	</select>
+	
+	<select id="reservList" resultType="Reservation">
+	select
+		BBIT.bookinfo_book_nm,
+		CUT.USER_NM,
+		BRT.RESERVATION_DT,
+		BRT.RESERVATION_STATE,
+		BRST.RENTAL_RTN_DUE_DT
+	from
+		BOOK_RESERVATION_TB BRT,
+		BOOK_BOOKINFO_TB BBIT,
+		BOOK_RENTAL_STATE_TB BRST,
+		BOOK_BOOK_TB BBT,
+		COM_USER_TB CUT
+	where
+		CUT.user_id = BRT.RESERVATION_ID
+		and BRT.book_seq = BBT.book_seq
+		and BBT.bookinfo_isbn = BBIT.bookinfo_isbn
+		and BRT.RENTAL_SEQ = BRST.RENTAL_SEQ
+	order by BBIT.bookinfo_book_nm desc 
+		
+	</select>
+	
+	
+	<insert id="insertBoardContent" parameterType="BoardContent" useGeneratedKeys="true" keyProperty="board_content_seq">
+			insert into COM_BOARD_CONTENT_TB 
+			(BOARD_SEQ, 
+			BOARD_CONTENT_TITLE , 
+			BOARD_CONTENT_CT, 
+			BOARD_CONTENT_NM, 
+			BOARD_CONTENT_INS_ID, 
+			BOARD_CONTENT_UDT_ID ) 
+		values (#{board_seq},
+			#{board_content_title},
+			#{board_content_ct}, 
+			#{board_content_nm},
+			#{board_content_ins_id},
+			#{board_content_udt_id})
+	</insert>
+	
+	<insert id="insertBoardFile" parameterType="BoardFile" useGeneratedKeys="true" keyProperty="board_file_seq">
+		insert into COM_BOARD_FILE_TB 
+			(BOARD_CONTENT_SEQ, 
+			BOARD_FILE_SAVED , 
+			BOARD_FILE_ORIGIN, 
+			BOARD_FILE_INS_ID, 
+			BOARD_FILE_UDT_ID)
+		values (#{board_content_seq},
+			#{board_file_saved},
+			#{board_file_origin}, 
+			#{board_ins_id},
+			#{board_udt_id})
+	</insert>
+	
+	<insert id="insertBookInfo" parameterType="BookInfo">
+		insert into BOOK_BOOKINFO_TB 
+			(BOOKINFO_ISBN, 
+			BOARD_CONTENT_SEQ , 
+			BOARD_FILE_SEQ, 
+			BOOKINFO_CATEGORY, 
+			BOOKINFO_DIVISION, 
+			BOOKINFO_BOOK_NM,
+			BOOKINFO_PUBLISHER, 
+			BOOKINFO_AUTHOR,
+			BOOKINFO_PUBLISHED_DT, 
+			BOOKINFO_UDT_ID, 
+			BOOKINFO_INS_ID) 
+		values 
+			(#{bookinfo_isbn},
+			 #{board_content_seq}, 
+			 #{board_file_seq}, 
+			 #{bookinfo_category}, 
+			 #{bookinfo_division}, 
+			 #{bookinfo_book_nm}, 
+			 #{bookinfo_publisher}, 
+			 #{bookinfo_author}, 
+			 #{bookinfo_published_dt}, 
+			 #{bookinfo_udt_id}, 
+			 #{bookinfo_ins_id})
+	</insert>
+	
+	<select id="searchBookByIsbn" resultType="BookInfo" parameterType="String">
+		select 
+			bbt.BOOKINFO_ISBN BOOKINFO_ISBN,
+		 	bbt.BOOKINFO_CATEGORY BOOKINFO_CATEGORY,
+		 	bbt.BOOKINFO_DIVISION BOOKINFO_DIVISION,
+			bbt.BOOKINFO_BOOK_NM BOOKINFO_BOOK_NM,
+			bbt.BOOKINFO_PUBLISHER BOOKINFO_PUBLISHER,
+			bbt.BOOKINFO_PUBLISHED_DT BOOKINFO_PUBLISHED_DT,
+		 	bbt.BOOKINFO_QUANTITY BOOKINFO_QUANTITY,
+		 	bbt.BOOKINFO_AUTHOR BOOKINFO_AUTHOR,
+		 	cbft.BOARD_FILE_SAVED board_file_saved,
+		 	cbft.BOARD_FILE_ORIGIN board_file_origin
+		from 
+			book_bookinfo_tb bbt, com_board_file_tb cbft
+		where 
+			bbt.BOARD_FILE_SEQ = cbft.BOARD_FILE_SEQ
+		and 
+			bbt.BOOKINFO_ISDELETED = 0
+		and
+			bbt.BOOKINFO_ISBN = #{isbn}
+		
+	</select>
+	
+	<insert id="insertBook" parameterType="Book">
+		insert into BOOK_BOOK_TB 
+			(BOARD_CONTENT_SEQ , 
+			BOOKINFO_ISBN,
+			BOOK_LABEL, 
+			BOOK_UDT_ID, 
+			BOOK_INS_ID) 
+		values 
+			(#{board_content_seq},
+			 #{bookinfo_isbn}, 
+			 #{book_label}, 
+			 #{book_udt_id}, 
+			 #{book_ins_id} )
+	</insert>
+	
+	<select id="getQuantityOfBookInfo" parameterType="String" resultType="BookInfo">
+		select BOOKINFO_QUANTITY 
+		from BOOK_BOOKINFO_TB
+		where BOOKINFO_ISBN = #{isbn}
+	</select>
+	
+	<update id="updateQuantityOfBookInfo">
+		update BOOK_BOOKINFO_TB
+		set BOOKINFO_QUANTITY = #{1},
+		BOOKINFO_UDT_ID = #{2}
+		where BOOKINFO_ISBN = #{0}
+	</update>
+	
+	<select id="stdList" parameterType="map" resultType="SchoolBookUser">
+	select
+		CUT.USER_ID,
+		CUT.USER_NM,
+		CUT.USER_PHONE,	
+		CUT.USER_EMAIL,
+		CUT.USER_SEX,
+		CUT.USER_FLAG,
+		ECGT.GISU_NUM
+	from	
+		COM_USER_TB CUT,
+		BOOK_USER_TB BUT,
+		EDU_CURRICULUM_GISU_TB ECGT
+	where
+		CUT.USER_ID = BUT.USER_ID
+		and BUT.GISU_SEQ = ECGT.GISU_SEQ
+		<if test="gisu != null and gisu != ''">	
+		and ECGT.GISU_NUM = #{gisu}
+		</if>
+		<if test="name != null and name != ''">
+		and CUT.USER_NM like '%' || #{name} || '%'
+		</if>
+	</select>
+	
+	<select id="myRecordReturn" parameterType="String" resultType="RecordReturn">
+	SELECT
+		BRST.RENTAL_RTN_STATE, COUNT(BRST.RENTAL_RTN_STATE) RENTAL_RTN_STATE_CNT
+  	FROM
+  		BOOK_RENTAL_STATE_TB BRST
+  	where
+  		BRST.rental_req_id = #{user_id}
+  		and BRST.RENTAL_RTN_STATE is not null
+ 	GROUP BY
+ 		BRST.RENTAL_RTN_STATE
+	
+	</select>
+	
+	<select id="myRecordOverdue" parameterType="String" resultType="String">
+	SELECT
+		BRST.RENTAL_REQ_STATE
+  	FROM
+  		BOOK_RENTAL_STATE_TB BRST
+  	where
+  		BRST.rental_req_id = #{user_id}
+  		and BRST.RENTAL_RTN_STATE is not null
+	</select>
+	
+	<select id="rtnBookInfo" parameterType="String" resultType="RentalState">
+	SELECT
+		BRST.RENTAL_SEQ,
+		CUT.USER_NM,
+		BBIT.bookinfo_book_nm,
+		BRST.RENTAL_REQ_DT,
+		BRST.RENTAL_REQ_PERMIT_ID,
+		BRST.RENTAL_REQ_PERMIT_DT,
+		BRST.RENTAL_REQ_STATE,
+		BRST.RENTAL_RTN_DUE_DT	
+  	FROM
+  		BOOK_RENTAL_STATE_TB BRST,
+		BOOK_BOOKINFO_TB BBIT,
+		BOOK_BOOK_TB BBT,
+  		COM_USER_TB CUT
+  	where
+  		BRST.rental_seq = #{rtn_seq}
+		and BRST.book_seq = BBT.book_seq
+		and BBT.bookinfo_isbn = BBIT.bookinfo_isbn
+  		and BRST.RENTAL_REQ_ID = CUT.USER_ID
+	</select>
+	<update id="rtnBookProc" parameterType="String">
+		update
+			BOOK_RENTAL_STATE_TB
+		set
+			RENTAL_RTN_PERMIT_ID = #{2},
+			RENTAL_RTN_PERMIT_DT = now(),
+			RENTAL_RTN_STATE = #{1}
+		where
+			rental_seq = #{0}
+	</update>
+	
+	<select id="applyList" resultType="PurchaseReqRank">
+	select
+		BPRT.PURCHASE_REQ_ISBN,
+		BPRT.PURCHASE_REQ_BOOK_NM,
+		BPRT.PURCHASE_REQ_PUBLISHER,
+		BPRT.PURCHASE_REQ_AUTHOR,
+		count(BPRT.PURCHASE_REQ_ISBN) PURCHASE_REQ_CNT
+	from
+		book_purchase_req_tb BPRT
+	group by BPRT.PURCHASE_REQ_ISBN
+	order by PURCHASE_REQ_CNT desc
+	</select>
+	
+	<select id="getApplyInfo" resultType="PurchaseReq">
+	select
+		CUT.user_nm,
+		BPRT.PURCHASE_REQ_ISBN,
+		BPRT.PURCHASE_REQ_BOOK_NM,
+		BPRT.PURCHASE_REQ_PUBLISHER,
+		BPRT.PURCHASE_REQ_AUTHOR,
+		BPRT.PURCHASE_REQ_REASON,
+		BPRT.PURCHASE_REQ_STATE,
+		BPRT.PURCHASE_REQ_DT	
+	from
+		book_purchase_req_tb BPRT,
+		com_user_tb CUT
+	where
+		BPRT.PURCHASE_REQ_ISBN = #{0}
+		and BPRT.PURCHASE_REQ_ID = CUT.user_id
+	</select>
+	
+	<select id="getApplyBook" resultType="PurchaseReq">
+	select
+		BPRT.PURCHASE_REQ_ISBN,
+		BPRT.PURCHASE_REQ_BOOK_NM,
+		BPRT.PURCHASE_REQ_PUBLISHER,
+		BPRT.PURCHASE_REQ_AUTHOR
+	from
+		book_purchase_req_tb BPRT
+	where
+		BPRT.PURCHASE_REQ_ISBN = '9788964620878'
+	group by BPRT.PURCHASE_REQ_ISBN
+	</select>
+	
+	<select id="rentalList" resultType="RentalState">
+	select
+		BBIT.bookinfo_book_nm,
+		BBT.BOOK_LABEL,
+		CUT.user_nm,
+		BRST.rental_req_dt,
+		BRST.rental_seq
+	from
+		BOOK_RENTAL_STATE_TB BRST,
+		BOOK_BOOKINFO_TB BBIT,
+		BOOK_BOOK_TB BBT,
+		COM_USER_TB CUT
+	where
+		BRST.rental_req_id = CUT.user_id
+		and BRST.book_seq = BBT.book_seq
+		and BBT.bookinfo_isbn = BBIT.bookinfo_isbn
+		and BRST.RENTAL_REQ_STATE = 'B0300'
+	order by
+		BRST.rental_req_dt desc
+	</select>
+	
+	<select id="bookList" resultType="BookInfo">
+	select
+		BOOKINFO_ISBN,
+		BOOKINFO_CATEGORY,
+		BOOKINFO_DIVISION,
+		BOOKINFO_BOOK_NM,
+		BOOKINFO_PUBLISHER,
+		BOOKINFO_AUTHOR,
+		BOOKINFO_QUANTITY
+	from
+		BOOK_BOOKINFO_TB
+	</select>
+	
+	<select id="getBookInfo" resultType="BookInfo">
+	select
+		BOOKINFO_ISBN,
+		BOOKINFO_CATEGORY,
+		BOOKINFO_DIVISION,
+		BOOKINFO_BOOK_NM,
+		BOOKINFO_PUBLISHER,
+		BOOKINFO_AUTHOR,
+		BOOKINFO_QUANTITY
+	from
+		BOOK_BOOKINFO_TB
+	where
+		BOOKINFO_ISBN = #{isbn}
+	</select>
+	
+	<select id="getDetailList" resultType="Book">
+	select
+		BOOK_label,	
+		BOOK_BOOKSTATE,	
+		BOOK_RENTABLE,	
+		BOOK_ISDELETE	
+	from
+		BOOK_BOOK_TB
+	where
+		BOOKINFO_ISBN = #{isbn}
+	</select>
+
+	<update id="rentalApproval" parameterType="map">
+		update
+			BOOK_RENTAL_STATE_TB
+		set
+			RENTAL_REQ_PERMIT_ID = #{admin},
+			RENTAL_REQ_PERMIT_DT = now(),
+			RENTAL_REQ_STATE = #{state},
+			RENTAL_RTN_DUE_DT = DATE_ADD(DATE_FORMAT(DATE_ADD(now(), interval 8 DAY), "%Y-%m-%d"), interval -1 second),
+			RENTAL_UDT_DT = now()
+		where
+			rental_seq = #{rental_seq}
+	</update>
+	
+	<select id="statusList" parameterType="map" resultType="RentalState">
+	select
+		BBIT.bookinfo_book_nm,
+		BBT.BOOK_LABEL,
+		CUT.user_nm,
+		BRST.rental_req_dt,
+		BRST.rental_rtn_due_dt,
+		BRST.RENTAL_REQ_STATE
+	from
+		BOOK_RENTAL_STATE_TB BRST,
+		BOOK_BOOKINFO_TB BBIT,
+		BOOK_BOOK_TB BBT,
+		COM_USER_TB CUT
+	where
+		BRST.rental_req_id = CUT.user_id
+		and BRST.book_seq = BBT.book_seq
+		and BBT.bookinfo_isbn = BBIT.bookinfo_isbn
+		and BRST.RENTAL_REQ_STATE = 'B0302'
+		or BRST.RENTAL_REQ_STATE = 'B0304'
+		<if test="sort == '0'">	
+		order by
+			BRST.rental_rtn_due_dt desc
+		</if>
+		<if test="sort == '1'">
+		order by
+			BRST.rental_req_dt desc
+		</if>
+		<if test="sort == '2'">
+		order by
+			BBIT.bookinfo_book_nm desc
+		</if>
+	</select>
+</mapper>

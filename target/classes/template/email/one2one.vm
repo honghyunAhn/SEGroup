@@ -1,0 +1,35 @@
+<html>
+<body>
+
+#define( $nl2br )
+${output.replaceAll("\r?\n", "<BR>$0")}
+#end
+#set( $output = $data.comment )
+
+<div class="body">
+	<div class="sub-header">
+		<h2 class="sub-title">1:1상담 </h2>
+	</div>
+	<div class="sub-body">
+		<div class="group">
+			<table>
+				<tr>
+					<th>성명</th>
+					<td>${name}</td>
+				</tr>
+				<tr>
+					<th>제목</th>
+					<td>${data.title}</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td>${nl2br}</td>
+				</tr>
+			</table>
+		</div>
+	</div><!--//.sub-body-->
+	<!--본문 내용 출력 공간-->
+</div>
+
+</body>
+</html>

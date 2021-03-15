@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	    <property name="host" value="#{config['Globals.Mail.Host']}"/>
+	    <property name="port" value="#{config['Globals.Mail.Port']}"/>
+	    <property name="protocol" value="#{config['Globals.Mail.Protocol']}"/>
+	    <property name="username" value="#{config['Globals.Mail.UserName']}"/>
+	    <property name="password" value="#{config['Globals.Mail.Password']}"/>
+	    <property name="defaultEncoding" value="#{config['Globals.Mail.Encoding']}"/>
+	    <property name="javaMailProperties">
+	        <props>
+	        	<prop key="mail.smtp.starttls.enable">true</prop>
+	            <prop key="mail.smtp.auth">#{config['Globals.Mail.Smtp.IsAuth']}</prop>
+	            <prop key="mail.smtp.debug">true</prop>
+	            <!-- prop key="hostname">#{config['Globals.Mail.Host']}</prop> -->
+	            <!-- <prop key="mail.from">#{config['Globals.Mail.UserName']}</prop> -->
+	        </props>
+	    </property>
+	</bean>
+
+	<bean id="velocityConfig" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="resourceLoaderPath" value="classpath:template/"/>
+		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding">UTF-8</prop>
+			</props>
+		</property>
+	</bean>
+
+
+</beans>

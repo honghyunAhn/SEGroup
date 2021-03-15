@@ -1,0 +1,1257 @@
+@charset "UTF-8";
+/* style_responsive.css */
+/* ----------------------------------------------------------------
+  >> TABLE OF CONTENTS:                   담당자 : 성지민
+	[1] pc 1024px - 1920px >> 기준 1200px
+
+	[2] 태블릿 768px - 1023px >> 기준 730px
+
+    [3] 모바일  320px - 767px >> 기준 300px
+
+        0.0 font-face
+
+        1.0 reset 표준화
+
+    	2.0 Plugin 관련 - Swiper(슬라이드)
+
+        3.0 Layout Desgin - Common Style
+            - 3.1 z-index
+            - 3.2 content align
+            - 3.3 icon
+            - 3.4 text
+            - 3.5 button
+            - 3.6 color
+            - 3.7 ETC function
+
+        4.0 Main Page Design
+            - 4.1 header
+                - 4.1.1 top-banner
+                - 4.1.2 header
+                    1) 공지사항
+                    2) 로그인/로그아웃
+                    3) 로고/검색창/SNS
+                - 4.1.3 nav
+                    1) menu-btn 메뉴바
+                    2) nav
+
+            - 4.2 footer
+                - 4.2.1 Scroll to Top
+                - 4.2.2 footer
+
+            - 4.3 main
+                - 4.3.1 main-bannerWrap 슬라이딩 배너
+                - 4.3.2 btnWrap 퀵메뉴 버튼
+                - 4.3.3 hotNewWrap 인기강좌
+                - 4.3.4 recommend-classWrap 분야별 추천 강좌
+                - 4.3.5 banner-mid 중간 배너
+                - 4.3.6 special-classWrap 특강 및 설명회
+                - 4.3.7 customWrap
+                    - 1) 공지사항/이벤트 + FAQ
+                    - 2) 고객센터
+                - 4.3.8 interviewWrap 홍보영상/인터뷰
+
+        5.0 Contents Design - common
+            - 5.1 subPage - subNav
+            - 5.2 subPage - subContent
+                - 5.2.1 pageLocation 사용자 위치 표시
+                - 5.2.2 headerBox 카테고리별 header 이미지
+                - 5.2.3 ProcessWrap 단계별 진행상황
+            - 5.3 subPage - section
+                - 5.3.1 subPage - searchWrapper 과정명 검색
+                - 5.3.2 subPage - searchWrapper 조건선택 필터
+                - 5.3.3 subPage - searchWrapper 검색조건
+                    - 1) viewWrap : 10개씩 보기
+                    - 2) search-filter-wrap : 제목+내용 검색
+                - 5.3.4 subPage - pagination 페이지 수
+                - 5.3.5 subPage - sectionOutBtn (섹션 최하단 우측) 버튼
+
+            -5.4 subPage - 리스트 페이지 (.eLearning)
+                -5.4.1 리스트 페이지 공통 - 페이지 공통
+                -5.4.2 리스트 페이지 공통 - 과정목록 Title
+                -5.4.3 리스트 페이지 공통 - 과정목록 Content
+
+            -5.5 subPage - 강의 리스트 페이지 (.eLearning)
+                -5.5.1 강의 리스트 - 과정목록 Title
+                -5.5.2 강의 리스트 - 과정목록 Content
+
+            -5.6 subPage - 게시판 리스트 페이지 (.container.sub0$)
+                -5.6.1 게시판 리스트 - 과정목록 Title
+                -5.6.2 게시판 리스트 - 과정목록 Content
+
+            -5.7 subPage - Tab Group 탭
+                -5.7.1 Tab Group - Tab Title
+                -5.7.2 Tab Group - Sub Group
+
+            -5.8 subPage - formStyle
+                -5.8.1 formStyle - common
+                -5.8.2 formStyle - 게시글 보기
+                -5.8.3 formStyle - writePost 글쓰기
+                -5.8.4 formStyle - userInfo 회원정보 확인
+
+            -5.9 subPage - table
+                -5.9.1 table - thead
+                -5.9.2 table - tbody
+
+        6.0 Contents Design for Page (페이지별 개별화 된 콘텐츠 디자인)
+            - 6.1 sub00 로그인/회원가입
+                - 6.1.1 sub00-01 로그인
+                - 6.1.2 sub00-02 회원가입
+                - 6.1.3 sub00-03 아이디찾기
+                - 6.1.4 sub00-04 비밀번호찾기
+
+            - 6.2 eLearning(sub01~sub04) 온라인 강의
+                - 6.2.1 eLearning-01 온라인 강의 목록
+                - 6.2.2 eLearning-01-01 온라인 강의 상세
+
+            - 6.3 sub05 커뮤니티
+                - 6.3.1 sub05-01 공지사항/이벤트
+                - 6.3.2 sub05-02 수강후기/인터뷰
+                - 6.3.3 sub05-03 특강/설명회
+                - 6.3.4 sub05-04 자유게시판
+
+            - 6.4 sub06 고객센터
+                - 6.4.1 sub06-01 고객지원
+                - 6.4.2 sub06-02 FAQ
+                - 6.4.3 sub06-03 단체/제휴문의
+                - 6.4.4 sub06-04 오시는길
+
+            - 6.5 sub07 나의강의실
+                - 6.5.1 sub07-01 학습현황
+                - 6.5.2 sub07-02 결제현황/환불
+                - 6.5.3 sub07-03 마일리지
+                - 6.5.4 sub07-04 개인정보수정
+                - 6.5.5 sub07-05 회원탈퇴
+
+        7.0 Popup Design - modal popup layer
+            - 7.1 modal popup layer - layout
+                - 7.1.1 modal popup layer - header
+                - 7.1.2 modal popup layer - Content
+                    - 1) 수강신청
+                        - 01수강신청
+                        - 02환불규정
+                        - 03결제방법
+                    - 2) 나의강의실
+                        - 01학습현황
+                        - 02과목자료실
+                        - 03과목공지사항
+                        - 04과목Q&A
+                        - 05설문/과제/토론
+
+    ※ 서버 적용 이후 '임시' 키워드 찾아 지울 것
+----------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  [1] pc 1024px - 1920px >> 기준 1200px
+----------------------------------------------------------------*/
+@media(max-width:1600px){
+/*--------------------------------------------------------------
+  >> 4.0 Main Page Design
+----------------------------------------------------------------*/
+/* 4.1 Header */
+/* 4.1.1 top-banner */
+
+}
+/*--------------------------------------------------------------
+  [2] 태블릿 768px - 1023px >> 기준 730px
+----------------------------------------------------------------*/
+@media(max-width:1024px){
+/*--------------------------------------------------------------
+  >> 1.0 1.0 reset 표준화
+----------------------------------------------------------------*/
+/* 1.2 Typography */
+html {
+    font-size: 13px;
+}
+/*--------------------------------------------------------------
+  >> 2.0 Plugin 관련 - Swiper(슬라이드)
+----------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+  >> 3.0 Layout Desgin - Common Style
+----------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+  >> 4.0 Main Page Design
+----------------------------------------------------------------*/
+
+/* 4.1 Header */
+/* 4.1.1 top-banner */
+/* 4.1.2 header */
+
+/* 4.2 footer */
+/* 4.2.2 footer */
+
+/* 4.3 main */
+/*--------------------------------------------------------------
+  >> 5.0 Contents Design - common
+----------------------------------------------------------------*/
+/* 5.1 subPage */
+ .container {
+    width: 100%;
+}
+.sub-content {
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    background-size: contain;
+} 
+/* - 5.1 subPage - subNav */
+.sub-nav {
+    display: none;
+}
+
+/* -5.8 subPage - formStyle */
+/* -5.8.1 formStyle - common */
+.formStyle {
+    width: 100%;
+}
+
+/*--------------------------------------------------------------
+  >> 6.0 Contents Design for Page 페이지별 개별화 된 콘텐츠 디자인
+----------------------------------------------------------------*/
+
+/* - 6.1 sub00 로그인/회원가입 */
+/* - 6.1.2 sub00-02 회원가입 */
+/* certification 인증 */
+.certification>.article-title{
+    display: block;
+}
+.certification .titleBar-hdr{
+    margin: 10px 0;
+}
+/* - 6.4 sub06 고객센터 */
+/* - 6.4.4 sub06-04 오시는길 */
+.section.sub06-04 {
+    flex-wrap: wrap;
+}
+
+.map {
+    width: 100%;
+}
+
+.map-wayWrap {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.map-wayWrap .map-way:nth-child(1)~*{
+    margin: 0;
+}
+/* - 6.5 sub07 나의강의실 */
+/* - 6.5.3 sub07-03 마일리지 */
+.sub07-03 .sub-segment {
+    flex-wrap: wrap;
+}
+.mileage-list {
+    width: 100%;
+}
+
+/*--------------------------------------------------------------
+  >> 7.0 Popup Design - modal popup layer
+----------------------------------------------------------------*/
+/* - 7.1 modal popup layer - layout */
+.modal-content{
+    width: calc(100% - 60px);
+    height: calc(100% - 200px);
+}
+
+/* - 7.1.1 modal popup layer - header */
+/* - 7.1.2 modal popup layer - Content 1) 수강신청 */
+.eLearning .modal-sectionWrap{
+    padding: 10px;
+}
+.eLearning .modal .email .input{
+    width: 100px;
+}
+
+/* modal popup layer 수강신청 - 02 환불규정 */
+.modal .cancel-rule{
+    display: block;
+    margin: 30px 0;
+}
+
+/* modal popup layer 수강신청 - 03 결제방법 */
+.modal .input-ctt {
+    padding: 10px;
+}
+
+/* - 7.1.2 modal popup layer - Content 2) 나의강의실 */
+
+.completionWrap{
+    flex-wrap : wrap;
+}
+.graphWrap>.graphGroup>.graph{
+    width: 408px;
+}
+
+.completionWrap>.scoreSum{
+    margin-left: 0;
+}
+
+
+
+/* modal popup layer 나의강의실 - 03 과목공지사항 */
+.modal .myClass .class-list .icon-align>.text-over-lh20{
+    width: calc(100% - 30px);
+}
+
+/* 2020-03-10 시험 응시 페이지 */
+.sub07-testWrapper{
+    width: calc(100% - 20px);
+}
+.test-header .titleWrap .infoWrap{
+    display: block;
+}
+.sub07 .sub07-01-01-test{
+    height: calc(100vh - 95px);
+}
+/*--------------------------------------------------------------
+  Renewal_style_responsive.css
+----------------------------------------------------------------*/
+/*     1.0 Layout Desgin - Common Style
+        - 1.1 z-index
+        - 1.2 content align
+        - 1.3 icon
+        - 1.4 text
+        - 1.5 button
+        - 1.6 color
+        - 1.7 ETC function
+        - 1.8 swiper
+
+    2.0 Main Page Design
+        - 2.1 header
+            - 2.1.1 mainHeader
+            - 2.1.2 subHeader
+
+        - 2.2 footer
+            - 2.2.1 Scroll to Top
+            - 2.2.2 footer
+
+        - 2.3 main
+            - 2.3.1 main-bannerWrap 메인 컨셉 배너
+            - 2.3.2 quickMenuWrap 퀵메뉴 버튼
+            - 2.3.3 recommend-classWrap 분야별 추천 강좌
+            - 2.3.4 banner-mid 중간 배너 1
+            - 2.3.5 companyInfoWrap 기업소개
+            - 2.3.6 banner-mid 중간 배너 2
+
+    3.0 Contents Design - common
+
+    4.0 Contents Design for Page (페이지별 개별화 된 콘텐츠 디자인)
+
+    5.0 Popup Design - modal popup layer
+        - 5.1 modal popup layer - layout
+            - 5.1.1 modal popup layer - header
+            - 5.1.2 modal popup layer - Content
+ */
+ /*--------------------------------------------------------------
+  >> 1.0 Layout Desgin - Common Style
+----------------------------------------------------------------*/
+
+ /*--------------------------------------------------------------
+  >> 2.0 Main Page Design
+----------------------------------------------------------------*/
+.headerWrapper>.hdrWrap, 
+.navWrapper>.nav, 
+.mainWrapper>.mainBannerWrap, 
+.mainWrapper>.quickMenuWrap, 
+.fullWrapper>.full-background>.full-navGroup, 
+.content, .subPage_container, 
+.footer>.footer_wrap{
+	width : calc(100% - 40px);
+}
+
+/* - 2.1 header */
+.mainWrapper{
+	margin-top : 0;
+}
+.mainPage_header{
+	height : 350px;
+	background-position : bottom;
+}
+.headerWrapper>.hdrWrap>.header{
+	padding : 10px 0;
+}
+.mainWrapper>.mainBannerWrap>.mainHeader>.fz34{
+	/* font-size : 30px; */
+	font-size : 2.143rem;
+	line-height : 50px;
+}
+.mainPage_header .hdrMenu.join>.join_sub{
+	display:none;
+}
+
+.mainWrapper>.mainBannerWrap>.mainHeader{
+	padding-top : 10px;
+}
+.mainWrapper>.mainBannerWrap>.header-search{
+	width : 400px;
+	margin : 20px auto 130px;
+}
+.mainWrapper>.quickMenuWrap{
+	border-radius : 30px;
+}
+.mainWrapper>.quickMenuWrap>.btn-menu{
+	padding:20px 20px 0;
+}
+
+/* - 2.2 footer */
+
+.footer>.footer_wrap{
+	-webkit-box-lines: multiple;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.footer>.footer_wrap>.footer_infoWrap>.footer_textWrap>ul>li:nth-child(3)~*{
+	display : none;
+}
+
+.footer>.footer_wrap>.footer_navWrap .gnb{
+	margin-left :15px;
+}
+
+.footer>.copyright{
+	margin-top: 20px;
+	margin-bottom : 20px;
+}
+/* - 2.3 main */
+.bannerImg_responsive{
+	display : block;
+	margin : 110px auto 40px;
+}
+.bannerImg_responsive>.btnWrap{
+	justify-content : flex-end;
+}
+.bannerImg_responsive>.swiper-wrapper{}
+.bannerImg_responsive>.swiper-wrapper>.swiper-slide{
+	width : 100% !important;
+}
+.recommend-class,
+.content>.bannerImg{
+	display : none;
+}
+.bannerImg_responsive .bannerImg{
+	margin : 0 auto;
+	height: 97px;
+	background-position : center;
+	background-size:contain;
+	background-repeat :no-repeat;
+	
+}
+.companyInfoWrap>.companyInfo>.company-card>a>.company-img{
+	height: 206px;
+}
+/*--------------------------------------------------------------
+  >>  3.0 Contents Design - common
+----------------------------------------------------------------*/
+/* - 3.1 subHeader */
+.subPage_header .headerWrapper>.hdrWrap>.header{
+	-webkit-box-lines: multiple;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.subPage_header .header-search{
+	
+}
+.subPage_header .headerWrapper>.hdrWrap>.header>.header-menu{
+	margin-right : 20px;
+}
+.subPage_header .headerWrapper>.hdrWrap>.header>.header-menu>.hdrMenu{
+	width : 80px;
+}
+
+.subPage_container>.subPage_nav{
+	display : none;
+}
+
+/* 서브페이지(sub01-sub04) >> 강의리스트 */
+
+
+/*--------------------------------------------------------------
+  >>  4.0 Contents Design for Page (페이지별 개별화 된 콘텐츠 디자인)
+----------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  >>  5.0 Popup Design - modal popup layer
+----------------------------------------------------------------*/
+
+
+
+}
+
+/*--------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+  [3] 모바일  320px - 767px >> 기준 300px
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------
+----------------------------------------------------------------*/
+
+
+@media(max-width:767px){
+/*--------------------------------------------------------------
+  >> 1.0 1.0 reset 표준화
+----------------------------------------------------------------*/
+/* 1.2 Typography */
+html {
+    font-size: 12px;
+}
+/*--------------------------------------------------------------
+  >> 2.0 Plugin 관련 - Swiper(슬라이드)
+----------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+  >> 3.0 Layout Desgin - Common Style
+----------------------------------------------------------------*/
+/* 3.1 z-index */
+/* 3.2 content align */
+/* 3.3 icon */
+/* 3.4 text */
+.titleBar-hdr{
+    margin: 5px 0;
+}
+/* 3.5 button */
+
+/* 3.6 color */
+/* 3.7 ETC function */
+
+/*--------------------------------------------------------------
+  >> 4.0 Main Page Design
+----------------------------------------------------------------*/
+/* 4.1 Header */
+
+/* 4.2 footer */
+
+/* 4.3 main */
+
+/* 4.3.1 main-bannerWrap 슬라이딩 배너 */
+/* 20-08-18 .main-bannerWrap 추가 */
+
+
+/* 4.3.2 btnWrap 퀵메뉴 버튼 */
+/* 4.3.3 hotNewWrap 인기강좌 */
+
+/* 4.3.4 recommend-classWrap 분야별 추천 강좌 */
+
+
+
+
+
+
+/*--------------------------------------------------------------
+  >> 5.0 Contents Design - common
+----------------------------------------------------------------*/
+/* 5.1 subPage */
+/* - 5.1 subPage - subNav */
+/* 5.1 subPage - subNav - 1) 선택 되었을 때 */
+/* 5.1 subPage - subNav - 2) color customizing */
+
+/* - 5.2 subPage - subContent */
+/* - 5.2.1 pageLocation 사용자 위치 표시 */
+.page-location{
+    padding: 0 5px;
+}
+
+.page-locationWrap .chevron-right{
+    margin: 0 3px;
+}
+
+.page-locationWrap>.chevron-right{
+    margin: 0;
+}
+
+/* - 5.2.2 headerBox 카테고리별 header 이미지 */
+
+.sub-content .header {
+    padding: 10px 0;
+}
+
+/* - 5.2.3 ProcessWrap 단계별 진행상황 */
+.processWrap>.process {
+    min-width: 25%;
+    text-indent: 10px;
+}
+/* - 5.3 subPage - section */
+.sub-content .section {
+    margin: 0 0 40px;
+}
+/* - 5.3.1 subPage - searchWrapper 과정명 검색 */
+.class-searchWrap{
+    float: none;
+}
+.class-searchWrap>.d-flex {
+    flex-wrap: wrap;
+}
+.class-searchWrap .d-flex.floatR{
+    width: 100%;
+}
+.class-searchWrap .class-search-down{
+    width: 100%;
+    margin-top: 10px;
+}
+.class-searchWrap .class-search-down .cusPHIn.input{
+    width: calc(100% - 25px);
+}
+
+/* - 5.3.2 subPage - searchWrapper 조건선택 필터 */
+/* - 5.3.3 subPage - searchWrapper 검색조건 */
+/* - 5.3.3 searchWrapper 1) viewWrap : 10개씩 보기 */
+/* - 5.3.3 searchWrapper 2) search-filter-wrap : 제목+내용 검색 */
+/* - 5.3.4 subPage - pagination 페이지 수 */
+/* - 5.3.5 subPage - sectionOutBtn (섹션 최하단 우측) 버튼 */
+
+/* -5.4 subPage - 리스트 페이지 (.eLearning) */
+/* -5.4.1 리스트 페이지 공통 */
+.class-list{
+    flex-wrap: wrap;
+    padding: 10px 0;
+    border-left: none;
+    border-right: none;
+}
+.class-list-title .c-name,
+.class-list>.c-ttl {
+    width: 100%;
+}
+
+/* -5.4.2 리스트 페이지 공통 - 과정목록 Title */
+.class-list-title {
+    display: none;
+}
+/* -5.4.3 리스트 페이지 공통  - 과정목록 Content */
+.class-list-wrap .class-list:first-child {
+    border-top: 1px solid #eee;
+}
+.class-list-wrap .class-list>.c-ctt,
+.class-list-wrap .class-list>*:nth-child(2)~* {
+    margin-top: 5px;
+}
+/* -5.5 subPage - 강의 리스트 페이지 (.eLearning) */
+/* -5.5.1 강의 리스트 - 과정목록 Title */
+.eLearning .class-list>.c-ttl>a {
+    justify-content: space-between;
+}
+
+.class-list>.c-ttl>a>.class-title-wrap {
+    width: calc(100% - 110px);
+}
+.eLearning .class-list>.c-ttl>a>.class-title-wrap>.filterWrap>div {
+    margin-right: 5px;
+}
+
+/* -5.5.2 강의 리스트 - 과정목록 Content */
+.eLearning .class-list>.c-ctt{
+    display: flex;
+    width: 30%;
+    height: 30px;
+    line-height: 30px;
+}
+.eLearning .class-list>.c-ctt:nth-child(3)~* {
+    width: 20%;
+}
+
+.eLearning .class-list .mobile-show-ttl {
+    display: block;
+}
+
+.eLearning .class-list>.c-ctt p {
+    font-size: 0.857rem;
+}
+
+.eLearning .c-price>.tableWrap {
+    display: flex;
+}
+
+.eLearning .c-price>.tableWrap>.del,
+.eLearning .class-list .button .img-icon{
+    display: none;
+}
+
+.eLearning .class-list .button {
+    width: 40px;
+    margin: 0 auto;
+}
+.eLearning .class-list .button .h5{
+    width: 100%;
+}
+
+/* -5.6 subPage - 게시판 리스트 페이지 (.container.sub0$) */
+/* -5.6.1 게시판 리스트 - 과정목록 Title */
+/* -5.6.2 게시판 리스트 - 과정목록 Content */
+.class-list-wrap .class-list{
+    padding: 10px 0;
+}
+.class-list>.c-table-01,
+.class-list>.c-table-num {
+    width: 10%;
+}
+
+.class-list>div:nth-child(2){
+    width: calc(100% - 10%);
+}
+
+
+/* open-asw / open-ctt */
+.open-asw .aswr-box{
+    padding: 5px;
+}
+.open-asw .Amark {}
+
+/* open-class (sub07)상세보기/닫기 */
+.open-class {}
+.open-class:hover{}
+.open-class>.img-icon {}
+
+/* -5.7 subPage - Tab Group 탭 */
+
+/* -5.7.1 Tab Group - Tab Title */
+.class-tabMenu>.tabGroup>li {
+    padding: 0 5px;
+    height: 40px;
+    /* 2줄이상 초과시 */
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-orient:vertical;
+    white-space: nowrap;
+}
+
+/* (sub06-02) plus-tabGroup : 관리자 탭 추가시 정렬*/
+.class-tabMenu>.plus-tabGroup {}
+.class-tabMenu>.plus-tabGroup>li:nth-child(2n),
+.class-tabMenu>.plus-tabGroup>li:nth-child(4n) {
+    margin-right: 0;
+}
+
+.class-tabMenu>.plus-tabGroup>li:nth-child(4n)~* {
+    margin-top: 0;
+}
+
+.class-tabMenu>.plus-tabGroup>li:nth-child(2n)~* {
+    margin-top: 10px;
+}
+
+/* -5.7.2 Tab Group - Sub Group */
+.class-tabMenu>.subGroup>.tab-sub>.sub-section {
+    flex-wrap: wrap;
+    margin: 10px 5px 20px;
+}
+.class-tabMenu .class-list-wrap .class-list:first-child{
+    border-top: none;
+}
+/* -5.8 subPage - formStyle */
+/* -5.8.1 formStyle - common */
+.formStyle {
+    width: 100%;
+}
+.formStyle>.d-flex {
+    flex-wrap: wrap;
+    padding: 0 5px;
+    border: 1px solid #f9f9f9;
+}
+.formStyle>.d-flex:nth-child(1)~* {
+    margin-top: 5px;
+}
+.formStyle>.d-flex .label {
+    line-height: 30px;
+}
+.formStyle>.d-flex>div {
+    width: 100%;
+}
+.formStyle .w100,
+.container .formStyle .email .input{width: 75px;}
+.formStyle .w355{width: 100%;}
+
+/* -5.8.2 formStyle - viewPost 게시글 보기 */
+.view-post .formStyle>.d-flex{
+    flex-wrap: nowrap;
+    padding: 0;
+}
+.view-post .d-flex>.label{
+    width: 60px;
+}
+.view-post .formStyle .d-flex{
+    border: none;
+}
+.view-post .formStyle .d-flex:nth-child(1)~*{
+    margin-top: 0;
+}
+.view-post .button-wrap{
+    justify-content:center;
+}
+/* -5.8.3 formStyle - writePost 글쓰기 */
+.write-post .formStyle{
+    padding: 5px 5px 10px;
+}
+.write-post .formStyle>.d-flex .label{
+    width: 50px;
+    line-height: 40px;
+}
+.write-post .formStyle>.d-flex>div{
+    width: auto;
+}
+.write-post .post-content {
+    height: 300px;
+}
+/* -5.8.4 formStyle - userInfo 회원정보 확인 */
+.userInfo>.enterWrap,
+.userInfo>.enterWrap>.form {
+    width: calc(100% - 20px);
+}
+
+.enterWrap>.form .button {
+    width: 100%;
+}
+
+/* -5.9 subPage - table */
+/* -5.9.1 table - thead */
+/* -5.9.2 table - tbody */
+
+/*--------------------------------------------------------------
+  >> 6.0 Contents Design for Page 페이지별 개별화 된 콘텐츠 디자인
+----------------------------------------------------------------*/
+/* - 6.1 sub00 로그인/회원가입 */
+/* - 6.1.1 sub00-01 로그인 */
+/* - 6.1.2 sub00-02 회원가입 */
+/* certification 인증 */
+.certificationWrap>.certif-boxWrap {
+    flex-wrap: wrap;
+}
+.certif-boxWrap>.certif:nth-child(1)~* {
+    margin-top: 20px;
+}
+.certificationWrap>.certification-notice{
+    width: 100%;
+}
+
+/* - 6.1.3 sub00-03 아이디찾기 */
+/* - 6.1.4 sub00-04 비밀번호찾기 */
+
+/* - 6.2 eLearning(sub01~sub04) 온라인 강의 */
+/* - 6.2.1 eLearning-01 온라인 강의 목록 */
+.eLearning .class-detail{
+    width: 100%;
+    padding: 10px;
+}
+
+.eLearning .class-detail>.c-ttl {
+    height: auto;
+    min-height: 50px;
+}
+.eLearning .class-detail>.c-ttl>.class-title-wrap{
+    flex-wrap: wrap;
+}
+.eLearning .class-detail>.c-ttl>.class-title-wrap>.fz16{
+    margin: 5px 0;
+    text-align: left;
+}
+.eLearning .class-detail>.c-img,
+.eLearning .class-detail>.c-info{
+    width: 100%;
+    height: auto;
+    float: none;
+    margin: 0;
+}
+.eLearning .class-list.class-detail>.info-btnWrap{
+    width: 100%;
+    padding-right: 5px;
+}
+.eLearning .class-detail>.info-btnWrap>*{
+    margin: 0 0 0 10px;
+}
+/* - 6.2.2 eLearning-01-01 온라인 강의 상세 */
+/* - 6.3 sub05 커뮤니티 */
+/* - 6.3.1 sub05-01 공지사항/이벤트 */
+.sub05-01 .class-tabMenu{
+    margin: 20px 0 0;
+}
+.sub05 .class-list .c-table-iconAlign{
+    width: 35%;
+}
+
+/* - 6.3.2 sub05-02 수강후기/인터뷰 */
+/* - 6.3.3 sub05-03 특강/설명회 */
+/* - 6.3.4 sub05-04 자유게시판 */
+
+/* - 6.4 sub06 고객센터 */
+/* - 6.4.1 sub06-01 고객지원 */
+/* - 6.4.2 sub06-02 FAQ */
+.sub06-02 .listAndwrap .class-list>*:last-child{
+    width: 90%;
+    text-align: left;
+    margin-left: 10%;
+    opacity: .5;
+}
+/* - 6.4.3 sub06-03 단체/제휴문의 */
+/* - 6.4.4 sub06-04 오시는길 */
+
+/* - 6.5 sub07 나의강의실 */
+
+.sub07 .sub-segment .class-list,
+.myClass .sub-segment .class-list{
+    justify-content: flex-start;
+    text-align: left;
+    padding: 10px 5px;
+}
+
+/* - 6.5.1 sub07-01 학습현황 */
+.class-list .open-class{
+    width: 100%;
+}
+.sub07-01 .class-list>div:nth-child(4){
+    width: 70%;
+}
+.sub07-01 .open-ctt .class-list>.c-table-01 {
+    width: 20%;
+    text-align: center;
+}
+.sub07-01 .open-ctt .class-list>.c-table-btn,
+.sub07-01 .tab-sub.sub03 .class-list>div:nth-child(5),
+.sub07-01 .class-list>.c-table-btn {
+    width: 20%;
+}
+.sub07-01 .open-ctt .class-list>div:last-child{
+    margin-left: 5%;
+}
+ 
+.modal-sub07-01 .modal-subGroup>.sub01{
+    height: 345px;
+    overflow-y: scroll;
+}
+.modal-sub07-01 .modal-subGroup>.sub01,
+.statusWrap, .completionWrap{
+    padding: 10px;
+}
+.statusWrap{
+    flex-wrap: wrap;
+}
+.chart{
+    margin: 0 auto;
+}
+.statusWrap>.sub-sectionWrap{
+    margin-top: 10px;
+}
+/* 수료조건 */
+.completionWrap>.completion>.sub-section{
+    margin: 0;
+}
+.graphWrap{
+    width: calc(100vw - 70px);
+}
+.graphWrap>.graphGroup{
+    flex-wrap: wrap;
+}
+.graphWrap>.graphGroup>.condition,
+.graphWrap>.graphGroup>.graph,
+.graphWrap>.graphGroup>.scoreWrap{
+    width: 260px;
+    width: 100%;
+}
+.graphWrap>.graphGroup>.scoreWrap{
+    padding-left: 0;
+    text-align: center;
+}
+.completionWrap>.scoreSum>.scoreWrap{
+    width: 250px;
+}
+
+/* - 6.5.2 sub07-02 결제현황/환불 */
+.sub07-02 .class-list>div:nth-child(2)~*{
+    width: 25%;
+    text-align: center;
+    line-height: 30px;
+}
+/* - 6.5.3 sub07-03 마일리지 */
+
+.sub07-03 .class-list-wrap>.class-list .c-table-name-w {
+    width: calc(100% - 25%);
+}
+
+.sub07-03 .sub-section {
+    flex-wrap: wrap;
+}
+
+/* - 6.5.4 sub07-04 개인정보수정 */
+/* - 6.5.5 sub07-05 회원탈퇴 */
+.sub07-05 .checkWrap{
+    height: 50px;
+}
+.sub07-05 .checkWrap .input.check{
+    margin: 8px 0;
+}
+/*--------------------------------------------------------------
+  >> 7.0 Popup Design - modal popup layer
+----------------------------------------------------------------*/
+/* - 7.1 modal popup layer - layout */
+.modal-content {
+    width: 100%;
+    height: calc(100% - 100px);
+}
+.modal-content .sub-content {
+    width: calc(100% - 10px);
+}
+/* - 7.1.1 modal popup layer - header */
+/* - 7.1.2 modal popup layer - Content */
+.modal .sub-content .section>.d-flex{
+    flex-wrap: wrap;
+}
+.modal-content .sub-content>.modal-sectionWrap{
+    padding: 0;
+}
+/* - 7.1.2 modal popup layer - Content 1) 수강신청 */
+.eLearning .modal .formStyle .user-birth{
+    display: flex;
+    justify-content: space-between;
+}
+.eLearning .modal .formStyle .user-birth>.h5{
+    width: 70%;
+    line-height: 20px;
+}
+/* modal popup layer 수강신청 - 02 환불규정 */
+.eLearning .modal .d-inline{
+    display: block;
+}
+/* modal popup layer 수강신청 - 03 결제방법 */
+.modal .input-ctt{
+    padding: 5px;
+}
+.modal .input-ctt .check-bro{
+    line-height: 20px;
+    margin: 10px 0;
+}
+.modal .bill-date{
+    flex-wrap:wrap;
+}
+.modal .bill-date>.txt{
+    margin: 0;
+}
+/* modal popup layer 수강신청 - 04 결제 */
+
+/* - 7.1.2 modal popup layer - Content 2) 나의강의실 */
+/* modal popup layer 나의강의실 - 01 학습현황 */
+/* modal popup layer 나의강의실 - 02 과목자료실 */
+/* modal popup layer 나의강의실 - 03 과목공지사항 */
+/* modal popup layer 나의강의실 - 04 과목Q&A */
+/* modal popup layer 나의강의실 - 05 설문/과제/토론 */
+
+/*--------------------------------------------------------------
+  Renewal_style_responsive.css
+----------------------------------------------------------------*/
+/*     1.0 Layout Desgin - Common Style
+        - 1.1 z-index
+        - 1.2 content align
+        - 1.3 icon
+        - 1.4 text
+        - 1.5 button
+        - 1.6 color
+        - 1.7 ETC function
+        - 1.8 swiper
+
+    2.0 Main Page Design
+        - 2.1 header
+            - 2.1.1 mainHeader
+            - 2.1.2 subHeader
+
+        - 2.2 footer
+            - 2.2.1 Scroll to Top
+            - 2.2.2 footer
+
+        - 2.3 main
+            - 2.3.1 main-bannerWrap 메인 컨셉 배너
+            - 2.3.2 quickMenuWrap 퀵메뉴 버튼
+            - 2.3.3 recommend-classWrap 분야별 추천 강좌
+            - 2.3.4 banner-mid 중간 배너 1
+            - 2.3.5 companyInfoWrap 기업소개
+            - 2.3.6 banner-mid 중간 배너 2
+
+    3.0 Contents Design - common
+
+    4.0 Contents Design for Page (페이지별 개별화 된 콘텐츠 디자인)
+
+    5.0 Popup Design - modal popup layer
+        - 5.1 modal popup layer - layout
+            - 5.1.1 modal popup layer - header
+            - 5.1.2 modal popup layer - Content
+ */
+ /*--------------------------------------------------------------
+  >> 1.0 Layout Desgin - Common Style
+----------------------------------------------------------------*/
+
+ /*--------------------------------------------------------------
+  >> 2.0 Main Page Design
+----------------------------------------------------------------*/
+.headerWrapper>.hdrWrap,
+.navWrapper>.nav,
+.mainWrapper>.mainBannerWrap,
+.fullWrapper>.full-background>.full-navGroup,
+.content, .subPage_container,
+.footer>.footer_wrap{
+	width:calc(100% - 20px);
+}
+
+/* - 2.1 header */
+
+.mainPage_header{
+	height : 200px;
+	background-image:none;
+}
+.mainPage_header>.headerWrapper>.hdrWrap{
+	display:none;
+}
+.mainPage_header>.headerWrapper>.hdrWrap_responsive{
+	display:block;
+}
+
+.headerWrapper>.hdrWrap>.header>.header-logo{
+	margin : 0;
+}
+.headerWrapper>.hdrWrap>.header>.header-logo>a>img{
+	width : 100px;
+}
+.hdrWrap_responsive>.header>.menu-btn>.img-icon{
+	background-position:-200px 0;
+}
+
+.mainWrapper>.mainBannerWrap{}
+.mainWrapper>.mainBannerWrap>.mainHeader>.h4{
+	display:none;
+}
+.mainWrapper>.mainBannerWrap>.mainHeader>.fz34{
+	/* font-size : 20px; */
+	font-size : 1.429rem;
+	line-height : 40px;
+}
+.mainWrapper>.mainBannerWrap>.header-search{
+	width : 300px;
+	margin : 10px auto 20px;
+}
+
+.mainWrapper>.quickMenuWrap{
+	border-radius : 0;
+	width : 100%;
+}
+.mainWrapper>.quickMenuWrap>.btn-menu{
+	padding:20px 10px 0;
+	-webkit-box-lines: multiple;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    justify-content : flex-start;
+}
+.mainWrapper>.quickMenuWrap>.btn-menu>.menu-btn{
+	width : 100px;
+}
+.mainWrapper>.quickMenuWrap>.btn-menu>a.menu-btn:nth-child(4)~*{
+	margin-top : 20px;
+}
+.mainWrapper>.quickMenuWrap>.btn-menu>.menu-btn.fullNav{
+	display : none;
+}
+
+.fullWrapper>.full-background>.full-navGroup{
+	height : calc(100vh - 20px);
+	padding : 10px;
+}
+.fullWrapper>.full-background>.full-navGroup>.mobile-menuWrap{
+	display: block;
+}
+
+.mobile-menuWrap .header-menu {
+    line-height: 40px;
+}
+
+.mobile-menuWrap .header-menu>.hdrMenu {
+ 	width:80px;
+}
+
+.mobile-menuWrap .header-menu>.hdrMenu_emph>a {}
+
+.hdrMenu.join {
+    position: relative;
+}
+
+.hdrMenu.join>.join_sub {
+    width:160px;
+}
+.fullWrapper>.full-background>.full-navGroup>.menuDivWrap{
+	margin-top : 50px;
+	height : calc(100vh - 150px);
+	overflow-y : scroll;
+}
+.fullWrapper>.full-background>.full-navGroup>.menuDivWrap>.menu-title-division{
+	width : 50%;
+	margin-left: 0;
+}
+.fullWrapper>.full-background>.full-navGroup>.menuDivWrap>.menu-title-division:nth-child(2)~*{
+	margin-top : 20px;
+}
+/* - 2.2 footer */
+.footer>.footer_wrap>.footer_infoWrap{}
+.footer>.footer_wrap>.footer_infoWrap>.footer_logo{}
+.footer>.footer_wrap>.footer_infoWrap>.footer_logo>a>img{
+	height : 15px;
+}
+.footer>.footer_wrap>.footer_infoWrap>.footer_textWrap{
+	line-height : 25px;
+}
+
+.footer>.footer_wrap>.footer_navWrap{
+	width : 100%;
+	margin-top : 10px;
+}
+.footer>.footer_wrap>.footer_navWrap>.navGroup{
+	justify-content : center;
+}
+
+.footer>.footer_wrap>.footer_navWrap>.navGroup>.gnb{
+	margin-left : 10px;
+	border : 1px solid #ddd;
+	border-radius : 5px;
+}
+.footer>.footer_wrap>.footer_navWrap>.navGroup>.gnb:first-child{
+	margin-left : 0;
+}
+.footer>.footer_wrap>.footer_navWrap>.navGroup>.gnb>.lnb{
+	display : none;
+}
+.footer>.copyright{
+	margin-top : 10px;
+	margin-bottom : 10px;
+}
+/* - 2.3 main */
+.bannerImg_responsive{
+	margin : 140px auto 20px;
+}
+
+.bannerImg_responsive>.swiper-wrapper{}
+.bannerImg_responsive>.swiper-wrapper>.swiper-slide{
+	width : 100% !important;
+}
+.recommend-class,
+.content>.bannerImg{
+	display : none;
+}
+.bannerImg_responsive .bannerImg{
+	height: 55px;
+	background-size:cover;
+	
+}
+.companyInfoWrap{
+	display : none;
+}
+/*--------------------------------------------------------------
+  >>  3.0 Contents Design - common
+----------------------------------------------------------------*/
+.content{
+	margin : 20px auto;
+}
+/*--------------------------------------------------------------
+  >>  4.0 Contents Design for Page (페이지별 개별화 된 콘텐츠 디자인)
+----------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  >>  5.0 Popup Design - modal popup layer
+----------------------------------------------------------------*/
+}

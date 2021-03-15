@@ -1,0 +1,14 @@
+@charset "UTF-8";
+.kakaotalk-fixed{
+    z-index: 1000;
+    position: fixed;
+    right: 20px; bottom: 20px;
+    cursor: pointer;
+    opacity:0.8;
+    border-radius: 7px;
+    width: 120px;
+}
+
+.kakaotalk-fixed:hover{
+    opacity: 1;
+}

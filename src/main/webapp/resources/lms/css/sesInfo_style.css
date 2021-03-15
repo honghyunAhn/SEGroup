@@ -1,0 +1,28 @@
+@charset "UTF-8";
+/* sesInfo_style.css */
+.sesInfo_container {}
+.sesInfo_container .headerWrapper>.hdrWrap>.header>.header-menu>.hdrMenu {
+    width: auto;
+    margin-left: 20px;
+}
+.sesInfo_container .hdrMenu:hover {
+    font-weight: bold;
+}
+.sesInfo_container .lnb>li>a:hover {
+    color: #333;
+}
+.sesInfo_container .content {
+    margin: 80px auto 0;
+    padding: 40px 0;
+}
+.sesInfo_container .content>.header {
+    padding: 20px 0;
+    background-color: #e7e7e7;
+}
+.sesInfo_container .content>.section {
+    padding: 20px;
+    border: 1px solid #e7e7e7;
+}
+.sesInfo_container .footer>.copyright {
+    margin: 40px 0 20px;
+}

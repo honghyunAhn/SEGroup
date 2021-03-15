@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.user.dao.MyLectureInfoDao">
+
+	<!-- <select id="attendanceTest" parameterType="HashMap" resultType="HashMap">
+	
+		select 
+			*
+	 	from 
+	 		smtp_attendance_info
+	 	where 
+	 		att_dt_seq 
+	 			= 
+	 	(
+	 		select att_dt_seq from smtp_attendance_date where course_id = 
+	 		#{course_id}
+	 			and
+	 		cardinal_id = #{cardinal_id}
+	 	)
+	
+	</select> -->
+	
+	<select id="attendance" parameterType="HashMap" resultType="HashMap">
+		SELECT
+			D.ATT_DATE, DATE_FORMAT(IT.IN_TIME, '%H:%i') AS IN_TIME, DATE_FORMAT(IT.OUT_TIME, '%H:%i') AS OUT_TIME, IT.ATT_FINAL_GUBUN
+		FROM
+			SMTP_ATTENDANCE_INFO_TIME IT
+		INNER JOIN
+			SMTP_ATTENDANCE_DATE D
+		ON
+			D.ATT_DT_SEQ = IT.ATT_DT_SEQ
+		WHERE
+			IT.USER_ID = #{user_id}
+		AND
+			D.COURSE_ID = #{course_id}
+		AND
+			D.CARDINAL_ID = #{cardinal_id}
+	</select>
+	
+	<!-- 20 09 28 김태원 -->
+	<select id="getAllAttend" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			D.ATT_DT_SEQ_GROUP, I.USER_ID, DATE_FORMAT(I.IN_TIME, '%H:%i') AS IN_TIME,
+    		DATE_FORMAT(I.OUT_TIME, '%H:%i') AS OUT_TIME, I.ATT_INFO_GUBUN
+		FROM
+			SMTP_ATTENDANCE_DATE D, SMTP_ATTENDANCE_INFO I
+		WHERE
+			I.USER_ID = #{user_id}
+		AND
+			D.COURSE_ID = #{course_id}
+		AND
+			D.CARDINAL_ID = #{cardinal_id}
+		AND
+			D.ATT_DT_SEQ = I.ATT_DT_SEQ
+		ORDER BY
+			D.ATT_DT_SEQ_GROUP
+	</select>
+	
+	<select id="getMonthAttend" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		
+		]]>
+	</select>
+	
+ 	<!-- <select id="getAllSisu" parameterType="hashmap" resultType="int">
+ 		SELECT
+ 			COUNT(ATT_DT_SEQ)
+ 		FROM
+ 			SMTP_ATTENDANCE_DATE
+ 		WHERE
+ 			COURSE_ID = #{course_id}
+ 		AND
+ 			CARDINAL_ID = #{cardinal_id}
+	</select>
+	
+ 	<select id="getMonthSisu" parameterType="hashmap" resultType="int">
+ 		SELECT
+ 			COUNT(ATT_DT_SEQ)
+ 		FROM
+ 			SMTP_ATTENDANCE_DATE
+ 		WHERE
+ 			COURSE_ID = #{course_id}
+ 		AND
+ 			CARDINAL_ID = #{cardinal_id}
+ 		AND
+ 			ATT_DATE LIKE CONCAT(#{att_date}, '%')
+	</select>
+	
+	<select id="getRestSisu" parameterType="hashmap" resultType="int">
+		<![CDATA[
+			SELECT 
+				COUNT(ATT_DATE) 
+			FROM 
+				SMTP_ATTENDANCE_DATE
+			WHERE
+				COURSE_ID = #{course_id}
+			AND
+				CARDINAL_ID = #{cardinal_id}
+			AND
+				DATE_FORMAT(ATT_DATE, '%Y-%m-%d') >= #{today}
+			AND 
+				DATE_FORMAT(ATT_DATE, '%Y-%m-%d') <= #{endOfMonth}
+		]]>
+	</select>
+	
+	<select id="getAllRestSisu" parameterType="hashmap" resultType="int">
+		<![CDATA[
+		SELECT 
+			COUNT(ATT_DT_SEQ) 
+		FROM 
+			SMTP_ATTENDANCE_DATE
+		WHERE
+			COURSE_ID = #{course_id}
+		AND 
+			CARDINAL_ID = #{cardinal_id}
+		AND
+			DATE_FORMAT(ATT_DATE, '%Y-%m-%d') >= #{today}
+		]]>
+	</select>
+	
+	<select id="allCheckAttendCount" parameterType="hashmap" resultType="int">
+		SELECT
+			COUNT(ATT_DT_SEQ)
+		FROM
+			SMTP_ATTENDANCE_DATE
+		WHERE
+			COURSE_ID = #{course_id}
+		AND
+			CARDINAL_ID = #{cardinal_id}
+		AND
+			ATT_DT_SEQ_GROUP = #{att_dt_seq_group}
+	</select>
+	
+	<select id="allMissedAttendCount" parameterType="hashmap" resultType="int">
+		<![CDATA[
+		SELECT
+			COUNT(ATT_DT_SEQ)
+		FROM
+			SMTP_ATTENDANCE_DATE
+		WHERE
+			COURSE_ID = #{course_id}
+		AND
+			CARDINAL_ID = #{cardinal_id}
+		AND
+			ATT_DT_SEQ_GROUP = #{att_dt_seq_group}
+		AND
+			STAND_IN_TIME > #{in_time}
+		AND
+			STAND_OUT_TIME < #{out_time}
+		]]>
+	</select>  -->
+	
+	<select id="getInfoTime" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			U.USER_NM, IT.ATT_INFO_TIME_SEQ, DATE_FORMAT(D.ATT_DATE, '%Y-%m-%d') AS ATT_DATE, IT.USER_ID, D.CARDINAL_ID, DATE_FORMAT(IT.IN_TIME, '%H:%i') AS IN_TIME, DATE_FORMAT(IT.OUT_TIME, '%H:%i') AS OUT_TIME, IT.ATT_FINAL_GUBUN, IT.REG_SAVED_FILE
+			, IT.REG_ORIGIN_FILE, IT.USER_MEMO, FD.FILE_ID, FD.ORIGIN_FILE_NAME, FD.FILE_PATH, FD.URL_PATH
+		FROM 
+			SMTP_ATTENDANCE_INFO_TIME IT
+		INNER JOIN 
+			SMTP_ATTENDANCE_DATE D
+		ON
+			IT.ATT_DT_SEQ = D.ATT_DT_SEQ
+		INNER JOIN
+			COM_USER_TB U
+		ON
+			U.USER_ID = IT.USER_ID
+		LEFT JOIN 
+			FF_ATTACH_FILE_DETAIL FD
+		ON
+			FD.FILE_ID = IT.CERTIFICATION_ATTACHED
+		WHERE
+			IT.USER_ID = #{user_id}
+		AND
+			DATE_FORMAT(D.ATT_DATE, '%Y-%m-%d') = #{att_date}
+		AND 
+			D.COURSE_ID = #{course_id}
+		AND 
+			D.CARDINAL_ID = #{cardinal_id}
+	</select>
+	
+	<select id="getInfoList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			S.ATT_SISU_SEQ, DATE_FORMAT(D.ATT_DATE,'%Y-%m-%d') as ATT_DATE, DATE_FORMAT(S.STAND_IN_TIME, '%H:%i') AS STAND_IN_TIME, DATE_FORMAT(S.STAND_OUT_TIME, '%H:%i') AS STAND_OUT_TIME, I.ATT_INFO_GUBUN
+		FROM
+			SMTP_ATTENDANCE_DATE D
+		INNER JOIN
+			SMTP_ATTENDANCE_SISU S
+		INNER JOIN
+			SMTP_ATTENDANCE_INFO I
+		ON
+			D.ATT_DT_SEQ = S.ATT_DT_SEQ
+		AND
+			S.ATT_SISU_SEQ = I.ATT_SISU_SEQ
+		WHERE
+			DATE_FORMAT(D.ATT_DATE, '%Y-%m-%d') = #{att_date}
+		AND
+			I.USER_ID = #{user_id}
+		AND
+			D.COURSE_ID = #{course_id}
+		AND
+			D.CARDINAL_ID = #{cardinal_id}
+	</select>
+	
+	<select id="allSisuCount" parameterType="hashmap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			SMTP_ATTENDANCE_SISU S
+		INNER JOIN
+			SMTP_ATTENDANCE_DATE D
+		ON
+			S.ATT_DT_SEQ = D.ATT_DT_SEQ
+		WHERE
+			D.COURSE_ID = #{course_id}
+		AND
+			D.CARDINAL_ID = #{cardinal_id}
+	</select>
+	
+	<select id="monthSisuCount" parameterType="hashmap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			SMTP_ATTENDANCE_SISU S
+		INNER JOIN
+			SMTP_ATTENDANCE_DATE D
+		ON
+			S.ATT_DT_SEQ = D.ATT_DT_SEQ
+		WHERE
+			D.COURSE_ID = #{course_id}
+		AND
+			D.CARDINAL_ID = #{cardinal_id}
+		AND
+			DATE_FORMAT(D.ATT_DATE, '%Y-%m') = #{currentMonth}
+	</select>
+	
+	<select id="allAttendStatus" parameterType="hashmap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			SMTP_ATTENDANCE_INFO
+		WHERE
+			USER_ID = #{user_id}
+		AND
+			ATT_SISU_SEQ
+		IN
+			(
+				SELECT
+					S.ATT_SISU_SEQ
+				FROM
+					SMTP_ATTENDANCE_DATE D
+				INNER JOIN
+					SMTP_ATTENDANCE_SISU S
+				ON
+					D.ATT_DT_SEQ = S.ATT_DT_SEQ
+				WHERE
+					D.COURSE_ID = #{course_id}
+				AND
+					D.CARDINAL_ID = #{cardinal_id}
+			)
+		AND
+			ATT_INFO_GUBUN = #{att_info_gubun}
+	</select>
+	
+	<select id="monthAttendStatus" parameterType="hashmap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			SMTP_ATTENDANCE_INFO
+		WHERE
+			USER_ID = #{user_id}
+		AND
+			ATT_SISU_SEQ
+		IN
+			(
+				SELECT
+					S.ATT_SISU_SEQ
+				FROM
+					SMTP_ATTENDANCE_DATE D
+				INNER JOIN
+					SMTP_ATTENDANCE_SISU S
+				ON
+					D.ATT_DT_SEQ = S.ATT_DT_SEQ
+				WHERE
+					D.COURSE_ID = #{course_id}
+				AND
+					D.CARDINAL_ID = #{cardinal_id}
+				AND
+					DATE_FORMAT(D.ATT_DATE, '%Y-%m') = #{currentMonth}
+			)
+		AND
+			ATT_INFO_GUBUN = #{att_info_gubun}
+	</select>
+	
+	<update id="subCertification" parameterType="com.aracomm.changbi.user.vo.AttendanceInfoTime">
+		UPDATE
+			SMTP_ATTENDANCE_INFO_TIME
+		SET
+			REG_ORIGIN_FILE = #{regOriginFile}
+			, REG_SAVED_FILE = #{regSavedFile}
+			, USER_MEMO = #{memo}
+		WHERE
+			ATT_INFO_TIME_SEQ = #{attInfoTimeSeq}
+	</update>
+	
+	<!-- <select id="">
+		select
+		   count(*)
+		from
+		   smtp_attendance_info
+		where
+		   user_id = 'dltndus03'
+		and
+		   ATT_SISU_SEQ
+		in
+		   (
+			select
+				s.att_sisu_seq
+			from
+				smtp_attendance_date d
+			inner join
+				smtp_attendance_sisu s
+			on
+				d.att_dt_seq = s.att_dt_seq
+			where
+				d.course_id = 'c000000522'
+			and
+				d.cardinal_id = 'n000000341'
+			)
+			<foreach collection="" item="" separator="">
+				and
+					att_info_gubun = '출석'
+			</foreach>
+			<if test="month != null">
+				and
+					date_format(d.ATT_DATE, '%Y-%m') = #{month} 
+			</if>
+	</select> -->
+	
+</mapper>

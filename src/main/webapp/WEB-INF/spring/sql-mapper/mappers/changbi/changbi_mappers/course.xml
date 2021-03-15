@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.learn.dao.CourseDao">
+	<cache flushInterval="5000" readOnly="true"/><!-- 5초 -->
+	<select id="selectCourseCategoryListForMenu" resultType="hashmap" useCache="true">
+		SELECT CODE, NAME
+		  FROM FF_CODE
+		 WHERE GROUP_ID = 'course'
+		   AND USE_YN = 'Y'
+		 ORDER BY ORDER_NUM
+	</select>
+
+	<!-- //TODO 다른쿼리사용하도록 수정할 것(common 공통코드조회로 대체) -->
+	<select id="code" resultType="hashmap">
+		/*::::code::::*/
+		select code, name from FF_CODE
+		where group_id = #{param}
+		order by order_num
+	</select>
+
+	<select id="slide" resultType="hashmap">
+		/*::::slide::::*/
+		select
+			a.seq ,			a.id as course_id,	a.course_code ,		a.target_types ,	a.teach_id,
+			a.name ,		a.main_yn ,			a.main_display ,	a.icon_displays ,	a.complete_time ,
+			a.learn_types ,	a.credit ,			a.learn_target ,	a.price ,			a.prog_check ,
+			a.open_date ,	a.app_date ,		a.recruit ,			a.exam_period ,		a.main_tb_id ,
+			a.sub_tb_id ,	a.main_price ,		a.sub_price ,		a.link_server ,		a.group_yn ,
+			a.mobile_yn ,	a.index_url ,		a.tasting_url ,		a.sample_url ,		a.selp_period ,
+			a.dup_dis_yn ,	a.accept_yn ,
+			c.file_name, c.file_path, c.url_path,
+			a.credit*15 as credit_time,
+			(
+			 	SELECT NAME FROM FF_CODE WHERE CODE = a.COURSE_CODE
+			 ) AS course_code_name
+		from CB_COURSE a
+		left join FF_ATTACH_FILE_DETAIL c on a.main_img_file = c.file_id
+		where a.main_display = 1
+		  and a.accept_yn = 'Y'
+		  and a.use_yn = 'Y'
+	</select>
+
+
+	<sql id="sql_selectCourseList">
+		and a.learn_types like CONCAT('%',#{learn_types},'%')
+		<if test='course_code != "0" and course_code != null'>
+		and a.course_code = #{course_code}
+		</if>
+		<if test='credit != "0" and credit != null'>
+		and a.credit = #{credit}
+		</if>
+		<if test='target_types != "0" and target_types != null'>
+		and a.target_types like CONCAT('%',#{target_types},'%')
+		</if>
+		<if test='search != null and search != ""'>
+			<if test='searchbox == "se"'>
+				AND (
+					a.name LIKE CONCAT('%', #{search} ,'%')
+					OR a.summary LIKE CONCAT('%', #{search} ,'%')
+					OR (
+						a.teach_id IS NOT NULL
+						AND EXISTS (
+							SELECT 1
+							  FROM FF_MEMBER
+							 WHERE grade = 2
+							   AND id = a.teach_id
+							   AND name LIKE CONCAT('%', #{search} ,'%')
+						)
+					)
+				)
+			</if>
+		</if>
+		and a.accept_yn = 'Y'
+		and a.use_yn = 'Y'
+	</sql>
+	
+	<select id="selectCourseListTotCnt" resultType="int" useCache="false">
+		/*::::selectCourseListTotCnt::::*/
+		select
+			count(a.seq) as cnt
+		from CB_COURSE a
+		where 1=1
+		<include refid="sql_selectCourseList"/>
+	</select>
+
+	<select id="selectCourseList" resultType="hashmap" useCache="false">
+	/*::::selectCourseList::::*/
+		select
+			a.seq ,			a.id as course_id,	a.course_code ,		a.target_types ,	a.teach_id,
+			a.name ,		a.main_yn ,			a.main_display ,	a.icon_displays ,	a.complete_time ,
+			a.learn_types ,	a.credit ,			a.learn_target ,	a.price ,			a.prog_check ,
+			a.open_date ,	a.app_date ,		a.recruit ,			a.exam_period ,		a.main_tb_id ,
+			a.sub_tb_id ,	a.main_price ,		a.sub_price ,		a.link_server ,		a.group_yn ,
+			a.mobile_yn ,	a.index_url ,		a.tasting_url ,		a.sample_url ,		a.selp_period ,
+			a.dup_dis_yn ,	a.accept_yn ,		a.purpose ,			a.summary ,			a.instructor ,
+			DATE_FORMAT(a.reg_date, "%Y.%c.%e %T") as reg_date,
+			DATE_FORMAT(a.upd_date, "%Y.%c.%e %T") as reg_date,
+			a.credit*15 as credit_time,
+			(
+				SELECT name FROM FF_MEMBER WHERE ID = a.teach_id AND use_yn = 'Y'
+             ) AS teacher_name,
+             (
+             	SELECT NAME FROM CB_BOOK WHERE ID = a.main_tb_id
+             ) AS main_tb_name,
+             (
+			 	SELECT URL_PATH FROM FF_ATTACH_FILE_DETAIL WHERE FILE_ID = a.MAIN_IMG_FILE LIMIT 1
+			 ) AS photo_url
+		from CB_COURSE a
+		where 1=1
+		<include refid="sql_selectCourseList"/>
+		<choose>
+			<when test='sort == null or sort == "" or sort == "H"'>
+		 ORDER BY HITS_ORDER
+			</when>
+			<when test='sort == "S"'>
+		 ORDER BY SELL_ORDER
+			</when>
+			<otherwise>
+		 ORDER BY REG_DATE DESC
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="selectCourseDetail" parameterType="map" resultType="hashmap" useCache="false">
+		SELECT
+			   CR.ID
+			 , CR.COURSE_CODE
+			 , (
+			 	SELECT NAME FROM FF_CODE WHERE CODE = CR.COURSE_CODE
+			 ) AS COURSE_CODE_NAME
+			 , CR.NAME
+			 , CR.ICON_DISPLAYS
+			 , CR.CREDIT
+			 , CR.CREDIT*15 AS CREDIT_TIME
+			 , CR.SUMMARY
+			 , CR.MOBILE_YN
+			 , CR.MOBILE_SUMMARY
+			 , CR.PURPOSE
+			 , CR.PAGE_CODES
+			 , CR.INSTRUCTOR
+			 , CR.NOTE
+			 , CR.PRICE
+			 , CR.MAIN_TB_ID
+			 , (
+			 	SELECT NAME FROM CB_BOOK WHERE ID = CR.MAIN_TB_ID
+			 ) AS MAIN_TB_NAME
+			 , CR.SUB_TB_ID
+			 , (
+			 	SELECT NAME FROM CB_BOOK WHERE ID = CR.SUB_TB_ID
+			 ) AS SUB_TB_NAME
+			 , CR.MAIN_PRICE
+			 , CR.SUB_PRICE
+			 , CR.TARGET_TYPES
+			 , CR.LEARN_TARGET
+			 , (
+				SELECT URL_PATH FROM FF_ATTACH_FILE_DETAIL WHERE FILE_ID = CR.MAIN_IMG_FILE LIMIT 1
+			 ) AS URL_PATH
+			, CR.COMPLETE_TIME
+			, CR.RECRUIT
+			, CR.TASTING_URL
+			, CR.TEACH_ID
+			, (
+				SELECT NAME FROM FF_MEMBER WHERE ID = CR.TEACH_ID AND USE_YN = 'Y'
+             ) AS TEACHER_NAME
+		  FROM CB_COURSE CR
+		 WHERE CR.ID = #{course_id}
+		<if test='course_code != "0" and course_code != null'>
+		AND CR.COURSE_CODE = #{course_code}
+		</if>
+		<if test='credit != "0" and credit != null'>
+		AND CR.CREDIT = #{credit}
+		</if>
+		<if test='target_types != "0" and target_types != null'>
+		AND CR.TARGET_TYPES LIKE CONCAT('%',#{target_types},'%')
+		</if>
+	</select>
+
+	<select id="selectCardinalBySeq" parameterType="string" resultType="hashmap" useCache="false">
+		SELECT CD.ID
+			 , CD.NAME
+			 , CD.LEARN_TYPE
+		     , DATE_FORMAT(CD.APP_START_DATE, '%Y-%m-%d') AS APP_START_DATE
+		     , DATE_FORMAT(CD.APP_END_DATE, '%Y-%m-%d') AS APP_END_DATE
+		     , DATE_FORMAT(CD.LEARN_START_DATE, '%Y-%m-%d') AS LEARN_START_DATE
+		     , DATE_FORMAT(CD.LEARN_END_DATE, '%Y-%m-%d') AS LEARN_END_DATE
+		  FROM CB_CARDINAL CD
+		 WHERE CD.SEQ = #{seq}
+	</select>
+
+	<!-- 단체기수 제외한 과정의 기수 리스트 전체 -->
+	<select id="selectCourseCardinalListAll" parameterType="string" resultType="hashmap" useCache="false">
+		SELECT CR.ID AS COURSE_ID
+			 , CD.ID AS CARDINAL_ID
+			 , CD.NAME
+			 , CD.LEARN_TYPE
+		     , DATE_FORMAT(CD.APP_START_DATE, '%Y-%m-%d') AS APP_START_DATE
+		     , DATE_FORMAT(CD.APP_END_DATE, '%Y-%m-%d') AS APP_END_DATE
+		     , DATE_FORMAT(CD.LEARN_START_DATE, '%Y-%m-%d') AS LEARN_START_DATE
+		     , DATE_FORMAT(CD.LEARN_END_DATE, '%Y-%m-%d') AS LEARN_END_DATE
+			 , CASE WHEN DATE_FORMAT(NOW(), "%Y-%m-%d") &lt; CD.APP_START_DATE THEN 'B'
+			 		WHEN DATE_FORMAT(NOW(), "%Y-%m-%d") &gt; CD.APP_END_DATE THEN 'C'
+			 	    ELSE 'P' END STATUS
+		  FROM CB_COURSE CR
+		  JOIN CB_CN_COURSE CNCR
+		    ON CNCR.COURSE_ID = CR.ID
+		  JOIN CB_CARDINAL CD
+		    ON CD.ID = CNCR.CARDINAL_ID
+		 WHERE CR.ID = #{course_id}
+		   AND DATE_FORMAT(NOW(), "%Y-%m-%d") BETWEEN CD.APP_START_DATE AND CD.APP_END_DATE
+		   AND CD.LEARN_TYPE &lt;&gt; 'G'
+		   AND CD.USE_YN = 'Y'
+	</select>
+
+	<!-- 단체기수 제외한 과정의 기수 리스트 -->
+	<sql id="sql_selectCourseCardinalList">
+		   AND DATE_FORMAT(NOW(), "%Y-%m-%d") BETWEEN CD.APP_START_DATE AND CD.APP_END_DATE
+		   AND CD.LEARN_TYPE &lt;&gt; 'G'
+		   AND CD.USE_YN = 'Y'
+	</sql>
+	<select id="selectCourseCardinalListTotCnt" parameterType="map" resultType="int" useCache="false">
+		SELECT COUNT(1)
+		  FROM CB_CN_COURSE CDCR
+		  JOIN CB_CARDINAL CD
+		    ON CD.ID = CDCR.CARDINAL_ID
+		 WHERE CDCR.COURSE_ID = #{course_id}
+		 <include refid="sql_selectCourseCardinalList"/>
+	</select>
+	<select id="selectCourseCardinalList" parameterType="com.aracomm.changbi.learn.vo.CardinalSearchVo" resultType="hashmap" useCache="false">
+		SELECT CDCR.COURSE_ID
+		     , CD.ID AS CARDINAL_ID
+		     , CD.NAME
+		     , CD.LEARN_TYPE
+		     , CASE LEARN_TYPE WHEN 'J' THEN '직무'
+		     				   WHEN 'S' THEN '자율'
+		     				   WHEN 'M' THEN '집합'
+		     				   WHEN 'G' THEN '단체'
+		     				   ELSE ''  END AS LEARN_TYPE_NAME
+		     , DATE_FORMAT(CD.APP_START_DATE, '%Y-%m-%d') AS APP_START_DATE
+		     , DATE_FORMAT(CD.APP_END_DATE, '%Y-%m-%d') AS APP_END_DATE
+		     , DATE_FORMAT(CD.LEARN_START_DATE, '%Y-%m-%d') AS LEARN_START_DATE
+		     , DATE_FORMAT(CD.LEARN_END_DATE, '%Y-%m-%d') AS LEARN_END_DATE
+		  FROM CB_CN_COURSE CDCR
+		  JOIN CB_CARDINAL CD
+		    ON CD.ID = CDCR.CARDINAL_ID
+		 WHERE CDCR.COURSE_ID = #{course_id}
+		 <include refid="sql_selectCourseCardinalList"/>
+		 ORDER BY CD.APP_START_DATE
+		 LIMIT #{visiblePages} OFFSET #{skipRows}
+	</select>
+
+	<sql id="sql_selectCourseCardinalList2">
+			(
+				SELECT ICR.ID AS COURSE_ID, ICD.ID AS CARDINAL_ID, ICD.NAME, ICD.LEARN_TYPE, ICD.APP_START_DATE, APP_END_DATE, ICD.LEARN_START_DATE, ICD.LEARN_END_DATE
+				  FROM CB_COURSE ICR
+				  JOIN CB_CARDINAL ICD
+				 WHERE ICR.ID = #{course_id}
+				   AND ICR.USE_YN = 'Y'
+				   AND ICD.COURSE_TYPE = 'A'
+				   AND ICD.APP_POSSIBLES LIKE CONCAT('%',ICR.CREDIT,'%')
+				   AND DATE_FORMAT(NOW(), "%Y-%m-%d") BETWEEN ICD.APP_START_DATE AND ICD.APP_END_DATE
+				   AND ICD.USE_YN = 'Y'
+				 UNION ALL
+				SELECT ICR.ID AS COURSE_ID, ICD.ID AS CARDINAL_ID, ICD.NAME, ICD.LEARN_TYPE, ICD.APP_START_DATE, APP_END_DATE, ICD.LEARN_START_DATE, ICD.LEARN_END_DATE
+				  FROM CB_COURSE ICR
+				  JOIN CB_CN_COURSE ICNCR
+				    ON ICNCR.COURSE_ID = ICR.ID
+				  JOIN CB_CARDINAL ICD
+				    ON ICD.ID = ICNCR.CARDINAL_ID
+				 WHERE ICR.ID = #{course_id}
+				   AND ICR.USE_YN = 'Y'
+				   AND ICD.COURSE_TYPE = 'S'
+				   AND DATE_FORMAT(NOW(), "%Y-%m-%d") BETWEEN ICD.APP_START_DATE AND ICD.APP_END_DATE
+				   AND ICD.USE_YN = 'Y'
+			)
+	</sql>
+	<select id="selectCourseCardinalList2TotCnt" parameterType="map" resultType="int" useCache="false">
+		SELECT COUNT(1)
+		  FROM (
+		  	<include refid="sql_selectCourseCardinalList2"/>
+		  ) R
+	</select>
+	<select id="selectCourseCardinalList2" parameterType="com.aracomm.changbi.learn.vo.CardinalSearchVo" resultType="hashmap" useCache="false">
+		SELECT R.COURSE_ID
+		     , R.CARDINAL_ID
+		     , R.NAME
+		     , R.LEARN_TYPE
+		     , CASE R.LEARN_TYPE WHEN 'J' THEN '직무'
+		     				   WHEN 'S' THEN '자율'
+		     				   WHEN 'M' THEN '집합'
+		     				   WHEN 'G' THEN '단체'
+		     				   ELSE ''  END AS LEARN_TYPE_NAME
+		     , DATE_FORMAT(R.APP_START_DATE, '%Y-%m-%d') AS APP_START_DATE
+		     , DATE_FORMAT(R.APP_END_DATE, '%Y-%m-%d') AS APP_END_DATE
+		     , DATE_FORMAT(R.LEARN_START_DATE, '%Y-%m-%d') AS LEARN_START_DATE
+		     , DATE_FORMAT(R.LEARN_END_DATE, '%Y-%m-%d') AS LEARN_END_DATE
+		  FROM (
+		  	<include refid="sql_selectCourseCardinalList2"/>
+		  ) R
+		 ORDER BY R.APP_START_DATE
+		 LIMIT #{visiblePages} OFFSET #{skipRows}
+	</select>
+
+	<select id="selectCourseChapterListAll" parameterType="string" resultType="hashmap" useCache="false">
+		SELECT NAME, STUDY, TEACHER
+			 , CONCAT(LPAD(ROUND(STUDY/60), 2, '0'), '분 ', LPAD(STUDY%60, 2, '0'), '초') AS STUDY2
+		  FROM CB_CHAPTER
+		 WHERE COURSE_ID = #{course_id}
+		 ORDER BY ORDER_NUM
+	</select>
+
+	<!-- 메인 추천 과정 -->
+	<sql id="sql_selectMainRecommCourseList">
+		   AND MAIN_YN = 'Y'
+		<if test='main_display != null and main_display != ""'>
+		   AND MAIN_DISPLAY = #{main_display}
+		</if>
+		<if test='newYn != null and newYn != ""'>
+		   AND ICON_DISPLAYS LIKE CONCAT('%','1','%')
+		</if>
+		   AND ACCEPT_YN = 'Y'
+		   AND USE_YN = 'Y'
+	</sql>
+	<select id="selectMainRecommCourseListTotCnt" parameterType="com.aracomm.changbi.learn.vo.CourseSearchVo" resultType="int" useCache="false">
+		SELECT COUNT(1)
+		  FROM CB_COURSE C
+		 WHERE 1 = 1
+		 <include refid="sql_selectMainRecommCourseList"/>
+	</select>
+	<select id="selectMainRecommCourseList" parameterType="com.aracomm.changbi.learn.vo.CourseSearchVo" resultType="hashmap" useCache="false">
+		SELECT ID
+			 , NAME
+			 , COURSE_CODE
+			 , (
+			 	SELECT NAME FROM FF_CODE WHERE CODE = C.COURSE_CODE
+			 ) AS COURSE_CODE_NAME
+			 , ICON_DISPLAYS
+			 , LEARN_TYPES
+			 , TARGET_TYPES
+			 , CREDIT
+			 , CREDIT*15 AS CREDIT_TIME
+			 , LEARN_TARGET
+			 , PRICE
+			 , MOBILE_YN
+			 , TASTING_URL
+			 , (
+			 	SELECT URL_PATH FROM FF_ATTACH_FILE_DETAIL WHERE FILE_ID = C.MAIN_IMG_FILE LIMIT 1
+			 ) AS PHOTO_URL
+		  FROM CB_COURSE C
+		 WHERE 1 = 1
+		 <include refid="sql_selectMainRecommCourseList"/>
+		 LIMIT #{visiblePages} OFFSET #{skipRows}
+	</select>
+
+	<!-- 메인 분야별 과정 -->
+	<select id="selectMainCourseListAllByCourse" parameterType="com.aracomm.changbi.learn.vo.CourseSearchVo" resultType="hashmap" useCache="false">
+		SELECT ID
+			 , NAME
+			 , COURSE_CODE
+			 , (
+			 	SELECT NAME FROM FF_CODE WHERE CODE = C.COURSE_CODE
+			 ) AS COURSE_CODE_NAME
+			 , ICON_DISPLAYS
+			 , LEARN_TYPES
+			 , TARGET_TYPES
+			 , CREDIT
+			 , CREDIT*15 AS CREDIT_TIME
+			 , LEARN_TARGET
+			 , PRICE
+			 , MAIN_TB_ID
+			 , SUB_TB_ID
+			 , MOBILE_YN
+			 , TASTING_URL
+			 , (
+			 	SELECT URL_PATH FROM FF_ATTACH_FILE_DETAIL WHERE FILE_ID = C.MAIN_IMG_FILE LIMIT 1
+			 ) AS PHOTO_URL
+			 , (
+				SELECT NAME FROM FF_MEMBER WHERE ID = C.TEACH_ID AND USE_YN = 'Y'
+             ) AS TEACHER_NAME
+             , (
+             	SELECT NAME FROM CB_BOOK WHERE ID = C.MAIN_TB_ID
+             ) AS MAIN_TB_NAME
+		  FROM CB_COURSE C
+		 WHERE 1 = 1
+		<if test='course != null and course != ""'>
+		   AND COURSE_CODE = #{course}
+		</if>
+		<if test='credit != null and credit != ""'>
+		   AND CREDIT = #{credit}
+		</if>
+		   AND ACCEPT_YN = 'Y'
+		   AND USE_YN = 'Y'
+		<choose>
+			<when test='sort == null or sort == "" or sort == "H"'>
+		 ORDER BY HITS_ORDER
+			</when>
+			<when test='sort == "S"'>
+		 ORDER BY SELL_ORDER
+			</when>
+			<otherwise>
+		 ORDER BY REG_DATE DESC
+			</otherwise>
+		</choose>
+	</select>
+
+	<!-- 메인 좌측 배너형 단체연수 리스트 -->
+	<select id="selectMainGroupLearnBannerList" resultType="hashmap" useCache="false">
+		SELECT GL.ID
+			 , GL.NAME
+			 , GL.REGION_CODE
+			 , (
+			 	SELECT NAME FROM FF_CODE WHERE CODE = GL.REGION_CODE
+			 ) AS REGION_NAME
+			 , (
+			 	SELECT URL_PATH FROM FF_ATTACH_FILE_DETAIL WHERE FILE_ID = GL.BANNER_FILE LIMIT 1
+			 ) AS BANNER_URL
+			 , GL.JURISDICTION
+			 , CD.ID AS CARDINAL_ID
+			 , CD.SEQ AS CARDINAL_SEQ
+			 , CASE WHEN DATE_FORMAT(NOW(), "%Y-%m-%d") &lt;= CD.APP_END_DATE THEN 'N'
+			 		ELSE 'Y' END CLOSE_YN
+			 , CC.COURSE_ID
+		  FROM CB_GROUP_LEARN GL
+		  JOIN CB_GROUP_CN GC
+		    ON GC.GROUP_ID = GL.ID
+		  JOIN CB_CARDINAL CD
+		    ON CD.ID = GC.CARDINAL_ID
+		  JOIN (
+				SELECT ICD.SEQ AS CARDINAL_SEQ, ICR.ID AS COURSE_ID, ICR.NAME AS COURSE_NAME
+				  FROM CB_COURSE ICR
+				  JOIN CB_CARDINAL ICD
+				 WHERE ICR.GROUP_YN = 'Y'
+				   AND ICR.ACCEPT_YN = 'Y'
+				   AND ICR.USE_YN = 'Y'
+				   AND ICD.LEARN_TYPE = 'G'
+				   AND ICD.COURSE_TYPE = 'A'
+				   AND ICD.APP_POSSIBLES LIKE CONCAT('%',ICR.CREDIT,'%')
+				 UNION ALL
+				SELECT ICD.SEQ AS CARDINAL_SEQ, ICR.ID AS COURSE_ID, ICR.NAME AS COURSE_NAME
+				  FROM CB_COURSE ICR
+				  JOIN CB_CN_COURSE ICNCR
+				    ON ICNCR.COURSE_ID = ICR.ID
+				  JOIN CB_CARDINAL ICD
+				    ON ICD.ID = ICNCR.CARDINAL_ID
+				 WHERE ICR.GROUP_YN = 'Y'
+				   AND ICR.ACCEPT_YN = 'Y'
+				   AND ICR.USE_YN = 'Y'
+				   AND ICD.LEARN_TYPE = 'G'
+				   AND ICD.COURSE_TYPE = 'S'
+			 ) CC
+			ON CC.CARDINAL_SEQ = CD.SEQ
+		 WHERE 1=1
+		   AND DATE_FORMAT(NOW(), "%Y-%m-%d") BETWEEN GL.START_DATE AND GL.END_DATE
+		   AND GL.USE_YN = 'Y'
+		 ORDER BY CD.APP_START_DATE DESC
+	</select>
+
+	<select id="selectGroupLearnList" parameterType="map" resultType="hashmap" useCache="false">
+		SELECT GL.ID
+			 , GL.NAME
+			 , GL.REGION_CODE
+			 , (
+			 	SELECT NAME FROM FF_CODE WHERE CODE = GL.REGION_CODE
+			 ) AS REGION_NAME
+			 , GL.JURISDICTION
+			 , GL.TARGETS
+			 , GL.PROC_CNT
+			 , (
+			 	SELECT URL_PATH FROM FF_ATTACH_FILE_DETAIL WHERE FILE_ID = GL.BANNER_FILE LIMIT 1
+			 ) AS BANNER_URL
+			 , GC.LIMIT_NUM
+			 , CD.SEQ AS CARDINAL_SEQ
+			 , CD.ID AS CARDINAL_ID
+			 , CD.NAME AS CARDINAL_NAME
+			 , DATE_FORMAT(CD.APP_START_DATE, '%Y-%m-%d') AS APP_START_DATE
+			 , DATE_FORMAT(CD.APP_END_DATE, '%Y-%m-%d') AS APP_END_DATE
+			 , DATE_FORMAT(CD.LEARN_START_DATE, '%Y-%m-%d') AS LEARN_START_DATE
+			 , DATE_FORMAT(CD.LEARN_END_DATE, '%Y-%m-%d') AS LEARN_END_DATE
+			 , CASE WHEN DATE_FORMAT(NOW(), "%Y-%m-%d") &lt; CD.APP_START_DATE THEN 'B'
+			 		WHEN DATE_FORMAT(NOW(), "%Y-%m-%d") &gt; CD.APP_END_DATE THEN 'C'
+			 	    ELSE 'P' END STATUS
+			 , CC.COURSE_ID
+			 , CC.COURSE_NAME
+			 , CC.ICON_DISPLAYS
+		  FROM CB_GROUP_LEARN GL
+		  JOIN CB_GROUP_CN GC
+		    ON GC.GROUP_ID = GL.ID
+		  JOIN CB_CARDINAL CD
+		    ON CD.ID = GC.CARDINAL_ID
+		  JOIN (
+				SELECT ICD.SEQ AS CARDINAL_SEQ, ICR.ID AS COURSE_ID, ICR.NAME AS COURSE_NAME, ICR.ICON_DISPLAYS
+				  FROM CB_COURSE ICR
+				  JOIN CB_CARDINAL ICD
+				 WHERE ICR.GROUP_YN = 'Y'
+				   AND ICR.ACCEPT_YN = 'Y'
+				   AND ICR.USE_YN = 'Y'
+				   AND ICD.LEARN_TYPE = 'G'
+				   AND ICD.COURSE_TYPE = 'A'
+				   AND ICD.APP_POSSIBLES LIKE CONCAT('%',ICR.CREDIT,'%')
+				 UNION ALL
+				SELECT ICD.SEQ AS CARDINAL_SEQ, ICR.ID AS COURSE_ID, ICR.NAME AS COURSE_NAME, ICR.ICON_DISPLAYS
+				  FROM CB_COURSE ICR
+				  JOIN CB_CN_COURSE ICNCR
+				    ON ICNCR.COURSE_ID = ICR.ID
+				  JOIN CB_CARDINAL ICD
+				    ON ICD.ID = ICNCR.CARDINAL_ID
+				 WHERE ICR.GROUP_YN = 'Y'
+				   AND ICR.ACCEPT_YN = 'Y'
+				   AND ICR.USE_YN = 'Y'
+				   AND ICR.USE_YN = 'Y'
+				   AND ICD.LEARN_TYPE = 'G'
+				   AND ICD.COURSE_TYPE = 'S'
+			 ) CC
+			ON CC.CARDINAL_SEQ = CD.SEQ
+		 WHERE 1=1
+		   <choose>
+			   <when test='closed == "Y"'>
+			   AND DATE_FORMAT(NOW(), "%Y-%m-%d") &gt; CD.APP_END_DATE
+			   </when>
+			   <otherwise>
+			   AND DATE_FORMAT(NOW(), "%Y-%m-%d") BETWEEN CD.APP_START_DATE AND CD.APP_END_DATE
+			   </otherwise>
+		   </choose>
+		   AND CD.LEARN_TYPE = 'G'
+		   AND GL.USE_YN = 'Y'
+	</select>
+
+	<select id="selectGroupLearn" parameterType="map" resultType="hashmap" useCache="false">
+		SELECT GL.ID
+			 , GL.NAME
+			 , GL.REGION_CODE
+			 , (
+			 	SELECT NAME FROM FF_CODE WHERE CODE = GL.REGION_CODE
+			 ) AS REGION_NAME
+			 , GL.JURISDICTION
+			 , GL.TARGETS
+			 , GL.PROC_CNT
+			 , (
+			 	SELECT URL_PATH FROM FF_ATTACH_FILE_DETAIL WHERE FILE_ID = GL.BANNER_FILE LIMIT 1
+			 ) AS BANNER_URL
+			 , GL.CONTENTS
+			 , CD.ID AS CARDINAL_ID
+			 , CD.NAME AS CARDINAL_NAME
+			 , DATE_FORMAT(CD.APP_START_DATE, '%Y-%m-%d') AS APP_START_DATE
+			 , DATE_FORMAT(CD.APP_END_DATE, '%Y-%m-%d') AS APP_END_DATE
+			 , DATE_FORMAT(CD.LEARN_START_DATE, '%Y-%m-%d') AS LEARN_START_DATE
+			 , DATE_FORMAT(CD.LEARN_END_DATE, '%Y-%m-%d') AS LEARN_END_DATE
+			 , GC.LIMIT_NUM
+			 , CASE WHEN DATE_FORMAT(NOW(), "%Y-%m-%d") &lt; CD.APP_START_DATE THEN 'B'
+			 		WHEN DATE_FORMAT(NOW(), "%Y-%m-%d") &gt; CD.APP_END_DATE THEN 'C'
+			 	    ELSE 'P' END STATUS
+			 , CR.ID AS COURSE_ID
+			 , CR.NAME AS COURSE_NAME
+			 , CR.NOTE
+			 , CR.PRICE
+			 , (
+			 	SELECT NAME FROM CB_BOOK WHERE ID = CR.MAIN_TB_ID
+			 ) AS MAIN_TB_NAME
+			 , CR.SUB_TB_ID
+			 , (
+			 	SELECT NAME FROM CB_BOOK WHERE ID = CR.SUB_TB_ID
+			 ) AS SUB_TB_NAME
+			 , CR.TEACH_ID
+			, (
+				SELECT NAME FROM FF_MEMBER WHERE ID = CR.TEACH_ID AND USE_YN = 'Y'
+             ) AS TEACHER_NAME
+		  FROM CB_GROUP_LEARN GL
+		  JOIN CB_GROUP_CN GC
+		    ON GC.GROUP_ID = GL.ID
+		  JOIN CB_CARDINAL CD
+		    ON CD.ID = GC.CARDINAL_ID
+		  JOIN CB_COURSE CR
+		 WHERE GL.ID = #{group_id}
+		   AND CD.SEQ = #{cardinal_seq}
+		   AND CD.LEARN_TYPE = 'G'
+		   AND GL.USE_YN = 'Y'
+		   AND CR.ID = #{course_id}
+	</select>
+
+	<!-- 기수과정 상세 -->
+	<!-- CB_CN_COURSE 테이블 JOIN이 상황에 따라 빠져야 될 수 있는 관계로 조건에서 삭제 -->
+	<select id="selectCardinalCourseDetail" parameterType="map" resultType="hashmap" useCache="false">
+		SELECT CR.ID
+			 , CR.COURSE_CODE
+			 , (
+			 	SELECT NAME FROM FF_CODE WHERE CODE = CR.COURSE_CODE
+			 ) AS COURSE_CODE_NAME
+			 , CR.NAME
+			 , (
+				SELECT NAME FROM FF_MEMBER WHERE ID = CR.TEACH_ID AND USE_YN = 'Y'
+             ) AS TEACHER_NAME
+			 , CR.CREDIT
+			 , CR.CREDIT*15 AS CREDIT_TIME
+			 , CR.SUMMARY
+			 , CR.MOBILE_SUMMARY
+			 , CR.PURPOSE
+			 , CR.INSTRUCTOR
+			 , CR.NOTE
+			 , CR.PRICE
+			 , CR.MAIN_TB_ID
+			 , (
+			 	SELECT NAME FROM CB_BOOK WHERE ID = CR.MAIN_TB_ID
+			 ) AS MAIN_TB_NAME
+			 , CR.SUB_TB_ID
+			 , (
+			 	SELECT NAME FROM CB_BOOK WHERE ID = CR.SUB_TB_ID
+			 ) AS SUB_TB_NAME
+			 , CR.MAIN_PRICE
+			 , CR.SUB_PRICE
+			 , CD.ID AS CARDINAL_ID
+			 , CD.NAME AS CARDINAL_NAME
+			 , DATE_FORMAT(CD.LEARN_START_DATE, '%Y-%m-%d') AS LEARN_START_DATE
+			 , DATE_FORMAT(CD.LEARN_END_DATE, '%Y-%m-%d') AS LEARN_END_DATE
+		  FROM CB_COURSE CR
+		 CROSS  JOIN CB_CARDINAL CD
+		 WHERE CR.ID = #{course_id}
+		   AND CD.ID =  #{cardinal_id}
+		   AND CR.USE_YN = 'Y'
+		   AND CD.USE_YN = 'Y'
+	</select>
+
+	<!-- 인기순위 +1 -->
+	<update id="updateCourseHitsOrderPlus" parameterType="string">
+		UPDATE CB_COURSE
+		   SET HITS_ORDER = HITS_ORDER + 1
+		 WHERE ID = #{course_id}
+	</update>
+
+	<!-- 판매수위 +1 -->
+	<update id="updateCourseSellOrderPlus" parameterType="string">
+		UPDATE CB_COURSE
+		   SET SELL_ORDER = SELL_ORDER + 1
+		 WHERE ID = #{course_id}
+	</update>
+
+	<select id="selectCourseMainBookInfo" parameterType="string" resultType="hashmap">
+		SELECT CR.NAME AS COURSE_NAME
+			 , CR.MAIN_PRICE AS COURSE_PRICE
+			 , BK.NAME
+			 , BK.AUTHOR
+			 , BK.SUPPLY_CODE
+			 , (
+			 	SELECT NAME FROM FF_CODE WHERE CODE = BK.SUPPLY_CODE
+			 ) AS SUPPLIER
+			 , BK.PRICE
+			 , BK.MEMO
+			 , BK.IMG1_FILE
+			 , (
+			 	SELECT URL_PATH FROM FF_ATTACH_FILE_DETAIL WHERE FILE_ID = BK.IMG1_FILE LIMIT 1
+			 ) AS IMG1_URL
+		  FROM CB_COURSE CR
+		  JOIN CB_BOOK BK
+		    ON BK.ID = CR.MAIN_TB_ID
+		 WHERE CR.ID = #{course_id}
+	</select>
+</mapper>

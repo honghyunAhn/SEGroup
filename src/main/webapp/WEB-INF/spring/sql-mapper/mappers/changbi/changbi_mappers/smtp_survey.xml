@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 나의 강의실 설문조사 SQL(김성미) -->
+<mapper namespace="com.aracomm.changbi.user.dao.MyLectureInfoDao">
+
+	<!-- 일반설문 쿼리와 자동설문 쿼리를 union해서 조회 -->
+	<select id="selectSurveyList" parameterType="Hashmap" resultType="Hashmap">
+		SELECT
+			*
+			,IF(SURVEY_END_DATE > CURDATE(), 'OPEN', 'CLOSED') SURVEY_STATE
+		FROM
+			(	SELECT
+					SURVEY.SURVEY_SEQ
+					,COURSE.NAME AS COURSE_NM
+				    ,GISU.NAME AS GISU_NM
+					,SURVEY_TITLE
+					,SURVEY_CONTENT
+				    ,DATE_FORMAT(SURVEY.SURVEY_START_DATE, '%Y-%m-%d') AS SURVEY_START_DATE
+				    ,DATE_FORMAT(SURVEY.SURVEY_END_DATE, '%Y-%m-%d') AS SURVEY_END_DATE
+					,IF((SELECT COUNT(*) 
+						FROM STU_SURVEY_COMPLETE_TB 
+						WHERE SURVEY_SEQ = SURVEY.SURVEY_SEQ AND USER_ID = #{user_id}) = 0, 'NOT_YET', 'COMPLETED'
+						) AS SURVEY_ANSWER_STATE
+				FROM 
+					STU_SURVEY_INFO_TB SURVEY
+				    ,CB_COURSE COURSE
+				    ,CB_CARDINAL GISU
+				WHERE
+					SURVEY.SURVEY_REGDATE IS NOT NULL
+					AND
+					CRC_ID =  #{course}
+				    AND
+				    GISU_ID = #{cardinal}
+				    AND
+				    SURVEY.CRC_ID = COURSE.ID
+				    AND
+				    SURVEY.GISU_ID = GISU.ID
+				UNION
+				SELECT
+					AUTO.SURVEY_SEQ
+				    ,COURSE.NAME AS COURSE_NM
+				    ,GISU.NAME AS GISU_NM
+				    ,SURVEY_TITLE
+				    ,SURVEY_CONTENT
+				    ,CASE
+						WHEN (AUTO_SURVEY_START = 2) THEN DATE_ADD(LEARN_START_DATE, INTERVAL 30 DAY)
+				        WHEN (AUTO_SURVEY_START = 3) THEN DATE_ADD(LEARN_START_DATE, INTERVAL 60 DAY)
+					 END AS SURVEY_START_DATE
+					,CASE
+						WHEN (AUTO_SURVEY_PERIOD = 1) THEN LEARN_END_DATE
+						WHEN (AUTO_SURVEY_PERIOD = 2 AND AUTO_SURVEY_START = 2) THEN DATE_ADD(LEARN_START_DATE, INTERVAL 37 DAY)
+						WHEN (AUTO_SURVEY_PERIOD = 2 AND AUTO_SURVEY_START = 3) THEN DATE_ADD(LEARN_START_DATE, INTERVAL 67 DAY)
+					 END AS SURVEY_END_DATE
+				    ,IF((SELECT COUNT(*) 
+								FROM STU_SURVEY_COMPLETE_TB 
+								WHERE SURVEY_SEQ = INFO.SURVEY_SEQ AND USER_ID = #{user_id}) = 0, 'NOT_YET', 'COMPLETED'
+								) AS SURVEY_ANSWER_STATE
+				FROM
+					STU_SURVEY_AUTO_TB AUTO
+					,STU_SURVEY_INFO_TB INFO
+					,CB_COURSE	COURSE
+					,CB_CARDINAL GISU
+				WHERE
+					AUTO.CRC_ID = COURSE.ID
+					AND AUTO.SURVEY_SEQ = INFO.SURVEY_SEQ
+					AND AUTO.CRC_ID = #{course}
+					AND GISU.ID = #{cardinal}
+				    AND (CASE 
+							WHEN AUTO_SURVEY_TYPE = 'GISU' 
+				            THEN GISU.SEQ >= (SELECT SEQ FROM CB_CARDINAL WHERE ID = AUTO_SURVEY_GISU)
+							WHEN AUTO_SURVEY_TYPE = 'COURSE' 
+				            THEN GISU.SEQ END > 0
+				         )
+			)TOTAL
+		ORDER BY SURVEY_SEQ DESC
+	</select>
+
+	<select id="selectSurveyDetail" parameterType="Hashmap" resultType="Hashmap">
+		SELECT
+			QUESTION.SURVEY_QUESTION_SEQ
+			,QUESTION.SURVEY_SEQ
+	        ,QUESTION.SURVEY_TYPE_SEQ
+	        ,QUESTION.SURVEY_NUMBER
+	        ,QUESTION.SURVEY_QUESTION
+	        ,QUESTION.SURVEY_ANSWER_SAMPLE
+	        ,ANSWER.SURVEY_ANSWER
+	        ,ANSWER.SURVEY_ANSWER_CHOICE
+	    FROM
+			STU_SURVEY_QUESTION_TB QUESTION
+		LEFT JOIN 
+			STU_SURVEY_ANSWER_TB ANSWER
+        ON 
+        	QUESTION.SURVEY_QUESTION_SEQ = ANSWER.SURVEY_QUESTION_SEQ
+	    	AND USER_ID = #{user_id}
+        WHERE
+			SURVEY_SEQ = #{survey_seq}
+	</select>
+	
+	<!-- 설문조사 답변 입력 시작 -->
+	<insert id="insertSurveyAnswer" parameterType="java.util.List">
+		INSERT INTO STU_SURVEY_ANSWER_TB(
+			SURVEY_ANSWER_SEQ
+			,SURVEY_QUESTION_SEQ
+	        ,USER_ID
+			,SURVEY_ANSWER
+	        ,SURVEY_ANSWER_CHOICE
+		) VALUES
+		<foreach item="item" index="index" collection="list" open=" " separator="," close=" ">
+	    (
+	    	(SELECT IFNULL(MAX(SURVEY_ANSWER_SEQ), 0) + #{index} + 1 FROM STU_SURVEY_ANSWER_TB A)
+			,#{item.survey_question_seq}
+			,#{item.user_id}
+			,#{item.survey_answer}
+			,#{item.survey_answer_choice}
+	    )
+		</foreach>
+	</insert>
+	<!-- 설문조사 답변 입력 종료 -->
+	
+	<!-- 설문조사 답변 입력 시작 -->
+	<!-- <insert id="insertSurveyAnswer" parameterType="SurveyAnswerVO">
+		INSERT INTO stu_survey_answer_tb(
+			survey_question_seq
+	        ,user_id
+	        <if test="survey_answer != null">
+		        ,survey_answer
+	        </if>
+	        <if test="survey_answer_choice != null">
+		        ,survey_answer_choice
+	        </if>
+		) VALUES(
+			#{survey_question_seq}
+			,#{user_id}
+			<if test="survey_answer != null">
+				,#{survey_answer}
+			</if>
+	        <if test="survey_answer_choice != null">
+				,#{survey_answer_choice}
+	        </if>
+	    )
+	</insert> -->
+	<!-- 설문조사 답변 입력 종료 -->
+	
+	<!-- 설문응답완료 명단 입력 시작 -->
+	<insert id="insertSurveyComplete" parameterType="SurveyAnswerVO">
+		INSERT INTO STU_SURVEY_COMPLETE_TB(
+			SURVEY_SEQ
+	        ,USER_ID
+	    ) VALUES(
+			(	SELECT	SURVEY_SEQ
+				FROM	STU_SURVEY_QUESTION_TB
+		    	WHERE	SURVEY_QUESTION_SEQ = #{survey_question_seq}	)
+	        ,#{user_id}
+	    )
+	</insert>
+	
+	<!-- 설문조사 답변 수정 시작 -->
+	<update id="updateSurveyAnswer" parameterType="java.util.List">
+	    <foreach item="item" index="index" collection="list" separator=";">
+			UPDATE STU_SURVEY_ANSWER_TB
+		   	SET
+	        	USER_ID = #{item.user_id}
+				,SURVEY_ANSWER = #{item.survey_answer}
+		        ,SURVEY_ANSWER_CHOICE = #{item.survey_answer_choice}
+			WHERE 
+				SURVEY_QUESTION_SEQ = #{item.survey_question_seq}
+		</foreach>
+	</update>
+	<!-- 설문조사 답변 수정 종료 -->
+	
+	<resultMap type="Hashmap" id="answerList">
+		<id property="survey_question_seq" 			column="survey_question_seq" 	javaType="int"/>
+		<result property="survey_type_seq" 			column="survey_type_seq"		javaType="int"/>
+		<result property="survey_number" 			column="survey_number"			javaType="int"/>
+		<result property="survey_question"			column="survey_question" 		javaType="String"/>
+		<result property="survey_answer_sample" 	column="survey_answer_sample" 	javaType="String"/>
+		<result property="survey_answer" 			column="survey_answer" 			javaType="String"/>
+		<result property="survey_answer_choice" 	column="survey_answer_choice" 	javaType="int"/>
+	</resultMap>
+	
+	<!-- 설문 응답내용 조회 시작 -->
+	<select id="selectSurveyAnswer" parameterType="hashmap" resultMap="answerList">
+		SELECT
+			question.survey_question_seq
+	        ,question.survey_type_seq
+	        ,question.survey_number
+	        ,question.survey_question
+	        ,question.survey_answer_sample
+	        ,answer.survey_answer
+	        ,answer.survey_answer_choice
+	    FROM
+			stu_survey_answer_tb answer
+	        ,stu_survey_question_tb question
+	    WHERE
+			survey_seq = #{survey_seq} 
+	        AND
+	        user_id = #{user_id}
+	        AND
+	        answer.survey_question_seq = question.survey_question_seq
+	</select>
+	<!-- 설문 응답내용 조회 종료 -->
+	
+	<!--  미응답 마감된 설문 조회 시작
+	<select id="selectClosedSurvey" parameterType="hashmap" resultType="SurveyQuestionVO">
+		SELECT
+			*
+    	FROM
+			stu_survey_question_tb
+	    WHERE
+			survey_seq = #{survey_seq}
+	</select>
+	미응답 마감된 설문 조회 종료 -->
+	
+</mapper>

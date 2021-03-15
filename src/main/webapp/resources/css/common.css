@@ -1,0 +1,210 @@
+@charset "UTF-8";
+/* common.css */
+
+/* ----------------------------------------------------------------
+  >> TABLE OF CONTENTS:                   담당자 : 성지민
+	1.0 Plugin 관련 X
+    2.0 Layout Desgin - Common Style
+        - 2.1 z-index X
+        - 2.2 icon X
+        - 2.3 text X
+        - 2.4 button X
+        - 2.5 color
+        - 2.6 ETC function X
+    3.0 Main Page Design
+        - 3.1 header
+        - 3.2 footer
+        - 3.3 main
+    4.0 Contents Design - common
+    5.0 Popup Design - modal popup layer
+----------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+  >> 2.0 custom style
+----------------------------------------------------------------*/
+/* 2.1 content align */
+.floatL {
+    float: left;
+}
+.floatR {
+    float: right;
+}
+
+.d-flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.flexWrap {
+    -webkit-box-lines: multiple;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.justify_between {
+    justify-content: space-between;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+}
+
+.justify_around {
+    justify-content: space-around;
+}
+
+.justify_start {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+.justify_end {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.justify_center {
+    justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+}
+
+.d-inline {
+    display: inline;
+}
+
+/* 2.2 text */
+.text-over {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    white-space: nowrap;
+}
+
+.txt-ov-2 {
+    white-space: normal;
+    -webkit-line-clamp: 2;
+}
+
+.h1 {
+    /* font-size: 60px; */
+    font-size: 4.286rem;
+    line-height: 80px;
+    font-weight: bold;
+}
+
+.fz34 {
+    font-size: 2.429rem;
+}
+
+.h2 {
+    /* font-size: 30px; */
+    font-size: 2.143rem;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.fz24 {
+    /* font-size: 24px; */
+    font-size: 1.714rem;
+}
+
+.h3 {
+    /* font-size: 20px; */
+    font-size: 1.429rem;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.h4, .fz18 {
+    /* font-size: 18px; */
+    font-size: 1.286rem;
+}
+
+.fz16 {
+    /* font-size: 16px; */
+    font-size: 1.143rem;
+}
+
+.fz14 {
+    /* font-size: 14px; */
+    font-size: 1rem;
+}
+
+.fz13 {
+    /* font-size: 13px; */
+    font-size: 0.9286rem;
+}
+
+.h5 {
+    /* font-size: 12px; */
+    font-size: 0.857rem;
+}
+
+/* 2.3 button */
+.button, .btn{
+    border: none;
+    background-color: inherit;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    text-align: center;
+}
+
+/* 2.5 color */
+.cRed {
+    color: #C13831;
+}
+
+.cGray {
+    color: #9B9EA0;
+}
+
+.cNavy {
+    color: #11283b;
+}
+
+.gc_green {
+    background-color: #5fe3a1;
+}
+
+.gc_blue {
+    background-color: #56d9fe;
+}
+
+.gc_purple {
+    background-color: #a3a0fb;
+}
+
+.pointColor{
+    color: #396AA5;
+}
+.pointBg{
+    background-color: #396AA5;
+    color: #fff;
+}
+.pointBg:hover{
+    background-color: #2d567f;
+}
+/*--------------------------------------------------------------
+  >> 3.0 Main Page Design
+----------------------------------------------------------------*/
+/* 3.1 header */
+/* 3.2 footer */
+/* 3.3 main */
+
+/*--------------------------------------------------------------
+  >> 4.0 Contents Design - common
+----------------------------------------------------------------*/
+/* content */
+.container{
+    padding: 40px 0;
+}
+.container>.content {
+    width: 1200px;
+    margin: 0 auto;
+}
+/*--------------------------------------------------------------
+  >> 5.0 Popup Design - modal popup layer
+----------------------------------------------------------------*/

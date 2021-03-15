@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.mypage.dao.ReceiptDao">
+
+	<select id="selectLectureReceiptListCnt" resultType="int">
+		SELECT
+			COUNT(1) AS CNT
+		FROM CB_LEARN_APP AS CLA
+			JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+			JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+		WHERE CLA.USER_ID = #{user_id}
+			AND CLA.PAYMENT_STATE = 2 /*2:결제완료*/
+			<if test="learn_type != null">
+				AND CCA.LEARN_TYPE = #{learn_type}
+			</if>
+	</select>
+
+
+	<select id="selectLectureReceiptList" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			CLA.ID
+			, CLA.GROUP_ID
+			, CLA.CARDINAL_ID
+			, CLA.COURSE_ID
+			, IFNULL(CLA.DES_NUM, '') AS DES_NUM /*연수지명번호*/
+			, CCA.LEARN_TYPE /*연수구분*/
+			, CCA.NAME AS CARDINAL_NAME /*기수명*/
+			, CONCAT(IF(LOCATE(CCA.LEARN_TYPE, 'J')>0,'직무 ',''), IF(LOCATE(CCA.LEARN_TYPE,'S')>0,'자율 ',''),IF(LOCATE(CCA.LEARN_TYPE,'M')>0,'집합 ',''), IF(LOCATE(CCA.LEARN_TYPE,'G')>0,'단체 ','')) AS LEARN_TYPE_NAME
+			, CCB.COURSE_CODE /*연수영역*/
+			, (SELECT`NAME` FROM FF_CODE WHERE CODE = CCB.COURSE_CODE AND GROUP_ID = 'course') AS COURSE_CODE_NAME
+			, CCB.NAME /*연수과정*/
+			, CCB.CREDIT /*학점*/
+			, CCA.LEARN_START_DATE /*연수시작일*/
+			, CCA.LEARN_END_DATE /*연수종료일*/
+			, CLA.REAL_END_DATE /*최종연수종료일*/
+			, CLA.ISSUE_NUM /*이수번호*/
+			, CLA.ISSUE_YN /*이수여부*/
+			, IF(TO_DAYS(CCA.LEARN_END_DATE) - TO_DAYS(NOW()) +1 > 0, 'N', 'Y') AS END_YN
+			, IFNULL(CLA.REAL_PAYMENT, 0) AS REAL_PAYMENT
+			, CLA.PAYMENT_TYPE /*결제방식*/
+			, CLA.ORDER_IDX /*주문번호*/
+		FROM CB_LEARN_APP AS CLA
+			JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+			JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+		WHERE CLA.USER_ID = #{user_id}
+			AND CLA.PAYMENT_STATE = 2 /*2:결제완료*/
+		]]>
+		<if test="learn_type != null">
+			AND CCA.LEARN_TYPE = #{learn_type}
+		</if>
+		<![CDATA[
+		ORDER BY CLA.REG_DATE DESC
+		LIMIT ${visiblePages} OFFSET ${skipRows}
+		]]>
+	</select>
+
+	<select id="selectReceiptInfo" resultType="hashmap">
+		SELECT
+			CLA.ID
+			, CLA.GROUP_ID
+			, CLA.CARDINAL_ID
+			, CLA.COURSE_ID
+			, CCA.LEARN_TYPE /*연수구분*/
+			, CCA.NAME AS CARDINAL_NAME /*기수명*/
+			, CCB.CREDIT /*학점*/
+			, CCB.COMPLETE_TIME /*이수시간*/
+			, CLA.ISSUE_NUM /*연수이수번호*/
+			, CCB.NAME AS COURSE_NAME /*연수과정*/
+			, DATE_FORMAT(CCA.ISSUE_DATE, "%Y년 %m월 %d일") AS ISSUE_DATE /*이수일자*/
+			, DATE_FORMAT(NOW(), "%Y년 %m월 %d일") AS CURR_DATE
+			, CONCAT(IF(LOCATE(CCA.LEARN_TYPE, 'J')>0,'직무 ',''), IF(LOCATE(CCA.LEARN_TYPE,'S')>0,'자율 ',''),IF(LOCATE(CCA.LEARN_TYPE,'M')>0,'집합 ',''), IF(LOCATE(CCA.LEARN_TYPE,'G')>0,'단체 ','')) AS LEARN_TYPE_NAME
+			, (SELECT`NAME` FROM FF_CODE WHERE CODE = CCB.COURSE_CODE AND GROUP_ID = 'course') AS COURSE_CODE_NAME
+			, (SELECT DATE_FORMAT(BIRTH_DAY, "%Y.%m.%d") FROM CB_MEMBER WHERE ID = CLA.USER_ID) AS BIRTH_DAY
+			, (SELECT SCHOOL_NAME FROM CB_MEMBER WHERE ID = CLA.USER_ID) AS SCHOOL_NAME
+			<if test="print_type == 1"><!-- 영수증 -->
+			, CLA.REAL_PAYMENT /*실결제금액*/
+			, DATE_FORMAT(CLA.PAYMENT_DATE, "%Y년 %m월 %d일") AS PAYMENT_DATE
+			, DATE_FORMAT(CCA.LEARN_START_DATE, "%Y.%m.%d.") AS LEARN_START_DATE
+			, DATE_FORMAT(CCA.LEARN_END_DATE, "%Y.%m.%d.") AS LEARN_END_DATE
+			</if>
+			<if test="print_type == 2"><!-- 성적 -->
+			, IFNULL(CLA.TOTAL_SCORE, 0) AS TOTAL_SCORE /*최종획득 점수*/
+			, IFNULL(CLA.PART_SCORE, 0) AS PART_SCORE /*학습참여도 점수*/
+			, IFNULL((SELECT SCORE FROM CB_REPORT WHERE LEARN_APP_ID = CLA.ID AND QUIZ_TYPE = '1'),0) AS SCORE_TYPE1 /*출석고사 성적*/
+			, IFNULL((SELECT SCORE FROM CB_REPORT WHERE LEARN_APP_ID = CLA.ID AND QUIZ_TYPE = '2'),0) AS SCORE_TYPE2 /*온라인시험 성적*/
+			, IFNULL((SELECT SCORE FROM CB_REPORT WHERE LEARN_APP_ID = CLA.ID AND QUIZ_TYPE = '3'),0) AS SCORE_TYPE3 /*온라인과제 성적*/
+			</if>
+			<if test="print_type == 3"><!-- 수강이수증 -->
+			, CLA.NEIS_NUM /*NEIS개인번호*/
+			, CLA.DES_NUM /*연수지명번호*/
+			, IFNULL(CLA.TOTAL_SCORE, 0) AS TOTAL_SCORE /*최종획득 점수*/
+			, DATE_FORMAT(CCA.LEARN_START_DATE, "%Y년 %m월 %d일") AS LEARN_START_DATE
+			, DATE_FORMAT(CCA.LEARN_END_DATE, "%Y년 %m월 %d일") AS LEARN_END_DATE
+			</if>
+			<if test="print_type == 4"><!-- 수강확인증 -->
+			, DATE_FORMAT(CCA.LEARN_START_DATE, "%Y년 %m월 %d일") AS LEARN_START_DATE
+			, DATE_FORMAT(CCA.LEARN_END_DATE, "%Y년 %m월 %d일") AS LEARN_END_DATE
+			</if>
+		FROM CB_LEARN_APP AS CLA
+			JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+			JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+		WHERE 1=1
+			AND CLA.USER_ID = #{user_id}
+			AND CLA.ID = #{learnAppId}
+		<if test="print_type == 1">
+			/*AND CLA.REAL_PAYMENT != 0*/
+		</if>
+		<if test="print_type == 2 || print_type == 3">
+			/*AND CLA.ISSUE_NUM IS NOT NULL*/
+		</if>
+		<if test="print_type == 4">
+			AND NOW() BETWEEN CCA.LEARN_START_DATE AND DATE_ADD(CCA.LEARN_END_DATE, INTERVAL 1 DAY)
+		</if>
+	</select>
+	
+	<!-- KCP 정보를 조회하기 위한 파라미터 조회 -->
+	<select id="selectKcpRecieptParam" resultType="hashmap" parameterType="hashmap">
+		<choose>
+			<!-- KCP 현금영수증(무통장) 파라미터 -->
+			<when test='paymentType == "1"'> 
+				SELECT
+					APP_NUM, /* 결제승인번호 */
+					ORDER_IDX, /* 주문번호 */
+					REAL_PAYMENT /* 실 거래금액 */					
+				FROM CB_LEARN_APP
+				WHERE PAYMENT_STATE = '2'
+				AND PAYMENT_TYPE = #{paymentType}
+				AND ID = #{learnAppId} 
+				AND USER_ID = #{user_id}
+			</when>
+			<!-- KCP 현금영수증(계좌이체) 파라미터 -->
+			<when test='paymentType == "2"'>
+				SELECT
+					CASH_NO, /* KCP 현금영수증 - 거래번호 */
+					ORDR_IDXX, /* KCP 주문번호 */ 
+					GOOD_MNY /* KCP 결제금액 */
+				FROM CB_PAYMENT_KCP
+				WHERE RES_CD = '0000' /* 정상처리 */
+				AND ORDR_IDXX = 
+				(
+					SELECT 
+						ORDER_IDX 
+					FROM CB_LEARN_APP 
+					WHERE PAYMENT_STATE = '2' 
+					AND PAYMENT_TYPE = #{paymentType} 
+					AND ID = #{learnAppId} 
+					AND USER_ID = #{user_id}
+				)
+			</when>
+			<!-- KCP 신용카드 파라미터 -->
+			<when test='paymentType == "4"'>
+				SELECT
+					TNO, /* KCP 거래번호 */
+					ORDR_IDXX, /* KCP 주문번호 */ 
+					GOOD_MNY /* KCP 결제금액 */
+				FROM CB_PAYMENT_KCP
+				WHERE RES_CD = '0000' /* 정상처리 */
+				AND ORDR_IDXX =
+				(
+					SELECT 
+						ORDER_IDX 
+					FROM CB_LEARN_APP 
+					WHERE PAYMENT_STATE = '2' 
+					AND PAYMENT_TYPE = #{paymentType} 
+					AND ID = #{learnAppId} 
+					AND USER_ID = #{user_id}
+				)
+			</when>
+		</choose>
+	</select>
+</mapper>

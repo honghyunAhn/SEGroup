@@ -1,0 +1,27 @@
+
+  @media all and (min-width:1080px){
+  
+		.shortCut{margin:0 auto;width:840px;margin-bottom:40px; }
+		.shortCut li{float:left;width:120px;height:102px;}
+		.shortCut li a{display:block;width:120px;height:32px;padding-top:70px;text-decoration:none;font-size:16px;color:#595959;text-align:center;}
+		#SNStempText{font-size:13px;}
+
+		.shortCut1 a{background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:0 0;}
+		.shortCut2 a{line-height:32px;background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-240px 0;}
+		.shortCut3 a{line-height:32px;background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-480px 0;}
+		.shortCut4 a{line-height:32px;background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-720px 0;}
+		.shortCut5 a{line-height:32px;background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-960px 0;}
+		.shortCut6 a{line-height:32px;background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-1200px 0;}
+		.shortCut7 a{line-height:32px;background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-1440px 0;}
+		.shortCut8 a{line-height:32px;background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-1680px 0;}
+
+		.shortCut1 a:hover{background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-120px 0;}
+		.shortCut2 a:hover{background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-360px 0;}
+		.shortCut3 a:hover{background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-600px 0;}
+		.shortCut4 a:hover{background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-840px 0;}
+		.shortCut5 a:hover{background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-1080px 0;}
+		.shortCut6 a:hover{background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-1320px 0;}
+		.shortCut7 a:hover{background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-1560px 0;}
+		.shortCut8 a:hover{background-image:url('/web/resources/seproject/society/image/main/shortCut.png');background-repeat:no-repeat;background-position:-1800px 0;}
+
+  }

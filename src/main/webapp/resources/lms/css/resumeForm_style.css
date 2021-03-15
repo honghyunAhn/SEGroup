@@ -1,0 +1,940 @@
+@charset "UTF-8";
+/* ----------------------------------------------------------------
+  >> TABLE OF CONTENTS:                   담당자 : 성지민
+	0.0 font-face
+
+	1.0 reset 표준화
+    	- 1.1 HTML5 display-role reset for older browsers
+    	- 1.2 Typography
+        - 1.0 ALL Element
+    	- 1.3 Table, Link
+    	- 1.4 form element reset
+
+
+	2.0 Plugin 관련 - Swiper(슬라이드)
+        - 2.1 Main Slide Gallery
+        - 2.2 Interview & Video Slide Gallery
+
+
+    3.0 Layout Desgin - Common Style
+        - 3.1 z-index
+        - 3.2 content align
+        - 3.3 icon
+        - 3.4 text
+        - 3.5 button
+        - 3.6 color
+        - 3.7 ETC function
+
+
+    4.0 Main Page Design
+        - 4.1 header
+            - 4.1.1 top-banner
+            - 4.1.2 header
+                1) 공지사항
+                2) 로그인/로그아웃
+                3) 로고/검색창/SNS
+            - 4.1.3 nav
+                1) menu-btn 메뉴바
+                2) nav
+                3) fullNav 전체메뉴
+
+        - 4.2 footer
+            - 4.2.1 Scroll to Top
+            - 4.2.2 footer
+
+        - 4.3 main
+            - 4.3.1 main-bannerWrap 슬라이딩 배너
+            - 4.3.2 btnWrap 퀵메뉴 버튼
+            - 4.3.3 hotNewWrap 인기강좌
+            - 4.3.4 recommend-classWrap 분야별 추천 강좌
+            - 4.3.5 banner-mid 중간 배너
+            - 4.3.6 special-classWrap 특강 및 설명회
+            - 4.3.7 customWrap
+                - 1) 공지사항/이벤트 + FAQ
+                - 2) 고객센터
+            - 4.3.8 interviewWrap 홍보영상/인터뷰
+
+
+    5.0 Contents Design - common
+        - 5.1 subPage - subNav
+        - 5.2 subPage - subContent
+            - 5.2.1 pageLocation 사용자 위치 표시
+            - 5.2.2 headerBox 카테고리별 header 이미지
+            - 5.2.3 ProcessWrap 단계별 진행상황
+        - 5.3 subPage - section
+            - 5.3.1 subPage - searchWrapper 과정명 검색
+            - 5.3.2 subPage - searchWrapper 조건선택 필터
+            - 5.3.3 subPage - searchWrapper 검색조건
+                - 1) viewWrap : 10개씩 보기
+                - 2) search-filter-wrap : 제목+내용 검색
+            - 5.3.4 subPage - pagination 페이지 수
+            - 5.3.5 subPage - sectionOutBtn (섹션 최하단 우측) 버튼
+
+        -5.4 subPage - 리스트 페이지 (.eLearning)
+            -5.4.1 리스트 페이지 공통 - 페이지 공통
+            -5.4.2 리스트 페이지 공통 - 과정목록 Title
+            -5.4.3 리스트 페이지 공통 - 과정목록 Content
+
+        -5.5 subPage - 강의 리스트 페이지 (.eLearning)
+            -5.5.1 강의 리스트 - 과정목록 Title
+            -5.5.2 강의 리스트 - 과정목록 Content
+
+        -5.6 subPage - 게시판 리스트 페이지 (.container.sub0$)
+            -5.6.1 게시판 리스트 - 과정목록 Title
+            -5.6.2 게시판 리스트 - 과정목록 Content
+
+        -5.7 subPage - Tab Group 탭
+            -5.7.1 Tab Group - Tab Title
+            -5.7.2 Tab Group - Sub Group
+
+        -5.8 subPage - formStyle
+            -5.8.1 formStyle - common
+            -5.8.2 formStyle - 게시글 보기
+            -5.8.3 formStyle - writePost 글쓰기
+            -5.8.4 formStyle - userInfo 회원정보 확인
+
+        -5.9 subPage - table
+            -5.9.1 table - thead
+            -5.9.2 table - tbody
+
+
+    6.0 Contents Design for Page (페이지별 개별화 된 콘텐츠 디자인)
+        - 6.1 sub00 로그인/회원가입
+            - 6.1.1 sub00-01 로그인
+            - 6.1.2 sub00-02 회원가입
+            - 6.1.3 sub00-03 아이디찾기
+            - 6.1.4 sub00-04 비밀번호찾기
+
+        - 6.2 eLearning(sub01~sub04) 온라인 강의
+            - 6.2.1 eLearning-01 온라인 강의 목록
+            - 6.2.2 eLearning-01-01 온라인 강의 상세
+
+        - 6.3 sub05 커뮤니티
+            - 6.3.1 sub05-01 공지사항/이벤트
+            - 6.3.2 sub05-02 수강후기/인터뷰
+            - 6.3.3 sub05-03 특강/설명회
+            - 6.3.4 sub05-04 자유게시판
+
+        - 6.4 sub06 고객센터
+            - 6.4.1 sub06-01 고객지원
+            - 6.4.2 sub06-02 FAQ
+            - 6.4.3 sub06-03 단체/제휴문의
+            - 6.4.4 sub06-04 오시는길
+
+        - 6.5 sub07 나의강의실
+            - 6.5.1 sub07-01 학습현황
+            - 6.5.2 sub07-02 결제현황/환불
+            - 6.5.3 sub07-03 마일리지
+            - 6.5.4 sub07-04 개인정보수정
+            - 6.5.5 sub07-05 회원탈퇴
+
+
+    7.0 Popup Design - modal popup layer
+        - 7.1 modal popup layer - layout
+            - 7.1.1 modal popup layer - header
+            - 7.1.2 modal popup layer - Content
+                - 1) 수강신청
+                    - 01수강신청
+                    - 02환불규정
+                    - 03결제방법
+                - 2) 나의강의실
+                    - 01학습현황
+                    - 02학습하기
+                    - 03온라인 과제
+                    - 04온라인 시험
+                    - 05공지사항
+                    - 06자료실
+                - 3) 영수증출력
+
+※ 서버 적용 이후 '임시' 키워드 찾아 지울 것
+----------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+  >> color-set
+
+  main color: #396aa5(blue 1), #2c67b0(light blue),
+              #e7c186(gold), #11283b(navy)
+
+  danger : #c13831(deep red)
+
+  sub color : #d78b16(deep gold),
+              #6f8d9d(gray blue), #415b69(deep gray blue),
+              #80b59b(green), #c75298(pink), #e07c58(orange),
+              #485d93(deep blue)
+
+  icon color : #cf7b79(light red), #be0d34(dark red),
+               #ff5012(orange), #bea01e(brown gold),
+               #66bd2b(yellow green), #36b42d(green),
+               #007836(dark green), #0073cf(blue),
+               #be0d34(dark gray), #f6ccda(baby pink),
+               #b9e7e7(baby green), #c1ddea(baby blue)
+
+  txt color : #ccc, #000, #999, #666, #444, #333, #11283b
+
+  bg color(main) : #f6f8fa
+
+  bg color(gray) : #f0f0f0, #f9f9f9, #f4f4f4, #ddd
+
+  border color : #f9f9f9, #f6f6f6, #f4f4f4, #eee, #ccc, #aaa
+----------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+  >> 0.0 font-face
+----------------------------------------------------------------*/
+/* nanum-gothic-regular - korean_latin */
+@font-face {
+    font-family: 'Nanum Gothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/nanum-gothic-v17-korean_latin-regular.eot');
+    /* IE9 Compat Modes */
+    src: local('NanumGothic'),
+        url('../fonts/nanum-gothic-v17-korean_latin-regular.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('../fonts/nanum-gothic-v17-korean_latin-regular.woff2') format('woff2'),
+        /* Super Modern Browsers */
+        url('../fonts/nanum-gothic-v17-korean_latin-regular.woff') format('woff'),
+        /* Modern Browsers */
+        url('../fonts/nanum-gothic-v17-korean_latin-regular.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('../fonts/nanum-gothic-v17-korean_latin-regular.svg#NanumGothic') format('svg');
+    /* Legacy iOS */
+}
+
+/* nanum-gothic-800 - korean_latin */
+@font-face {
+    font-family: 'Nanum Gothic';
+    font-style: normal;
+    font-weight: 800;
+    src: url('../fonts/nanum-gothic-v17-korean_latin-800.eot');
+    /* IE9 Compat Modes */
+    src: local('NanumGothic ExtraBold'), local('NanumGothic-ExtraBold'),
+        url('../fonts/nanum-gothic-v17-korean_latin-800.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('../fonts/nanum-gothic-v17-korean_latin-800.woff2') format('woff2'),
+        /* Super Modern Browsers */
+        url('../fonts/nanum-gothic-v17-korean_latin-800.woff') format('woff'),
+        /* Modern Browsers */
+        url('../fonts/nanum-gothic-v17-korean_latin-800.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('../fonts/nanum-gothic-v17-korean_latin-800.svg#NanumGothic') format('svg');
+    /* Legacy iOS */
+}
+
+/* noto-sans-kr-regular - korean_latin */
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/noto-sans-kr-v11-korean_latin-regular.eot');
+    /* IE9 Compat Modes */
+    src: local('Noto Sans KR Regular'), local('NotoSansKR-Regular'),
+        url('../fonts/noto-sans-kr-v11-korean_latin-regular.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('../fonts/noto-sans-kr-v11-korean_latin-regular.woff2') format('woff2'),
+        /* Super Modern Browsers */
+        url('../fonts/noto-sans-kr-v11-korean_latin-regular.woff') format('woff'),
+        /* Modern Browsers */
+        url('../fonts/noto-sans-kr-v11-korean_latin-regular.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('../fonts/noto-sans-kr-v11-korean_latin-regular.svg#NotoSansKR') format('svg');
+    /* Legacy iOS */
+}
+
+/* noto-sans-kr-700 - korean_latin */
+@font-face {
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/noto-sans-kr-v11-korean_latin-700.eot');
+    /* IE9 Compat Modes */
+    src: local('Noto Sans KR Bold'), local('NotoSansKR-Bold'),
+        url('../fonts/noto-sans-kr-v11-korean_latin-700.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('../fonts/noto-sans-kr-v11-korean_latin-700.woff2') format('woff2'),
+        /* Super Modern Browsers */
+        url('../fonts/noto-sans-kr-v11-korean_latin-700.woff') format('woff'),
+        /* Modern Browsers */
+        url('../fonts/noto-sans-kr-v11-korean_latin-700.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('../fonts/noto-sans-kr-v11-korean_latin-700.svg#NotoSansKR') format('svg');
+    /* Legacy iOS */
+}
+
+
+/*--------------------------------------------------------------
+  >> 1.0 reset 표준화
+----------------------------------------------------------------*/
+/* http://meyerweb.com/eric/tools/css/reset/
+       v2.0 | 20110126 License: none (public domain) */
+/* 1.0 ALL Element */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+/* 1.1 HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+    box-sizing: border-box;
+}
+
+/* 1.2 Typography */
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: "Noto Sans KR", "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "AppleSDGothic", "dotum", "sans-serif";
+    line-height: 20px;
+    color: #444;
+    word-break: keep-all;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1em;
+    font-weight: normal;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    /* selected width */
+    display: block;
+    width: 100%;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+/* 1.3 Table, Link */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* 1.4 form element reset*/
+input, texrarea, button, select, option {
+    box-sizing: border-box;
+}
+
+form, label {
+    display: block;
+}
+
+*:focus {
+    outline: 0;
+}
+/*--------------------------------------------------------------
+  >> 2.0 Plugin 관련 - Swiper(슬라이드)
+----------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+  >> 3.0 Layout Desgin - Common Style
+----------------------------------------------------------------*/
+/* 3.1 z-index */
+.resumePhotoWrap>.imgBtnWrap>.imgBtn>.resumePhoto{
+    z-index: -1;
+}
+.resumePhotoWrap>.imgBox>.imgGuide{
+    z-index: -1;
+}
+.rsm_evidence>.resumeSection>.resumeFormContainer>.resumeFormWrapper>.resumeFormWrap .rsm_fileUpload>.resumeEvidence_file{
+    z-index: 5;
+}
+.rsm_evidence .resumeFormWrapper>.resumeForm_noticeWrap{
+    z-index: 10;
+}
+/* 3.2 content align */
+.floatL {
+    float: left;
+}
+.floatR {
+    float: right;
+}
+.d-flex {
+    display: flex;
+    -ms-display: flexbox;
+    /* display: flexbox; */
+}
+.justify_between{
+    justify-content: space-between;
+}
+.justify_around{
+    justify-content: space-around;
+}
+.d-inline {
+    display: inline;
+}
+
+/* 3.3 icon */
+.img-icon {
+    background-image: url('../img/img-icon.png');
+    overflow: hidden;
+    background-repeat: no-repeat;
+    width: 20px; height: 20px;
+}
+
+.question-circle{background-position: 0 0;}
+.times-circle{background-position: -20px 0;}
+.plus-circle{background-position: -40px 0;}
+.plus-circle-gray{background-position: -60px 0;}
+.plus-circle-navy{background-position: -80px 0;}
+
+.minus-circle-gray{background-position: -100px 0;}
+.minus-circle-navy{background-position: -120px 0;}
+
+/* 학력사항 */
+.graduation-cap{background-position: -140px 0;}
+
+/* 경력사항 */
+.briefcase-gray{background-position: -160px 0;}
+.briefcase-gray.iconHover{background-position: -180px 0;}
+
+/* 교육이수 경력 */
+.book-open-gray{background-position:-200px 0;}
+.book-open-gray.iconHover{background-position:-220px 0;}
+
+/* 언어능력 */
+.globe-gray{background-position:-240px 0;}
+.globe-gray.iconHover{background-position:-260px 0;}
+
+/* 자격증 */
+.file-certificate-gray{background-position:-280px 0;}
+.file-certificate-gray.iconHover{background-position:-300px 0;}
+
+/* 본 과정 응시 여부 */
+.user-friends{background-position:-320px 0;}
+
+/* K-MOVE스쿨 참여여부 */
+.atlas{background-position:-340px 0;}
+
+/* 해외체류경험 */
+.plane-gray{background-position:-360px 0;}
+.plane-gray.iconHover{background-position:-380px 0;}
+
+/* 자기소개서 */
+.pen-nib{background-position: 0 -20px;}
+
+/* 증빙자료 업로드 */
+.upload{background-position: -20px -20px;}
+
+/* 3.4 text */
+.text-over {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    white-space: nowrap;
+}
+
+.txt-ov-2 {
+    white-space: normal;
+    -webkit-line-clamp: 2;
+}
+
+.d-none-msg>p {
+    display: none;
+}
+
+.h1 {
+    /* font-size: 60px; */
+    font-size: 4.286rem;
+    line-height: 80px;
+    font-weight: bold;
+}
+
+.fz34 {
+    font-size: 2.429rem;
+}
+
+.h2 {
+    /* font-size: 30px; */
+    font-size: 2.143rem;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.fz24 {
+    /* font-size: 24px; */
+    font-size: 1.714rem;
+}
+
+.h3 {
+    /* font-size: 20px; */
+    font-size: 1.429rem;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.h4, .fz18 {
+    /* font-size: 18px; */
+    font-size: 1.286rem;
+}
+
+.fz16 {
+    /* font-size: 16px; */
+    font-size: 1.143rem;
+}
+
+.fz14 {
+    /* font-size: 14px; */
+    font-size: 1rem;
+}
+
+.fz13 {
+    /* font-size: 13px; */
+    font-size: 0.9286rem;
+}
+
+.h5 {
+    /* font-size: 12px; */
+    font-size: 0.857rem;
+}
+
+/* main - Section Title */
+/* 3.5 button */
+.button {
+    border: none;
+    background-color: inherit;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.btn,
+.button{
+    cursor: pointer;
+    text-align: center;
+}
+
+/* 3.6 color */
+.cRed{
+    color: #C13831;
+}
+.cGray{
+    color: #9B9EA0;
+}
+.cNavy{
+    color: #11283b;
+}
+/* 3.7 ETC function */
+
+/* - modal popup layer 활성화시 바디 스크롤 없애기 */
+.not-scroll {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+/*--------------------------------------------------------------
+  >> 4.0 Main Page Design
+----------------------------------------------------------------*/
+/* content */
+.container{}
+/* content_header */
+.container>.resumeHeader{
+    width: 100%;
+    border-bottom: 10px solid #11283B;
+}
+.container>.resumeHeader>.h2,
+.container>.resumeContent{
+    width: 1360px;
+    margin: 0 auto;
+}
+.container>.resumeHeader>.h2{
+    text-align: center;
+    line-height: 70px;
+    color: #11283B;
+}
+/* content_section */
+.container>.resumeContent{
+    display: flex;
+}
+.container>.resumeContent>.resumeSection{
+    width: 1080px;
+}
+.container>.resumeContent>.resumeSection .resumeMsg{
+    line-height: 40px;
+    text-align: right;
+}
+/* content_resumeForm */
+
+.resumeWrap{
+    margin: 80px 0;
+}
+
+/* content_resumeForm_title */
+ .resumeWrap .resumeTitle{
+    border-bottom: 2px solid #11283b;
+}
+.resumeWrap:nth-child(1)~* >.resumeTitle{
+    margin-top: 40px;
+}
+ .resumeWrap .resumeTitle>.h3{
+    line-height: 38px;
+}
+ .resumeWrap .resumeTitle>.cGray{
+    padding: 10px 0 0 10px;
+}
+/* content_resumeForm_section */
+.resumeWrap>.resumeSection{}
+.resumeFormWrap{
+    width: 100%;
+}
+.resumeFormWrap>.row:nth-child(1)~*{
+    margin-top: 10px;
+}
+.resumeFormWrap>.resumeForm>.resumeForm_text{
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    margin-right: 10px;
+}
+.resumeFormWrap>.resumeForm>.resumeForm_load{
+    background-color: #f7f7f7;
+    cursor: default;
+}
+/* 정보입력칸 너비 */
+.resumeFormWrap>.resumeForm>.resumeForm_text.form100{
+    width: 100%;
+}
+.resumeFormWrap>.resumeForm>.resumeForm_text.form50{
+    width: calc(50% - 5px);
+}
+.resumeFormWrap>.resumeForm>.resumeForm_text.form33{
+    width:calc(33.33% - 6.6px);
+}
+.resumeFormWrap>.resumeForm>.resumeForm_text.form25{
+    width:calc(25% - 7.5px);
+}
+.resumeFormWrap>.resumeForm>.resumeForm_text.form20{
+    width: calc(20% - 8px);
+}
+.resumeFormWrap>.resumeForm>.resumeForm_text:last-child{
+    margin-right: 0;
+}
+.resumeFormWrap>.resumeForm>.resumeForm_text>.rsm_label{
+    color: #9B9EA0;
+}
+.resumeFormWrap>.resumeForm>.resumeForm_text>.rsm_input,
+.resumeFormWrap>.resumeForm>.resumeForm_text>.rsm_selectBox{
+    width: 100%;
+    height: 20px;
+    /* font-size: 16px; */
+    font-size: 1.143rem;
+    color: #777;
+    border: 0;
+    margin-top: 8px;
+}
+.resumeFormWrap>.resumeForm>.resumeForm_text>.rsm_input>.rsm_radio{
+    margin-right: 10px;
+}
+.resumeFormWrap>.resumeForm>.resumeForm_text>.rsm_input>.rsm_radio:last-child{
+    margin-right: 0;
+}
+.resumeForm_addBtn,
+.resumeForm_delBtn,
+.imgBtn.delImg,
+.serchaddressBtn,
+.resumeForm_ntcBtn{
+    cursor: pointer;
+}
+
+.resumeSection>.resumeForm_addBtn{
+    padding: 10px;
+    justify-content: center;
+    margin-top: 10px;
+    background: linear-gradient(#f7f7f7, rgba(255,255,255,0));
+}
+.resumeSection>.resumeForm_addBtn>.img-icon{}
+.resumeSection>.resumeForm_addBtn>.h4{
+    color: #11283B;
+    margin-left: 5px;
+    line-height: 20px;
+}
+.resumeSection>.resumeFormContainer>.resumeFormWrapper{
+    position: relative;
+    margin: 20px 0;
+    width: 100%;
+}
+.resumeSection>.resumeFormContainer>.resumeForm_addStyle{
+    /* 항목 추가될 때 적용되는 style */
+    border-top:1px solid #9B9EA0;
+    padding-top: 20px;
+}
+
+.resumeSection>.resumeFormContainer>.resumeFormWrapper>.resumeForm_delBtn{
+    position: absolute;
+    right: 10px; top: -10px;
+}
+.resumeSection>.resumeFormContainer>.resumeForm_addStyle>.resumeForm_delBtn{
+    top: 10px;
+}
+
+/* content_resumeForm_section > profile 기본정보 */
+.resumeWrap.rsm_profile{
+    margin: 0 0 80px;
+}
+.resumeWrap.rsm_profile>.resumeSection{
+    padding: 20px 0 0;
+}
+.resumePhotoWrap{
+    width: 150px;
+    margin-right: 10px;
+}
+.resumePhotoWrap>.imgBox{
+    position: relative;
+    width: 150px;
+    height: 200px;
+}
+.resumePhotoWrap>.imgBox>.imgGuide,
+.resumePhotoWrap>.imgBox>.imgHere{
+    position: absolute;
+    width: 150px;
+    height: 200px;
+}
+.resumePhotoWrap>.imgBox>.imgGuide{
+    background-image: url('../img/resume_imgGuide.jpg');
+    border: 1px solid #ddd;
+
+}
+.resumePhotoWrap>.imgBox>.imgHere{
+    overflow: hidden;
+}
+.resumePhotoWrap>.imgBox>.imgHere>img{
+    max-width: 100%;
+    height: auto;
+}
+.resumePhotoWrap>.imgBtnWrap{}
+.resumePhotoWrap>.imgBtnWrap>.imgBtn{}
+.resumePhotoWrap>.imgBtnWrap>.imgBtn>.resumePhoto{
+    width: .1px;
+    height: .1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+}
+
+.resumePhotoWrap>.imgBtnWrap>.imgBtn>.resumePhoto+label{
+    display: inline-block;
+    width: 75px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #112831;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+}
+.resumePhotoWrap>.imgBtnWrap>.imgBtn.delImg{
+    background-color: #9B9EA0;
+    width: 75px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+}
+.rsm_profile>.resumeSection>.resumeFormWrap{
+    width: 920px;
+}
+.rsm_profile .resumeFormWrap>.resumeForm>.resumeForm_text>.rsm_input>.rsm_radio>.rsm_input{
+    width: calc(100% - 60px);
+    border: 1px solid #ddd;
+}
+.rsm_profile .resumeFormWrap>.resumeForm>.resumeForm_text>.rsm_input>.rsm_radio:last-child{
+    width: calc(100% - 250px);
+}
+/* 주소입력 */
+.rsm_profile .resumeForm>.rsmForm_address>.rsm_txt{
+    width: calc(100% - 85px)
+}
+.rsm_profile .resumeForm>.rsmForm_address>.rsm_txt>.rsmForm_addressDiv>*{
+    width: calc(33.3% - 5px);
+    border: 1px solid #ddd;
+    margin-top: 8px;
+    height: 20px;
+}
+
+.rsm_profile .resumeForm>.rsmForm_address>.searchAddressBtn{
+    background-color:#9B9EA0;
+    width: 75px;
+    color: #fff;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    cursor: pointer;
+}
+/* 필수항목의 버튼 삭제 */
+.rsm_education .resumeFormContainer>.resumeFormWrapper:first-child .resumeForm_delBtn,
+.rsm_participation .resumeFormContainer>.resumeFormWrapper:first-child .resumeForm_delBtn,
+.rsm_kmove .resumeFormContainer>.resumeFormWrapper:first-child .resumeForm_delBtn,
+.rsm_experience .resumeFormContainer>.resumeFormWrapper:first-child .resumeForm_delBtn,
+.rsm_introduction .resumeFormContainer>.resumeFormWrapper:first-child .resumeForm_delBtn{
+    display: none;
+}
+
+/* 필수항목을 제외한 나머지 resumeWrap 삭제 */
+.rsm_career,
+.rsm_learn,
+.rsm_language,
+.rsm_Certificate,
+.rsm_experience{
+    display: none;
+}
+
+/* content_resumeForm_section > education 학력사항 */
+/* content_resumeForm_section > career 경력사항 */
+/* content_resumeForm_section > learn 교육이수 경력 */
+/* content_resumeForm_section > language 언어능력 */
+/* content_resumeForm_section > Certificate 자격증 */
+/* content_resumeForm_section > participation 본 과정 응시 여부 */
+/* content_resumeForm_section > kmove K-MOVE스쿨 참여여부 */
+/* content_resumeForm_section > experience 해외체류 경험 */
+/* content_resumeForm_section > introduction 자기소개서 */
+.rsm_introduction .resumeForm>.resumeForm_text>.rsm_input{
+    margin-top: 0;
+}
+.rsm_introduction .resumeForm>.rsm_textarea{
+    resize: none;
+    width: calc(100% - 22px);
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+/* content_resumeForm_section > evidence 증빙자료 업로드 */
+.rsm_evidence .resumeFormWrapper{
+    position: relative;
+}
+.rsm_evidence .resumeFormWrapper>.resumeForm_noticeWrap{
+    position: absolute;
+    top: -50px;
+    right: 0;
+}
+
+.rsm_evidence .resumeFormWrapper>.resumeForm_noticeWrap>.resumeForm_notice{
+    display: none;
+    width: 600px;
+    height: 400px;
+    overflow-y: scroll;
+    border: 5px solid #ddd;
+    background-color: #fff;
+    box-shadow: 2px 2px 5px rgba(0,0,0,.3);
+    margin-right: 10px;
+    padding: 10px;
+}
+.rsm_evidence .resumeFormWrapper>.resumeForm_noticeWrap>.resumeForm_notice>.rsm_noticeList:nth-child(1)~*{
+    margin-top: 10px;
+    border-top: 1px solid #ddd;
+}
+.rsm_evidence .resumeFormWrapper>.resumeForm_noticeWrap>.resumeForm_notice>.rsm_noticeList>li{
+    padding: 2.5px;
+}
+
+/* 파일선택 버튼 */
+.rsm_evidence>.resumeSection>.resumeFormContainer>.resumeFormWrapper>.resumeFormWrap .rsm_fileUpload{
+    display: inline-block;
+    width: 75px;
+    height: 25px;
+    line-height: 25px;
+    background-color: #112831;
+    color: #fff;
+    text-align: center;
+    margin-top: 8px;
+    position: relative;
+}
+.rsm_evidence>.resumeSection>.resumeFormContainer>.resumeFormWrapper>.resumeFormWrap .rsm_fileUpload>.resumeEvidence_file{
+    position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+    width: 75px;
+    overflow: hidden;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.rsm_evidence>.resumeSection>.resumeFormContainer>.resumeFormWrapper>.resumeFormWrap .resumeEvidence_url{
+    border: 1px solid #ddd;
+    height: 25px;
+    width: calc(100% - 80px);
+    cursor: default;
+}
+
+/* resumeBtn 지원하기 버튼 */
+.container>.resumeContent>.resumeSection .resumeBtn{
+    background-color: #11283B;
+    line-height: 100px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+/* resumeNav */
+.resumeAside{
+    width: calc(100% - 1100px);
+    margin-left: 20px;
+    position: relative;
+}
+.resumeNav{
+    border: 1px solid #ddd;
+    position: fixed;
+    top: 120px;
+    width: 260px;
+    padding: 15px;
+
+}
+.resumeNav>.resumeNav_header{
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    line-height: 25px;
+    color: #9B9EA0;
+    text-align: center;
+    height: 30px;
+}
+.resumeNav>.resumeNav_content{
+    padding: 5px 0;
+}
+.resumeNav>.resumeNav_content>.resumeNav_listWrap{}
+.resumeNav>.resumeNav_content>.resumeNav_listWrap>li.d-flex{
+    padding: 5px 0;
+}
+.resumeNav>.resumeNav_content>.resumeNav_listWrap>li.d-flex>.d-flex{}
+.resumeNav>.resumeNav_content>.resumeNav_listWrap>li.d-flex>.d-flex>.img-icon{
+    margin-right: 5px;
+}
+.resumeNav>.resumeNav_content>.resumeNav_listWrap>li.d-flex>.d-flex>a{
+    width: auto;
+    color: #11283B;
+    /* font-weight: bold; */
+}
+.resumeNav>.resumeNav_content>.resumeNav_listWrap>li.d-flex>.img-icon{
+    cursor: pointer;
+}
+.resumeNav>.resumeNav_content>.resumeNav_listWrap>li.d-flex>.img-icon.minus-circle-gray{
+    cursor: default;
+}
+/* 비활성화 */
+.resumeNav>.resumeNav_content>.resumeNav_listWrap>li.d-flex>.passive{}
+.resumeNav>.resumeNav_content>.resumeNav_listWrap>li.d-flex>.passive>a{
+    color: #ccc;
+}
+
+.resumeNav_button{
+    width: 100%;
+    text-align: center;
+    background-color: #11283b;
+    color: #fff;
+    line-height: 40px;
+    cursor: pointer;
+}

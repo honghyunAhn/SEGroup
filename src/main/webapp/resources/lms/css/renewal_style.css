@@ -1,0 +1,1109 @@
+@charset "UTF-8";
+
+/* renewal_style.css */
+/* ----------------------------------------------------------------
+  >> TABLE OF CONTENTS:                   담당자 : 성지민
+    1.0 Layout Desgin - Common Style
+        - 1.1 z-index
+        - 1.2 content align
+        - 1.3 icon
+        - 1.4 text
+        - 1.5 button
+        - 1.6 color
+        - 1.7 ETC function
+        - 1.8 swiper
+
+    2.0 Main Page Design
+        - 2.1 header
+            - 2.1.1 mainHeader
+            - 2.1.2 subHeader
+
+        - 2.2 footer
+            - 2.2.1 Scroll to Top
+            - 2.2.2 footer
+
+        - 2.3 main
+            - 2.3.1 main-bannerWrap 메인 컨셉 배너
+            - 2.3.2 quickMenuWrap 퀵메뉴 버튼
+            - 2.3.3 recommend-classWrap 분야별 추천 강좌
+            - 2.3.4 banner-mid 중간 배너 1
+            - 2.3.5 companyInfoWrap 기업소개
+            - 2.3.6 banner-mid 중간 배너 2
+
+    3.0 Contents Design - common
+
+    4.0 Contents Design for Page (페이지별 개별화 된 콘텐츠 디자인)
+
+    5.0 Popup Design - modal popup layer
+        - 5.1 modal popup layer - layout
+            - 5.1.1 modal popup layer - header
+            - 5.1.2 modal popup layer - Content
+
+※ 서버 적용 이후 '임시' 키워드 찾아 지울 것
+----------------------------------------------------------------*/
+/*--------------------------------------------------------------
+
+
+/*--------------------------------------------------------------
+  >> 1.0 Layout Desgin - Common Style
+----------------------------------------------------------------*/
+/* 1.1 z-index */
+.fullWrapper{
+    z-index: 100;
+}
+/* 1.2 content align */
+/* 1.3 icon */
+/* 1.4 text */
+/* 1.5 button */
+/* 1.6 color */
+.bgc_333,
+.bgc_mtL,
+.bgc_mtD,
+.bgc_orD{
+    color: #fff;
+}
+/* 1.7 ETC function */
+.skip-navigation .goToMain {
+    display: none;
+}
+
+.not-scroll {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.login_before {}
+
+.login_after {
+    /* display: none; */
+}
+
+/*--------------------------------------------------------------
+  >> 2.0 Main Page Design
+----------------------------------------------------------------*/
+.headerWrapper>.hdrWrap,
+.navWrapper>.nav,
+.mainWrapper>.mainBannerWrap,
+.mainWrapper>.quickMenuWrap,
+.fullWrapper>.full-background>.full-navGroup,
+.content,
+/* .footer>.footer_wrap, */
+.subPage_container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* 2.1 header 공통 */
+.hdrWrap_responsive{
+	display:none;
+}
+.headerWrapper>.hdrWrap>.header {
+    padding: 20px 0;
+}
+.headerWrapper>.hdrWrap>.header>.header-logo {
+    width: 160px;
+    height: 20px;
+    margin: 10px 0;
+}
+.mobile-menuWrap .header-menu,
+.headerWrapper>.hdrWrap>.header>.header-menu {
+    line-height: 40px;
+}
+.mobile-menuWrap .header-menu>.hdrMenu,
+.headerWrapper>.hdrWrap>.header>.header-menu>.hdrMenu {
+    width: 100px;
+    text-align: center;
+}
+.mobile-menuWrap .header-menu>.hdrMenu_emph>a,
+.headerWrapper>.hdrWrap>.header>.header-menu>.hdrMenu_emph>a {
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.hdrMenu.join {
+    position: relative;
+}
+.hdrMenu.join>.join_sub {
+    position: absolute;
+    width: 180px;
+    border-radius: 5px;
+    left: -40px;
+    top: 45px;
+    cursor: default;
+    line-height: 30px;
+    /* 애니메이션 */
+    animation-name: joinSub;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+@keyframes joinSub{
+    50%{top: 49px;}
+}
+.hdrMenu.join>.join_sub:before{
+    width: 0;
+    height: 0;
+    content: "";
+	bottom: 100%;
+	left: 50%;
+	border: solid transparent;
+	position: absolute;
+	pointer-events: none;
+    border-bottom-color: #333;
+    border-width: 6px;
+    margin-left: -6px;
+}
+
+/* 2.1.1 mainHeader */
+.mainPage_header {
+    width: 100%;
+    height: 500px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../img/banner_top1.jpg');
+    background-color: #ffa360;
+}
+.mainWrapper{
+    margin-top: 25px;
+}
+.mainWrapper>.mainBannerWrap {
+    text-align: center;
+}
+.mainWrapper>.mainBannerWrap>.mainHeader{
+    padding-top: 20px;
+}
+
+.mainWrapper>.mainBannerWrap>.mainHeader>.fz34{
+    line-height: 60px;
+    font-weight: bold;
+}
+.mainWrapper>.mainBannerWrap>.header-search{
+    width: 580px;
+    margin: 40px auto 115px;
+}
+
+.header-search>.input{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    text-indent: 10px;
+    border: none;
+    border-radius: 5px;
+}
+.button.search,
+.header-search>.button.search{
+    position: relative;
+    top: 10px; bottom: 10px;
+    right: 30px;
+    box-shadow: none;
+}
+.mainPage_header .hdrMenu.join>.join_sub {
+    /* 애니메이션 */
+    animation-name: joinSub;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+@keyframes joinSub{
+    50%{top: 49px;}
+}
+.mainWrapper>.quickMenuWrap{
+    border-radius: 300px 300px 0 0;
+    background-color: #fff;
+}
+.mainWrapper>.quickMenuWrap>.btn-menu{
+    padding: 40px 40px 0;
+}
+.mainWrapper>.quickMenuWrap>.btn-menu>.menu-btn{
+    width: 140px;
+    cursor: pointer;
+    text-align: center;
+}
+.mainWrapper>.quickMenuWrap>.btn-menu>.menu-btn>.img-icon{
+    width: 40px; height: 40px;
+    margin: 0 auto;
+}
+.mainWrapper>.quickMenuWrap>.btn-menu>.menu-btn:hover .menu-txt{
+    color: #f1651d;
+}
+.fullWrapper {
+    display: none;
+    position: relative;
+}
+.fullWrapper>.full-background{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.5);
+    position: absolute;
+}
+
+.fullWrapper>.full-background>.full-navGroup{
+    width: 1200px;
+    height: calc(100vh - 120px);
+    padding: 20px;
+    position: absolute;
+    margin: auto;
+    left: 0; right: 0;
+    top: 0; bottom: 0;
+    background-color: #fff;
+}
+.fullWrapper>.full-background>.full-navGroup>.mobile-menuWrap{
+	display: none;
+}
+.fullWrapper>.full-background>.full-navGroup>.close{
+    margin-left: calc(100% - 20px);
+    cursor: pointer;
+}
+.fullWrapper>.full-background>.full-navGroup>.menuDivWrap{
+    margin-top: 20px;
+}
+.menu-title-division{
+    width: calc(25% - 20px);
+    margin-left: 20px;
+    /* font-size: 16px; */
+    font-size: 1.143rem;
+}
+.menu-title-division:nth-child(1,4){
+    margin-left: 0;
+}
+.menu-title-division:nth-child(4)~*{
+    margin-top: 40px;
+}
+
+.menu-title-division>.gnb>a{
+    font-weight: bold;
+}
+.fullWrapper .lnb>a{
+	line-height : 30px;
+}
+/* nav 공통 */
+.gnb>a,
+.lnb>a,
+.lnb>li>a{
+    width: calc(100% - 20px);
+    display: inline-block;
+    padding: 0 10px;
+}
+.gnb>a,
+.lnb>a,
+.lnb>li>a{
+    line-height: 40px;
+}
+.lnb{
+    color: #999;
+}
+.lnb>a:hover,
+.lnb>li>a:hover,
+.subPage_nav .lnb>a.active{
+    /* color: #333; */
+    background-color: #f7f7f7;
+    color: #f1651d;
+    cursor:pointer;
+}
+
+/* 2.1.2 subHeader */
+.headerContainer.subPage_header{
+    width: 100%;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+}
+.subHeader{
+    border-bottom : 1px solid #e6e6e6;
+}
+.subHeader>.hdrWrap .header-search>.input{
+    width: 300px;
+    border: 1px solid #e6e6e6;
+    margin-left: 20px;
+}
+
+.subHeader>.hdrWrap .header-menu>.join>.join_sub{
+    animation-name: none;
+    display: none;
+}
+.subHeader>.hdrWrap .header-menu>.join:hover .join_sub{
+    display: block;
+}
+.subNav{
+    box-shadow: 2px 2px 7px rgba(0,0,0,.1);
+}
+.subNav>.nav{}
+.subNav>.nav>.navGroup{}
+.subNav>.nav>.navGroup>.gnb{
+    width: calc(100% / 7);
+    margin-right: 10px;
+    height: 40px;
+}
+.subNav>.nav>.navGroup>.gnb:last-child{
+    margin-right: 0;
+}
+.subNav>.nav>.navGroup>.gnb>a{
+    text-align: center;
+    line-height: 40px;
+}
+.subNav>.nav>.navGroup>.gnb>a:hover,
+.subNav>.nav>.navGroup>.gnb>a.active{
+    background-color: #f1651d;
+    color: #fff;
+}
+.subNav>.nav>.navGroup>.gnb>.lnb{
+    display: none;
+    background-color: #fff;
+    box-shadow: 2px 2px 7px rgba(0,0,0,.1);
+}
+.subNav>.nav>.navGroup>.gnb>.lnb>a{
+    line-height: 40px;
+}
+
+/* 2.2 footer */
+/* 2.2.1 Scroll to Top */
+.scrollToTop{
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    cursor: pointer;
+}
+/* 2.2.2 footer */
+/* .footer{
+    border-top: 1px solid #e7e7e7;
+    padding-top: 20px;
+}
+.footer>.footer_wrap{}
+.footer>.footer_wrap>.footer_infoWrap{}
+.footer>.footer_wrap>.footer_infoWrap>.footer_logo{}
+.footer>.footer_wrap>.footer_infoWrap>.footer_textWrap{
+    line-height: 30px;
+}
+.footer>.footer_wrap>.footer_navWrap{}
+
+.footer>.footer_wrap>.footer_navWrap .gnb{
+    margin-left: 60px;
+}
+.footer>.footer_wrap>.footer_navWrap .gnb>.gnbMenu{
+    font-weight: bold;
+    line-height: 30px;
+    padding: 0 10px;
+}
+.footer .lnb>a,
+.footer .lnb>li>a{
+    line-height: 30px;
+}
+.footer>.footer_wrap>.footer_navWrap .lnb>li:first-child{} */
+
+
+/* 2.3 main */
+/* 2.3.1 main-bannerWrap 메인 컨셉 배너 */
+.content {
+    margin: 40px auto;
+}
+/* 2.3.2 recommend-classWrap 분야별 추천 강좌 */
+
+.recommend-class{}
+.recommend-class>.field-wrap{
+    margin-top: 40px;
+}
+.recommend-class>.field-wrap>.ctt-hdr{
+    padding: 10px 5px;
+}
+.field-wrap>.ctt-hdr>.btnWrap{}
+.field-wrap>.ctt-hdr>.btnWrap>div{
+    outline: 1px solid #999;
+    cursor: pointer;
+}
+.field-wrap>.ctt-hdr>.btnWrap>div:hover{
+    background-color: #f1651d;
+    outline: 1px solid #f1651d;
+}
+.field-wrap>.ctt-hdr>.btnWrap>.angle-left:hover{
+    background-position: -121px 0;
+}
+.field-wrap>.ctt-hdr>.btnWrap>.angle-right:hover{
+    background-position: -140px 0;
+}
+.field-wrap>.class-cardWrap{
+    width: 2400px;
+}
+.field-wrap>.class-cardWrap>.class-card{
+    width: 230px !important;
+    height: auto !important;
+    margin: 0 5px !important;
+    border: 1px solid #eee;
+    border-radius: 10px;
+}
+.class-card>a{}
+.class-card>a>.class-img{
+    width: 100%;
+    height: 150px;
+    position: relative;
+    border-radius: 9px 9px 0 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f7f7f7;
+}
+
+/* IT분야 추천강좌 썸네일 */
+.field01 .classCard01>a>.class-img{background-image: url('../img/banner_class11.jpg');}
+.field01 .classCard02>a>.class-img{background-image: url('../img/banner_class12.jpg');}
+.field01 .classCard03>a>.class-img{background-image: url('../img/banner_class13.jpg');}
+.field01 .classCard04>a>.class-img{background-image: url('../img/banner_class14.jpg');}
+.field01 .classCard05>a>.class-img{background-image: url('../img/banner_class15.jpg');}
+.field01 .classCard06>a>.class-img{background-image: url('../img/banner_class11.jpg');}
+.field01 .classCard07>a>.class-img{background-image: url('../img/banner_class12.jpg');}
+.field01 .classCard08>a>.class-img{background-image: url('../img/banner_class13.jpg');}
+.field01 .classCard09>a>.class-img{background-image: url('../img/banner_class14.jpg');}
+.field01 .classCard10>a>.class-img{background-image: url('../img/banner_class15.jpg');}
+
+/* 외국어분야 추천강좌 썸네일 */
+.field02 .classCard01>a>.class-img{background-image: url('../img/banner_class21.jpg');}
+.field02 .classCard02>a>.class-img{background-image: url('../img/banner_class22.jpg');}
+.field02 .classCard03>a>.class-img{background-image: url('../img/banner_class23.jpg');}
+.field02 .classCard04>a>.class-img{background-image: url('../img/banner_class24.jpg');}
+.field02 .classCard05>a>.class-img{background-image: url('../img/banner_class25.jpg');}
+
+/* 직무분야 추천강좌 썸네일 */
+.field03 .classCard01>a>.class-img{background-image: url('../img/banner_class31.jpg');}
+.field03 .classCard02>a>.class-img{background-image: url('../img/banner_class32.jpg');}
+.field03 .classCard03>a>.class-img{background-image: url('../img/banner_class33.jpg');}
+.field03 .classCard04>a>.class-img{background-image: url('../img/banner_class34.jpg');}
+.field03 .classCard05>a>.class-img{background-image: url('../img/banner_class35.jpg');}
+
+.class-card>a>.class-img>.heart_grBG{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.class-card>a>.class-seg{
+    padding: 5px;
+}
+.class-card>a>.class-seg>.class-divWrap{}
+/* .class-card>a>.class-seg>.class-divWrap>.class-division{
+    padding: 0 5px;
+    margin-right: 5px;
+} */
+.class-card>a>.class-seg>.class-title{
+    margin-top: 5px;
+}
+.class-card>a>.class-seg>.class-title>.class-ttl{}
+.class-card>a>.class-seg>.class-info{
+    margin-top: 10px;
+}
+.class-card>a>.class-seg>.class-info>.price{
+    text-align: right;
+}
+/* 2.3.4 banner-mid 중간 배너 1 */
+.bannerImg_responsive{
+	display : none;
+}
+.bannerImg{
+    width: 100%;
+    height: 160px;
+    margin: 80px 0;
+}
+.bannerImg.banner1{background-image: url('../img/banner_mid1.jpg');}
+.bannerImg.banner2{background-image: url('../img/banner_mid2.jpg');}
+/* 2.3.5 companyInfoWrap 기업소개 */
+.companyInfoWrap{}
+.companyInfoWrap>.ctt-hdr{}
+.companyInfoWrap>.ctt-hdr>.title{
+    line-height: 40px;
+}
+.companyInfoWrap>.companyInfo{
+    margin-top: 10px;
+}
+.companyInfoWrap>.companyInfo>.company-card{
+    width: calc(100% / 3);
+    margin-right: 10px;
+}
+.companyInfoWrap>.companyInfo>.company-card:last-child{
+    margin-right: 0;
+}
+.companyInfoWrap>.companyInfo>.company-card>a{}
+.companyInfoWrap>.companyInfo>.company-card>a>.company-img{
+    width: 100%;
+    height: 340px;
+    background-color: #f7f7f7;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.company-card01 .company-img{background-image: url('../img/banner_company1.jpg');}
+.company-card02 .company-img{background-image: url('../img/banner_company2.jpg');}
+.company-card03 .company-img{background-image: url('../img/banner_company3.jpg');}
+
+.companyInfoWrap>.companyInfo>.company-card>a>.company-seg{
+    text-align: center;
+    line-height: 30px;
+}
+/* 2.3.6 banner-mid 중간 배너 2 */
+/*--------------------------------------------------------------
+  >> 3.0 Contents Design - common
+----------------------------------------------------------------*/
+/* subPage_container */
+.container,
+.subPage_container{
+    margin-top: 120px;
+}
+
+/* subPage_container >> subPage_nav */
+.subPage_container>.subPage_nav{
+    width: 200px;
+}
+.subPage_container>.subPage_nav>.sub-navGroup{
+    border-left: 1px solid #e7e7e7;
+    border-right: 1px solid #e7e7e7;
+}
+.subPage_container>.subPage_nav>.sub-navGroup>.gnb{
+    text-align: center;
+    line-height: 80px;
+    cursor: default;
+}
+.subPage_container>.subPage_nav>.sub-navGroup>.lnb{
+    border-bottom: 1px solid #e7e7e7;
+}
+.subPage_container>.subPage_nav>.sub-navGroup>.lnb>a{
+    line-height: 40px;
+}
+
+
+/* subPage_container >> subPage_contnet */
+.subPage_container>.subPage_content{
+    width: calc(100% - 220px );
+}
+
+/* 강의리스트 >> header */
+.subPage_content>.sp_header{}
+.subPage_content>.sp_header>.header_textWrap{
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+.subPage_content>.sp_header>.header_textWrap>*{
+    line-height: 30px;
+}
+.subPage_content>.sp_header>.header_textWrap{
+    padding: 10px;
+}
+
+/* 강의리스트 >> 과정필터  */
+.header_filterWrap{
+    margin: 40px 0 10px;
+}
+.filterWrap .label,
+.filterWrap>div {
+    border-radius: 3px;
+    padding: 1px 8px;
+    text-align: center;
+    font-size: 0.857rem;
+    color: #fff;
+}
+.filterWrap>.filters>.d-flex>input{
+    margin: 4px 0;
+}
+.filterWrap .label {
+    cursor: pointer;
+    margin : 0 5px;
+}
+.filterWrap>.filter{
+    margin-right: 5px;
+    height : 24px;
+}
+.filterWrap>.filter:last-child{
+    margin-right: 0;
+}
+.new {background-color: rgba(207, 123, 121, .7);}
+.recommend {background-color: rgba(96, 157, 211, .7);}
+.popular {background-color: rgba(96, 175, 96, .7);}
+.book {background-color: rgba(120, 135, 182, .7);}
+.sale {background-color: rgba(254, 163, 96, .7);}
+.free{background-color: rgba(0,0,0,.4);}
+/* button 공통 */
+.button-wrap {
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.button-wrap>* {
+    padding: 0 10px;
+    line-height: 30px;
+    margin-left: 10px;
+}
+
+/* - 5.3.4 subPage - pagination 페이지 수 */
+.page>.pagination {
+    width: 300px;
+    margin: 40px auto;
+    justify-content : space-between;
+}
+
+.page>.pagination .num {
+    color: #999;
+}
+
+.page>.pagination>li>.prev,
+.page>.pagination>li>.next {
+    overflow: hidden;
+}
+
+.page>.pagination a.active,
+.page>.pagination a:hover {
+    color: #333;
+}
+
+
+/* 강의리스트 >> 공통 */
+.class-list-title,
+.class-list {
+    text-align: center;
+    justify-content : space-between;
+}
+.c-ttl{
+    /* width: calc(100% - 380px); */
+    width: 480px;
+}
+.c-ctt{
+    /* width: calc((100% - 380px) / 4); */
+    width: 120px;
+    display: table;
+}
+
+/* 강의리스트 >> 타이틀 */
+.class-list-title {
+    padding: 10px 0;
+    border-top: 2px solid #e7e7e7;
+    border-bottom: 2px solid #e7e7e7;
+}
+
+/* 강의리스트 >> 목록 */
+
+.class-list-wrap .class-list {
+    padding: 10px 0;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.board-list:hover,
+.class-list-wrap>.class-list:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    cursor: pointer;
+}
+
+.class-list img {
+    width: 100px;
+    height: 70px;
+    overflow: hidden;
+}
+
+.class-list .class-title-wrap {
+    width: calc(100% - 120px);
+    text-align: left;
+}
+
+.class-list .class-title-wrap>.title {
+    margin-top: 5px;
+    max-height: 40px;
+}
+
+/* smtp 단기과정 */
+.btn_point_u{
+    color: #844ff5;
+    background-color: #fff;
+    border:1px solid #844ff5;
+}
+.bg_point,
+.btn_point_u:hover{
+    color: #fff;
+    background-color: #844ff5;
+}
+
+/* 서브페이지별 포인트 컬러 */
+.btn_point{
+    color: #f1651d;
+    background-color: #fff;
+    border:1px solid #f1651d;
+}
+.bg_point,
+.btn_point:hover{
+    color: #fff;
+    background-color: #f1651d;
+}
+.sub01 .btn_point{
+    color: #55cfd6;
+    background-color: #fff;
+    border: 1px solid rgba(85,207,214,1);
+}
+.sub01 .bg_point,
+.sub01 .btn_point:hover{
+    color: #fff;
+    background-color: rgba(85,207,214,1);
+}
+.sub02 .btn_point{
+    color: #8C74B0;
+    background-color: #fff;
+    border:1px solid #8C74B0;
+}
+.sub02 .bg_point,
+.sub02 .btn_point:hover{
+    color: #fff;
+    background-color: #8C74B0;
+    /* background-color: #FDDD74; */
+    /* background-color: #fceebf; */
+}
+.sub03 .btn_point{
+    color: #0a97b7;
+    background-color: #fff;
+    border: 1px solid #0a97b7;
+}
+.sub03 .bg_point,
+.sub03 .btn_point:hover{
+    color: #fff;
+    background-color: #0a97b7;
+}
+.sub04 .btn_point{
+    color: #fea360;
+    background-color: #fff;
+    border:1px solid #fea360;
+}
+.sub04 .bg_point,
+.sub04 .btn_point:hover{
+    color: #fff;
+    background-color: #fea360;
+}
+.sub05 .btn_point{
+    color: #FCB3BA;
+    background-color: #fff;
+    border:1px solid #FCB3BA;
+}
+.sub05 .bg_point,
+.sub05 .btn_point:hover{
+    color: #fff;
+    background-color: #FCB3BA;
+}
+
+/* sub Nav */
+.sub01 .lnb>a:hover,
+.sub01 .subPage_nav .lnb>a.active{
+    color: #55cfd6;
+}
+.sub02 .lnb>a:hover,
+.sub02 .subPage_nav .lnb>a.active{
+    color: #8C74B0;
+}
+.sub03 .lnb>a:hover,
+.sub03 .subPage_nav .lnb>a.active{
+    color: #0a97b7;
+}
+.sub04 .lnb>a:hover,
+.sub04 .subPage_nav .lnb>a.active{
+    color: #fea360;
+}
+.sub05 .lnb>a:hover,
+.sub05 .subPage_nav .lnb>a.active{
+    color: #FCB3BA;
+}
+
+
+/* tab Group */
+.class-tabMenu>.tabGroup>li{
+    width: 50%;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    color: #f1651d;
+    background-color: #fff;
+    border:1px solid #f1651d;
+}
+.class-tabMenu>.tabGroup>li.active,
+.class-tabMenu>.tabGroup>li:hover{
+    color: #fff;
+    background-color: #f1651d;
+    cursor: pointer;
+}
+.sub01 .class-tabMenu>.tabGroup>li{
+    color: #55cfd6;
+    background-color: #fff;
+    border: 1px solid rgba(85,207,214,1);
+}
+.sub01 .class-tabMenu>.tabGroup>li.active,
+.sub01 .class-tabMenu>.tabGroup>li:hover{
+    color: #fff;
+    background-color: rgba(85,207,214,1);
+}
+.sub02 .class-tabMenu>.tabGroup>li{
+    color: #8C74B0;
+    background-color: #fff;
+    border:1px solid #8C74B0;
+}
+.sub02 .class-tabMenu>.tabGroup>li.active,
+.sub02 .class-tabMenu>.tabGroup>li:hover{
+    color: #fff;
+    background-color: #8C74B0;
+    /* background-color: #FDDD74; */
+    /* background-color: #fceebf; */
+}
+.sub03 .class-tabMenu>.tabGroup>li{
+    color: #0a97b7;
+    background-color: #fff;
+    border: 1px solid #0a97b7;
+}
+.sub03 .class-tabMenu>.tabGroup>li.active,
+.sub03 .class-tabMenu>.tabGroup>li:hover{
+    color: #fff;
+    background-color: #0a97b7;
+}
+.sub04 .class-tabMenu>.tabGroup>li{
+    color: #fea360;
+    background-color: #fff;
+    border:1px solid #fea360;
+}
+.sub04 .class-tabMenu>.tabGroup>li.active,
+.sub04 .class-tabMenu>.tabGroup>li:hover{
+    color: #fff;
+    background-color: #fea360;
+}
+.sub05 .class-tabMenu>.tabGroup>li{
+    color: #FCB3BA;
+    background-color: #fff;
+    border:1px solid #FCB3BA;
+}
+.sub05 .class-tabMenu>.tabGroup>li.active,
+.sub05 .class-tabMenu>.tabGroup>li:hover{
+    color: #fff;
+    background-color: #FCB3BA;
+}
+/*--------------------------------------------------------------
+  >> 4.0 Contents Design for Page
+----------------------------------------------------------------*/
+/* sub00 */
+
+/* - sub00-01 로그인 START */
+
+.sub00 .btn_xlarge{
+    display: block;
+    margin: 20px auto;
+}
+/* - sub00-01 로그인 END */
+
+/* - sub00-02 회원가입 START */
+ .certif-boxWrap>.certif>.btn_normal{
+     margin: 20px auto;
+ }
+/* - sub00-02 회원가입 END */
+
+/* - sub00-02-02 가입완료 START */
+/* - sub00-02-02 가입완료 END */
+
+/* - sub00-03 아이디찾기 START */
+/* - sub00-03 아이디찾기 END */
+
+/* - sub00-04 비밀번호찾기 START */
+/* - sub00-04 비밀번호찾기 END */
+
+/* - sub01 디지털·AI START */
+/* - sub01 디지털·AI END */
+/* - sub02 외국어 START */
+/* - sub02 외국어 END */
+/* - sub03 직무 START */
+/* - sub03 직무 END */
+/* - sub04 자격증 START */
+/* - sub04 자격증 END */
+/* - sub05 커뮤니티 START */
+.sub05 .section{
+    margin-top: 40px;
+}
+.post-content>.d-flex>a{
+	width : 100px;
+}
+.post-content>.d-flex>a:last-child{
+	margin-left:10px;
+}
+/* - sub05 커뮤니티 END */
+/* - sub06 고객센터 START */
+.sub06-04 .section{
+    margin-top: 40px;
+}
+/* - sub06 고객센터 END */
+/* - sub07 나의강의실 START */
+.modal-sub07-01 .tab-sub.sub03 .class-list .text-over-lh20,
+.modal-sub07-01 .tab-sub.sub04 .class-list .text-over-lh20{
+	text-align:center;
+} 
+.btn_refund,
+.print-icon{
+	width : 50px;
+    align-self: center;
+}
+.btn_refund>.btn_normal,
+.print-icon>.btn_normal{
+    /* line-height: 30px; */
+}
+.print-icon>.btn_normal{
+	padding : 5px 0;
+}
+.print-icon>.btn_normal>.print{
+    margin: 0 auto;
+}
+.print-icon>.btn_normal>.h5{
+	line-height : 20px;
+}
+
+.c-table-btn>a,
+.print-icon>.btn_normal,
+.sub07-04-02 button.btn_xlarge,
+.sub07-05-01 button.btn_xlarge{
+	display : block;
+	
+}
+.c-table-btn>a{
+	margin : 5px auto;	
+} 
+
+.sub07-04-02 button.btn_xlarge,
+.sub07-05-01 button.btn_xlarge{
+    margin: 20px auto;
+}
+/* - sub07 나의강의실 END */
+/* - sub08 JOB-Market START */
+/* - sub08 JOB-Market END */
+/*--------------------------------------------------------------
+  >> 5.0 Popup Design - modal popup layer
+----------------------------------------------------------------*/
+
+/* popup design */
+
+/* - 나의강의실 > 온라인과제 popup */
+.popup-content{
+	width : 880px;
+	/* height : 900px; */
+	background-color : #eee;
+}
+.popup-content>.popup-header,
+.popup-content>.popup-section{
+	padding : 20px;
+	background-color : #fff;
+	
+}
+.popup-content>.popup-header{
+	border-bottom : 1px solid #ddd;
+}
+.popup-content>.popup-section{}
+.popup-section .quizForm .question-list>li:first-child{
+	padding: 20px 0;
+	border-top : 1px solid #999;
+}
+
+.popup-section .question-list{}
+
+.popup-section .question-list>li{
+	padding : 20px 0;
+	border-bottom : 1px solid #999;
+}
+.popup-section .question-list>li:first-child{
+	padding : 0 0 20px;
+}
+.question-list .questionWrap{}
+.question-list .questionWrap>.question{}
+.question-list .questionWrap>.question>.h3{
+	line-height : 20px;
+}
+.question-list .questionWrap>.question>.item-header{
+	margin : 5px 0 0 5px;
+}
+.question-list .questionWrap>.explanation{
+	
+}
+
+.question-list .answerWrap{
+	margin-top : 20px;
+}
+.question-list .surveyForm .answerWrap{
+	margin-top:10px;
+}
+.question-list .answerWrap>.fileWrap{}
+.question-list .answerWrap>.fileWrap>.fileUpload{
+	display: inline-block;    
+    margin-top: 8px;
+    position: relative;
+}
+.question-list .answerWrap>.fileWrap>.fileUpload>.reportFile{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+    width: 75px;
+    overflow: hidden;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.question-list .answerWrap>.fileWrap>.reportFileName{
+	border: 1px solid #ddd;
+    height: 25px;
+    width: calc(100% - 82px);
+    cursor: default;
+    text-indent : 5px;
+    margin-left : 5px;
+}
+
+.popup-section .btnWrap{
+	margin-top : 20px;
+}
+.popup-section .btnWrap>.btn_normal:nth-child(1)~*{
+	margin-left : 20px;
+}
+/* 온라인시험 */
+.table.table_onlineTest {
+    width: auto;
+    margin: 10px;
+
+}
+.table_onlineTest>.thead>tr{
+    border-top: 2px solid #aaa;
+    border-bottom: 2px solid #aaa;
+}
+.table_onlineTest>.thead>tr>*,
+.table_onlineTest>.tbody {
+    background-color: #fff;
+}
+
+.table_onlineTest>.tbody>tr>th,
+.table_onlineTest>.tbody>tr>td {
+    width: 30px;
+
+}
+
+.table_onlineTest>.tbody .numberQ {
+    background-color: #eee;
+    position: relative;
+}
+
+.table_onlineTest .answer_user:after,
+.table_onlineTest .answer_correct:after{
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.table_onlineTest .answer_correct,
+.table_onlineTest .answer_user {
+    position: relative;
+}
+.table_onlineTest .answer_user:after,
+.table_onlineTest .answer_correct:after {
+    width: 20px;
+    height: 20px;
+    display: block;
+    content: '';
+    border-radius: 30px;
+}
+
+.table_onlineTest .answer_correct:after {
+    border: 2px solid #f1651d;
+}
+
+.table_onlineTest .answer_user:after {
+    background-color: rgba(0, 0, 0, .1);
+}

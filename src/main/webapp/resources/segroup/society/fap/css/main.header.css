@@ -1,0 +1,366 @@
+ 
+
+/*header*/
+#header {	height:181px;}
+/*200521*/#header>.headerBackground{background-color:#0087e6;}
+#navigation{ margin:0 auto; width:1127px; border:1 solid #000; text-align:left; padding-top:5px;}
+#logo {float: left;width:230px; }
+
+/*200521*/#infoMenu {display:flex; justify-content:flex-end; width:calc(100% - 120px); margin:0 auto; }
+#infoMenu .infoSelect{}
+#infoMenu ul {list-style: none;}
+/*200521 #infoMenu li {display:inline;padding-top:10px; padding-right: 30px;font-size: 14px;color: #fff; } */
+/*200521*/#infoMenu li {width:65px; text-align:center; fontsize:14px; color:#fff; line-height:60px;}
+#infoMenu li#chosenJobfairTitle{width:350px;}
+#infoMenu li#chosenCompNm{width:220px;}
+#infoMenu li a:link {color:#fff;text-decoration:none;}
+#infoMenu li a:visited {color : #fff;text-decoration:none;}
+#infoMenu li a:hover {color:#00a1e4;text-decoration:none;}
+#infoMenu li a:focus {color :#00a1e4;text-decoration:none;}
+#infoMenu li a:active {color:#00a1e4;text-decoration:none;}
+#infoTop{margin:0 auto;width:calc(100% - 180px);margin-top:32px;  }
+#infoTop::after {content:'';clear:both;display:table;width:100%;height:0} 
+
+button.langSelect{cursor:pointer; background: #0087e6; width:91px; height:31px; border:none; font-size: 15px;  font-family: "Meiryo"; color:#fff; apperance:none; -webkit-appearance:none;}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+/*20-05-21 �닔�젙
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 122px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 999;
+  
+}*/
+.dropdown-content {
+	display: none;
+  	position: absolute;
+  	background-color: #f9f9f9;
+  	width: 90px;
+  	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+/* Links inside the dropdown */
+/* 20-05-21 �닔�젙
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  cursor: pointer;
+} */
+.dropdown-content a{
+	text-decoration: none;
+	cursor: pointer;
+	text-align:center;
+	line-height: 40px;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+#langSelect::-ms-expand {opacity: 0;}
+
+#fineapple{z-index: 110; width:42px; height:77px; position:absolute; left:50%; top:550px; margin-left:-80px;}
+#liveJobFair {z-index: 100; width:500px; height:400px; position:absolute; left:50%; top:230px; margin-left:-580px;}
+#liveJobFair .jobtit {box-shadow:0 2px 7px 0 rgba(0, 0, 0, 0.1); width:478px; height:40px; font-size: 18px; background-color:white;color:black; padding-top:20px; padding-left:22px; padding-bottom:15px;}
+#liveJobFair .jobtit-span {font-size:30px; font-family: meiryo;}
+#liveJobFair .jobcon {width:500px; height:350px; background-color:#fff; box-shadow:0 2px 7px 0 rgba(0, 0, 0, 0.1);}
+.jobtit-content{}
+#liveJobFair .jobimg {padding-left:20px;}
+#visual {height:500px; }
+
+.modal-open {
+  overflow: hidden;
+}
+
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  outline: 0;
+}
+
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 0.5rem;
+  pointer-events: none;
+}
+
+.modal.fade .modal-dialog {
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  -webkit-transform: translate(0, -25%);
+  transform: translate(0, -25%);
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .modal.fade .modal-dialog {
+    transition: none;
+  }
+}
+
+.modal.show .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.modal-dialog-centered {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: calc(100% - (0.5rem * 2));
+}
+
+.modal-dialog-centered::before {
+  display: block;
+  height: calc(100vh - (0.5rem * 2));
+  content: "";
+}
+
+.modal-content {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  outline: 0;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+}
+
+.modal-backdrop.fade {
+  opacity: 0;
+}
+
+.modal-backdrop.show {
+  opacity: 0.5;
+}
+
+.modal-header {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+.modal-header .close {
+  padding: 1rem;
+  margin: -1rem -1rem -1rem auto;
+}
+
+.modal-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.modal-body {
+  position: relative;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 700px;
+    margin: 1.75rem auto;
+  }
+  .modal-dialog-centered {
+    min-height: calc(100% - (1.75rem * 2));
+  }
+  .modal-dialog-centered::before {
+    height: calc(100vh - (1.75rem * 2));
+  }
+  .modal-sm {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-lg {
+    max-width: 800px;
+  }
+}
+
+.close {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5;
+}
+
+.close:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+
+.close:not(:disabled):not(.disabled):hover, .close:not(:disabled):not(.disabled):focus {
+  color: #000;
+  text-decoration: none;
+  opacity: .75;
+}
+
+/*********************硫붾돱�룞�옉****************/
+.wrap{
+	float: right;
+}
+
+#menu-contents{
+	display: none;
+	font-weight: normal;
+}
+
+.fap_nav,
+.fap_nav a,
+.fap_nav ul,
+.fap_nav li,
+.fap_nav div,
+.fap_nav form,
+.fap_nav input {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+}
+ 
+.fap_nav a { text-decoration: none; }
+ 
+.fap_nav li { list-style: none; }
+
+.fap_nav {
+    display: inline-block;
+    position: relative;
+    cursor: default;
+    z-index: 500;
+}
+ 
+.fap_nav > li {
+    display: block;
+    float: left;
+}
+
+.fap_nav > li > a {
+    position: relative;
+    display: block;
+    z-index: 510;
+    height: 70px;
+    padding: 0 10px;
+    line-height: 65px;
+    font-family: Meiryo, sans-serif;
+    font-size: 19px;
+    color: #222;
+    /* text-shadow: 0 0 1px rgba(0,0,0,.35); */
+ 
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.fap_nav > li:hover > a { color: #0079ab; }
+ 
+.fap_nav > li > div {
+    position: absolute;
+    display: block;
+    width: 103%;
+    top: 50px;
+    left: 0;
+ 
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+ 
+    background: #ffffff;
+    border-radius: 0 0 3px 3px;
+ 
+    -webkit-transition: all .3s ease .15s;
+    -moz-transition: all .3s ease .15s;
+    -o-transition: all .3s ease .15s;
+    -ms-transition: all .3s ease .15s;
+    transition: all .3s ease .15s;
+}
+
+.fap_nav > li:hover > div {
+    opacity: 1;
+    visibility: visible;
+    overflow: visible;
+    padding-bottom: 20px;
+    padding-top: 40px;
+    font-weight: bold;
+}
+
+.fap_nav .nav-column {
+    float: left;
+}
+ 
+.fap_nav .nav-column li a {
+    display: block;
+    margin-top:25px;
+    line-height: 26px;
+    font-size: 14px;
+    color: #888888;
+}
+ 
+.fap_nav .nav-column li a:hover { color: #666666; }

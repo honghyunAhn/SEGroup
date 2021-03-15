@@ -1,0 +1,47 @@
+<html>
+<body>
+
+#define( $nl2br )
+${output.replaceAll("\r?\n", "<BR>$0")}
+#end
+#set( $output = $alliance.comment )
+
+<div class="body">
+	<div class="sub-header">
+		<h2 class="sub-title">제휴 문의 </h2>
+	</div>
+	<div class="sub-body">
+		<div class="group">
+			<table>
+				<tr>
+					<th>성명</th>
+					<td>${alliance.name}</td>
+				</tr>
+				<tr>
+					<th>회사(기관)명</th>
+					<td>${alliance.company_name}</td>
+				</tr>
+				<tr>
+					<th>연락처</th>
+					<td>${alliance.phone}</td>
+				</tr>
+				<tr>
+					<th>전자 우편</th>
+					<td>${alliance.email}</td>
+				</tr>
+				<tr>
+					<th>제휴 구분</th>
+					<td>${alliance.alliance_type_name}</td>
+				</tr>
+				<tr>
+					<th>제휴 내용</th>
+					<td>${nl2br}</td>
+				</tr>
+			</table>
+		</div>
+	</div><!--//.sub-body-->
+	<!--본문 내용 출력 공간-->
+</div>
+
+</body>
+</html>

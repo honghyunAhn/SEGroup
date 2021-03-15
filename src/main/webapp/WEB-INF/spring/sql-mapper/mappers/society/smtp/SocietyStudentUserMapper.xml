@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SEGroup 통합잡페어 취업지원자 SQL -->
+<mapper namespace="global.segroup.society.smtp.apply.dao.SocietyStudentUserMapper">
+	
+	<select id="selectOneUser" parameterType="User" resultType="User">
+		select
+			*
+		from
+			com_user_tb
+		where
+			user_id = #{user_id}
+		   	and
+			user_pw = #{user_pw}
+	</select>
+	
+	<!-- 지원서 작성에 사용할 유저 정보 조회 시작 -->
+	<select id="selectUserById" parameterType="string" resultType="User">
+		select
+			user_id
+			,user_nm
+			,user_phone
+			,user_email
+			,user_birth
+			,user_sex
+		from 
+			com_user_tb
+		where
+			user_id = #{loginId}
+	</select>
+	<!-- 지원서 작성에 사용할 유저 정보 조회 종료 -->
+	
+	<select id = "selectStudentEnterCRC" parameterType = "String" resultType = "StudentEnterCRC">
+	select
+	*
+	from
+	student_enter_crc_tb
+	where
+	user_id=#{user_id}
+	
+	</select>
+	
+	<select id = "selectStudentResumeApplyHistory" parameterType = "String" resultType = "StudentResumeApplyHistory">
+	select
+	*
+	from
+	student_resume_apply_history
+	where
+	user_id=#{user_id}
+	order by student_apply_history_ins_dt desc limit 1
+	
+	</select>
+	
+	<select id = "selectCardinalById" parameterType = "String" resultType = "CardinalDTO">
+	
+	select
+	*
+	from
+	cb_cardinal
+	where
+	id=#{id}
+	order by app_start_date desc limit 1
+	
+	</select>
+	
+	<select id = "selectCourseByCardinalId" parameterType = "String" resultType = "CourseDTO">
+	
+	select
+	co.*
+
+	from
+	cb_cardinal ca, cb_cn_course cn, cb_course co
+
+	where
+	ca.id = cn.cardinal_id
+	and
+	cn.course_id = co.id
+	and
+	ca.id = #{id}
+	
+	</select>
+	
+</mapper>

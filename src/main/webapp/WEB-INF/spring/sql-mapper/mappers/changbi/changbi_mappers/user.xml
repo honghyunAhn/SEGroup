@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.user.dao.UserDao">
+
+	<select id="selectIpList" parameterType="string" resultType="hashmap">
+		SELECT SEQ, IP
+		  FROM CB_IP_ADDRESS
+		 WHERE USER_ID = #{user_id}
+	</select>
+
+	<select id="selectUserIpCount" parameterType="map" resultType="int">
+		SELECT IFNULL(COUNT(1), 0)
+		  FROM CB_IP_ADDRESS
+		 WHERE USER_ID = #{user_id}
+		   AND IP = #{ip}
+	</select>
+
+	<update id="updateIpUseYn" parameterType="map">
+		UPDATE CB_MEMBER
+		<if test='ipchek == null'>
+		SET IP_USE_YN = 'N'
+		</if>
+		<if test='ipchek == "Y"'>
+		SET IP_USE_YN = 'Y'
+		</if>
+		WHERE ID = #{user_id}
+	</update>
+
+	<insert id="insertIp" parameterType="map">
+		INSERT INTO CB_IP_ADDRESS (
+			USER_ID
+		  , IP
+		  , REG_USER
+		 ) VALUES (
+		 	#{user_id}
+		  , #{ip}
+		  , #{user_id}
+		 )
+	</insert>
+
+	<delete id="deleteIp" parameterType="map">
+		DELETE FROM CB_IP_ADDRESS
+		 WHERE SEQ = #{seq}
+		   AND USER_ID = #{user_id}
+	</delete>
+
+
+	<select id="selectUserForLogin" resultType="hashmap">
+		SELECT ID AS USER_ID, PW AS PASSWORD, AUTHORITY, NAME, EMAIL, SCHOOL_NAME, PHONE, IP_USE_YN, PW_INIT_YN
+		  FROM CB_MEMBER
+		WHERE ID = #{user_id}
+		  AND USE_YN = 'Y'
+	</select>
+
+	<update id="updateLastLogin" parameterType="string">
+	   	UPDATE CB_MEMBER
+		   SET LAST_LOGIN = DATE_FORMAT(NOW(),'%Y%m%d%H%i%s')
+		 WHERE ID = #{user_id}
+	</update>
+
+	<!-- 본인인증 DI로 사용자 조회 -->
+	<select id="selectUserForLoginByIdenDi" parameterType="string" resultType="hashmap">
+		SELECT ID AS USER_ID, PW AS PASSWORD, AUTHORITY, NAME, EMAIL, SCHOOL_NAME, PHONE, IP_USE_YN, PW_INIT_YN
+		  FROM CB_MEMBER
+		 WHERE IDEN_DI = NULLIF(#{iden_di},'')
+		   AND USE_YN = 'Y'
+	</select>
+
+	<select id="selectUserNeisNum" parameterType="string" resultType="string">
+		SELECT NEIS_NUM
+		  FROM CB_MEMBER
+		 WHERE ID = #{user_id}
+	</select>
+	
+	<!-- LMS -->
+	<!-- 아이디 중복여부체크는 member.xml에 있음 -->
+	<!-- 회원 등록 -->
+	<insert id="insertUser" parameterType="com.aracomm.changbi.member.vo.MemberForm">
+		INSERT INTO COM_USER_TB
+			( USER_ID
+			, USER_PW
+			, USER_NM
+			, USER_PHONE
+			, USER_EMAIL
+			, USER_BIRTH
+			, USER_SEX
+			, USER_FLAG
+			, USER_STATE
+			, USER_INS_ID
+			, USER_UDT_ID
+			, USER_TERMS_CK
+		)VALUES(
+			#{id}
+			, #{enc_pw}
+			, #{name}
+			, #{phone}
+			, #{email}
+ 			, #{birth_day}
+ 			, #{gender}
+ 			, 'A0107'
+ 			, 'A0200'
+ 			, #{id}
+ 			, #{id}
+ 			, 'A1301'
+		)
+	</insert>
+	
+	<!-- 회원 정보 등록 -->
+	<insert id="insertUserInfo" parameterType="com.aracomm.changbi.member.vo.MemberForm">
+		INSERT INTO CB_USER_INFO
+			(USER_ID
+			, USER_BELONG_TO
+			, USER_TEL
+			, USER_ZIPCODE
+			, USER_ADDR1
+			, USER_ADDR2
+			, USER_INS_ID
+			, USER_UDT_ID
+		)VALUES(
+			#{id}
+			, #{belong_to}
+			, #{tel}
+			, #{post_code}
+			, #{addr1}
+			, #{addr2}
+			, #{id}
+ 			, #{id}
+		)
+	</insert>	
+	
+	<!-- LMS 휴면 계정 등록 -->
+	<insert id="insertRestUser" parameterType="global.segroup.domain.User">
+		INSERT INTO COM_USER_REST_TB
+			( USER_ID
+			, USER_PW
+			, USER_NM
+			, USER_PHONE
+			, USER_EMAIL
+			, USER_BIRTH
+			, USER_SEX
+			, USER_FLAG
+			, USER_STATE
+			, USER_INS_ID
+			, USER_INS_DT
+			, USER_UDT_ID
+			, USER_UDT_DT
+			, USER_TERMS_CK
+		)VALUES(
+			#{user_id}
+			, #{user_pw}
+			, #{user_nm}
+			, #{user_phone}
+			, #{user_email}
+ 			, #{user_birth}
+ 			, #{user_sex}
+ 			, #{user_flag}
+ 			, 'A0201'
+ 			, #{user_ins_id}
+ 			, #{user_ins_dt}
+ 			, #{user_udt_id}
+ 			, #{user_udt_dt}
+ 			, #{user_terms_ck}
+		)
+	</insert>
+	<!-- LMS 휴면계정 처리 -->
+	<update id="updateRestUserInfo" parameterType="global.segroup.domain.User">
+		UPDATE
+			COM_USER_TB
+		SET
+			USER_NM = ''
+			, USER_PHONE = ''
+			, USER_EMAIL = ''
+			, USER_BIRTH = '0000-00-00'
+			, USER_SEX = ''
+			, USER_FLAG = ''
+			, USER_STATE = 'A0201'
+			, USER_INS_ID = ''
+			, USER_INS_DT = '0000-00-00'
+			, USER_UDT_ID = ''
+			, USER_UDT_DT = '0000-00-00'
+			, USER_TERMS_CK = ''
+		WHERE
+			USER_ID = #{user_id}
+			AND
+			USER_STATE = 'A0200'
+	</update>
+	
+	<!-- LMS 아이디 비번에 대한 회원수 조회 -->
+	<select id="selectMemberCountByIdPasswd" parameterType="map" resultType="int">
+		SELECT COUNT(1)
+		  FROM COM_USER_TB
+		 WHERE USER_ID = #{id}
+		   AND USER_PW = #{pw}
+		   AND USER_STATE = 'A0200'
+		 ORDER BY USER_INS_DT
+	</select>
+	
+	<!-- LMS 비밀번호 변경 -->
+	<update id="updatePassword" parameterType="map">
+		UPDATE COM_USER_TB
+		   SET USER_PW = #{pw}
+		 WHERE USER_ID = #{id}
+		   AND USER_STATE = 'A0200'
+	</update>
+	
+	<!-- LMS 회원정보조회 -->
+	<select id="selectMemberInfo" parameterType="string" resultType="hashmap">
+		SELECT A.USER_ID, A.USER_PW, A.USER_NM, A.USER_PHONE, A.USER_EMAIL, A.USER_BIRTH, A.USER_SEX, A.USER_FLAG, B.USER_BELONG_TO, B.USER_TEL, B.USER_ZIPCODE, B.USER_ADDR1, B.USER_ADDR2  
+		  FROM COM_USER_TB AS A
+		  	LEFT OUTER JOIN CB_USER_INFO AS B
+		  	ON A.USER_ID = B.USER_ID 
+		 WHERE A.USER_ID = #{user_id}
+		   AND A.USER_STATE = 'A0200'
+	</select>
+	
+	<!-- LMS 휴면회원정보조회 -->
+	<select id="selectRestMemberInfo" parameterType="string" resultType="global.segroup.domain.User">
+		SELECT
+			A.USER_ID
+				, A.USER_PW
+				, A.USER_NM
+				, A.USER_PHONE
+				, A.USER_EMAIL
+				, A.USER_BIRTH
+				, A.USER_SEX
+				, A.USER_FLAG
+				, A.USER_STATE
+				, A.USER_INS_ID
+				, A.USER_INS_DT
+				, A.USER_UDT_ID
+				, A.USER_UDT_DT
+				, A.USER_TERMS_CK
+		FROM 
+			COM_USER_REST_TB A, COM_USER_TB B
+	    WHERE 
+	    	A.USER_ID = B.USER_ID
+	    AND A.USER_ID = #{user_id}
+	</select>
+	<!-- LMS 전체 회원 목록 -->
+	<select id="selectUserListAll" resultType="global.segroup.domain.User">
+		SELECT
+			USER_ID
+			, USER_PW
+			, USER_NM
+			, USER_PHONE
+			, USER_EMAIL
+			, USER_BIRTH
+			, USER_SEX
+			, USER_FLAG
+			, USER_STATE
+			, USER_INS_ID
+			, USER_INS_DT
+			, USER_UDT_ID
+			, USER_UDT_DT
+			, USER_TERMS_CK
+		FROM
+			COM_USER_TB
+	</select>
+	<!-- LMS 휴면 계정 대상여부 조회 -->
+	<select id="selectRestUser" parameterType="string" resultType="global.segroup.domain.User">
+		SELECT
+			USER_ID
+			, USER_PW
+			, USER_NM
+			, USER_PHONE
+			, USER_EMAIL
+			, USER_BIRTH
+			, USER_SEX
+			, USER_FLAG
+			, USER_STATE
+			, USER_INS_ID
+			, USER_INS_DT
+			, USER_UDT_ID
+			, USER_UDT_DT
+			, USER_TERMS_CK
+		FROM
+			COM_USER_TB
+		WHERE
+			user_id = #{user_id}
+			and TIMESTAMPDIFF(YEAR, (select user_et from com_user_acc_tb where user_id=#{user_id} order by acc_seq desc limit 1), now()) >= 1;
+	</select>
+	<!-- LMS 휴면회원 테이블 데이터 삭제 -->
+	<delete id="deleteRestUser" parameterType="string">
+		DELETE
+		FROM
+			COM_USER_REST_TB
+		WHERE
+			USER_ID = #{user_id}
+	</delete>
+	<!-- LMS 접속이력 저장 -->
+	<insert id="insertUserAccInfo" parameterType="com.aracomm.changbi.member.vo.MemberForm">
+		INSERT INTO COM_USER_ACC_TB
+			( USER_ID
+			,USER_IP
+			,USER_ET
+		)VALUES(
+			#{id}
+			,#{user_ip}
+			,now()
+		)
+	</insert>
+ 	<!-- LMS 회원정보수정 
+	<update id="updateMemberInfo" parameterType="com.aracomm.changbi.member.vo.MemberForm">
+		UPDATE COM_USER_TB AS A
+			LEFT OUTER JOIN CB_USER_INFO AS B
+			ON A.USER_ID = B.USER_ID
+		SET A.USER_NM = #{name}
+			, A.USER_PW = #{enc_pw}
+			, A.USER_PHONE = #{phone}
+			, A.USER_EMAIL = #{email}
+			, A.USER_BIRTH = #{birth_day}
+			, A.USER_SEX = #{gender}
+			, A.USER_UDT_DT = now()
+			, B.USER_BELONG_TO = #{belong_to}
+			, B.USER_TEL = #{tel}
+			, B.USER_ZIPCODE =  #{post_code}
+			, B.USER_ADDR1 = #{addr1}
+			, B.USER_ADDR2 = #{addr2}
+			, B.USER_UDT_DT = now()
+		WHERE A.USER_ID = #{id}
+		AND A.USER_STATE = 'A0200'
+	</update> -->
+	
+	<!-- LMS 휴면해제-->
+	<update id="updateUserInfo" parameterType="global.segroup.domain.User">
+		UPDATE 
+			COM_USER_TB
+		SET 
+			USER_NM = #{user_nm}
+			, USER_PHONE = #{user_phone}
+			, USER_EMAIL = #{user_email}
+			, USER_BIRTH = #{user_birth}
+			, USER_SEX = #{user_sex}
+			, USER_FLAG = #{user_flag}
+			, USER_STATE = 'A0200'
+			, USER_INS_ID = #{user_ins_id}
+			, USER_INS_DT = #{user_ins_dt}
+			, USER_UDT_ID = #{user_udt_id}
+			, USER_UDT_DT = #{user_udt_dt}
+			, USER_TERMS_CK = #{user_terms_ck}
+		WHERE USER_ID = #{user_id}
+		AND USER_STATE = 'A0201'
+	</update> 
+	
+	<!-- 회원정보수정(기본) -->
+	<update id="updateMemberInfo" parameterType="com.aracomm.changbi.member.vo.MemberForm">
+		UPDATE COM_USER_TB AS A
+			LEFT OUTER JOIN CB_USER_INFO AS B
+			ON A.USER_ID = B.USER_ID
+		SET A.USER_NM = #{name}
+			, A.USER_PW = #{enc_pw}
+			, A.USER_PHONE = #{phone}
+			, A.USER_EMAIL = #{email}
+			, A.USER_BIRTH = #{birth_day}
+			, A.USER_SEX = #{gender}
+			, A.USER_UDT_DT = now()		
+		WHERE A.USER_ID = #{id}
+		AND A.USER_STATE = 'A0200'
+	</update> 
+	
+
+	<!-- LMS 회원정보 수정(선택) 1: 선택정보테이블에서 정보유무 확인 -->
+	<select id="selectIfAdditionalInfoExist"  parameterType="String" resultType="int">
+			SELECT 
+					COUNT(USER_INS_DT) 
+			FROM 
+					CB_USER_INFO
+            WHERE 
+            		USER_ID = #{id}
+	</select>
+	 
+ <!-- LMS 회원정보 수정(선택) 2-1  -->
+ 	<update id="updateAdditionalMemberInfo"  parameterType="com.aracomm.changbi.member.vo.MemberForm">
+ 		UPDATE 
+ 			     CB_USER_INFO
+ 			 SET 
+ 			 	 USER_BELONG_TO = #{belong_to}
+				, USER_TEL = #{tel}
+				, USER_ZIPCODE =  #{post_code}
+				, USER_ADDR1 = #{addr1}
+				, USER_ADDR2 = #{addr2}
+				, USER_UDT_DT = now()
+		WHERE USER_ID = #{id}
+ 	</update>
+
+ <!-- LMS 회원정보 수정(선택) 2-2 -->	
+	<insert id="insertAdditionalMemberInfo"  parameterType="com.aracomm.changbi.member.vo.MemberForm">
+			INSERT INTO 
+						 CB_USER_INFO
+								(	USER_ID
+								, USER_BELONG_TO
+								, USER_TEL
+					            , USER_ZIPCODE
+					            , USER_ADDR1
+					            , USER_ADDR2
+					            , USER_UDT_ID
+					            , USER_UDT_DT 
+							)VALUES(
+							     #{id}
+							    , #{belong_to}
+								, #{tel}
+								, #{post_code}
+								, #{addr1}
+								, #{addr2}
+								, #{id}
+								, now()		        
+							)			 
+	</insert>
+	
+	<!-- 탈퇴회원 ID 변경 : 외래키로 연결된 테이블의 user_id도 cascade로 자동으로 변경됨 -->
+	<update id="changeIDInfo" parameterType="map">
+		UPDATE COM_USER_TB
+		SET USER_ID = #{deleteUserId}
+			,USER_STATE = 'A0202'
+			,USER_PW = ''
+			,USER_PHONE=''
+			,USER_EMAIL=''
+			,USER_SEX=''
+			,USER_BIRTH = now()
+			,USER_INS_ID = #{deleteUserId}
+			,USER_UDT_ID = #{deleteUserId}
+			,USER_UDT_DT = now()
+		WHERE USER_ID = #{id}
+	</update>
+	
+	<update id="changeCertificationID" parameterType="map">
+		UPDATE COM_CERTIFICATION_CODE_TB
+		SET USER_ID = #{deleteUserId}
+		WHERE USER_ID = #{id}
+	</update>
+	
+	<!-- 탈퇴회원정보 삭제 : 탈퇴 후 보관이 필요하지 않은 정보는 cascade로 같이 삭제됨 -->
+	<delete id="deleteMemberInfo" parameterType="String">
+		DELETE FROM COM_USER_TB
+			WHERE USER_ID = #{id}
+	</delete>
+
+	<!-- 탈퇴회원정보 입력 : 탈퇴한 회원은 com_user_tb에서 id와 이름만 보관하고, cb_member_out에서 별도로 관리함.
+						탈퇴일과 회원상태는 default로 입력됨 (REG_DATE : CURRENT_TIMESTAMP(), USER_STATE : 'A0202' -->
+	<insert id="insertMemberOut" parameterType="map">
+<!-- 탈퇴 시, 추가 정보 필요 시 사용  -->
+<!-- 		INSERT INTO CB_MEMBER_OUT(
+			USER_ID
+			,USER_NM
+			,USER_PHONE
+			,USER_EMAIL
+			,USER_BIRTH
+			,USER_SEX
+			,USER_FLAG
+		)VALUES(
+			#{deleteUserId}
+			,#{user_nm}
+			,#{user_phone}
+			,#{user_email}
+			,#{user_birth}
+			,#{user_sex}
+			,#{user_flag}
+		) -->
+		INSERT INTO CB_MEMBER_OUT(
+			USER_ID
+			,USER_NM
+		)VALUES(
+			#{deleteUserId}
+			,#{user_nm}
+		)
+	</insert>
+	
+	<!-- LMS 아이디 찾기를 위한 회원 정보 조회 -->
+	<select id="selectMemberForFindId" parameterType="hashmap" resultType="hashmap">
+		SELECT USER_ID, USER_NM 
+		  FROM COM_USER_TB
+		 WHERE USER_EMAIL = #{email}
+		   AND USER_NM = #{name}
+		   AND USER_PHONE = #{phone}
+		   AND USER_STATE = 'A0200'
+		 ORDER BY USER_INS_DT
+		 LIMIT 1
+	</select>
+	
+	<!-- LMS 비밀번호 찾기를 위한 회원 정보 조회 -->
+	<select id="selectMemberForFindPw" parameterType="String" resultType="hashmap">
+		SELECT USER_ID
+		  FROM COM_USER_TB
+		 WHERE USER_ID = #{user_id}
+		   AND USER_EMAIL = #{user_email}
+		   AND USER_NM = #{user_nm}
+		   AND USER_PHONE = #{user_phone}
+		   AND USER_STATE = 'A0200'
+		 ORDER BY USER_INS_DT
+		 LIMIT 1
+	</select>
+	
+	<select id="getUserPayInfo" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			*
+		FROM
+			EDU_USER_PAY_TB
+		WHERE
+			PAY_CRC_SEQ = #{pay_crc_seq}
+		AND
+			PAY_USER_ID = #{user_nm}
+	</select>
+	
+	<select id="getRefundInfo" parameterType="string" resultType="hashmap">
+		SELECT
+			*
+		FROM
+			EDU_USER_REFUND_TB
+		WHERE
+			PAY_USER_SEQ = #{pay_user_seq}
+	</select>
+	
+	<select id="getEduCurriculumPayInfo" parameterType="int" resultType="hashmap">
+		SELECT
+			*
+		FROM
+			EDU_CURRICULUM_PAY_TB
+		WHERE
+			PAY_CRC_SEQ = #{payCrcSeq}
+	</select>
+	
+	<!-- LMS 개별 결제/환불 조회 -->
+ 	<select id="individualPayList" parameterType="hashmap" resultType="hashmap">
+
+		SELECT 
+			CLA.ID, /*sequence*/ 
+			CLA.USER_ID, /*id*/
+			CLA.CARDINAL_ID, /*기수id */
+			CLA.COURSE_ID, /*과정id */
+			CC1.NAME AS CARDINAL_NAME, /*기수 이름*/
+			CC2.NAME AS COURSE_NAME,	/*과정 이름*/
+			CC1.PRICE AS PRICE, /*교육비*/
+			edu.pay_user_seq as PAY_USER_SEQ,
+            edu.pay_user_method as payment_type,
+            edu.pay_user_status as PAYMENT_STATUS,
+            edu.PAY_ACCNUM as ACCNUM,
+            edu.PAY_BANKNAME as BANKNAME,
+            edu.REAL_PAY_AMOUNT,
+            edu.DIS_POINT AS DIS_POINT, /*마일리지 사용금액*/
+            date_format(edu.PAY_INS_DT, '%Y-%m-%d') as PAY_INS_DT,
+            date_format(pay.PAY_CRC_START, '%Y-%m-%d') as PAY_CRC_START,
+            date_format(pay.PAY_CRC_END, '%Y-%m-%d') as PAY_CRC_END,
+            pay.PAY_CRC_SEQ,
+            pay.PAY_CRC_AMOUNT,
+            pay.PAY_CRC_PAYORDER,
+			CLA.PAYMENT_STATE AS PAYMENT_STATE, /*결제상태(1:미결제, 2:결제완료, 3:일부결제, 4:환불)*/
+            date_format(CLA.PAYMENT_DATE, '%Y-%m-%d') AS PAYMENT_DATE, /*결제확인일시*/
+			CLA.REAL_PAYMENT AS REAL_PAYMENT, /*실납입금액*/
+			CLA.REQ_TYPE, /*요청구분(1:연기요청, 2:취소요청, 3:수강연기, 4:수강취소)*/
+			CLA.REQ_MEMO, /*요청사유*/
+			CLA.REQ_DATE, /*요청일자(연기 및 취소 요청일자)*/
+			CLA.ISSUE_NUM AS ISSUE_NUM,  /*이수번호(이수시 이수번호 발급)*/
+			CLA.USE_YN, /*사용여부*/
+			CLA.REG_USER,
+			CLA.REG_DATE,
+			CLA.UPD_USER,
+			CLA.UPD_DATE
+		FROM CB_LEARN_APP AS CLA
+		LEFT OUTER JOIN CB_CARDINAL CC1
+		ON CLA.CARDINAL_ID = CC1.ID
+		LEFT OUTER JOIN CB_COURSE CC2
+		ON CLA.COURSE_ID = CC2.ID
+        LEFT OUTER JOIN edu_curriculum_pay_tb pay
+        on pay.course_id = CLA.course_id and pay.cardinal_id = CLA.cardinal_id
+        LEFT OUTER JOIN EDU_USER_PAY_TB edu
+		ON CLA.USER_ID = edu.PAY_USER_ID and edu.course_id = CLA.course_id and edu.cardinal_id = CLA.cardinal_id and edu.pay_crc_seq = pay.pay_crc_seq
+		WHERE CLA.USER_ID = #{user_id} and CC2.CHECKONLINE = 'online'
+		<if test='search != null and search !=""'>
+		AND CC1.NAME LIKE CONCAT('%', #{search} ,'%')
+		</if>
+		ORDER BY CLA.PAYMENT_DATE DESC
+		limit ${startPage}, ${visiblePages}
+
+	</select>
+	<!-- LMS 개별 결제/환불 전체 갯수 -->
+	<select id="individualPayListCnt" parameterType="hashmap" resultType="int">
+
+		SELECT 
+			count(*) as CNT
+		FROM CB_LEARN_APP AS CLA
+		LEFT OUTER JOIN CB_CARDINAL CC1
+		ON CLA.CARDINAL_ID = CC1.ID
+		LEFT OUTER JOIN CB_COURSE CC2
+		ON CLA.COURSE_ID = CC2.ID
+        LEFT OUTER JOIN edu_curriculum_pay_tb pay
+        on pay.course_id = CLA.course_id and pay.cardinal_id = CLA.cardinal_id
+        LEFT OUTER JOIN EDU_USER_PAY_TB edu
+		ON CLA.USER_ID = edu.PAY_USER_ID and edu.course_id = CLA.course_id and edu.cardinal_id = CLA.cardinal_id and edu.pay_crc_seq = pay.pay_crc_seq
+		WHERE CLA.USER_ID = #{user_id} and CC2.CHECKONLINE = 'online'
+		<if test='search != null and search !=""'>
+		AND CC1.NAME LIKE CONCAT('%', #{search} ,'%')
+		</if>
+		ORDER BY CLA.PAYMENT_DATE DESC
+	</select>
+	
+	<!-- LMS 인증 코드 정보 검색 시작 -->
+<select id="selectCertificationCode" parameterType="CertificationCode" resultType="CertificationCode">
+	SELECT
+		certification_code,
+		user_id,
+		certification_ck_st,
+		certification_ck_et
+	FROM
+		COM_CERTIFICATION_CODE_TB
+	<where>
+		<if test="certification_code != 0">
+			<![CDATA[
+			certification_ck_st <= now()
+			and certification_ck_et >= now()
+			]]>
+			and certification_code = #{certification_code}
+		</if>
+		<if test="user_id != null">
+			and user_id = #{user_id}
+		</if>
+	</where>
+</select>
+<!-- 인증 코드 정보 검색 종료 -->
+
+<!-- LMS 인증 코드 정보 추첨 시작 -->
+<select id="chooseCertificationCode" resultType="CertificationCode">
+	SELECT
+		certification_code
+	FROM
+		COM_CERTIFICATION_CODE_TB
+	WHERE
+		<![CDATA[
+		certification_ck_et < now()
+		OR
+		certification_ck_et = null
+		]]>
+		and
+		user_id = NULL
+	ORDER BY
+		rand()
+	LIMIT 1
+</select>
+<!-- 인증 코드 정보 추첨 종료 -->
+
+<!-- LMS 인증 코드 정보 갱신 시작 -->
+<update id="updateCertificationCode" parameterType="CertificationCode">
+	UPDATE
+		COM_CERTIFICATION_CODE_TB
+	SET
+	<choose>
+		<when test="user_id == null">
+			user_id = NULL,
+			certification_ck_st = '0000-00-00 00:00:00',
+			certification_ck_et = '0000-00-00 00:00:00'
+		</when>
+		<otherwise>
+			user_id = #{user_id},
+			certification_ck_st = now(),
+			certification_ck_et =  DATE_ADD(now(), INTERVAL 3 MINUTE)
+		</otherwise>
+	</choose>
+	<where>
+		<choose>
+			<when test="certification_code != null">
+				certification_code = #{certification_code}
+			</when>
+			<when test="user_id != null">
+				AND user_id = #{user_id}
+			</when>
+		</choose>
+	</where>
+</update>
+<!-- 인증 코드 정보 갱신 종료 -->
+
+<!-- LMS 영수증 조회 시작 -->
+<select id="selectReceiptNum" resultType="hashmap" parameterType="hashmap">
+	SELECT
+	 	RECEIPT_NUM
+	 	, RECEIPT_DATE
+	 FROM CB_RECEIPT
+	 WHERE 
+	 	USER_ID = #{user_id}
+	 	<choose>
+	 		<when test="course_id != '' and course_id != null">
+	 			AND
+	 			COURSE_ID = #{course_id} 
+	 			AND 
+	 			CARDINAL_ID = #{cardinal_id}	
+	 		</when>
+	 		<otherwise>
+	 			AND
+	 			TOEFL_ID = #{toefl_id}
+	 		</otherwise>
+	 	</choose>
+</select>
+<!-- LMS 영수증 조회 종료 -->
+
+<!-- LMS 영수증 일련번호 존재 여부(시퀀스조회)-->
+<select id="selectReceiptSeq" resultType="Integer">
+	SELECT MAX(ID)
+	FROM CB_RECEIPT
+</select>
+<!-- LMS 영수증 일련번호 존재 여부  종료-->
+<!-- LMS 영수증 입력 시작 -->
+<insert id="insertReceipt" parameterType="hashmap">
+	INSERT INTO CB_RECEIPT (
+		USER_ID
+		<if test="course_id != '' and course_id !=null">
+			,COURSE_ID
+			,CARDINAL_ID
+		</if>
+		<if test="toefl_id != '' and toefl_id !=null">
+			,TOEFL_ID
+		</if>
+		, RECEIPT_NUM
+		, RECEIPT_DATE
+		) VALUES (
+		#{user_id}
+		<if test="course_id != '' and course_id !=null">
+			,#{course_id}
+			,#{cardinal_id}
+		</if>
+		<if test="toefl_id != '' and toefl_id !=null">
+			,#{toefl_id}
+		</if>
+		, #{receipt_num}
+		, #{receipt_date}
+		)
+</insert>
+<!-- LMS 영수증 입력 종료 -->
+
+<select id="putUserName" parameterType="string" resultType="string">
+	SELECT
+		USER_NM
+	FROM 
+		COM_USER_TB
+	WHERE
+		USER_ID = #{userName}
+</select>
+
+<select id="putSeq" parameterType="hashmap" resultType="int">
+	SELECT
+		ATT_DT_SEQ
+	FROM 
+		SMTP_ATTENDANCE_DATE
+	WHERE
+		COURSE_ID = #{course_id}
+		AND CARDINAL_ID = #{cardinal_id}
+		AND ATT_DATE = #{att_date}
+</select>
+
+<update id="stuUpdate" parameterType="global.segroup.society.smtp.apply.domain.InfoAttendance">
+	UPDATE
+		SMTP_ATTENDANCE_INFO
+	SET
+		REG_ORIGIN_FILE = #{regOriginFile}
+		, REG_SAVED_FILE = #{regSavedFile}
+		, REG_DATE = #{regDate}
+		, REG_USER = #{regUser}
+	WHERE
+		ATT_DT_SEQ = #{attDtSeq}
+	AND
+		USER_ID = #{userId}
+</update>
+
+<select id="smtpIndividualPayList" parameterType="hashmap" resultType="hashmap">
+	SELECT 
+			CLA.ID, /*sequence*/ 
+			CLA.USER_ID, /*id*/
+			CLA.CARDINAL_ID, /*기수id */
+			CLA.COURSE_ID, /*과정id */
+			CC1.NAME AS CARDINAL_NAME, /*기수 이름*/
+			CC2.NAME AS COURSE_NAME,	/*과정 이름*/
+			CC1.PRICE AS PRICE, /*교육비*/
+            edu.pay_user_method as payment_type,
+            edu.pay_user_status as PAYMENT_STATUS,
+            edu.PAY_ACCNUM as ACCNUM,
+            edu.PAY_BANKNAME as BANKNAME,
+            edu.REAL_PAY_AMOUNT,
+            edu.DIS_POINT,
+            date_format(edu.PAY_INS_DT, '%Y-%m-%d') as PAY_INS_DT,
+            date_format(pay.PAY_CRC_START, '%Y-%m-%d') as PAY_CRC_START,
+            date_format(pay.PAY_CRC_END, '%Y-%m-%d') as PAY_CRC_END,
+            pay.PAY_CRC_SEQ,
+            pay.PAY_CRC_AMOUNT,
+            pay.PAY_CRC_PAYORDER,
+			CLA.PAYMENT_STATE AS PAYMENT_STATE, /*결제상태(1:미결제, 2:결제완료, 3:일부결제, 4:환불)*/
+            date_format(CLA.PAYMENT_DATE, '%Y-%m-%d') AS PAYMENT_DATE, /*결제확인일시*/
+			CLA.REAL_PAYMENT AS REAL_PAYMENT, /*실납입금액*/
+			CLA.REQ_TYPE, /*요청구분(1:연기요청, 2:취소요청, 3:수강연기, 4:수강취소)*/
+			CLA.REQ_MEMO, /*요청사유*/
+			CLA.REQ_DATE, /*요청일자(연기 및 취소 요청일자)*/
+			CLA.ISSUE_NUM AS ISSUE_NUM,  /*이수번호(이수시 이수번호 발급)*/
+			CLA.USE_YN, /*사용여부*/
+			CLA.REG_USER,
+			CLA.REG_DATE,
+			CLA.UPD_USER,
+			CLA.UPD_DATE
+		FROM CB_LEARN_APP AS CLA
+		LEFT OUTER JOIN CB_CARDINAL CC1
+		ON CLA.CARDINAL_ID = CC1.ID
+		LEFT OUTER JOIN CB_COURSE CC2
+		ON CLA.COURSE_ID = CC2.ID
+        LEFT OUTER JOIN smtp_apply_form_tb form
+        ON form.crc_id = CLA.course_id and form.gisu_id = CLA.cardinal_id and CLA.user_id = form.user_id
+        LEFT OUTER JOIN edu_curriculum_pay_tb pay
+        on pay.course_id = CLA.course_id and pay.cardinal_id = CLA.cardinal_id
+        LEFT OUTER JOIN EDU_USER_PAY_TB edu
+		ON CLA.USER_ID = edu.PAY_USER_ID and edu.course_id = CLA.course_id and edu.cardinal_id = CLA.cardinal_id and edu.pay_crc_seq = pay.pay_crc_seq
+		WHERE 
+			CLA.USER_ID = #{user_id}
+		and 
+			CC2.CHECKONLINE in ('offline', 'blended')
+		and
+			((form.stu_app_rt_doc = 'B1401' and
+             form.stu_app_rt_itv = 'B1701') 
+             or (form.stu_app_rt_doc is null and
+             form.stu_app_rt_itv is null))
+        order by reg_date desc, PAY_CRC_PAYORDER
+</select>
+
+<select id="getToeflRefundInfo" parameterType="string" resultType="hashmap">
+	SELECT
+		*
+	FROM
+		cb_toefl_refund_tb
+	WHERE
+		PAY_TOEFL_SEQ = #{pay_toefl_seq}
+</select>
+	
+<update id="toeflRefundUpdate" parameterType="hashmap">
+	update cb_toefl_refund_tb
+	set
+		TOEFL_REFUND_ACCNAME = #{owner},
+		TOEFL_REFUND_ACCNUM = #{account},
+		TOEFL_REFUND_BANK = #{bank}
+	where
+		TOEFL_REFUND_SEQ = #{TOEFL_REFUND_SEQ}
+</update>
+
+<delete id="toeflRefundDelete" parameterType="string">
+	delete from
+		cb_toefl_refund_tb
+	where
+		TOEFL_REFUND_SEQ = #{TOEFL_REFUND_SEQ}
+</delete>
+</mapper>

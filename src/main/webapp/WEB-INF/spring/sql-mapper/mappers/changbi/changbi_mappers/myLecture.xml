@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.user.dao.MyLectureDao">
+	
+	<!-- 진행과정 조회 -->
+	<select id="selectProgressList" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				CLA.ID
+				, CLA.GROUP_ID
+				, CLA.CARDINAL_ID
+				, CLA.COURSE_ID
+				, IFNULL(CLA.DES_NUM, '') AS DES_NUM /*연수지명번호*/
+				, CCA.LEARN_TYPE /*연수구분*/
+				, CCA.NAME AS CARDINAL_NAME /*기수명*/
+				, CONCAT(IF(LOCATE(CCA.LEARN_TYPE, 'J')>0,'직무 ',''), IF(LOCATE(CCA.LEARN_TYPE,'S')>0,'자율 ',''),IF(LOCATE(CCA.LEARN_TYPE,'M')>0,'집합 ',''), IF(LOCATE(CCA.LEARN_TYPE,'G')>0,'단체 ','')) AS LEARN_TYPE_NAME
+				, CCB.COURSE_CODE /*연수영역*/
+				, (SELECT`NAME` FROM FF_CODE WHERE CODE = CCB.COURSE_CODE AND GROUP_ID = 'course') AS COURSE_CODE_NAME
+				, CCB.NAME /*연수과정*/
+				, CCB.CREDIT /*학점*/
+				, CCA.LEARN_START_DATE /*연수시작일*/
+				, CCA.LEARN_END_DATE /*연수종료일*/
+				, (DATE_ADD(CCA.LEARN_END_DATE, INTERVAL 1 DAY) ) AS REAL_START_DATE /*복습시작일*/
+				, CLA.REAL_END_DATE /*복습종료일*/
+				, CLA.PAYMENT_STATE
+				, CLA.PAYMENT_TYPE
+				, CCB.MAIN_TB_ID
+				, CCB.SUB_TB_ID
+				, CCB.RECORD_YN
+				, CCB.APPLYFORM_YN
+				, CCB.checkOnline
+				, CCB.PORT_YN
+				, CCB.REVIEW_PERIOD
+				, CCA.COMP_PERCENT_QUIZ AS QUPERCENT, CCA.COMP_PERCENT_EXAM AS EXPERCENT, CCA.COMP_PERCENT_PROG AS PRPERCENT, CCA.COMPLETE_TOTAL AS TOTAL
+				, CCA.COMP_SCORE_QUIZ AS QUSCORE, CCA.COMP_SCORE_EXAM AS EXSCORE, CCA.COMP_SCORE_PROG AS PRSCORE
+			FROM CB_LEARN_APP AS CLA
+				JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+				JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+			WHERE CLA.USER_ID = #{user_id}
+				AND CLA.PAYMENT_STATE = 2 /*2:결제완료*/
+				AND (CLA.REQ_TYPE IS NULL OR CLA.REQ_TYPE IN (1, 2))
+				AND TO_DAYS(CCA.LEARN_START_DATE) <= TO_DAYS(NOW())
+				AND TO_DAYS(CCA.LEARN_END_DATE) >= TO_DAYS(NOW())
+				AND CLA.USE_YN  = 'Y'
+				AND CCB.CHECKONLINE = 'ONLINE'
+				AND CCA.NAME LIKE CONCAT('%',#{search},'%')
+				LIMIT ${startPage}, ${visiblePages}
+			]]> 
+		<!-- AND NOW() BETWEEN CCA.LEARN_START_DATE AND CCA.LEARN_END_DATE -->
+	</select>
+	<select id="selectProgressListTotalCnt" resultType="int">
+		<![CDATA[
+			SELECT
+				COUNT(*)
+			FROM CB_LEARN_APP AS CLA
+				JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+				JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+			WHERE CLA.USER_ID = #{user_id}
+				AND CLA.PAYMENT_STATE = 2 /*2:결제완료*/
+				AND (CLA.REQ_TYPE IS NULL OR CLA.REQ_TYPE IN (1, 2))
+				AND TO_DAYS(CCA.LEARN_START_DATE) <= TO_DAYS(NOW())
+				AND TO_DAYS(CCA.LEARN_END_DATE) >= TO_DAYS(NOW())
+				AND CLA.USE_YN  = 'Y'
+				AND CCB.CHECKONLINE = 'ONLINE'
+				AND CCA.NAME LIKE CONCAT('%',#{search},'%')
+		]]>
+	</select>
+	<!-- 대기과정 조회 -->
+	<select id="selectWaitingList" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				CLA.ID
+				, CLA.GROUP_ID
+				, CLA.CARDINAL_ID
+				, CLA.COURSE_ID
+				, IFNULL(CLA.DES_NUM, '') AS DES_NUM /*연수지명번호*/
+				, CCA.LEARN_TYPE /*연수구분*/
+				, CCA.NAME AS CARDINAL_NAME /*기수명*/
+				, CONCAT(IF(LOCATE(CCA.LEARN_TYPE, 'J')>0,'직무 ',''), IF(LOCATE(CCA.LEARN_TYPE,'S')>0,'자율 ',''),IF(LOCATE(CCA.LEARN_TYPE,'M')>0,'집합 ',''), IF(LOCATE(CCA.LEARN_TYPE,'G')>0,'단체 ','')) AS LEARN_TYPE_NAME
+				, CCB.COURSE_CODE /*연수영역*/
+				, (SELECT`NAME` FROM FF_CODE WHERE CODE = CCB.COURSE_CODE AND GROUP_ID = 'course') AS COURSE_CODE_NAME
+				, CCB.NAME /*연수과정*/
+				, CCB.CREDIT /*학점*/
+				, CCA.LEARN_START_DATE /*연수시작일*/
+				, CCA.LEARN_END_DATE /*연수종료일*/
+				, (DATE_ADD(CCA.LEARN_END_DATE, INTERVAL 1 DAY) ) AS REAL_START_DATE /*복습시작일*/
+				, CLA.REAL_END_DATE /*복습종료일*/
+				, CLA.PAYMENT_STATE
+				, CLA.PAYMENT_TYPE
+				, CCB.MAIN_TB_ID
+				, CCB.SUB_TB_ID
+			FROM CB_LEARN_APP AS CLA
+				JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+				JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+			WHERE CLA.USER_ID = #{user_id}
+				AND (CLA.PAYMENT_STATE IN (1,3) OR (TO_DAYS(CCA.LEARN_START_DATE) > TO_DAYS(NOW()))) /*1.미결제 2.결제완료 3.일부결제*/
+				AND CLA.USE_YN  = 'Y'
+				AND CCB.CHECKONLINE = 'ONLINE'
+				AND CCA.NAME LIKE CONCAT('%',#{search},'%')
+				LIMIT ${startPage}, ${visiblePages}
+				
+		]]>
+		<!-- AND (CLA.PAYMENT_STATE IN (1,3) OR (CLA.PAYMENT_STATE = 2 and CCA.LEARN_START_DATE > NOW())) -->
+	</select>
+	<select id="selectWaitingListTotalCnt" resultType="int">
+		<![CDATA[
+			SELECT
+				COUNT(*)
+			FROM CB_LEARN_APP AS CLA
+				JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+				JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+			WHERE CLA.USER_ID = #{user_id}
+				AND (CLA.PAYMENT_STATE IN (1,3) OR (TO_DAYS(CCA.LEARN_START_DATE) > TO_DAYS(NOW()))) /*1.미결제 2.결제완료 3.일부결제*/
+				AND CLA.USE_YN  = 'Y'
+				AND CCB.CHECKONLINE = 'ONLINE'
+				AND CCA.NAME LIKE CONCAT('%',#{search},'%')
+		]]>
+	</select>
+	<!-- 학습완료과정 조회 -->
+	<select id="selectCompleteList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				CLA.ID
+				, CLA.GROUP_ID
+				, CLA.CARDINAL_ID
+				, CLA.COURSE_ID
+				, IFNULL(CLA.DES_NUM, '') AS DES_NUM /*연수지명번호*/
+				, CCA.LEARN_TYPE /*연수구분*/
+				, CCA.NAME AS CARDINAL_NAME /*기수명*/
+				, CONCAT(IF(LOCATE(CCA.LEARN_TYPE, 'J')>0,'직무 ',''), IF(LOCATE(CCA.LEARN_TYPE,'S')>0,'자율 ',''),IF(LOCATE(CCA.LEARN_TYPE,'M')>0,'집합 ',''), IF(LOCATE(CCA.LEARN_TYPE,'G')>0,'단체 ','')) AS LEARN_TYPE_NAME
+				, CCB.COURSE_CODE /*연수영역*/
+				, (SELECT`NAME` FROM FF_CODE WHERE CODE = CCB.COURSE_CODE AND GROUP_ID = 'course') AS COURSE_CODE_NAME
+				, CCB.NAME /*연수과정*/
+				, CCB.CREDIT /*학점*/
+				, CCA.LEARN_START_DATE /*연수시작일*/
+				, CCA.LEARN_END_DATE /*연수종료일*/
+				, (DATE_ADD(CCA.LEARN_END_DATE, INTERVAL 1 DAY) ) AS REAL_START_DATE /*복습시작일*/
+				, CLA.REAL_END_DATE /*복습종료일*/
+				, CLA.PAYMENT_STATE
+				, CLA.PAYMENT_TYPE
+				, CCB.MAIN_TB_ID
+				, CCB.SUB_TB_ID
+				, CCB.REVIEW_PERIOD
+				, IFNULL((TO_DAYS((DATE_ADD(CCA.LEARN_END_DATE, INTERVAL 180 DAY))) - TO_DAYS(NOW()) + 1), 0) AS REVIEW_DAYS
+				, CLA.REQ_TYPE
+				, CLA.ISSUE_YN
+				, CLA.ISSUE_NUM
+				, CCA.COMP_PERCENT_QUIZ AS QUPERCENT, CCA.COMP_PERCENT_EXAM AS EXPERCENT, CCA.COMP_PERCENT_PROG AS PRPERCENT, CCA.COMPLETE_TOTAL AS TOTAL
+				, CCA.COMP_SCORE_QUIZ AS QUSCORE, CCA.COMP_SCORE_EXAM AS EXSCORE, CCA.COMP_SCORE_PROG AS PRSCORE
+			FROM CB_LEARN_APP AS CLA
+				JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+				JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+			WHERE CLA.USER_ID = #{user_id}
+				AND (CLA.REQ_TYPE IS NULL OR CLA.REQ_TYPE IN (1, 2))
+				AND CLA.PAYMENT_STATE = 2 /*2:결제완료*/
+				AND TO_DAYS(CCA.LEARN_END_DATE) < TO_DAYS(NOW())
+				AND CLA.USE_YN  = 'Y'
+				AND CCB.CHECKONLINE = 'ONLINE'
+				AND CCA.NAME LIKE CONCAT('%',#{search},'%')
+			ORDER BY CLA.REAL_END_DATE desc
+			LIMIT ${startPage}, ${visiblePages}
+		]]>
+	</select>
+	<select id="selectCompleteListTotalCnt" resultType="int">
+		<![CDATA[
+			SELECT
+				COUNT(*)
+			FROM CB_LEARN_APP AS CLA
+				JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+				JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+			WHERE CLA.USER_ID = #{user_id}
+				AND (CLA.REQ_TYPE IS NULL OR CLA.REQ_TYPE IN (1, 2))
+				AND CLA.PAYMENT_STATE = 2 /*2:결제완료*/
+				AND TO_DAYS(CCA.LEARN_END_DATE) < TO_DAYS(NOW())
+				AND CLA.USE_YN  = 'Y'
+				AND CCB.CHECKONLINE = 'ONLINE'
+				AND CCA.NAME LIKE CONCAT('%',#{search},'%')
+			ORDER BY CLA.REAL_END_DATE desc
+		]]>
+	</select>
+	
+	
+		<!-- 해당 클래스의 차시(챕터) 목록 조회  -->
+	<select id="selectChapterList" resultType="hashmap">
+		SELECT
+			CCB.ID AS CHAPTER_ID /*연수과정 차시 ID*/
+			, CCB.NAME AS CHAPTER_NAME /*챕터명*/
+			, CCB.STUDY /*교육시간*/
+			, CONCAT(LPAD(ROUND(CCB.STUDY/60), 2, '0'), '분 ', LPAD(CCB.STUDY%60, 2, '0'), '초') AS STUDY2 /*교육시간(분,초)*/
+			, CCB.CHK /*체크(분)*/
+			, CCB.MAIN_URL /*PC URL*/
+			, CCB.MOBILE_URL /*MOBILE URL*/
+			, CCB.TEACHER
+			, CCB.FILE_INFO /*강사파일*/
+			, CCB.SERVICE_TYPE /*PC MOBILE 구분 (P:PC, M:MOBILE)*/
+			, CCB.ORDER_NUM /*순서*/
+			, IFNULL(CAL.ID, 0) AS ATT_ID
+			, IFNULL(CAL.LEARN_TIME, 0) AS LEARN_TIME
+			, IFNULL(CAL.PROG_YN, 'N') AS PROG_YN
+			, IFNULL(CCA.WIDTH, 0) AS WIDTH
+			, IFNULL(CCA.HEIGHT, 0) AS HEIGHT
+			, IFNULL(CCA.TASTING_URL, '') AS TASTING_URL
+		FROM CB_LEARN_APP AS CLA
+			JOIN CB_COURSE AS CCA ON CLA.COURSE_ID = CCA.ID
+			JOIN CB_CHAPTER AS CCB ON CCA.ID = CCB.COURSE_ID
+			LEFT JOIN CB_ATT_LEC AS CAL ON CLA.CARDINAL_ID = CAL.CARDINAL_ID AND CAL.COURSE_ID = CAL.COURSE_ID  AND CCB.ID = CAL.CHAPTER AND CLA.USER_ID = CAL.USER_ID
+		WHERE CLA.COURSE_ID = #{course}
+			AND CLA.ID = #{id}
+			AND CLA.CARDINAL_ID = #{cardinal}
+			AND CLA.USER_ID = #{user_id}
+			AND CLA.USE_YN  = 'Y'
+		ORDER BY CCB.ID ASC
+	</select>
+<!-- 목차,페이지 가져오기 -->
+	<select id="selectChapPageList" resultType="hashmap">
+		SELECT
+			CAL.ID
+			, CAL.LEARN_APP_ID
+			, CAL.USER_ID
+			, CAL.CARDINAL_ID
+			, CAL.COURSE_ID
+            , CH.NAME AS CHAP_NAME
+            , CSC.NAME AS SUBCHAP_NAME
+			, CAL.CHAPTER
+			, CSC.OCC_NUM AS CHASI
+			, CAL.STUDY
+			, CAL.CHK
+			, CAL.PROG_YN
+			, CSC.SEQ
+            , CSC.OCC_NUM
+            , CSC.NAME
+            , CSC.FILEPATH
+            , CSC.DEPTH
+            , CSC.ORDER_NUM
+            , CSC.CONTENT_TYPE
+		FROM
+			CB_ATT_LEC CAL
+		INNER JOIN cb_sub_chapter CSC
+        ON CAL.SUBCHAP = CSC.SEQ
+        LEFT OUTER JOIN CB_CHAPTER CH
+        ON CAL.COURSE_ID = CH.COURSE_ID
+       WHERE 
+       		CSC.CHAP_ID = CH.ID
+       		AND CAL.COURSE_ID = #{course}
+			AND CAL.LEARN_APP_ID = #{id}
+			AND CAL.CARDINAL_ID = #{cardinal}
+		ORDER BY CSC.OCC_NUM, CSC.ORDER_NUM
+	</select>
+	<!-- 챕터정보 조회 -->
+	<select id="selectChapterInfo" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			CAL.ID
+			, CAL.LEARN_APP_ID
+			, CAL.USER_ID
+			, CAL.CARDINAL_ID
+			, CAL.COURSE_ID
+            , CH.NAME AS CHAP_NAME
+            , CSC.NAME AS SUBCHAP_NAME
+			, CAL.CHAPTER
+			, CSC.OCC_NUM AS CHASI
+			, CAL.STUDY
+			, CAL.CHK
+			, CAL.PROG_YN
+			, CSC.SEQ
+            , CSC.OCC_NUM
+            , CSC.NAME
+            , CSC.FILEPATH
+            , CSC.MO_FILEPATH
+            , CSC.DEPTH
+            , CSC.ORDER_NUM
+            , CSC.CONTENT_TYPE
+            , CSC.LINK
+		FROM
+			CB_ATT_LEC CAL
+		INNER JOIN cb_sub_chapter CSC
+        ON CAL.SUBCHAP = CSC.SEQ
+        LEFT OUTER JOIN CB_CHAPTER CH
+        ON CAL.COURSE_ID = CH.COURSE_ID
+       WHERE 
+       		CSC.CHAP_ID = CH.ID
+       		AND CAL.COURSE_ID = #{course}
+			AND CAL.LEARN_APP_ID = #{id}
+			AND CAL.CARDINAL_ID = #{cardinal}
+			<if test="chapter != null and chapter != ''">
+				AND CSC.SEQ = #{chapter}
+			</if>
+			<if test="chasi != null and chasi != ''">
+				AND CSC.OCC_NUM = #{chasi}
+			</if>
+			<if test="order!= null and order !=''">
+				AND CSC.ORDER_NUM = #{order}
+			</if>
+		ORDER BY CSC.OCC_NUM, CSC.ORDER_NUM
+	</select>
+	<select id="selectChapterInfo2"  parameterType="hashmap" resultType="hashmap">
+		SELECT
+			CAL.ID
+			, CAL.LEARN_APP_ID
+			, CAL.USER_ID
+			, CAL.CARDINAL_ID
+			, CAL.COURSE_ID
+            , CH.NAME AS CHAP_NAME
+			, CAL.CHAPTER
+			, CH.ORDER_NUM AS CHASI
+			, CH.MAIN_URL
+			, CH.MOBILE_URL
+			, CAL.STUDY
+			, CAL.CHK
+			, CAL.PROG_YN
+		FROM
+			CB_ATT_LEC CAL
+		LEFT OUTER JOIN CB_CHAPTER CH
+        ON CAL.COURSE_ID = CH.COURSE_ID
+		WHERE
+			CH.ID = CAL.CHAPTER
+			AND CAL.COURSE_ID = #{course}
+			AND CAL.LEARN_APP_ID = #{id}
+			AND CAL.CARDINAL_ID = #{cardinal}
+			AND CH.ORDER_NUM = #{chasi}
+	</select>
+	<!-- 수강처리(포팅) -->
+	<update id="setProgYn" parameterType="int">
+		UPDATE CB_ATT_LEC
+		SET
+			PROG_YN = 'Y'
+		WHERE
+			SUBCHAP = #{subchap}
+	</update>
+	<!-- 수강처리(포팅) -->
+	<update id="setProgYnLink" parameterType="hashmap">
+		UPDATE CB_ATT_LEC
+		SET
+			PROG_YN = 'Y'
+		WHERE
+			ID = #{ID}
+	</update>
+	<insert id="insertAttLecHistory" parameterType="hashmap">
+		INSERT INTO CB_ATT_LEC_HISTORY 
+		(
+			LEARN_APP_ID
+			, USER_ID
+			, CARDINAL_ID
+			, COURSE_ID
+			, CHAPTER
+			, CHASI
+			, USER_IP
+			, SUBCHAP
+			, START_TIME
+		) 
+		VALUES 
+		(
+			#{LEARN_APP_ID}
+			, #{user_id}
+			, #{CARDINAL_ID}
+			, #{COURSE_ID}
+			, #{CHAPTER}
+			, #{CHASI}
+			, #{user_ip}
+			, #{SEQ}
+			, now()
+		)
+		ON DUPLICATE KEY UPDATE
+			LEARN_APP_ID = VALUES(LEARN_APP_ID)
+			 , USER_ID = VALUES(USER_ID)
+			 , CARDINAL_ID = VALUES(CARDINAL_ID)
+			 , COURSE_ID = VALUES(COURSE_ID)
+			 , CHAPTER= VALUES(CHAPTER)
+			 , CHASI = VALUES(CHASI)
+			 , SUBCHAP = VALUES(SUBCHAP)
+			 , START_TIME = NOW()
+	</insert>
+	<!-- 과정별 공지사항 리스트 조회 -->
+	<select id="courseBoardList" resultType="hashmap">
+		SELECT 
+			CB.ID, /*게시판 ID*/
+			CB.BOARD_TYPE, /*게시글 타입(1:공지사항, 2:자료실, 3:FAQ, 4:1:1상담, 5:연수후기)*/
+			CB.NOTICE_TYPE, /*공지구분(1:모집, 2:환영, 3:신설, 4:필독, 5:일반, 6:평가, 7:공문)*/
+			CB.CARDINAL_ID, /*기수ID*/
+			CB.COURSE_ID,/*과정ID*/
+			CB.TEACHER_ID,/*강사이름*/
+			CB.ATTACH1_FILE,/*첨부 #1 파일*/
+			CB.ATTACH2_FILE,/*첨부 #2 파일*/
+			CB.TITLE,/*게시물 제목*/
+			CB.COMMENT,/*게시물 내용*/
+			CB.HITS,/*조회수*/
+			CB.REG_USER,/*등록자*/
+			CB.REG_DATE,/*등록일*/
+			CM.ID AS USER_ID,/*작성자ID*/
+			CM.NAME AS USER_NAME,/*작성자이름*/
+			CBR.ID AS REPLY_ID,/*댓글작성자ID*/
+			CBR.BOARD_ID AS REPLY_BOARD_ID, /*댓글게시판ID*/
+			CBR.TITLE AS REPLY_TITLE,/*댓글게시글제목*/
+			CBR.COMMENT AS REPLY_COMMENT/*댓글게시글내용*/
+		FROM CB_BOARD CB
+		INNER JOIN CB_COURSE CC ON CB.COURSE_ID = CC.ID
+		LEFT OUTER JOIN FF_MEMBER CM ON CB.USER_ID = CM.ID
+		LEFT OUTER JOIN CB_BOARD_REPLY CBR ON CB.ID = CBR.BOARD_ID
+        WHERE CB.COURSE_ID = #{course}
+		AND CB.BOARD_TYPE = #{index}
+		ORDER BY CB.REG_DATE DESC
+	</select>
+	
+	<!-- 과정별 설문조사 리스트 조회 -->
+	<select id="surveyList" parameterType="hashmap" resultType="hashmap">
+		SELECT
+			AUTO.SURVEY_SEQ
+		    ,COURSE.NAME COURSE_NM
+		    ,SURVEY_TITLE
+		    ,SURVEY_CONTENT
+		    ,LEARN_END_DATE SURVEY_ET
+		    ,IF(LEARN_END_DATE > CURDATE(), 'OPEN', 'CLOSED') SURVEY_STATE
+		    ,IF((SELECT COUNT(*) 
+				FROM STU_SURVEY_COMPLETE_TB 
+				WHERE SURVEY_SEQ = INFO.SURVEY_SEQ AND USER_ID = #{user_id}) = 0, 'NOT_YET', 'COMPLETED'
+				) AS SURVEY_ANSWER_STATE
+		FROM
+			STU_SURVEY_AUTO_TB AUTO
+		    ,STU_SURVEY_INFO_TB INFO
+		    ,CB_COURSE	COURSE
+		    ,CB_CARDINAL GISU
+		WHERE
+			AUTO.CRC_ID = COURSE.ID
+		    AND AUTO.SURVEY_SEQ = INFO.SURVEY_SEQ
+		    AND AUTO.CRC_ID = #{course}
+		    AND GISU.ID = #{cardinal}
+	</select>
+	
+	<!-- fileId에 해당 하는 파일 정보 조회(useYn = 'Y' 인 경우만 조회) -->
+	<select id="attachFileInfo"  parameterType="string" resultType="com.aracomm.base.common.vo.FileVo">
+		SELECT D.FILE_ID, D.FILE_NAME, D.FILE_EXT, D.FILE_PATH, D.ORIGIN_FILE_NAME, D.FILE_SIZE, D.URL_PATH, D.ORDER_NUM
+			 , M.USE_YN, M.REG_DATE, M.UPD_DATE
+		FROM FF_ATTACH_FILE M
+		INNER JOIN FF_ATTACH_FILE_DETAIL D
+		ON M.FILE_ID = D.FILE_ID
+		WHERE M.FILE_ID = #{file_id}
+		AND M.USE_YN = 'Y'
+		ORDER BY D.ORDER_NUM
+	</select>
+	
+	<!-- 레포트 리스트 조회 -->
+	<select id="reportList" parameterType="hashmap" resultType="hashmap">
+		SELECT M.ID, M.CARDINAL_ID, M.COURSE_ID, M.QUIZ_ID, M.USER_ID, M.QUIZ_TYPE, M.EXAM_NUM, M.SCORE, M.FILE_ID, M.ANSWER, M.MARK_YN
+			 , M.ORDER_NUM, M.USE_YN, DATE_FORMAT(M.REG_DATE,'%Y%m%d%H%i%s') AS REG_DATE, DATE_FORMAT(M.UPD_DATE,'%Y%m%d%H%i%s') AS UPD_DATE
+			 , A.TITLE AS QUIZ_TITLE, A.SCORE AS QUIZ_SCORE, A.START_DATE, A.END_DATE
+			 , B.NAME AS USER_NAME, B.SCHOOL_NAME
+			 , C.ID AS REPLY_ID, C.P_SCORE, C.T_SCORE
+		FROM CB_REPORT M
+		INNER JOIN CB_QUIZ A
+		ON M.QUIZ_ID = A.ID
+		INNER JOIN CB_MEMBER B
+		ON M.USER_ID = B.ID
+		LEFT OUTER JOIN CB_QUIZ_REPLY C
+		ON M.ID = C.REPORT_ID
+		WHERE M.CARDINAL_ID = #{cardinal}
+		AND M.COURSE_ID = #{course}
+		AND M.QUIZ_ID = #{quiz_id}
+		ORDER BY M.REG_DATE
+	</select>
+	
+	<!-- 수강이력 등록  -->
+	<insert id="insertAttLec">
+		INSERT INTO CB_ATT_LEC (
+			USER_ID, CARDINAL_ID, COURSE_ID
+			, CHAPTER, LEARN_TIME, PROG_YN
+			, CHASI, STUDY, CHK
+			, LEARN_APP_ID
+		)
+		VALUES (
+			#{user_id}, #{cardinal}, #{course}
+			, #{chapter}, 0, #{progYn}
+			, #{chasi}, #{study}, #{chk}
+			, #{id}
+		)
+	</insert>
+
+	<!-- 수강이력 등록  -->
+	<insert id="insertAttLecHist">
+		INSERT INTO CB_ATT_LEC_HISTORY 
+		(
+			LEARN_APP_ID
+			, USER_ID
+			, CARDINAL_ID
+			, COURSE_ID
+			, CHAPTER
+			, CHASI
+			, USER_IP
+			, START_TIME
+		) 
+		VALUES 
+		(
+			#{LEARN_APP_ID}
+			, #{user_id}
+			, #{CARDINAL_ID}
+			, #{COURSE_ID}
+			, #{CHAPTER}
+			, #{CHASI}
+			, #{user_ip}
+			, now()
+		)
+		ON DUPLICATE KEY UPDATE
+			LEARN_APP_ID = VALUES(LEARN_APP_ID)
+			 , USER_ID = VALUES(USER_ID)
+			 , CARDINAL_ID = VALUES(CARDINAL_ID)
+			 , COURSE_ID = VALUES(COURSE_ID)
+			 , CHAPTER= VALUES(CHAPTER)
+			 , CHASI = VALUES(CHASI)
+			 , START_TIME = NOW()
+	</insert>
+	
+	
+	<!-- 출결정보조회 -->
+	<select id="attendanceList" parameterType="hashmap" resultType="hashmap">
+		SELECT  COURSE_ID,CARDINAL_ID,USER_ID,PRESENT_DATE,STATUS,ISGONE,MEMO
+		FROM COM_ATTENDANCE_CHECK
+		WHERE
+		USER_ID=#{user_id} AND CARDINAL_ID=#{cardinal} AND COURSE_ID=#{course}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!--  smtp  -->
+	
+	<sql id="sql_selectList">
+	
+		<if test="cardinal_id != null and cardinal_id != ''">
+			AND CLA.CARDINAL_ID = #{cardinal_id}
+		</if>
+		<if test="startPage != null and startPage != ''">
+			LIMIT ${startPage}, ${visiblePages}
+		</if>
+	</sql>
+	
+	
+	<!-- 진행과정 조회 -->
+	<select id="smtpSelectProgressList" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				CLA.ID
+				, CLA.GROUP_ID
+				, CLA.CARDINAL_ID
+				, CLA.COURSE_ID
+				, IFNULL(CLA.DES_NUM, '') AS DES_NUM /*연수지명번호*/
+				, CCA.LEARN_TYPE /*연수구분*/
+				, CCA.NAME AS CARDINAL_NAME /*기수명*/
+				, CONCAT(IF(LOCATE(CCA.LEARN_TYPE, 'J')>0,'직무 ',''), IF(LOCATE(CCA.LEARN_TYPE,'S')>0,'자율 ',''),IF(LOCATE(CCA.LEARN_TYPE,'M')>0,'집합 ',''), IF(LOCATE(CCA.LEARN_TYPE,'G')>0,'단체 ','')) AS LEARN_TYPE_NAME
+				, CCB.COURSE_CODE /*연수영역*/
+				, (SELECT`NAME` FROM FF_CODE WHERE CODE = CCB.COURSE_CODE AND GROUP_ID = 'course') AS COURSE_CODE_NAME
+				, CCB.NAME /*연수과정*/
+				, CCB.CREDIT /*학점*/
+				, CCA.LEARN_START_DATE /*연수시작일*/
+				, CCA.LEARN_END_DATE /*연수종료일*/
+				, (DATE_ADD(CCA.LEARN_END_DATE, INTERVAL 1 DAY) ) AS REAL_START_DATE /*복습시작일*/
+				, CLA.REAL_END_DATE /*복습종료일*/
+				, CLA.PAYMENT_STATE
+				, CLA.PAYMENT_TYPE
+				, CCB.MAIN_TB_ID
+				, CCB.SUB_TB_ID
+				, CCB.RECORD_YN
+				, CCB.APPLYFORM_YN
+				, CCB.checkOnline
+				, CCB.REVIEW_PERIOD
+				, CCA.COMP_PERCENT_QUIZ AS QUPERCENT, CCA.COMP_PERCENT_EXAM AS EXPERCENT, CCA.COMP_PERCENT_PROG AS PRPERCENT, CCA.COMPLETE_TOTAL AS TOTAL
+				, CCA.COMP_SCORE_QUIZ AS QUSCORE, CCA.COMP_SCORE_EXAM AS EXSCORE, CCA.COMP_SCORE_PROG AS PRSCORE
+			FROM CB_LEARN_APP AS CLA
+				JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+				JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+			WHERE CLA.USER_ID = #{user_id}
+				AND CLA.PAYMENT_STATE = 2 /*2:결제완료*/
+				AND (CLA.REQ_TYPE IS NULL OR CLA.REQ_TYPE IN (1, 2))
+				AND TO_DAYS(CCA.LEARN_START_DATE) <= TO_DAYS(NOW())
+				AND TO_DAYS(CCA.LEARN_END_DATE) >= TO_DAYS(NOW())
+				AND CLA.USE_YN  = 'Y'
+				AND (CCB.CHECKONLINE = 'BLENDED' OR CCB.CHECKONLINE = 'OFFLINE')
+				AND ACCEPTANCE_YN = 'Y'
+		]]>
+			<include refid="sql_selectList"/>
+		<!-- AND NOW() BETWEEN CCA.LEARN_START_DATE AND CCA.LEARN_END_DATE -->
+	</select>
+	<!-- progressList 총 갯수(페이징 관련) -->
+	<select id="smtpSelectProgressListTotalCnt" resultType="int">
+		<![CDATA[
+			SELECT
+				COUNT(*)
+			FROM CB_LEARN_APP AS CLA
+				JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+				JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+			WHERE CLA.USER_ID = #{user_id}
+				AND CLA.PAYMENT_STATE = 2 /*2:결제완료*/
+				AND (CLA.REQ_TYPE IS NULL OR CLA.REQ_TYPE IN (1, 2))
+				AND TO_DAYS(CCA.LEARN_START_DATE) <= TO_DAYS(NOW())
+				AND TO_DAYS(CCA.LEARN_END_DATE) >= TO_DAYS(NOW())
+				AND CLA.USE_YN  = 'Y'
+				AND (CCB.CHECKONLINE = 'BLENDED' OR CCB.CHECKONLINE = 'OFFLINE')
+				AND ACCEPTANCE_YN = 'Y'
+		]]>
+	</select>
+	<!-- 대기과정 조회 -->
+	<select id="smtpSelectWaitingList" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				CLA.ID
+				, CLA.GROUP_ID
+				, CLA.CARDINAL_ID
+				, CLA.COURSE_ID
+				, IFNULL(CLA.DES_NUM, '') AS DES_NUM /*연수지명번호*/
+				, CCA.LEARN_TYPE /*연수구분*/
+				, CCA.NAME AS CARDINAL_NAME /*기수명*/
+				, CONCAT(IF(LOCATE(CCA.LEARN_TYPE, 'J')>0,'직무 ',''), IF(LOCATE(CCA.LEARN_TYPE,'S')>0,'자율 ',''),IF(LOCATE(CCA.LEARN_TYPE,'M')>0,'집합 ',''), IF(LOCATE(CCA.LEARN_TYPE,'G')>0,'단체 ','')) AS LEARN_TYPE_NAME
+				, CCB.COURSE_CODE /*연수영역*/
+				, (SELECT`NAME` FROM FF_CODE WHERE CODE = CCB.COURSE_CODE AND GROUP_ID = 'course') AS COURSE_CODE_NAME
+				, CCB.NAME /*연수과정*/
+				, CCB.CREDIT /*학점*/
+				, CCA.LEARN_START_DATE /*연수시작일*/
+				, CCA.LEARN_END_DATE /*연수종료일*/
+				, (DATE_ADD(CCA.LEARN_END_DATE, INTERVAL 1 DAY) ) AS REAL_START_DATE /*복습시작일*/
+				, CLA.REAL_END_DATE /*복습종료일*/
+				, CLA.PAYMENT_STATE
+				, CLA.PAYMENT_TYPE
+				, CCB.MAIN_TB_ID
+				, CCB.SUB_TB_ID
+			FROM CB_LEARN_APP AS CLA
+				JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+				JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+			WHERE CLA.USER_ID = #{user_id}
+				AND (CLA.PAYMENT_STATE IN (1,3) OR (TO_DAYS(CCA.LEARN_START_DATE) > TO_DAYS(NOW()))) /*1.미결제 2.결제완료 3.일부결제*/
+				AND CLA.USE_YN  = 'Y'
+				AND (CCB.CHECKONLINE = 'BLENDED' OR CCB.CHECKONLINE = 'OFFLINE')
+				AND ACCEPTANCE_YN = 'Y'
+		]]>
+			<include refid="sql_selectList"/>
+		<!-- AND (CLA.PAYMENT_STATE IN (1,3) OR (CLA.PAYMENT_STATE = 2 and CCA.LEARN_START_DATE > NOW())) -->
+	</select>
+	<!-- waitingList 총 갯수(페이징 관련) -->
+	<select id="smtpSelectWaitingListTotalCnt" resultType="int">
+		<![CDATA[
+			SELECT
+				COUNT(*)
+			FROM CB_LEARN_APP AS CLA
+				JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+				JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+			WHERE CLA.USER_ID = #{user_id}
+				AND (CLA.PAYMENT_STATE IN (1,3) OR (TO_DAYS(CCA.LEARN_START_DATE) > TO_DAYS(NOW()))) /*1.미결제 2.결제완료 3.일부결제*/
+				AND CLA.USE_YN  = 'Y'
+				AND (CCB.CHECKONLINE = 'BLENDED' OR CCB.CHECKONLINE = 'OFFLINE')
+				AND ACCEPTANCE_YN = 'Y'
+		]]>
+	</select>
+	<!-- 학습완료과정 조회 -->
+	<select id="smtpSelectCompleteList" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				CLA.ID
+				, CLA.GROUP_ID
+				, CLA.CARDINAL_ID
+				, CLA.COURSE_ID
+				, IFNULL(CLA.DES_NUM, '') AS DES_NUM /*연수지명번호*/
+				, CCA.LEARN_TYPE /*연수구분*/
+				, CCA.NAME AS CARDINAL_NAME /*기수명*/
+				, CONCAT(IF(LOCATE(CCA.LEARN_TYPE, 'J')>0,'직무 ',''), IF(LOCATE(CCA.LEARN_TYPE,'S')>0,'자율 ',''),IF(LOCATE(CCA.LEARN_TYPE,'M')>0,'집합 ',''), IF(LOCATE(CCA.LEARN_TYPE,'G')>0,'단체 ','')) AS LEARN_TYPE_NAME
+				, CCB.COURSE_CODE /*연수영역*/
+				, (SELECT`NAME` FROM FF_CODE WHERE CODE = CCB.COURSE_CODE AND GROUP_ID = 'course') AS COURSE_CODE_NAME
+				, CCB.NAME /*연수과정*/
+				, CCB.CREDIT /*학점*/
+				, CCA.LEARN_START_DATE /*연수시작일*/
+				, CCA.LEARN_END_DATE /*연수종료일*/
+				, (DATE_ADD(CCA.LEARN_END_DATE, INTERVAL 1 DAY) ) AS REAL_START_DATE /*복습시작일*/
+				, CLA.REAL_END_DATE /*복습종료일*/
+				, CLA.PAYMENT_STATE
+				, CLA.PAYMENT_TYPE
+				, CCB.MAIN_TB_ID
+				, CCB.SUB_TB_ID
+				, CCB.REVIEW_PERIOD
+				, IFNULL((TO_DAYS((DATE_ADD(CCA.LEARN_END_DATE, INTERVAL 180 DAY))) - TO_DAYS(NOW()) + 1), 0) AS REVIEW_DAYS
+				, CLA.REQ_TYPE
+				, CLA.ISSUE_YN
+				, CLA.ISSUE_NUM
+				, CCA.COMP_PERCENT_QUIZ AS QUPERCENT, CCA.COMP_PERCENT_EXAM AS EXPERCENT, CCA.COMP_PERCENT_PROG AS PRPERCENT, CCA.COMPLETE_TOTAL AS TOTAL
+				, CCA.COMP_SCORE_QUIZ AS QUSCORE, CCA.COMP_SCORE_EXAM AS EXSCORE, CCA.COMP_SCORE_PROG AS PRSCORE
+			FROM CB_LEARN_APP AS CLA
+				JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+				JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+			WHERE CLA.USER_ID = #{user_id}
+				AND (CLA.REQ_TYPE IS NULL OR CLA.REQ_TYPE IN (1, 2))
+				AND CLA.PAYMENT_STATE = 2 /*2:결제완료*/
+				AND TO_DAYS(CCA.LEARN_END_DATE) < TO_DAYS(NOW())
+				AND CLA.USE_YN  = 'Y'
+				AND (CCB.CHECKONLINE = 'BLENDED' OR CCB.CHECKONLINE = 'OFFLINE')
+				AND ACCEPTANCE_YN = 'Y'
+		]]>
+		<include refid="sql_selectList"/>
+	</select>
+	<!-- completeList 총 갯수(페이징 관련) -->
+	<select id="smtpSelectCompleteListTotalCnt" resultType="int">
+		<![CDATA[
+			SELECT
+				COUNT(*)
+			FROM CB_LEARN_APP AS CLA
+				JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+				JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+			WHERE CLA.USER_ID = #{user_id}
+				AND (CLA.REQ_TYPE IS NULL OR CLA.REQ_TYPE IN (1, 2))
+				AND CLA.PAYMENT_STATE = 2 /*2:결제완료*/
+				AND TO_DAYS(CCA.LEARN_END_DATE) < TO_DAYS(NOW())
+				AND CLA.USE_YN  = 'Y'
+				AND (CCB.CHECKONLINE = 'BLENDED' OR CCB.CHECKONLINE = 'OFFLINE')
+				AND ACCEPTANCE_YN = 'Y'
+		]]>
+	</select>
+	<!-- 다락원 입과확인 -->
+	<select id="learnCheck" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			CBL.COURSE_ID AS COURSE_ID
+			, CBL.CARDINAL_ID AS CARDINAL_ID
+			, CBL.USER_ID AS USER_ID
+			, DATE_FORMAT(STR_TO_DATE(CBCA.LEARN_START_DATE, '%Y-%m-%d'),'%Y%m%d') AS LEARN_START_DATE
+			, DATE_FORMAT(STR_TO_DATE(CBCA.LEARN_END_DATE, '%Y-%m-%d'),'%Y%m%d') AS LEARN_END_DATE
+			FROM CB_LEARN_APP CBL, CB_CARDINAL CBCA, CB_CN_COURSE CBCC 
+			WHERE 
+			CBCC.CARDINAL_ID = CBCA.ID
+			and CBL.COURSE_ID = CBCC.COURSE_ID  
+			and CBCC.COURSE_ID = #{course_id}
+			and CBCC.CARDINAL_ID = #{cardinal_id}
+			and CBL.USER_ID = #{user_id}
+			AND CBL.ACCEPTANCE_YN = 'Y'
+		]]>
+	</select>
+</mapper>

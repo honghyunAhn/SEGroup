@@ -1,0 +1,2169 @@
+@charset "UTF-8";
+
+/* z-index */
+.container_rainbow .mainBannerWrapper>.swiper-buttonWrap,
+.container_rainbow>.content .fieldWrap{
+    z-index: 5;
+}
+.scrollToTop_RB {
+    z-index: 99;
+}
+.container_rainbow>.headerWrap{
+    z-index: 1000;
+}
+.container_rainbow .fullWrapper {
+    z-index: 1001;
+}
+.modal-layer {
+    z-index: 5000;
+}
+.modal-content {
+    z-index: 6000;
+}
+
+/* rainbow_style.css */
+.point_bg01{background-color: #844ff5;}
+.point_btn01{border: 1px solid #844ff5; background-color: #fff; color: #844ff5;}
+.point_bgTxt01,
+.point_btn01:hover{background-color: #844ff5; color: #fff;}
+.point_fc01{color: #844ff5;}
+
+.point_bg02{background-color: #4805c7;}
+.point_btn02{border: 1px solid #4805c7; background-color: #fff; color: #4805c7;}
+.point_bgTxt02,
+.point_btn02:hover{background-color: #4805c7; color: #fff;}
+.point_fc02{color: #4805c7;}
+
+.point_bg03{background-color: #14e2cb;}
+.point_btn03{border: 1px solid #14e2cb; background-color: #fff; color: #14e2cb;}
+.point_bgTxt03,
+.point_btn03:hover{background-color: #14e2cb; color: #fff;}
+.point_fc03{color: #14e2cb;}
+
+.container_rainbow {
+    position: relative;
+}
+
+/* common_layout */
+.container_rainbow>.headerWrap>.header,
+.container_rainbow .fullWrapper>.full-navGroup,
+.container_rainbow .mainBannerWrapper>.d-flex,
+.container_rainbow>.content .background>.opacity_bg>.bannerTextWrap,
+.container_rainbow>.content .fieldWrap,
+.container_rainbow>.content .bannerWrapper,
+.container_rainbow>.content .linkBannerWrapper .linkBannerWrap,
+/* .container_rainbow>.footerWrap>.footer, */
+.container_rainbow>.content .employmentWrap{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/* common_style */
+.container_rainbow .img-icon {
+    cursor: pointer;
+}
+
+.horizonBar {
+    width: 150px;
+    height: 10px;
+}
+
+.title_barPoint,
+.title_barPoint_wh {
+    display: inline-block;
+    font-weight: bold;
+    line-height: 40px;
+    text-indent: 40px;
+    /* height: 80px; */
+}
+
+.title_barPoint {
+    border-bottom: 40px solid #7f50d8;
+}
+
+.title_barPoint_wh {
+    border-bottom: 40px solid rgba(132, 79, 245, .3);
+}
+
+.background {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.background>.opacity_bg {
+    background-color: rgba(10, 25, 48, .9);
+}
+
+/* header */
+.container_rainbow>.headerWrap {
+    position: fixed;
+    margin: auto;
+    left: 0;
+    right: 0;
+    /* background-color: #0a1930; */
+    background-color: #fff;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.5);
+}
+
+.container_rainbow>.headerWrap>.header {
+    padding: 20px 0;
+}
+
+.container_rainbow>.headerWrap>.header>.img-icon {
+    margin: 10px 0;
+}
+
+.container_rainbow>.headerWrap>.header>.header-logo .logoImg {
+    height: 30px;
+    margin: 5px 0;
+}
+
+.container_rainbow>.headerWrap>.header>.header-logo .logoImg_mobile {
+    display: none;
+    width: 30px;
+    height: 30px;
+    margin: 5px 0;
+}
+.container_rainbow>.headerWrap>.header>.header-menu>.hdrMenu,
+.container_rainbow .fullWrapper>.full-navGroup>.d-flex>.header-menu>.hdrMenu{
+    line-height: 40px;
+}
+.container_rainbow>.headerWrap>.header>.header-menu>.hdrMenu:nth-child(1)~*,
+.container_rainbow .fullWrapper>.full-navGroup>.d-flex>.header-menu>.hdrMenu:nth-child(1)~*{
+    margin-left: 10px;
+}
+/* renewal header*/
+.container_rainbow>.headerWrap>.header-menuWrap .header-menu,
+.container_rainbow>.headerWrap>.header-menuWrap>.header-subMenuWrap{
+    width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.container_rainbow>.headerWrap>.header-menuWrap .header-menu>.hdrMenu,
+.container_rainbow>.headerWrap>.header-menuWrap>.header-subMenuWrap>.header-subMenu{
+    width: 200px;
+    text-align: center;
+}
+
+.container_rainbow>.headerWrap>.header-menuWrap>.header-subMenuWrap>.header-subMenu{
+    background-color: #fff;
+    color: #444;
+}
+.container_rainbow>.headerWrap>.header-menuWrap>.header-subMenuWrap>.header-subMenu>.hdrSubMenu{
+    padding: 10px 0;
+}
+
+.container_rainbow>.headerWrap>.header-menuWrap .header-menu>.hdrMenu .highlightWrap{
+    width: auto;
+    display: inline-block;
+    overflow: hidden;
+}
+.container_rainbow>.headerWrap>.header-menuWrap .header-menu>.hdrMenu .highlightWrap>.highlight{
+    float: left;
+    background-color: #F5EA4E;
+    padding: 5px;
+    border-radius: 10px;
+    margin-right: 3px;
+    line-height: 3px;
+}
+.container_rainbow>.headerWrap>.header-menuWrap .header-menu>.hdrMenu .highlightWrap>.highlightTxt{
+    float: left;
+}
+
+
+/* fullWrapper */
+.container_rainbow .fullWrapper {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #100b3e;
+    top: 0;
+    overflow-y: scroll;
+}
+
+.container_rainbow .fullWrapper>.full-navGroup {
+    padding: 80px 0;
+}
+
+.container_rainbow .fullWrapper>.full-navGroup>.d-flex>.header-menu {
+    line-height: 40px;
+}
+
+.container_rainbow .fullWrapper .menuDivWrap {
+    margin-top: 80px;
+    -webkit-box-lines: multiple;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.container_rainbow .fullWrapper .menuDivWrap>.menu-title-division {
+    width: 400px;
+}
+
+.container_rainbow .fullWrapper .menuDivWrap>.menu-title-division:nth-child(3n)~* {
+    margin-top: 80px;
+}
+
+.container_rainbow .fullWrapper .menuDivWrap>.menu-title-division>.gnb {
+    /* font-size: 30px; */
+    font-size: 2.143rem;
+    font-weight: bold;
+    color: #a06dff;
+    line-height: 40px;
+    padding: 20px 0;
+}
+
+.container_rainbow .fullWrapper .menuDivWrap>.menu-title-division>.lnb {
+    /* font-size: 16px; */
+    font-size: 1.143rem;
+    line-height: 25px;
+    padding: 20px 0 0;
+    opacity: .7;
+}
+.container_rainbow .fullWrapper .menuDivWrap>.menu-title-division>.lnb>a {
+    width: auto;
+}
+
+.container_rainbow .fullWrapper .menuDivWrap>.menu-title-division>.lnb:hover {
+    opacity: 1;
+}
+
+/* subHeader */
+/* .container_rainbow>.headerWrap_sub {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: #0a1930;
+    padding-top: 0;
+    padding: 20px 0;
+    z-index: 98;
+}
+
+.container_rainbow>.headerWrap_sub>.header {}
+
+.container_rainbow>.headerWrap_sub>.header>.header-logo {
+    height: 40px;
+}
+
+.container_rainbow>.headerWrap_sub>.header>.header-logo>a {}
+
+.container_rainbow>.headerWrap_sub>.header>.header-logo .logoImg {}
+
+.container_rainbow>.headerWrap_sub>.header>.header-logo .logoImg_mobile {}
+
+.container_rainbow>.headerWrap_sub>.header>.header-menu {}
+
+.container_rainbow>.headerWrap_sub>.header>.header-menu>.hdrMenu {
+    margin-left: 20px;
+}
+
+.container_rainbow>.headerWrap_sub>.header>.header-menu>.hdrMenu:first-child {
+    margin-left: 0;
+}
+
+.container_rainbow>.headerWrap_sub>.header>.header-menu>.hdrMenu.activer,
+.container_rainbow>.headerWrap_sub>.header>.header-menu>.hdrMenu:hover {
+    color: #14e2cb;
+}
+
+.container_rainbow>.header_sub {
+    position: fixed;
+    top: 100px;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    padding: 20px 10px;
+    border-radius: 5px 0 0 5px;
+    background-color: #4805c7;
+}
+
+.container_rainbow>.header_sub>.bars-2line {}
+
+.container_rainbow>.fullWrapper {
+    top: -80px;
+} */
+
+/* content */
+.container_rainbow>.content {}
+
+.container_rainbow>.content .background {
+    /* 고정이미지 */
+    background-image: url('../img/main-background.jpg');
+    width: 100%;
+}
+
+.container_rainbow>.content>.background>.opacity_bg {
+    width: 100%;
+    height: 680px;
+}
+
+/* 메인배너 */
+.container_rainbow>.content .bannerTextWrap {
+    padding: 200px 0 120px;
+}
+
+.container_rainbow>.content .bannerTextWrap>.fz20 {
+    line-height: 40px;
+}
+
+.container_rainbow>.content .bannerTextWrap>.fz40 {
+    margin: 40px 0 30px;
+    line-height: 60px;
+}
+
+.container_rainbow>.content .bannerTextWrap>.horizonBar {}
+
+/* 관심분야 */
+.container_rainbow>.content .fieldWrap {
+    padding: 120px 0;
+    background-color: #4805c7;
+    margin-top: -120px;
+    position: relative;
+}
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu {
+    padding: 40px 40px 0;
+}
+.container_rainbow>.content .fieldWrap>.field-tabMenu-mobile{
+    padding: 20px 20px 0;
+}
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.tabGroup {}
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.tabGroup>li{
+    width: 33.3%;
+    opacity: .5;
+    /* font-size : 18px; */
+    font-size : 1.286rem;
+    text-align : center;
+}
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.tabGroup>li,
+.container_rainbow>.content .fieldWrap>.field-tabMenu-mobile>.tabGroup-mobile>li>.mobile-tab{
+    line-height: 30px;
+}
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.tabGroup>li{
+    border-bottom: 5px solid #fff;
+}
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu-mobile>.tabGroup-mobile>li>.mobile-tab{
+    border: 1px solid #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.tabGroup>li:hover,
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.tabGroup>li.active{
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub{
+    margin-top: 40px;
+}
+
+.fieldWrap .subGroup>.tab-sub:nth-child(1)~*,
+.fieldWrap>.field-tabMenu.field-tabMenu-mobile{
+    display: none;
+}
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .courseList-tabWrap>li{}
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .courseList-tabWrap>li:nth-child(1)~*,
+.fieldWrap>.field-tabMenu-mobile>.tabGroup-mobile>li:nth-child(1)~* {
+    margin-top: 20px;
+}
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .courseList-tabWrap>li.btn_normal{
+    width: 300px;
+    border-radius: 5px;
+    border : 1px solid #fff;
+    padding: 10px;
+    opacity: .7;
+}
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .courseList-tabWrap>li.btn_normal:hover,
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .courseList-tabWrap>.active.btn_normal{
+    background-color: #fff;
+    color: #4805c7;
+    opacity: 1;
+}
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .courseList-subWrap{
+    width: calc(100% - 340px);
+    margin-left: 40px;
+}
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .tab-imgWrap {
+    width: 500px;
+}
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .tab-imgWrap>.background {}
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub01 .tab-imgWrap>.background {
+    background-image: url('../img/field-thumb01.jpg');
+}
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub02 .tab-imgWrap>.background {
+    background-image: url('../img/field-thumb02.jpg');
+}
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub03 .tab-imgWrap>.background {
+    background-image: url('../img/field-thumb03.jpg');
+}
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .tab-imgWrap>.background>.opacity_bg {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    display: table;
+}
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .tab-imgWrap>.background>.opacity_bg>.courseTitle {
+    display: table-cell;
+    width: 100%;
+    line-height: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .tab-segWrap {}
+
+.fieldWrap>.field-tabMenu-mobile>.tabGroup-mobile>li>.mobile-sub{
+    padding: 10px;
+}
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .tab-segWrap>.segmentWrap,
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .tab-segWrap .btn_normal,
+.container_rainbow .btnInfoWrap{
+    margin-top: 20px;
+}
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .tab-segWrap .btnInfoWrap>.btn_normal{
+    margin-top: 0;
+}
+.container_rainbow .btnInfoWrap .infoMsgWrap{
+    width: calc(100% - 200px);
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 12px;
+    margin-left: 10px;
+}
+
+.container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .tab-segWrap>.segmentWrap>.seg-list,
+.fieldWrap>.field-tabMenu-mobile>.tabGroup-mobile>li>.mobile-sub>li:nth-child(1)~*{
+    margin-top: 10px;
+}
+
+/* 메인배너 */
+.container_rainbow .mainBannerWrapper{
+    width: 100%;
+    padding-top: 80px;
+}
+.container_rainbow .mainBannerWrapper>.d-flex{}
+.container_rainbow .mainBannerWrapper>.swiper-buttonWrap{
+    width: 1400px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.container_rainbow .mainBannerWrapper>.mainBannerWrap{
+    width: calc(1920px *  2);
+
+}
+.container_rainbow .mainBannerWrapper>.mainBannerWrap .mainBanner{
+    height: 560px;
+    background-color: #fc0;
+}
+.container_rainbow>.content .mainBannerWrapper .bannerTextWrap{
+    padding: 130px 0 220px;
+}
+.container_rainbow>.content .background {
+    /* 고정이미지 */
+    background-image: url('../img/main-background.jpg');
+    width: 100%;
+}
+.container_rainbow .mainBannerWrapper>.mainBannerWrap .mainBanner02 .background>.opacity_bg{
+    background-color: rgba(234, 238, 255, .5);
+}
+.container_rainbow .mainBannerWrapper>.mainBannerWrap .mainBanner02 .background{background-image: url('../img/main-background02.jpg');}
+
+/* 모집중인과정 */
+/*
+.container_rainbow>.content .courseWrapper {
+    padding-top: 120px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.container_rainbow>.content .courseWrapper>.d-flex {}
+
+.container_rainbow>.content .courseWrapper>.d-flex>.title_barPoint_wh {
+    text-align: center;
+    text-indent: 0;
+    padding: 0 40px;
+}
+
+.container_rainbow>.content .courseWrapper>.courseWrap {
+    width: calc(960px * 3);
+    margin-top: 80px;
+}
+
+.container_rainbow>.content .courseWrapper>.courseWrap>.course {
+    width: 900px;
+    color: #fff;
+    padding: 40px;
+    background-color: #0a1930;
+}
+.container_rainbow>.content .courseWrapper>.courseWrap>.course .course-txt {
+    width: calc(100% - 540px);
+    position: relative;
+    height: 300px;
+}
+
+.container_rainbow>.content .courseWrapper>.courseWrap>.course .course-txt .course-name {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    line-height: 30px;
+}
+
+.container_rainbow>.content .courseWrapper>.courseWrap>.course .course-img {
+    width: 500px;
+    height: 300px;
+    background-color: #222;
+    position: absolute;
+    right: 40px;
+    overflow: hidden;
+}
+.container_rainbow>.content .courseWrapper>.courseWrap>.course .course-img>img{
+    width: auto;
+    height: auto;
+    max-width: 500px;
+    max-height: 300px;
+} */
+
+/* .container_rainbow>.content .courseWrapper>.courseWrap>.course:nth-child(4n+1) {
+    background-image: linear-gradient(-45deg, #5958A4, #9797EF);
+}
+
+.container_rainbow>.content .courseWrapper>.courseWrap>.course:nth-child(4n+2) {
+    background-image: linear-gradient(-45deg, #eb4666, #ec522c);
+}
+
+.container_rainbow>.content .courseWrapper>.courseWrap>.course:nth-child(4n+3) {
+    background-image: linear-gradient(-45deg, #FFC033, #ffe033);
+}
+
+.container_rainbow>.content .courseWrapper>.courseWrap>.course:nth-child(4n+4) {
+    background-image: linear-gradient(-45deg, #0CCA82, #33F5AE);
+} */
+
+/* 배너영역 */
+.container_rainbow>.content .bannerWrapper{
+    padding: 120px 0 0;
+}
+/* .container_rainbow>.content .bannerWrapper>.d-flex{
+    margin-top: 40px;
+} */
+.container_rainbow>.content .bannerWrapper>.d-flex>a{
+    width: calc((100% - 40px) / 3);
+}
+.container_rainbow>.content .bannerWrapper .bannerWrap{
+    width: 100%;
+    height: 0;
+    padding-top: calc(231.6 / 386 * 100%);
+    /* width: 386px; height: 231.6px; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0px 3px 8px 0px rgba(12,0,46,.08);
+    border: 1px solid #f7f7f7;
+}
+.container_rainbow>.content .bannerWrapper .bannerWrap:hover{
+    box-shadow: 0px 20px 30px 0px rgba(12,0,46,.1);
+    transform: scale(1);
+}
+
+.container_rainbow>.content .bannerWrapper .banner01{
+    background-color: #4805c7;
+    background-image: url('../img/banner_thumb01.jpg');
+}
+.container_rainbow>.content .bannerWrapper .banner02{
+    background-image: url('../img/banner_thumb02.jpg');
+}
+.container_rainbow>.content .bannerWrapper .banner03{
+    background-image: url('../img/banner_thumb03.jpg');
+}
+.container_rainbow>.content .bannerWrapper .bannerTxt{
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+/* 바로가기배너영역 */
+.container_rainbow>.content .linkBannerWrapper{
+    width: 100%;
+    margin-top: 120px;
+    padding: 120px 0;
+    background-color: #eaeeff;
+}
+.container_rainbow>.content .linkBannerWrapper .linkBannerWrap{
+}
+.container_rainbow>.content .linkBannerWrapper .linkBannerWrap>.d-flex{
+    width: 100%;
+}
+.container_rainbow>.content .linkBannerWrapper .linkBannerWrap>.d-flex .linkBanner{
+    width: 50%;
+    background-color: #fff;
+    border: 1px solid #f7f7f7;
+    height: 400px;
+    overflow: hidden;
+}
+.container_rainbow>.content .linkBannerWrapper .linkBannerWrap>.d-flex .linkBanner>a{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.container_rainbow>.content .linkBannerWrapper .linkBannerWrap>.d-flex .link_banner01,
+.container_rainbow>.content .linkBannerWrapper .linkBannerWrap>.d-flex .link_banner04,
+.container_rainbow>.content .linkBannerWrapper .linkBannerWrap>.d-flex .link_banner05,
+.container_rainbow>.content .linkBannerWrapper .linkBannerWrap>.d-flex .link_banner06{
+    height: 400px;
+    /* padding-top: calc(400 / 600 * 100%); */
+    /* width: 600px; height: 400px; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.linkBannerWrapper .link_banner01{background-image: url('../img/linkBanner_thumb01.jpg');}
+.linkBannerWrapper .link_banner02{background-image: url('../img/linkBanner_thumb02.jpg');}
+.linkBannerWrapper .link_banner03{background-image: url('../img/linkBanner_thumb03.jpg');}
+.linkBannerWrapper .link_banner04{background-image: url('../img/linkBanner_thumb04.jpg');}
+.linkBannerWrapper .link_banner05{background-image: url('../img/linkBanner_thumb05.jpg');}
+.linkBannerWrapper .link_banner06{background-image: url('../img/linkBanner_thumb06.jpg');}
+
+/* 주요취업처 */
+.container_rainbow>.content .employmentWrap {
+    padding: 120px 0;
+}
+
+.container_rainbow>.content .employmentWrap>.empImgWrap {
+    margin: 40px auto 0;
+}
+.container_rainbow>.content .employmentWrap>.empImgWrap>.empImg{
+    width: 280px;
+    margin: 0 10px;
+}
+
+/* footer */
+/* .scrollToTop_RB {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+.container_rainbow>.footerWrap {
+    background-color: #0a1930;
+}
+.container_rainbow>.footerWrap>.footer {
+    padding: 80px 0 40px;
+    line-height: 30px;
+}
+.container_rainbow>.footerWrap>.footer>.footer_textWrap {
+    color: #fff;
+}
+.container_rainbow>.footerWrap>.footer>.footer_navWrap {}
+
+.container_rainbow>.footerWrap>.footer>.footer_navWrap>.navGroup {}
+
+
+.container_rainbow>.footerWrap>.footer>.footer_navWrap>.navGroup>.gnb:nth-child(1)~* {
+    margin-left: 80px;
+}
+.container_rainbow>.footerWrap>.copyright {
+    padding: 40px 0;
+}
+.container_rainbow>.footerWrap>.footer>.footer_navWrap>.navGroup>.gnb {
+    color: #14e2cb;
+}
+*/
+/* subPage >> 공통 */
+/* subPage >> 공통 >> formStyle */
+.formStyle {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.formStyle .input,
+.formStyle .select,
+.formStyle .input-btn {
+    height: 40px;
+    line-height: 40px;
+}
+
+.formStyle .input,
+.formStyle .select {
+    text-indent: 10px;
+}
+
+.formStyle .input:not(.check) {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.input-btn,
+.select {
+    margin: 10px 0;
+}
+
+.formStyle .check {
+    margin: 0 10px;
+}
+
+.formStyle .checkWrap {
+    margin: 20px 0;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.formStyle .checkWrap>* {
+    height: 20px;
+    line-height: 20px;
+}
+.formStyle .checkWrap.d-flex>.label{
+    width: auto;
+    line-height: 20px;
+}
+.article-title {
+    padding: 20px 0;
+}
+
+.titleBar-hdr {
+    padding-left: 5px;
+    border-left: 5px solid #333;
+}
+
+/* subPage >> 공통 */
+.container_rainbow>.sub01_content,
+.container_rainbow>.sub04_content,
+.container_rainbow>.sub05_content {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 224px 0 80px;
+    min-height: calc(100vh - 340px);
+}
+
+/* subPage >> sub01 */
+.container_rainbow>.sub01_content .section_header {
+    text-align: center;
+}
+
+.container_rainbow>.sub01_content .section_header>.fz14 {
+    margin-top: 10px;
+}
+
+/* subPage >> sub01 >> 로그인 */
+.container_rainbow>.sub01_content>.loginWrap {
+    margin-top: 40px;
+}
+
+.container_rainbow>.sub01_content>.loginWrap .formStyle {
+    width: 300px;
+}
+
+.container_rainbow>.sub01_content>.loginWrap>.division-menuWrap {
+    margin-top: 40px;
+}
+
+/* subPage >> sub01 >> 회원가입 */
+.formStyle.join {
+    width: 100%;
+}
+
+.processWrap {
+    background-color: #f9f9f9;
+}
+
+.processWrap>.process {
+    width: 33.3%;
+    border-bottom: 5px solid #ccc;
+    line-height: 55px;
+    text-indent: 20px;
+    color: #999;
+}
+
+.processWrap>.active {
+    color: #844ff5;
+    font-weight: bold;
+    border-bottom: 5px solid #844ff5;
+}
+
+.signUp-agree {}
+
+.signUp-agree>.text-box {
+    height: 250px;
+    overflow-y: scroll;
+    border: 1px solid #eee;
+    padding: 20px;
+}
+
+.certification>.section_header {
+    padding: 20px 0;
+}
+
+.certification>.certificationWrap {
+    margin-top: 20px;
+}
+
+.certif-boxWrap>.certif {
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.certif-boxWrap>.certif>.btn_pp_bg {
+    margin-top: 20px;
+}
+
+/* subPage >> sub01 >> 회원가입 >> 02.정보입력 */
+.formStyle.join>.d-flex {}
+
+.formStyle .d-flex>.label,
+.formStyle.courseRegistration .d-flex>.label,
+.formStyle.join>.d-flex>.label {
+    width: 150px;
+    line-height: 40px;
+}
+.formStyle.courseRegistration .d-flex>.label-input,
+.formStyle.join>.d-flex>div {
+    width: calc(100% - 150px);
+    line-height: 40px;
+}
+.formStyle.courseRegistration .d-flex>.input,
+.formStyle.courseRegistration .d-flex>.input-btn,
+.formStyle.courseRegistration .d-flex>div>*:not(span),
+.formStyle.join>.d-flex>.input,
+.formStyle.join>.d-flex .input-btn,
+.formStyle.join>.d-flex>div>*:not(span) {
+    width: 200px;
+}
+.formStyle.courseRegistration .d-flex>.label-input>span,
+.formStyle.join>.d-flex>div>span {
+    margin: 10px 0;
+}
+.formStyle.courseRegistration .input-btn,
+.formStyle.courseRegistration .email .select,
+.formStyle.join .input-btn,
+.formStyle.join .email .select {
+    margin-left: 10px;
+}
+
+.formStyle.join>.d-flex>.adressWrap>.adress {
+    width: calc(100% - 210px);
+}
+
+/* subPage >> sub01 >> 회원가입 >> 03.가입완료 */
+.sub01_content>.section_sub01-02-02 {
+    margin-top: 40px;
+}
+
+.sub01_content>.section_sub01-02-02>.btn_normal {
+    display: block;
+    margin: 40px auto 0;
+}
+
+/* subPage >> sub02 단기과정_상세페이지 */
+.sub-content>.background>.opacity_bg>.course-title,
+.sub-content>.courseGuideWrap,
+.sub-content>.courseEffectWrapper>.courseEffect,
+.sub-content>.courseTargetWrap,
+.sub-content>.coursePeriodWrap .coursePeriod,
+.sub-content>.curriculumWrap,
+.sub-content>.courseReviewWrap>.courseReview,
+.sub-content>.RecommendationWrap,
+.courseRegistrationWrap {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.sub-content>.courseGuideWrap,
+.sub-content>.courseEffectWrapper>.courseEffect,
+.sub-content>.courseTargetWrap,
+.sub-content>.coursePeriodWrap>.background>.opacity_bg>.coursePeriod,
+.sub-content>.curriculumWrap,
+.sub-content>.courseReviewWrap,
+.sub-content>.RecommendationWrap {
+    padding: 120px 0;
+}
+
+.sub02_content>.background {}
+
+/* 과정마다 변경되는 이미지 */
+.sub02_content>.background.sub02-01_content {
+    background-image: url('../img/course_back_sub02-01.jpg');
+}
+.sub02_content>.background.sub02-02_content {
+    background-image: url('../img/course_back_sub02-02.jpg');
+}
+.sub02_content>.background.sub02-03_content {
+    background-image: url('../img/course_back_sub02-03.jpg');
+}
+.sub02_content>.background.sub02-04_content {
+    background-image: url('../img/course_back_sub02-04.jpg');
+}
+.sub02_content>.background.sub02-05_content {
+    background-image: url('../img/course_back_sub02-05.jpg');
+}
+.sub02_content>.background.sub02-06_content {
+    background-image: url('../img/course_back_sub02-06.jpg');
+}
+.sub02_content>.background.sub02-11_content {
+    background-image: url('../img/course_back_sub02-11.jpg');
+}
+
+.container_rainbow>.sub02_content>.background>.opacity_bg,
+.rainbow_myClass>.content>.background>.opacity_bg,
+.container_rainbow>.content_schedule>.background>.opacity_bg{
+   height: 504px;
+}
+
+.sub02_content>.background>.opacity_bg>.course-title {
+    line-height: 60px;
+    padding: 264px 0 120px;
+    text-align: center;
+    font-weight: bold;
+}
+.opacity_bg.addCourse_btn{
+      height : 624px;
+}
+.opacity_bg.addCourse_btn .course_btn{
+    margin : 0 auto;
+    margin-top: 10px;
+    width: 400px;
+}
+/* 과정개요 */
+.sub-content>.courseGuideWrap {}
+
+.sub-content>.courseGuideWrap>.course_textWrap {
+    margin-top: 40px;
+    line-height: 40px;
+}
+
+/* 수강효과 */
+.sub-content>.courseEffectWrapper {
+    background-color: #4805c7;
+}
+
+.sub-content>.courseEffectWrapper>.courseEffect {
+    text-align: center;
+}
+
+.sub-content>.courseEffectWrapper>.courseEffect>.fz40 {
+    line-height: 60px;
+}
+
+.sub-content>.courseEffectWrapper>.courseEffect>.fz20 {
+    width: 800px;
+    margin: 0 auto;
+    margin-top: 40px;
+    line-height: 40px;
+}
+
+/* 수강대상 */
+.sub-content>.courseTargetWrap {}
+
+
+.sub-content>.courseTargetWrap>.targetWrap {
+    margin-top: 40px;
+}
+
+.sub-content>.courseTargetWrap>.targetWrap>.fz20 {
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.sub-content>.courseTargetWrap>.targetWrap>.targetBoxWrap {
+    margin-top: 40px;
+}
+
+.sub-content>.courseTargetWrap>.targetWrap>.targetBoxWrap>.targetBox {
+    margin-right: 20px;
+    width: 390px;
+}
+
+.sub-content>.courseTargetWrap>.targetWrap>.targetBoxWrap>.targetBox:nth-child(3n) {
+    margin-right: 0;
+}
+
+.sub-content>.courseTargetWrap>.targetWrap>.targetBoxWrap>.targetBox>.target_img {
+    width: 100%;
+    height: 200px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #333;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.sub-content>.courseTargetWrap>.targetWrap>.targetBoxWrap .target01 {
+    background-image: url('../img/target-thumb01.jpg');
+}
+
+.sub-content>.courseTargetWrap>.targetWrap>.targetBoxWrap .target02 {
+    background-image: url('../img/target-thumb02.jpg');
+}
+
+.sub-content>.courseTargetWrap>.targetWrap>.targetBoxWrap .target03 {
+    background-image: url('../img/target-thumb03.jpg');
+}
+
+.sub-content>.courseTargetWrap>.targetWrap>.targetBoxWrap .target04 {
+    background-image: url('../img/target-thumb04.jpg');
+}
+
+.sub-content>.courseTargetWrap>.targetWrap>.targetBoxWrap .target05 {
+    background-image: url('../img/target-thumb05.jpg');
+}
+
+.sub-content>.courseTargetWrap>.targetWrap>.targetBoxWrap .target06 {
+    background-image: url('../img/target-thumb06.jpg');
+}
+
+.sub-content>.courseTargetWrap>.targetWrap>.targetBoxWrap>.targetBox>.target_txt {
+    padding: 10px;
+    text-align: center;
+}
+
+/* 수강기간 */
+.sub-content>.coursePeriodWrap {}
+
+.sub-content>.coursePeriodWrap>.background {
+    /* 고정이미지 */
+    background-image: url('../img/sub-period_background.jpg');
+}
+
+.sub-content>.coursePeriodWrap>.background>.opacity_bg {
+    background-color: rgba(10, 25, 48, .95);
+}
+
+.sub-content>.coursePeriodWrap>.background>.opacity_bg>.coursePeriod {}
+
+.sub-content>.coursePeriodWrap>.background>.opacity_bg>.coursePeriod>.fz20 {
+    margin-top: 40px;
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.sub-content>.coursePeriodWrap>.background>.opacity_bg>.coursePeriod>.d-flex {
+    margin-top: 40px;
+    -webkit-box-lines: multiple;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.sub-content>.coursePeriodWrap>.background>.opacity_bg>.coursePeriod>.d-flex>.periodBoxWrap {
+    width: calc(50% - 20px);
+}
+
+.sub-content>.coursePeriodWrap>.background>.opacity_bg>.coursePeriod>.d-flex>.periodBoxWrap:nth-child(2n) {
+    margin-left: 20px;
+}
+
+.sub-content>.coursePeriodWrap>.background>.opacity_bg>.coursePeriod>.d-flex>.periodBoxWrap>.periodBox {
+    border: 1px solid #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.sub-content>.coursePeriodWrap>.background>.opacity_bg>.coursePeriod>.d-flex>.periodBoxWrap>.periodBox>.fz40 {
+    line-height: 40px;
+}
+
+.sub-content>.coursePeriodWrap>.background>.opacity_bg>.coursePeriod>.d-flex>.periodBoxWrap>.periodBox>.fz20 {
+    line-height: 30px;
+    margin-top: 40px;
+}
+
+.sub-content>.coursePeriodWrap>.background>.opacity_bg>.coursePeriod>.d-flex>.periodBoxWrap .btn_eg {
+    margin: 20px auto;
+}
+
+/* 커리큘럼 */
+.sub-content>.curriculumWrap {}
+
+.sub-content>.curriculumWrap>.curriculum {
+    margin-top: 40px;
+}
+
+.sub-content>.curriculumWrap>.curriculum>.cc_imgWrap {
+    width: 500px;
+}
+
+.sub-content>.curriculumWrap>.curriculum>.cc_imgWrap>.background {
+    /* 고정이미지 */
+    background-image: url('../img/field-thumb01.jpg');
+}
+
+.sub-content>.curriculumWrap>.curriculum>.cc_imgWrap>.background>.opacity_bg {
+    height: 300px;
+    position: relative;
+}
+
+.sub-content>.curriculumWrap>.curriculum>.cc_imgWrap>.background>.opacity_bg>.courseTitle {
+    width: 100%;
+    height: 60px;
+    line-height: 30px;
+    text-align: center;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.sub-content>.curriculumWrap>.curriculum>.cc_segWrap {
+    margin-left: 20px;
+    line-height: 30px;
+}
+
+.sub-content>.curriculumWrap>.curriculum>.cc_segWrap>.segmentWrap>.btnWrap {
+    margin-top: 40px;
+}
+
+/* 수강후기 */
+.sub-content>.courseReviewWrap {
+    background-color: #582ec8;
+}
+
+.sub-content>.courseReviewWrap>.courseReview {}
+
+.sub-content>.courseReviewWrap>.courseReview>.fz20 {
+    line-height: 40px;
+}
+
+.sub-content>.courseReviewWrap>.courseReview>.fz40 {
+    line-height: 80px;
+}
+
+.sub-content>.courseReviewWrap>.courseReview>.d-flex {
+    margin-top: 40px;
+}
+
+.sub-content>.courseReviewWrap>.courseReview>.d-flex>.reviewBox {
+    width: 390px;
+    border: 1px solid #fff;
+    padding: 80px 0;
+    margin-right: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.sub-content>.courseReviewWrap>.courseReview>.d-flex>.reviewBox:hover {
+    background-color: rgba(255, 255, 255, .1);
+    cursor: pointer;
+}
+
+.sub-content>.courseReviewWrap>.courseReview>.d-flex>.reviewBox:nth-child(3n) {
+    margin-right: 0;
+}
+
+.sub-content>.courseReviewWrap>.courseReview>.btn_eg {
+    margin-top: 40px;
+    margin-left: calc(100% - 200px);
+}
+
+/* 추천과정 */
+.sub-content>.RecommendationWrap {}
+
+.sub-content>.RecommendationWrap>.fz20 {
+    margin-top: 40px;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.sub-content>.RecommendationWrap>.d-flex {
+    margin-top: 40px;
+}
+
+.sub-content>.RecommendationWrap>.d-flex>.rcmdBox {
+    width: 390px;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.sub-content>.RecommendationWrap>.d-flex>.rcmdBox:nth-child(3n) {
+    margin-right: 0;
+}
+
+.sub-content>.RecommendationWrap>.d-flex>.rcmdBox .rcmd_div {
+    border: 1px solid #333;
+    padding: 10px 0;
+    border-radius: 40px;
+}
+
+.sub-content>.RecommendationWrap>.d-flex>.rcmdBox:hover .rcmd_div {
+    background-color: #333;
+    color: #fff;
+}
+
+.sub-content>.RecommendationWrap>.d-flex>.rcmdBox .rcmd_img {
+    height: 234px;
+    background-color: #333;
+    margin-top: 20px;
+}
+.sub-content>.RecommendationWrap>.d-flex>.rcmdBox .rcmd_img>img{
+    max-width: 390px;
+    max-height: 234px;
+}
+.sub-content>.RecommendationWrap>.d-flex>.rcmdBox .rcmd_txt {
+    padding: 10px;
+}
+
+/* subPage >> sub02 >> 과정신청 */
+.courseRegistrationWrap{
+    padding: 80px 0;
+}
+.courseRegistrationWrap>.section:nth-child(1)~*{
+    margin-top: 80px;
+}
+.courseRegistrationWrap>.section>.header_textWrap>.fc_999{
+    line-height: 20px;
+    margin-top: 10px;
+}
+.courseRegistrationWrap>.section>.sub-segment{
+    margin-top: 40px;
+}
+.courseRegistrationWrap>.section>.sub-segment>.titleBar-hdr{}
+.courseRegistrationWrap>.section>.sub-segment>.sub-sec{
+    width: 100%;
+    margin-top: 20px;
+    line-height: 30px;
+}
+
+.courseRegistrationWrap>.section>.sub-segment .table{
+    width: 100%;
+    text-align: center;
+}
+.courseRegistrationWrap>.section>.sub-segment .table th,
+.courseRegistrationWrap>.section>.sub-segment .table td,{
+    width : auto;
+}
+.courseRegistrationWrap>.section>.sub-segment .table td{
+    padding: 5px 0;
+    border-bottom : 1px solid #ddd;
+}
+.courseRegistrationWrap>.section>.sub-segment>.formStyle{
+    width: 100%;
+}
+
+.courseRegistrationWrap>.section .cancel-rule{
+    line-height: 30px;
+}
+.courseRegistrationWrap>.section .cancel-rule .rule-ttl{
+    width: 150px;
+    font-weight: bold;
+}
+.courseRegistrationWrap>.section .cancel-rule .rule-ctt{}
+
+.courseRegistrationWrap>.section .signWrap{
+    margin-top: 20px;
+}
+
+.formStyle.courseRegistration{
+    width: 100%;
+    margin: 40px auto 0;
+}
+.formStyle.courseRegistration .d-flex>.label{
+    font-weight: bold;
+}
+
+.formStyle.courseRegistration .d-flex>.adressWrap>.adress{
+    width: 100%;
+}
+.formStyle.courseRegistration .d-flex>.adressWrap>.adress1>.input{
+    width: calc(100% - 200px);
+}
+
+.formStyle.courseRegistration .input-ctt{
+    display: none;
+    width: 100%;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+.formStyle.courseRegistration .checkBox-slide{}
+.formStyle.courseRegistration .checkBox-slide>.check-bro{
+    margin: 10px;
+}
+.formStyle.courseRegistration .checkBox-slide:nth-child(1)~*{
+    border-top:1px solid #ddd;
+}
+.formStyle.courseRegistration .input-ctt .d-flex>.txt{
+    width: 100%;
+    margin: 10px;
+}
+
+
+
+
+
+
+
+
+/* subPage >> sub04 >> 공통 */
+.header_textWrap {
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 10px;
+    line-height: 30px;
+}
+
+.sub04_content>.section {
+    margin-top: 40px;
+}
+
+.section_sub04-01 .formStyle {
+    width: 100%;
+}
+
+/* 검색창 */
+.searchWrapper .class-searchWrap>.select,
+.searchWrapper .class-searchWrap>.input {
+    margin-right: 10px;
+}
+
+.searchWrapper .class-searchWrap>.select {
+    width: 100px;
+    text-indent: 5px;
+}
+
+.searchWrapper .class-searchWrap>.input {
+    width: 300px;
+}
+
+.searchWrapper .class-searchWrap>.button {
+    box-shadow: none;
+    border: none;
+    margin: 20px 0;
+}
+
+/* 게시판 */
+.c-table-num {
+    /* width: 50px; */
+    width: 4.16%;
+}
+
+.c-table-name {
+    /* width: 440px; */
+    width: 36.66%;
+}
+
+.c-table-name-w {
+    /* width: 500px; */
+    width: 41.66%;
+}
+
+.c-table-name-wide {
+    /* width: 690px; */
+    width: 57.49%;
+}
+
+.c-table-name-ultra {
+    /* width: 860px; */
+    width: 71.66%;
+}
+
+.c-table-08 {
+    /* width: 800px; */
+    width: 66.66%;
+}
+
+.c-table-04 {
+    /* width: 400px; */
+    width: 33.33%;
+}
+
+.c-table-03 {
+    /* width: 300px; */
+    width: 25%;
+}
+
+.c-table-02 {
+    /* width: 200px; */
+    width: 16.66%;
+}
+
+.c-table-01 {
+    /* width: 100px; */
+    width: 8.33%;
+}
+
+.c-table-btn>.btn_normal {
+    font-weight: normal;
+}
+
+.class-list-title,
+.class-list {
+    text-align: center;
+    justify-content: space-between;
+}
+
+.c-ttl {
+    /* width: calc(100% - 380px); */
+    width: 480px;
+}
+
+.c-ctt {
+    /* width: calc((100% - 380px) / 4); */
+    width: 120px;
+    display: table;
+}
+
+/* 강의리스트 >> 타이틀 */
+.class-list-title {
+    padding: 10px 0;
+    border-top: 2px solid #e7e7e7;
+    border-bottom: 2px solid #e7e7e7;
+}
+
+/* 강의리스트 >> 목록 */
+.class-list-wrap .class-list {
+    padding: 10px 0;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.board-list:hover,
+.class-list-wrap .class-list:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    cursor: pointer;
+}
+
+.class-list img {
+    width: 100px;
+    height: 70px;
+    overflow: hidden;
+}
+
+.class-list .class-title-wrap {
+    width: calc(100% - 120px);
+    text-align: left;
+}
+
+.class-list .class-title-wrap>.title {
+    margin-top: 5px;
+    max-height: 40px;
+}
+
+.color-box {
+    height: 20px;
+    padding: 0 5px;
+    color: #fff;
+}
+
+.class-list .img-icon.pin {
+    margin: 0 auto;
+}
+
+.class-list .c-table-iconAlign .icon-align {
+    justify-content: center;
+}
+
+.class-list-wrap .icon-align>div:first-child {
+    margin-right: 10px;
+}
+
+.class-list-wrap .c-table-name-wide,
+.class-list-wrap .c-table-08 {
+    text-align: left;
+}
+
+.open-ctt,
+.open-asw {
+    border: 1px solid #eee;
+    border-top: none;
+    background-color: #f9f9f9;
+    display: none;
+}
+
+.open-asw .aswr-box {
+    padding: 10px;
+}
+
+.open-asw .Amark {
+    margin-left: 5.5%;
+}
+
+.page>.pagination {
+    width: 300px;
+    margin: 40px auto;
+}
+
+/* subPage >> sub05 나의강의실 */
+.sub05_content>.section {
+    margin-top: 40px;
+}
+
+/* tab Group */
+.class-tabMenu>.tabGroup>li {
+    width: 33.33%;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    color: #844ff5;
+    background-color: #fff;
+    border: 1px solid #844ff5;
+}
+
+.class-tabMenu>.tabGroup>li.active,
+.class-tabMenu>.tabGroup>li:hover {
+    color: #fff;
+    background-color: #844ff5;
+    cursor: pointer;
+}
+
+/* Sub Group */
+.class-tabMenu>.subGroup>.hideTab {
+    display: none;
+}
+
+.class-tabMenu>.subGroup>.tab-sub {
+    border: 1px solid #eee;
+    padding: 20px;
+}
+
+.class-tabMenu>.subGroup>.tab-sub .sub-segment {
+    width: 100%;
+}
+
+/* rainbow_myClass 나의강의실 */
+/* rainbow_myClass >> header */
+.rainbow_myClass>.headerWrap_sub {
+    background-color: inherit;
+}
+.rainbow_myClass>.content>.background>.opacity_bg{
+    height: 434px;
+}
+.rainbow_myClass>.content .bannerTextWrap{
+    padding: 264px 0 120px;
+}
+
+/* rainbow_myClass >> section */
+.rainbow_myClass>.content_myClsss>.section_sub05-01 {
+    width: 1200px;
+    margin: 0 auto;
+    min-height: calc(100vh - (240px + 340px));
+    padding: 0 0 40px;
+}
+
+.section>.myClass-tabMenu {}
+
+.section>.myClass-tabMenu>.bgc_pb {
+    padding: 20px;
+    margin-top: -40px;
+}
+
+.section>.myClass-tabMenu .myClass-tabGroup {}
+
+.section>.myClass-tabMenu .myClass-tabGroup>li {
+    width: 150px;
+    /* font-size: 18px; */
+    font-size: 1.286rem;
+    line-height: 40px;
+    text-align: center;
+    opacity: .7;
+}
+
+.section>.myClass-tabMenu .myClass-tabGroup>.active,
+.section>.myClass-tabMenu .myClass-tabGroup>li:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.section>.myClass-tabMenu .myClass-subGroup {}
+
+.section>.myClass-tabMenu .myClass-subGroup>.tab-sub {
+    padding: 20px;
+    border: 1px solid #eee;
+}
+
+.section>.myClass-tabMenu .myClass-subGroup>.tab-sub:nth-child(1)~* {
+    display: none;
+}
+
+/* tab-sub >> searchWrapper */
+.rainbow_myClass .myClass-tabMenu .myClass-subGroup>.tab-sub .formStyle {
+    width: 100%;
+}
+
+.rainbow_myClass .myClass-tabMenu .myClass-subGroup>.tab-sub .searchWrapper {
+    margin: 0 0 20px;
+}
+
+.rainbow_myClass .myClass-tabMenu .myClass-subGroup>.tab-sub .searchWrapper .formStyle .select,
+.rainbow_myClass .myClass-tabMenu .myClass-subGroup>.tab-sub .searchWrapper .formStyle .input:not(.check) {
+    margin: inherit;
+    margin-left: 10px;
+}
+
+.rainbow_myClass .myClass-tabMenu .myClass-subGroup>.tab-sub .searchWrapper .class-searchWrap>.button {
+    margin: 10px 0 10px 10px;
+}
+
+/* tab-sub >> board */
+.rainbow_myClass .myClass-tabMenu .myClass-subGroup>.tab-sub .sub-segment .text-over-lh20 {
+    text-align: left;
+}
+
+/* tab-sub >> pagination */
+.rainbow_myClass .myClass-tabMenu .myClass-subGroup>.tab-sub .page>.pagination {
+    margin: 20px auto 0;
+}
+
+.rainbow_myClass .myClass-tabMenu .myClass-subGroup>.tab-sub01 {}
+
+.rainbow_myClass .myClass-tabMenu .myClass-subGroup>.tab-sub02 {}
+
+.rainbow_myClass .myClass-tabMenu .myClass-subGroup>.tab-sub03 {}
+
+.rainbow_myClass .myClass-tabMenu .myClass-subGroup>.tab-sub04 {}
+
+.rainbow_myClass .myClass-tabMenu .myClass-subGroup>.tab-sub05 {}
+
+.rainbow_myClass .myClass-tabMenu .myClass-subGroup>.tab-sub06 {}
+
+/* view-post */
+.rainbow_myClass>.view-post>.section,
+.rainbow_myClass>.testWrapper>.section {
+    padding: 0 20px;
+    width: 100%;
+}
+
+.view-post .section {}
+
+.view-post .formStyle {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.view-post .formStyle .d-flex:nth-child(1)~*,
+.view-post .post-content {
+    border-top: 1px solid #ccc;
+}
+
+.view-post .formStyle>div>* {
+    line-height: 25px;
+    padding: 10px;
+    cursor: default;
+}
+
+.view-post .d-flex>.w100 {
+    width: 100px;
+    text-align: center;
+    margin-right: 0;
+    background-color: #eee;
+    border-right: 1px solid #ccc;
+}
+
+.view-post .d-flex>.w880 {
+    width: calc(100% - 100px);
+}
+
+.view-post .post-content {
+    padding: 10px;
+}
+
+.view-post .button-wrap {
+    margin-top: 20px;
+}
+
+.view-post .button-wrap>button:nth-child(1)~* {
+    margin-left: 20px;
+}
+
+/* survey */
+.question-list {}
+
+.question-list>li:nth-child(1)~* {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.question-list .questionWrap {}
+
+.question-list .questionWrap>.question {}
+
+.question-list .questionWrap>.question>.h3 {
+    width: auto;
+}
+
+.question-list .questionWrap>.question>.item-header {
+    margin: 5px 0 0 5px;
+}
+
+.question-list .answerWrap {
+    margin-top: 10px;
+}
+
+/* report */
+.fileWrap {}
+
+.fileWrap>.fileUpload {
+    display: inline-block;
+    margin-top: 5px;
+    position: relative;
+    width: 77px;
+}
+
+.fileWrap>.fileUpload>.reportFile {
+    width: 100%;
+    height: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.fileWrap>.reportFileName {
+    border: 1px solid #ddd;
+    height: 25px;
+    width: calc(100% - 90px);
+    cursor: default;
+    text-indent: 5px;
+    margin: 9px 0 0 10px;
+}
+
+/* exam */
+/* exam >> 답안보기 */
+.table_onlineTest {
+    width: auto;
+    text-align: center;
+    margin: 10px;
+}
+
+.table>.thead>tr {
+    border-top: 2px solid #aaa;
+    border-bottom: 2px solid #aaa;
+}
+
+.table>.thead>tr>*,
+.table>.tbody {
+    background-color: #fff;
+    line-height: 30px;
+}
+
+.table>.tbody>tr>th,
+.table>.tbody>tr>td {
+    width: 30px;
+}
+
+.table>.tbody .numberQ {
+    background-color: #eee;
+    position: relative;
+}
+
+.table_onlineTest .answer_user:after,
+.table_onlineTest .answer_correct:after {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.table_onlineTest .answer_correct,
+.table_onlineTest .answer_user {
+    position: relative;
+}
+
+.table_onlineTest .answer_user:after,
+.table_onlineTest .answer_correct:after {
+    width: 20px;
+    height: 20px;
+    display: block;
+    content: '';
+    border-radius: 30px;
+}
+
+.table_onlineTest .answer_correct:after {
+    border: 2px solid #C13831;
+}
+
+.table_onlineTest .answer_user:after {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+/* exam >> 시험응시 */
+.testWrapper .test-header {
+    background-color: rgba(132, 79, 245, .5);
+    color: #fff;
+    padding: 10px 20px;
+    justify-content: space-between;
+}
+
+.test-header .titleWrap {}
+
+.test-header .titleWrap .testTitle {
+    line-height: 30px;
+}
+
+.test-header .titleWrap .infoWrap {
+    margin-top: 5px;
+}
+
+.test-header .titleWrap .infoWrap .testInfo {
+    margin-right: 10px;
+}
+
+.test-header .timerWrap {
+    text-align: center;
+}
+
+.testWrapper .section {
+    overflow-y: scroll;
+    height: calc(100vh - 80px);
+    margin: 0;
+}
+
+.testForm {
+    overflow: hidden;
+}
+
+.testForm .testSet {
+    margin: 20px 0;
+}
+
+.testForm .testSet .testQ {
+    padding: 10px;
+    background-color: #f7f7f7;
+}
+
+.testForm .testSet .testQ .qNumber {
+    width: 90px;
+    background-color: rgba(132, 79, 245, .5);
+    padding: 5px 10px;
+    color: #fff;
+    text-align: center;
+}
+
+.testForm .testSet .testQ .qScore {
+    line-height: 30px;
+    margin-left: 10px;
+}
+
+.testForm .testSet .testQ .question {
+    margin: 5px;
+}
+
+.testForm .testSet .testA,
+.testForm .testSet .aBox {
+    margin-top: 10px;
+}
+
+.testForm .testSet .testA {}
+
+.testForm .testSet .testA .answer {
+    margin: 20px 0;
+}
+
+.testForm .testSet .testA .answer>label {
+    margin-left: 5px;
+}
+
+/* 시험제출버튼 */
+.testForm .submitBtn {
+    padding: 10px;
+    width: 150px;
+    margin: 20px;
+    float: right;
+}
+
+.testForm .btn-pColor:hover {
+    font-weight: bold;
+}
+
+/* sub05-03 */
+.section_sub05-03 {
+    margin-top: 40px;
+}
+
+.section_sub05-03>.myClass-tabMenu>.bgc_pb {
+    margin-top: 0;
+}
+
+/* 연수확인증 */
+.container_rainbow>.content.view-certificate {
+    width: 595px;
+    height: 841px;
+    padding: 0;
+    margin: 0 auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    position: relative;
+}
+
+.container_rainbow>.content.view-certificate>* {
+    position: absolute;
+    font-family: serif;
+    color: #86602e;
+    cursor: default;
+}
+
+.container_rainbow>.content.view-certificate>.ctf_textWrap {
+    top: 222px;
+    left: 195px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 40px;
+}
+
+.container_rainbow>.content.view-transcript>.ctf_textWrap {
+    top: 182px;
+}
+
+.container_rainbow>.content.view-certificate .ctf_tableWrap,
+.container_rainbow>.content.view-certificate .ctf_table,
+.container_rainbow>.content.view-certificate .ctf_text,
+.container_rainbow>.content.view-certificate .ctf_endDate {
+    margin: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.container_rainbow>.content.view-certificate .ctf_table {
+    width: 420px;
+}
+.container_rainbow>.content.view-certificate>.ctf_tableWrap{
+    top: 370px;
+}
+.container_rainbow>.content.view-certificate .ctf_tableWrap02 {
+    top: 485px;
+    opacity: .7;
+}
+
+.container_rainbow>.content.view-certificate .ctf_table_ttl {}
+
+.container_rainbow>.content.view-certificate .ctf_tableWrap>.ctf_table_benchmark {
+}
+
+.container_rainbow>.content.view-certificate .ctf_table th,
+.container_rainbow>.content.view-certificate .ctf_table td {
+    padding: 5px 0;
+    border: 1px solid #86602e;
+    vertical-align: middle;
+}
+
+.container_rainbow>.content.view-certificate .ctf_table_benchmark th,
+.container_rainbow>.content.view-certificate .ctf_table_benchmark td {
+    width: 60px;
+    padding: 5px;
+}
+
+.container_rainbow>.content.view-certificate .ctf_text {
+    width: 420px;
+    text-align: left;
+    margin: 10px auto;
+}
+
+.container_rainbow>.content.view-certificate .ctf_endDate {
+    font-size: 16px;
+    bottom: 160px;
+}
+
+.container_rainbow>.content.view-transcript {
+    background-image: url('../img/print_transcript.jpg');
+}
+
+.container_rainbow>.content.view-certificate_training {
+    background-image: url('../img/print_certificate_of_training.jpg');
+}
+
+.container_rainbow>.content.view-certificate_completion {
+    background-image: url('../img/print_certificate_of_completion.jpg');
+}
+
+.container_rainbow>.content.view-certificate .btn_print {
+    margin: 10px auto 20px;
+}
+
+/* sub05-05 */
+.section_sub05-05{}
+.section_sub05-05>.sub-section{}
+.section_sub05-05>.sub-section:nth-child(1)~*{
+    margin-top: 40px;
+}
+.section_sub05-05>.sub-section>.titleBar-hdr{
+    font-weight: bold;
+}
+.section_sub05-05>.sub-section>.sub-segment,
+.section_sub05-05>.sub-section>.sub-segment>.myMileage-list{
+    margin-top: 20px;
+}
+.section_sub05-05>.sub-section>.sub-segment>.policy-list{
+    line-height: 30px;
+}
+
+/* - modal popup layer - layout */
+.modal {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: none;
+}
+
+.modal-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    width: 1000px;
+    height: calc(100vh - 100px);
+    margin: auto;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 20px;
+}
+.modal-content>.header,
+.modal-content>.sectionWrap{
+    width: 100%;
+}
+.modal-content .sectionWrap {
+    height: calc(100% - 40px);
+    margin: 20px auto 0;
+    position: relative;
+    overflow-y: scroll;
+    padding: 20px;
+    outline: 1px solid #eee;
+}
+
+/* 환불신청 및 영수증 출력 */
+.container_rainbow>.content.view-receipt,
+.container_rainbow>.content.view-refund {
+    width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.container_rainbow>.content.view-receipt>.header,
+.container_rainbow>.content.view-refund>.header{
+    text-align: center;
+}
+.container_rainbow>.content.view-receipt>.section,
+.container_rainbow>.content.view-refund>.section{
+    margin-top: 20px;
+}
+.table-receipt{
+    width: 100%;
+    border-left: 1px solid #ccc;
+    text-align: center;
+}
+
+.table-receipt>.thead>tr>th,
+.table-receipt>.tbody>tr>th,
+.table-receipt>.tbody>tr>td{
+    width: auto;
+    padding: 10px 0;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    vertical-align: middle;
+}
+.table-receipt>.tbody>.receipt_price>td{
+    width: 50px;
+}
+.table-receipt .positionImg{
+    position: relative;
+}
+.table-receipt .positionImg>img{
+    position: absolute;
+    top: -15px;
+    right: 10px;
+    width: 80px;
+    height: 80px;
+    opacity: .5;
+}
+.view-refund .formStyle{
+    margin-top: 20px;
+    width: 600px;
+}
+.view-refund .formStyle .d-flex>.label{
+    margin: 10px 0;
+}
+.view-refund .formStyle>.margin-top40{
+    margin: 20px auto 0;
+    width: 200px;
+}
+,
+.container_rainbow>.content_schedule{}
+.container_rainbow>.content_schedule>.scheduleWrapper{
+    width: 1200px;
+    margin: 0 auto;
+    padding: 80px 0;
+}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table{
+    width: 100%;
+}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table th,
+.container_rainbow>.content_schedule>.scheduleWrapper>.table td{
+    text-align: center;
+    vertical-align: middle;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table th:first-child{
+    border-left: 1px solid #ddd;
+}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table th{}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table .tbody th{
+    width: 200px;
+}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table .thead th:nth-child(1)~*,
+.container_rainbow>.content_schedule>.scheduleWrapper>.table .tbody td{
+    width: calc(1000px / 12);
+}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table td:hover{
+    outline: 2px solid #333;
+}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table td.bg01{
+    background-color: rgba(132,79,245,.2);
+}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table td.bg02{
+    background-color: rgba(96, 157, 211, .2);
+}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table td.bg03{
+    background-color: rgba(96, 175, 96, .2);
+}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table td.bg04{
+    background-color: rgba(120, 135, 182, .2);
+}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table td.bg05{
+    background-color: rgba(254, 163, 96, .2);
+}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table td.bg06{
+    background-color: rgba(85,207,214,.2);
+}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table td.bg07{
+    background-color: rgba(0, 0, 0, .2);
+}
+.container_rainbow>.content_schedule>.scheduleWrapper>.table td.bg08{
+    background-color: rgba(20,226,203,.2);
+}

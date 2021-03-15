@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.common.dao.CommonDao">
+	<cache flushInterval="60000" readOnly="true"/> <!-- 1분 -->
+
+	<!-- 파일 -->
+	<insert id="insertAttachFile" parameterType="com.aracomm.base.common.vo.FileVo">
+		insert into FF_ATTACH_FILE
+		(file_id, use_yn, reg_user, reg_date, upd_user, upd_date)
+		values
+		(#{file_id}, 'Y',#{user},DATE_FORMAT(NOW(),'%Y%m%d%H%i%s'),#{user},DATE_FORMAT(NOW(),'%Y%m%d%H%i%s'))
+	</insert>
+	<insert id="insertAttachFileDetail" parameterType="com.aracomm.base.common.vo.FileVo">
+		insert into FF_ATTACH_FILE_DETAIL
+		(file_id, file_name, origin_file_name, file_path, file_ext, file_size, url_path)
+		values
+		(#{file_id},#{file_name},#{origin_file_name},#{file_path},#{file_ext},#{file_size},#{url_path})
+	</insert>
+
+	<update id="updateDeleteAttachFile" parameterType="string">
+		UPDATE FF_ATTACH_FILE
+		   SET USE_YN = 'N'
+		 WHERE FILE_ID = #{file_id}
+	</update>
+
+	<!-- <update id="updateDeleteAttachFileDetailAll" parameterType="string">
+		UPDATE FF_ATTACH_FILE_DETAIL
+		   SET USE_YN = 'N'
+		 WHERE FILE_ID = #{file_id}
+	</update> -->
+
+	<delete id="deleteAttachFile">
+		delete from FF_ATTACH_FILE
+		where file_id = #{file_id}
+	</delete>
+	<delete id="deleteAttachFileDetail">
+		delete from FF_ATTACH_FILE_DETAIL
+		where file_id = #{file_id}
+	</delete>
+
+	<select id="selectAttachFileList" parameterType="string" resultType="com.aracomm.base.common.vo.FileVo">
+		SELECT D.FILE_ID, D.FILE_NAME, D.ORIGIN_FILE_NAME, D.FILE_PATH, D.URL_PATH, D.FILE_EXT, D.FILE_SIZE
+		  FROM FF_ATTACH_FILE M, FF_ATTACH_FILE_DETAIL D
+		 WHERE M.FILE_ID = D.FILE_ID
+		   AND M.USE_YN = 'Y'
+		   AND D.FILE_ID = #{file_id}
+	</select>
+
+	<select id="selectAttachFileListByIds" resultType="com.aracomm.base.common.vo.FileVo">
+		SELECT D.FILE_ID, D.FILE_NAME, D.ORIGIN_FILE_NAME, D.FILE_PATH, D.URL_PATH, D.FILE_EXT, D.FILE_SIZE
+		  FROM FF_ATTACH_FILE M, FF_ATTACH_FILE_DETAIL D
+		 WHERE M.FILE_ID = D.FILE_ID
+		   AND M.USE_YN = 'Y'
+		   AND D.FILE_ID IN
+		   <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+        		#{item}
+    		</foreach>
+    	 ORDER BY D.FILE_ID, D.ORDER_NUM
+	</select>
+
+	<!-- 공통코드 -->
+	<select id="selectGroupCodeList" parameterType="string" resultType="hashmap" useCache="true">
+		SELECT CODE, NAME
+		  FROM FF_CODE
+		 WHERE GROUP_ID = #{group_id}
+	       AND USE_YN = 'Y'
+		 ORDER BY ORDER_NUM
+	</select>
+
+	<!-- 테이블 sequence -->
+	<select id="selectSequenceForUpdate" parameterType="string" resultType="hashmap">
+		SELECT IFNULL(MAX(SEQ)+1, 1) AS SEQ
+			 , UPD_YMD
+		  FROM CB_SEQUENCE
+		 WHERE SEQ_NAME = #{seq_name} FOR UPDATE
+	</select>
+	<insert id="insertSequence" parameterType="string">
+		INSERT INTO CB_SEQUENCE (
+			  SEQ_NAME
+			, SEQ
+			, UPD_YMD
+		)
+		VALUES (
+			  #{seq_name}
+			  , 1
+			  , DATE_FORMAT(NOW(),'%Y%m%d')
+		)
+	</insert>
+	<update id="updateSequence" parameterType="map">
+		<if test='dailyInit == null or dailyInit != "Y"'>
+		UPDATE CB_SEQUENCE
+		   SET SEQ = LAST_INSERT_ID(SEQ+1)
+		     , UPD_YMD = DATE_FORMAT(NOW(),'%Y%m%d')
+		 WHERE SEQ_NAME = #{seq_name}
+		</if>
+		<if test='dailyInit == "Y"'>
+		UPDATE CB_SEQUENCE
+		   SET SEQ = 1
+			 , UPD_YMD = DATE_FORMAT(NOW(),'%Y%m%d')
+		 WHERE SEQ_NAME = #{seq_name}
+		</if>
+	</update>
+</mapper>

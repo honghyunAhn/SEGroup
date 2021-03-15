@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.mypage.dao.NoteDao">
+
+	<insert id="insertNote" parameterType="map">
+		INSERT INTO CB_NOTE (
+			  FROM_USER_ID
+			, TO_USER_ID
+			, TITLE
+			, NOTE
+			, SEND_DATE
+		) VALUES (
+			  #{from_user_id }
+			, #{to_user_id }
+			, #{title }
+			, #{note }
+			, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s')
+		)
+	</insert>
+
+	<sql id="selectNoteList_sql">
+		<choose>
+			<when test='gubun == "S"'><!-- 보낸쪽지함 -->
+			AND FROM_USER_ID = #{user_id}
+			AND FROM_USER_USE_YN = 'Y'
+			</when>
+			<otherwise>
+			AND TO_USER_ID = #{user_id}
+			AND TO_USER_USE_YN = 'Y'
+			</otherwise>
+		</choose>
+		<if test='searchKeyword != null and searchKeyword != ""'>
+			<choose>
+				<when test='searchCondition != "TC"'>
+				AND (
+					TITLE LIKE CONCAT('%', #{searchKeyword} ,'%') OR
+					NOTE LIKE CONCAT('%', #{searchKeyword} ,'%')
+				)
+				</when>
+				<when test='searchCondition != "T"'>
+				AND TITLE LIKE CONCAT('%', #{searchKeyword} ,'%')
+				</when>
+				<when test='searchCondition != "C"'>
+				AND NOTE LIKE CONCAT('%', #{searchKeyword} ,'%')
+				</when>
+			</choose>
+		</if>
+	</sql>
+	<select id="selectNoteListTotCnt" parameterType="com.aracomm.changbi.mypage.vo.NoteSearchVo" resultType="int">
+		SELECT COUNT(1)
+		  FROM CB_NOTE
+		 WHERE 1 = 1
+		 <include refid="selectNoteList_sql"/>
+	</select>
+
+	<select id="selectNoteList" parameterType="com.aracomm.changbi.mypage.vo.NoteSearchVo" resultType="hashmap">
+		SELECT ID
+			 , FROM_USER_ID
+			 , CASE WHEN FROM_USER_ID = 'admin' THEN '관리자'
+			 		ELSE (SELECT NAME FROM CB_MEMBER WHERE ID = N.FROM_USER_ID LIMIT 1) END AS FROM_USER_NAME
+			 , TO_USER_ID
+			 , CASE WHEN FROM_USER_ID = 'admin' THEN '관리자'
+			 		ELSE (SELECT NAME FROM CB_MEMBER WHERE ID = N.TO_USER_ID LIMIT 1) END AS TO_USER_NAME
+			 , TITLE
+			 , SAVE_YN
+			 , PROC_YN
+			 , CASE WHEN PROC_YN = 'Y' THEN '읽음'
+			 		ELSE '안 읽음' END AS PROC_NAME
+			 , SEND_DATE
+			 , DATE_FORMAT(STR_TO_DATE(SEND_DATE,'%Y%m%d%H%i%s'),'%Y.%m.%d.') AS SEND_DATE_FORMAT1
+		  FROM CB_NOTE N
+		 WHERE 1 = 1
+		 <include refid="selectNoteList_sql"/>
+		 ORDER BY SEND_DATE DESC
+		 LIMIT #{visiblePages} OFFSET #{skipRows}
+	</select>
+
+	<select id="selectNote" parameterType="com.aracomm.changbi.mypage.vo.NoteSearchVo" resultType="hashmap">
+		SELECT ID
+			 , FROM_USER_ID
+			 , CASE WHEN FROM_USER_ID = 'admin' THEN '관리자'
+			 		ELSE (SELECT NAME FROM CB_MEMBER WHERE ID = N.FROM_USER_ID LIMIT 1) END AS FROM_USER_NAME
+			 , TO_USER_ID
+			 , CASE WHEN FROM_USER_ID = 'admin' THEN '관리자'
+			 		ELSE (SELECT NAME FROM CB_MEMBER WHERE ID = N.TO_USER_ID LIMIT 1) END AS TO_USER_NAME
+			 , TITLE
+			 , NOTE
+			 , SAVE_YN
+			 , PROC_YN
+			 , CASE WHEN PROC_YN = 'Y' THEN '읽음'
+			 		ELSE '안 읽음' END AS PROC_NAME
+			 , SEND_DATE
+			 , DATE_FORMAT(STR_TO_DATE(SEND_DATE,'%Y%m%d%H%i%s'),'%Y.%m.%d.') AS SEND_DATE_FORMAT1
+		  FROM CB_NOTE N
+		 WHERE ID = #{id}
+		<choose>
+			<when test='gubun == "S"'><!-- 보낸쪽지함 -->
+			AND FROM_USER_ID = #{user_id}
+			AND FROM_USER_USE_YN = 'Y'
+			</when>
+			<otherwise>
+			AND TO_USER_ID = #{user_id}
+			AND TO_USER_USE_YN = 'Y'
+			</otherwise>
+		</choose>
+	</select>
+
+	<update id="updateDeleteNote" parameterType="com.aracomm.changbi.mypage.vo.NoteSearchVo">
+	   UPDATE CB_NOTE SET
+		<choose>
+			<when test='gubun == "S"'><!-- 보낸쪽지함 -->
+			  FROM_USER_USE_YN = 'N'
+			</when>
+			<otherwise>
+			  TO_USER_USE_YN = 'N'
+			</otherwise>
+		</choose>
+	  WHERE ID IN
+	  	<foreach collection="ids" item="id"  open="(" close=")" separator=",">
+	  		#{id}
+ 		</foreach>
+		<choose>
+			<when test='gubun == "S"'><!-- 보낸쪽지함 -->
+			AND FROM_USER_ID = #{user_id}
+			</when>
+			<otherwise>
+			AND TO_USER_ID = #{user_id}
+			</otherwise>
+		</choose>
+	</update>
+
+	<update id="updateNoteRead" parameterType="com.aracomm.changbi.mypage.vo.NoteSearchVo">
+	   UPDATE CB_NOTE
+		  SET PROC_YN = 'Y'
+	    WHERE ID = #{id}
+	      AND TO_USER_ID = #{user_id}
+	</update>
+</mapper>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 도서 관리 회원정보 처리 SQL -->
+<mapper namespace="global.segroup.school.book.user.dao.SchoolBookUserMapper">
+
+<select id="selectUser" parameterType="String" resultType="SchoolBookUser">
+	select
+		CUT.user_id
+		,CUT.user_pw
+		,CUT.user_nm
+		,CUT.user_phone
+		,CUT.user_email
+		,CUT.user_birth
+		,CUT.user_sex
+		,CUT.user_flag
+		,CUT.user_state
+		,CGT.gisu_num
+	from
+		COM_USER_TB CUT
+		,BOOK_USER_TB BUT
+		,EDU_CURRICULUM_GISU_TB CGT
+	where
+		CUT.user_id = BUT.user_id
+	and
+		BUT.gisu_seq = CGT.gisu_seq
+	and
+		CUT.user_id = #{id}
+</select>
+
+<select id="search_result" parameterType="hashmap" resultType="HashMap">
+	select 
+		BBIT.BOOKINFO_ISBN BOOKINFO_ISBN,
+		BBIT.BOOKINFO_CATEGORY BOOKINFO_CATEGORY,
+		BBIT.BOOKINFO_DIVISION BOOKINFO_DIVISION,
+		BBIT.BOOKINFO_BOOK_NM BOOKINFO_BOOK_NM,
+		BBIT.BOOKINFO_PUBLISHER BOOKINFO_PUBLISHER,
+		BBIT.BOOKINFO_PUBLISHED_DT BOOKINFO_PUBLISHED_DT,
+		BBIT.BOOKINFO_QUANTITY BOOKINFO_QUANTITY,
+		BBIT.BOOKINFO_AUTHOR BOOKINFO_AUTHOR,
+		CBFT.BOARD_FILE_SAVED BOARD_FILE_SAVED,
+		CBFT.BOARD_FILE_ORIGIN BOARD_FILE_ORIGIN
+	from 
+		BOOK_BOOKINFO_TB BBIT
+		, COM_BOARD_FILE_TB CBFT
+	where
+		BBIT.board_file_seq = CBFT.board_file_seq
+	and
+		BBIT.bookinfo_isdeleted = 0
+	<if test="bookInfo != null">
+		<if test="bookInfo.bookinfo_book_nm != '' and bookInfo.bookinfo_book_nm != null">
+		and
+			BBIT.bookinfo_book_nm like concat('%',#{bookInfo.bookinfo_book_nm},'%')
+		</if>
+		<if test="bookInfo.bookinfo_author != '' and bookInfo.bookinfo_author != null">
+		and
+			BBIT.bookinfo_author like concat('%',#{bookInfo.bookinfo_author},'%')
+		</if>
+		<if test="bookInfo.bookinfo_publisher != '' and bookInfo.bookinfo_publisher != null">
+		and
+			BBIT.bookinfo_publisher like concat('%',#{bookInfo.bookinfo_publisher},'%')
+		</if>
+		<if test="bookInfo.bookinfo_isbn != '' and bookInfo.bookinfo_isbn != null">
+		and
+			BBIT.bookinfo_isbn = #{bookInfo.bookinfo_isbn}
+		</if>
+		<if test='bookInfo.bookinfo_category != null and bookInfo.bookinfo_category != "0" '>
+		and
+			BBIT.bookinfo_category = #{bookInfo.bookinfo_category}
+		</if>
+		<if test='bookInfo.bookinfo_division != null and bookInfo.bookinfo_division != "0" '>
+		and
+			BBIT.bookinfo_division = #{bookInfo.bookinfo_division}
+		</if>
+	</if>
+	<if test="advanced_start_date != null and advanced_start_date != '' and advanced_end_date != null and advanced_end_date != ''">
+	and
+		BBIT.bookinfo_published_dt between #{advanced_start_date} and #{advanced_end_date}
+	</if>
+	order by
+		BBIT.BOARD_CONTENT_SEQ
+</select>
+
+<!-- 전체 책 개수 (검색 필터링 후) 시작 -->
+<select id="getTotalBook" parameterType="hashmap" resultType="int">
+	select
+		count(*)
+	from
+		BOOK_BOOKINFO_TB BBIT
+		, COM_BOARD_FILE_TB CBFT
+	where
+		BBIT.board_file_seq = CBFT.board_file_seq
+	and
+		BBIT.bookinfo_isdeleted = 0
+	<if test="bookInfo != null">
+		<if test="bookInfo.bookinfo_book_nm != '' and bookInfo.bookinfo_book_nm != null">
+		and
+			BBIT.bookinfo_book_nm like concat('%',#{bookInfo.bookinfo_book_nm},'%')
+		</if>
+		<if test="bookInfo.bookinfo_author != '' and bookInfo.bookinfo_author != null">
+		and
+			BBIT.bookinfo_author like concat('%',#{bookInfo.bookinfo_author},'%')
+		</if>
+		<if test="bookInfo.bookinfo_publisher != '' and bookInfo.bookinfo_publisher != null">
+		and
+			BBIT.bookinfo_publisher like concat('%',#{bookInfo.bookinfo_publisher},'%')
+		</if>
+		<if test="bookInfo.bookinfo_isbn != '' and bookInfo.bookinfo_isbn != null">
+		and
+			BBIT.bookinfo_isbn = #{bookInfo.bookinfo_isbn}
+		</if>
+		<if test='bookInfo.bookinfo_category != null and bookInfo.bookinfo_category != "0" '>
+		and
+			BBIT.bookinfo_category = #{bookInfo.bookinfo_category}
+		</if>
+		<if test='bookInfo.bookinfo_division != null and bookInfo.bookinfo_division != "0" '>
+		and
+			BBIT.bookinfo_division = #{bookInfo.bookinfo_division}
+		</if>
+	</if>
+	<if test="advanced_start_date != null and advanced_start_date != '' and advanced_end_date != null and advanced_end_date != ''">
+	and
+		BBIT.bookinfo_published_dt between #{advanced_start_date} and #{advanced_end_date}
+	</if>
+</select>
+<!-- 전체 책 개수 (검색 필터링 후) 종료 -->
+
+<select id="getCategory" resultType="String">
+	select CODE_NM 
+	from COM_CODE_TB 
+	where GROUP_ID = 'B01'
+</select>
+
+
+<!-- 정식 8/7 commit *** start *** -->
+<insert id="insertPurchaseReq" parameterType="PurchaseReq">
+	insert into BOOK_PURCHASE_REQ_TB (
+		BOARD_CONTENT_SEQ,
+		PURCHASE_REQ_ISBN,
+		PURCHASE_REQ_BOOK_NM,
+		PURCHASE_REQ_PUBLISHER,
+		PURCHASE_REQ_AUTHOR,
+		PURCHASE_REQ_REASON,
+		PURCHASE_REQ_DT,
+		PURCHASE_REQ_ID,
+		PURCHASE_UDT_ID,
+		PURCHASE_INS_DT,
+		PURCHASE_UDT_DT
+	) values (
+		1,
+		#{purchase_req_isbn},
+		#{purchase_req_book_nm},
+		#{purchase_req_publisher},
+		#{purchase_req_author},
+		#{purchase_req_reason},
+		now(),
+		#{purchase_req_id},
+		#{purchase_req_id},
+		now(),
+		now()
+	)
+</insert>
+
+<select id="selectReviewList" parameterType="String" resultType="Review">
+	select * from BOOK_REVIEW_TB where REVIEW_ID = #{id}
+</select>
+
+<select id="selectRentalStateList" parameterType="String" resultType="RentalState">
+	select * from BOOK_RENTAL_STATE_TB where RENTAL_REQ_ID = #{id}
+</select>
+
+<select id="selectBookMarkList" parameterType="String" resultType="BookMark">
+	select * from BOOK_BOOKMARK_TB where BOOKMARK_ID = #{id}
+</select>
+
+<!-- 정식 8/7 commit *** end *** -->
+
+</mapper>

@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 비밀번호 암호화를 위한 xml 파일 -->
+
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<!-- 주석 확인 : SEGroup과 changbi 통합하면서 중복되는 bcrypt bean을 주석 처리     -->
+    <!--  <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />   -->
+
+	 <http pattern="/fap/agency/**" auto-config="true" use-expressions="true" disable-url-rewriting="true">
+		<intercept-url pattern="/fap/agency/agency_login" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_main" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_insert_form" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_security_invalidate" access="permitAll" />
+		<intercept-url pattern="/fap/agency/jobfair_search_list" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_board_contents_search" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_forgot_id" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_forgot_id_result" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_request_certification_code" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_check_certification_code" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_forgot_password" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_forgot_password_form" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_forgot_password_result" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_forgot_password_change" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_terms_update" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_faq" access="permitAll" />
+		<intercept-url pattern="/fap/agency/language_change" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_board_content_list" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_board_content_list_search" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_terms_and_condition_policy" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_board_contents_datail" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_roadmap_image" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_ses_user_service" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_2020_fair_schedule" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_step" access="permitAll" />
+		<intercept-url pattern="/fap/agency/agency_comps_and_partners" access="permitAll" />
+		
+		<intercept-url pattern="/fap/agency/**" access="hasAnyRole('A0104')" />
+
+
+		<custom-filter ref="ajaxSessionTimeoutFilter" after="EXCEPTION_TRANSLATION_FILTER" />
+
+		<csrf disabled="true"/>
+		<form-login
+			login-page="/fap/agency/agency_login"
+			username-parameter="user_id"
+			password-parameter="user_pw"
+			login-processing-url="/fap/agency/login"
+			authentication-failure-url="/fap/agency/agency_login?error=1"
+			default-target-url="/fap/agency/agency_login_success"	/>
+		
+		<logout
+			logout-url="/fap/agency/logout"
+			logout-success-url="/fap/agency/agency_login"
+			invalidate-session="true"	/>
+		<access-denied-handler error-page="/fap/agency/agency_access_denied"/>
+		
+	</http>
+	
+	<http pattern="/fap/company/**" auto-config="true" use-expressions="true" disable-url-rewriting="true">
+		<intercept-url pattern="/fap/company/company_login" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_main" access="permitAll" />
+		<intercept-url pattern="/fap/company/language_change" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_insert_form" access="permitAll" />
+		<intercept-url pattern="/fap/company/user_id_check" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_security_invalidate" access="permitAll" />
+		<intercept-url pattern="/fap/company/jobfair_search_list" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_forgot_id" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_forgot_id_result" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_request_certification_code" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_check_certification_code" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_board_contents_search" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_forgot_password" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_forgot_password_form" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_forgot_password_result" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_forgot_password_change" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_terms_update" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_check" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_roadmap_image" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_faq" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_insert_complete" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_board_content_list" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_board_content_list_search" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_terms_and_condition_policy" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_board_contents_datail" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_popup_check" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_ses_user_service" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_2020_fair_schedule" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_step" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_comps_and_partners" access="permitAll" />
+		
+
+		<intercept-url pattern="/fap/company/**" access="hasAnyRole('A0103')" />
+		
+		<custom-filter ref="ajaxSessionTimeoutFilter" after="EXCEPTION_TRANSLATION_FILTER" />
+
+
+		<csrf disabled="true"/>
+		<form-login
+			login-page="/fap/company/company_login"
+			username-parameter="user_id"
+			password-parameter="user_pw"
+			login-processing-url="/fap/company/login"
+			authentication-failure-url="/fap/company/company_login?error=1"
+			default-target-url="/fap/company/company_login_success"	/>
+		
+		<logout
+			logout-url="/fap/company/logout"
+			logout-success-url="/fap/company/company_login"
+			invalidate-session="true"	/>
+		<access-denied-handler error-page="/fap/company/company_access_denied"/>
+		
+	</http>
+	
+	<http pattern="/fap/user/**" auto-config="true" use-expressions="true" disable-url-rewriting="true">
+		<intercept-url pattern="/fap/user/user_main" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_login" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_security_invalidate" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_insert_form" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_id_check" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_roadmap_image" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_forgot_id" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_forgot_id_result" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_request_certification_code" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_check_certification_code" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_forgot_password" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_forgot_password_form" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_forgot_password_result" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_forgot_password_change" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_insert_school" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_board_contents_search" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_main_popup" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_faq" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_open_pt_info" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_open_pt_edu_info" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_popup_check" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_open_pt_popup" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_open_edu_popup" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_board_content_list" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_board_content_list_search" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_board_contents_datail" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_ses_user_service" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_2020_fair_schedule" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_step" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_comps_and_partners" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_open_pt_info_login" access="hasAnyRole('A0100','A0101','A0102','A0103','A0104','A0106','A0600','A0601','A0602','A0108')" />
+		
+		
+		<intercept-url pattern="/fap/user/**" access="hasAnyRole('A0100','A0101','A0102','A0106','A0600','A0601','A0602','A0108')" />
+
+		<custom-filter ref="ajaxSessionTimeoutFilter" after="EXCEPTION_TRANSLATION_FILTER" />
+
+		<csrf disabled="true"/>
+		<form-login
+			login-page="/fap/user/user_login"
+			username-parameter="user_id"
+			password-parameter="user_pw"
+			login-processing-url="/fap/user/login"
+			authentication-failure-url="/fap/user/user_login?error=1"
+			default-target-url="/fap/user/user_login_success"	/>
+		
+		<logout
+			logout-url="/fap/user/logout"
+			logout-success-url="/fap/user/user_login"
+			invalidate-session="true"	/>
+		<access-denied-handler error-page="/fap/user/user_access_denied"/>
+		
+	</http>
+	
+	<http pattern="/fap/admin/**" auto-config="true" use-expressions="true" disable-url-rewriting="true">
+		<intercept-url pattern="/fap/admin/admin_login" access="permitAll" />
+		<intercept-url pattern="/fap/admin/admin_security_invalidate" access="permitAll" />
+		<intercept-url pattern="/fap/admin/**" access="hasAnyRole('A0600','A0601','A0602')" />
+
+		<custom-filter ref="ajaxSessionTimeoutFilter" after="EXCEPTION_TRANSLATION_FILTER" />
+
+
+		<csrf disabled="true"/>
+		<form-login
+			login-page="/fap/admin/admin_login"
+			username-parameter="user_id"
+			password-parameter="user_pw"
+			login-processing-url="/fap/admin/login"
+			authentication-failure-url="/fap/admin/admin_login?error=1"
+			default-target-url="/fap/admin/admin_login_success"	/>
+		
+		<logout
+			logout-url="/fap/admin/logout"
+			logout-success-url="/fap/admin/admin_login"
+			invalidate-session="true"	/>
+		<access-denied-handler error-page="/fap/admin/admin_access_denied"/>
+		
+	</http>
+	
+	<http pattern="/smp/admin/**" auto-config="true" use-expressions="true" disable-url-rewriting="true">
+		<intercept-url pattern="/smp/admin/adminlogin" access="permitAll" />
+		<intercept-url pattern="/smp/admin/**" access="hasAnyRole('A0600','A0601','A0602')" />
+		<csrf disabled="true"/>
+		<form-login
+			login-page="/smp/admin/adminlogin"
+			username-parameter="user_id"
+			password-parameter="user_pw"
+			login-processing-url="/smp/admin/login"
+			authentication-failure-url="/smp/admin/adminlogin?error=1"
+			default-target-url="/smp/admin/login_success"	/>
+		
+		<logout
+			logout-url="/smp/admin/logout"
+			logout-success-url="/smp/admin/loginlogin"
+			invalidate-session="true"	/>
+		<access-denied-handler error-page="/smp/user/access_denied"/>
+		
+	</http>
+	<http pattern="/smp/user/**" auto-config="true" use-expressions="true" disable-url-rewriting="true">
+		<intercept-url pattern="/smp/user/userlogin" access="permitAll" />
+		<intercept-url pattern="/smp/user/**" access="hasAnyRole('A0101','A0106','A0600','A0601','A0602')" />
+		<csrf disabled="true"/>
+		<form-login
+			login-page="/smp/user/userlogin"
+			username-parameter="user_id"
+			password-parameter="user_pw"
+			login-processing-url="/smp/user/loginlogin"
+			authentication-failure-url="/smp/user/userlogin?error=1"
+			default-target-url="/smp/login_success"	/>
+		
+		<logout
+			logout-url="/smp/user/logout"
+			logout-success-url="/smp/userlogin"
+			invalidate-session="true"	/>
+		<access-denied-handler error-page="/smp/user/access_denied"/>
+	</http>
+	
+	<http pattern="/book/user/**" auto-config="true" use-expressions="true" disable-url-rewriting="true">
+		<intercept-url pattern="/book/user/user_main" access="permitAll" />
+		<intercept-url pattern="/book/user/book_info" access="permitAll" />
+		<intercept-url pattern="/book/user/**" access="hasAnyRole('A0101','A0600','A0601','A0602')" />
+		<csrf disabled="true"/>
+		<form-login
+			login-page="/book/user/user_main"
+			username-parameter="user_id"
+			password-parameter="user_pw"
+			login-processing-url="/book/user/login"
+			authentication-failure-url="/book/user/user_main?error=1"
+			default-target-url="/book/user/user_login_success"	/>
+		
+		<logout
+			logout-url="/book/user/logout"
+			logout-success-url="/book/user/user_main"
+			invalidate-session="true"	/>
+		<access-denied-handler error-page="/book/user/user_access_denied"/>
+	
+	</http>
+	
+	<http pattern="/edu/admin/**" auto-config="true" use-expressions="true" disable-url-rewriting="true">
+		<intercept-url pattern="/edu/admin/admin_login_form" access="permitAll" />
+		<intercept-url pattern="/edu/admin/admin_join_form" access="permitAll" />
+		<intercept-url pattern="/edu/admin/admin_join" access="permitAll" />
+		<intercept-url pattern="/edu/admin/admin_security_invalidate" access="permitAll" />
+		<intercept-url pattern="/edu/admin/admin_info_setting_form" access="hasRole('A0600')" />
+		<intercept-url pattern="/edu/admin/**" access="hasAnyRole('A0600','A0601','A0602')" />
+		<csrf disabled="true"/>
+		<form-login
+			login-page="/edu/admin/admin_login_form"
+			username-parameter="user_id"
+			password-parameter="user_pw"
+			login-processing-url="/edu/admin/login"
+			authentication-failure-url="/edu/admin/admin_login_form?error=1"
+			default-target-url="/edu/admin/admin_login_success"	/>
+		
+		<logout
+			logout-url="/edu/admin/logout"
+			logout-success-url="/edu/admin/admin_login_form"
+			invalidate-session="true"	/>
+		<access-denied-handler error-page="/edu/admin/admin_access_denied"/>
+	</http>
+	
+		<http pattern="/lms/**" auto-config="true" use-expressions="true" disable-url-rewriting="true">
+ 	  	<intercept-url pattern="/lms/user/main" access="permitAll" />
+ 	  	<intercept-url pattern="/lms/user/oneplayer" access="permitAll" />
+		<intercept-url pattern="/lms/user/sub00-01" access="permitAll" />
+		<intercept-url pattern="/lms/user/sub00-02-02" access="permitAll" />
+		<intercept-url pattern="/lms/user/sub00-02-03" access="permitAll"/>
+		<intercept-url pattern="/lms/user/sub00-02" access="permitAll"/>
+		<intercept-url pattern="/lms/user/sub00-03-01" access="permitAll"/>
+		<intercept-url pattern="/lms/user/sub00-03" access="permitAll"/>
+		<intercept-url pattern="/lms/user/sub00-04-01" access="permitAll"/>
+		<intercept-url pattern="/lms/user/sub00-04" access="permitAll"/>
+		<intercept-url pattern="/lms/community/sub05-01-01" access="permitAll"/>
+		<intercept-url pattern="/lms/community/sub05-01-02" access="permitAll"/>
+		<intercept-url pattern="/lms/community/sub05-02" access="permitAll"/>
+		<intercept-url pattern="/lms/community/sub05-03" access="permitAll"/>
+		<intercept-url pattern="/lms/community/sub05-04" access="permitAll"/>
+		<intercept-url pattern="/lms/course/**" access="permitAll"/>
+		<intercept-url pattern="/lms/support/**" access="permitAll"/>
+		<intercept-url pattern="/lms/user/resetPw" access="permitAll"/>
+		<intercept-url pattern="/lms/user/joinMember" access="permitAll"/>
+		<intercept-url pattern="/lms/user/user_mobile_verification"  access="permitAll"/>
+		<intercept-url pattern="/lms/user/lostId" access="permitAll"/>
+		<intercept-url pattern="/lms/user/lostPw" access="permitAll"/>
+		<intercept-url pattern="/lms/user/user_request_certification_code" access="permitAll"/>
+		<intercept-url pattern="/lms/user/user_check_certification_code" access="permitAll"/>
+		<!-- <intercept-url pattern="/lms/user/**" access="hasAnyRole('A0200')" /> -->
+		
+		<!-- <intercept-url pattern="/lms/user/**" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0600','A0601','A0602')" />
+		<intercept-url pattern="/lms/community/sub05-04-write" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0600','A0601','A0602')" /> -->
+  		<intercept-url pattern="/lms/user/**" access="permitAll" />
+		<intercept-url pattern="/lms/community/sub05-04-write" access="permitAll" />
+		<csrf disabled="true"/>		
+		<form-login
+			login-page="/lms/user/sub00-01"
+			username-parameter="user_id"
+			password-parameter="user_pw"
+			login-processing-url="/lms/user/login"
+			authentication-failure-url="/lms/user/sub00-01?error=1"
+			default-target-url="/lms/user/user_login_success"	/>
+		
+		<logout
+			logout-url="/lms/user/logout"
+			logout-success-url="/lms/main"
+			invalidate-session="true"	/>
+		<access-denied-handler error-page="/lms/user/sub00-02-04"/>
+		
+		
+	</http>
+
+	
+<!-- 	<http pattern="/smtp/**" auto-config="true" use-expressions="true" disable-url-rewriting="true"> -->
+		
+<!-- 		<intercept-url pattern="/smtp/user/smtpNotice" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/smtpSurvey" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/> -->
+<!-- 		<intercept-url pattern="/smtp/mypage/smtp_regist" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/smtpScore" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/sub05-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/sub05-02" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/sub05-02-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/sub05-03" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/sub05-04" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/sub05-05" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/sub05-06" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/sub05-07" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/sub07-01-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/payback" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/update-information" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')" /> -->
+<!-- 		<intercept-url pattern="/smtp/user/widthdrawal" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')" /> -->
+<!-- 		<intercept-url pattern="/smtp/user/mileage" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')" /> -->
+<!-- 		<intercept-url pattern="/smtp/apply" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" /> -->
+<!-- 		<intercept-url pattern="/smtp/apply/sub00-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" /> -->
+<!-- 		<intercept-url pattern="/smtp/apply/sub00-02" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" /> -->
+		
+<!-- 		<intercept-url pattern="/rainbow" access="permitAll" /> -->
+<!-- 		<intercept-url pattern="/smtp/user/login" access="permitAll" /> -->
+<!-- 		<intercept-url pattern="/smtp/user/signup" access="permitAll" /> -->
+<!-- 		<intercept-url pattern="/smtp/user/find-id-result" access="permitAll"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/find-id" access="permitAll"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/find-pw-result" access="permitAll"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/find-pw" access="permitAll"/> -->
+<!-- 		<intercept-url pattern="/smtp/community/notice" access="permitAll"/> -->
+<!-- 		<intercept-url pattern="/smtp/community/event" access="permitAll"/> -->
+<!-- 		<intercept-url pattern="/smtp/community/leacture-review" access="permitAll"/> -->
+<!-- 		<intercept-url pattern="/smtp/community/presentation" access="permitAll"/> -->
+<!-- 		<intercept-url pattern="/smtp/community/free-board" access="permitAll"/> -->
+<!-- 		<intercept-url pattern="/smtp/course/**" access="permitAll"/> -->
+<!-- 		<intercept-url pattern="/smtp/support/**" access="permitAll"/> -->
+		
+<!-- 		<intercept-url pattern="/smtp/user/user-enroll" access="permitAll"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/tos" access="permitAll"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/user_request_certification_code" access="permitAll"/> -->
+<!-- 		<intercept-url pattern="/smtp/user/user_check_certification_code" access="permitAll"/> -->
+		
+<!--   		<intercept-url pattern="/smtp/user/**" access="permitAll" /> -->
+<!-- 		<intercept-url pattern="smtp/community/free-board" access="permitAll" /> -->
+		
+<!-- 		<csrf disabled="true"/>		 -->
+		
+<!-- 		<form-login -->
+<!-- 			login-page="/smtp/user/sub01-01" -->
+<!-- 			username-parameter="user_id" -->
+<!-- 			password-parameter="user_pw" -->
+<!-- 			login-processing-url="/smtp/user/login" -->
+<!-- 			authentication-failure-url="/smtp/user/sub01-01?error=1" -->
+<!-- 			default-target-url="/smtp/user/user_login_success"	/> -->
+		
+<!-- 		<logout -->
+<!-- 			logout-url="/smtp/logout" -->
+<!-- 			logout-success-url="/rainbow" -->
+<!-- 			invalidate-session="true"	/> -->
+<!-- 		<access-denied-handler error-page="/smtp/user/deny"/>		 -->
+		
+<!-- 	</http> -->
+<!-- 주석 확인 : security-context.xml의 와일드카드 관련 security와 충돌하기 때문에 주석 처리 후 security-context.xml 설정에 복사 통합 처리-->
+<!-- 
+ 	 <http pattern="/**" auto-config="true" use-expressions="true" disable-url-rewriting="true">
+		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/edu/user/user_pay_ini" access="hasAnyRole('A0100','A0101','A0105','A0106','A0600','A0601','A0602')" />
+        <intercept-url pattern="/edu/user/user_delete" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+		<intercept-url pattern="/edu/user/user_update_form" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+		<intercept-url pattern="/edu/user/user_update_json" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_update" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_delete" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_apply_history" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_pay_status" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_refund_req" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_refund_cancel" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_pay_cancel" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_consulting_list" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+        <intercept-url pattern="/edu/user/user_pay_info" access="hasAnyRole('A0100','A0101','A0105','A0106')" />
+		<intercept-url pattern="/edu/user/**" access="permitAll" />
+		<intercept-url pattern="/edu/apply/apply_main" access="permitAll" />
+		<intercept-url pattern="/edu/apply/apply_guide" access="permitAll" />
+		<intercept-url pattern="/edu/apply/apply_teacher" access="permitAll" />
+        <intercept-url pattern="/edu/apply/kmove" access="permitAll" />
+        <intercept-url pattern="/edu/apply/cup" access="permitAll" />
+        <intercept-url pattern="/edu/apply/kmove_cup" access="permitAll" />
+        <intercept-url pattern="/edu/apply/scitmaster_seoul" access="permitAll" />
+        <intercept-url pattern="/edu/apply/it101_menu" access="permitAll" />
+        <intercept-url pattern="/edu/apply/it101_detail" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_c1" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_c2" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_springboot2" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_python" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_java1" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_java2" access="permitAll" />
+
+        <intercept-url pattern="/edu/apply/short_term_work_in_japan" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_japan_oa" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_japan_on_demand" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_japan_employment" access="permitAll" />
+        <intercept-url pattern="/edu/apply/short_term_japan_sjpt" access="permitAll" />
+        
+        <intercept-url pattern="/edu/community/notice2" access="hasAnyRole('A0101','A0105','A0106')" />
+        
+        <intercept-url pattern="/edu/apply/long/edu/apply/it101_detail_term_list" access="permitAll" />
+		<intercept-url pattern="/edu/apply/**" access="hasAnyRole('A0100','A0101','A0105','A0106','A0600','A0601','A0602')" />
+		<csrf disabled="true"/>
+		<form-login
+			login-page="/edu/user/user_login_form"
+			username-parameter="user_id"
+			password-parameter="user_pw"
+			login-processing-url="/edu/user/login"
+			authentication-failure-url="/edu/user/user_login_form?error=1"
+			default-target-url="/edu/user/user_login_success"	/>
+		
+		<logout
+			logout-url="/edu/logout"
+			logout-success-url="/ictcenter"
+			invalidate-session="true"	/>
+		<access-denied-handler error-page="/edu/user/user_access_denied"/>
+		
+		<session-management>
+			<concurrency-control 
+				max-sessions="1"
+				expired-url="/edu/user/user_login_form"
+				session-registry-alias="sessionRegistry" />
+		</session-management>
+		
+		<headers>
+			<frame-options       policy="SAMEORIGIN" />
+		</headers>
+	</http> 
+-->
+	
+	<beans:bean id="ajaxSessionTimeoutFilter" class="global.segroup.util.AjaxSessionTimeoutFilter">
+		<beans:property name="ajaxHeader" value="AJAX" />
+	</beans:bean>
+	
+	<beans:bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/> 
+    <authentication-manager id="authUser">
+        <authentication-provider ref="segroupAuthenticationProvider"/>
+    </authentication-manager>
+    <beans:bean id="segroupAuthenticationProvider" class="global.segroup.util.SEGroupAuthenticationProvider"/>  
+</beans:beans>

@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.community.dao.LmsCommunityDao">
+
+	<!-- 전체 공지사항 resultMap -->
+	<resultMap type="hashmap" id="boardCt">
+		<result javaType="int" column="BOARD_CONTENT_SEQ" property="board_content_seq"/>
+		<result javaType="string" column="BOARD_CONTENT_TITLE" property="board_content_title"/>
+		<result javaType="string" column="BOARD_CONTENT_CT" property="board_content_ct"/>
+		<result javaType="string" column="BOARD_CONTENT_NM" property="board_content_nm"/>
+		<result javaType="int" column="BOARD_CONTENT_HIT" property="board_content_hit"/>
+		<result javaType="date" column="BOARD_CONTENT_INS_DT" property="board_content_ins_dt"/>
+		<result javaType="string" column="BOARD_CONTENT_INS_ID" property="board_content_ins_id"/>
+		<result javaType="date" column="BOARD_CONTENT_UDT_DT" property="board_content_udt_dt"/>
+		<result javaType="string" column="BOARD_CONTENT_UDT_ID" property="board_content_udt_id"/>
+		<result javaType="string" column="BOARD_CONTENT_IMP" property="board_content_imp"/>
+		<association property="boardGt" javaType="java.util.HashMap">
+			<result javaType="int" column="BOARD_SEQ" property="board_seq"/>
+			<result javaType="string" column="BOARD_GB" property="board_gb"/>
+			<result javaType="string" column="BOARD_NM" property="board_nm"/>
+			<result javaType="string" column="BOARD_TP" property="board_tp"/>
+			<result javaType="string" column="BOARD_DETAIL_GB" property="board_detail_gb"/>
+			<result javaType="string" column="BOARD_ICON_PD" property="board_icon_pd"/>
+		</association>
+		<collection property="file" javaType="java.util.ArrayList" resultMap="boardAttachFile"></collection>
+	</resultMap>
+	
+	<resultMap type="hashmap" id="boardAttachFile">
+		<result javaType="int" column="BOARD_FILE_SEQ" property="board_file_seq"/>
+		<result javaType="string" column="BOARD_FILE_SAVED" property="board_file_saved"/>
+		<result javaType="string" column="FILE_ID" property="file_id"/>
+		<result javaType="string" column="FILE_NAME" property="file_name"/>
+		<result javaType="string" column="ORIGIN_FILE_NAME" property="origin_file_name"/>
+		<result javaType="string" column="FILE_PATH" property="file_path"/>
+		<result javaType="string" column="FILE_EXT" property="file_ext"/>
+		<result javaType="int" column="FILE_SIZE" property="file_size"/>
+		<result javaType="string" column="URL_PATH" property="url_path"/>
+	</resultMap>
+	
+	<!-- 과정 공지사항 resultMap -->
+	<resultMap type="hashmap" id="courseNoticeMap">
+		<result javaType="int" column="ID" property="id"/>
+		<result javaType="string" column="LANG" property="lang"/>
+		<result javaType="string" column="BOARD_TYPE" property="board_type"/>
+		<result javaType="string" column="NOTICE_TYPE" property="notice_type"/>
+		<result javaType="string" column="ATTACH1_FILE" property="attach1_file"/>
+		<result javaType="string" column="ATTACH2_FILE" property="attach2_file"/>
+		<result javaType="int" column="FAQ_CODE" property="faq_code"/>
+		<result javaType="string" column="CARDINAL_ID" property="cardinal_id"/>
+		<result javaType="string" column="COURSE_ID" property="course_id"/>
+		<result javaType="string" column="COURSE_NAME" property="course_name"/>
+		<result javaType="string" column="CARDINAL_NAME" property="cardinal_name"/>
+		<result javaType="string" column="TEACHER_ID" property="teacher_id"/>
+		<result javaType="string" column="USER_ID" property="user_id"/>
+		<result javaType="string" column="ICON" property="icon"/>
+		<result javaType="string" column="TOP_YN" property="top_yn"/>
+		<result javaType="string" column="SECRET_YN" property="secret_yn"/>
+		<result javaType="string" column="TITLE" property="title"/>
+		<result javaType="string" column="COMMENT" property="comment"/>
+		<result javaType="int" column="HITS" property="hits"/>
+		<result javaType="int" column="RECOMMEND" property="recommend"/>
+		<result javaType="int" column="NONRECOMMEND" property="nonrecommend"/>
+		<result javaType="int" column="SHARE" property="share"/>
+		<result javaType="int" column="ORDER_NUM" property="order_num"/>
+		<result javaType="string" column="USE_YN" property="use_yn"/>
+		<result javaType="string" column="REG_USER" property="reg_user"/>
+		<result javaType="string" column="REG_DATE" property="reg_date"/>
+		<result javaType="int" column="REPLYCNT" property="replyCnt"/>
+		<collection property="file" javaType="java.util.ArrayList" resultMap="commonFileMap"></collection>
+	</resultMap>
+	
+	<resultMap type="hashmap" id="commonFileMap">
+		<result javaType="string" column="FILE_ID" property="file_id"/>
+		<result javaType="string" column="FILE_NAME" property="file_name"/>
+		<result javaType="string" column="ORIGIN_FILE_NAME" property="origin_file_name"/>
+		<result javaType="string" column="FILE_PATH" property="file_path"/>
+		<result javaType="string" column="FILE_EXT" property="file_ext"/>
+		<result javaType="int" column="FILE_SIZE" property="file_size"/>
+		<result javaType="string" column="URL_PATH" property="url_path"/>
+	</resultMap>
+	
+	<resultMap type="hashmap" id="replyMap">
+		<result javaType="int" column="ID" property="id"/>
+		<result javaType="int" column="BOARD_ID" property="board_id"/>
+		<result javaType="int" column="PARENT_ID" property="parent_id"/>
+		<result javaType="int" column="DEPTH" property="depth"/>
+		<result javaType="string" column="TITLE" property="title"/>
+		<result javaType="string" column="COMMENT" property="comment"/>
+		<result javaType="int" column="RECOMMEND" property="recommend"/>
+		<result javaType="int" column="NONRECOMMEND" property="nonrecommend"/>
+		<result javaType="string" column="USER_ID" property="user_id"/>
+		<result javaType="string" column="REG_DATE" property="reg_date"/>
+	</resultMap>
+	
+	<select id="selectBbsDetailPrevNext" resultType="hashmap">
+		select id, gubun
+		  from (
+			(
+			select id, 'PREV' AS gubun
+			  from CB_BOARD a
+			  where id &lt; #{id}
+  			  and a.board_type = #{board_type}
+			  <if test='notice_type != null and notice_type != ""'>
+			  and a.notice_type = #{notice_type}
+			  </if>
+			  order by a.reg_date desc limit 1
+			)
+			union
+			(
+			select id, 'NEXT' AS gubun
+			  from CB_BOARD a
+			  where id &gt; #{id}
+			  and a.board_type = #{board_type}
+			  <if test='notice_type != null and notice_type != ""'>
+			  and a.notice_type = #{notice_type}
+			  </if>
+			  order by a.reg_date asc limit 1
+			)
+		) c
+		order by gubun desc
+	</select>
+
+
+
+	<select id="selectBbsList" resultType="hashmap">
+		/*::::selectBbsList::::*/
+		select
+			a.id, a.board_type, a.notice_type, a.faq_code,
+			a.cardinal_id, a.course_id, a.teacher_id, a.user_id,
+			a.attach1_file, a.attach2_file, a.icon, a.top_yn,
+			a.title, a.comment, a.hits, a.recommend, a.nonrecommend,
+			a.share, a.order_num, a.use_yn, a.reg_user, a.reg_date,
+			DATE_FORMAT(STR_TO_DATE(a.reg_date,'%Y%m%d%H%i%s'),'%Y.%m.%d %H:%i') as reg_date_format1,
+			DATE_FORMAT(STR_TO_DATE(a.reg_date,'%Y%m%d%H%i%s'),'%Y.%m.%d') as reg_date_format2,
+			(SELECT name FROM FF_MEMBER WHERE id = a.reg_user) AS reg_name,
+			(SELECT USER_NM FROM COM_USER_TB WHERE USER_ID = a.user_id) AS user_name,
+			
+			<choose>
+			<when test='notice_type == "1"'>
+			(SELECT '공지사항' FROM DUAL) AS n_type
+			</when>
+			<otherwise>
+			(SELECT '이벤트' FROM DUAL) AS n_type
+			</otherwise>
+		    </choose>
+			
+		from CB_BOARD a
+		where 1 = 1
+		<include refid="sql_selectBbsList"/>
+		order by a.top_yn desc, a.reg_date desc
+	limit ${startPage}, ${visiblePages}
+	</select>
+
+
+
+
+	<select id="selectBbsListTotCnt" resultType="int">
+		/*::::selectBbsListTotCnt::::*/
+		select count(a.id) cnt
+		from CB_BOARD a
+		where 1 = 1
+		<include refid="sql_selectBbsList"/>
+	</select>
+
+
+
+
+	<sql id="sql_selectBbsList">
+		and a.board_type = #{board_type}
+		
+		<if test='board_type == "1" and notice_type == "1" || notice_type == "2"'>
+		and a.notice_type = #{notice_type}
+		</if>
+		
+		<if test='board_type == "1"'>
+			<choose>
+				<when test='notice_type != "7"'>and (a.notice_type is null || a.notice_type &lt;&gt; '7') /* 공문제외 */</when>
+				<otherwise>and a.notice_type = #{notice_type}</otherwise>
+			</choose>
+		</if>
+		<if test='search != null and searchbox == "tc"'>
+		and (a.title like CONCAT('%',#{search},'%') or a.comment like CONCAT('%',#{search},'%'))
+		</if>
+		<if test='search != null and searchbox == "t"'>
+		and (a.title like CONCAT('%',#{search},'%'))
+		</if>
+		<if test='search != null and searchbox == "c"'>
+		and (a.comment like CONCAT('%',#{search},'%'))
+		</if>
+		<!-- <if test='course_id != null and course_id != ""'>
+		and a.course_id = #{course_id}
+		</if> -->
+		<choose>
+			<when test='course_id != null and course_id != ""'>
+			and a.course_id = #{course_id}
+			</when>
+			<otherwise>
+			and a.course_id is null
+			</otherwise>
+		</choose>
+
+		<choose>
+			<when test='teacher_id != null and teacher_id != ""'>
+			and a.teacher_id = #{teacher_id}
+			</when>
+			<otherwise>
+			and (a.teacher_id IS NULL OR a.teacher_id = '')
+			</otherwise>
+		</choose>
+		<if test='cardinal_id != null and cardinal_id != ""'>
+		and a.cardinal_id = #{cardinal_id}
+		</if>
+		and a.use_yn = 'Y'
+<!-- 		and a.top_yn = 'N' -->
+	</sql>
+	<!-- 전체 공지사항 리스트 가져오기 -->
+ 	<select id="selectNotice" parameterType="hashmap" resultMap="boardCt">
+ 		SELECT
+ 			CT.BOARD_CONTENT_SEQ
+            ,GT.BOARD_SEQ
+            ,GT.BOARD_GB
+            ,GT.BOARD_NM
+            ,GT.BOARD_TP
+            ,GT.BOARD_DETAIL_GB
+            ,GT.BOARD_ICON_PD
+			,FT.BOARD_FILE_SEQ
+            ,FT.BOARD_FILE_SAVED
+            ,FAFD.FILE_NAME
+            ,FAFD.ORIGIN_FILE_NAME
+            ,FAFD.FILE_PATH
+            ,FAFD.FILE_EXT
+            ,FAFD.FILE_SIZE
+            ,FAFD.URL_PATH
+ 			,CT.BOARD_CONTENT_TITLE
+ 			,CT.BOARD_CONTENT_CT
+ 			,CT.BOARD_CONTENT_NM
+ 			,CT.BOARD_CONTENT_HIT
+ 			,CT.BOARD_CONTENT_INS_DT
+ 			,CT.BOARD_CONTENT_INS_ID
+ 			,CT.BOARD_CONTENT_UDT_DT
+ 			,CT.BOARD_CONTENT_UDT_ID
+ 			,CT.BOARD_CONTENT_IMP
+ 		FROM
+ 			COM_BOARD_CONTENT_TB CT
+ 		LEFT JOIN COM_BOARD_GROUP_TB GT ON CT.BOARD_SEQ = GT.BOARD_SEQ
+        LEFT JOIN COM_BOARD_FILE_TB FT ON CT.BOARD_CONTENT_SEQ = FT.BOARD_CONTENT_SEQ
+        LEFT JOIN FF_ATTACH_FILE_DETAIL FAFD ON FT.BOARD_FILE_SAVED = FAFD.FILE_ID
+        WHERE
+ 			1=1
+ 		AND 
+ 			GT.BOARD_GB IN ('A0301', 'A0306', 'A0307')
+ 		AND
+ 			GT.BOARD_SEQ IN (10002, 21, 20, 12, 8)
+ 		<if test="board_content_seq != null and board_content_seq != 0">
+ 			AND
+ 				CT.BOARD_CONTENT_SEQ = #{board_content_seq}
+ 		</if>
+<!--  		<if test="board_detail_gb != null and board_detail_gb != ''"> -->
+<!--  			AND -->
+<!--  				GT.BOARD_DETAIL_GB = #{board_detail_gb} -->
+<!--  		</if> -->
+ 		<if test="board_content_imp != null and board_content_imp != ''">
+ 			AND
+ 				CT.BOARD_CONTENT_IMP = #{board_content_imp}
+ 		</if>
+ 		<if test="searchKeyword != null and searchKeyword != ''">
+			AND
+			<choose>
+				<when test="searchCondition == 'all'">
+					(CT.BOARD_CONTENT_TITLE LIKE CONCAT('%',#{searchKeyword},'%') || CT.BOARD_CONTENT_CT LIKE CONCAT('%',#{searchKeyword},'%'))
+				</when>
+				<when test="searchCondition == 'title'">
+					CT.BOARD_CONTENT_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+				</when>
+				<when test="searchCondition == 'content'">
+					CT.BOARD_CONTENT_CT LIKE CONCAT('%',#{searchKeyword},'%')
+				</when>
+			</choose>
+		</if>
+		ORDER BY CT.BOARD_CONTENT_INS_DT DESC
+ 	</select>
+ 	
+ 	<select id="selectNoticeTotalCnt" parameterType="hashmap" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			COM_BOARD_CONTENT_TB CT
+ 		LEFT JOIN COM_BOARD_GROUP_TB GT ON CT.BOARD_SEQ = GT.BOARD_SEQ
+        LEFT JOIN COM_BOARD_FILE_TB FT ON CT.BOARD_CONTENT_SEQ = FT.BOARD_CONTENT_SEQ
+        LEFT JOIN FF_ATTACH_FILE_DETAIL FAFD ON FT.BOARD_FILE_SAVED = FAFD.FILE_ID
+        WHERE
+ 			1=1
+ 		AND 
+ 			GT.BOARD_GB IN ('A0306', 'A0307')
+ 		<if test="board_content_seq != null">
+ 			AND
+ 				CT.BOARD_CONTENT_SEQ = #{board_content_seq}
+ 		</if>
+ 		<if test="board_detail_gb != null and board_detail_gb != ''">
+ 			AND
+ 				GT.BOARD_DETAIL_GB = #{board_detail_gb}
+ 		</if>
+ 		<if test="board_content_imp != null and board_content_imp != ''">
+ 			AND
+ 				CT.BOARD_CONTENT_IMP = #{board_content_imp}
+ 		</if>
+ 		<if test="searchKeyword != null and searchKeyword != ''">
+			AND
+			<choose>
+				<when test="searchCondition == 'all'">
+					(CT.BOARD_CONTENT_TITLE LIKE CONCAT('%',#{searchKeyword},'%') || CT.BOARD_CONTENT_CT LIKE CONCAT('%',#{searchKeyword},'%'))
+				</when>
+				<when test="searchCondition == 'title'">
+					CT.BOARD_CONTENT_TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+				</when>
+				<when test="searchCondition == 'content'">
+					CT.BOARD_CONTENT_CT LIKE CONCAT('%',#{searchKeyword},'%')
+				</when>
+				<when test="searchCondition == 'author'">
+					CT.BOARD_CONTENT_NM LIKE CONCAT('%',#{searchKeyword},'%')
+				</when>
+			</choose>
+		</if>
+		ORDER BY CT.BOARD_CONTENT_INS_DT DESC
+ 	</select>
+ 	
+	<!-- 공지사항 조회수 -->
+	<update id="updateNoticeHit" parameterType="hashmap">
+		UPDATE 
+			COM_BOARD_CONTENT_TB
+		SET
+				BOARD_CONTENT_HIT = BOARD_CONTENT_HIT + 1
+		WHERE
+			BOARD_CONTENT_SEQ = #{board_content_seq}
+	</update>
+	<!-- 과정 공지사항 -->
+	<select id="selectCourseNotice" parameterType="hashmap" resultMap="courseNoticeMap">
+		SELECT
+			CB.ID
+			, CB.LANG
+			, CB.BOARD_TYPE
+			, CB.NOTICE_TYPE
+			, CB.FAQ_CODE
+			, CB.CARDINAL_ID
+			, CB.COURSE_ID
+			, CC.NAME AS COURSE_NAME
+			, CCA.NAME AS CARDINAL_NAME
+			, CB.TEACHER_ID
+			, CB.USER_ID
+			, CB.ATTACH1_FILE
+			, FAFD.FILE_ID
+			, FAFD.FILE_NAME
+            , FAFD.ORIGIN_FILE_NAME
+            , FAFD.FILE_PATH
+            , FAFD.FILE_EXT
+            , FAFD.FILE_SIZE
+            , FAFD.URL_PATH
+			, CB.ATTACH2_FILE
+			, CB.ICON
+			, CB.TOP_YN
+			, CB.SECRET_YN
+			, CB.TITLE
+			, CB.COMMENT
+			, CB.HITS
+			, CB.RECOMMEND
+			, CB.NONRECOMMEND
+			, CB.SHARE
+			, CB.ORDER_NUM
+			, CB.USE_YN
+			, CB.REG_USER
+			, CB.REG_DATE
+			, (SELECT COUNT(*) FROM CB_BOARD_REPLY CBR WHERE CBR.BOARD_ID = CB.ID) AS REPLYCNT
+		FROM CB_BOARD CB
+		INNER JOIN CB_COURSE CC ON CB.COURSE_ID = CC.ID
+		INNER JOIN CB_CARDINAL CCA ON CB.CARDINAL_ID = CCA.ID
+		LEFT OUTER JOIN ff_attach_file_detail FAFD ON FAFD.FILE_ID = CB.ATTACH1_FILE OR FAFD.FILE_ID = CB.ATTACH2_FILE
+		WHERE
+			1=1
+		<if test="board_type != null and board_type != 0">
+			AND
+				CB.BOARD_TYPE = #{board_type}
+		</if>
+		<if test="cardinal_id != null and cardinal_id !=''">
+			AND
+			CB.COURSE_ID = #{course_id}
+			AND
+			CB.CARDINAL_ID = #{cardinal_id}
+		</if>
+		<if test="id != null and id != 0">
+ 			AND
+ 				CB.ID = #{id}
+ 		</if>
+ 		<if test="searchKeyword != null and searchKeyword != ''">
+			AND
+			<choose>
+				<when test="searchCondition == 'all'">
+					(CB.TITLE LIKE CONCAT('%',#{searchKeyword},'%') || CB.COMMENT LIKE CONCAT('%',#{searchKeyword},'%'))
+				</when>
+				<when test="searchCondition == 'title'">
+					CB.TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+				</when>
+				<when test="searchCondition == 'content'">
+					CB.COMMENT LIKE CONCAT('%',#{searchKeyword},'%')
+				</when>
+			</choose>
+		</if>
+		ORDER BY CB.REG_DATE DESC
+		<if test="startPage != null">
+			limit #{startPage}, #{visiblePages}
+		</if>
+	</select>
+	<!-- 과정 공지사항 전체개수 -->
+	<select id="selectCourseNoticeTotalCnt" resultType="int" parameterType="hashmap">
+		SELECT
+			COUNT(*)
+		FROM CB_BOARD CB
+		INNER JOIN CB_COURSE CC ON CB.COURSE_ID = CC.ID
+		INNER JOIN CB_CARDINAL CCA ON CB.CARDINAL_ID = CCA.ID
+		LEFT OUTER JOIN ff_attach_file_detail FAFD ON FAFD.FILE_ID = CB.ATTACH1_FILE OR FAFD.FILE_ID = CB.ATTACH2_FILE
+		WHERE
+			1=1
+		<if test="board_type != null and board_type != 0">
+			AND
+				CB.BOARD_TYPE = #{board_type}
+		</if>
+		<if test="cardinal_id != null and cardinal_id !=''">
+			AND
+			CB.COURSE_ID = #{course_id}
+			AND
+			CB.CARDINAL_ID = #{cardinal_id}
+		</if>
+		<if test="id != null and id != 0">
+ 			AND
+ 				CB.ID = #{id}
+ 		</if>
+ 		<if test="searchKeyword != null and searchKeyword != ''">
+			AND
+			<choose>
+				<when test="searchCondition == 'all'">
+					(CB.TITLE LIKE CONCAT('%',#{searchKeyword},'%') || CB.COMMENT LIKE CONCAT('%',#{searchKeyword},'%'))
+				</when>
+				<when test="searchCondition == 'title'">
+					CB.TITLE LIKE CONCAT('%',#{searchKeyword},'%')
+				</when>
+				<when test="searchCondition == 'content'">
+					CB.COMMENT LIKE CONCAT('%',#{searchKeyword},'%')
+				</when>
+			</choose>
+		</if>
+	</select>
+	<!-- 	과정 공지사항 조회수 -->
+	<update id="updateCourseNoticeHit" parameterType="hashmap">
+		UPDATE 
+			CB_BOARD
+		SET
+				HITS = HITS + 1
+		WHERE
+			ID = #{id}
+	</update>
+	<!-- 과정 qna작성(하지만 cb_board에 insert하는 용도로 공통사용 가능) -->
+	<insert id="insertQna" parameterType="hashmap">
+		INSERT INTO CB_BOARD
+		(
+			ID,
+			LANG,
+			BOARD_TYPE,
+			NOTICE_TYPE,
+			FAQ_CODE,
+			CARDINAL_ID,
+			COURSE_ID,
+			TEACHER_ID,
+			USER_ID,
+			ATTACH1_FILE,
+			ATTACH2_FILE,
+			ICON,
+			TOP_YN,
+			TITLE,
+			COMMENT,
+			HITS,
+			RECOMMEND,
+			NONRECOMMEND,
+			SHARE,
+			ORDER_NUM,
+			REG_USER,
+			REG_DATE,
+			UPD_USER,
+			UPD_DATE
+		) VALUES (
+			#{id},
+			#{lang},
+			#{board_type},
+			#{noticeType},
+			#{faqCode},
+			#{cardinal_id},
+			#{course_id},
+			#{teacherId},
+			#{user_id},
+			#{attach1_file},
+			#{attach2_file},
+			#{icon},
+			#{topYn},
+			#{title},
+			#{comment},
+			0,
+			0,
+			0,
+			0,
+			1,
+			#{user_id},
+			DATE_FORMAT(NOW(),'%Y%m%d%H%i%s'),
+			#{user_id},
+			DATE_FORMAT(NOW(),'%Y%m%d%H%i%s')
+		)
+		ON DUPLICATE KEY UPDATE
+			NOTICE_TYPE = VALUES(NOTICE_TYPE),
+			FAQ_CODE = VALUES(FAQ_CODE),
+			CARDINAL_ID = VALUES(CARDINAL_ID),
+			COURSE_ID = VALUES(COURSE_ID),
+			TEACHER_ID = VALUES(TEACHER_ID),
+			ATTACH1_FILE = VALUES(ATTACH1_FILE),
+			ATTACH2_FILE = VALUES(ATTACH2_FILE),
+			ICON = VALUES(ICON),
+			TOP_YN = VALUES(TOP_YN),
+			TITLE = VALUES(TITLE),
+			COMMENT = VALUES(COMMENT),
+			HITS = VALUES(HITS),
+			RECOMMEND = VALUES(RECOMMEND),
+			NONRECOMMEND = VALUES(NONRECOMMEND),
+			SHARE = VALUES(SHARE),
+			ORDER_NUM = VALUES(ORDER_NUM),
+			UPD_USER = VALUES(UPD_USER),
+			UPD_DATE = VALUES(UPD_DATE)
+	</insert>
+	<!-- 과정 qna 삭제 -->
+	<delete id="deleteQna" parameterType="hashmap">
+		DELETE FROM CB_BOARD
+		WHERE ID = #{id}
+	</delete>
+	<!-- 첨부파일 삭제 -->
+	<update id="deleteAttachFile" parameterType="hashmap">
+		UPDATE CB_BOARD
+		SET
+			ATTACH1_FILE = NULL
+		WHERE ID = #{id}
+	</update>
+	<!-- 과정 QNA댓글 작성 -->
+	<insert id="insertQnaReply" parameterType="hashmap">
+		INSERT INTO CB_BOARD_REPLY (
+			ID
+			, BOARD_ID
+			, PARENT_ID
+			, USER_ID
+			, DEPTH
+			, ATTACH1_FILE
+			, ATTACH2_FILE
+			, TITLE
+			, COMMENT
+			, HITS
+			, RECOMMEND
+			, NONRECOMMEND
+			, SHARE
+			, ORDER_NUM
+			, USE_YN
+			, REG_USER
+			, REG_DATE
+			, UPD_USER
+			, UPD_DATE
+		) VALUES (
+			#{id}
+			, #{board_id}
+			, #{parent_id}
+			, #{user_id}
+			, #{depth}
+			, #{attach1_file}
+			, #{attach2_file}
+			, #{title}
+			, #{comment}
+			, 0
+			, 0
+			, 0
+			, 0
+			, #{order_num}
+			, 'Y'
+			, #{user_id}
+			, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s')
+			, #{user_id}
+			, DATE_FORMAT(NOW(),'%Y%m%d%H%i%s')
+		)
+		ON DUPLICATE KEY UPDATE
+			ATTACH1_FILE = VALUES(ATTACH1_FILE)
+			, ATTACH2_FILE = VALUES(ATTACH2_FILE)
+			, TITLE = VALUES(TITLE)
+			, COMMENT = VALUES(COMMENT)
+			, UPD_DATE = NOW()
+	</insert>
+	<!-- 과정qna댓글삭제 -->
+	<delete id="deleteQnaReply" parameterType="hashmap">
+		DELETE FROM CB_BOARD_REPLY
+		WHERE ID = #{id}
+	</delete>
+	<!-- 과정qna 댓글 리스트 -->
+	<select id="selectQnaReplyList" parameterType="hashmap" resultMap="replyMap">
+		SELECT
+			ID
+			,BOARD_ID
+			,PARENT_ID
+			,DEPTH
+			,TITLE
+			,COMMENT
+			,RECOMMEND
+			,NONRECOMMEND
+			,USER_ID
+			,REG_DATE
+		FROM
+			CB_BOARD_REPLY
+		WHERE
+			BOARD_ID = #{id}
+		limit #{replyStartPage}, #{replyVisiblePages}
+	</select>
+	<!-- 과정qna 댓글 총개수 -->
+	<select id="selectQnaReplyListTotalCnt" parameterType="hashmap" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			CB_BOARD_REPLY
+		WHERE
+			BOARD_ID = #{id}
+	</select>
+	
+	<!-- 과정 qna 추천 비추천 -->
+	<update id="updateQnaReplyRecommend" parameterType="hashmap">
+		UPDATE CB_BOARD_REPLY
+		SET
+			<choose>
+				<when test="recommend != null and recommend !=0">
+					RECOMMEND = RECOMMEND + 1
+				</when>
+				<when test="nonRecommend != null and nonRecommend !=0">
+					NONRECOMMEND = NONRECOMMEND + 1
+				</when>
+			</choose>
+		WHERE
+			ID = #{id}
+	</update>
+</mapper>

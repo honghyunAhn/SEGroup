@@ -1,0 +1,44 @@
+/* Reset Styles
+***********************/
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed,figure, figcaption, footer, header, hgroup,menu, nav, output, ruby, section, summary,time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+body {line-height: 1;}
+blockquote, q demo
+blockquote:before, blockquote:after,q:before, q:after {content: ''; content: none;}
+table {border-collapse: collapse; border-spacing: 0;}
+strong {font-weight: bold;}
+em {font-style: italic;}
+
+
+/* --Clearfix */
+.cf:before,
+.cf:after {content:""; display:table;}
+.cf:after {clear:both;}
+.cf {zoom:1;}
+
+
+/* Layout
+***********************/
+#container {width: 100%;}
+#main {overflow: hidden; height: 590px;}
+
+
+
+/* Media Queries
+***********************/
+@media screen and (max-width: 960px) {
+  #container {width: 100%;}
+  #main {width: 100%;}
+
+}
+@media screen and (max-width: 768px) {
+  #container {width: 100%;}
+  header {width: 100%; float: none; text-align: center;}
+  header img  {width:120px;}
+  header h1  { margin: 0 auto 10px; font-size: 32px; }
+  header h2  { font-size: 16px; }
+  header .button  { margin-bottom: 28px; }
+
+  #main {width: 100%;}
+}

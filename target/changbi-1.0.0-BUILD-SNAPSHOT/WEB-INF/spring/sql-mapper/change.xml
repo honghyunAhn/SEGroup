@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.aracomm.changbi.mypage.dao.ChangeDao">
+
+	<!-- 취소/연기 정책 -->
+	<select id="selectChangePolicy" resultType="com.aracomm.changbi.mypage.vo.ChangePolicyVo">
+		SELECT
+			ID AS id
+			, DELAY_COURSE_DAY AS delayCourseDay
+			, DELAY_TRAIN_DAY AS delayTrainDay
+			, CANCEL_COURSE_DAY AS cancelCourseDay
+			, CANCEL_TRAIN_DAY AS CancelTrainDay
+		FROM CB_POLICY_DELAY_CANCEL
+		WHERE 1 = 1
+			AND USE_YN = 'Y'
+		ORDER BY UPD_DATE DESC
+		LIMIT 0, 1
+	</select>
+
+	<!-- 연수 연기/변경/취소 가능 수강 수 -->
+	<select id="selectChangeableLectureCnt" parameterType="com.aracomm.changbi.mypage.vo.LectureSearchVo" resultType="int">
+		<![CDATA[
+		SELECT COUNT(1)
+		FROM CB_LEARN_APP AS CLA
+			JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+			JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+		WHERE CLA.USER_ID = #{user_id}
+			AND CLA.PAYMENT_STATE IN (2)
+			AND CLA.USE_YN = 'Y'
+			AND CLA.REQ_TYPE IS NULL
+			AND TO_DAYS(CCA.LEARN_END_DATE) >= TO_DAYS(NOW())
+		]]>
+	</select>
+
+	<!-- 연수 연기/변경/취소 가능 수강목록 -->
+	<select id="selectChangeableLectureList" parameterType="com.aracomm.changbi.mypage.vo.LectureSearchVo" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			CLA.ID
+			, CLA.GROUP_ID
+			, CLA.CARDINAL_ID
+			, CLA.COURSE_ID
+			, IFNULL(CLA.DES_NUM, '') AS DES_NUM /*연수지명번호*/
+			, CCA.LEARN_TYPE /*연수구분*/
+			, CCA.NAME AS CARDINAL_NAME /*기수명*/
+			, CONCAT(IF(LOCATE(CCA.LEARN_TYPE, 'J')>0,'직무 ',''), IF(LOCATE(CCA.LEARN_TYPE,'S')>0,'자율 ',''),IF(LOCATE(CCA.LEARN_TYPE,'M')>0,'집합 ',''), IF(LOCATE(CCA.LEARN_TYPE,'G')>0,'단체 ','')) AS LEARN_TYPE_NAME
+			, CCB.COURSE_CODE /*연수영역*/
+			, (SELECT`NAME` FROM FF_CODE WHERE CODE = CCB.COURSE_CODE AND GROUP_ID = 'course') AS COURSE_CODE_NAME
+			, CCB.NAME /*연수과정*/
+			, CCB.CREDIT /*학점*/
+			, CCA.LEARN_START_DATE /*연수시작일*/
+			, CCA.LEARN_END_DATE /*연수종료일*/
+			, CLA.PAYMENT_STATE
+			, IFNULL(CCA.CANCEL, 0) AS CANCEL	/*취소가능일*/
+			, IFNULL(TO_DAYS(CLA.REG_DATE) - TO_DAYS(NOW()), 0) AS DIFF_APP /*수강신청일로부터 경과일*/
+			, IFNULL(TO_DAYS(CLA.PAYMENT_DATE) - TO_DAYS(NOW()), 0) AS DIFF_PAYMENT /*결제일로부터 경과일*/
+			, IFNULL(TO_DAYS(CCA.LEARN_START_DATE) - TO_DAYS(NOW()), 0) AS DIFF_LEARN /*연수시작일로부터 경과일*/
+		FROM CB_LEARN_APP AS CLA
+			JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+			JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+		WHERE CLA.USER_ID = #{user_id}
+			AND CLA.PAYMENT_STATE IN (2)
+			AND CLA.USE_YN = 'Y'
+			AND CLA.REQ_TYPE IS NULL /*변경요청이 없는 연수과정만 조회*/
+			AND TO_DAYS(CCA.LEARN_END_DATE) >= TO_DAYS(NOW())
+		ORDER BY CCA.LEARN_START_DATE ASC
+		LIMIT ${visiblePages} OFFSET ${skipRows}
+		]]>
+	</select>
+
+	<!-- 연수 연기/변경/취소 요청중인 수강 수 -->
+	<select id="selectChangedLectureCnt" parameterType="com.aracomm.changbi.mypage.vo.LectureSearchVo" resultType="int">
+		SELECT COUNT(1)
+		FROM CB_LEARN_APP AS CLA
+			JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+			JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+		WHERE CLA.USER_ID = #{user_id}
+			AND CLA.PAYMENT_STATE IN (2)
+			AND CLA.USE_YN = 'Y'
+			AND CLA.REQ_TYPE IS NOT NULL
+	</select>
+
+	<!-- 연수 연기/변경/취소 요청중인 수강목록 -->
+	<select id="selectChangedLectureList" parameterType="com.aracomm.changbi.mypage.vo.LectureSearchVo" resultType="hashmap">
+		SELECT
+			CLA.ID
+			, CLA.GROUP_ID
+			, CLA.CARDINAL_ID
+			, CLA.COURSE_ID
+			, IFNULL(CLA.DES_NUM, '') AS DES_NUM /*연수지명번호*/
+			, CCA.LEARN_TYPE /*연수구분*/
+			, CCA.NAME AS CARDINAL_NAME /*기수명*/
+			, CONCAT(IF(LOCATE(CCA.LEARN_TYPE, 'J')>0,'직무 ',''), IF(LOCATE(CCA.LEARN_TYPE,'S')>0,'자율 ',''),IF(LOCATE(CCA.LEARN_TYPE,'M')>0,'집합 ',''), IF(LOCATE(CCA.LEARN_TYPE,'G')>0,'단체 ','')) AS LEARN_TYPE_NAME
+			, CCB.COURSE_CODE /*연수영역*/
+			, (SELECT`NAME` FROM FF_CODE WHERE CODE = CCB.COURSE_CODE AND GROUP_ID = 'course') AS COURSE_CODE_NAME
+			, CCB.NAME /*연수과정*/
+			, CCB.CREDIT /*학점*/
+			, CCA.LEARN_START_DATE /*연수시작일*/
+			, CCA.LEARN_END_DATE /*연수종료일*/
+			, CLA.PAYMENT_STATE
+			, CCB.MAIN_TB_ID
+			, CCB.SUB_TB_ID
+			, CLA.REQ_TYPE
+			, (SELECT STATE FROM CB_LEARN_CHANGE_APP WHERE LEARN_APP_ID = CLA.ID AND USER_ID = #{user_id} AND USE_YN = 'Y') AS CHANGE_STATE
+			, (SELECT STATE FROM CB_LEARN_DELAY_APP WHERE LEARN_APP_ID = CLA.ID AND USER_ID = #{user_id} AND USE_YN = 'Y') AS DELAY_STATE
+			, (SELECT STATE FROM CB_LEARN_CANCEL_APP WHERE LEARN_APP_ID = CLA.ID AND USER_ID = #{user_id} AND USE_YN = 'Y') AS CANCEL_STATE
+		FROM CB_LEARN_APP AS CLA
+			JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+			JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+		WHERE CLA.USER_ID = #{user_id}
+			AND CLA.PAYMENT_STATE IN (2)
+			AND CLA.USE_YN = 'Y'
+			AND CLA.REQ_TYPE IS NOT NULL /*변경요청이 발생한 과정만 조회*/
+		ORDER BY CCA.LEARN_START_DATE ASC
+		LIMIT ${visiblePages} OFFSET ${skipRows}
+	</select>
+
+	<!-- 현재선택과정의 정보 조회 -->
+	<select id="selectCurrentLecture" resultType="hashmap">
+		SELECT
+				CLA.ID
+				, CLA.GROUP_ID
+				, CLA.CARDINAL_ID
+				, CLA.COURSE_ID
+				, CCB.CREDIT /*학점*/
+				, CCA.NAME AS CARDINAL_NAME
+				, CCB.NAME AS COURSE_NAME
+			FROM CB_LEARN_APP AS CLA
+				JOIN CB_CARDINAL AS CCA ON CLA.CARDINAL_ID = CCA.ID
+				JOIN CB_COURSE AS CCB ON CLA.COURSE_ID = CCB.ID
+			WHERE CLA.USER_ID = #{user_id}
+				AND CLA.ID = #{id}
+	</select>
+
+	<!-- 현재과정을 제외한 같은기수내 변경가능한 과정 조회(동일기수, 동일학점) -->
+	<select id="selectOtherChangeableLectureList" resultType="hashmap">
+		SELECT
+			A.SEQ
+			, A.CARDINAL_ID
+			, A.COURSE_ID
+			, B.NAME AS CARDINAL_NAME
+			, C.NAME AS COURSE_NAME
+		FROM CB_CN_COURSE AS A
+			JOIN CB_CARDINAL AS B ON A.CARDINAL_ID = B.ID
+			JOIN CB_COURSE AS C ON A.COURSE_ID = C.ID
+		WHERE 1 = 1
+			AND A.CARDINAL_ID = #{cardinal}
+			AND B.USE_YN = 'Y'
+			AND C.USE_YN = 'Y'
+			AND C.ID != #{course}
+			AnD C.CREDIT = #{credit}
+	</select>
+
+	<!-- 동일학점 당해 연도의 기수 조회 -->
+	<select id="selectOtherDelayableLectureList" resultType="hashmap">
+		SELECT
+			A.SEQ
+			, A.CARDINAL_ID
+			, B.NAME AS CARDINAL_NAME
+			, B.APP_START_DATE
+			, B.APP_END_DATE
+			, B.LEARN_START_DATE
+			, B.LEARN_END_DATE
+		FROM CB_CN_COURSE AS A
+			JOIN CB_CARDINAL AS B ON A.CARDINAL_ID = B.ID
+			JOIN CB_COURSE AS C ON A.COURSE_ID = C.ID
+		WHERE 1 = 1
+			AND DATE_FORMAT(NOW(), '%Y') = DATE_FORMAT(B.APP_END_DATE, '%Y')
+			AND B.APP_END_DATE > NOW()
+			AND C.ID = #{course}
+			AND C.CREDIT = #{credit}
+			AND B.ID != #{cardinal}
+		GROUP BY A.CARDINAL_ID
+	</select>
+
+	<!-- CB_LEARN_APP의 요청상태 변경 -->
+	<update id="updateLearnAppMaster">
+		UPDATE CB_LEARN_APP
+			SET REQ_TYPE = #{reqType}
+				, REQ_DATE = DATE_FORMAT(NOW(), "%Y-%m-%d")
+				, UPD_USER = #{user_id}
+				, UPD_DATE = NOW()
+		WHERE ID = #{learnAppId}
+			AND USER_ID = #{user_id}
+	</update>
+
+	<!-- CB_LEARN_CHANGE_APP의 변경신청 정보 저장 -->
+	<insert id="insertLearnChangeApp">
+			INSERT INTO CB_LEARN_CHANGE_APP (
+				USER_ID
+				, LEARN_APP_ID, CARDINAL_ID
+				, OLD_COURSE_ID, NEW_COURSE_ID
+				, REG_USER, REG_DATE
+				, UPD_USER, UPD_DATE
+			)
+			VALUES (
+				#{user_id}
+				, #{learnAppId}, #{cardinalId}
+				, #{oldCourseId}, #{newCourseId}
+				, #{user_id}, NOW()
+				, #{user_id}, NOW()
+			)
+
+			<selectKey resultType="Integer" keyProperty="id" keyColumn="id">
+				SELECT LAST_INSERT_ID()
+			</selectKey>
+	</insert>
+
+	<!-- CB_LEARN_DELAY_APP의 연기신청 정보 저장  -->
+	<insert id="insertLearnDelayApp">
+		INSERT INTO CB_LEARN_DELAY_APP (
+			USER_ID	, LEARN_APP_ID
+			, OLD_CARDINAL_ID, NEW_CARDINAL_ID
+			, TEL, PHONE, EMAIL
+			, MEMO
+			, REG_USER, REG_DATE
+			, UPD_USER, UPD_DATE
+		)
+		VALUES (
+			#{user_id}, #{learnAppId}
+			, #{oldCardinalId}, #{newCardinalId}
+			, #{tel}, #{phone}, #{email}
+			, #{memo}
+			, #{user_id}, NOW()
+			, #{user_id}, NOW()
+		)
+
+		<selectKey resultType="Integer" keyProperty="id" keyColumn="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<!-- CB_LEARN_CANCEL_APP의 취소신청 정보 저장 -->
+	<insert id="insertLearnCancelApp">
+		INSERT INTO CB_LEARN_CANCEL_APP (
+			USER_ID, LEARN_APP_ID
+			, TEL, PHONE, EMAIL
+			, BOOK_TYPE, MEMO
+			, BANK, ACCOUNT, OWNER
+			, REG_USER, REG_DATE
+			, UPD_USER, UPD_DATE
+		)
+		VALUES (
+			#{user_id}, #{learnAppId}
+			, #{tel}, #{phone}, #{email}
+			, #{bookReturn}, #{memo}
+			, #{bank}, #{account}, #{owner}
+			, #{user_id}, NOW()
+			, #{user_id}, NOW()
+		)
+
+		<selectKey resultType="Integer" keyProperty="id" keyColumn="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+</mapper>

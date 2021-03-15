@@ -1,0 +1,372 @@
+@charset "UTF-8";
+
+/* common.css */
+/* ----------------------------------------------------------------
+  >> TABLE OF CONTENTS:                   담당자 : 성지민
+	1.0 Plugin 관련 X
+    2.0 Layout Desgin - Common Style
+        - 2.1 z-index X
+        - 2.2 icon X
+        - 2.3 text X
+        - 2.4 button X
+        - 2.5 color
+        - 2.6 ETC function X
+    3.0 Main Page Design
+        - 3.1 header
+        - 3.2 footer
+        - 3.3 main
+    4.0 Contents Design - common
+    5.0 Popup Design - modal popup layer
+----------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  >> 2.0 custom style
+----------------------------------------------------------------*/
+/* 2.1 content align */
+.floatL {
+    float: left;
+}
+
+.floatR {
+    float: right;
+}
+
+.d-flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.flexWrap {
+    -webkit-box-lines: multiple;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.justify_between {
+    justify-content: space-between;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+}
+
+.justify_around {
+    justify-content: space-around;
+}
+
+.justify_start {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+.justify_end {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.justify_center {
+    justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+}
+
+.d-inline {
+    display: inline;
+}
+.margin-left5{margin-left:5px;}
+.margin-left10{margin-left:10px;}
+.margin-left20{margin-left:20px;}
+.margin-left40{margin-left:40px;}
+.margin-right5{margin-right:5px;}
+.margin-right10{margin-right:10px;}
+.margin-right20{margin-right:20px;}
+.margin-right40{margin-right:40px;}
+.margin-top5{margin-top:5px;}
+.margin-top10{margin-top:10px;}
+.margin-top20{margin-top:20px;}
+.margin-top40{margin-top:40px;}
+.margin-bottom5{margin-bottom:5px;}
+.margin-bottom10{margin-bottom:10px;}
+.margin-bottom20{margin-bottom:20px;}
+.margin-bottom40{margin-bottom:40px;}
+
+.not-scroll {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+/* 2.2 text */
+.text-over {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    white-space: nowrap;
+}
+
+.txt-ov-2 {
+    white-space: normal;
+    -webkit-line-clamp: 2;
+}
+.textAlign_center{text-align: center;}
+.textAlign_right{text-align: right;}
+
+.h1 {
+    /* font-size: 60px; */
+    font-size: 4.286rem;
+    line-height: 80px;
+    font-weight: bold;
+}
+.fz40{
+    /* font-size: 40px; */
+    font-size: 2.857rem;
+    font-weight: bold;
+}
+
+.fz34 {
+    font-size: 2.429rem;
+}
+
+.h2 {
+    /* font-size: 30px; */
+    font-size: 2.143rem;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.fz24 {
+    /* font-size: 24px; */
+    font-size: 1.714rem;
+}
+
+.h3,.fz20 {
+    /* font-size: 20px; */
+    font-size: 1.429rem;
+    /* font-weight: bold; */
+}
+
+.h4, .fz18 {
+    /* font-size: 18px; */
+    font-size: 1.286rem;
+}
+
+.fz16 {
+    /* font-size: 16px; */
+    font-size: 1.143rem;
+}
+
+.fz14 {
+    /* font-size: 14px; */
+    font-size: 1rem;
+}
+
+.fz13 {
+    /* font-size: 13px; */
+    font-size: 0.9286rem;
+}
+
+.h5 {
+    /* font-size: 12px; */
+    font-size: 0.857rem;
+}
+
+/* 2.3 button */
+.button, .btn {
+    border: none;
+    background-color: inherit;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    text-align: center;
+}
+.btn_normal{
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    text-align: center;
+}
+.btn_default{
+    color: #4d4d4d;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.btn_default:hover{
+    background-color: #e7e7e7;
+    border: 1px solid #c7c7c7;
+}
+
+.btn_mintL{
+    color: #55cfd6;
+    background-color: #fff;
+    border: 1px solid rgba(85,207,214,1);
+}
+.btn_mintL:hover{
+    color: #fff;
+    background-color: rgba(85,207,214,1);
+}
+.btn_mintD{
+    color: #0a97b7;
+    background-color: #fff;
+    border: 1px solid #0a97b7;
+}
+.btn_mintD:hover{
+    color: #fff;
+    background-color: #0a97b7;
+}
+.btn_orangeD{
+    color: #f1651d;
+    background-color: #fff;
+    border:1px solid #f1651d;
+}
+.btn_orangeD:hover{
+    color: #fff;
+    background-color: #f1651d;
+}
+.btn_orangeL{
+    color: #fea360;
+    background-color: #fff;
+    border:1px solid #fea360;
+}
+.btn_orangeL:hover{
+    color: #fff;
+    background-color: #fea360;
+}
+.btn_xsmall{
+    border-radius: 3px;
+    padding: 1px 5px;
+    /* font-size: 12px; */
+    font-size: 0.857rem;
+}
+.btn_small{
+    padding: 1px 10px;
+}
+
+.btn_medium{
+    width: 120px;
+    padding: 5px;
+}
+.btn_large{
+    width: 200px;
+    padding: 10px;
+}
+.btn_xlarge{
+    width: 300px;
+    height: 40px;
+}
+/* rainbow.ac */
+.btn_pp,
+.btn_pp_bg,
+.btn_eg,
+.btn_eg_bg,
+.btn_nv{
+    border-radius: 5px;
+    font-weight: bold;
+}
+.btn_pp{
+    border:2px solid #844ff5;
+    color: #844ff5;
+}
+.btn_pp:hover{
+    background-color: rgba(132,79,245,.2);
+}
+.btn_pp_bg{
+    background-color: #844ff5;
+    color: #fff;
+}
+.btn_eg{
+    border:2px solid #14e2cb;
+    color: #14e2cb;
+}
+.btn_eg:hover{
+    background-color: rgba(20,226,203,.2)
+}
+.btn_eg_bg{
+    background-color: #14e2cb;
+    color: #fff;
+}
+.btn_nv{
+    border:2px solid #0a1930;
+    color: #0a1930;
+}
+.btn_nv:hover{
+    background-color: rgba(10,25,48,.2)
+}
+
+
+
+/* 2.5 color */
+.fc_false {color: #C13831;}
+.fc_true {color: #2c67b0;}
+.cGray {color: #9B9EA0;}
+.cNavy {color: #11283b;}
+.fc_ccc {color: #ccc;}
+.fc_aaa {color: #aaa;}
+.fc_999 {color: #999;}
+.fc_666 {color: #666;}
+.fc_333 {color: #333;}
+.fc_fff{color: #fff;}
+.fc_orL{color: #fea360;}
+.fc_orD{color: #f1651d;}
+.fc_yeL{color: #fceebf;}
+.fc_mtL{color: #55cfd6;}
+.fc_mtD{color: #0a97b7;}
+.bgc_333{background-color: #333;}
+.bgc_666{background-color: #666;}
+.bgc_999{background-color: #999;}
+.bgc_mtL{background-color: #55cfd6;}
+.bgc_mtD{background-color: #0a97b7;}
+.bgc_orD{background-color: #f1651d;}
+.bgc_orL{background-color: #fea360;}
+.bgc_yeL{background-color: #fceebf;}
+.gc_green {background-color: #5fe3a1;}
+.gc_blue {background-color: #56d9fe;}
+.gc_purple {background-color: #a3a0fb;}
+.pointColor {color: #396AA5;}
+.pointBg {
+    background-color: #396AA5;
+    color: #fff;
+}
+.pointBg:hover {
+    background-color: #2d567f;
+}
+
+/* raninbow.ac */
+.fc_pp{
+    color: #844ff5;
+}
+.fc_eg{
+    color: #14e2cb;
+}
+.bgc_pp{
+    background-color: #844ff5;
+}
+.bgc_pb{
+    background-color: #4805c7;
+}
+.bgc_eg{
+    background-color: #14e2cb;
+}
+/* //raninbow.ac */
+
+/*--------------------------------------------------------------
+  >> 3.0 Main Page Design
+----------------------------------------------------------------*/
+/* 3.1 header */
+/* 3.2 footer */
+/* 3.3 main */
+/*--------------------------------------------------------------
+  >> 4.0 Contents Design - common
+----------------------------------------------------------------*/
+/* content */
+.container {
+    padding: 40px 0;
+}
+
+.container>.content {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/*--------------------------------------------------------------
+  >> 5.0 Popup Design - modal popup layer
+----------------------------------------------------------------*/

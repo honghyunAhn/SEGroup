@@ -1,0 +1,107 @@
+@charset "UTF-8";
+/* style_responsive.css */
+/* ----------------------------------------------------------------
+  >> TABLE OF CONTENTS:                   담당자 : 성지민
+	[1] pc 1024px - 1920px >> 기준 1200px
+
+	[2] 태블릿 768px - 1023px >> 기준 730px
+
+    [3] 모바일  320px - 767px >> 기준 300px
+
+----------------------------------------------------------------*/
+/*--------------------------------------------------------------
+  [1] pc 1024px - 1920px >> 기준 1200px
+----------------------------------------------------------------*/
+@media(max-width:1900px){}
+
+
+@media(max-width:1600px){
+    .container>.headerWrap>.hdr,
+    .container>.content>.main-textWrapper,
+    .container>.footerWrap>.ftr{
+        width: calc(100% - 100px);
+    }
+
+}
+@media(max-width:1450px){
+    .footerWrap>.ftr>.companyAim>.fz20{
+        font-size: 1.143rem;
+        line-height: 30px;
+    }
+
+}
+/*--------------------------------------------------------------
+  [2] 태블릿 768px - 1023px >> 기준 730px
+----------------------------------------------------------------*/
+@media(max-width:1024px){
+
+html {
+    /* font-size: 13px; */
+}
+.headerWrap>.hdr>.nav{
+    display: none;
+}
+.headerWrap>.hdr>.m-navIcon{
+    display: block;
+}
+.headerWrap>.hdr{}
+.headerWrap>.hdr>.header-logo{
+    width: 300px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+.footerWrap>.ftr>.companyAim{
+    width: 100%;
+}
+.footerWrap>.ftr>.goToMenuWrap{
+    display: none;
+}
+
+}
+/*--------------------------------------------------------------
+  [3] 모바일  320px - 767px >> 기준 300px
+----------------------------------------------------------------*/
+@media(max-width:767px){
+
+html {
+    font-size: 12px;
+}
+.container>.headerWrap>.hdr,
+.container>.content>.main-textWrapper,
+.container>.footerWrap>.ftr{
+    width: calc(100% - 40px);
+}
+
+
+.headerWrap>.hdr>.header-logo{
+    width: 150px;
+}
+.headerWrap>.hdr>.header-logo>a{
+    width: 150px;
+    height: 20px;
+    margin: 15px 0;
+}
+.headerWrap>.hdr>.header-logo>a>.logoImg{
+    height: 20px;
+    margin: 0;
+}
+.m-navIcon>.img-icon{
+    margin: 10px 0;
+}
+.container>.content{
+    height: calc(100vh - 50px);
+}
+.container>.content>.main-textWrapper>.main-text{
+    width: 100%;
+}
+.container>.content>.main-textWrapper>.main-text>.fz80{
+/* font-size: 60px; */
+font-size: 4.286rem;
+line-height: 60px;
+}
+.container>.footerWrap{
+    bottom: 20px;
+}
+}
