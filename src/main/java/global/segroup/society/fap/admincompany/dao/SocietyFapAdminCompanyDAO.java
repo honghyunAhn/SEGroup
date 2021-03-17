@@ -798,25 +798,26 @@ public class SocietyFapAdminCompanyDAO {
 	}
 
 	/**
-	 * @Method Name : add_rank
+	 * @Method Name : update_rank
 	 * @Date : 2021.03.09
 	 * @User : 안홍현
 	 * @Param : Hashmap
 	 * @Return : -
-	 * @Method 설명 : 순위 추가
+	 * @Method 설명 : 순위 변경
 	 */
-	public void admin_select_rank(HashMap<String, Object> params) {
+	public int admin_update_rank(HashMap<String, Object> params) {
 		logger.info("기업 그룹순위 업데이트 DAO 시작");
 		SocietyFapAdminCompanyMapper sfacMapper = sqlSession.getMapper(SocietyFapAdminCompanyMapper.class);
-		sfacMapper.admin_select_rank(params);
-		System.out.println("기업 그룹 순위 DAO 컨트롤러 종료");
+		ArrayList<String> list = sfacMapper.admin_select_rank(params);
+		int res = 0;
+		if(list.isEmpty()) {
+			res = sfacMapper.admin_update_rank(params);
+		}else{
+			sfacMapper.admin_delete_rank(params);
+			res = sfacMapper.admin_update_rank(params);
+		}
+		
+		logger.info("기업 그룹순위 업데이트 DAO 종료");
+		return res;
 	}
-
-
-	 
-
-
-	 
-
-	
 }

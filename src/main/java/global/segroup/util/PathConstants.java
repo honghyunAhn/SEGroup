@@ -5286,5 +5286,5 @@ public interface PathConstants {
 	/**
 	 * FAP 관리자 잡페어 리스트 출력 2021. 03. 09. 안홍현
 	 */
-	public static final String SOCIETY_FAP_ADMIN_COMPANY_ADMIN_UPDATE_RANK = SOCIETY_FAP_ADMIN +"/admin_select_rank";
+	public static final String SOCIETY_FAP_ADMIN_COMPANY_ADMIN_UPDATE_RANK = SOCIETY_FAP_ADMIN +"/admin_update_rank";
 }

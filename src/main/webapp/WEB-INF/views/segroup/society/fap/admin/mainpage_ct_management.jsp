@@ -202,7 +202,12 @@ myApp.controller('MainPageController', ['$scope','$compile','$http', function($s
 					<tr>
 						<th>우선 배정 그룹코드</th>
 						<td>
-							<input type="text" name="fap_mainpage_ct_imp_code" size="20"  value="${result.fap_mainpage_ct_imp_code }">
+							<select name="fap_mainpage_ct_imp_code" style="width:10%;">
+								<option hidden>${result.fap_mainpage_ct_imp_code}</option>
+								<option value="가">가</option>
+								<option value="나">나</option>
+							</select>
+							<%-- <input type="text" name="fap_mainpage_ct_imp_code" size="20"  value="${result.fap_mainpage_ct_imp_code }"> --%>
 						</td>
 						<th></th>
 						<td>

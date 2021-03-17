@@ -1324,12 +1324,37 @@
 	<!-- FAP 관리자 기업그룹코드 별 갯수 가져오기 종료 -->
 	
 	<!-- FAP 관리자 기업순위 수정; 2021. 03. 09. 안홍현-->
-	<update id="admin_select_rank" parameterType="hashmap">
-		update	fap_job_ad_tb
-		set fap_job_ad_rank = #{fap_job_ad_rank}
-		where fap_job_ad_seq = #{fap_job_ad_seq}
+	<update id="admin_update_rank" parameterType="hashmap">
+		update
+			fap_job_ad_tb
+		set
+			fap_job_ad_rank = #{fap_job_ad_rank}
+		where
+			fap_job_ad_seq = #{fap_job_ad_seq}
 	</update>
 	<!-- FAP 관리자 기업순위 수정 종료 -->
+	
+	<!-- FAP 관리자 기업순위 검색; 2021. 03. 10. 안홍현-->
+	<select id="admin_select_rank" parameterType="hashmap" resultType="String">
+		select
+			fap_job_ad_seq
+		from
+			fap_job_ad_tb
+		where
+			fap_jobfair_divide_seq = #{fap_jobfair_divide_seq} and fap_job_ad_rank = #{fap_job_ad_rank}
+	</select>
+	<!-- FAP 관리자 기업순위 검색 종료 -->
+	
+	<!-- FAP 관리자 기업순위 삭제; 2021. 03. 10. 안홍현-->
+	<update id="admin_delete_rank" parameterType="hashmap">
+		update
+			fap_job_ad_tb
+		set
+			fap_job_ad_rank = null
+		where
+			fap_jobfair_divide_seq = #{fap_jobfair_divide_seq} and fap_job_ad_rank = #{fap_job_ad_rank}
+	</update>
+	<!-- FAP 관리자 기업순위 삭제 종료 -->
 	
 	<!-- FAP 관리자 현지제한 인원 수정 시작 -->
 	<update id="admin_job_itv_per_update" parameterType="hashmap">

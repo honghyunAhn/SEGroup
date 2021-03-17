@@ -199,19 +199,22 @@ function changeGroupcode(fap_job_ad_seq){
 		}		
 	})
 } */
-/* anh288 */
+// 기업 순위 변경
 function selectRank(fap_job_ad_seq){
 	var fap_job_ad_rank = $('#selectRank'+fap_job_ad_seq).val();
+	var fap_jobfair_divide_seq = $('#fap_jobfair_divide_seq').val();
 	$.ajax({	
-		url: 'admin_select_rank',
+		url: 'admin_update_rank',
 		type: 'post',
 		data: {
 			'fap_job_ad_seq' : fap_job_ad_seq,
-			'fap_job_ad_rank' : fap_job_ad_rank
+			'fap_job_ad_rank' : fap_job_ad_rank,
+			'fap_jobfair_divide_seq' : fap_jobfair_divide_seq
 			},
-		success: function(){
-			
-			alert('성공적으로 변경되었습니다');
+		success: function(res){
+			if(res != 0){
+				alert("순위가 변경되었습니다.")
+			}
 		},
 		error: function(data) {
 			console.log(data);
@@ -272,7 +275,7 @@ function selectRank(fap_job_ad_seq){
 						</c:choose> --%>
 					</th>
 					<th>변경하기</th>
-					<th>우선순위</th>
+					<th>순위</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -285,8 +288,8 @@ function selectRank(fap_job_ad_seq){
 							<td>${jobad.fap_job_ad_3years_avg_sales}</td>
 							<td>${jobad.fap_job_ad_employee_num}</td>
 							<td>
-								<select id="SelectGroupcode${jobad.fap_job_ad_seq}">
-									<option hidden value="선택해주세요">선택해주세요</option>
+								<select id="SelectGroupcode${jobad.fap_job_ad_seq}" style="width:60px">
+									<option hidden value="선택해주세요">선택</option>
 									<c:forEach items="${companyGroupcodeList}" var="companygroupcode">
 										<c:choose>
 											<c:when test="${companygroupcode.fap_comp_groupcode eq 'D0500' and jobad.fap_job_ad_groupcode eq 'D0500'}">
@@ -307,25 +310,25 @@ function selectRank(fap_job_ad_seq){
 									</c:forEach>
 								</select>
 							</td>
-							<td style="width: 10%">
+							<td style="width: 7%">
 								<button type="button" onclick="changeGroupcode(${jobad.fap_job_ad_seq})">변경</button>	
 							</td>
 							<!-- anh288 -->
 							<td>
-								<select id="selectRank${jobad.fap_job_ad_seq}" onchange="selectRank('${jobad.fap_job_ad_seq}');">
-									<%-- <c:if test=${==null}>
+								<select id="selectRank${jobad.fap_job_ad_seq}" onchange="selectRank('${jobad.fap_job_ad_seq}');" style="width:60px">
+									<c:if test = "${jobad.fap_job_ad_rank == null}">
+										<option hidden value="선택">선택</option>
 									</c:if>
-									<c:if test=${!=null}>
-									</c:if> --%>
-									<option hidden value="선택">선택</option>
-									<c:forEach var="i" begin="1" end="10">
+									<c:if test = "${jobad.fap_job_ad_rank != null}">
+										<option hidden value="선택">${jobad.fap_job_ad_rank}</option>
+									</c:if>
+									<c:forEach var="i" begin="1" end="8">
 										<option value="${i}">${i}</option>
 									</c:forEach>
 								</select>
 							</td>
 					</tr>
 				</c:forEach>
-				
 			</tbody>
 		</table>
 	</div>

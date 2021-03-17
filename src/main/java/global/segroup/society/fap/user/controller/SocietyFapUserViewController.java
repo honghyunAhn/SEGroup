@@ -53,6 +53,7 @@ import global.segroup.exception.DoesNotExistUserInfo;
 import global.segroup.society.edu.admin.service.SocietyEduAdminService;
 import global.segroup.society.edu.user.service.SocietyEduUserService;
 import global.segroup.society.fap.admincommon.domain.SocietyFapAdminFinalDecisionTime;
+import global.segroup.society.fap.admincommon.domain.SocietyFapMainpageContent;
 import global.segroup.society.fap.admincommon.domain.SocietyFapOpenPt;
 import global.segroup.society.fap.admincommon.domain.SocietyFapPopup;
 import global.segroup.society.fap.admincommon.service.SocietyFapAdminCommonService;
@@ -688,13 +689,37 @@ public class SocietyFapUserViewController implements PathConstants {
 		HashMap<String,Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("locale", locale);		
 		
-		paramMap.put("isIT", "yes"); //it직종
-		ArrayList<HashMap<String, Object>> mainpage_ct_IT = sfuService.select_mainpage_context(paramMap);
-		model.addAttribute("mainpage_ct_IT", mainpage_ct_IT);
+		SocietyFapMainpageContent result = sfaService.mainpage_ct_select();
+		String fap_mainpage_ct_imp_code= result.getFap_mainpage_ct_imp_code();
+		model.addAttribute("fap_mainpage_ct_imp_code", fap_mainpage_ct_imp_code);
 		
-		paramMap.put("isIT", "no"); //비it직종
-		ArrayList<HashMap<String, Object>> mainpage_ct_notIT = sfuService.select_mainpage_context(paramMap);
-		model.addAttribute("mainpage_ct_notIT", mainpage_ct_notIT);
+		//가 == it직종 우선
+		if(fap_mainpage_ct_imp_code.equals("가")) {
+			paramMap.put("isIT", "yes"); 
+			ArrayList<HashMap<String, Object>> mainpage_ct_IT = sfuService.select_mainpage_context(paramMap);
+			model.addAttribute("mainpage_ct_IT", mainpage_ct_IT);
+			
+			paramMap.put("isIT", "no");
+			ArrayList<HashMap<String, Object>> mainpage_ct_notIT = sfuService.select_mainpage_context(paramMap);
+			model.addAttribute("mainpage_ct_notIT", mainpage_ct_notIT);
+		} 
+		//나 == 비it직종 우선
+		else if(fap_mainpage_ct_imp_code.equals("나")) {
+			paramMap.put("isIT", "no");
+			ArrayList<HashMap<String, Object>> mainpage_ct_IT = sfuService.select_mainpage_context(paramMap);
+			model.addAttribute("mainpage_ct_IT", mainpage_ct_IT);
+			paramMap.put("isIT", "yes");
+			ArrayList<HashMap<String, Object>> mainpage_ct_notIT = sfuService.select_mainpage_context(paramMap);
+			model.addAttribute("mainpage_ct_notIT", mainpage_ct_notIT);
+		}
+		
+//		paramMap.put("isIT", "yes"); //it직종
+//		ArrayList<HashMap<String, Object>> mainpage_ct_IT = sfuService.select_mainpage_context(paramMap);
+//		model.addAttribute("mainpage_ct_IT", mainpage_ct_IT);
+//		
+//		paramMap.put("isIT", "no"); //비it직종
+//		ArrayList<HashMap<String, Object>> mainpage_ct_notIT = sfuService.select_mainpage_context(paramMap);
+//		model.addAttribute("mainpage_ct_notIT", mainpage_ct_notIT);
 		
 		String divide_session = (String)session.getAttribute("divide_session");
 		model.addAttribute("divide_session", divide_session);

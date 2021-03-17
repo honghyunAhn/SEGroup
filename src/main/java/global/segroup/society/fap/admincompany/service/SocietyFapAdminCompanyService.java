@@ -437,17 +437,18 @@ public class SocietyFapAdminCompanyService {
 	}
 	
 	/**
-	 * @Method Name : add_rank
+	 * @Method Name : update_rank
 	 * @Date : 2021.03.09
 	 * @User : 안홍현
 	 * @Param : Hashmap
 	 * @Return : -
-	 * @Method 설명 : 순위 추가
+	 * @Method 설명 : 순위 변경
 	 */
-	public void admin_select_rank(HashMap<String, Object> params) {
+	public int admin_update_rank(HashMap<String, Object> params) {
 		logger.info("기업 그룹순위 업데이트 Service 시작");
-		sfacDAO.admin_select_rank(params);
+		int res = sfacDAO.admin_update_rank(params);
 		logger.info("기업 그룹순위 업데이트 Service 종료");
+		return res;
 	}
 
 	/**

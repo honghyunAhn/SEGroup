@@ -312,9 +312,137 @@
                 </a>
             </div>
         </div>
-
         
-        <!-- 잡페어 참가 기업 -->
+        
+		<!-- 잡페어 참가 기업 -->
+        <div class="fairWrapper">
+            <div class="fairWrap">
+                <header class="title h2 baseColor">
+                    <spring:message code="fap.user_main_content.text08" />
+                </header>
+                
+                <div class="fairListWrap">
+                <c:choose>
+                	<c:when test="${fap_mainpage_ct_imp_code eq '가'}">
+                	<div class="subTitle bgcLight fz16"><spring:message code="fap.user_main_content.text09" /></div>
+                	</c:when>
+                	<c:when test="${fap_mainpage_ct_imp_code eq '나'}">
+                	<div class="subTitle bgcBase fz16"><spring:message code="fap.user_main_content.text10" /></div>
+                	</c:when>
+                </c:choose>
+                	<!-- <h2 style="text-align: center;">현재 모집중인 공고가 없습니다.</h2> -->
+                	<!-- 우선 배정 그룹 -->
+	                <ul class="fairList IT d-flex">
+                     	<c:forEach items="${mainpage_ct_IT }" var="itemIT" begin="0" end="7" varStatus="status">
+	                        <li class="list">
+	                           <a href="#" onclick="readAd('${itemIT.fap_job_ad_seq}','${itemIT.fap_jobfair_seq }','${itemIT.fap_jobfair_divide_seq }','${itemIT.fap_jobfair_title }')">	                     
+	                                <div class="logoImgWrap">
+	                                	<!--*원래주석된것임 <img src="/fap/company/user_logo_image/${itemIT.fap_comp_id }/${itemIT.fap_comp_log_saved }" alt="기업로고이미지 230*80px" class="logo-img"> -->
+	                                	<div alt="기업로고이미지 230*80px" class="logo-img" style="background-image: url('/fap/company/user_logo_image/${itemIT.fap_comp_id }/${itemIT.fap_comp_log_saved }')" >&nbsp;</div>
+	                                </div>  
+	                                <div class="occupation text-over" title="">
+	                                   	<c:forEach items="${itemIT.fap_job_cate }" var="cateIT">										 
+											<c:choose>
+												<c:when test="${cateIT.fap_job_category_gb == 'C3704'}">
+													${cateIT.fap_job_category_etc_dtl }
+												</c:when>
+												<c:otherwise>
+												 <code value="${cateIT.fap_job_category_gb }"></code>&nbsp;
+												</c:otherwise>
+											</c:choose>											 
+										</c:forEach>
+	                                </div>
+	                                <ul class="jobInfo">
+	                                    <!-- 채용일정 -->
+	                                     <li class="h5 c666">&#91;${itemIT.fap_mainpage_ct_quarter }&#93;</li>
+	                                    <!-- 위치 -->
+	                                    <li class="d-flex">
+	                                        <div class="img-icon"></div>
+	                                        <span class="fz16">
+	                                        	<c:forEach items="${itemIT.fap_job_work }" var="workIT">
+													 <code value="${workIT.fap_job_workplace_gb }"></code>&nbsp;
+												</c:forEach>
+											</span>
+	                                    </li>
+	                                    <!-- 채용예정인원 -->
+	                                    <li class="d-flex">
+	                                        <div class="img-icon"></div>
+	                                        <span class="fz16"> 
+	                                        	<spring:message code="fap.mainpage.recruit" /> ${itemIT.fap_job_ad_recruit_num }  <spring:message code="fap.mainpage.num" />
+	                                        </span>
+	                                    </li>
+	                                </ul>
+	                            </a>
+	                            <c:if test="${status.index % 7== 0 && status.index != 0}">
+	                            	<div  class="adListEtc" onclick='location.href="/fap/user/user_job_advertisement_list_form"'>VIEW MORE</div>
+	                       		</c:if>	                           
+	                        </li>                                            
+                    	  </c:forEach> 
+	                  </ul>
+                </div>
+                <div class="fairListWrap">
+                <c:choose>
+                	<c:when test="${fap_mainpage_ct_imp_code eq '가'}">
+                	<div class="subTitle bgcBase fz16"><spring:message code="fap.user_main_content.text10" /></div>                		
+                	</c:when>
+                	<c:when test="${fap_mainpage_ct_imp_code eq '나'}">
+                	<div class="subTitle bgcLight fz16"><spring:message code="fap.user_main_content.text09" /></div>
+                	</c:when>
+                </c:choose>
+                	<!-- 비 우선 배정 그룹 -->
+                	<!-- <h2 style="text-align: center;">현재 모집중인 공고가 없습니다.</h2> -->
+                    <ul class="fairList notIT d-flex">  
+	                     <c:forEach items="${mainpage_ct_notIT }" var="item" begin="0" end="7" varStatus="status">		                   	                     
+	                        <li class="list">	                        
+		                   	  		<a href="#" onclick="readAd('${item.fap_job_ad_seq}','${item.fap_jobfair_seq }','${item.fap_jobfair_divide_seq }','${item.fap_jobfair_title }')">	                            
+	                                <div class="logoImgWrap">
+	                                <!-- *원래주석되던것임<img src="/fap/company/user_logo_image/${item.fap_comp_id }/${item.fap_comp_log_saved }" alt="기업로고이미지 230*80px" class="logo-img"> -->
+	                                <div alt="기업로고이미지 230*80px" class="logo-img" style="background-image: url('/fap/company/user_logo_image/${item.fap_comp_id }/${item.fap_comp_log_saved }')" >&nbsp;</div>
+	                                </div>
+	                                <div class="occupation text-over" title="">
+	                                   <c:forEach items="${item.fap_job_cate }" var="cate">										 
+											 <c:choose>
+												 <c:when test="${cate.fap_job_category_gb == 'C3704'}">
+													 ${cate.fap_job_category_etc_dtl }
+												 </c:when>
+												 <c:otherwise>
+													<code value="${cate.fap_job_category_gb }"></code>&nbsp;
+												 </c:otherwise>
+											 </c:choose>											 
+										 </c:forEach>
+	                                </div>
+	                                <ul class="jobInfo">
+	                                    <!-- *채용일정 -->
+	                                   <li class="h5 c666">&#91;${item.fap_mainpage_ct_quarter }&#93;</li>
+	                                    <!-- 위치 -->
+	                                    <li class="d-flex">
+	                                        <div class="img-icon"></div>
+	                                        <span class="fz16">
+												<c:forEach items="${item.fap_job_work }" var="work">
+													 <code value="${work.fap_job_workplace_gb }"></code>&nbsp;
+												</c:forEach>
+											</span>
+	                                    </li>
+	                                    <!-- *채용예정인원 -->
+	                                    <li class="d-flex">
+	                                        <div class="img-icon"></div>
+	                                        <span class="fz16">  
+	                                        	<spring:message code="fap.mainpage.recruit" /> ${item.fap_job_ad_recruit_num }  <spring:message code="fap.mainpage.num" />
+	                                        </span>
+	                                    </li>
+	                                </ul>
+	                            </a>
+	                            <c:if test="${status.index % 7== 0 && status.index != 0}">
+	                            	<div  class="adListEtc" onclick='location.href="/fap/user/user_job_advertisement_list_form"'>VIEW MORE</div>
+	                       		</c:if>
+	                        </li>	                    
+	                       </c:forEach>                        
+                    </ul>
+                </div>
+            </div> 
+        </div>
+                
+        <%-- <!-- 잡페어 참가 기업 -->
         <div class="fairWrapper">
             <div class="fairWrap">
                 <header class="title h2 baseColor">
@@ -372,7 +500,7 @@
 	                       </c:forEach>                        
                     </ul>
                 </div>
-                <%-- IT직종  --%>
+                IT직종 
                 <div class="fairListWrap">
                     <div class="subTitle bgcLight fz16"><spring:message code="fap.user_main_content.text09" /></div>
                     <!-- <h2 style="text-align: center;">현재 모집중인 공고가 없습니다.</h2> -->
@@ -424,9 +552,9 @@
                     	  </c:forEach> 
 	                  </ul>
                 </div>
-            </div>
+            </div> 
            
-        </div>
+        </div>--%>
         
     
     <!-- 안내 문구(개인 회원) -->

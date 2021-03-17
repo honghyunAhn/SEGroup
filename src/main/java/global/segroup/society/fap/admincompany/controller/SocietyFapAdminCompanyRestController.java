@@ -160,23 +160,24 @@ public class SocietyFapAdminCompanyRestController {
 	}
 	
 	/**
-	 * @Method Name : add_rank
+	 * @Method Name : update_rank
 	 * @Date : 2021.03.09
 	 * @User : 안홍현
 	 * @Param : Hashmap
 	 * @Return : -
-	 * @Method 설명 : 순위 추가
+	 * @Method 설명 : 순위 변경
 	 */
 	@ResponseBody
 	@RequestMapping(value=PathConstants.SOCIETY_FAP_ADMIN_COMPANY_ADMIN_UPDATE_RANK, method = RequestMethod.POST)
-	public ArrayList<HashMap<String, Object>> admin_select_rank(String fap_job_ad_seq, int fap_job_ad_rank){
+	public int admin_update_rank(String fap_job_ad_seq, int fap_job_ad_rank, String fap_jobfair_divide_seq){
 		logger.info("기업 그룹 순위 업데이트 컨트롤러 시작");
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("fap_job_ad_seq", Long.parseLong(fap_job_ad_seq));
 		params.put("fap_job_ad_rank", fap_job_ad_rank);
-		sfacService.admin_select_rank(params);
+		params.put("fap_jobfair_divide_seq", fap_jobfair_divide_seq);
+		int res = sfacService.admin_update_rank(params);
 		logger.info("기업 그룹 순위 업데이트 컨트롤러 종료");
-		return null;
+		return res;
 	}
 	
 	/**
