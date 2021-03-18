@@ -520,7 +520,7 @@ public interface SocietyFapAdminCompanyMapper {
 	 * @Return : -
 	 * @Method 설명 : fap_job_ad_rank와 fap_jobfair_divide_seq로 해당하는 데이터의 fap_job_ad_rank를 null로 변환
 	 */
-	public void admin_delete_rank(HashMap<String, Object> params);
+	public int admin_delete_rank(HashMap<String, Object> params);
 
 	/**
 	 * @Method Name : admin_job_app_per_update

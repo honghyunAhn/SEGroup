@@ -213,7 +213,7 @@ function selectRank(fap_job_ad_seq){
 			},
 		success: function(res){
 			if(res != 0){
-				alert("순위가 변경되었습니다.")
+				location.href="/fap/admin/admin_company_group_code_management_per_job_fair?fap_jobfair_divide_seq="+fap_jobfair_divide_seq;
 			}
 		},
 		error: function(data) {

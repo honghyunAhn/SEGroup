@@ -811,10 +811,10 @@ public class SocietyFapAdminCompanyDAO {
 		ArrayList<String> list = sfacMapper.admin_select_rank(params);
 		int res = 0;
 		if(list.isEmpty()) {
-			res = sfacMapper.admin_update_rank(params);
+			sfacMapper.admin_update_rank(params);
 		}else{
-			sfacMapper.admin_delete_rank(params);
-			res = sfacMapper.admin_update_rank(params);
+			res = sfacMapper.admin_delete_rank(params);
+			sfacMapper.admin_update_rank(params);
 		}
 		
 		logger.info("기업 그룹순위 업데이트 DAO 종료");

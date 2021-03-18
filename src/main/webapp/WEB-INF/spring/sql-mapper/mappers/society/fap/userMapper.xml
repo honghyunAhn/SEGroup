@@ -3456,10 +3456,11 @@
 			<if test="isIT == 'no'">
 			  and 
 			  	cate.fap_job_category_gb in ('C3705', 'C3706', 'C3707', 'C3708', 'C3709', 'C3710')
-			</if>	
+			</if>
 		</if>
 		order by
-			field(fap_job_ad_rank,ad.fap_job_ad_groupcode,main.fap_mainpage_ct_imp_code) desc , ad.fap_comp_id
+			ad.fap_job_ad_rank is null asc , ad.fap_job_ad_rank asc, field(ad.fap_job_ad_groupcode,main.fap_mainpage_ct_imp_code) desc , ad.fap_comp_id
+			
 	</select>
 	<!-- FAP 메인페이지 기업컨텐츠 정보 조회 종료 -->
 	
