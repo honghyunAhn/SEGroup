@@ -130,6 +130,7 @@
     <input type="hidden" id="board_detail_gb" name="board_detail_gb" value="${map.board_detail_gb}">
     
 	<%@include file="company_menu.jsp"%>	
+	<%@include file="company_quick_menu.jsp"%>
 	 
       <div class="boardContentTitle">		 
 		 <h1>

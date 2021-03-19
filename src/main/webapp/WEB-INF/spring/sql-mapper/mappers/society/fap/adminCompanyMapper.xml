@@ -1341,7 +1341,8 @@
 		from
 			fap_job_ad_tb
 		where
-			fap_jobfair_divide_seq = #{fap_jobfair_divide_seq} and fap_job_ad_rank = #{fap_job_ad_rank}
+			fap_jobfair_divide_seq = #{fap_jobfair_divide_seq} and 
+			fap_job_ad_rank = #{fap_job_ad_rank} and fap_job_ad_groupcode = #{fap_job_ad_groupcode}
 	</select>
 	<!-- FAP 관리자 기업순위 검색 종료 -->
 	

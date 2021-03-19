@@ -203,13 +203,15 @@ function changeGroupcode(fap_job_ad_seq){
 function selectRank(fap_job_ad_seq){
 	var fap_job_ad_rank = $('#selectRank'+fap_job_ad_seq).val();
 	var fap_jobfair_divide_seq = $('#fap_jobfair_divide_seq').val();
+	var fap_job_ad_groupcode = $('#SelectGroupcode'+fap_job_ad_seq).val();
 	$.ajax({	
 		url: 'admin_update_rank',
 		type: 'post',
 		data: {
 			'fap_job_ad_seq' : fap_job_ad_seq,
 			'fap_job_ad_rank' : fap_job_ad_rank,
-			'fap_jobfair_divide_seq' : fap_jobfair_divide_seq
+			'fap_jobfair_divide_seq' : fap_jobfair_divide_seq,
+			'fap_job_ad_groupcode' : fap_job_ad_groupcode
 			},
 		success: function(res){
 			if(res != 0){
@@ -313,7 +315,8 @@ function selectRank(fap_job_ad_seq){
 							<td style="width: 7%">
 								<button type="button" onclick="changeGroupcode(${jobad.fap_job_ad_seq})">변경</button>	
 							</td>
-							<!-- anh288 -->
+							
+							<!-- 순위 선택 -->
 							<td>
 								<select id="selectRank${jobad.fap_job_ad_seq}" onchange="selectRank('${jobad.fap_job_ad_seq}');" style="width:60px">
 									<c:if test = "${jobad.fap_job_ad_rank == null}">

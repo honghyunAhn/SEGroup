@@ -13,33 +13,31 @@
 	<script src="<c:url value="/resources/segroup/js/angular.min.js" />"></script>
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/segroup/society/fap/css/default.css" />" />
 	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/popModal.css" />">
-	
 	<script type="text/javascript">
 	$(function(){
 		
-		var fap_faq_gb_cd = $("#fap_faq_gb_cd").val();
 		
-		//구직자
+		/* //구직자
 		if(fap_faq_gb_cd == 'C5300'){
 			$(".tab-apply").addClass("on");
 		}
 		//채용기업
 		else if(fap_faq_gb_cd == 'C5301'){
 			$(".tab-company").addClass("on");
-		}
+		} */
 		
 		$(".faq-item-btn").off("click").on("click",function(){
 			$(this).toggleClass("on");
 			$(this).nextAll(".faq-item-ct").toggleClass("on");
 		})
 		
-		$(".tab-item").off("click").on("click",function(){
+		/* $(".tab-item").off("click").on("click",function(){
 			tab_init();
 			$(this).toggleClass("on");
-		})
+		}) */
 		
 		function tab_init(){
-			$(".tab-item").removeClass("on");
+			/* $(".tab-item").removeClass("on"); */
 			$(".faq-item-btn").removeClass("on");
 			$(".faq-item-ct").removeClass("on");
 		}
@@ -64,17 +62,19 @@
 	
 	function pageFnc(page){
 		var gb_cd = $("#fap_faq_gb_cd").val();
+		alert(gb_cd);
 		location.href = "/fap/company/company_faq?page="+page+"&fap_faq_gb_cd="+gb_cd;
 	}
 	
-	function tabFnc(gb_cd){
+	/* function tabFnc(gb_cd){
 		$("#fap_faq_gb_cd").val(gb_cd);
 		pageFnc(1);
-	}
+	} */
 	</script>
 </head>
 <body>
 <%@include file="company_menu.jsp"%>	
+<%@include file="company_quick_menu.jsp"%>
 	<div class="join-wrap">
 		<div id="subcontents">
 			<div class="joinBox">
@@ -93,7 +93,7 @@
 					</form>
 				</div>
 				<div class="faq-body-wrap">
-					<div class="faq-body-tab">
+					<%-- <div class="faq-body-tab">
 						<ul class="tab-items">
 							<li class="tab-item tab-apply">
 								<a href="javascript:tabFnc('C5300')"><spring:message code="fap.faq.job.seeker" /></a>
@@ -102,7 +102,7 @@
 								<a href="javascript:tabFnc('C5301')"><spring:message code="fap.faq.company" /></a>
 							</li>
 						</ul>
-					</div>
+					</div> --%>
 					<div class="faq-body-list">
 						<ul>
 							<c:forEach var="faq" items="${faqList }">

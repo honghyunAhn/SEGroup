@@ -20,17 +20,15 @@
 <script src="<c:url value="/resources/segroup/society/fap/js/index.js" />"  charset="utf-8"></script>
 <title>Insert title here</title>
     <link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/main.header.css" />">
-	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/all.css" />">
-	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/reset.css" />">
-	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/swiper.min.css" />">
-	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/index.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/common.css" />">
 </head>
 <body>
 <%@include file="company_menu.jsp"%>
+<%@include file="company_quick_menu.jsp"%>
+
 <div align="center">
 <spring:message code="fap.comp_partner" />
 </div>
  <%@include file="company_footer.jsp"%>
+ 
 </body>
 </html>

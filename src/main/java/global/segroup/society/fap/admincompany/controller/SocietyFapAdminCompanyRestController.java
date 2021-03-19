@@ -169,12 +169,13 @@ public class SocietyFapAdminCompanyRestController {
 	 */
 	@ResponseBody
 	@RequestMapping(value=PathConstants.SOCIETY_FAP_ADMIN_COMPANY_ADMIN_UPDATE_RANK, method = RequestMethod.POST)
-	public int admin_update_rank(String fap_job_ad_seq, int fap_job_ad_rank, String fap_jobfair_divide_seq){
+	public int admin_update_rank(String fap_job_ad_seq, int fap_job_ad_rank, String fap_jobfair_divide_seq,String fap_job_ad_groupcode){
 		logger.info("기업 그룹 순위 업데이트 컨트롤러 시작");
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("fap_job_ad_seq", Long.parseLong(fap_job_ad_seq));
 		params.put("fap_job_ad_rank", fap_job_ad_rank);
 		params.put("fap_jobfair_divide_seq", fap_jobfair_divide_seq);
+		params.put("fap_job_ad_groupcode", fap_job_ad_groupcode);
 		int res = sfacService.admin_update_rank(params);
 		logger.info("기업 그룹 순위 업데이트 컨트롤러 종료");
 		return res;

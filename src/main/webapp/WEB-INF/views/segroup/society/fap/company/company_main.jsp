@@ -26,7 +26,6 @@
 	<!-- <link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/reset.css" />"> -->
 	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/all.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/swiper.min.css" />">
-	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/fa_style.css" />">
 	<!-- <link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/index.css" />"> -->
 	<!-- <link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/common.css" />"> -->
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/segroup/society/fap/css/demo.css" />" />
@@ -34,7 +33,7 @@
 	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/lightslider.css" />" />
 	
 	<script type="text/javascript">	
-		$(function(){			
+		/* $(function(){			
 					
 			 //채용하러 가기 - 잡페어 신청 게시판으로 이동
 			  var registerNow = $("#hireNow");
@@ -59,14 +58,14 @@
 			  sesUserService.on('click',function(){
 				 alert('<spring:message code="fap.main.under_construction"/>');
 				 //  location.href= "/fap/company/company_ses_user_service";
-			  })	
+			  })
 			  
 			  //2020 Fair 일정(작업중)
 			  var FairSchedule = $("#2020FairSchedule");
 			    FairSchedule.on('click',function(){
 				  alert('<spring:message code="fap.main.under_construction"/>');
 				  // location.href= "/fap/company/company_2020_fair_schedule";
-			  })	
+			  })
 			  
 			  //전형절차(작업중)
 			  var step = $("#step");
@@ -91,7 +90,7 @@
 			  var empConnection  = $("#empConnection");
 			  empConnection.on('click',function(){				
 				  alert('<spring:message code="fap.main.under_construction"/>');
-			  })	
+			  })
 			  
   			var popupCount = 0;
 			  
@@ -137,7 +136,7 @@
 				}				
 			});
 			  
-		})	
+		})	 */
 		
 		//쿠키 가져오기
 		function getCookie(name){
@@ -653,9 +652,10 @@
             </ul>
             <div class="swiper-pagination pageWrap"></div>
         </div>
-
+        
+		<%@include file="company_quick_menu.jsp"%>
         <!-- 버튼 퀵 메뉴 -->
-        <div class="quickMenuWrap btnWrap">
+        <%-- <div class="quickMenuWrap btnWrap">
             <div class="btn-menu d-flex">
                 <a href="#" class="menu-btn" id="companyNotice">
                     <div class="img-icon bullhorn"></div>
@@ -677,7 +677,7 @@
                     <div class="img-icon chart-line" ></div>
                     <div class="menu-txt fz16"><spring:message code="fap.main_menu.step" /></div>
                 </a>
-                <a href="#" class="menu-btn"  id="openJobInfo">
+                 <a href="#" class="menu-btn"  id="openJobInfo">
                     <div class="img-icon info-circle"></div>
                     <div class="menu-txt fz16"><spring:message code="fap.main_menu.jobinfo" /></div>
                 </a>
@@ -690,7 +690,7 @@
                     <div class="menu-txt fz16"><spring:message code="fap.main_menu.job.training.course" /></div>
                 </a>
             </div>
-        </div>
+        </div> --%>
 
       
         <!-- 안내 문구(기업 회원) -->

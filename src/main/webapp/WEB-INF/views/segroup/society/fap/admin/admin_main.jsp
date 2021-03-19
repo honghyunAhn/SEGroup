@@ -81,6 +81,7 @@
 							html += '<option value="'+ divideJobfair.fap_jobfair_divide_seq +'">포스트시즌</option>';
 						} 
 					});
+					
 					$("#selectDivideJobFair").append(html);
 				},
 				error : function(data) {

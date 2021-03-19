@@ -1474,5 +1474,6 @@
 				fap_comp_id = #{fap_comp_id}
 	</select>
 	<!--기업이름출력 종료-->
+
 	
 </mapper>

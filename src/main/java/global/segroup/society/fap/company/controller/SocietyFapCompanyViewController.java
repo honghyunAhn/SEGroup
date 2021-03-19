@@ -2427,8 +2427,7 @@ public class SocietyFapCompanyViewController implements PathConstants {
 	@RequestMapping(value=PathConstants.SOCIETY_FAP_COMPANY_FAQ, method = RequestMethod.GET)
 	public String company_faq(Model model,@RequestParam(defaultValue="1") int page 
 			, @RequestParam(defaultValue="") String searchText
-			, @RequestParam(defaultValue="C5301") String fap_faq_gb_cd) {
-		
+			, String fap_faq_gb_cd) {
 		HashMap<String, Object> paramMap = new HashMap<>();
 		paramMap.put("fap_faq_gb_cd", fap_faq_gb_cd);
 		paramMap.put("searchText", searchText);
