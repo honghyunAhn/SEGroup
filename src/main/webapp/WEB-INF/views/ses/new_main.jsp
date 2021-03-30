@@ -69,7 +69,9 @@
 
 <div id="popup" style="position:absolute; z-index:9999; visibility:done; margin: auto; left: 0; right: 0; bottom: 30vh; top: 0; width: 1100px; height: 350px;">
 	<div style="background-color: white;">
-		<a href="https:///www.softsociety.net/smtp/course/scmaster/scmaster-info?course_id=c000000526"><img src="/edu/admin/banner_save_image/202012301609334095525.png"/></a>
+		<a href="https:///www.softsociety.net/smtp/course/scmaster/scmaster-info?course_id=c000000526">
+			<img src="/edu/admin/banner_save_image/20210309.jpg"/>
+		</a>
 		<div style="padding: 10px; text-align: right;">
 			<a href="#" onclick="todaycloseWin();" style="color: blue; margin-right: 20px;">오늘하루 열지 않기</a>
 			<a href="#" onclick="closeWin();" style="color: blue;">닫기</a>

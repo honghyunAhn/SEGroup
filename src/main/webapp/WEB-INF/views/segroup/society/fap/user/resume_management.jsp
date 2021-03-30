@@ -208,6 +208,7 @@ function choiceResumeGubun(){
 	<input type="hidden" id="user_flag" value="${check.user.user_flag }" />
 </sec:authorize>
 <%@include file="user_menu.jsp"%>
+<%@include file="user_quick_menu.jsp"%>
 <div class="resume_wrap">
 <div id="subcontents">
 <h2>이력서 관리</h2>

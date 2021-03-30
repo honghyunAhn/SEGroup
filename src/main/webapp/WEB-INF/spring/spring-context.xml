@@ -89,7 +89,7 @@
 		<intercept-url pattern="/fap/company/company_board_content_list" access="permitAll" />
 		<intercept-url pattern="/fap/company/company_board_content_list_search" access="permitAll" />
 		<intercept-url pattern="/fap/company/company_terms_and_condition_policy" access="permitAll" />
-		<intercept-url pattern="/fap/company/company_board_contents_datail" access="permitAll" />
+		<intercept-url pattern="/fap/company/company_board_contents_datail" access="hasAnyRole('A0103')" />
 		<intercept-url pattern="/fap/company/company_popup_check" access="permitAll" />
 		<intercept-url pattern="/fap/company/company_ses_user_service" access="permitAll" />
 		<intercept-url pattern="/fap/company/company_2020_fair_schedule" access="permitAll" />
@@ -120,6 +120,8 @@
 	</http>
 	
 	<http pattern="/fap/user/**" auto-config="true" use-expressions="true" disable-url-rewriting="true">
+		
+		
 		<intercept-url pattern="/fap/user/user_main" access="permitAll" />
 		<intercept-url pattern="/fap/user/user_login" access="permitAll" />
 		<intercept-url pattern="/fap/user/user_security_invalidate" access="permitAll" />
@@ -145,7 +147,7 @@
 		<intercept-url pattern="/fap/user/user_open_edu_popup" access="permitAll" />
 		<intercept-url pattern="/fap/user/user_board_content_list" access="permitAll" />
 		<intercept-url pattern="/fap/user/user_board_content_list_search" access="permitAll" />
-		<intercept-url pattern="/fap/user/user_board_contents_datail" access="permitAll" />
+		<intercept-url pattern="/fap/user/user_board_contents_datail" access="hasAnyRole('A0100','A0101','A0102','A0103','A0104','A0106','A0600','A0601','A0602','A0108')" />
 		<intercept-url pattern="/fap/user/user_ses_user_service" access="permitAll" />
 		<intercept-url pattern="/fap/user/user_2020_fair_schedule" access="permitAll" />
 		<intercept-url pattern="/fap/user/user_step" access="permitAll" />

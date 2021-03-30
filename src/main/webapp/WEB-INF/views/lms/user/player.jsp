@@ -104,6 +104,7 @@
 				params.cardinal = '${classParam.cardinal}';
 				params.course = '${classParam.course}';
 				params.chasi = '${classParam.chasi}';
+				params.chapter = '${classParam.chapter}';
 				params.portYn = '${classParam.portYn}';
 				params.att_id = '${classParam.att_id}';
 				
@@ -169,7 +170,6 @@
 					  contStr+='</video>';
 					  
 					  $('#playerDiv').html(contStr);
-					
 				}else{
 					$('#viewer').attr('src', pc_url);
 					

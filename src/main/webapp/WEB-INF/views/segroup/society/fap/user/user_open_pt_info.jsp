@@ -68,7 +68,7 @@
 	<sec:authentication property="details.user" var="user" />
 	<input type="hidden" id="user_flag" value="${user.user_flag}">
 </sec:authorize>
-<%@include file="user_menu.jsp"%>
+<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 <div class="join-wrap">
 	<div id="subcontents">
 		<c:choose>

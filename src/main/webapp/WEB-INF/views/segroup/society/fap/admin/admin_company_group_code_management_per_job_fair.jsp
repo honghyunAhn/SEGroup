@@ -168,7 +168,6 @@ function changeGroupcode(fap_job_ad_seq){
 				}
 			} 
 			$('#count_per_group').append(html);
-			alert('성공적으로 변경되었습니다');
 		},
 		error: function(data) {
 			console.log(data);
@@ -276,7 +275,7 @@ function selectRank(fap_job_ad_seq){
 							</c:otherwise>
 						</c:choose> --%>
 					</th>
-					<th>변경하기</th>
+					<!-- <th>변경하기</th> -->
 					<th>순위</th>
 				</tr>
 			</thead>
@@ -290,7 +289,7 @@ function selectRank(fap_job_ad_seq){
 							<td>${jobad.fap_job_ad_3years_avg_sales}</td>
 							<td>${jobad.fap_job_ad_employee_num}</td>
 							<td>
-								<select id="SelectGroupcode${jobad.fap_job_ad_seq}" style="width:60px">
+								<select id="SelectGroupcode${jobad.fap_job_ad_seq}" onchange="changeGroupcode(${jobad.fap_job_ad_seq})" style="width:60px">
 									<option hidden value="선택해주세요">선택</option>
 									<c:forEach items="${companyGroupcodeList}" var="companygroupcode">
 										<c:choose>
@@ -312,9 +311,9 @@ function selectRank(fap_job_ad_seq){
 									</c:forEach>
 								</select>
 							</td>
-							<td style="width: 7%">
+							<%-- <td style="width: 7%">
 								<button type="button" onclick="changeGroupcode(${jobad.fap_job_ad_seq})">변경</button>	
-							</td>
+							</td> --%>
 							
 							<!-- 순위 선택 -->
 							<td>

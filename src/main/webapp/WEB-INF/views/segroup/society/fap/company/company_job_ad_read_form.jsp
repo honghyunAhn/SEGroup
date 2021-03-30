@@ -147,7 +147,18 @@
 			}
 			
 		});
+		modTextAreaHeight();
 	});
+	//내용 길이에 맞게 textarea 높이 조정
+	function modTextAreaHeight() {
+		var area = $('textArea');
+		
+		if(area) {
+			area.each(function(){
+				$(this).height(this.scrollHeight);
+			});
+		}
+	}
 	//innerHtml용 유효성체크
 	function realTimeValidation(){
 		//모든 input text trim

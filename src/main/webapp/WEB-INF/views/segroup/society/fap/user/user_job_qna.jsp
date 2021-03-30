@@ -97,7 +97,7 @@
 	</script>
 </head>
 <body ng-app="myapp" ng-controller="RequiredDocController">
-	<%@include file="user_menu.jsp"%>
+	<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 
 <div class="join-wrap">
 	<div id="subcontents">

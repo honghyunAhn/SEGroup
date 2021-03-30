@@ -171,7 +171,7 @@
                     <div class="cc_segWrap">
                         <div class="segmentWrap">
                             <ul class="seg-list fz20">
-                                <li>- 환경설정 및 모듈설정</li>
+                                <li>- 환경설정 및 모듈 설치</li>
                                 <li>- 웹에 대한 이해와 HTML, CSS, Javascript 소개</li>
                                 <li>- Xpath에 대한 이해</li>
                                 <li>- 정규 표현식의 학습</li>
@@ -184,8 +184,8 @@
                                 <li>- 스크래핑 데이터를 활용한 실전 프로젝트</li>
                             </ul>
                             <div class="btnWrap d-flex">
-                                <div class="btn_normal btn_large btn_pp" onclick='location.href="/file_download?origin=Python을 이용한 웹스크래핑.pdf&saved=2020122880047086.pdf&path=uploadImage"'>
-                                	<a href="/file_download?origin=Python을 이용한 웹스크래핑.pdf&saved=2020122880047086.pdf&path=uploadImage" download>커리큘럼 다운받기</a>
+                                <div class="btn_normal btn_large btn_pp" onclick='location.href="/file_download?origin=파이썬을 이용한 웹 스크래핑.pdf&saved=2021030884160210.pdf&path=uploadImage"'>
+                                	<a href="#" onclick="return false;">커리큘럼 다운받기</a>
                                 </div>
 <!--                                 <div class="btn_normal btn_large btn_pp_bg margin-left20 "> -->
 <!--                                     <a href="sub02-01-01.html">수강신청 하러가기</a> -->

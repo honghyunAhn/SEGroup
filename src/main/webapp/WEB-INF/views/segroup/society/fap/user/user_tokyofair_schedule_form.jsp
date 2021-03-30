@@ -94,7 +94,7 @@ $(function(){
 
 </head>
 <body ng-app="myapp" ng-controller="TokyoFairController">
-<%@include file="user_menu.jsp"%>
+<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 <div class="join-wrap">
 		<div id="subcontents">
 			<h1>현장 면접 일정</h1>

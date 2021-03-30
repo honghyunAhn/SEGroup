@@ -991,7 +991,7 @@ document.domain = 'softsociety.net';
 </script>
 <body ng-app="myapp" ng-controller="BBSController" id="fap_user_insert_body">
 	
-	<%@include file="user_menu.jsp"%>
+	<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 	
 	<form name="reqDRMOKForm" method="post">
         <input type="hidden" name="req_info" value = "${encReqInfo}">

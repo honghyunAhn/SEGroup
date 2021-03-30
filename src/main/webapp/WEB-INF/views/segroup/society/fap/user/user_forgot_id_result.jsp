@@ -71,7 +71,7 @@
 </head>
 <body>
 
-	<%@include file="user_menu.jsp"%>
+	<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 	
 	<section class="result_section">
 		<div style="height:76px; "></div> <!-- 제목높이 보정용 -->

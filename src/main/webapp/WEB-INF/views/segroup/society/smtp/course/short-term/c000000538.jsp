@@ -180,7 +180,7 @@
                                 <li>- 퍼셉트론(Perceptron)</li>
                                 <li>- 다층 퍼셉트론</li>
                                 <li>- 심층 신경망(Deep Neural Network)</li>
-                                <li>- 신경망의 출력 계산과</li>
+                                <li>- 신경망의 출력 계산과정</li>
                                 <li>- 신경망 모형 학습절차</li>
                                 <li>- 손실함수의 계산 원리</li>
                                 <li>- 머신러닝 vs 딥러닝</li>
@@ -188,8 +188,8 @@
                                 <li>- 인공지능 기술의 현주소</li>
                             </ul>
                             <div class="btnWrap d-flex">
-                                <div class="btn_normal btn_large btn_pp" onclick='location.href="/file_download?origin=AI개요와 딥러닝 개념.pdf&saved=2020122886481036.pdf&path=uploadImage"'>
-                                	<a href="/file_download?origin=AI개요와 딥러닝 개념.pdf&saved=2020122886481036.pdf&path=uploadImage" download>커리큘럼 다운받기</a>
+                                <div class="btn_normal btn_large btn_pp" onclick='location.href="/file_download?origin=AI 개요와 딥러닝 개념.pdf&saved=2021030865059389.pdf&path=uploadImage"'>
+                                	<a href="#" onclick="return false;">커리큘럼 다운받기</a>
                                 </div>
 <!--                                 <div class="btn_normal btn_large btn_pp_bg margin-left20 "> -->
 <!--                                     <a href="sub02-01-01.html">수강신청 하러가기</a> -->

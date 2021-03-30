@@ -389,7 +389,7 @@
 	</script>
 	
 <body ng-app="myapp" ng-controller="RequiredDocController">
-	<%@include file="user_menu.jsp"%>
+	<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 		<div id="subcontents">
 	<h3 >내정자 내정서류 관리</h3>	
 	<br><br>

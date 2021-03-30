@@ -23,11 +23,11 @@
 	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/all.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/reset.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/swiper.min.css" />">
-	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/index.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/common.css" />">
+<%-- 	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/index.css" />"> --%>
+<%--     <link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/common.css" />"> --%>
 </head>
 <body>
-<%@include file="user_menu.jsp"%>
+<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 <div align="center">
 <spring:message code="fap.comp_partner" />
 </div>

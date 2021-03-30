@@ -179,13 +179,13 @@
                                 <li>- 데이터 타입</li>
                                 <li>- 배열 연산(산술연산, 비교연산, 집계)</li>
                                 <li>- 배열 복사와 정렬</li>
-                                <li>- Subset, sliceing, indexing, broadcasting</li>
+                                <li>- Subset, slicing, indexing, broadcasting</li>
                                 <li>- 배열 변환(전치, 결합 등)</li>
                                 <li>- Numpy와 Matplotlib을 이용한 간단한 시각화</li>
                             </ul>
                             <div class="btnWrap d-flex">
-                                <div class="btn_normal btn_large btn_pp" onclick='location.href="/file_download?origin=Python기반 데이터 사이언스 기초_v01.pdf&saved=2020122819307696.pdf&path=uploadImage"'>
-                                	<a href="/file_download?origin=Python기반 데이터 사이언스 기초_v01.pdf&saved=2020122819307696.pdf&path=uploadImage" download>커리큘럼 다운받기</a>
+                                <div class="btn_normal btn_large btn_pp" onclick='location.href="/file_download?origin=파이썬 기반 데이터사이언스 기초.pdf&saved=2021030878232284.pdf&path=uploadImage"'>
+                                	<a href="#" onclick="return false;">커리큘럼 다운받기</a>
                                 </div>
 <!--                                 <div class="btn_normal btn_large btn_pp_bg margin-left20 "> -->
 <!--                                     <a href="sub02-01-01.html">수강신청 하러가기</a> -->

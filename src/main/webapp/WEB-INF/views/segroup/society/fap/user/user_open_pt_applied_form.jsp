@@ -284,7 +284,7 @@
 	<sec:authentication property="details.user" var="detail" />
 	<input type="hidden" name="user_id" value="${detail.user_id}" id="user_id">
 </sec:authorize>
-<%@include file="user_menu.jsp"%>
+<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 <div class="join-wrap">
 	<div id="subcontents">
 		<div class="open_pt_mypage_wrap">

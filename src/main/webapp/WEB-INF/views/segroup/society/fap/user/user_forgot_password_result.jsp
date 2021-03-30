@@ -74,7 +74,7 @@
 <title><spring:message code="fap.common.my_page" /></title>
 </head>
 <body>
-	<%@include file="user_menu.jsp"%>
+	<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 
 	<section class="login_wrap">
 		<div style="height:76px; "></div>

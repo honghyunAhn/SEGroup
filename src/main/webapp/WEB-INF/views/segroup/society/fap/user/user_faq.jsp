@@ -74,7 +74,7 @@
 	</script>
 </head>
 <body>
-<%@include file="user_menu.jsp"%>	
+<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>	
 	<div class="join-wrap">
 		<div id="subcontents">
 			<div class="joinBox">
@@ -93,16 +93,16 @@
 					</form>
 				</div>
 				<div class="faq-body-wrap">
-					<div class="faq-body-tab">
-						<ul class="tab-items">
-							<li class="tab-item tab-apply">
-								<a href="javascript:tabFnc('C5300')"><spring:message code="fap.faq.job.seeker" /></a>
-							</li>
-							<li class="tab-item tab-company">
-								<a href="javascript:tabFnc('C5301')"><spring:message code="fap.faq.company" /></a>
-							</li>
-						</ul>
-					</div>
+<!-- 					<div class="faq-body-tab"> -->
+<!-- 						<ul class="tab-items"> -->
+<!-- 							<li class="tab-item tab-apply"> -->
+<%-- 								<a href="javascript:tabFnc('C5300')"><spring:message code="fap.faq.job.seeker" /></a> --%>
+<!-- 							</li> -->
+<!-- 							<li class="tab-item tab-company"> -->
+<%-- 								<a href="javascript:tabFnc('C5301')"><spring:message code="fap.faq.company" /></a> --%>
+<!-- 							</li> -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
 					<div class="faq-body-list">
 						<ul>
 							<c:forEach var="faq" items="${faqList }">

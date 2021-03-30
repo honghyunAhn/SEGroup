@@ -280,7 +280,7 @@ body, html {
 </script>
 </head>
 <body>
-<%@include file="user_menu.jsp"%>
+<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 <div class="join-wrap">			
 	<div id="subcontents">
 		<h1><spring:message code="fap.common.my_page" /></h1><h6><spring:message code="fap.comp.login_invite_phrase" /></h6>

@@ -319,7 +319,7 @@
 							content += '<li class="wid2">';
 							content += '<div class="resume-dropdown">';
 							content += '<div class="resume-select">';
-							content += '<button type="button" class="resume-select-btn"><code value="B2800"></code></button>';
+							content += '<button type="button" class="resume-select-btn"><code value="B2807"></code></button>';
 							content += '<input type="hidden" id="resume-field-gb" name="resumeEduList['+eduIndex+'].fap_resume_edu_field" value="B2800">';
 							content += '</div>';
 							content += '<div class="resume-select-option">';
@@ -1423,6 +1423,7 @@
 		<sec:authentication property="details.user" var="detail" />
 		</sec:authorize>
 		<%@include file="user_menu.jsp"%>
+		<%@include file="user_quick_menu.jsp"%>
 		<div class="resume_wrap">
 		<div id="subcontents">
 		
@@ -1436,7 +1437,7 @@
 			<div class="userjoinBox">
 				<div id="sub3Box">
 					<h2>이력서 만들기</h2>
-					<h4 class="red"><b>＊ 이력서는 반드시 일본어로 작성해 주시기 바랍니다.</b></h4>
+					<h2 class="red" style="color: red; padding-top: 10px;"><b>＊ 이력서는 반드시 일본어로 작성해 주시기 바랍니다.</b></h2>
 				</div>
 				<div id="sub3_bbs2">
 					<ul class="tit">

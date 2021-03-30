@@ -532,7 +532,7 @@
 	<input type="hidden" name="user_id" value="${detail.user_id}" id="user_id">
 	<input type="hidden" name="fap_resume_ins_id" value="${detail.user_id}">
 	<input type="hidden" name="fap_resume_udt_id" value="${detail.user_id}">
-	<%@include file="user_menu.jsp"%>
+	<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 	
 	<div class="join-wrap">
 		<div id="subcontents">

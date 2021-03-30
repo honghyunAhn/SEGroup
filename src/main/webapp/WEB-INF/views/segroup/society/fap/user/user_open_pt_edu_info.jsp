@@ -177,7 +177,7 @@
 	<input type="hidden" id="user_flag" value="${user.user_flag}">
 	<input type="hidden" name="user_id" value="${user.user_id}" id="user_id">
 </sec:authorize>
-<%@include file="user_menu.jsp"%>
+<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 <div class="join-wrap">
 	<div id="subcontents">
 		<c:choose>

@@ -359,6 +359,7 @@
 		<input type="hidden" name="user_id" value="${detail.user_id}" id="user_id">		 
 	</sec:authorize>
 	<%@include file="user_menu.jsp"%>
+	<%@include file="user_quick_menu.jsp"%>
 	<input type="hidden"  value="${fap_jobfair_divide_gb}" id="fap_jobfair_divide_gb">
 	<input type="hidden"  value="${applyInfo.fap_job_ad_rule_type}" id="fap_job_ad_rule_type">
 	<div class="join-wrap">

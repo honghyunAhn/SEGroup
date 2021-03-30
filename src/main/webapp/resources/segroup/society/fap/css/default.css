@@ -7,7 +7,7 @@
 * {
 	margin:0;
 	padding:0;
-	font-family: Meiryo !important;
+	font-family: MeiryoUI !important;
 }
 
 /*�슂�냼 �뿬諛� 珥덇린�솕 */
@@ -2659,12 +2659,12 @@ filter: alpha(opacity=0);
 /*�씠�젰�꽌*/
 .resume_wrap{background-color: #f2f4f7;min-height: 660px;}
 .resume_sub{margin:0 auto;text-align:center; }
-.resume_sub h2{font-weight:bold;color:#595959;font-size: 22px;padding-top:50px;padding-bottom:20px;}
+.resume_sub h2{font-weight:bold;color:#595959;font-size: 22px;padding-top:20px;padding-bottom:20px;}
 .userjoinBox{margin: 0 auto; border: 1px solid #e4e5e7; background-color: #fff; text-align: center; padding-bottom: 50px; }
 .userjoinBox select{height: 40px; font-size: 16px; color: #2f2f2f; border: 1px solid #e1e2e6; background-color: #fcfdff; background: url('../images/select_arrow2.png') no-repeat 95% 50%; }
 .hiddenTx{position: absolute;right: 18px;top: 14px;font-size: 15px;color: #999;}
 #sub3_bbs2 {margin:0 auto; width:100%; }
-#sub3_bbs2.basic_top {height: 350px;}
+#sub3_bbs2.basic_top {height: 300px;}
 #sub3_bbs2 li {display:inline-block; width: 80%}
 #sub3_bbs2 li.photo {width: 150px; height: 200px; border: 1px solid #e1e2e6;}
 #sub3_bbs2 li.photo img{width: 150px; height: 200px;}
@@ -2679,10 +2679,10 @@ filter: alpha(opacity=0);
 
 #sub3_bbs2 .tit2.first {padding-top:0px;}
 #sub3_bbs2 .tit2 {height:50px; padding-top:20px; width:100%; }
-#sub3_bbs2 .tit2 .wid1 {position:relative; width:13%; text-align:center; color:000; font-weight:bold; padding-top: 15px;}
-#sub3_bbs2 .tit2 .wid2 {position:relative; width:25%; text-align:center;}
-#sub3_bbs2 .tit2 .wid3 {position:relative; width:13%; text-align:center; color:000; font-weight:bold; padding-right:10px;}
-#sub3_bbs2 .tit2 .wid4 {position:relative; width:25%; text-align:center;}
+#sub3_bbs2 .tit2 .wid1 {position:relative; width:13%; text-align:center; color:000; font-weight:bold; padding-top: 10px; padding-bottom: 10px; background-color: #f2f2f2;}
+#sub3_bbs2 .tit2 .wid2 {position:relative; width:25%; text-align:center; }
+#sub3_bbs2 .tit2 .wid3 {position:relative; width:13%; text-align:center; color:000; font-weight:bold; padding-right:10px; padding-top: 10px; padding-bottom: 10px; background-color: #f2f2f2;}
+#sub3_bbs2 .tit2 .wid4 {position:relative; width:25%; text-align:center; }
 #sub3_bbs2 .tit2 .wid2 input{width: 200px; min-height: 28px; padding: 8px 45px 12px 16px; border: 1px solid #e1e2e6; background-color: #fcfdff;font-size: 16px;}
 #sub3_bbs2 .tit2 .wid1 .input1 {width: 200px; min-height: 28px; padding: 8px 45px 12px 16px; border: 1px solid #e1e2e6; background-color: #fcfdff;font-size: 16px;}
 #sub3_bbs2 .tit2 .wid2 .input1 {width: 200px; min-height: 28px; padding: 8px 45px 12px 16px; border: 1px solid #e1e2e6; background-color: #fcfdff;font-size: 16px;}
@@ -2694,7 +2694,7 @@ filter: alpha(opacity=0);
 
 
 #sub3_bbs2 .tit3 {padding-top:10px; width:100%; display:inline-block; }
-#sub3_bbs2 .tit3 .wid1 {width:12%; text-align:center; font-weight:bold;}
+#sub3_bbs2 .tit3 .wid1 {width:12%; text-align:center; font-weight:bold; background-color: #f2f2f2; padding-top: 10px; padding-bottom: 10px;}
 #sub3_bbs2 .tit3 .wid2_birth {width:26%;text-align:center;padding: 0px 2px 0px 0px; position: relative;}
 #sub3_bbs2 .tit3 .wid2_birth .input {width: 210px; min-height: 28px; padding: 8px 45px 12px 20px; border: 1px solid #e1e2e6; background-color: #fcfdff;font-size: 16px;}
 #sub3Box .select2 { width: 150px; height: 30px; padding-left: 10px; padding-right:20px; font-size: 13px; color: #2f2f2f; border: 1px solid #b0b0b0; padding-top:5px;

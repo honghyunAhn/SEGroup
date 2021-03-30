@@ -1451,9 +1451,15 @@ $(function() {
 						
 		<!-- 불합격자 -->
 		<div id="peopleBBS" ng-if="unacceptedApplicantInfo[0] != null">
-			<h2><spring:message code="fap.comp.unaccepted_applicant" /></h2>
+			<ul class="peoplechk" display="table">
+				<li class="pb-5" display="table-cell">
+					<h2><spring:message code="fap.comp.unaccepted_applicant" /></h2>
+					<button class="btn3 btn-primary resume_print"><spring:message code="fap.comp.app_print" /></button>
+				</li>
+			</ul>
 			<ul class="peopletitle" style="width: 100%;">
-				<li class="wid1">No</li>				
+				<li class="wid1"></li>
+				<li class="wid1">No</li>
 				<li class="wid4"><spring:message code="fap.comp.applicant_info" /></li>
 				<li class="wid6" ng-repeat="pcs in recruitPcs">
 					<code value="C2500" ng-if="pcs.fap_job_recruit_pcs_gb == 'C2500' "></code>
@@ -1466,6 +1472,12 @@ $(function() {
 			</ul>
 			
 			<ul class="peoplemain2" ng-repeat="un_info in unacceptedApplicantInfo" ng-init="un_infoIndex = $index" >
+				<li class="wid1">
+					<span class="resume-check">
+						<label class="resume-check-label">
+						</label>
+					</span>
+				</li>
 				<li class="wid1">
 					{{un_infoIndex+1}}
 				</li>

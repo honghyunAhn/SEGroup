@@ -317,7 +317,7 @@
 			AND CAL.COURSE_ID = #{course}
 			AND CAL.LEARN_APP_ID = #{id}
 			AND CAL.CARDINAL_ID = #{cardinal}
-			AND CH.ORDER_NUM = #{chasi}
+			AND CAL.CHAPTER = #{chapter}
 	</select>
 	<!-- 수강처리(포팅) -->
 	<update id="setProgYn" parameterType="int">

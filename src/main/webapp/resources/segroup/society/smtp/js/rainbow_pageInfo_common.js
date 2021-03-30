@@ -39,7 +39,7 @@ function getCardinalInfo() {
 function setContent(validCardinals, applyFormYn) {
 	var content = '';
 	if(validCardinals!=null&&validCardinals!="") {
-		console.log(validCardinals);
+//		console.log(validCardinals);
 		$.each(validCardinals, function(index, item) {
 			
 			aedDate_hyphen = item.app_end_date; //setApply 이벤트에서 사용. 하이픈으로 구분되어 있는 지원 마감일.

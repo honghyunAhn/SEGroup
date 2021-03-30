@@ -118,7 +118,7 @@
 	</script>
 </head>
 <body ng-app="myapp" ng-controller="MyFavoriteCompanyController">
-	<%@include file="user_menu.jsp"%>
+	<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 	
 	<div id="subcontents">
 		<div id="sub1Box">

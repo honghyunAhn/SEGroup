@@ -315,7 +315,7 @@
 		    </li>
 		    <li><a>기타</a>
 		   		<ul>
-					<li><a href='/fap/admin/email_management'>기업 메일 관리</a></li>			 
+<!-- 					<li><a href='/fap/admin/email_management'>기업 메일 관리</a></li>			  -->
 					<li><a href='/fap/admin/mainpage_ct_management'>메인 페이지 관리</a></li>
 				</ul>
 		    </li>		     

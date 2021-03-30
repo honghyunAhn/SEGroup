@@ -64,7 +64,18 @@
 			//기본급 합계
 			basic_total_event();
 			
+			modTextAreaHeight();
 		});
+		//내용 길이에 맞게 textarea 높이 조정
+		function modTextAreaHeight() {
+			var area = $('textArea');
+			
+			if(area) {
+				area.each(function(){
+					$(this).height(this.scrollHeight);
+				});
+			}
+		}
 		
 		//체크박스 공통 처리
 		function checkbox_event(){
@@ -2302,7 +2313,7 @@
 	<input type="hidden" id="user_flag" value="${user.user_flag}">
 </sec:authorize>
 
-	<%@include file="user_menu.jsp"%>
+	<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 	<div class="job-content">
 	<div class="job-ad-wrap">
 		<div class="job-ad-subcontents">

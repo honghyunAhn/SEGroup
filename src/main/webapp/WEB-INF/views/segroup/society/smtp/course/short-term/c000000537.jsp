@@ -172,7 +172,7 @@
                     <div class="cc_segWrap">
                         <div class="segmentWrap">
                             <ul class="seg-list fz20">
-                                <li>- 아나콘다 설치 및 Numpy, Pandas모듈 설정</li>
+                                <li>- 개발환경 설정 및 Numpy, Pandas 모듈 설치</li>
                                 <li>- 데이터 프레임과 시리즈 작성</li>
                                 <li>- 데이터 프레임 다루기</li>
                                 <li>- 판다스 자료형</li>
@@ -183,11 +183,11 @@
                                 <li>- 데이터 필터링</li>
                                 <li>- 시계열 데이터 다루기</li>
                                 <li>- 사례 별 데이터 처리방법</li>
-                                <li>- matplotlib을 이용한 시각화소</li>
+                                <li>- matplotlib을 이용한 시각화</li>
                             </ul>
                             <div class="btnWrap d-flex">
-                                <div class="btn_normal btn_large btn_pp" onclick='location.href="/file_download?origin=Python으로 배우는 데이터분석과 시각화.pdf&saved=2020122865506327.pdf&path=uploadImage"'>
-                                    <a href="/file_download?origin=Python으로 배우는 데이터분석과 시각화.pdf&saved=2020122865506327.pdf&path=uploadImage" download>커리큘럼 다운받기</a>
+                                <div class="btn_normal btn_large btn_pp" onclick='location.href="/file_download?origin=파이썬으로 배우는 데이터분석과 시각화.pdf&saved=2021030833707954.pdf&path=uploadImage"'>
+                                    <a href="#" onclick="return false;">커리큘럼 다운받기</a>
                                 </div>
                                  <!-- <div class="btn_normal btn_large btn_pp_bg margin-left20 ">
                                     <a href="sub02-01-01.html">수강신청 하러가기</a>

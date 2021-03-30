@@ -1353,7 +1353,7 @@ var first_email = "";
     </sec:authorize>
 	
 
-	<%@include file="user_menu.jsp"%>
+	<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 
 	<form action="/fap/user/user_update_form" method="post" onsubmit="return checkOnSubmit();">
 	

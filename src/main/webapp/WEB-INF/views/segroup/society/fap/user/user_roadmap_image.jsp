@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<%@include file="user_menu.jsp"%>
+<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 <div class="join-wrap">
 	<div id="subcontents">
 		<img src="<c:url value="/resources/segroup/society/fap/images/roadmap.png" />">

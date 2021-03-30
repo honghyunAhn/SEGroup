@@ -179,11 +179,10 @@
                                 <li>- 연봉 추정(지도학습 - Classification)</li>
                                 <li>- 심장병 판별(지도학습 - Classification)</li>
                                 <li>- 비행기 연착확률(지도학습 - Classification)</li>
-                                <li>- 비행기 연착 데이터 분석을 통한 비행기 연착추측과 데이터 전처리 실습</li>
                             </ul>
                             <div class="btnWrap d-flex">
-                                <div class="btn_normal btn_large btn_pp" onclick='location.href="/file_download?origin=코딩한줄 없는 AI 활용.pdf&saved=2020122862169521.pdf&path=uploadImage"'>
-                                	<a href="/file_download?origin=코딩한줄 없는 AI 활용.pdf&saved=2020122862169521.pdf&path=uploadImage" download>커리큘럼 다운받기</a>
+                                <div class="btn_normal btn_large btn_pp" onclick='location.href="/file_download?origin=코딩 한 줄 없는 AI 활용.pdf&saved=2021030895183358.pdf&path=uploadImage"'>
+                                	<a href="#" onclick="return false;">커리큘럼 다운받기</a>
                                 </div>
 <!--                                 <div class="btn_normal btn_large btn_pp_bg margin-left20 "> -->
 <!--                                     <a href="sub02-01-01.html">수강신청 하러가기</a> -->

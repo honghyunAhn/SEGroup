@@ -1482,7 +1482,7 @@ var blur_flag = true;
 	<sec:authorize access="hasAnyRole('ROLE_A0100', 'ROLE_A0101', 'ROLE_A0102', 'ROLE_A0106', 'ROLE_A0108')">
 		<sec:authentication property="details.user" var="detail" />
 		</sec:authorize>
-		<%@include file="user_menu.jsp"%>
+		<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 		<div class="resume_wrap">
 		<div id="subcontents">
 		

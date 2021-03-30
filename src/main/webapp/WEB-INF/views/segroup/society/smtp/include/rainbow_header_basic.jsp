@@ -114,6 +114,7 @@
 	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000537');" href="javascript:void(0);">파이썬으로 배우는 데이터분석과 시각화</a></li>
 	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000540');" href="javascript:void(0);">파이썬을 이용한 웹 스크래핑</a></li>
 	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000536');" href="javascript:void(0);">파이썬기반 데이터 사이언스 기초</a></li>
+	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000545');" href="javascript:void(0);">(과정평가형)정보처리산업기사 자격 취득과정</a></li>
 	            </ul>
 	            <ul class="menu-title-division">
 	                <li class="gnb">외국어</li>
@@ -185,6 +186,7 @@
                 <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000537');" href="javascript:void(0);">파이썬으로 배우는 데이터분석과 시각화</a></li>
                 <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000540');" href="javascript:void(0);">파이썬을 이용한 웹 스크래핑</a></li>
                 <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000536');" href="javascript:void(0);">파이썬기반 데이터 사이언스 기초</a></li>
+                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000545');" href="javascript:void(0);">(과정평가형)정보처리산업기사 자격 취득과정</a></li>
             </ul>
             <ul class="header-subMenu">
                 <li class="hdrSubMenu"><a href="/smtp/course/short-term/short-term-info?course_id=c000000541">일본취업을 위한 JPT & SJPT</a></li>

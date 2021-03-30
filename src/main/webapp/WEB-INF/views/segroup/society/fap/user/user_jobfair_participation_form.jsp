@@ -17,6 +17,9 @@
 	
 	<script type="text/javascript">
 		$(function() {
+			
+			modTextAreaHeight();
+			
 			$('#logout').off("click").on("click", function() {
 				$('#logoutForm').submit();
 				return false;
@@ -32,6 +35,27 @@
 			});
 			//[end] 디자인에 필요한 코드 종료
 		});
+		
+		//단순히 각각의 textarea 길이만 늘려주면 각자 길이가 달라서 div의 높낮이가 달라짐
+		//값을 비교해서 긴쪽의 길이로 맞춰줘야함
+		function modTextAreaHeight() {
+			var area = $('.msgbox2 > textArea');
+			
+			if(area) {
+				
+				var heightArr = [];
+				
+				$.each(area, function(index, item){
+					heightArr.push($(item).prop('scrollHeight'));
+				});
+				
+				var max = heightArr.reduce(function (prev, curr) { 
+					return prev > curr ? prev:curr;
+				});
+				
+				$(area).height(max);
+			}
+		}
 	</script>
 	<script type="text/javascript">	
 			
@@ -96,7 +120,7 @@
 </head>
 <body ng-app="myapp">
 
-<%@include file="user_menu.jsp"%>
+<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 	 
 <div class="join-wrap">	 
 	<div id="subcontents">

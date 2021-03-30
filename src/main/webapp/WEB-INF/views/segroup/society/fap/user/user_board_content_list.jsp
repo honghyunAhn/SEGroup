@@ -133,7 +133,7 @@
 	<input type="hidden" id="curPage" name="curPage" value="${map.adminPager.curPage}">
 	<input type="hidden" id="board_detail_gb" name="board_detail_gb" value="${map.board_detail_gb}">
 
-	<%@include file="user_menu.jsp"%>	
+	<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>	
 	   
       <div class="boardContentTitle">		 
 		 <h1>

@@ -695,7 +695,8 @@ public class SocietyFapUserViewController implements PathConstants {
 		
 		//가 == it직종 우선
 		if(fap_mainpage_ct_imp_code.equals("가")) {
-			paramMap.put("isIT", "yes"); 
+			paramMap.put("isIT", "yes");
+			paramMap.put("fap_job_ad_groupcode", fap_mainpage_ct_imp_code);
 			ArrayList<HashMap<String, Object>> mainpage_ct_IT = sfuService.select_mainpage_context(paramMap);
 			model.addAttribute("mainpage_ct_IT", mainpage_ct_IT);
 			
@@ -706,6 +707,7 @@ public class SocietyFapUserViewController implements PathConstants {
 		//나 == 비it직종 우선
 		else if(fap_mainpage_ct_imp_code.equals("나")) {
 			paramMap.put("isIT", "no");
+			paramMap.put("fap_job_ad_groupcode", fap_mainpage_ct_imp_code);
 			ArrayList<HashMap<String, Object>> mainpage_ct_IT = sfuService.select_mainpage_context(paramMap);
 			model.addAttribute("mainpage_ct_IT", mainpage_ct_IT);
 			paramMap.put("isIT", "yes");

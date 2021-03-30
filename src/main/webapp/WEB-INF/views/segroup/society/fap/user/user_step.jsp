@@ -18,8 +18,8 @@
 	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/all.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/reset.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/swiper.min.css" />">
-	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/index.css" />">
-    <link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/common.css" />">
+<%-- 	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/index.css" />"> --%>
+<%--     <link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/common.css" />"> --%>
     <style>
         .img {
             width: 1200px;
@@ -42,7 +42,8 @@
     </style>
 </head>
 <body>
-	<%@include file="user_menu.jsp"%>
+	<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
+	
     <div class="img img01"></div>
     <div class="img img02"></div>
 	<%@include file="../common_footer_fap.jsp"%> 

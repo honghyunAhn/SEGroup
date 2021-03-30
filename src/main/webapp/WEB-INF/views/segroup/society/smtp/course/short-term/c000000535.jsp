@@ -174,7 +174,6 @@
                             <ul class="seg-list fz20">
                             	<li>- 파이썬 프로그래밍을 위한 환경설정</li>
                                 <li>- 변수와 자료형</li>
-                                <li>- 자료형</li>
                                 <li>- 파이썬 기본 연산자의 활용</li>
                                 <li>- 조건문, 반복문</li>
                                 <li>- 문자열처리와 함수의 사용</li>
@@ -190,8 +189,8 @@
                                 <li>- 파일 입출력</li>
                             </ul>
                             <div class="btnWrap d-flex">
-                                <div class="btn_normal btn_large btn_pp" onclick='location.href="/file_download?origin=Python.pdf&saved=2020122819307696.pdf&path=uploadImage"'>
-                                	 <a href="/file_download?origin=Python.pdf&saved=2020122819307696.pdf&path=uploadImage" download>커리큘럼 다운받기</a>
+                                <div class="btn_normal btn_large btn_pp" onclick='location.href="/file_download?origin=이제부터 파이썬.pdf&saved=2021030840882266.pdf&path=uploadImage"'>
+                                	 <a href="#" onclick="return false;">커리큘럼 다운받기</a>
                                 </div>
 <!--                                 <div class="btn_normal btn_large btn_pp_bg margin-left20 "> -->
 <!--                                     <a href="sub02-01-01.html">수강신청 하러가기</a> -->

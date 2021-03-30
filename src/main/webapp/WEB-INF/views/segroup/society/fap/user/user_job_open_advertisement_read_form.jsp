@@ -2229,7 +2229,7 @@
 	</script>
 </head>
 <body ng-app="myapp" ng-controller="readJobAdvertisement" id="company_job_ad_body">
-	<%@include file="user_menu.jsp"%>
+	<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 	
 	<div class="job-ad-wrap">
 		<div class="job-ad-subcontents">
