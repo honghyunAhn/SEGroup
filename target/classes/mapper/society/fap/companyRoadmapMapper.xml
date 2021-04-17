@@ -88,7 +88,7 @@
 		where
 			detail.fap_jobfair_seq = #{fap_jobfair_seq}
 		and
-			comp.fap_comp_id = #{fap_comp_id}
+			comp.fap_comp_id like concat ('%',#{fap_comp_id}, '%')
 	</select>
 	
 	<!-- 세부 잡페어별 진행중, 마감된 채용공고 리스트 조회 시작 -->

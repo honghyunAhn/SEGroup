@@ -257,10 +257,10 @@
       <!-- 메인 배너_ 슬라이딩 갤러리 -->
         <div class="swiper-container gallery">
             <ul class="swiper-wrapper slidePic">
-            	<c:if test = "${pageContext.request.locale.language == 'ko'}">
+            	<c:if test = "${pageContext.response.locale.language == 'ko'}">
                 <li class="swiper-slide pic01"><a href="#"></a></li>
                 </c:if>
-                <c:if test = "${pageContext.request.locale.language == 'jp'}">
+                <c:if test = "${pageContext.response.locale.language == 'ja'}">
                 <li class="swiper-slide pic01JA"><a href="#"></a></li>
                 </c:if>
                 <!-- <li class="swiper-slide pic02"><a href="#"></a></li> -->
@@ -434,10 +434,10 @@
                        <spring:message code="fap.user_main_content.text02" />
                     </h2>
                     <div class="guide d-flex">
-	                    <c:if test = "${pageContext.request.locale.language == 'ko'}">
+	                    <c:if test = "${pageContext.response.locale.language == 'ko'}">
 		                <div class="guide-banner"></div>
 		                </c:if>
-		                <c:if test = "${pageContext.request.locale.language == 'jp'}">
+		                <c:if test = "${pageContext.response.locale.language == 'ja'}">
 		                <div class="guide-bannerJA"></div>
 		                </c:if>
                         

@@ -83,7 +83,7 @@ function setContent(validCardinals, applyFormYn) {
 			content += 			'</div>';
 			content += 			'<div class="fz20 prd_day">';
 			if(item.id == "n000000577") {
-				content += 				'<span class="prd_day">시험일 : 2021-03-02(화) / 16시~</span>';
+				content += 				'<span class="prd_day">시험일 : 2021-04-15(목)</span>';
 			} else {
 				content += 				'<span class="prd_day">학습기간</span>';
 				content += 				'<br><span class="prd_time">' + item.learn_start_date + ' ~ ';
@@ -113,7 +113,8 @@ function setContent(validCardinals, applyFormYn) {
 			content += 			'</span>';
 			content += 			'</div>';
 			content += 			'<div class="fz20">';
-			content +=				'<div class="fc_eg"><span class="prd_price">교육비 : ';
+			if(item.id == "n000000577") content +=				'<div class="fc_eg"><span class="prd_price">금액 : ';
+			else content +=				'<div class="fc_eg"><span class="prd_price">교육비 : ';
 			if(price == 0) content += '무료';
 			else content += price + '원';
 			content += '</span></div>';

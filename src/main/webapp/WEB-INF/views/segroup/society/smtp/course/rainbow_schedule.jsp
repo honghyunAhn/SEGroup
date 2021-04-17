@@ -46,9 +46,7 @@
 
 <body>
     <div class="container_rainbow">
-        <div class="headerWrap">
             <%@include file="../include/rainbow_header_basic.jsp"%>
-        </div>
 
         <div class="content sub-content content_schedule" id="main">
             <div class="background">

@@ -174,7 +174,7 @@
 				context += '			<li class="wid3">회사명&nbsp;<img class="arrow  fap_comp_ja_nm" src="/resources/segroup/society/fap/images/main/triangle_down_white.png;" orderType="fap_comp_ja_nm" ng-click="order_change($event)"  style="width: 20px;  "><br>(일본어)&emsp;</li>';
 				context += '			<li class="wid3">회사명&nbsp;<img class="arrow  fap_comp_en_nm" src="/resources/segroup/society/fap/images/main/triangle_down_white.png;" orderType="fap_comp_en_nm" ng-click="order_change($event)"  style="width: 20px; "><br>(영어)</li>';
 				context += '			<li class="wid4">기업그룹코드&nbsp;<img class="arrow  fap_job_ad_groupcode" src="/resources/segroup/society/fap/images/main/triangle_down_white.png;" orderType="fap_job_ad_groupcode"  ng-click="order_change($event)"  style="width: 20px; "></li>';
-				context += '			<li class="wid5">지원자 수<br><small>(서울/광주/일취/일반)</small></li>';
+				context += '			<li class="wid5">지원자 수<br><small>(서울/광주/글디/일반)</small></li>';
 				context += '			<li class="wid7">지원자 현황</li>';
 				context += '			<li class="wid7">Q&A</li>';
 				context += '		</ul>';	 

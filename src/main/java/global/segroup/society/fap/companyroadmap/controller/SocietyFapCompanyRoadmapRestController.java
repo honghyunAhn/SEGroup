@@ -7,10 +7,13 @@ package global.segroup.society.fap.companyroadmap.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -83,11 +86,17 @@ public class SocietyFapCompanyRoadmapRestController implements PathConstants {
 	 */
 	@ResponseBody
 	@RequestMapping(value = PathConstants.SOCIETY_FAP_COMPANY_ROADMAP_SELECT_JOBFAIR_DIVIDE, method = RequestMethod.POST)
-	public ArrayList<SocietyFapCompanyRoadmapJobfairDivide> select_jobfair_divide(int fap_jobfair_seq, Authentication auth){
+	public ArrayList<SocietyFapCompanyRoadmapJobfairDivide> select_jobfair_divide(int fap_jobfair_seq, Authentication auth, HttpSession session){
 		logger.info("FAP 기업로드맵 잡페어 세부 불러오기 컨트롤러 시작");
 		
 		HashMap<String, Object> params = new HashMap<String, Object>();
-		String user_id = (String)auth.getPrincipal();
+		String user_id = "";
+		if(auth!= null) user_id = (String)auth.getPrincipal();
+		else  {
+			SecurityContextImpl context = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
+			Authentication authTemp = context.getAuthentication();
+			user_id = (String) authTemp.getPrincipal();
+		}
 		String fap_comp_id = sfcService.select_fap_comp_id(user_id);
 		params.put("fap_jobfair_seq", fap_jobfair_seq);
 		params.put("fap_comp_id", fap_comp_id);

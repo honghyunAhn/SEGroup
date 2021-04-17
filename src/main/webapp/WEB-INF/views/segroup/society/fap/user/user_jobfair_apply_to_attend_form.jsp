@@ -106,7 +106,7 @@
 			<h1><spring:message code="fap.common.attend_jobfair" /></h1>
 			<h6><spring:message code="fap.jobfair.select_jobfair_to_comment" /></h6>
 		</div>
-		  
+		<br>
 		<div id="fairBox">
 			<c:forEach var="jobfairInfo" items="${jobfairInfoList}" varStatus="status">		
 				<div id="fair">

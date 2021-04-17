@@ -74,6 +74,7 @@
                     <li>광주시 광산구 무진대로282 광주무역회관7F 소프트엔지니어소사이어티아카데미</li>
                     <li>사업자등록번호 : 468-81-00409</li>
                     <li>통신판매업신고번호 : 제 강남-03736호</li>
+                    <li><a href="/privacy_policy"><button><strong>개인정보처리방침</strong></button></a></li>
                 </ul>
             </div>
 

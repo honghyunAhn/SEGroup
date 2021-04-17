@@ -108,6 +108,7 @@
 <script type="text/javascript">
 //언어팩 컨펌
 function language_chage(language){
+	console.log(language)
 	var flag = confirm('<spring:message code="fap.err.language_change_confirm" />');
 	if(flag){
 		if(language == 'ko') location.href="/fap/company/language_change?lo=ko";

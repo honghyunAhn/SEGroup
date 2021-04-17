@@ -637,7 +637,7 @@ form, label {
     background-color: #106c79;
 }
 .content>.gallery>.slidePic>.pic01{
-background-image: url('../images/main/210323-banner_MAIN-1920x560px_v1.jpg');
+background-image: url('../images/main/banner_MAIN2-1920x560px.jpg');
 }
 .content>.gallery>.slidePic>.pic02{
 background-image: url('../images/main/');
@@ -837,12 +837,14 @@ background-image: url('../images/main/banner_MAIN2-1920x560pxJA.jpg');
 .userGuideWrap>.userGuide>.guideWrap>.guide>.guide-banner {
     width: 350px;
     height: 240px;
+    background-size: contain;
     background-image: url('../images/main/banner_BJF350x240px.jpg');
 }
 
 .userGuideWrap>.userGuide>.guideWrap>.guide>.guide-bannerJA {
     width: 350px;
     height: 240px;
+    background-size: contain;
     background-image: url('../images/main/banner_BJF350x240pxJA.jpg');
 }
 

@@ -235,7 +235,7 @@
 				        labels: ["男性", "女性"],
 				        datasets: [{
 				            label: '# of Votes',
-				            data: [109,32],
+				            data: [121,43],
 				            //data: [112, 33], // 2019 summer Bridge Job Fair
 				            backgroundColor: [
 				            	'rgba(54, 162, 235, 0.4)',
@@ -299,7 +299,8 @@
 				    	labels: ["コンピューター工学","日本語","工学系列","自然系列","人文系列","その他"],
 				        datasets: [{
 				            label: '# of Votes',
-				            data: [25, 19, 21, 11, 52, 13],
+				            data: [41, 20, 17, 13, 60, 13],
+							//data: [25, 19, 21, 11, 52, 13],
 				            //data: [27, 18, 21, 8, 62, 9], // 2019 summer Bridge Job Fair
 				            backgroundColor: [
 				            	'rgba(54, 162, 235, 0.4)',
@@ -358,7 +359,7 @@
 				        labels: ["30歳以上（～1989年生まれ）", "27歳(1992年生まれ) ~ 29歳(1990年生まれ)", "23歳(1996年生まれ) ~ 26歳(1993年生まれ)", "22歳以下(1997年生まれ~）"],
 				        datasets: [{
 				            label: '# of Votes',
-				            data: [32, 40, 68, 1],
+				            data: [43, 59, 61, 1],
 				            //data: [71, 41, 33], // 2019 summer Bridge Job Fair
 				            backgroundColor: [
 				            	'rgba(255, 255, 0, 0.7)',
@@ -411,7 +412,7 @@
 				        labels: ["男性", "女性"],
 				        datasets: [{
 				            label: '# of Votes',
-				            data: [118, 56],
+				            data: [262, 114],
 				            // data: [34, 23], // 2019 summer Bridge Job Fair
 				            backgroundColor: [
 				            	'rgba(54, 162, 235, 0.4)',
@@ -475,7 +476,7 @@
 				    	labels: ["コンピューター工学","日本語","工学系列","自然系列","人文系列","その他"],
 				        datasets: [{
 				            label: '# of Votes',
-				            data: [31, 24, 41, 8, 60, 10],
+				            data: [105, 76, 35, 27, 117, 11],
 				            //data: [8, 8, 13, 4, 20, 4], // 2019 summer Bridge Job Fair
 				            backgroundColor: [
 				            	'rgba(54, 162, 235, 0.4)',
@@ -534,7 +535,7 @@
 				        labels: ["30歳以上（～1989年生まれ）", "27歳(1992年生まれ) ~ 29歳(1990年生まれ)", "23歳(1996年生まれ) ~ 26歳(1993年生まれ)", "22歳以下(1997年生まれ~）"],
 				        datasets: [{
 				            label: '# of Votes',
-				            data: [27, 48, 91, 8],
+				            data: [94, 144, 137, 1],
 				            //data: [33, 15, 9], // 2019 summer Bridge Job Fair
 				            backgroundColor: [
 				            	'rgba(255, 255, 0, 0.7)',
@@ -642,10 +643,10 @@
         <!-- 메인 배너_ 슬라이딩 갤러리 -->
         <div class="swiper-container gallery">
             <ul class="swiper-wrapper slidePic">
-               <c:if test = "${pageContext.request.locale.language == 'ko'}">
+               <c:if test = "${pageContext.response.locale.language == 'ko'}">
                 <li class="swiper-slide pic01"><a href="#"></a></li>
                 </c:if>
-                <c:if test = "${pageContext.request.locale.language == 'jp'}">
+                <c:if test = "${pageContext.response.locale.language == 'ja'}">
                 <li class="swiper-slide pic01JA"><a href="#"></a></li>
                 </c:if>
                 <!-- <li class="swiper-slide pic02"><a href="#"></a></li> -->
@@ -705,10 +706,10 @@
                     </h2>
                     <div class="guide d-flex">
                     
-                         <c:if test = "${pageContext.request.locale.language == 'ko'}">
+                         <c:if test = "${pageContext.response.locale.language == 'ko'}">
 		                <div class="guide-banner"></div>
 		                </c:if>
-		                <c:if test = "${pageContext.request.locale.language == 'jp'}">
+		                <c:if test = "${pageContext.response.locale.language == 'ja'}">
 		                <div class="guide-bannerJA"></div>
 		                </c:if>
                         
@@ -723,6 +724,10 @@
                             <ul class="guideList">
                                 <li>
                                      <spring:message code="fap.comp_main_content.text06" />
+                                     
+                                </li>
+                                <li>
+                                	<spring:message code="fap.comp_main_content.text06_1" />
                                 </li>
                             </ul>
                             <button class="button bgcPoint" type="button" id="hireNow"><spring:message code="fap.comp_main_content.hire_now" />

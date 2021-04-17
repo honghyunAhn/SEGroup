@@ -18,8 +18,6 @@
 	<script type="text/javascript">
 		$(function() {
 			
-			modTextAreaHeight();
-			
 			$('#logout').off("click").on("click", function() {
 				$('#logoutForm').submit();
 				return false;
@@ -34,13 +32,14 @@
 				$(this).children('a:first').removeClass("hov");		
 			});
 			//[end] 디자인에 필요한 코드 종료
+			modTextAreaHeight();
 		});
 		
 		//단순히 각각의 textarea 길이만 늘려주면 각자 길이가 달라서 div의 높낮이가 달라짐
 		//값을 비교해서 긴쪽의 길이로 맞춰줘야함
 		function modTextAreaHeight() {
 			var area = $('.msgbox2 > textArea');
-			
+			console.log(area);
 			if(area) {
 				
 				var heightArr = [];
@@ -126,9 +125,12 @@
 	<div id="subcontents">
 	
 		<h1>잡페어 참가</h1>
-		<h6><span class="red">참가할 세부 Fair를 선택하세요(복수참가시 각각 신청해주세요)</span></h6>
+		<h6>
+			<span class="red">참가할 세부 Fair를 선택하세요(복수참가시 각각 신청해주세요)</span>
+			<br><br><span>※참가기업의 수의 따라, 예정보다 일찍 마감할 수도 있습니다.</span>
+		</h6>
 
-		<h6>※참가기업의 수의 따라, 예정보다 일찍 마감할 수도 있습니다.</h6>
+		<h6></h6>
 		
 		<div id="fairctr">
 		
