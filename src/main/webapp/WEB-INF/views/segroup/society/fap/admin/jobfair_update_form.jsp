@@ -665,7 +665,6 @@
 			fapJobfairJson = fapJobfairJson.replace(/(?:\r\n|\r|\n)/g, '\\r\\n');
 			var parsed = JSON.parse(fapJobfairJson);			
 			$scope.jobfairInfo = parsed;
-			
 			console.log(parsed);
 			
 			$("#k_body").hide();			
@@ -793,6 +792,7 @@
 					//J-fair 채용대상
 					for(var k=0; k<parsed.fapJobfairDivideRcList.length; k++){
 						if(parsed.fapJobfairDivideList[i].fap_jobfair_divide_seq == parsed.fapJobfairDivideRcList[k].fap_jobfair_divide_seq){
+							
 							if(parsed.fapJobfairDivideRcList[k].fap_jobfair_divide_rc == 'A0101'){
 								$scope.j_fair_master = parsed.fapJobfairDivideRcList[k].fap_jobfair_divide_rc;		//J-fair 채용대상 마스터학생
 								$(".modal-body #fap_jobfair_j_fair_master_seq").val(parsed.fapJobfairDivideRcList[k].fap_jobfair_divide_rc_seq);		//J-fair 채용대상 마스터학생 시퀀스
@@ -806,7 +806,7 @@
 								$(".modal-body #fap_jobfair_j_fair_user_seq").val(parsed.fapJobfairDivideRcList[k].fap_jobfair_divide_rc_seq);		//J-fair 채용대상 일반회원 시퀀스
 							}							
 							if(parsed.fapJobfairDivideRcList[k].fap_jobfair_divide_rc == 'A0108'){
-								$scope.j_fair_user = parsed.fapJobfairDivideRcList[k].fap_jobfair_divide_rc;		//J-fair 채용대상 일본취업학교
+								$scope.j_fair_jap = parsed.fapJobfairDivideRcList[k].fap_jobfair_divide_rc;		//J-fair 채용대상 일본취업학교
 								$(".modal-body #fap_jobfair_j_fair_jap_seq").val(parsed.fapJobfairDivideRcList[k].fap_jobfair_divide_rc_seq);		//J-fair 채용대상 일반회원 시퀀스
 							}
 						}
