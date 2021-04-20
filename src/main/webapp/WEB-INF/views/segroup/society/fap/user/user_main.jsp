@@ -34,6 +34,7 @@
 	<script type="text/javascript">
 	
 	$(function() {
+			  alert(fap_mainpage_ct_imp_code);
 		      //신청하러 가기 - 잡페어 신청 게시판으로 이동
 			  var registerNow = $("#registerNow");
 			  registerNow.on('click',function(){

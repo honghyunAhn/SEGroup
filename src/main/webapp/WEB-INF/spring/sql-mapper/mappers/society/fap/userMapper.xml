@@ -3457,7 +3457,6 @@
 			  and 
 			  	cate.fap_job_category_gb in ('C3705', 'C3706', 'C3707', 'C3708', 'C3709', 'C3710')
 			</if>
-			and fap_job_ad_groupcode = #{fap_job_ad_groupcode}
 		</if>
 		order by
 			ad.fap_job_ad_rank is null asc , ad.fap_job_ad_rank asc, field(ad.fap_job_ad_groupcode,main.fap_mainpage_ct_imp_code) desc , ad.fap_comp_id

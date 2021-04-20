@@ -1075,12 +1075,12 @@ background: url('../images/select_arrow2.png') no-repeat 95% 50%; /* ï¿½ì†•ï¿½ê¶
 
 
 
-#qnaBBS {margin:0 auto;width:1100px; text-align:left;border: 1px solid #ddd; background-color:#fff; margin-bottom:20px;}
+#qnaBBS {margin:0 auto;width:1100px; text-align:left;border: 1px solid #ddd; background-color:#fff; margin-bottom:20px; box-sizing: unset;}
 #qnaBBS li {display:inline-block; }
 #qnaBBS .qnatitle ul {border-bottom: 1px solid #ddd;border: 1px solid #ddd;}
-#qnaBBS .qnatitle {background-color:#333;font-weight:bolder;height:30px; color:#fff;font-size:15px ;padding-top:4px; padding-bottom:7px; text-align: center;}
+#qnaBBS .qnatitle {background-color:#333;font-weight:bolder;height:30px; color:#fff;font-size:15px ;padding-top:4px; padding-bottom:7px; text-align: center;box-sizing: unset;}
 #qnaBBS .qnatitle2 {font-size:15px;border-bottom: 1px solid #ddd;text-align:center;padding-top:10px;}
-
+#qnaBBS .qnatitle2 .wid2 {text-align: left;}
 
 #qnaBBS .wid1{text-align:center;width:200px;height:40px; padding-top:10px;}
 #qnaBBS .wid2{text-align:center;width:689px;white-space: nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;}
