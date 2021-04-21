@@ -32,9 +32,7 @@
 	</head>
 	
 	<script type="text/javascript">
-	
 	$(function() {
-			  alert(fap_mainpage_ct_imp_code);
 		      //신청하러 가기 - 잡페어 신청 게시판으로 이동
 			  var registerNow = $("#registerNow");
 			  registerNow.on('click',function(){
@@ -317,14 +315,19 @@
                 </header>
                 <!-- 비IT직종 -->                
                 <div class="fairListWrap">
+                	<c:if test="${fap_mainpage_ct_imp_code eq '가'}">
                     <div class="subTitle bgcBase fz16"><spring:message code="fap.user_main_content.text10" /></div>
+                    </c:if>
+                    <c:if test="${fap_mainpage_ct_imp_code eq '나'}">
+                    <div class="subTitle bgcBase fz16"><spring:message code="fap.user_main_content.text09" /></div>
+                    </c:if>
                    <!-- <h2 style="text-align: center;">현재 모집중인 공고가 없습니다.</h2> -->
                     <ul class="fairList notIT d-flex">  
 	                     <c:forEach items="${mainpage_ct_notIT }" var="item" begin="0" end="7" varStatus="status">		                   	                     
 	                        <li class="list">	                        
 		                   	  		<a href="#" onclick="readAd('${item.fap_job_ad_seq}','${item.fap_jobfair_seq }','${item.fap_jobfair_divide_seq }','${item.fap_jobfair_title }')">	                            
 	                                <div class="logoImgWrap">
-	                                <!-- *원래주석되던것임<img src="/fap/company/user_logo_image/${item.fap_comp_id }/${item.fap_comp_log_saved }" alt="기업로고이미지 230*80px" class="logo-img"> -->
+	                                <!-- 원래주석되던것임<img src="/fap/company/user_logo_image/${item.fap_comp_id }/${item.fap_comp_log_saved }" alt="기업로고이미지 230*80px" class="logo-img"> -->
 	                                <div alt="기업로고이미지 230*80px" class="logo-img" style="background-image: url('/fap/company/user_logo_image/${item.fap_comp_id }/${item.fap_comp_log_saved }')" >&nbsp;</div>
 	                                </div>
 	                                <div class="occupation text-over" title="">
@@ -340,7 +343,7 @@
 										 </c:forEach>
 	                                </div>
 	                                <ul class="jobInfo">
-	                                    <!-- *채용일정 -->
+	                                    <!-- 채용일정 -->
 	                                   <li class="h5 c666">&#91;${item.fap_mainpage_ct_quarter }&#93;</li>
 	                                    <!-- 위치 -->
 	                                    <li class="d-flex">
@@ -351,7 +354,7 @@
 												</c:forEach>
 											</span>
 	                                    </li>
-	                                    <!-- *채용예정인원 -->
+	                                    <!-- 채용예정인원 -->
 	                                    <li class="d-flex">
 	                                        <div class="img-icon"></div>
 	                                        <span class="fz16">  
@@ -369,14 +372,19 @@
                 </div>
                 <%-- IT직종  --%>
                 <div class="fairListWrap">
-                    <div class="subTitle bgcLight fz16"><spring:message code="fap.user_main_content.text09" /></div>
+                    <c:if test="${fap_mainpage_ct_imp_code eq '나'}">
+                    <div class="subTitle bgcBase fz16"><spring:message code="fap.user_main_content.text10" /></div>
+                    </c:if>
+                    <c:if test="${fap_mainpage_ct_imp_code eq '가'}">
+                    <div class="subTitle bgcBase fz16"><spring:message code="fap.user_main_content.text09" /></div>
+                    </c:if>
                     <!-- <h2 style="text-align: center;">현재 모집중인 공고가 없습니다.</h2> -->
 	                 <ul class="fairList IT d-flex">
                      	<c:forEach items="${mainpage_ct_IT }" var="itemIT" begin="0" end="7" varStatus="status">
 	                        <li class="list">
 	                           <a href="#" onclick="readAd('${itemIT.fap_job_ad_seq}','${itemIT.fap_jobfair_seq }','${itemIT.fap_jobfair_divide_seq }','${itemIT.fap_jobfair_title }')">	                     
 	                                <div class="logoImgWrap">
-	                                	<!--*원래주석된것임 <img src="/fap/company/user_logo_image/${itemIT.fap_comp_id }/${itemIT.fap_comp_log_saved }" alt="기업로고이미지 230*80px" class="logo-img"> -->
+	                                	<!-- 원래주석된것임 <img src="/fap/company/user_logo_image/${itemIT.fap_comp_id }/${itemIT.fap_comp_log_saved }" alt="기업로고이미지 230*80px" class="logo-img"> -->
 	                                	<div alt="기업로고이미지 230*80px" class="logo-img" style="background-image: url('/fap/company/user_logo_image/${itemIT.fap_comp_id }/${itemIT.fap_comp_log_saved }')" >&nbsp;</div>
 	                                </div>  
 	                                <div class="occupation text-over" title="">
