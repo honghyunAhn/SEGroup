@@ -2266,4 +2266,19 @@ public class SocietyFapUserService {
 		logger.info("FAP 도쿄페어 본인 일정 리스트 조회 서비스 종료");
 		return result;
 	}
+	
+	/**
+	 * @Method Name : select_user_flag
+	 * @Date : 2021. 04. 16.
+	 * @User : 안홍현
+	 * @Param : 회원 아이디
+	 * @Return : com_user_tb테이블의 user_flag
+	 * @Method 설명 : user_id로 user_flag 검색
+	 */
+	public String select_user_flag(String user_id) {
+		logger.info("User_flag 검색 시작");
+		String user_flag = sfuDAO.select_user_flag(user_id);
+		logger.info("User_flag 검색 종료");
+		return user_flag;
+	}
 }

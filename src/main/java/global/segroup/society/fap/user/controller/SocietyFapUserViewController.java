@@ -667,10 +667,11 @@ public class SocietyFapUserViewController implements PathConstants {
 		logger.debug("FAP 개인취업자 메인페이지 이동 종료");
 		//메인페이지로 이동시 잡페어 정보 셀렉트해서 이동하는 코드
 		LocaleUtil.setLocale(request, response);
-		
 
 		if(auth != null) {
 			String user_id = (String) auth.getPrincipal();
+			String user_flag = sfuService.select_user_flag(user_id);
+			model.addAttribute("user_flag", user_flag);
 			if(user_id != null) {
 				int school_ck = sfuService.check_user_personal(user_id);
 				if(school_ck == 0) {

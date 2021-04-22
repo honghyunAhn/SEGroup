@@ -306,14 +306,13 @@
             </div>
         </div>
 
-        
         <!-- 잡페어 참가 기업 -->
         <div class="fairWrapper">
             <div class="fairWrap">
                 <header class="title h2 baseColor">
                     <spring:message code="fap.user_main_content.text08" />
                 </header>
-                <!-- 비IT직종 -->                
+                
                 <div class="fairListWrap">
                 	<c:if test="${fap_mainpage_ct_imp_code eq '가'}">
                     <div class="subTitle bgcBase fz16"><spring:message code="fap.user_main_content.text10" /></div>
@@ -324,8 +323,15 @@
                    <!-- <h2 style="text-align: center;">현재 모집중인 공고가 없습니다.</h2> -->
                     <ul class="fairList notIT d-flex">  
 	                     <c:forEach items="${mainpage_ct_notIT }" var="item" begin="0" end="7" varStatus="status">		                   	                     
-	                        <li class="list">	                        
-		                   	  		<a href="#" onclick="readAd('${item.fap_job_ad_seq}','${item.fap_jobfair_seq }','${item.fap_jobfair_divide_seq }','${item.fap_jobfair_title }')">	                            
+	                        <li class="list">
+	                        		<c:choose>
+		                        		<c:when test="${user_flag eq 'A0102'}">
+		                        			<a>
+		                        		</c:when>
+		                        		<c:otherwise>
+		                        			<a href="#" onclick="readAd('${item.fap_job_ad_seq}','${item.fap_jobfair_seq }','${item.fap_jobfair_divide_seq }','${item.fap_jobfair_title }')">
+		                        		</c:otherwise>
+	                        		</c:choose>
 	                                <div class="logoImgWrap">
 	                                <!-- 원래주석되던것임<img src="/fap/company/user_logo_image/${item.fap_comp_id }/${item.fap_comp_log_saved }" alt="기업로고이미지 230*80px" class="logo-img"> -->
 	                                <div alt="기업로고이미지 230*80px" class="logo-img" style="background-image: url('/fap/company/user_logo_image/${item.fap_comp_id }/${item.fap_comp_log_saved }')" >&nbsp;</div>
@@ -363,14 +369,14 @@
 	                                    </li>
 	                                </ul>
 	                            </a>
-	                            <c:if test="${status.index % 7== 0 && status.index != 0}">
+	                            <c:if test="${status.index % 7== 0 && status.index != 0 && user_flag ne 'A0102'}">
 	                            	<div  class="adListEtc" onclick='location.href="/fap/user/user_job_advertisement_list_form"'>VIEW MORE</div>
 	                       		</c:if>
 	                        </li>	                    
 	                       </c:forEach>                        
                     </ul>
                 </div>
-                <%-- IT직종  --%>
+
                 <div class="fairListWrap">
                     <c:if test="${fap_mainpage_ct_imp_code eq '나'}">
                     <div class="subTitle bgcBase fz16"><spring:message code="fap.user_main_content.text10" /></div>
@@ -382,7 +388,14 @@
 	                 <ul class="fairList IT d-flex">
                      	<c:forEach items="${mainpage_ct_IT }" var="itemIT" begin="0" end="7" varStatus="status">
 	                        <li class="list">
-	                           <a href="#" onclick="readAd('${itemIT.fap_job_ad_seq}','${itemIT.fap_jobfair_seq }','${itemIT.fap_jobfair_divide_seq }','${itemIT.fap_jobfair_title }')">	                     
+	                           <c:choose>
+		                        		<c:when test="${user_flag eq 'A0102'}">
+		                        			<a>
+		                        		</c:when>
+		                        		<c:otherwise>
+		                        			<a href="#" onclick="readAd('${item.fap_job_ad_seq}','${item.fap_jobfair_seq }','${item.fap_jobfair_divide_seq }','${item.fap_jobfair_title }')">
+		                        		</c:otherwise>
+	                        		</c:choose>	                     
 	                                <div class="logoImgWrap">
 	                                	<!-- 원래주석된것임 <img src="/fap/company/user_logo_image/${itemIT.fap_comp_id }/${itemIT.fap_comp_log_saved }" alt="기업로고이미지 230*80px" class="logo-img"> -->
 	                                	<div alt="기업로고이미지 230*80px" class="logo-img" style="background-image: url('/fap/company/user_logo_image/${itemIT.fap_comp_id }/${itemIT.fap_comp_log_saved }')" >&nbsp;</div>
@@ -420,7 +433,7 @@
 	                                    </li>
 	                                </ul>
 	                            </a>
-	                            <c:if test="${status.index % 7== 0 && status.index != 0}">
+	                            <c:if test="${status.index % 7== 0 && status.index != 0 && user_flag ne 'A0102'}">
 	                            	<div  class="adListEtc" onclick='location.href="/fap/user/user_job_advertisement_list_form"'>VIEW MORE</div>
 	                       		</c:if>	                           
 	                        </li>                                            
