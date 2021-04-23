@@ -3455,7 +3455,7 @@
 			</if>	
 			<if test="isIT == 'no'">
 			  and 
-			  	cate.fap_job_category_gb in ('C3705', 'C3706', 'C3707', 'C3708', 'C3709', 'C3710')
+			  	cate.fap_job_category_gb in ('C3704', 'C3705','C3706', 'C3707', 'C3708', 'C3709', 'C3710')
 			</if>
 		</if>
 		order by
@@ -3633,4 +3633,56 @@
     		(frn.FAP_RESUME_LANG_GB = 'B3101' or frn.FAP_RESUME_LANG_GB = 'B3103')
 		order by fap_resume_lang_gb desc    	
 	</select>
+	
+	<!-- 미국인턴십 지원 시작-->
+	<insert id="internship_apply" parameterType="hashmap">
+		insert into fap_internship_apply_tb (
+			board_content_seq
+			,user_id
+			,user_nm
+			,user_phone
+			,user_email
+		)
+		values (
+			#{board_content_seq}
+			,#{user_id}
+			,#{user_nm}
+			,#{user_phone}
+			,#{user_email}
+		)
+	</insert>
+	<!-- 미국인턴십 지원 종료-->
+	
+	<!-- 미국인턴십 지원여부 조회 시작-->
+	<select id="select_internship" parameterType="hashmap" resultType="hashmap">
+		select
+			internship_seq
+			,board_content_seq
+			,user_id
+			,user_nm
+			,user_phone
+			,user_email
+			,internship_apply_dt
+		from
+			fap_internship_apply_tb
+		where
+			1=1
+		<if test="board_content_seq != null">
+			and
+			board_content_seq = #{board_content_seq}
+		</if>
+		<if test="user_id != null and user_id != ''">
+			and
+			user_id = #{user_id}
+		</if>
+	</select>
+	<!-- 미국인턴십 지원여부 조회 종료-->
+	
+	<!-- 미국인턴십 지원 취소 시작-->
+	<delete id="internship_cancel" parameterType="hashmap">
+		delete from fap_internship_apply_tb
+		where 
+		internship_seq = #{internship_seq}
+	</delete>
+	<!-- 미국인턴십 지원 취소 종료-->
 </mapper>

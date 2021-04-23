@@ -3302,7 +3302,7 @@ public class SocietyFapAdminCommonViewController implements PathConstants {
 	    model.addAttribute("pagingMap",pagingMap);
 	    model.addAttribute("searchKey", searchKey);
 		model.addAttribute("searchValue", searchValue);
-	      
+		
 		logger.debug("FAP 오픈잡페어 취업정보 & 전략 게시판 리스트 조회 컨트롤러 종료");
 		return PathConstants.SEGROUP_SOCIETY + PathConstants.SOCIETY_FAP_ADMIN_OPEN_JOB_INFO_LIST;
 	}

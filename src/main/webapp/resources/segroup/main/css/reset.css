@@ -1,3 +1,33 @@
+@font-face {
+   font-family: "Meiryo UI W53 Regular";
+   font-style: regular;
+   font-weight: 400;
+   src: url('../society/fap/fonts/Meiryo UI W53 Regular.eot');
+   /* IE6-IE8 */
+   src: url('../society/fap/fonts/Meiryo UI W53 Regular.woff2') format('woff2'),
+   /* Super Modern Browsers */
+   src: url('../society/fap/fonts/Meiryo UI W53 Regular.woff') format('woff'),
+   /* Modern Browsers */
+   src: url('../society/fap/fonts/Meiryo UI W53 Regular.ttf') format('truetype'),
+   /* Safari, Android, iOS */
+   src: url('../society/fap/fonts/Meiryo UI W53 Regular.svg') format('svg');
+}
+
+@font-face {
+   font-family: "Meiryo UI W53 Bold";
+   font-style: bold;
+   font-weight: 700;
+   src: url('../society/fap/fonts/Meiryo UI W53 Bold.eot');
+   /* IE6-IE8 */
+   src: url('../society/fap/fonts/Meiryo UI W53 Bold.woff2') format('woff2'),
+   /* Super Modern Browsers */
+   src: url('../society/fap/fonts/Meiryo UI W53 Bold.woff') format('woff'),
+   /* Modern Browsers */
+   src: url('../society/fap/fonts/Meiryo UI W53 Bold.ttf') format('truetype'),
+   /* Safari, Android, iOS */
+   src: url('../society/fap/fonts/Meiryo UI W53 Bold.svg') format('svg');
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,

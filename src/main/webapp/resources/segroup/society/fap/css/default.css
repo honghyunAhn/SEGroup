@@ -2339,6 +2339,25 @@ filter: alpha(opacity=0);
 	width: 45%;
 	float: right;
 }
+#internshipApplyBtn, #internshipCancelBtn {
+	display: inline-block;
+	width: 20%;
+	height: 40px;
+	font-size: 18.67px;
+	color: #fff;
+	border: 0;
+	background: #212121;
+	border-radius: 7px;
+	outline: none;
+	cursor: pointer;
+}
+.internshipApplyBtnTd {
+	text-align: center;
+}
+.internshipApplyInputTd > input{
+	width: 70%;
+	height: 40px;
+}
 
 #boardMainBtn {
 	display: inline-block;

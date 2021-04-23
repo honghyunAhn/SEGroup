@@ -288,7 +288,7 @@
 		    </li>
 		    <li><a>공지</a>
 		    	<ul>
-	    			<li><a href="/fap/admin/notice_management">공지사항 관리</a></li>
+	    			<li><a href="/fap/admin/notice_management">게시판 관리</a></li>
 	    			<li><a href="/fap/admin/admin_faq_management">FAQ 관리</a></li>
 	    			<li><a href="/fap/admin/popup_management">팝업관리</a>
 		    	</ul>

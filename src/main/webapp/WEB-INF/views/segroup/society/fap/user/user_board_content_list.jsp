@@ -139,6 +139,7 @@
 		 <h1>
 			<c:if test = "${map.board_detail_gb =='A1700'}"><spring:message code="fap.main_menu.notice" /></c:if>
 			<c:if test = "${map.board_detail_gb =='A1701'}"><spring:message code="fap.main_menu.jobinfo" /></c:if> 
+			<c:if test = "${map.board_detail_gb =='A1706'}"><spring:message code="fap.main_menu.internship" /></c:if>
 		</h1>
 	  </div>
  

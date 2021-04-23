@@ -57,7 +57,11 @@
 			  openJobInfo.on('click',function(){
 				 location.href = "/fap/user/user_board_content_list?board=jobinfo";
 			  })
-		
+		 	//미국인턴십
+			  var internship = $("#internship");
+			  internship.on('click',function(){
+				 location.href= "/fap/user/user_board_content_list?board=internship";
+			  })
 			   //채용기업&파트너사(작업중)
 			  var comp_partner = $("#comp_partner");
 			  comp_partner.on('click',function(){				
@@ -111,6 +115,10 @@
                 <a href="#" class="menu-btn" id="comp_partner">
                     <div class="img-icon handshake"></div>
                     <div class="menu-txt fz16"><spring:message code="fap.main_menu.companies" /></div>
+                </a>
+                <a href="#" class="menu-btn" id="internship">
+                    <div class="img-icon user"></div>
+                    <div class="menu-txt fz16"><spring:message code="fap.main_menu.internship" /></div>
                 </a>
                 <a href="http://rainbow.ac" class="menu-btn" id="empConnection">
                     <div class="img-icon globe"></div>

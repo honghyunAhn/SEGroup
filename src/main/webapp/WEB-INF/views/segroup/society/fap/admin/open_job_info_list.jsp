@@ -39,7 +39,6 @@ table td{text-align: center;}
 <script type="text/javascript">
 
 $(function(){
-		 
 		// 상세글보기 
 		$(".title").on('click',function(){
 			   var board_content_seq = $(this).attr("id");
@@ -197,6 +196,9 @@ function list_draw(){
 				    <colgroup>
 				    	<col width="5%"/>
 				    	<col width="35%"/>
+				    	<c:if test="${boardGroup.board_detail_gb == 'A1706'}">
+			    			<col width="7%"/>
+			    		</c:if>
 				    	<col width="15%"/>
 				    	<col width="5%"/>
 				    	<col width="20%"/>
@@ -206,6 +208,9 @@ function list_draw(){
 				    	<tr>
 				    		<th>번호</th>
 				    		<th>제 목</th>
+				    		<c:if test="${boardGroup.board_detail_gb == 'A1706'}">
+				    			<th>지원자수</th>
+				    		</c:if>
 				    		<th>작성자</th>
 				    		<th>조회수</th>
 				    		<th>작성일</th>
@@ -215,8 +220,18 @@ function list_draw(){
 				    <tbody class="custom-tbody">
 				    	<c:forEach var="jobInfo" items="${jobInfoList}" varStatus="status">
 				    		<tr>
-				    			<td>${jobInfo.fap_open_job_info_seq}</td>
-				    			<td>	<a class="title" id="${jobInfo.board_content_seq }" >${jobInfo.board_content_title}</a></td>
+				    			<c:choose>
+				    				<c:when test="${jobInfo.board_detail_gb == 'A1701'}">
+				    					<td>${jobInfo.fap_open_job_info_seq}</td>
+				    				</c:when>
+				    				<c:otherwise>
+						    			<td>${jobInfo.board_content_seq}</td>
+				    				</c:otherwise>
+				    			</c:choose>
+				    			<td><a class="title" id="${jobInfo.board_content_seq }" >${jobInfo.board_content_title}</a></td>
+				    			<c:if test="${boardGroup.board_detail_gb == 'A1706'}">
+					    			<td>${fn:length(jobInfo.internship_apply_list)}</td>
+					    		</c:if>
 				    			<td>${jobInfo.board_content_nm }</td>
 				    			<td>${jobInfo.board_content_hit }</td>
 				    			<td id='board_content_in_dt_${jobInfo.board_content_seq}'>${jobInfo.board_content_ins_dt}</td>
@@ -280,23 +295,3 @@ function list_draw(){
 	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

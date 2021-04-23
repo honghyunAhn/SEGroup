@@ -2329,9 +2329,11 @@
 				<!-- 기업정보 -->
 				<div id="company_info" class="scrollspy">
 				<div class="job-ad-hd scrollspy">
+					<br><br>
 				       <p class="job-ad-hd-tx">
 				       		<spring:message code="fap.common.responsible_company_info" />
 				       </p>
+				       <br>
 				       <p class="job-ad-apply-issue">
 				       		<spring:message code="fap.common.apply.issue" />
 				       </p>

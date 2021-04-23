@@ -5,6 +5,37 @@
 
 <!-- SEGroup 통합잡페어 관리자 SQL -->
 <mapper namespace="global.segroup.society.fap.admincommon.dao.SocietyFapAdminCommonMapper">
+
+<!-- 게시글 resultMap -->
+	<resultMap type="hashmap" id="boardContent">
+		<result javaType="int" column="BOARD_CONTENT_SEQ" property="board_content_seq"/>
+		<result javaType="int" column="BOARD_SEQ" property="board_seq"/>
+		<result javaType="string" column="BOARD_CONTENT_TITLE" property="board_content_title"/>
+		<result javaType="string" column="BOARD_CONTENT_NM" property="board_content_nm"/>
+		<result javaType="int" column="BOARD_CONTENT_HIT" property="board_content_hit"/>
+		<result javaType="string" column="BOARD_CONTENT_INS_DT" property="board_content_ins_dt"/>
+		<result javaType="string" column="BOARD_CONTENT_UDT_DT" property="board_content_udt_dt"/>
+		<result javaType="string" column="BOARD_DETAIL_GB" property="board_detail_gb"/>
+		
+		<result javaType="int" column="FAP_NOTICE_SEQ" property="fap_notice_seq"/>
+		<result javaType="string" column="FAP_NOTICE_VIEW_TARGER_CK" property="fap_notice_view_target_ck"/>
+		<result javaType="string" column="FAP_NOTICE_KIND" property="fap_notice_kind"/>
+		
+		<result javaType="int" column="FAP_OPEN_JOB_INFO_SEQ" property="fap_open_job_info_seq"/>
+		<result javaType="string" column="FAP_OPEN_JOB_INFO_VIEW_TARGET_CK" property="fap_open_job_info_view_target_ck"/>
+		<result javaType="string" column="FAP_OPEN_JOB_INFO_KIND" property="fap_open_job_info_kind"/>
+		
+		<collection property="internship_apply_list" javaType="java.util.ArrayList" resultMap="internship"></collection>
+	</resultMap>
+	
+	<resultMap type="hashmap" id="internship">
+		<result javaType="int" column="INTERNSHIP_SEQ" property="internship_seq"/>
+		<result javaType="string" column="USER_ID" property="user_id"/>
+		<result javaType="string" column="USER_NM" property="user_nm"/>
+		<result javaType="string" column="USER_PHONE" property="user_phone"/>
+		<result javaType="string" column="USER_EMAIL" property="user_email"/>
+		<result javaType="date" column="INTERNSHIP_APPLY_DT" property="internship_apply_dt"/>
+	</resultMap>
 	
 	<!-- 통합잡페어 공지사항 불러오기 시작; 2019. 2. 14. 김준영 -->
 	<select id="select_fap_notice" resultType="hashmap" parameterType="int">
@@ -200,8 +231,8 @@
 	</insert>
 	<!-- 통합잡페어 공지사항 파일 등록 종료 -->
 	
-<!-- 오픈잡페어 취업정보 & 전략 게시판 리스트 조회 시작; 2019.07.31. 김경아-->        
-	 <select id="fap_open_job_info_content_list" resultType="hashMap" parameterType="hashMap">
+	<!-- 오픈잡페어 취업정보 & 전략 게시판 & 미국인턴십 리스트 조회 시작; 2019.07.31. 김경아-->        
+	 <select id="fap_open_job_info_content_list" resultMap="boardContent" parameterType="hashMap">
 	     select 
 			     boardContent.board_content_seq
 			   , boardContent.board_seq
@@ -220,7 +251,14 @@
 		       , jobInfo.fap_open_job_info_seq		    
 		       , jobInfo.fap_open_job_info_view_target_ck
 			   , jobInfo.fap_open_job_info_kind 
-		 </if>	   
+		 </if>
+		 <if test="board_detail_gb=='A1706'">       
+		       , intern.internship_seq		    
+		       , intern.user_id
+			   , intern.user_nm
+			   , intern.user_phone
+			   , intern.user_email
+		 </if>	 
 	     from
 	   		  	com_board_content_tb boardContent	
 		<if test="board_detail_gb=='A1700'">
@@ -234,7 +272,13 @@
 	   	 	     fap_open_job_info_tb  jobInfo
 	     on  
 	     		boardContent.board_content_seq = jobInfo.board_content_seq  
-	     </if>			 
+	     </if>
+	     <if test="board_detail_gb=='A1706'"> 	 
+		   	 left outer join
+		   	 	     fap_internship_apply_tb intern
+		     on  
+		     		boardContent.board_content_seq = intern.board_content_seq  
+	     </if> 
      	 inner join 
 				com_board_group_tb grp
 		 on 
@@ -255,11 +299,9 @@
       		   boardContent.board_content_seq desc
 	 </select>	 
 	 <!-- 오픈잡페어 취업정보 & 전략 게시판 리스트 조회 종료-->
-
-
    
 	 <!-- 오픈잡페어 취업정보 & 전략 게시판 상세조회 추가항목 시작; 2019.07.31. 김경아-->
-	 <select id="fap_open_job_info_content_additional_detail" resultType="hashmap"  parameterType="hashmap">
+	 <select id="fap_open_job_info_content_additional_detail" resultMap="boardContent"  parameterType="hashmap">
 	
 	  	select 		  	
 	  	           content.board_content_seq  
@@ -273,6 +315,13 @@
 			  	    , jobInfo.fap_open_job_info_view_target_ck  
 			  	    , jobInfo.fap_open_job_info_kind  
 		  	    </if>
+		  	    <if test="board_detail_gb=='A1706'">       
+			       , intern.internship_seq		    
+			       , intern.user_id
+				   , intern.user_nm
+				   , intern.user_phone
+				   , intern.user_email
+				</if>	
 		  	    from 
 		  	    	com_board_content_tb content
 			     <if test="board_detail_gb=='A1700'">
@@ -286,7 +335,13 @@
 					  	  fap_open_job_info_tb jobInfo	
 				  on 
 				 	content.board_content_seq = jobInfo.board_content_seq
-			    </if>			  
+			    </if>
+			    <if test="board_detail_gb=='A1706'"> 	 
+				   	 left outer join
+				   	 	     fap_internship_apply_tb intern
+				     on  
+				     		content.board_content_seq = intern.board_content_seq  
+			     </if>
 			  	  where
 				 	   content.board_content_seq = #{board_content_seq}
 	 </select>	 

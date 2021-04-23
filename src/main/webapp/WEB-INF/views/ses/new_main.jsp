@@ -211,7 +211,7 @@
 						<li>서울시 강남구 영동대로 513 코엑스 4층 017-1호</li>
 					</ul>
 					<div class="btnInfo btn_xsmall btn_normal">
-						<a href="/mainpage">회사소개</a>
+						<a href="/mainpage">ABOUT US</a>
 					</div>
 				</div>
 			</footer>

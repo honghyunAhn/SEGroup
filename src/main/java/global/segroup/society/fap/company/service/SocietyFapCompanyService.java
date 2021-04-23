@@ -30,6 +30,7 @@ import global.segroup.society.fap.admincommon.dao.SocietyFapAdminCommonDAO;
 import global.segroup.society.fap.admincommon.domain.SocietyFapAdminJobfairSet;
 import global.segroup.society.fap.admincommon.domain.SocietyFapJobRecruitPcsSch;
 import global.segroup.society.fap.company.dao.SocietyFapCompanyDAO;
+import global.segroup.society.fap.company.dao.SocietyFapCompanyMapper;
 import global.segroup.society.fap.company.domain.SocietyFapCommonRequiredDoc;
 import global.segroup.society.fap.company.domain.SocietyFapCompUserConnectRequest;
 import global.segroup.society.fap.company.domain.SocietyFapCompanyUser;
@@ -3769,4 +3770,5 @@ public class SocietyFapCompanyService {
 		logger.info("FAP 도쿄페어 전체 전형 일정 정보 조회 서비스 종료");
 		return result;
 	}
+	
 }

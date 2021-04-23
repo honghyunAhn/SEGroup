@@ -1433,4 +1433,37 @@ public interface SocietyFapUserMapper {
 	 * @Method 설명 : 도쿄페어 본인 일정 리스트 조회
 	 */
 	public HashMap<String, Object> tokyofair_schedule_user_list(HashMap<String, Object> params);
+	
+	/**
+	 * @return 
+	 * @Method Name : internship_apply
+	 * @Date : 2021. 4. 16.
+	 * @User : 김나영
+	 * @Param : 회원 ID, 이름, 연락처, 이메일
+	 * @Return : -
+	 * @Method 설명 : 미국인턴십 지원
+	 */
+	public int internship_apply(HashMap<String, Object> params);
+	
+	/**
+	 * @return 
+	 * @Method Name : select_internship
+	 * @Date : 2021. 4. 16.
+	 * @User : 김나영
+	 * @Param : 게시글 시퀀스
+	 * @Return : 미국인턴십 지원자 정보
+	 * @Method 설명 : 미국인턴십 지원여부 조회
+	 */
+	public HashMap<String, Object> select_internship(HashMap<String, Object> params);
+	
+	/**
+	 * @return 
+	 * @Method Name : internship_cancel
+	 * @Date : 2021. 4. 16.
+	 * @User : 김나영
+	 * @Param : 인턴십 시퀀스
+	 * @Return : -
+	 * @Method 설명 : 미국인턴십 지원취소
+	 */
+	public int internship_cancel(HashMap<String, Object> params);
 }

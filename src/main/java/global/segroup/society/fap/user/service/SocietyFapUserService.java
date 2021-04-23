@@ -31,6 +31,7 @@ import global.segroup.society.fap.admincommon.domain.SocietyFapOpenPtResume;
 import global.segroup.society.fap.admincommon.domain.SocietyFapPopup;
 import global.segroup.society.fap.company.domain.SocietyFapPersonalRequiredDoc;
 import global.segroup.society.fap.user.dao.SocietyFapUserDAO;
+import global.segroup.society.fap.user.dao.SocietyFapUserMapper;
 import global.segroup.society.fap.user.domain.SocietyFapPersonalGraduate;
 import global.segroup.society.fap.user.domain.SocietyFapPersonalHighschool;
 import global.segroup.society.fap.user.domain.SocietyFapPersonalUniversity;
@@ -2280,5 +2281,44 @@ public class SocietyFapUserService {
 		String user_flag = sfuDAO.select_user_flag(user_id);
 		logger.info("User_flag 검색 종료");
 		return user_flag;
+	}
+	/**
+	 * @Method Name : internship_apply
+	 * @Date : 2021. 4. 16.
+	 * @User : 김나영
+	 * @Param : 회원 ID, 이름, 연락처, 이메일
+	 * @Return : -
+	 * @Method 설명 : 미국인턴십 지원
+	 */
+	public int internship_apply(HashMap<String, Object> params){
+		return sfuDAO.internship_apply(params);
+	}
+	
+	/**
+	 * @Method Name : select_internship
+	 * @Date : 2021. 4. 16.
+	 * @User : 김나영
+	 * @Param : 게시글 시퀀스
+	 * @Return : 미국인턴십 지원자 정보
+	 * @Method 설명 : 미국인턴십 지원여부 조회
+	 */
+	public HashMap<String, Object> select_internship(HashMap<String, Object> params) {
+		logger.info("FAP 미국인턴십 지원여부 조회 시작");
+		HashMap<String, Object> result = sfuDAO.select_internship(params);
+		logger.info("FAP 미국인턴십 지원여부 조회 종료");
+		return result;
+	}
+	
+	/**
+	 * @return 
+	 * @Method Name : internship_cancel
+	 * @Date : 2021. 4. 16.
+	 * @User : 김나영
+	 * @Param : 인턴십 시퀀스
+	 * @Return : -
+	 * @Method 설명 : 미국인턴십 지원취소
+	 */
+	public int internship_cancel(HashMap<String, Object> params) {
+		return sfuDAO.internship_cancel(params);
 	}
 }

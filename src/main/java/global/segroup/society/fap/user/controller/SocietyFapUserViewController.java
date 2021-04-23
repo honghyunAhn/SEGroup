@@ -125,6 +125,9 @@ public class SocietyFapUserViewController implements PathConstants {
 	//취업정보&전략 게시판 코드
 	private static final String BOARD_JOBINFO_CODE = "A1701";
 	
+	//미국인턴십 게시판 코드
+	private static final String BOARD_INTERNSHIP_CODE = "A1706";
+	
 	/**
 	 * @Method Name : user_security_invalidate
 	 * @Date : 2018. 12. 6
@@ -1041,7 +1044,7 @@ public class SocietyFapUserViewController implements PathConstants {
 	 * @Method 설명 : FAP 취업지원자 채용공고 읽기 폼으로 이동
 	 */
 	@RequestMapping(value = PathConstants.SOCIETY_FAP_USER_JOB_ADVERTISEMENT_READ_FORM , method = RequestMethod.GET)
-	public String jobfair_job_advertisement_read_form(Model model, HttpSession session, long fap_job_ad_seq, Authentication auth) {
+	public String jobfair_job_advertisement_read_form(Model model, HttpSession session, long fap_job_ad_seq, Authentication auth, RedirectAttributes rttr) {
 		logger.debug("FAP 취업지원자 채용공고읽기 컨트롤러 시작");
 		
 		//[start] 세션 만료로 인한 예외 발생시 메인페이지로 이동시키는 예외처리 시작
@@ -1063,6 +1066,12 @@ public class SocietyFapUserViewController implements PathConstants {
 		//읽기 폼으로 읽기 전에 해당 채용공고 지원가능한지 여부를 판단
 		String user_id = (String)auth.getPrincipal();
 		String whetherJobAdApply = sfuService.select_fap_jobfair_applicable_time(fapJobAdvertisement,user_id);
+		
+		if(whetherJobAdApply.equals("impossible")) {
+			rttr.addFlashAttribute("msg", "지원할 수 없는 공고입니다. 메인화면으로 이동합니다.");
+			return "redirect:" + PathConstants.SOCIETY_FAP_USER_MAIN;
+		}
+			
 		model.addAttribute("whetherJobAdApply", whetherJobAdApply);
 		
 		//해당 채용공고관련 정보 Map
@@ -1495,6 +1504,8 @@ public class SocietyFapUserViewController implements PathConstants {
 			map.put("board_detail_gb", BOARD_JOBINFO_CODE);			 
 		}else if(board.equals("same_board")) { //해당게시판
 			map.put("board_detail_gb", board_detail_gb);			 
+		}else if(board.equals("internship")){ //미국인턴십게시판
+			map.put("board_detail_gb", BOARD_INTERNSHIP_CODE);
 		}
 		
 		int count = sfuService.board_contents_count(map);	 
@@ -1531,7 +1542,7 @@ public class SocietyFapUserViewController implements PathConstants {
 	 */
 	@RequestMapping(value = PathConstants.SOCIETY_FAP_USER_BOARD_CONTENTS_DETAIL, method = RequestMethod.GET)
 	public String user_board_contents_detail(int board_content_seq, Model model, BoardGroup boardGroup
-			, String board_detail_gb){
+			, String board_detail_gb, Authentication auth){
 		logger.debug("잡페어 공지사항 게시판 세부내용 검색 컨트롤러 시작");
        
 		//조회수 증가
@@ -1543,11 +1554,52 @@ public class SocietyFapUserViewController implements PathConstants {
 		model.addAttribute("contentDetail", resultMap);	 
 		// model.addAttribute("path", path);
 		
+		//미국인턴십 게시판인 경우 지원여부 조회
+		if(board_detail_gb.equals("A1706")) {
+			String user_id = (String) auth.getPrincipal();
+			HashMap<String, Object> params = new HashMap<String, Object>();
+			params.put("board_content_seq", board_content_seq);
+			params.put("user_id", user_id);
+			
+			model.addAttribute("internship_apply", sfuService.select_internship(params));
+		}
+		
 		logger.debug("잡페어 공지사항 게시판 세부내용 검색 컨트롤러 종료");
 		return PathConstants.SEGROUP_SOCIETY + PathConstants.SOCIETY_FAP_USER_BOARD_CONTENTS_DETAIL_FORM;
 	}
 	
-	
+	/**
+	 * @Method Name : internship_apply
+	 * @Date : 2021. 04. 16
+	 * @User : 김나영
+	 * @Param : 게시글 시퀀스, 사용자정보(ID, 이름, 연락처, 이메일)
+	 * @Return : -
+	 * @Method 설명 : 미국인턴십 지원
+	 */
+	@ResponseBody
+	@RequestMapping(value = PathConstants.SOCIETY_FAP_USER_INTERNSHIP_APPLY, method = RequestMethod.POST)
+	public Object internship_apply(@RequestParam HashMap<String, Object> params, Authentication auth){
+		logger.debug("미국인턴십 지원 시작");
+		String user_id = (String) auth.getPrincipal();
+		params.put("user_id", user_id);
+		logger.debug("미국인턴십 지원 종료");
+		return sfuService.internship_apply(params);
+	}
+	/**
+	 * @Method Name : internship_apply
+	 * @Date : 2021. 04. 16
+	 * @User : 김나영
+	 * @Param : 게시글 시퀀스, 사용자정보(ID, 이름, 연락처, 이메일)
+	 * @Return : -
+	 * @Method 설명 : 미국인턴십 지원취소
+	 */
+	@ResponseBody
+	@RequestMapping(value = PathConstants.SOCIETY_FAP_USER_INTERNSHIP_CANCEL, method = RequestMethod.POST)
+	public Object internship_cancel(@RequestParam HashMap<String, Object> params){
+		logger.debug("미국인턴십 지원취소 시작");
+		logger.debug("미국인턴십 지원취소 종료");
+		return sfuService.internship_cancel(params);
+	}
 	/**
 	 * @Method Name : user_job_qna_management
 	 * @Date : 2019. 3. 8.

@@ -84,7 +84,7 @@
 			<br>
 			<h1>채용공고 목록</h1>
 			<h6><span class="red">다양한 준비로 더 많은 취업성공을 이끕니다!</span></h6>
-			
+			<br>
 			<div id="sub1_bbs">
 				<ul class="tit1">
 					<li class="wid1">No</li>

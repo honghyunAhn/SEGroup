@@ -3580,4 +3580,47 @@
 			fap_tokyofair_date_dt , fap_tokyofair_member_st , fap_tokyofair_date_room_num
 	</select>
 	<!-- 회원 도쿄페어 일정 확인 종료 -->
+	
+	<!-- 미국인턴십 지원 시작-->
+	<insert id="internship_apply" parameterType="hashmap">
+		insert into fap_internship_apply_tb (
+			board_content_seq
+			,user_id
+			,user_nm
+			,user_phone
+			,user_email
+		)
+		values (
+			#{board_content_seq}
+			,#{user_id}
+			,#{user_nm}
+			,#{user_phone}
+			,#{user_email}
+		)
+	</insert>
+	<!-- 미국인턴십 지원 종료-->
+	
+	<!-- 미국인턴십 지원여부 조회 시작-->
+	<select id="select_internship" parameterType="hashmap" resultType="hashmap">
+		select
+			internship_seq
+			,board_content_seq
+			,user_id
+			,user_nm
+			,user_phone
+			,user_email
+		from
+			fap_internship_apply_tb
+		where
+			1=1
+		<if test="board_content_seq != null">
+			and
+			board_content_seq = #{board_content_seq}
+		</if>
+		<if test="user_id != null and user_id != ''">
+			and
+			user_id = #{user_id}
+		</if>
+	</select>
+	<!-- 미국인턴십 지원여부 조회 종료-->
 </mapper>

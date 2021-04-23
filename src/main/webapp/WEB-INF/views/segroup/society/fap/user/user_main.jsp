@@ -33,6 +33,10 @@
 	
 	<script type="text/javascript">
 	$(function() {
+			//지원불가 공고 알림
+			if('${msg}' !== undefined && '${msg}' != '') {
+				alert('${msg}');
+			}
 		      //신청하러 가기 - 잡페어 신청 게시판으로 이동
 			  var registerNow = $("#registerNow");
 			  registerNow.on('click',function(){
@@ -84,6 +88,11 @@
 				   location.href= "/fap/user/user_comps_and_partners";							 
 			  })
 			  
+			  //미국인턴십
+			  var internship = $("#internship");
+			  internship.on('click',function(){
+				 location.href= "/fap/user/user_board_content_list?board=internship";
+			  })
 				/*
 				$('#image-gallery').lightSlider({
 					item : 1,
@@ -299,6 +308,10 @@
                     <div class="img-icon handshake"></div>
                     <div class="menu-txt fz16"><spring:message code="fap.main_menu.companies" /></div>
                 </a>
+                <a href="#" class="menu-btn" id="internship">
+                    <div class="img-icon user"></div>
+                    <div class="menu-txt fz16"><spring:message code="fap.main_menu.internship" /></div>
+                </a>
                 <a href="http://rainbow.ac" class="menu-btn" id="empConnection">
                     <div class="img-icon globe"></div>
                     <div class="menu-txt fz16"><spring:message code="fap.main_menu.job.training.course" /></div>
@@ -393,7 +406,7 @@
 		                        			<a>
 		                        		</c:when>
 		                        		<c:otherwise>
-		                        			<a href="#" onclick="readAd('${item.fap_job_ad_seq}','${item.fap_jobfair_seq }','${item.fap_jobfair_divide_seq }','${item.fap_jobfair_title }')">
+		                        			<a href="#" onclick="readAd('${itemIT.fap_job_ad_seq}','${itemIT.fap_jobfair_seq }','${itemIT.fap_jobfair_divide_seq }','${itemIT.fap_jobfair_title }')">
 		                        		</c:otherwise>
 	                        		</c:choose>	                     
 	                                <div class="logoImgWrap">

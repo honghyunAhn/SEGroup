@@ -1895,4 +1895,5 @@ public interface SocietyFapCompanyMapper {
 	 * @Method 설명 : 도쿄페어 전체 전형 일정 정보 조회 
 	 */
 	public HashMap<String, Object> tokyofair_screening_search_total(HashMap<String, Object> params);
+	
 }

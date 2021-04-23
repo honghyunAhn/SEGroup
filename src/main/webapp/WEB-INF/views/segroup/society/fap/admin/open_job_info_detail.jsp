@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -241,7 +242,8 @@ myApp.controller('JobInfoController',['$scope','$compile', function($scope, $com
 	<div id="subcontents">
 	<h2>
 		<c:if test = "${boardGroup.board_detail_gb =='A1700'}"><spring:message code="fap.main_menu.notice" /></c:if>
-		<c:if test = "${boardGroup.board_detail_gb =='A1701'}"><spring:message code="fap.main_menu.jobinfo" /></c:if> 상세
+		<c:if test = "${boardGroup.board_detail_gb =='A1701'}"><spring:message code="fap.main_menu.jobinfo" /></c:if>
+		<c:if test = "${boardGroup.board_detail_gb =='A1706'}"><spring:message code="fap.main_menu.internship" /></c:if> 상세
 	</h2>
 		<div class="joinBox">
 		<table class="board_view">
@@ -406,11 +408,28 @@ myApp.controller('JobInfoController',['$scope','$compile', function($scope, $com
 					</c:forEach>
 				</td>
 			</tr>
-		
 		</tbody>
-	
 	</table>
-		
+	<c:if test="${fn:length(jobInfoMap.internship_apply_list) ne 0}">
+		<h2>지원현황</h2>
+		<table class="board_view">
+			<tbody>
+				<c:forEach var="list" items="${jobInfoMap.internship_apply_list}" varStatus="status">
+				    <tr>
+				    	<th>${status.index + 1}</th>
+				    	<th scope="row">아이디</th>
+				        <td>${list.user_id}</td>
+				        <th scope="row">성명</th>
+				        <td>${list.user_nm}</td>
+				        <th scope="row">연락처</th>
+				        <td>${list.user_phone}</td>
+				        <th scope="row">이메일</th>
+				        <td>${list.user_email}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</c:if>
 	<div class="boardManagerDiv" style="margin-right: 52px;">
 		<button id="boardUpdateBtn">수정하기</button>
 		<button id="boardDeleteBtn" onclick="delete_jobInfo()">삭제하기</button>

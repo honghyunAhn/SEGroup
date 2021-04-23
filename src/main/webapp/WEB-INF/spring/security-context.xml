@@ -138,20 +138,20 @@
 	
 		<intercept-url pattern="/rainbow" access="permitAll"/>
 		
-		<intercept-url pattern="/smtp/user/smtpNotice" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
-		<intercept-url pattern="/smtp/user/smtpSurvey" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
-		<intercept-url pattern="/smtp/mypage/smtp_regist" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
-		<intercept-url pattern="/smtp/user/smtpScore" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
-		<intercept-url pattern="/smtp/user/sub05-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
-		<intercept-url pattern="/smtp/user/sub05-02" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
-		<intercept-url pattern="/smtp/user/sub05-02-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
-		<intercept-url pattern="/smtp/user/sub05-03" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
-		<intercept-url pattern="/smtp/user/sub05-04" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
-		<intercept-url pattern="/smtp/user/sub05-05" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
-		<intercept-url pattern="/smtp/user/sub05-06" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
-		<intercept-url pattern="/smtp/user/sub05-07" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
-		<intercept-url pattern="/smtp/user/payback" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102')"/>
-		<intercept-url pattern="/smtp/apply" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
+		<intercept-url pattern="/smtp/user/smtpNotice" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102','A0108')"/>
+		<intercept-url pattern="/smtp/user/smtpSurvey" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102','A0108')"/>
+		<intercept-url pattern="/smtp/mypage/smtp_regist" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102','A0108')"/>
+		<intercept-url pattern="/smtp/user/smtpScore" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102','A0108')"/>
+		<intercept-url pattern="/smtp/user/sub05-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102','A0108')"/>
+		<intercept-url pattern="/smtp/user/sub05-02" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102','A0108')"/>
+		<intercept-url pattern="/smtp/user/sub05-02-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102','A0108')"/>
+		<intercept-url pattern="/smtp/user/sub05-03" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102','A0108')"/>
+		<intercept-url pattern="/smtp/user/sub05-04" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102','A0108')"/>
+		<intercept-url pattern="/smtp/user/sub05-05" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102','A0108')"/>
+		<intercept-url pattern="/smtp/user/sub05-06" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102','A0108')"/>
+		<intercept-url pattern="/smtp/user/sub05-07" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102','A0108')"/>
+		<intercept-url pattern="/smtp/user/payback" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0102','A0108')"/>
+		<intercept-url pattern="/smtp/apply" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102','A0108')" />
 		<intercept-url pattern="/smtp/apply/sub00-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
 		<intercept-url pattern="/smtp/apply/sub00-02" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
 		
@@ -177,7 +177,6 @@
 		<custom-filter ref="concurrentSessionFilter" position="CONCURRENT_SESSION_FILTER" /> <!-- 중복로그인 처리 filter -->
 		<custom-filter ref="usernamePasswordAuthenticationFilter" before="FORM_LOGIN_FILTER" />
 		<custom-filter ref="certAuthenticationFilter" after="FORM_LOGIN_FILTER" /> <!-- 인증서로그인필터 -->
-<!-- 		<custom-filter ref="setCookieFilter" before="SECURITY_CONTEXT_FILTER"/>setCookie 설정 필터 -->
 		<custom-filter after="EXCEPTION_TRANSLATION_FILTER" ref="ajaxSessionTimeoutFilter"/>
 		
 		<logout logout-url="/user/signout" logout-success-url="/"/>
@@ -290,9 +289,6 @@
 	        </beans:list>
 	    </beans:constructor-arg>
 	</beans:bean>
-	
-	<!-- Set-cookie fileter(SameSite=None) -->
-	<beans:bean id="setCookieFilter" class="com.aracomm.base.security.filter.SameSiteFilter"/>
 	
 	<beans:bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/> 
 	

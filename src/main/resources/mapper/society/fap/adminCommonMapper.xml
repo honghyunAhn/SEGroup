@@ -200,7 +200,7 @@
 	</insert>
 	<!-- 통합잡페어 공지사항 파일 등록 종료 -->
 	
-<!-- 오픈잡페어 취업정보 & 전략 게시판 리스트 조회 시작; 2019.07.31. 김경아-->        
+	<!-- 오픈잡페어 취업정보 & 전략 게시판 리스트 조회 시작; 2019.07.31. 김경아-->        
 	 <select id="fap_open_job_info_content_list" resultType="hashMap" parameterType="hashMap">
 	     select 
 			     boardContent.board_content_seq
@@ -220,7 +220,14 @@
 		       , jobInfo.fap_open_job_info_seq		    
 		       , jobInfo.fap_open_job_info_view_target_ck
 			   , jobInfo.fap_open_job_info_kind 
-		 </if>	   
+		 </if>
+		 <if test="board_detail_gb=='A1706'">       
+		       , intern.intern_seq		    
+		       , intern.user_id
+			   , intern.user_nm
+			   , intern.user_phone
+			   , intern.user_email
+		 </if>	 
 	     from
 	   		  	com_board_content_tb boardContent	
 		<if test="board_detail_gb=='A1700'">
@@ -234,7 +241,13 @@
 	   	 	     fap_open_job_info_tb  jobInfo
 	     on  
 	     		boardContent.board_content_seq = jobInfo.board_content_seq  
-	     </if>			 
+	     </if>
+	     <if test="board_detail_gb=='A1706'"> 	 
+		   	 left outer join
+		   	 	     fap_internship_apply_tb intern
+		     on  
+		     		boardContent.board_content_seq = intern.board_content_seq  
+	     </if> 
      	 inner join 
 				com_board_group_tb grp
 		 on 

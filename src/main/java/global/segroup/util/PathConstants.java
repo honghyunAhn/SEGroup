@@ -3285,6 +3285,7 @@ public interface PathConstants {
 	 * */
 	public static final String SOCIETY_FAP_ADMIN_DELETE_BOARD_FILE_LIST = SOCIETY_FAP_ADMIN + "/delete_board_file_list";
 	
+	
 	/**
 	 * FAP 채용기업 메인 공지사항 검색; 2019. 3. 6. 신동철
 	 */
@@ -5287,4 +5288,14 @@ public interface PathConstants {
 	 * FAP 관리자 잡페어 리스트 출력 2021. 03. 09. 안홍현
 	 */
 	public static final String SOCIETY_FAP_ADMIN_COMPANY_ADMIN_UPDATE_RANK = SOCIETY_FAP_ADMIN +"/admin_update_rank";
+	
+	/*
+	 * FAP 미국인턴십 지원 2021. 04. 16. 김나영
+	 */
+	public static final String SOCIETY_FAP_USER_INTERNSHIP_APPLY = SOCIETY_FAP_USER + "/internship_apply";
+	
+	/*
+	 * FAP 미국인턴십 지원취소 2021. 04. 16. 김나영
+	 */
+	public static final String SOCIETY_FAP_USER_INTERNSHIP_CANCEL = SOCIETY_FAP_USER + "/internship_cancel";
 }

@@ -26,6 +26,7 @@ import global.segroup.society.fap.admincommon.domain.SocietyFapOpenPt;
 import global.segroup.society.fap.admincommon.domain.SocietyFapOpenPtApply;
 import global.segroup.society.fap.admincommon.domain.SocietyFapOpenPtResume;
 import global.segroup.society.fap.admincommon.domain.SocietyFapPopup;
+import global.segroup.society.fap.company.dao.SocietyFapCompanyMapper;
 import global.segroup.society.fap.company.domain.SocietyFapPersonalRequiredDoc;
 import global.segroup.society.fap.user.domain.SocietyFapPersonalGraduate;
 import global.segroup.society.fap.user.domain.SocietyFapPersonalHighschool;
@@ -2408,5 +2409,50 @@ public class SocietyFapUserDAO {
 		HashMap<String, Object> result = sfuMapper.tokyofair_schedule_user_list(params);
 		logger.info("FAP 도쿄페어 본인 일정 리스트 조회 DAO 종료");
 		return result;
+	}
+	/**
+	 * @return 
+	 * @Method Name : internship_apply
+	 * @Date : 2021. 4. 16.
+	 * @User : 김나영
+	 * @Param : 회원 ID, 이름, 연락처, 이메일
+	 * @Return : -
+	 * @Method 설명 : 미국인턴십 지원
+	 */
+	public int internship_apply(HashMap<String, Object> params) {
+		logger.info("FAP 미국인턴십 지원 시작");
+		SocietyFapUserMapper sfuMapper = sqlSession.getMapper(SocietyFapUserMapper.class);
+		logger.info("FAP 미국인턴십 지원 종료");
+		return sfuMapper.internship_apply(params);
+	}
+	/**
+	 * @Method Name : select_internship
+	 * @Date : 2021. 4. 16.
+	 * @User : 김나영
+	 * @Param : 게시글 시퀀스
+	 * @Return : 미국인턴십 지원자 정보
+	 * @Method 설명 : 미국인턴십 지원여부 조회
+	 */
+	public HashMap<String, Object> select_internship(HashMap<String, Object> params) {
+		logger.info("FAP 미국인턴십 지원여부 조회 시작");
+		SocietyFapUserMapper sfuMapper = sqlSession.getMapper(SocietyFapUserMapper.class);
+		HashMap<String, Object> result = sfuMapper.select_internship(params);
+		logger.info("FAP 미국인턴십 지원여부 조회 종료");
+		return result;
+	}
+	/**
+	 * @return 
+	 * @Method Name : internship_cancel
+	 * @Date : 2021. 4. 16.
+	 * @User : 김나영
+	 * @Param : 인턴십 시퀀스
+	 * @Return : -
+	 * @Method 설명 : 미국인턴십 지원취소
+	 */
+	public int internship_cancel(HashMap<String, Object> params) {
+		logger.info("FAP 미국인턴십 지원취소 시작");
+		SocietyFapUserMapper sfuMapper = sqlSession.getMapper(SocietyFapUserMapper.class);
+		logger.info("FAP 미국인턴십 지원취소 종료");
+		return sfuMapper.internship_cancel(params);
 	}
 }

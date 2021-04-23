@@ -111,15 +111,15 @@
 		board_seq = parseInt(board_seq);
 		var board_detail_gb = $("input[name=board_detail_gb]").val();
 		var titleVal = $("input[name=board_content_title]").val();
-			var impVal = $("input[name=board_content_imp]:checked").val();
-	 	if(board_detail_gb =='A1700'){
+		var impVal = $("input[name=board_content_imp]:checked").val();
+	 	if(board_detail_gb =='A1700' || board_detail_gb =='A1706'){
 	 		var targetVal = $("input[name=fap_notice_view_target_ck]:checked").val();	
 			var kindVal  = $("input[name=fap_notice_kind]:checked").val();	
 	 	}
 	  	if(board_detail_gb =='A1701'){	
 			var targetVal = $("input[name=fap_open_job_info_view_target_ck]:checked").val();	
 			var kindVal  = $("input[name=fap_open_job_info_kind]:checked").val();	
-	  	}		
+	  	}
 		var content  = CKEDITOR.instances.board_content_ct.getData();
 		 
 
@@ -180,8 +180,8 @@ $(document).ready(function(){
 	});
 	
 	/*공개대상*/
-		//1)공지사항 
-		if(board_detail_gb =='A1700'){
+		//1)공지사항 && 미국인턴십
+		if(board_detail_gb =='A1700' || board_detail_gb =='A1706'){
 			$(".fap-open-job-info-view-target").on("click",function(){	
 				$("#target_ck input").attr("name","fap_notice_view_target_ck");	
 				$(".fap-open-job-info-view-target").removeClass("ck");
@@ -201,8 +201,8 @@ $(document).ready(function(){
 		 }
 	
 	 /*글 종류*/
-	     //1)공지사항 
-		 if(board_detail_gb =='A1700'){
+	     //1)공지사항 && 미국인턴십
+		 if(board_detail_gb =='A1700'|| board_detail_gb =='A1706'){
 		    $(".fap-notice-kind").on("click",function(){		
 				$(".fap-notice-kind").removeClass("ck");
 				$(".fap-notice-kind").find("input:radio[name='fap_notice_kind']").prop("checked", false);
@@ -246,6 +246,7 @@ $(document).ready(function(){
 		<div id="subcontents">
 		<h2>
 			<c:if test = "${board_detail_gb =='A1700'}"><spring:message code="fap.main_menu.notice" /></c:if>
+			<c:if test = "${board_detail_gb =='A1706'}"><spring:message code="fap.main_menu.internship" /></c:if>
 			<c:if test = "${board_detail_gb =='A1701'}"><spring:message code="fap.main_menu.jobinfo" /></c:if> 작성
 		</h2>
 			<div class="joinBox">			
@@ -350,6 +351,19 @@ $(document).ready(function(){
 								</label>
 								<input type="radio" name="fap_open_job_info_kind" value="B4201">취업전략&emsp;&emsp;&emsp;
 							</span>				
+						</td>
+					</tr>
+			</c:if>	
+			<c:if test = "${board_detail_gb =='A1706'}">	
+					<tr id="content_kind_jobinfo">
+						<th scope="row">공지종류</th>
+						<td colspan="3">
+							<span class="fap-notice-kind notice">
+								<label class="fap-notice-kind-label">
+									<code value="B2700"></code>
+								</label>
+								<input type="radio" name="fap_notice_kind" value="B2700">공지알림&emsp;&emsp;&emsp;
+							</span>	
 						</td>
 					</tr>
 			</c:if>	
