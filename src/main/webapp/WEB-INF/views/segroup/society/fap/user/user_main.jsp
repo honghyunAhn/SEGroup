@@ -242,7 +242,11 @@
 		}
 		
 		
-		function readAd(fap_job_ad_seq,fap_jobfair_seq,fap_jobfair_divide_seq,fap_jobfair_title){
+		function readAd(fap_job_ad_seq,fap_jobfair_seq,fap_jobfair_divide_seq,fap_jobfair_title, category){
+				if('${user_flag}' == 'A0100' && category == 'IT') {
+					alert('지원할 수 없는 공고입니다.');
+					return;
+				}
 				url = encodeURI('/fap/user/mainpage_content_read?fap_job_ad_seq='+fap_job_ad_seq+'&fap_jobfair_seq='+fap_jobfair_seq+'&fap_jobfair_divide_seq='+fap_jobfair_divide_seq+'&fap_jobfair_title='+fap_jobfair_title);  								
 				window.location.href = url;							 
 		}
@@ -339,10 +343,9 @@
 	                        <li class="list">
 	                        		<c:choose>
 		                        		<c:when test="${user_flag eq 'A0102'}">
-		                        			<a>
 		                        		</c:when>
 		                        		<c:otherwise>
-		                        			<a href="#" onclick="readAd('${item.fap_job_ad_seq}','${item.fap_jobfair_seq }','${item.fap_jobfair_divide_seq }','${item.fap_jobfair_title }')">
+		                        			<a href="#" onclick="readAd('${item.fap_job_ad_seq}','${item.fap_jobfair_seq }','${item.fap_jobfair_divide_seq }','${item.fap_jobfair_title }','notIT')">
 		                        		</c:otherwise>
 	                        		</c:choose>
 	                                <div class="logoImgWrap">
@@ -406,7 +409,7 @@
 		                        			<a>
 		                        		</c:when>
 		                        		<c:otherwise>
-		                        			<a href="#" onclick="readAd('${itemIT.fap_job_ad_seq}','${itemIT.fap_jobfair_seq }','${itemIT.fap_jobfair_divide_seq }','${itemIT.fap_jobfair_title }')">
+		                        			<a href="#" onclick="readAd('${itemIT.fap_job_ad_seq}','${itemIT.fap_jobfair_seq }','${itemIT.fap_jobfair_divide_seq }','${itemIT.fap_jobfair_title }','IT')">
 		                        		</c:otherwise>
 	                        		</c:choose>	                     
 	                                <div class="logoImgWrap">

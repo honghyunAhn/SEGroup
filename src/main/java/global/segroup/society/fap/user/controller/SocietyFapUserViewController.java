@@ -1066,11 +1066,6 @@ public class SocietyFapUserViewController implements PathConstants {
 		//읽기 폼으로 읽기 전에 해당 채용공고 지원가능한지 여부를 판단
 		String user_id = (String)auth.getPrincipal();
 		String whetherJobAdApply = sfuService.select_fap_jobfair_applicable_time(fapJobAdvertisement,user_id);
-		
-		if(whetherJobAdApply.equals("impossible")) {
-			rttr.addFlashAttribute("msg", "지원할 수 없는 공고입니다. 메인화면으로 이동합니다.");
-			return "redirect:" + PathConstants.SOCIETY_FAP_USER_MAIN;
-		}
 			
 		model.addAttribute("whetherJobAdApply", whetherJobAdApply);
 		
