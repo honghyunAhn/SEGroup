@@ -488,7 +488,7 @@ public class SocietyFapUserViewController implements PathConstants {
         String reqNum = day + randomStr;
         String reqInfo    = "";
 		String encReqInfo = "";
-		String rtn_url = "http://www.softsociety.net/edu/user/user_mobile_verification";
+		String rtn_url = "https://www.softsociety.net/edu/user/user_mobile_verification";
 		String cpId       = "sesoc";        // 회원사ID
 		String urlCode    = "01001";     // URL 코드
 		String reqdate    = day;        // 요청일시
@@ -579,7 +579,7 @@ public class SocietyFapUserViewController implements PathConstants {
         String reqNum = day + randomStr;
         String reqInfo    = "";
 		String encReqInfo = "";
-		String rtn_url = "http://www.softsociety.net/edu/user/user_mobile_verification";
+		String rtn_url = "https://www.softsociety.net/edu/user/user_mobile_verification";
 		String cpId       = "sesoc";        // 회원사ID
 		String urlCode    = "01001";     // URL 코드
 		String reqdate    = day;        // 요청일시
