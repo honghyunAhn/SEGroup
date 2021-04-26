@@ -2620,6 +2620,10 @@ public class SocietyFapAdminCommonService {
 			noticeContent.setBoard_content_seq(boardContent.getBoard_content_seq());
 			sfaDAO.fap_open_insert_notice_content(noticeContent);		
 		}
+		if(board_detail_gb.equals("A1706")){ //미국인턴십 게시판
+			noticeContent.setBoard_content_seq(boardContent.getBoard_content_seq());
+			sfaDAO.fap_insert_internship_content(noticeContent);
+		}
 		if(board_detail_gb.equals("A1701")){ //취업정보 & 전략 게시판  
 			openJobInfo.setBoard_content_seq(boardContent.getBoard_content_seq());
 			sfaDAO.fap_open_insert_job_info_content(openJobInfo);
@@ -2683,8 +2687,11 @@ public class SocietyFapAdminCommonService {
 		// 추가정보 수정
 		if(board_detail_gb.equals("A1700")){ //공지사항 게시판 
 			 noticeContent.setBoard_content_seq(boardContent.getBoard_content_seq());
-			 System.out.println(noticeContent);
 			 sfaDAO.fap_open_update_notice_content(noticeContent);	
+		}
+		if(board_detail_gb.equals("A1706")){ //미국인턴십 게시판 
+			 noticeContent.setBoard_content_seq(boardContent.getBoard_content_seq());
+			 sfaDAO.fap_update_internship_content(noticeContent);	
 		}
 		if(board_detail_gb.equals("A1701")){ //취업정보 & 전략 게시판  
 			openJobInfo.setBoard_content_seq(boardContent.getBoard_content_seq());

@@ -120,7 +120,7 @@
 		<h2>관리자 메인 페이지</h2>
 	</div>
 	<br>
-	<a href="#" onclick="select_jobfair_list()">잡페어별 기업 그룹코드</a>
+	<a href="#" onclick='location.href="/fap/admin/admin_company_group_code_management_per_job_fair"'>잡페어별 기업 그룹코드</a>
 	<!-- Modal -->
 	<div class="modal fade" role="dialog" id="myModal">
 		<div class="modal-dialog">

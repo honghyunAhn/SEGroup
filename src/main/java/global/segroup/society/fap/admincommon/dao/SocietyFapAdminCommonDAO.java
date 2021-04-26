@@ -4089,7 +4089,6 @@ public class SocietyFapAdminCommonDAO {
 		sfaMapper.fap_open_insert_notice_content(noticeContent);
 		logger.info("FAP 오픈잡페어 공지사항 게시판 내용 등록 DAO 종료");
 	}
-
 	/**
 	 * @Method Name : fap_open_update_notice_content
 	 * @Date : 2019. 8. 1.
@@ -4105,7 +4104,36 @@ public class SocietyFapAdminCommonDAO {
 		logger.info("FAP 오픈잡페어 공지사항 게시판 내용 수정 DAO 종료");
 		
 	}
-
+	
+	/**
+	 * @Method Name : fap_insert_internship_content
+	 * @Date : 2021. 04. 22
+	 * @User : 김나영
+	 * @Param : 미국인턴십 게시판 정보 
+	 * @Return : 
+	 * @Method 설명 : 미국인턴십 게시판 정보 추가 
+	 */
+	public void fap_insert_internship_content(SocietyFapAdminNoticeContent noticeContent) {
+		logger.info("FAP 미국인턴십 게시판 정보 등록 DAO 시작");
+		SocietyFapAdminCommonMapper sfaMapper = sqlSession.getMapper(SocietyFapAdminCommonMapper.class);
+		sfaMapper.fap_insert_internship_content(noticeContent);
+		logger.info("FAP 미국인턴십 게시판 정보 등록 DAO 종료");
+	}
+	/**
+	 * @Method Name : fap_update_internship_content
+	 * @Date : 2021. 4. 22.
+	 * @User : 김나영
+	 * @Param : 미국인턴십 게시판 정보 
+	 * @Return : 
+	 * @Method 설명 : 미국인턴십 게시판 정보 수정
+	 */
+	public void fap_update_internship_content(SocietyFapAdminNoticeContent noticeContent) {
+		logger.info("FAP 미국인턴십 게시판 정보 수정 DAO 시작");
+		SocietyFapAdminCommonMapper sfaMapper = sqlSession.getMapper(SocietyFapAdminCommonMapper.class);
+		sfaMapper.fap_update_internship_content(noticeContent);
+		logger.info("FAP 미국인턴십 게시판 정보 수정 DAO 종료");
+		
+	}
 	/**
 	 * @Method Name : delete_jobfair_divide_seq_from_apply_info
 	 * @Date : 2019. 8. 16.

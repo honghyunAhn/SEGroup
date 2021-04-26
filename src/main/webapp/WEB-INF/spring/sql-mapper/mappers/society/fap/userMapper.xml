@@ -2878,7 +2878,17 @@
 				 where
 				 	job_info.board_content_seq = content.board_content_seq
 				 )  in ('B2600' , 'B2602')
-			</if>		
+			</if>
+			<if test="board_detail_gb=='A1706'">
+				and
+					(select
+						intern.fap_notice_view_target_ck
+					 from
+					 	fap_internship_content_tb intern
+					 where
+					 	intern.board_content_seq = content.board_content_seq
+					 )  in ('B2600' , 'B2602')
+				</if>	
 		<if test="searchKey!='' and searchKey!=null ">	 
 			   <if test="searchKey=='searchTitle'">
 				and
@@ -2938,6 +2948,16 @@
 						 	fap_open_job_info_tb as job_info
 						 where
 						 	job_info.board_content_seq = content.board_content_seq
+						 )  in ('B2600' , 'B2602')
+					</if>
+					<if test="board_detail_gb=='A1706'">
+					and
+						(select
+							intern.fap_notice_view_target_ck
+						 from
+						 	fap_internship_content_tb intern
+						 where
+						 	intern.board_content_seq = content.board_content_seq
 						 )  in ('B2600' , 'B2602')
 					</if>			
 					<if test="searchKey!=null and searchKey !=''">							

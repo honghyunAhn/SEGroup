@@ -3304,7 +3304,7 @@ public interface PathConstants {
 	/**
 	 * FAP 잡페어 지원자 메인 공지사항 세부내용 검색; 2019. 3. 6. 신동철
 	 */
-	public static final String SOCIETY_FAP_USER_BOARD_CONTENTS_DETAIL = SOCIETY_FAP_USER + "/user_board_contents_datail";
+	public static final String SOCIETY_FAP_USER_BOARD_CONTENTS_DETAIL = SOCIETY_FAP_USER + "/user_board_contents_detail";
 	
 	/**
 	 * FAP 잡페어 지원자 메인 공지사항 세부내용 검색폼; 2019. 3. 6. 신동철

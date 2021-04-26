@@ -3733,6 +3733,7 @@
 		<result property="board_content_hit" column="board_content_hit" />
 		<result property="board_content_udt_dt" column="board_content_udt_dt" />
 		<result property="board_content_imp" column="board_content_imp" />
+		<result property="fap_intern_view_target_ck" column="fap_intern_view_target_ck" />
 		<association property="noticeContent" resultMap="fapNoticeContent"></association>
 		<collection property="fileList" javaType="java.util.ArrayList" resultMap="boardContentFile" />
 	</resultMap>
@@ -3759,6 +3760,7 @@
 		    , file.board_file_seq
 		    , file.board_file_saved
 		    , file.board_file_origin
+		    , internship_content.fap_notice_view_target_ck as fap_intern_view_target_ck
 		    , notice_content.fap_notice_seq
 		    , notice_content.fap_notice_view_target_ck
 		    , notice_content.fap_notice_kind
@@ -3772,6 +3774,10 @@
 			fap_notice_content_tb as notice_content
 		on
 			content.board_content_seq = notice_content.board_content_seq
+		left join
+			fap_internship_content_tb as internship_content
+		on
+			content.board_content_seq = internship_content.board_content_seq
 		where
 			content.board_content_seq = #{board_content_seq}
 	</select>

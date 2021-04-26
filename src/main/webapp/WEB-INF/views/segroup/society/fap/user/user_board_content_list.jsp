@@ -31,7 +31,7 @@
 				$scope.titleClick = function(board_content_seq,board_gb, board_tp){
 					var board_content_seq = board_content_seq;
 					var board_detail_gb = '${map.board_detail_gb}';
-					location.href="/fap/user/user_board_contents_datail?board_content_seq=" + board_content_seq +  "&board_gb=" + board_gb + "&board_tp=" + board_tp+"&board_detail_gb="+ board_detail_gb+"&board=same_board" ;
+					location.href="/fap/user/user_board_contents_detail?board_content_seq=" + board_content_seq +  "&board_gb=" + board_gb + "&board_tp=" + board_tp+"&board_detail_gb="+ board_detail_gb+"&board=same_board" ;
 				}			
 				
 				//전체출력

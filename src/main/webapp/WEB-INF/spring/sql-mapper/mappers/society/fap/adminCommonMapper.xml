@@ -18,7 +18,7 @@
 		<result javaType="string" column="BOARD_DETAIL_GB" property="board_detail_gb"/>
 		
 		<result javaType="int" column="FAP_NOTICE_SEQ" property="fap_notice_seq"/>
-		<result javaType="string" column="FAP_NOTICE_VIEW_TARGER_CK" property="fap_notice_view_target_ck"/>
+		<result javaType="string" column="FAP_NOTICE_VIEW_TARGET_CK" property="fap_notice_view_target_ck"/>
 		<result javaType="string" column="FAP_NOTICE_KIND" property="fap_notice_kind"/>
 		
 		<result javaType="int" column="FAP_OPEN_JOB_INFO_SEQ" property="fap_open_job_info_seq"/>
@@ -231,6 +231,31 @@
 	</insert>
 	<!-- 통합잡페어 공지사항 파일 등록 종료 -->
 	
+	<!-- 인턴십 부가정보 등록 시작-공지사항과 유사하여 vo를 새로 만들지 않음 -->
+	<insert id="fap_insert_internship_content" parameterType="FapNoticeContent">
+		insert into
+			fap_internship_content_tb
+			(
+				board_content_seq
+				, fap_notice_view_target_ck
+			)values(
+				#{board_content_seq}
+				, #{fap_notice_view_target_ck}
+			)
+	</insert>
+	<!-- 인턴십 부가정보 등록 종료 -->
+	
+	<!-- 인턴십 부가정보 내용 수정 시작; 2019.06.27 김경아-->
+	<update id="fap_update_internship_content"  parameterType="FapNoticeContent">
+		update 
+				  fap_internship_content_tb
+		    set	    	 
+				  fap_notice_view_target_ck = #{fap_notice_view_target_ck}
+		where
+				board_content_seq = #{board_content_seq}
+	</update>
+	<!-- 인턴십 부가정보 내용 수정 종료-->
+	
 	<!-- 오픈잡페어 취업정보 & 전략 게시판 & 미국인턴십 리스트 조회 시작; 2019.07.31. 김경아-->        
 	 <select id="fap_open_job_info_content_list" resultMap="boardContent" parameterType="hashMap">
 	     select 
@@ -316,6 +341,7 @@
 			  	    , jobInfo.fap_open_job_info_kind  
 		  	    </if>
 		  	    <if test="board_detail_gb=='A1706'">       
+			  	    , ict.fap_notice_view_target_ck 
 			       , intern.internship_seq		    
 			       , intern.user_id
 				   , intern.user_nm
@@ -337,6 +363,11 @@
 				 	content.board_content_seq = jobInfo.board_content_seq
 			    </if>
 			    <if test="board_detail_gb=='A1706'"> 	 
+				    inner join
+					  		  fap_internship_content_tb ict
+					 on 
+					 	content.board_content_seq = ict.board_content_seq
+					 	
 				   	 left outer join
 				   	 	     fap_internship_apply_tb intern
 				     on  

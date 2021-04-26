@@ -136,7 +136,8 @@
 			alert("공개대상을 선택해 주세요.");
 			return false;
 		}
-		if(kindVal == null || kindVal == "" ){			 
+		//인턴십은 공지종류 필요X
+		if((kindVal == null || kindVal == "") && '${board_detail_gb}' != 'A1706'){
 			alert("공지종류를 선택해 주세요.");			
 			return false;
 		}		
@@ -351,19 +352,6 @@ $(document).ready(function(){
 								</label>
 								<input type="radio" name="fap_open_job_info_kind" value="B4201">취업전략&emsp;&emsp;&emsp;
 							</span>				
-						</td>
-					</tr>
-			</c:if>	
-			<c:if test = "${board_detail_gb =='A1706'}">	
-					<tr id="content_kind_jobinfo">
-						<th scope="row">공지종류</th>
-						<td colspan="3">
-							<span class="fap-notice-kind notice">
-								<label class="fap-notice-kind-label">
-									<code value="B2700"></code>
-								</label>
-								<input type="radio" name="fap_notice_kind" value="B2700">공지알림&emsp;&emsp;&emsp;
-							</span>	
 						</td>
 					</tr>
 			</c:if>	

@@ -28,12 +28,14 @@ var myApp = angular.module('myapp', []);
 myApp.controller('JobInfoController',['$scope','$compile', function($scope, $compile) {
 	
 	var board_detail_gb =$('input[name=board_detail_gb]').val(); 
+	console.log(board_detail_gb);
 	
 	var jobInfo_Map  = '${jobInfo_Map}';	
 	jobInfo_Map = jobInfo_Map.replace(/(?:\r\n|\r|\n)/g, '\\r\\n');
 	var parsed_jobInfo_Map = JSON.parse(jobInfo_Map);
 	$scope.parsed_jobInfo_Map = JSON.parse(jobInfo_Map);
-	console.log(parsed_jobInfo_Map);
+	console.log('parsed_jobInfo_Map>>>>>>>>>>>>>>');
+	console.log(parsed_jobInfo_Map)
 	
 	
 	var content_Map  = '${content_Map}';
@@ -64,7 +66,7 @@ myApp.controller('JobInfoController',['$scope','$compile', function($scope, $com
 	
 	/*공개대상*/
 			//1)공지사항
-			if(board_detail_gb =='A1700'){	
+			if(board_detail_gb =='A1700' || board_detail_gb =='A1706'){	
 				//전체공개
 				if(parsed_jobInfo_Map.fap_notice_view_target_ck == 'B2600'){
 					$(".fap-notice-view-target.all").children("input:radio[name='fap_notice_view_target_ck']").prop("checked", true);
@@ -285,7 +287,7 @@ myApp.controller('JobInfoController',['$scope','$compile', function($scope, $com
 					</span>
 				</td>
 			</tr>
-		 <c:if test = "${boardGroup.board_detail_gb =='A1700'}">
+		 <c:if test = "${boardGroup.board_detail_gb =='A1700' || boardGroup.board_detail_gb == 'A1706'}">
 		 <tr>
 				<th scope="row">공개대상</th>
 				<td colspan="3">

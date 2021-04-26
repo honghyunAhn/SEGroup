@@ -74,7 +74,7 @@
 		
 		/*공개대상*/
 		    //1)공지사항
-			if(board_detail_gb =='A1700'){	
+			if(board_detail_gb =='A1700' || board_detail_gb =='A1706'){	
 					//전체공개
 					if(parsed_jobInfo_Map.fap_notice_view_target_ck == 'B2600'){
 						$(".fap-notice-view-target.all").children("input:radio[name='fap_notice_view_target_ck']").prop("checked", true);
@@ -219,7 +219,7 @@ $(document).ready(function(){
 	
 	/*공개대상*/
 		//1)공지사항 
-		if(board_detail_gb =='A1700'){
+		if(board_detail_gb =='A1700' || board_detail_gb =='A1706'){
 			$(".fap-notice-view-target").on("click",function(){		
 				$(".fap-notice-view-target").removeClass("ck");
 				$(".fap-notice-view-target").find("input:radio[name='fap_notice_view_target_ck']").prop("checked", false);
@@ -316,7 +316,9 @@ $(document).ready(function(){
 	<div id="subcontents">
 		<h2>
 			<c:if test = "${board_detail_gb =='A1700'}"><spring:message code="fap.main_menu.notice" /></c:if>
-			<c:if test = "${board_detail_gb =='A1701'}"><spring:message code="fap.main_menu.jobinfo" /></c:if> 수정
+			<c:if test = "${board_detail_gb =='A1701'}"><spring:message code="fap.main_menu.jobinfo" /></c:if>
+			<c:if test = "${board_detail_gb =='A1706'}"><spring:message code="fap.main_menu.internship" /></c:if>
+			 수정
 		</h2>
 
 		<div class="joinBox">
@@ -359,7 +361,7 @@ $(document).ready(function(){
 					</span>
 				</td>
 			</tr>
-			<c:if test = "${board_detail_gb =='A1700'}">
+			<c:if test = "${board_detail_gb =='A1700' || board_detail_gb =='A1706'}">
 			<tr>
 				<th scope="row">공개대상</th>
 				<td colspan="3">

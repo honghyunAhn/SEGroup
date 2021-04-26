@@ -2978,4 +2978,23 @@ public interface SocietyFapAdminCommonMapper {
 	 * @Method 설명 : 도쿄페어 일정 인원 정보 등록 
 	 */
 	public void tokyofair_member_insert_admin(ArrayList<HashMap<String, Object>> list);
+
+	/**
+	 * @Method Name : fap_insert_internship_content
+	 * @Date : 2021. 04. 22
+	 * @User : 김나영
+	 * @Param : 미국인턴십 게시판 정보 
+	 * @Return : 
+	 * @Method 설명 : 미국인턴십 게시판 정보 추가 
+	 */
+	public void fap_insert_internship_content(SocietyFapAdminNoticeContent noticeContent);
+	/**
+	 * @Method Name : fap_update_internship_content
+	 * @Date : 2021. 4. 22.
+	 * @User : 김나영
+	 * @Param : 미국인턴십 게시판 정보 
+	 * @Return : 
+	 * @Method 설명 : 미국인턴십 게시판 정보 수정
+	 */
+	public void fap_update_internship_content(SocietyFapAdminNoticeContent noticeContent);
 }
