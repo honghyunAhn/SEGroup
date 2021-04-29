@@ -457,10 +457,8 @@
 	                  </ul>
                 </div>
             </div>
-           
         </div>
-        
-    
+<!-- 	    <div class="internship" onclick='location.href="/fap/user/user_board_content_list?board=internship"'></div> -->
     <!-- 안내 문구(개인 회원) -->
         <div class="userGuideWrap">
             <div class="userGuideBg">

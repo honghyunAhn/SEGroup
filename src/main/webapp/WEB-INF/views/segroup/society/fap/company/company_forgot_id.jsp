@@ -112,10 +112,8 @@
 <%@include file="company_menu.jsp"%>
 <div class="join-wrap">			
 	<div id="subcontents">
-		<h1><spring:message code="fap.common.my_page" /></h1><h6><spring:message code="fap.comp.login_invite_phrase" /></h6>
-		
 		<div id="loginmsg" style="padding-left: 8%;">
-			<div id="privacy-policy" style="height: 360px;">
+			<div id="privacy-policy">
 					<div class="privacy-policy-context">
 						<h2><spring:message code="fap.comp.idsearch.header" /></h2>
 						<h3>
@@ -165,12 +163,18 @@
 						<spring:message code="fap.comp.email_transmission" />
 					</button>
 				</li>
-				<li class="logintxt5"><a href="/fap/company/company_main"><spring:message code="fap.common.move_main" /></a></li>
+				<li class="logintxt5">
+					<a href="/fap/company/company_main">
+						<button type="button" class="btn17 btn-primary" style="width: 37%;">
+							<spring:message code="fap.common.move_main" />
+						</button>
+					</a>
+				</li>
 			</ul>
 		</div>  
 	</div>      
 </div>
 
-	<%@include file="company_footer.jsp"%>
+	<%@include file="../common_footer_fap.jsp"%>
 </body>
 </html>

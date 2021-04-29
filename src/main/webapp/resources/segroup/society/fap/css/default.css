@@ -189,12 +189,11 @@ input::placeholder {
 }
 /*蹂몃Ц泥댁꽑�뼵*/
 body, .adv-img p, .caption-bottom p, .adv-circle .caption p, .advs-box p, .list-blog p {
-   font-family: Meiryo, sans-serif;
+   font-family: "Meiryo UI", "sans-serif";
    font-size: 16px;
     line-height: 1.42857143;
     color: #4C4C4C;
 }
-body{}
 
 #wrapper {
 	position:relative;
@@ -379,7 +378,7 @@ body{}
 #subcontents.admin{width: 1400px;}
 
 #subcontents h1 {font-weight:bold;color:#595959;font-size: 40px;}
-#subcontents h6 {color:#b5b7b4;padding-bottom:50px;}
+#subcontents h6 {color:#b5b7b4;padding-bottom:50px;padding-top:20px;}
 
 
 #nowBox {width:1127px;border:1px solid #b0b0b0; background-color:#f8f8f8;display: inline-block; }
@@ -558,7 +557,7 @@ background: url('../images/select_arrow2.png') no-repeat 95% 50%; /* �솕��
 .joinBtn{ margin:0 auto; padding-top:20px; padding-bottom:20px;}
 .loginBox { margin:0 auto; width:1127px; height:360px; border:1px solid #b0b0b0; background-color:#f8f8f8;}
 #loginmsg { float:left; padding:15px; width:500px;}
-#loginmsg #privacy-policy{overflow:scroll; margin-top: 10px; padding: 0 15px 15px 15px; height: 300px; line-height: 2; border: 1px solid #eaeaea; background-color: #fafafa; color: #888; font-size: 12px;}
+#loginmsg #privacy-policy{margin-top: 10px; padding: 0 15px 15px 15px; height: 400px; line-height: 2; border: 1px solid #eaeaea; background-color: #fafafa; color: #888; font-size: 12px;}
 #loginmsg #privacy-policy .privacy-policy-context{text-align: left;}
 #loginmsg #privacy-policy.password{height: 345px !important;}
 
@@ -585,7 +584,7 @@ background: url('../images/select_arrow2.png') no-repeat 95% 50%; /* �솕��
 #idsearch {border:0;background-color:transparent;padding:10px;}
 
 
-#subcontents h2{font-weight:bold;color:#595959;font-size: 22px;padding-top:50px;padding-bottom:20px;}
+#subcontents h2{font-weight:bold;color:#595959;font-size: 22px;padding-top:20px;padding-bottom:20px;}
 
 
 #fairBox {width:1127px; border:1px solid #b0b0b0; background-color:#f8f8f8; padding-bottom:20px;}
@@ -702,12 +701,12 @@ background: url('../images/select_arrow2.png') no-repeat 95% 50%; /* �솕��
 
 #logoutBox {width:1127px;border:1px solid #b0b0b0;padding-bottom:50px;  background-color:#f8f8f8;}
 
-#idpwBox {width:1127px;border:1px solid #b0b0b0;background-color:#f8f8f8;}
+#idpwBox {width:1127px;border:1px solid #b0b0b0;background-color:#f8f8f8;height: 480px;}
 #idpwBox  .logintxt1 {margin-top:40px;font-size:18px;color:#3a3a3a;text-align:left;margin-bottom:10px;}
 #idpwBox  .logintxt2 { text-align:left; margin-bottom:30px;}
 #idpwBox  .logintxt3 { padding-bottom:10px; text-align:left;}
 #idpwBox  .logintxt4 { text-align:left; margin-top:3px;font-size:15px;}
-#idpwBox  .logintxt5 { padding-bottom:10px; text-align:left; padding-bottom:50px;}
+#idpwBox  .logintxt5 { padding-bottom:10px; text-align:left; padding-bottom:20px;}
 #idpwBox  .logintxt6 { float:left; margin-top:-40px; margin-left:540px;}
 #idpwBox  .logintxt7 { float:left; margin-top:20px; margin-left:10px;}
 #idpwBox  .logintxt8 { text-align:left; margin-left:-15px; margin-bottom:15px;}

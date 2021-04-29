@@ -28,7 +28,7 @@
 <div align="center">
 <spring:message code="fap.comp_partner" />
 </div>
- <%@include file="company_footer.jsp"%>
+ <%@include file="../common_footer_fap.jsp"%>
  
 </body>
 </html>

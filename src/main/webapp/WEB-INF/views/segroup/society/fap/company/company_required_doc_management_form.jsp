@@ -907,7 +907,7 @@
 	</div>
 </div>
 
-	<%@include file="company_footer.jsp"%>
+	<%@include file="../common_footer_fap.jsp"%>
 		
 	<!-- 내정자 공통서류 등록 MODAL 시작-->
 	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">

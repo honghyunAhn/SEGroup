@@ -315,6 +315,9 @@ $(function() {
 			context += '<input type="hidden" name="fap_jobfair_divide_seq" value="${fap_jobfair_divide_seq}">';
 			context += '<input type="hidden" name="fap_job_ad_seq" value="${fap_job_ad_seq}">';
 			context += '<input type="hidden" name="fap_comp_id" value="${fap_comp_id}">';
+			context += '<input type="hidden" name="fap_jobfair_seq" value="${fap_jobfair_seq}">';
+			context += '<input type="hidden" name="fap_jobfair_title" value="${fap_jobfair_title}">';
+			context += '<input type="hidden" name="fap_jobfair_devide_gb" value="${fap_jobfair_devide_gb}">';
 			context += '<input type="hidden" name="fap_job_app_final_rt_seq" value="'+infoSeq+'">';
 			context += '<div class="modal-body">';
 			context += '<div class="form-group">';
@@ -1902,7 +1905,7 @@ $(function() {
   </div>  
   <!-- end of Resume Modal -->
   
-<%@include file="company_footer.jsp"%>
+<%@include file="../common_footer_fap.jsp"%>
 
 <form action="/fap/company/applicant_resume_print_form" method="post" name="resume_popup" id="resume_popup">
 	

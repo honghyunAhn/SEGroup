@@ -1114,7 +1114,7 @@
 	<input type="hidden" id="fap_tokyofair_screening_seq">
 	<input type="hidden" id="fap_tokyofair_screening_gb">
 </div>
-<%@include file="company_footer.jsp"%>
+<%@include file="../common_footer_fap.jsp"%>
 
 <!-- 리스트용 layer 시작 -->
 <div class="dim-layer">

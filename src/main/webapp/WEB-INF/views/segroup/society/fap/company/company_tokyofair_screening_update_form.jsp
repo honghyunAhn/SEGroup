@@ -874,7 +874,7 @@ $(function(){
 	<input type="hidden" id="fap_tokyofair_screening_seq" name="fap_tokyofair_screening_seq" value="${tokyofairScrMap.fap_tokyofair_screening_seq }">
 	<input type="hidden" id="count" value="${count}">
 </form>
-<%@include file="company_footer.jsp"%>
+<%@include file="../common_footer_fap.jsp"%>
 
 <div class="dim-layer">
     <div class="dimBg"></div>

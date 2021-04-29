@@ -151,6 +151,6 @@ $(function(){
 <form action="/fap/company/company_tokyofair_screening_search_print_form" method="post" name="tokyofair_schedule_print" id="tokyofair_schedule_print">
 	<input type="hidden" name="fap_jobfair_divide_seq" value="${fap_jobfair_divide_seq }">
 </form>
-<%@include file="company_footer.jsp"%>
+<%@include file="../common_footer_fap.jsp"%>
 </body>
 </html>

@@ -122,11 +122,6 @@
 <div class="join-wrap">
 	<!-----------------------서브컨텐츠 영역-------------------------->
 	<div id="subcontents">
-		<h1><spring:message code="fap.common.my_page" /></h1>
-		<h6>
-			<spring:message code="fap.comp.login_invite_phrase" />
-		</h6>
-
 		<div id="loginmsg" style="padding-left: 8%;">
 			<div id="privacy-policy" style="height: 420px;">
 				<div class="privacy-policy-context">
@@ -192,7 +187,11 @@
 					</button>
 				</li>
 				<li class="logintxt5">
-					<a href="fap/company/company_main"><spring:message code="fap.common.move_login" /></a>
+					<a href="/fap/company/company_login">
+						<button type="button" class="btn17 btn-primary" style="width: 37%;">
+							<spring:message code="fap.common.move_login" />
+						</button>
+					</a>
 				</li>
 			</ul>
 		</div>
@@ -201,6 +200,6 @@
 	<!-----------------------/서브컨텐츠 영역-------------------------->
 </div>
 
-	<%@include file="company_footer.jsp"%>
+	<%@include file="../common_footer_fap.jsp"%>
 </body>
 </html>

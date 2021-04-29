@@ -1753,12 +1753,15 @@ public class SocietyFapCompanyViewController implements PathConstants {
 	 * @Method 설명 : FAP 기업 - 지원자 합격사유 등록
 	 */
 	@RequestMapping(value = PathConstants.SOCIETY_FAP_COMPANY_INSERT_PASS_COMMENT, method = RequestMethod.POST)
-		public String insert_pass_comment(Model model, Authentication auth, String fap_jobfair_divide_seq, String fap_job_ad_seq, String fap_comp_id, SocietyFapJobApplyFinalResult passComment){
+		public String insert_pass_comment(Model model, Authentication auth, String fap_jobfair_divide_seq, String fap_job_ad_seq, String fap_comp_id, SocietyFapJobApplyFinalResult passComment
+				, int fap_jobfair_seq, String fap_jobfair_title, String fap_jobfair_devide_gb){
 		logger.info("FAP 채용전형 지원자 최종결과 합격사유 등록 컨트롤러 시작");
-		
 		model.addAttribute("fap_jobfair_divide_seq", fap_jobfair_divide_seq);
 		model.addAttribute("fap_job_ad_seq", fap_job_ad_seq);
 		model.addAttribute("fap_comp_id", fap_comp_id);
+		model.addAttribute("fap_jobfair_seq", fap_jobfair_seq);
+		model.addAttribute("fap_jobfair_title", fap_jobfair_title);
+		model.addAttribute("fap_jobfair_devide_gb", fap_jobfair_devide_gb);
 		passComment.setFap_job_app_final_rt_udt_id((String)auth.getPrincipal()); 
 		sfcService.insert_pass_comment(passComment);		
 		

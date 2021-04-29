@@ -553,7 +553,7 @@
 			
 			<%--승인된 채용공고 종료 --%>
 			<c:if test="${not empty finalPersonalApplyStatusListMap.acceptedAndProcessingPersonalApplyStatusList}">
-				<h4 style="text-align: left;">승인된 기업 지원현황</h4>
+				<h4>승인된 기업 지원현황</h4>
 				<div id="applyBox">
 					<div id="applyBBS">
 						<ul class="tit1">
@@ -646,7 +646,7 @@
 			
 			<%--승인전 채용공고 종료 --%>
 			<c:if test="${not empty finalPersonalApplyStatusListMap.approvalBeforePersonalApplyStatusList}">
-				<h4 style="text-align: left;">승인전 기업 지원현황</h4>
+				<h4>승인전 기업 지원현황</h4>
 				<div id="applyBox">
 					<div id="applyBBS">
 						<ul class="tit1">

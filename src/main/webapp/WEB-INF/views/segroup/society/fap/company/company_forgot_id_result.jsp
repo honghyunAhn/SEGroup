@@ -54,7 +54,7 @@
 	</section>
 
 	<!-----------------------/서브컨텐츠 영역-------------------------->
-	<%@include file="company_footer.jsp"%>
+	<%@include file="../common_footer_fap.jsp"%>
 	
 </body>
 </html>

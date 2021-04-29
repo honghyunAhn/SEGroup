@@ -465,6 +465,6 @@
 				</form>
 			</div>
 		</div>
-<%@include file="company_footer.jsp"%>
+<%@include file="../common_footer_fap.jsp"%>
 </body>
 </html>

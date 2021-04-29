@@ -4021,7 +4021,7 @@
 		</div> <!-- subcontents end -->
 		<div id="footerdiv">
 		</div>
-		<%@include file="company_footer.jsp"%>
+		<%@include file="../common_footer_fap.jsp"%>
 	</div>
 </body>
 </html>

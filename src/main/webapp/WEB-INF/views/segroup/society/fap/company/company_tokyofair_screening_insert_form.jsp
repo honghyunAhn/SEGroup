@@ -521,7 +521,7 @@ function realTimeValidation(){
 	<input type="hidden" id="fap_comp_id" name="fap_comp_id" value="${fap_comp_id }">
 	<input type="hidden" id="count" value="${count}">
 </form>
-<%@include file="company_footer.jsp"%>
+<%@include file="../common_footer_fap.jsp"%>
 
 <div class="dim-layer">
     <div class="dimBg"></div>

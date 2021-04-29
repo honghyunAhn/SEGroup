@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <head>
     <link rel="stylesheet" href="/resources/css/common_footer_style.css">
@@ -57,12 +58,30 @@
                 <div class="footer_logoImg"></div>
 
                 <ul class="lh30">
-                    <li>(주) 소프트엔지니어소사이어티</li>
-                    <li>서울시 강남구 영동대로513 코엑스4F ICT교육센터</li>
-                    <li>광주시 광산구 무진대로282 광주무역회관7F 소프트엔지니어소사이어티아카데미</li>
-                    <li>사업자등록번호 : 468-81-00409</li>
-                    <li>통신판매업신고번호 : 제 강남-03736호</li>
-                    <li><a href="/privacy_policy"><button><strong>개인정보처리방침</strong></button></a></li>
+                	<li>
+                		<spring:message code="fap.footer.ses" />
+                	</li>
+                    <li>
+                    	<spring:message code="fap.common.footer.ses_address.seoul" />
+                    </li>
+                    <li>
+                    	<spring:message code="fap.common.footer.ses_address.gwangju" />
+                    </li>
+                    <li>
+                    	<spring:message code="fap.footer.business_num" />
+                    </li>
+                    <li>
+                    	<spring:message code="fap.footer.online_marketing_business_num" />
+                    </li>
+                    <li>
+                    	<a href="/privacy_policy">
+                    		<button class="privacy_policyBtn">
+                    			<strong>
+                    				<spring:message code="fap.common.footer.privacy_policy" />
+                    			</strong>
+                    		</button>
+                    	</a>
+                    </li>
                 </ul>
             </div>
 
@@ -88,7 +107,9 @@
 
         <!-- copyright -->
         <div class="copyright h5 textAlign_center" style="text-align:center;">
-            Copyrightⓒ2019 (주)소프트엔지니어소사이어티(Soft Engineer Society) All right reserved.
+            Copyrightⓒ2019
+            <spring:message code="fap.footer.ses" />
+             All right reserved.
         </div>
     </div>
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>

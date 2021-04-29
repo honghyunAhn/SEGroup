@@ -12,6 +12,6 @@
 		<%@include file="company_menu.jsp"%>
 		<h1><spring:message code="com.login.locked" /></h1>
 	</div>
-	<%@include file="company_footer.jsp"%>
+	<%@include file="../common_footer_fap.jsp"%>
 </body>
 </html>

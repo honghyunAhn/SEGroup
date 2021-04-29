@@ -87,7 +87,7 @@
 									<button type="button"
 										onclick="location.href='<c:url value="/fap/user/user_insert_form" />'"
 										class="btn17 btn-primary">
-										회원가입
+										<spring:message code="fap.common.sign_up" />
 									</button>
 							</div>
 					</form>
@@ -96,14 +96,14 @@
 									<button type="button"
 										onclick="location.href='<c:url value="/fap/user/user_forgot_id" />'"
 										class="btn17 btn-primary">
-										아이디 찾기
+										<spring:message code="fap.common.find_id" />
 									</button>
 							</li>
 							<li class="logintxt7">
 									<button type="button"
 										onclick="location.href='<c:url value="/fap/user/user_forgot_password" />'"
 										class="btn17 btn-primary">
-										비밀번호 찾기
+										<spring:message code="fap.common.find_pw" />
 									</button>
 							</li>
 						</ul>

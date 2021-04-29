@@ -201,7 +201,7 @@ html {
 }
 
 body {
-    font-family: "Noto Sans KR", "Nanum Gothic", "Malgun Gothic", "Apple SD Gothic Neo", "AppleSDGothic", "dotum", "sans-serif";
+    font-family: Meiryo UI, Noto Sans KR, Nanum Gothic, Malgun Gothic, Apple SD Gothic Neo, AppleSDGothic, dotum, sans-serif;
     line-height: 20px;
     color: #444;
     word-break: keep-all;
