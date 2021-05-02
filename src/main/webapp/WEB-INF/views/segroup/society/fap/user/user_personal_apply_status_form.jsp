@@ -359,7 +359,7 @@
 								context3 += '<td class="rctd2"><code value="'+approvalBeforePersonalApplyStatusList[j].fap_job_ad_rule_type+'"></code></td>';
 								context3 += '<td class="rctd3">' + approvalBeforePersonalApplyStatusList[j].fap_comp_ja_nm + '</td>';
 								context3 += '<td class="rctd4"><button type="button" seq="' + approvalBeforePersonalApplyStatusList[j].fap_job_app_info_rank + '" onclick="applyInfoRankUp(this)" class="btn btn-primary">위로</button></td>';
-								context3 += '<td class="rctd5"><button type="button" seq="' + approvalBeforePersonalApplyStatusList[j].fap_job_app_info_rank + '" onclick="applyInfoRankDown(this)" class="btn btn-danger">아래로</button></td>';
+								context3 += '<td class="rctd5"><button type="button" seq="' + approvalBeforePersonalApplyStatusList[j].fap_job_app_info_rank + '" onclick="applyInfoRankDown(this)" class="btn btn-default">아래로</button></td>';
 								context3 += '</tr>';
 								innerCount = 1;
 							}	
@@ -544,7 +544,7 @@
 			
 			<c:if test="${not empty finalPersonalApplyStatusListMap.unAcceptedPersonalApplyStatusList or not empty finalPersonalApplyStatusListMap.acceptedAndProcessingPersonalApplyStatusList or not empty finalPersonalApplyStatusListMap.approvalBeforePersonalApplyStatusList}">
 				<div style="text-align: right;">
-					<button type="button" class="btn4 btn-primary" ng-click="openappliedCompanyRankEditInfoModal()" 
+					<button type="button" class="btn btn-default" ng-click="openappliedCompanyRankEditInfoModal()" 
 						style="height: 50px;">
 		        		지원순위변경
 				    </button>
@@ -576,7 +576,7 @@
 										${acceptedAndProcessingPersonalApplyStatusList.fap_job_ad_title}
 									</a>
 								</li>
-								<li class="wid3">${acceptedAndProcessingPersonalApplyStatusList.fap_comp_ja_nm}</li>
+								<li class="wid3"title="${acceptedAndProcessingPersonalApplyStatusList.fap_comp_ja_nm}">${acceptedAndProcessingPersonalApplyStatusList.fap_comp_ja_nm}</li>
 								<%-- <c:choose>
 									<c:when test="${acceptedAndProcessingPersonalApplyStatusList.fap_job_ad_groupcode eq 'D0500'}">
 										<li class="wid4"><code value="${acceptedAndProcessingPersonalApplyStatusList.fap_job_ad_groupcode}"></code></li>	
@@ -669,7 +669,7 @@
 										${approvalBeforePersonalApplyStatusList.fap_job_ad_title}
 									</a>
 								</li>
-								<li class="wid3">${approvalBeforePersonalApplyStatusList.fap_comp_ja_nm}</li>
+								<li class="wid3" title="${approvalBeforePersonalApplyStatusList.fap_comp_ja_nm}">${approvalBeforePersonalApplyStatusList.fap_comp_ja_nm}</li>
 								<%-- <c:choose>
 									<c:when test="${approvalBeforePersonalApplyStatusList.fap_job_ad_groupcode eq 'D0500'}">
 										<li class="wid4"><code value="${approvalBeforePersonalApplyStatusList.fap_job_ad_groupcode}"></code></li>	
@@ -737,7 +737,7 @@
 										${unAcceptedPersonalApplyStatusList.fap_job_ad_title}
 									</a>
 								</li>
-								<li class="wid3">${unAcceptedPersonalApplyStatusList.fap_comp_ja_nm}</li>
+								<li class="wid3" title="${unAcceptedPersonalApplyStatusList.fap_comp_ja_nm}">${unAcceptedPersonalApplyStatusList.fap_comp_ja_nm}</li>
 								<%-- <c:choose>
 									<c:when test="${unAcceptedPersonalApplyStatusList.fap_job_ad_groupcode eq 'D0500'}">
 										<li class="wid4"><code value="${unAcceptedPersonalApplyStatusList.fap_job_ad_groupcode}"></code></li>	

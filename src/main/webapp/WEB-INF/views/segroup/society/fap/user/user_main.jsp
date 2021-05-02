@@ -456,9 +456,13 @@
                     	  </c:forEach> 
 	                  </ul>
                 </div>
+                <div class="fairListWrap">
+                	<a href="/fap/user/user_board_content_list?board=internship">
+                		<img src="/resources/segroup/society/fap/images/main/210420_BJF_internship_1920px.jpg" style="width: 100%;">
+                	</a>
+                </div>
             </div>
         </div>
-<!-- 	    <div class="internship" onclick='location.href="/fap/user/user_board_content_list?board=internship"'></div> -->
     <!-- 안내 문구(개인 회원) -->
         <div class="userGuideWrap">
             <div class="userGuideBg">

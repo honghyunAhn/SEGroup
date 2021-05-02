@@ -978,6 +978,7 @@ body {
 #applyBBS .tit2 .wid3 {
 	width: 10%;
 	text-align: center;
+	overflow: hidden;
 }
 
 #applyBBS .tit2 .wid4 {

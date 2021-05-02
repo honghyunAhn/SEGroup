@@ -209,7 +209,6 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-size: 1em;
-    font-weight: normal;
 }
 
 ol, ul {
@@ -530,7 +529,7 @@ form, label {
 .content>.fairWrapper>.fairWrap,
 .content>.userGuideWrap>.userGuide,
 .footer_wrap {
-    width: 980px;
+    width: 1080px;
     margin: 0 auto;
 }
 
@@ -832,7 +831,7 @@ background-image: url('../images/main/banner_MAIN2-1920x560pxJA.jpg');
     color: #fff;
 }
 
-.userGuideWrap>.userGuide {}
+.content>.userGuideWrap>.userGuide {margin : 0 auto 40px;}
 
 .userGuideWrap>.userGuide>.guideWrap {}
 
