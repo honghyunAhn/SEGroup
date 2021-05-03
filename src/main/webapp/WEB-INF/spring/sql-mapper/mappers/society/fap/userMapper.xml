@@ -1952,6 +1952,7 @@
 		    ,ad.fap_job_ad_groupcode as fap_job_ad_groupcode
 		    ,ad.fap_job_ad_rule_type as fap_job_ad_rule_type
 		    ,ad.fap_job_ad_seq as fap_job_ad_seq
+		    ,rt.fap_resume_title
 			,comp.fap_comp_ja_nm as fap_comp_ja_nm
 			,comp.fap_comp_en_nm as fap_comp_en_nm
             ,res.fap_job_app_rt_acp as fap_job_app_rt_acp
@@ -1975,6 +1976,9 @@
         inner join
 	    	fap_job_apply_final_result_tb result
 	    	on info.fap_job_app_info_seq = result.fap_job_app_info_seq
+   		inner join
+			fap_resume_tb rt
+            on rt.fap_resume_seq = info.fap_resume_seq
 		where
 			info.user_id = #{user_id}
 		    and
@@ -2215,6 +2219,7 @@
 		    ,ad.fap_job_ad_title as fap_job_ad_title
 		    ,ad.fap_job_ad_groupcode as fap_job_ad_groupcode
 		    ,ad.fap_job_ad_rule_type as fap_job_ad_rule_type
+		    ,rt.fap_resume_title
 			,comp.fap_comp_ja_nm as fap_comp_ja_nm
 			,comp.fap_comp_en_nm as fap_comp_en_nm
             ,per.fap_job_app_per_settled_num as fap_job_app_per_settled_num
@@ -2236,6 +2241,9 @@
 		inner join
 			fap_job_apply_info_tb info2
 	        on info1.fap_job_ad_seq = info2.fap_job_ad_seq
+	    inner join
+			fap_resume_tb rt
+            on rt.fap_resume_seq = info1.fap_resume_seq
 		where
 			info1.user_id = #{user_id}
 		    and

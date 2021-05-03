@@ -29,8 +29,9 @@
 				$http({
 					url: 'select_user_resume_info_read',
 					method: 'post',
-					params: { 'fap_resume_seq' : fap_resume_seq 
-								,'user_id' : user_id
+					params: {
+						'fap_resume_seq' : fap_resume_seq 
+						,'user_id' : user_id
 					},
 					XMLHttpRequestResponseType: 'json',
 					headers : {
@@ -287,7 +288,7 @@
 						"AJAX" : true
 					}
 				}).then(function successCallback(response) {
-					
+					console.log(response);
 					if(response == null || response == ''){
 						location.href = "/fap/user/user_main";
 					}
@@ -312,6 +313,7 @@
 						} */
 						context1 += '<td class="astd2"><code value="'+acceptedAndProcessingPersonalApplyStatusList[i].fap_job_ad_rule_type+'"></code></td>';
 						context1 += '<td class="astd3">' + acceptedAndProcessingPersonalApplyStatusList[i].fap_comp_ja_nm + '</td>';
+						context1 += '<td class="astd5">' + acceptedAndProcessingPersonalApplyStatusList[i].fap_job_ad_title + '</td>';
 						context1 += '<td class="astd4"><code value="' + acceptedAndProcessingPersonalApplyStatusList[i].fap_job_app_rt_acp + '"></code></td>';
 						context1 += '</tr>';
 						arrayRankChangeDecisionArray[acceptedAndProcessingPersonalApplyStatusList[i].fap_job_app_info_rank] = 0;
@@ -358,6 +360,7 @@
 								} */
 								context3 += '<td class="rctd2"><code value="'+approvalBeforePersonalApplyStatusList[j].fap_job_ad_rule_type+'"></code></td>';
 								context3 += '<td class="rctd3">' + approvalBeforePersonalApplyStatusList[j].fap_comp_ja_nm + '</td>';
+								context3 += '<td class="rctd6">' + approvalBeforePersonalApplyStatusList[j].fap_job_ad_title + '</td>';
 								context3 += '<td class="rctd4"><button type="button" seq="' + approvalBeforePersonalApplyStatusList[j].fap_job_app_info_rank + '" onclick="applyInfoRankUp(this)" class="btn btn-primary">위로</button></td>';
 								context3 += '<td class="rctd5"><button type="button" seq="' + approvalBeforePersonalApplyStatusList[j].fap_job_app_info_rank + '" onclick="applyInfoRankDown(this)" class="btn btn-default">아래로</button></td>';
 								context3 += '</tr>';
@@ -893,23 +896,24 @@
 			<!-- 1 Modal content------------------------->
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="title">
+					<h2 class="modal-title" id="title">
 						지원기업정보
-					</h4>
+					</h2>
 				</div>
 				
 				<!-- body 시작-->
 				<div class="rank_change_modal_body">
-					<h4 style="text-align: right; padding-right: 2%;" id="myApplyCount"></h4>
+					<h4 class="modal-h4" id="myApplyCount"></h4>
 					<br>
+            		<h3 class="modal-approve-h3">승인완료</h3>
 	        		<!-- 최종합격이거나 진행중인 지원기업현황 테이블 시작 -->
 		            <table class="applyStatusTb" id="rank_change_modal_apply_after_tb">
-		            	<caption><h3>승인완료</h3></caption>
 						<thead id="rank_change_modal_apply_after_tbh">
 							<tr>
 								<th class="asth1" scope="col">지망</th>
 								<th class="asth2" scope="col">타입</th>
 								<th class="asth3" scope="col">기업명</th>
+								<th class="asth5" scope="col">공고제목</th>
 								<th class="asth4" scope="col">전형상황</th>
 							</tr>
 						</thead>
@@ -919,14 +923,15 @@
 					<!-- 최종합격이거나 진행중인 지원기업현황 테이블 종료 -->
 					<br><br>
 					
+					<h3 class="modal-approve-h3">승인대기</h3>
 					<!-- 관리자 승인 전 지원기업현황 테이블 시작 -->
 					<table class="rankChangeTb" id="rank_change_modal_apply_before_tb">
-						<caption><h3>승인대기</h3></caption>
 						<thead id="rank_change_modal_apply_before_tbh">
 							<tr>
 								<th class="rcth1" scope="col">지망</th>
 								<th class="rcth2" scope="col">타입</th>
 								<th class="rcth3" scope="col">기업명</th>
+								<th class="rcth6" scope="col">공고제목</th>
 								<th class="rcth4" scope="col">지망 위로</th>
 								<th class="rcth5" scope="col">지망 아래로</th>
 							</tr>
@@ -937,9 +942,9 @@
 					<!-- 관리자 승인 전 지원기업현황 테이블 종료 -->
 					<br><br>
 					
+					<h3 class="modal-approve-h3">불합격</h3>
 					<!-- 불합격된 지원기업현황 테이블 시작 -->
 					<table class="applyStatusTb" id="rank_change_modal_apply_unaccepted_tb">
-						<caption><h3>불합격</h3></caption>
 						<thead id="rank_change_modal_apply_unaccepted_tbh">
 							<tr>
 								<th class="asth1" scope="col">지망</th>
@@ -957,7 +962,7 @@
 				<!-- body 끝 -->
 
 				<div class="modal-footer">
-					<button type="button" id="rankChangeModalBtnSave" class="btn btn-default" ng-click="saveChangeRank()">저장</button>
+					<button type="button" id="rankChangeModalBtnSave" class="btn btn-primary" ng-click="saveChangeRank()">저장</button>
 					<button type="button" id="rankChangeModalBtnClose" class="btn btn-default" data-dismiss="modal">닫기</button>
 				</div>
 			

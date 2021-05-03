@@ -83,7 +83,7 @@ function setContent(validCardinals, applyFormYn) {
 			content += 			'</div>';
 			content += 			'<div class="fz20 prd_day">';
 			if(item.id == "n000000577") {
-				content += 				'<span class="prd_day">시험일 : 2021-04-15(목)</span>';
+				content += 				'<span class="prd_day">시험일 : 2021-04-29(목)</span>';
 			} else {
 				content += 				'<span class="prd_day">학습기간</span>';
 				content += 				'<br><span class="prd_time">' + item.learn_start_date + ' ~ ';
