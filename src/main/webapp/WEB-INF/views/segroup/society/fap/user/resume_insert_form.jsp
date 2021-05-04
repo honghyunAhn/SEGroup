@@ -320,11 +320,11 @@
 							content += '<div class="resume-dropdown">';
 							content += '<div class="resume-select">';
 							content += '<button type="button" class="resume-select-btn"><code value="B2807"></code></button>';
-							content += '<input type="hidden" id="resume-field-gb" name="resumeEduList['+eduIndex+'].fap_resume_edu_field" value="B2800">';
+							content += '<input type="hidden" id="resume-field-gb" name="resumeEduList['+eduIndex+'].fap_resume_edu_field" value="B2807">';
 							content += '</div>';
 							content += '<div class="resume-select-option">';
 							content += '<ul class="option-list">';
-							content += '<li class="resume-field selected">';
+							content += '<li class="resume-field">';
 							content += '<button type="button" resume-field="B2800"><code value="B2800"></code></button>';
 							content += '</li>';
 							content += '<li class="resume-field">';
@@ -345,7 +345,7 @@
 							content += '<li class="resume-field">';
 							content += '<button type="button" resume-field="B2806"><code value="B2806"></code></button>';
 							content += '</li>';
-							content += '<li class="resume-field">';
+							content += '<li class="resume-field selected">';
 							content += '<button type="button" resume-field="B2807"><code value="B2807"></code></button>';
 							content += '</li>';
 							content += '</ul>';
