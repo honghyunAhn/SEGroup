@@ -99,7 +99,7 @@ document.domain = 'softsociety.net';
 		
 		select_event();
 		
-		$(".policy-agree").on("click",function(e){
+		$(".policy-agree-user").on("click",function(e){
 			$(this).toggleClass("check");	
 			if($(this).hasClass("check")){
 				$("input:checkbox[id='user_terms_ck']").prop("checked", true);
@@ -1173,7 +1173,7 @@ document.domain = 'softsociety.net';
 						<spring:message code="fap.personal.security.agreement" />
 					</div>
 				</div>
-				<div class="policy-agree">
+				<div class="policy-agree-user">
 					<span><spring:message code="fap.common.privacy.policy_agree_check" /></span>
 				</div>
 				</div>

@@ -506,6 +506,12 @@ background: url('../images/select_arrow2.png') no-repeat 95% 50%; /* ï¿½ì†•ï¿½ê¶
 .joinBox .join-policy .policy-agree span{cursor: pointer;}
 .joinBox .join-policy .policy-agree:after{content: '';display: block;position: absolute; right: 440px; top: 270px; width: 20px; height: 20px; background:#fff url(../images/icon-images2.png) 0 -283px no-repeat; }
 .joinBox .join-policy .policy-agree.check:after{background-position: 0 -253px;}
+
+.joinBox .join-policy .policy-agree-user{margin-top: 20px;}
+.joinBox .join-policy .policy-agree-user span{cursor: pointer;}
+.joinBox .join-policy .policy-agree-user:after{content: '';display: block;position: absolute; right: 440px; top: 250px; width: 20px; height: 20px; background:#fff url(../images/icon-images2.png) 0 -283px no-repeat; }
+.joinBox .join-policy .policy-agree-user.check:after{background-position: 0 -253px;}
+
 .joinBox .join-policy #privacy-policy{overflow:scroll; margin-top: 10px; padding: 0 15px 15px 15px; height: 200px; line-height: 2; border: 1px solid #eaeaea; background-color: #fafafa; color: #888; font-size: 12px;}
 .joinBox .join-policy #privacy-policy .privacy-policy-context{text-align: left;}
 .privacy-policy-table{width: 100%; border-collapse: collapse;}

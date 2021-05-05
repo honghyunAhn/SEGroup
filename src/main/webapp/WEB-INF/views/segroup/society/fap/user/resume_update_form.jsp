@@ -467,7 +467,7 @@ var resume_project_length;
 							content +='<li class="wid1">';
 							content +='<div class="resume-dropdown">';
 							content +='<div class="resume-select">';
-							content +='<button type="button" class="                                                                                                                                                                      "><code value="B2900"></code></button>';
+							content +='<button type="button" class="resume-select-btn"><code value="B2900"></code></button>';
 							content +='<input type="hidden" id="resume-license-gb" name="resumeLicenseList['+licenseIndex+'].fap_resume_license_nm" value="B2900">';
 							content +='</div>';
 							content +='<div class="resume-select-option">';
