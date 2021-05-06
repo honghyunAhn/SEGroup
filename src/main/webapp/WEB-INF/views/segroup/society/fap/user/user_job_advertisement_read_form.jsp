@@ -1707,7 +1707,7 @@
 					context += '</div>';
 					context += '<div class="job-ad-rt">';
 					context += '<input type="text" ng-model="::jobRecruitPcs['+i+'].job_itv.fap_job_itv_tm" disabled="disabled">';
-					context += '<span class="hiddenTx">分</span>';
+					context += '<span class="hiddenTx modLocationR">分</span>';
 					context += '</div>';
 					context += '</div>';
 					context += '</div>';
@@ -2390,8 +2390,9 @@
 						</div>
 						<div class="job-ad-rt-la">
 							<input class="input3 currency" type="text" ng-model="::jobAd.fap_job_ad_stock" blur-currency maxlength="22" disabled="disabled">
-							<span class="hiddenTx">円</span>
+							
 						</div>
+						<span class="hiddenTx">円</span>
 			    	</div>				
 					<div class="job-ad-row">
 						<!-- 최근 3년간 매출 -->
@@ -2400,7 +2401,7 @@
 						</div>
 						<div class="job-ad-rt">
 							<input class="input2 currency" type="text" ng-model="::jobAd.fap_job_ad_3years_avg_sales" blur-currency maxlength="22" disabled="disabled">
-							<span class="hiddenTx">円</span>
+							<span class="hiddenTx modLocationR">円</span>
 						</div>
 			    	</div>
 			    	<div class="job-ad-row">
@@ -2410,8 +2411,14 @@
 						</div>
 						<div class="job-ad-rt">
 							<input class="input3 currency" type="text" ng-model="::jobAd.fap_job_ad_employee_num" blur-currency maxlength="9" disabled="disabled">
+<<<<<<< .mine
+||||||| .r805
 							<span class="hiddenTx">名</span>
+=======
+							<span class="hiddenTx modLocationR">名</span>
+>>>>>>> .r819
 						</div>
+						<span class="hiddenTx">名</span>
 			    	</div>
 			    	<div class="job-ad-row">
 						<!-- 외국인 사원수, 한국인 사원수 -->
@@ -2420,15 +2427,16 @@
 						</div>
 						<div class="job-ad-rt-md">
 							<input class="input3 currency" type="text" ng-model="::jobAd.fap_job_ad_foreigner_num" blur-currency maxlength="9" disabled="disabled">
-							<span class="hiddenTx sm">名</span>
+							<span class="hiddenTxt sm">名</span>
 						</div>
 						<div class="job-ad-lt-md">
 							<spring:message code="fap.comp.korean_num" />
 						</div>
 						<div class="job-ad-rt-la">
 							<input class="input3 currency" type="text" ng-model="::jobAd.fap_job_ad_korean_num" blur-currency maxlength="9" disabled="disabled">
-							<span class="hiddenTx">名</span>
+							
 						</div>
+						<span class="hiddenTx">名</span>
 			    	</div>
 			    	<div class="job-ad-row">
 						<!-- 우편번호 -->
@@ -2651,15 +2659,16 @@
 						</div>
 						<div class="job-ad-rt-md">
 							<input class="input3" type="text" maxlength="15" ng-model="::jobAdCategory.fap_job_ad_worktime" disabled="disabled">
-							<span class="hiddenTx sm">時間</span>
+							<span class="hiddenTxt">時間</span>
 						</div>
 						<div class="job-ad-lt-md">
 							<spring:message code="fap.jobad.overtime" />
 						</div>
 						<div class="job-ad-rt-la">
 							<input class="input3" type="text" maxlength="15" ng-model="::jobAdCategory.fap_job_ad_overtime" disabled="disabled">
-							<span class="hiddenTx">時間</span>
+							
 						</div>
+						<span class="hiddenTx">時間</span>
 			    	</div>
 			    	<div class="job-ad-row">
 						<!-- 고용형태 -->
@@ -2732,7 +2741,7 @@
 						</div>
 						<div class="job-ad-rt">
 							<input class="input2 currency" ng-model="::jobAdCategory.fap_job_ad_recruit_num" type="text" blur-currency maxlength="9" disabled="disabled">
-							<span class="hiddenTx">名</span>
+							<span class="hiddenTx modLocationR">名</span>
 						</div>
 			    	</div>	
 					<div class="job-ad-row" id="fap_job_workplace_gb_div">
@@ -3507,7 +3516,7 @@
 										<h5 class="inner-title"><spring:message code="fap.jobad.basic_sal" /></h5>
 										<span class="inner-item">
 											<input type="text" class="currency basic-fee" ng-model="::jobAdPay.JobPayList[0].JobPayBaseList[0].fap_job_pay_base_info" blur-currency disabled="disabled"/>
-											<span class="hiddenTx">円</span>
+											<span class="hiddenTxt">円</span>
 										</span>
 									</div>
 								</div>
@@ -3516,7 +3525,7 @@
 										<h5 class="inner-title"><spring:message code="fap.jobad.housing_fee" /></h5>
 										<span class="inner-item">
 											<input type="text" class="currency basic-fee" ng-model="::jobAdPay.JobPayList[0].JobPayBaseList[1].fap_job_pay_base_info" blur-currency disabled="disabled"/>
-											<span class="hiddenTx">円</span>
+											<span class="hiddenTxt">円</span>
 										</span>
 									</div>
 								</div>
@@ -3526,14 +3535,20 @@
 											<h5 class="inner-title"><spring:message code="fap.jobad.service_overtime_fee" /></h5>
 											<span class="inner-item">
 												<input type="text" class="currency half basic-fee" ng-model="::jobAdPay.JobPayList[0].JobPayBaseList[2].fap_job_pay_base_info" blur-urrency disabled="disabled" />
-												<span class="hiddenTx">円</span>
+												<span class="hiddenTxt">円</span>
 											</span>
 										</div>
 										<div class="inner-float">
 											<h5 class="inner-title right-title"><spring:message code="fap.jobad.service_overtime_time" /></h5>
 											<span class="inner-item right-title">
 												<input type="text" class="currency half" ng-model="::jobAdPay.JobPayList[0].JobPayBaseList[2].JobServiceWorkList[0].fap_job_service_work_tm" blur-currency disabled="disabled"/>
+<<<<<<< .mine
+												<span class="hiddenTxt"><spring:message code="fap.jobad.service_overtime_time" /></span>
+||||||| .r805
 												<span class="hiddenTx"><spring:message code="fap.jobad.service_overtime_time" /></span>
+=======
+												<span class="hiddenTx sm2"><spring:message code="fap.jobad.service_overtime_time" /></span>
+>>>>>>> .r819
 											</span>
 										</div>
 									</div>
@@ -3575,14 +3590,20 @@
 											<h5 class="inner-title"><spring:message code="fap.jobad.overtime_fee" /></h5>
 											<span class="inner-item">
 												<input type="text" class="currency half" ng-model="::jobAdPay.JobPayList[1].fap_job_pay_info" blur-currency disabled="disabled"/>
-												<span class="hiddenTx">円/時</span>
+												<span class="hiddenTxt">円/時</span>
 											</span>
 										</div>
 										<div class="inner-float">
 											<h5 class="inner-title right-title"></h5>
 											<span class="inner-item right-title">
 												<input type="text" class="currency half" ng-model="::jobAdPay.JobPayList[1].JobPayExtraList[0].fap_job_pay_extra_tm" blur-currency disabled="disabled"/>
+<<<<<<< .mine
+												<span class="hiddenTxt">時間以上</span>
+||||||| .r805
 												<span class="hiddenTx">時間以上</span>
+=======
+												<span class="hiddenTx sm2">時間以上</span>
+>>>>>>> .r819
 											</span>
 										</div>
 									</div>
@@ -3623,7 +3644,7 @@
 										<h5 class="inner-title"><spring:message code="fap.jobad.transport_fee.max" /></h5>
 										<span class="inner-item">
 											<input type="text" class="currency" ng-model="::jobAdPay.JobPayList[2].fap_job_pay_info" blur-currency disabled="disabled"/>
-											<span class="hiddenTx">円</span>
+											<span class="hiddenTxt">円</span>
 										</span>
 									</div>
 								</div>
@@ -3662,7 +3683,7 @@
 										<h5 class="inner-title"><spring:message code="fap.jobad.incentive.fee" /></h5>
 										<span class="inner-item">
 											<input type="text" class="currency" ng-model="::jobAdPay.JobPayList[3].fap_job_pay_info" blur-currency disabled="disabled"/>
-											<span class="hiddenTx">円</span>
+											<span class="hiddenTxt">円</span>
 										</span>
 									</div>
 								</div>
@@ -3781,6 +3802,7 @@
 					<div class="job-ad-row etc">
 						<!-- 재류자격 신청 시, 정보처리기사(산업기사) 필요 -->
 						<h4><spring:message code="fap.jobad.etc.qual_dpe" /></h4>
+						<br>
 						<span class="job-radio etc-qual_dpe yes">
 							<label class="job-radio-label">
 								<spring:message code="fap.jobad.etc.yes" />
@@ -3796,6 +3818,7 @@
 					<div class="job-ad-row etc">
 						<!-- 채용조건으로서 정보처리기사(산업기사) 필요 -->
 						<h4><spring:message code="fap.jobad.etc.terms_dpe" /></h4>
+						<br>
 						<span class="job-radio etc-terms_dpe yes">
 							<label class="job-radio-label">
 								<spring:message code="fap.jobad.etc.yes" />
@@ -3811,6 +3834,7 @@
 					<div class="job-ad-row etc">
 						<!-- 중복지원 여부 -->
 						<h4><spring:message code="fap.jobad.etc.overlap" /></h4>
+						<br>
 						<span class="job-radio etc-overlap yes">
 							<label class="job-radio-label">
 								<spring:message code="fap.jobad.etc.yes" />

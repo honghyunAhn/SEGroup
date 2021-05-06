@@ -17,18 +17,9 @@
 	<link type="text/css" rel="stylesheet" href="/resources/segroup/css/jquery.timepicker.css" media="" />
 	<!-- modal을 위한 bootstrap 시작-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-	<style type="text/css">
-		/*  페이징 css */
-		.pagination_wrap {overflow:  hidden; text-align:  center; margin:  45px 0 35px;}
-		.pagination_con {display:  inline-block;}
-		.pagination_con li {float:  left;}
-		.pagination_con ul {list-style:  none;}
-		#page {padding-left: 0px;}		
-		.pagination_con input {background-color:  #fff;border:  1px solid #ccc; height:  30px; width:  30px; margin:  2px; font-weight:  bold; font-style:  16px;}
-		.pagination_wrap .pagn_center {margin:  0 12px;}	
-	</style>
 	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/layer.css" />" media="" />
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/newAdminDefault.css" />" media="" />
 	
 	<!--  modal을 위한 bootstrap 끝 -->
 	
@@ -855,202 +846,173 @@
 	</script>
 	
 	<style type="text/css">
-	#myModal, #modal_dialog, #modal_content, #modal_body {
-		height: 1px;
-	}
 	
-	.wrap {
-		width: 95%;
-		position: relative;
-		display: inline-block;
-	}
-	
-	.wrap textarea {
-		width: 100%;
-		resize: none;
-		line-height: 1.6em;
-	}
-	
-	.wrap span {
-		position: absolute;
-		bottom: 10px;
-		right: 1px;
-	}
-	
-	#counter {
-		background: rgba(255, 0, 0, 0.5);
-		border-radius: 0.5em;
-		padding: 0 .5em 0 .5em;
-		font-size: 0.75em;
-	}
 	</style>
 		
 </head>
 <body id="myBody" ng-app="myapp" ng-controller="PermissionController">
 <%@include file="admin_menu.jsp"%><br>
  
-	<div>
-		<h2>JobFair 지원자 승인 페이지</h2>
-	</div>
-	<br>
-	<div class="search_div">
-		<table class="search_box">
-			<tr>
-				<th>잡페어명으로 검색</th>	
-				<td>
-					<select id="jobfairSelect" onchange="angular.element(this).scope().search_change()">
-						<option value="0">잡페어를 선택하세요</option>
-						<c:forEach var="data" items="${jobfairList }">
-							<option value="${data.fap_jobfair_seq }">${data.fap_jobfair_title }</option>
-						</c:forEach>
-					</select>
-				</td>			
-			</tr>
-			<tr>
-				<th>회원 타입으로 검색</th>	
-				<td>
-					<select id="typeSelect" onchange="angular.element(this).scope().search_change()">
-					</select>
-				</td>
-			<tr>
-			<tr>
-				<th>승인 여부로 검색</th>	
-				<td>
-					<select id="perSelect" onchange="angular.element(this).scope().search_change()">
-					</select>
-				</td>
-			<tr>
-				<th>이름으로 검색</th>
-				<td>
-					<input type="text" id="searchName">
-				</td>
-				<td class="td_search" colspan="2">
-					<button type="button" class="btn_search" ng-click="search_change()">검색</button>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<select id="pageSelect" onchange="angular.element(this).scope().search_change('')">
-						<option value="10">10개씩</option>
-					</select>
-				</td>
-			</tr>
-		</table>
-				
-		<button type="button" class="btn_search" onclick="apply_permission()" style="float: right; margin-top: 20px; margin-right: 10px; width: 100px;">참가승인</button>
-		<button type="button" class="btn_search" onclick="show()" style="float: right; margin-top: 20px; margin-right: 10px; width: 100px;">메일 / 문자</button>		
-		<button type="button" class="btn_search" onclick="all_agree()" style="float: right; margin-top: 20px; margin-right: 10px; width: 150px;">전체선택 / 해제</button>
-		<br><br>
-		
-		<table class="table">
-			<thead>
-				<tr>
-					<th>선택 &emsp;</th>
-					<th>No &emsp;</th>
-					<!-- <th>잡페어명 &emsp;</th> -->
-					<th>회원타입 &emsp;</th>
-					<th>성명 &nbsp;<img class="arrow desc apply_name" src="/resources/segroup/society/fap/images/main/triangle_down.png;" onclick="order_change('apply_name', this)" style="width: 20px;"></th>
-					<th>만 나이</th>
-					<th>희망직무</th>
-					<!-- <th>아이디 &nbsp;<img class="arrow desc apply_id" src="/resources/segroup/society/fap/images/main/triangle_down.png;" onclick="order_change('apply_id', this)" style="width: 20px;"></th> -->
-					<th>전화번호 &emsp;</th>
-					<th>이메일 &emsp;</th>
-					<th>참가신청일 &nbsp;<img class="arrow desc apply_date" src="/resources/segroup/society/fap/images/main/triangle_down.png;" onclick="order_change('apply_date', this)" style="width: 20px;"></th>
-					<th>참가승인일 &nbsp;<img class="arrow desc per_date" src="/resources/segroup/society/fap/images/main/triangle_down.png;" onclick="order_change('per_date', this)" style="width: 20px;"></th>
-					<th>담당자 &emsp;</th>
-					<th>승인여부 &emsp;</th>
-				</tr>
-			</thead>
-			<tbody id="search_data">
-			
-			</tbody>
-		</table>
-		
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog" id="modal_dialog">
-				<!-- Modal content-->
-				<div class="modal-content" id="modal_content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title" id="title">e-Mail / SMS 발송기능</h4>
-					</div>
-					<div class="modal-body" id="modal_body" style="margin: 10 auto;">
-						<div>
-							<input type="radio" name="radio_select" value="mail" checked>
-							메일
-							<input type="radio" name="radio_select" value="sms">
-							문자[단문]
-							<input type="radio" name="radio_select" value="lms">
-							문자[장문]
-							<input type="checkbox" name="is_check" value="is_check" style="width: 30px;">
-							예약발송
-							<div id="apply_future_datetime" style="float: right;">
-								<input type="text" id="apply_future_date" name="apply_future_date" placeholder="전송 날짜" value="" style="width: 80px; display: none;" readonly="readonly" />
-								<input type="text" id="apply_future_time" name="apply_future_time" placeholder="전송 시간" value="" style="width: 60px; display: none;" />
-							</div>
-						</div>
-						<div class="line_textarea">
-							<textarea id="modal-info_name" readonly="readonly" style="resize: none; height: 70px;"></textarea>
-						</div>
-						<div id="modal_title_div">
-							<input type="text" id="modal_title" name="modal_title" placeholder="제목 (50자이내)" style="margin-left: 4px; width: 500px;" maxlength="50">
-						</div>
-						<div id="modal_title_div_lms">
-							<input type="text" id="modal_title_lms" name="modal_title_lms" placeholder="제목 (45Byte이내 : ex. 한글로는 22자, 영대소문자, 숫자, 기호로는 45자)" style="margin-left: 4px; width: 500px;" maxlength="45">
-						</div>
-						<div class="wrap" id="wrap">
-							<textarea id="modal_textarea" name="modal_textarea" placeholder="내용(문자의 경우, %고객명% 사용시 개개인의 이름으로 치환되어 발송됩니다. ex. %고객명%님! 안녕하세요.)" maxlength="2000"></textarea>
-							<span id="counter">####</span>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" id="btn_mail">메일발송</button>
-						<button type="button" class="btn btn-default" id="btn_sms" style="display: none;">문자발송</button>
-						<button type="button" class="btn btn-default" id="btn_lms" style="display: none;">문자발송</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
+ 	<div class="container">
+ 		<div>
+			<h2>JobFair 지원자 승인 페이지</h2>
+		</div>
+		<br>
+		<div class="search_div">
+			<div class="search_box">
+				<table class="search_box">
+					<colgroup>
+						<col width="30%">
+						<col width="80%">
+					</colgroup>
+					<tr>
+						<th>잡페어명으로 검색</th>
+						<td>
+							<select id="jobfairSelect" class="selectMid" onchange="angular.element(this).scope().search_change()">
+								<option value="0">잡페어를 선택하세요</option>
+								<c:forEach var="data" items="${jobfairList }">
+									<option value="${data.fap_jobfair_seq }">${data.fap_jobfair_title }</option>
+								</c:forEach>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>회원 타입으로 검색</th>
+						<td>
+							<select id="typeSelect" class="selectMid" onchange="angular.element(this).scope().search_change()"></select>
+						</td>
+					</tr>
+					<tr>
+						<th>승인 여부로 검색</th>
+						<td>
+							<select id="perSelect" class="selectMid" onchange="angular.element(this).scope().search_change()"></select>
+						</td>
+					</tr>
+					<tr>
+						<th>이름으로 검색</th>
+						<td>
+							<input type="text" class="inputMid" id="searchName">
+							<button type="button" class="btn_search" ng-click="search_change()">검색</button>
+						</td>
+					</tr>
+				</table>
+				<div class="sub_search_box">
+					<select id="pageSelect" onchange="angular.element(this).scope().search_change('')"></select>
+					<button type="button" class="btn_search" onclick="apply_permission()">참가승인</button>
+					<button type="button" class="btn_search" onclick="show()">메일 / 문자</button>		
+					<button type="button" class="btn_search" onclick="all_agree()">전체선택 / 해제</button>
+					<br><br>
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	 <div class="pagination_wrap"></div>
-	<div style="display: none;">
-		<input type="hidden" id="curPage1" value="">
-		<input type="hidden" id="orderType1" value="">
-		<input type="hidden" id="orderValue1" value="">
-	</div> 
-	
-	<div class="dim-layer">
-	    <div class="dimBg"></div>
-	    <div id="edu_layer" class="pop-layer">
-	        <div class="pop-container">
-	            <div class="pop-conts">
-	                <!--content //-->
-	                <div class="pop-contents pop-common">
-	                </div>
-	                
-	                <div class="pop-contents pop-hs">
-	                	
-	                </div>
-	
-					<div class="pop-contents pop-uni">
-						
+		
+		<table class="table">
+				<thead>
+					<tr>
+						<th>선택 &emsp;</th>
+						<th>No &emsp;</th>
+						<!-- <th>잡페어명 &emsp;</th> -->
+						<th>회원타입 &emsp;</th>
+						<th>성명 &nbsp;<img class="arrow desc apply_name" src="/resources/segroup/society/fap/images/main/triangle_down.png;" onclick="order_change('apply_name', this)" style="width: 20px;"></th>
+						<th>만 나이</th>
+						<th>희망직무</th>
+						<!-- <th>아이디 &nbsp;<img class="arrow desc apply_id" src="/resources/segroup/society/fap/images/main/triangle_down.png;" onclick="order_change('apply_id', this)" style="width: 20px;"></th> -->
+						<th>전화번호 &emsp;</th>
+						<th>이메일 &emsp;</th>
+						<th>참가신청일 &nbsp;<img class="arrow desc apply_date" src="/resources/segroup/society/fap/images/main/triangle_down.png;" onclick="order_change('apply_date', this)" style="width: 20px;"></th>
+						<th>참가승인일 &nbsp;<img class="arrow desc per_date" src="/resources/segroup/society/fap/images/main/triangle_down.png;" onclick="order_change('per_date', this)" style="width: 20px;"></th>
+						<th>담당자 &emsp;</th>
+						<th>승인여부 &emsp;</th>
+					</tr>
+				</thead>
+				<tbody id="search_data">
+				</tbody>
+			</table>
+			
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog" id="modal_dialog">
+					<!-- Modal content-->
+					<div class="modal-content" id="modal_content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title" id="title">e-Mail / SMS 발송기능</h4>
+						</div>
+						<div class="modal-body" id="modal_body" style="margin: 10 auto;">
+							<div>
+								<input type="radio" name="radio_select" value="mail" checked>
+								메일
+								<input type="radio" name="radio_select" value="sms">
+								문자[단문]
+								<input type="radio" name="radio_select" value="lms">
+								문자[장문]
+								<input type="checkbox" name="is_check" value="is_check" style="width: 30px;">
+								예약발송
+								<div id="apply_future_datetime" style="float: right;">
+									<input type="text" id="apply_future_date" name="apply_future_date" placeholder="전송 날짜" value="" style="width: 80px; display: none;" readonly="readonly" />
+									<input type="text" id="apply_future_time" name="apply_future_time" placeholder="전송 시간" value="" style="width: 60px; display: none;" />
+								</div>
+							</div>
+							<div class="line_textarea">
+								<textarea id="modal-info_name" readonly="readonly" style="resize: none; height: 70px;"></textarea>
+							</div>
+							<div id="modal_title_div">
+								<input type="text" id="modal_title" name="modal_title" placeholder="제목 (50자이내)" style="margin-left: 4px; width: 500px;" maxlength="50">
+							</div>
+							<div id="modal_title_div_lms">
+								<input type="text" id="modal_title_lms" name="modal_title_lms" placeholder="제목 (45Byte이내 : ex. 한글로는 22자, 영대소문자, 숫자, 기호로는 45자)" style="margin-left: 4px; width: 500px;" maxlength="45">
+							</div>
+							<div class="wrap" id="wrap">
+								<textarea id="modal_textarea" name="modal_textarea" placeholder="내용(문자의 경우, %고객명% 사용시 개개인의 이름으로 치환되어 발송됩니다. ex. %고객명%님! 안녕하세요.)" maxlength="2000"></textarea>
+								<span id="counter">####</span>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" id="btn_mail">메일발송</button>
+							<button type="button" class="btn btn-default" id="btn_sms" style="display: none;">문자발송</button>
+							<button type="button" class="btn btn-default" id="btn_lms" style="display: none;">문자발송</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
 					</div>
+				</div>
+			</div>
+		
+		 <div class="pagination_wrap"></div>
+		<div style="display: none;">
+			<input type="hidden" id="curPage1" value="">
+			<input type="hidden" id="orderType1" value="">
+			<input type="hidden" id="orderValue1" value="">
+		</div> 
+		
+		<div class="dim-layer">
+		    <div class="dimBg"></div>
+		    <div id="edu_layer" class="pop-layer">
+		        <div class="pop-container">
+		            <div class="pop-conts">
+		                <!--content //-->
+		                <div class="pop-contents pop-common">
+		                </div>
+		                
+		                <div class="pop-contents pop-hs">
+		                	
+		                </div>
+		
+						<div class="pop-contents pop-uni">
+							
+						</div>
+						
+						<div class="pop-contents pop-gradu">
+							
+						</div>
 					
-					<div class="pop-contents pop-gradu">
-						
-					</div>
-				
-	                <div class="btn-r">
-	                    <a href="#" class="btn-layerClose">Close</a>
-	                </div>
-	                <!--// content-->
-	            </div>
-	        </div>
-	    </div>
-	</div>
-	
+		                <div class="btn-r">
+		                    <a href="#" class="btn-layerClose">Close</a>
+		                </div>
+		                <!--// content-->
+		            </div>
+		        </div>
+		    </div>
+		</div>
+ 	</div>
 </body>
 </html>

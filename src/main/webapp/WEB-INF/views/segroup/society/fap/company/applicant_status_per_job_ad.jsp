@@ -1045,7 +1045,7 @@ $(function() {
 		</c:if>
 
 		<!-- 정규지원자 -->
-		<div id="peopleBBS" ng-if="applicantInfo[0] != null">
+		<div id="peopleBBS" class="applicant-status" ng-if="applicantInfo[0] != null">
 			<ul class="peoplechk" display="table">
 				<li class="pb-5" display="table-cell">
 					<h2><spring:message code="fap.comp.regular_apply" /></h2>
@@ -1253,7 +1253,7 @@ $(function() {
 		</div>		
 		
 		<!-- 미스매칭 지원자 -->
-		<div id="peopleBBS" ng-if="missApplicantInfo[0] != null">
+		<div id="peopleBBS" class="applicant-status" ng-if="missApplicantInfo[0] != null">
 			<ul class="peoplechk" display="table">
 				<li class="pb-5" display="table-cell">
 			 		<c:if test="${fap_job_ad_state != 'C2102'}">
@@ -1456,7 +1456,7 @@ $(function() {
 		</div>						
 						
 		<!-- 불합격자 -->
-		<div id="peopleBBS" ng-if="unacceptedApplicantInfo[0] != null">
+		<div id="peopleBBS" class="applicant-status" ng-if="unacceptedApplicantInfo[0] != null">
 			<ul class="peoplechk" display="table">
 				<li class="pb-5" display="table-cell">
 					<h2><spring:message code="fap.comp.unaccepted_applicant" /></h2>

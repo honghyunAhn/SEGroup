@@ -123,6 +123,7 @@
 		
 		
 		<intercept-url pattern="/fap/user/user_main" access="permitAll" />
+		<intercept-url pattern="/fap/user/language_change" access="permitAll" />
 		<intercept-url pattern="/fap/user/user_login" access="permitAll" />
 		<intercept-url pattern="/fap/user/user_security_invalidate" access="permitAll" />
 		<intercept-url pattern="/fap/user/user_insert_form" access="permitAll" />

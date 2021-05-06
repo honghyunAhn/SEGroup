@@ -985,90 +985,448 @@ $(function() {
 </script>
 <body ng-app="myapp" ng-controller="CompanyController">
  <%@include file="admin_menu.jsp"%>
- <br>
-	<div class="page_title">
-		<h2>지원자 현황</h2>
-	</div>
-	<br>		
-<form class="hidden_form">
-	<input type="hidden" id="fap_jobfair_seq" name="fap_jobfair_seq" value="${fap_jobfair_seq}">
-	<input type="hidden" id="fap_jobfair_divide_seq" name="fap_jobfair_divide_seq" value="${fap_jobfair_divide_seq}">
-	<input type="hidden" id="cur_seleted_btn" name="cur_seleted_btn" value="${cur_seleted_btn}">
-</form>
-<div class="join-wrap">	
-	<div id="subcontents">
-		<c:set var="now" value="<%=new java.util.Date()%>" />
-		<fmt:parseDate value="${final_select_info.fap_jobfair_divide_final_select_st}" pattern="yyyy-MM-dd" var="startDate" />
-		<fmt:parseDate value="${final_select_info.fap_jobfair_divide_final_select_et}" pattern="yyyy-MM-dd" var="endDate" />
-		 
-		<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate" />             <%-- 오늘날짜 --%>
-		<fmt:formatDate value="${startDate}" pattern="yyyy-MM-dd" var="openDate"/>       <%-- 시작날짜 --%>
-		<fmt:formatDate value="${endDate}" pattern="yyyy-MM-dd" var="closeDate"/>        <%-- 마감날짜 --%>
-		<c:if test="${openDate <= nowDate  && nowDate <= closeDate}">
-			<c:if test="${final_select_info.fap_jobfair_divide_final_select_et != null}">
-				<c:set var="final_select_date" value="${final_select_info.fap_jobfair_divide_final_select_et}"/>
-				<span style="color: red">${fn:substring(final_select_date,0,4) }<spring:message code="com.placeholder.year" />
-				 ${fn:substring(final_select_date,5,7) }<spring:message code="com.placeholder.month" />
-				  ${fn:substring(final_select_date,8,10) }<spring:message code="com.placeholder.day" /></span>
-				<spring:message code="fap.comp.applicant_final_rt_select" />
-			</c:if>
-		</c:if>	
-		
-		<!-- 미승인 지원자 -->
-		<div id="peopleBBS" ng-if="approvalInfo[0] != null">
-			<h2>승인전 지원자</h2>
-			<button class="btn3 btn-primary score_print">성적표</button>
-			<ul class="peopletitle" style="width: 100%;">
-				<li class="wid4">이름</li>
-				<li class="wid4">이력서</li>
-				<li class="wid6">나이</li>
-				<li class="wid6">성별</li>
-				<li class="wid6">기관</li>
-				<li class="wid6">미스매칭여부</li>
-			</ul>
-			
-			<ul class="peoplemain2" ng-repeat="approval_info in approvalInfo" ng-init="approval_infoIndex = $index">
-				<li class="wid4">
-					<div class="screenshot" tooltip="/fap/user/resume_photo_image/{{approval_info.fap_resume_pic_saved}}">
-						<span ng-bind="approval_info.fap_resume_nm"></span>
-						<img class="tooltip-image" alt="photo" src="<c:url value="/resources/segroup/society/fap/images/icon-photo.png" />">
-					</div>
-				</li>
-				<li class="wid4">
-					<div><button class="resumeButton btn3" value="{{approval_info.fap_resume_seq}}" id="{{approval_info.user_id}}" ng-click="resumeModal($event)"><spring:message code="fap.common.resume" /></button></div>
-				</li>
-				<li class="wid6">
-					<span ng-bind="approval_info.fap_resume_birth"></span>년생
-				</li>
-				<li class="wid6">
-					<div ng-if="approval_info.fap_resume_gender == 'A0000' ">
-						<code value="A0000"></code>
-					</div>
-					<div ng-if="approval_info.fap_resume_gender == 'A0001' ">
-						<code value="A0001"></code>
-					</div>
-				</li>
-				<li class="wid6">
-					<div class="user-code" cd="{{approval_info.user_flag}}"></div>
-				</li>
-				<li class="wid6">
-					<div class="user-code" cd="{{approval_info.fap_job_ad_is_mismatching}}"></div>
-				</li>
-			</ul>			
+ <div class="container">
+	 <br>
+		<div class="page_title">
+			<h2>지원자 현황</h2>
 		</div>
-		
-		
-		<!-- 정규지원자 -->
-		<div id="peopleBBS" ng-if="applicantInfo[0] != null">
-			<ul class="peoplechk" display="table">
-				<li class="pb-5" display="table-cell">
-					<h2><spring:message code="fap.comp.regular_apply" /></h2>
-					<button class="btn3 btn-primary resume_print"><spring:message code="fap.comp.app_print" /></button>
-				</li>
-			</ul>
+		<br>		
+	<form class="hidden_form">
+		<input type="hidden" id="fap_jobfair_seq" name="fap_jobfair_seq" value="${fap_jobfair_seq}">
+		<input type="hidden" id="fap_jobfair_divide_seq" name="fap_jobfair_divide_seq" value="${fap_jobfair_divide_seq}">
+		<input type="hidden" id="cur_seleted_btn" name="cur_seleted_btn" value="${cur_seleted_btn}">
+	</form>
+	<div class="join-wrap">	
+		<div id="subcontents">
+			<c:set var="now" value="<%=new java.util.Date()%>" />
+			<fmt:parseDate value="${final_select_info.fap_jobfair_divide_final_select_st}" pattern="yyyy-MM-dd" var="startDate" />
+			<fmt:parseDate value="${final_select_info.fap_jobfair_divide_final_select_et}" pattern="yyyy-MM-dd" var="endDate" />
+			 
+			<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="nowDate" />             <%-- 오늘날짜 --%>
+			<fmt:formatDate value="${startDate}" pattern="yyyy-MM-dd" var="openDate"/>       <%-- 시작날짜 --%>
+			<fmt:formatDate value="${endDate}" pattern="yyyy-MM-dd" var="closeDate"/>        <%-- 마감날짜 --%>
+			<c:if test="${openDate <= nowDate  && nowDate <= closeDate}">
+				<c:if test="${final_select_info.fap_jobfair_divide_final_select_et != null}">
+					<c:set var="final_select_date" value="${final_select_info.fap_jobfair_divide_final_select_et}"/>
+					<span style="color: red">${fn:substring(final_select_date,0,4) }<spring:message code="com.placeholder.year" />
+					 ${fn:substring(final_select_date,5,7) }<spring:message code="com.placeholder.month" />
+					  ${fn:substring(final_select_date,8,10) }<spring:message code="com.placeholder.day" /></span>
+					<spring:message code="fap.comp.applicant_final_rt_select" />
+				</c:if>
+			</c:if>	
 			
-				<ul class="peopletitle">
-					<li class="wid1"></li>
+			<!-- 미승인 지원자 -->
+			<div id="peopleBBS" class="applicant-status" ng-if="approvalInfo[0] != null">
+				<h2>승인전 지원자</h2>
+				<button class="btn3 btn-primary score_print">성적표</button>
+				<ul class="peopletitle" style="width: 100%;">
+					<li class="wid4">이름</li>
+					<li class="wid4">이력서</li>
+					<li class="wid6">나이</li>
+					<li class="wid6">성별</li>
+					<li class="wid6">기관</li>
+					<li class="wid6">미스매칭여부</li>
+				</ul>
+				
+				<ul class="peoplemain2" ng-repeat="approval_info in approvalInfo" ng-init="approval_infoIndex = $index">
+					<li class="wid4">
+						<div class="screenshot" tooltip="/fap/user/resume_photo_image/{{approval_info.fap_resume_pic_saved}}">
+							<span ng-bind="approval_info.fap_resume_nm"></span>
+							<img class="tooltip-image" alt="photo" src="<c:url value="/resources/segroup/society/fap/images/icon-photo.png" />">
+						</div>
+					</li>
+					<li class="wid4">
+						<div><button class="resumeButton btn3" value="{{approval_info.fap_resume_seq}}" id="{{approval_info.user_id}}" ng-click="resumeModal($event)"><spring:message code="fap.common.resume" /></button></div>
+					</li>
+					<li class="wid6">
+						<span ng-bind="approval_info.fap_resume_birth"></span>년생
+					</li>
+					<li class="wid6">
+						<div ng-if="approval_info.fap_resume_gender == 'A0000' ">
+							<code value="A0000"></code>
+						</div>
+						<div ng-if="approval_info.fap_resume_gender == 'A0001' ">
+							<code value="A0001"></code>
+						</div>
+					</li>
+					<li class="wid6">
+						<div class="user-code" cd="{{approval_info.user_flag}}"></div>
+					</li>
+					<li class="wid6">
+						<div class="user-code" cd="{{approval_info.fap_job_ad_is_mismatching}}"></div>
+					</li>
+				</ul>			
+			</div>
+			
+			
+			<!-- 정규지원자 -->
+			<div id="peopleBBS" class="applicant-status" ng-if="applicantInfo[0] != null">
+				<ul class="peoplechk" display="table">
+					<li class="pb-5" display="table-cell">
+						<h2><spring:message code="fap.comp.regular_apply" /></h2>
+						<button class="btn3 btn-primary resume_print"><spring:message code="fap.comp.app_print" /></button>
+					</li>
+				</ul>
+				
+					<ul class="peopletitle">
+						<li class="wid1"></li>
+						<li class="wid4"><spring:message code="fap.comp.applicant_info" /></li>
+						<li class="wid6" ng-repeat="pcs in recruitPcs">
+							<code value="C2500" ng-if="pcs.fap_job_recruit_pcs_gb == 'C2500' "></code>
+							<code value="C2501" ng-if="pcs.fap_job_recruit_pcs_gb == 'C2501' "></code>
+							<code value="C2502" ng-if="pcs.fap_job_recruit_pcs_gb == 'C2502' "></code>
+							<code value="C2503" ng-if="pcs.fap_job_recruit_pcs_gb == 'C2503' "></code>
+							<code value="C2504" ng-if="pcs.fap_job_recruit_pcs_gb == 'C2504' "></code>
+						</li>
+						<li class="wid7"><spring:message code="fap.comp.app_final_rt" /></li>
+						<li class="wid8"><span><spring:message code="fap.comp.join_work_or_not" /></span></li>
+						<li class="wid9"><spring:message code="fap.comp.app_final_rt_pass_reason" /></li>
+					</ul>
+					
+					<form  id="regular_apply_btn">
+					<input type="hidden" name="fap_job_ad_seq" value="${fap_job_ad_seq}">
+					<input type="hidden" name="fap_comp_id" value="${fap_comp_id}">
+					<input type="hidden" name="fap_jobfair_divide_seq" value="${fap_jobfair_divide_seq}">
+					<div ng-repeat="info in applicantInfo" ng-if="info.fap_job_ad_is_mismatching == 'C4900' " ng-init="infoIndex = $index">
+						<ul class="peoplemain" ng-repeat="finalCheck in info.finalResultMap" ng-if="::finalCheck.fap_job_app_final_rt_acp == 'D0000' ">
+							<li class="wid1">
+								<span class="resume-check">
+									<label class="resume-check-label">
+									</label>
+								</span>
+							</li>
+							<li class="wid4">
+								<input type="hidden" name="fap_job_apply_info_list[{{infoIndex}}].user_id" value="{{info.user_id}}">
+								<div class="screenshot" tooltip="/fap/user/resume_photo_image/{{info.resumeMap.fap_resume_pic_saved}}">
+									<span ng-bind="info.resumeNmList[2].fap_resume_nm"></span>
+									<img class="tooltip-image" alt="photo" src="<c:url value="/resources/segroup/society/fap/images/icon-photo.png" />">
+								</div>
+								<div ng-if="info.resumeMap.fap_resume_gender == 'A0000' ">
+									<code value="A0000"></code>
+								</div>
+								<div ng-if="info.resumeMap.fap_resume_gender == 'A0001' ">
+									<code value="A0001"></code>
+								</div>
+								<div class="user-code" cd="{{info.user_flag}}"></div>
+								<div><button type="button" class="resumeButton btn3" value="{{info.resumeMap.fap_resume_seq}}" id="{{info.user_id}}" ng-click="resumeModal($event)"><spring:message code="fap.common.resume" /></button></div>
+							</li>
+							<li class="wid6" ng-repeat="result in info.applyResultMap">
+								<input type="hidden" name="fap_job_apply_info_list[{{infoIndex}}].jobApplyResult.fap_job_app_rt_list[{{$index}}].fap_job_app_rt_seq" value="{{result.fap_job_app_rt_seq}}">
+								<select name="fap_job_apply_info_list[{{infoIndex}}].jobApplyResult.fap_job_app_rt_list[{{$index}}].fap_job_app_rt_acp" class="app_result_select" ng-model="::result.fap_job_app_rt_acp" disabled="disabled">
+									<option selectcode value="D0000" selected></option>
+									<option selectcode value="D0001"></option>
+									<option selectcode value="D0002"></option>
+									<option selectcode value="D0003" hidden></option>
+								</select>
+							</li>
+							<li class="wid7" ng-repeat="final in info.finalResultMap">
+								<input type="hidden" name="fap_job_apply_info_list[{{infoIndex}}].fap_job_app_final_rt_seq" value="{{final.fap_job_app_final_rt_seq}}" index="{{infoIndex}}">
+								<select name="fap_job_apply_info_list[{{infoIndex}}].fap_job_app_final_rt_acp" class="final_result_select" ng-model="::final.fap_job_app_final_rt_acp" onchange="angular.element(this).scope().onChange(this)" disabled="disabled">
+									<option selectcode value="D0000"></option>
+									<option selectcode value="D0001"></option>
+									<option selectcode value="D0002"></option>
+									<option selectcode value="D0004"></option>
+								</select>
+								<div class="waiting_list_ranking_div" ng-if="::final.fap_job_app_final_rt_acp == 'D0004'">
+									<select name="fap_job_apply_info_list[{{infoIndex}}].fap_job_app_standby_rank" class="standby_rank" ng-model="::final.fap_job_app_standby_rank" disabled="disabled">
+										<option disabled="disabled"><spring:message code="fap.comp.app_final_stand_by_ranking" /></option>
+										<option ng-value="1">1</option>
+										<option ng-value="2">2</option>
+										<option ng-value="3">3</option>
+										<option ng-value="4">4</option>
+										<option ng-value="5">5</option>
+										<option ng-value="6">6</option>
+										<option ng-value="7">7</option>
+										<option ng-value="8">8</option>
+										<option ng-value="9">9</option>
+										<option ng-value="10">10</option>
+									</select>
+								</div>
+							</li>
+							<li class="wid8" ng-repeat="finalRe in info.finalResultMap">
+								<div ng-if="finalRe.fap_job_app_approval_gb == 'D0801' ">
+									<code value="D0700"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0700' "></code>
+									<code value="D0701"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0701' "></code>
+									<code value="D0702"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0702' "></code>
+									<code value="D0703"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0703' "></code>
+								</div>
+								<div ng-if="finalRe.fap_job_app_approval_gb == 'D0800' ">
+									<code value="D0700"></code>
+								</div>
+							</li>
+							<li class="wid9" ng-repeat="finalResult in info.finalResultMap">
+								<button type="button" ng-if="finalResult.fap_job_app_pass_comment != null && finalResult.fap_job_app_pass_comment != '' " infoIndex="{{infoIndex}}" ng-click="updatePassComment(infoIndex, $event ,finalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
+								<button type="button" ng-if="finalResult.fap_job_app_pass_comment == null || finalResult.fap_job_app_pass_comment == '' " infoIndex="{{infoIndex}}" ng-click="insertPassComment(infoIndex, $event ,finalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
+								<div class="pass_comment_div">
+									
+								</div>
+							</li>
+						</ul>
+						<ul  class="peoplemain" ng-repeat="final in info.finalResultMap" ng-if="::final.fap_job_app_final_rt_acp != 'D0000' ">
+							<li class="wid1">
+								<span class="resume-check">
+									<label class="resume-check-label">
+									</label>
+								</span>
+							</li>
+							<li class="wid4">
+								<div class="screenshot" tooltip="/fap/user/resume_photo_image/{{info.resumeMap.fap_resume_pic_saved}}">
+									<span ng-bind="info.resumeNmList[2].fap_resume_nm"></span>
+									<img class="tooltip-image" alt="photo" src="<c:url value="/resources/segroup/society/fap/images/icon-photo.png" />">
+								</div>
+								<div ng-if="info.resumeMap.fap_resume_gender == 'A0000' ">
+									<code value="A0000"></code>
+								</div>
+								<div ng-if="info.resumeMap.fap_resume_gender == 'A0001' ">
+									<code value="A0001"></code>
+								</div>
+								<div class="user-code" cd="{{info.user_flag}}"></div>
+								<div><button type="button" class="resumeButton btn3" value="{{info.resumeMap.fap_resume_seq}}" id="{{info.user_id}}" ng-click="resumeModal($event)"><spring:message code="fap.common.resume" /></button></div>
+							</li>
+							<li class="wid6" ng-repeat="result in info.applyResultMap">
+								<select class="app_result_select" ng-model="::result.fap_job_app_rt_acp" disabled="disabled">
+									<option selectcode value="D0000" selected></option>
+									<option selectcode value="D0001"></option>
+									<option selectcode value="D0002"></option>
+									<option selectcode value="D0003" hidden></option>
+								</select>
+							</li>
+							<li class="wid7" ng-repeat="final in info.finalResultMap">
+								<select class="final_result_select" ng-model="::final.fap_job_app_final_rt_acp" disabled="disabled">
+									<option selectcode value="D0000" selected></option>
+									<option selectcode value="D0001"></option>
+									<option selectcode value="D0002"></option>
+									<option selectcode value="D0004"></option>
+								</select>
+								<div class="waiting_list_ranking_div" ng-if="final.fap_job_app_final_rt_acp == 'D0004'">
+									<select class="standby_rank" ng-model="::final.fap_job_app_standby_rank" disabled="disabled">
+										<option disabled="disabled"><spring:message code="fap.comp.app_final_stand_by_ranking" /></option>
+										<option ng-value="1">1</option>
+										<option ng-value="2">2</option>
+										<option ng-value="3">3</option>
+										<option ng-value="4">4</option>
+										<option ng-value="5">5</option>
+										<option ng-value="6">6</option>
+										<option ng-value="7">7</option>
+										<option ng-value="8">8</option>
+										<option ng-value="9">9</option>
+										<option ng-value="10">10</option>
+									</select>
+								</div>
+							</li>
+							<li class="wid8" ng-repeat="finalRe in info.finalResultMap">
+								<div ng-if="finalRe.fap_job_app_approval_gb == 'D0801' ">
+									<code value="D0700"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0700' "></code>
+									<code value="D0701"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0701' "></code>
+									<code value="D0702"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0702' "></code>
+									<code value="D0703"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0703' "></code>
+								</div>
+								<div ng-if="finalRe.fap_job_app_approval_gb == 'D0800' ">
+									<code value="D0700"></code>
+								</div>
+							</li>
+							<li class="wid9" ng-repeat="finalResult in info.finalResultMap">
+								<button type="button" ng-if="finalResult.fap_job_app_pass_comment != null && finalResult.fap_job_app_pass_comment != '' " infoIndex="{{infoIndex}}" ng-click="updatePassComment(infoIndex, $event ,finalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
+								<button type="button" ng-if="finalResult.fap_job_app_pass_comment == null || finalResult.fap_job_app_pass_comment == '' " infoIndex="{{infoIndex}}" ng-click="insertPassComment(infoIndex, $event , finalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
+								<div class="pass_comment_div">
+									
+								</div>
+							</li>
+						</ul>
+					</div>
+					</form>
+				<br><br><br><br>
+			</div>		
+			
+			<!-- 미스매칭 지원자 -->
+			<div id="peopleBBS" class="applicant-status" ng-if="missApplicantInfo[0] != null">
+				<ul class="peoplechk" display="table">
+					<li class="pb-5" display="table-cell">
+						<h2><spring:message code="fap.comp.missmatching_apply" /></h2>
+						<select class="miss_fap_job_recruit_pcs_gb" style="width: 150px;">
+							<option ng-repeat="miss_recruit_pcs in recruitPcs" ng-if="miss_recruit_pcs.fap_job_recruit_pcs_gb == 'C2500'" selectcode value="C2500" pcs_seq="{{miss_recruit_pcs.fap_job_recruit_pcs_seq}}" selected></option>
+							<option ng-repeat="miss_recruit_pcs in recruitPcs" ng-if="miss_recruit_pcs.fap_job_recruit_pcs_gb == 'C2501'" selectcode value="C2501" pcs_seq="{{miss_recruit_pcs.fap_job_recruit_pcs_seq}}"></option>
+							<option ng-repeat="miss_recruit_pcs in recruitPcs" ng-if="miss_recruit_pcs.fap_job_recruit_pcs_gb == 'C2502'" selectcode value="C2502" pcs_seq="{{miss_recruit_pcs.fap_job_recruit_pcs_seq}}"></option>
+							<option ng-repeat="miss_recruit_pcs in recruitPcs" ng-if="miss_recruit_pcs.fap_job_recruit_pcs_gb == 'C2503'" selectcode value="C2503" pcs_seq="{{miss_recruit_pcs.fap_job_recruit_pcs_seq}}"></option>
+							<option ng-repeat="miss_recruit_pcs in recruitPcs" ng-if="miss_recruit_pcs.fap_job_recruit_pcs_gb == 'C2504'" selectcode value="C2504" pcs_seq="{{miss_recruit_pcs.fap_job_recruit_pcs_seq}}"></option>
+						</select>
+						<button class="btn3 btn-primary resume_print"><spring:message code="fap.comp.app_print" /></button>
+					</li>
+				</ul>
+						
+					<ul class="peopletitle">
+						<li class="wid1"></li>
+						<li class="wid4"><spring:message code="fap.comp.applicant_info" /></li>
+						<li class="wid6" ng-repeat="miss_pcs in recruitPcs">
+							<code value="C2500" ng-if="miss_pcs.fap_job_recruit_pcs_gb == 'C2500' "></code>
+							<code value="C2501" ng-if="miss_pcs.fap_job_recruit_pcs_gb == 'C2501' "></code>
+							<code value="C2502" ng-if="miss_pcs.fap_job_recruit_pcs_gb == 'C2502' "></code>
+							<code value="C2503" ng-if="miss_pcs.fap_job_recruit_pcs_gb == 'C2503' "></code>
+							<code value="C2504" ng-if="miss_pcs.fap_job_recruit_pcs_gb == 'C2504' "></code>
+						</li>
+						<li class="wid7"><spring:message code="fap.comp.app_final_rt" /></li>
+						<li class="wid8"><span><spring:message code="fap.comp.join_work_or_not" /></span></li>
+						<li class="wid9"><spring:message code="fap.comp.app_final_rt_pass_reason" /></li>
+					</ul>
+					<form id="missmatching_apply_btn">
+						<input type="hidden" name="fap_job_ad_seq" value="${fap_job_ad_seq}">
+						<input type="hidden" name="fap_comp_id" value="${fap_comp_id}">
+						<input type="hidden" name="fap_jobfair_divide_seq" value="${fap_jobfair_divide_seq}">
+					<div ng-repeat="missInfo in missApplicantInfo" ng-if="missInfo.fap_job_ad_is_mismatching == 'C4901' " ng-init="missInfoIndex = $index">
+						<ul class="peoplemain1" ng-repeat="missFinalCheck in missInfo.missFinalResultMap" ng-if="::missFinalCheck.fap_job_app_final_rt_acp == 'D0000' ">
+						<li class="wid1">
+							<span class="resume-check">
+								<label class="resume-check-label">
+								</label>
+							</span>
+						</li>
+						<li class="wid4">
+							<input type="hidden" name="fap_job_apply_info_list[{{missInfoIndex}}].user_id" value="{{missInfo.user_id}}">
+							<div class="screenshot" tooltip="/fap/user/resume_photo_image/{{missInfo.missResumeMap.fap_resume_pic_saved}}">
+								<span ng-bind="missInfo.missResumeNmList[2].fap_resume_nm"></span>
+								<img class="tooltip-image" alt="photo" src="<c:url value="/resources/segroup/society/fap/images/icon-photo.png" />">
+							</div>
+							<div ng-if="missInfo.missResumeMap.fap_resume_gender == 'A0000' ">
+								<code value="A0000"></code>
+							</div>
+							<div ng-if="missInfo.missResumeMap.fap_resume_gender == 'A0001' ">
+								<code value="A0001"></code>
+							</div>
+							<div class="user-code" cd="{{missInfo.user_flag}}"></div>
+							<div><button type="button" class="resumeButton btn3" value="{{missInfo.missResumeMap.fap_resume_seq}}" id="{{missInfo.user_id}}" ng-click="resumeModal($event)"><spring:message code="fap.common.resume" /></button></div>
+						</li>
+						<li class="wid6" ng-repeat="missResult in missInfo.missApplyResultMap">
+							<input type="hidden" name="fap_job_apply_info_list[{{missInfoIndex}}].jobApplyResult.fap_job_app_rt_list[{{$index}}].fap_job_app_rt_seq" value="{{missResult.fap_job_app_rt_seq}}">
+							<select name="fap_job_apply_info_list[{{missInfoIndex}}].jobApplyResult.fap_job_app_rt_list[{{$index}}].fap_job_app_rt_acp_miss" class="app_result_select" ng-model="::missResult.fap_job_app_rt_acp" disabled="disabled">
+								<option selectcode value="D0000" selected></option>
+								<option selectcode value="D0001"></option>
+								<option selectcode value="D0002"></option>
+								<option selectcode value="D0003" hidden></option>
+							</select>
+						</li>
+						<li class="wid7" ng-repeat="missFinal in missInfo.missFinalResultMap">
+							<input type="hidden" name="fap_job_apply_info_list[{{missInfoIndex}}].fap_job_app_final_rt_seq" value="{{missFinal.fap_job_app_final_rt_seq}}" index="{{missInfoIndex}}">
+							<select name="fap_job_apply_info_list[{{missInfoIndex}}].fap_job_app_final_rt_acp_miss" class="final_result_select" ng-model="::missFinal.fap_job_app_final_rt_acp"  onchange="angular.element(this).scope().onChange(this)" disabled="disabled">
+								<option selectcode value="D0000" selected></option>
+								<option selectcode value="D0001"></option>
+								<option selectcode value="D0002"></option>
+								<option selectcode value="D0004"></option>
+							</select>
+							<div class="waiting_list_ranking_div" ng-if="::missFinal.fap_job_app_final_rt_acp == 'D0004'">
+								<select name="fap_job_apply_info_list[{{missInfoIndex}}].fap_job_app_standby_rank" class="standby_rank" ng-model="::missFinal.fap_job_app_standby_rank" disabled="disabled">
+									<option disabled="disabled"><spring:message code="fap.comp.app_final_stand_by_ranking" /></option>
+									<option ng-value="1">1</option>
+									<option ng-value="2">2</option>
+									<option ng-value="3">3</option>
+									<option ng-value="4">4</option>
+									<option ng-value="5">5</option>
+									<option ng-value="6">6</option>
+									<option ng-value="7">7</option>
+									<option ng-value="8">8</option>
+									<option ng-value="9">9</option>
+									<option ng-value="10">10</option>
+								</select>
+							</div>
+						</li>
+						<li class="wid8" ng-repeat="missFinalRe in missInfo.missFinalResultMap">
+							<div ng-if="missFinalRe.fap_job_app_approval_gb == 'D0801' ">
+								<code value="D0700"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0700' "></code>
+								<code value="D0701"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0701' "></code>
+								<code value="D0702"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0702' "></code>
+								<code value="D0703"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0703' "></code>
+							</div>
+							<div ng-if="missFinalRe.fap_job_app_approval_gb == 'D0800' ">
+								<code value="D0700"></code>
+							</div>
+						</li>
+						<li class="wid9" ng-repeat="missFinalResult in missInfo.missFinalResultMap">
+							<button type="button" ng-if="missFinalResult.fap_job_app_pass_comment != null && missFinalResult.fap_job_app_pass_comment != '' " infoIndex="{{missInfoIndex}}" ng-click="missUpdatePassComment(missInfoIndex, $event ,missFinalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
+							<button type="button" ng-if="missFinalResult.fap_job_app_pass_comment == null || missFinalResult.fap_job_app_pass_comment == '' " infoIndex="{{missInfoIndex}}" ng-click="insertPassComment(missInfoIndex, $event ,missFinalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
+							<div class="pass_comment_div">
+								
+							</div>
+						</li>
+					</ul>
+					<ul class="peoplemain1" ng-repeat="missFinalCheck in missInfo.missFinalResultMap" ng-if="::missFinalCheck.fap_job_app_final_rt_acp != 'D0000' ">
+						<li class="wid1">
+							<span class="resume-check">
+								<label class="resume-check-label">
+								</label>
+							</span>
+						</li>
+						<li class="wid4">
+							<div class="screenshot" tooltip="/fap/user/resume_photo_image/{{missInfo.missResumeMap.fap_resume_pic_saved}}">
+								<span ng-bind="missInfo.missResumeNmList[2].fap_resume_nm"></span>
+								<img class="tooltip-image" alt="photo" src="<c:url value="/resources/segroup/society/fap/images/icon-photo.png" />">
+							</div>
+							<div ng-if="missInfo.missResumeMap.fap_resume_gender == 'A0000' ">
+								<code value="A0000"></code>
+							</div>
+							<div ng-if="missInfo.missResumeMap.fap_resume_gender == 'A0001' ">
+								<code value="A0001"></code>
+							</div>
+							<div class="user-code" cd="{{missInfo.user_flag}}"></div>
+							<div><button type="button" class="resumeButton btn3" value="{{missInfo.missResumeMap.fap_resume_seq}}" id="{{missInfo.user_id}}" ng-click="resumeModal($event)"><spring:message code="fap.common.resume" /></button></div>
+						</li>
+						<li class="wid6" ng-repeat="missResult in missInfo.missApplyResultMap">
+							<select class="app_result_select" ng-model="::missResult.fap_job_app_rt_acp" disabled="disabled">
+								<option selectcode value="D0000" selected></option>
+								<option selectcode value="D0001"></option>
+								<option selectcode value="D0002"></option>
+								<option selectcode value="D0003" hidden></option>
+							</select>
+						</li>
+						<li class="wid7" ng-repeat="missFinal in missInfo.missFinalResultMap">
+							<select class="final_result_select" ng-model="::missFinal.fap_job_app_final_rt_acp"  onchange="angular.element(this).scope().onChange(this)" disabled="disabled">
+								<option selectcode value="D0000" selected></option>
+								<option selectcode value="D0001"></option>
+								<option selectcode value="D0002"></option>
+								<option selectcode value="D0004"></option>
+							</select>
+							<div class="waiting_list_ranking_div" ng-if="missFinal.fap_job_app_final_rt_acp == 'D0004'">
+								<select class="standby_rank" ng-model="::missFinal.fap_job_app_standby_rank" disabled="disabled">
+									<option disabled="disabled"><spring:message code="fap.comp.app_final_stand_by_ranking" /></option>
+									<option ng-value="1">1</option>
+									<option ng-value="2">2</option>
+									<option ng-value="3">3</option>
+									<option ng-value="4">4</option>
+									<option ng-value="5">5</option>
+									<option ng-value="6">6</option>
+									<option ng-value="7">7</option>
+									<option ng-value="8">8</option>
+									<option ng-value="9">9</option>
+									<option ng-value="10">10</option>
+								</select>
+							</div>
+						</li>
+						<li class="wid8" ng-repeat="missFinalRe in missInfo.missFinalResultMap">
+							<div ng-if="missFinalRe.fap_job_app_approval_gb == 'D0801' ">
+								<code value="D0700"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0700' "></code>
+								<code value="D0701"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0701' "></code>
+								<code value="D0702"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0702' "></code>
+								<code value="D0703"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0703' "></code>
+							</div>
+							<div ng-if="missFinalRe.fap_job_app_approval_gb == 'D0800' ">
+								<code value="D0700"></code>
+							</div>
+						</li>
+						<li class="wid9" ng-repeat="missFinalResult in missInfo.missFinalResultMap">
+							<button type="button" ng-if="missFinalResult.fap_job_app_pass_comment != null && missFinalResult.fap_job_app_pass_comment != '' " infoIndex="{{missInfoIndex}}" ng-click="missUpdatePassComment(missInfoIndex, $event ,missFinalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
+							<button type="button" ng-if="missFinalResult.fap_job_app_pass_comment == null || missFinalResult.fap_job_app_pass_comment == '' " infoIndex="{{missInfoIndex}}" ng-click="insertPassComment(missInfoIndex, $event ,missFinalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
+							<div class="pass_comment_div">
+								
+							</div>
+						</li>
+					</ul>
+					</div>
+				</form>
+				<br><br><br><br>
+			</div>						
+							
+			<!-- 불합격자 -->
+			<div id="peopleBBS" class="applicant-status" ng-if="unacceptedApplicantInfo[0] != null">
+				<h2><spring:message code="fap.comp.unaccepted_applicant" /></h2>
+				<ul class="peopletitle" style="width: 100%;">
 					<li class="wid4"><spring:message code="fap.comp.applicant_info" /></li>
 					<li class="wid6" ng-repeat="pcs in recruitPcs">
 						<code value="C2500" ng-if="pcs.fap_job_recruit_pcs_gb == 'C2500' "></code>
@@ -1078,795 +1436,438 @@ $(function() {
 						<code value="C2504" ng-if="pcs.fap_job_recruit_pcs_gb == 'C2504' "></code>
 					</li>
 					<li class="wid7"><spring:message code="fap.comp.app_final_rt" /></li>
-					<li class="wid8"><span><spring:message code="fap.comp.join_work_or_not" /></span></li>
-					<li class="wid9"><spring:message code="fap.comp.app_final_rt_pass_reason" /></li>
 				</ul>
 				
-				<form  id="regular_apply_btn">
-				<input type="hidden" name="fap_job_ad_seq" value="${fap_job_ad_seq}">
-				<input type="hidden" name="fap_comp_id" value="${fap_comp_id}">
-				<input type="hidden" name="fap_jobfair_divide_seq" value="${fap_jobfair_divide_seq}">
-				<div ng-repeat="info in applicantInfo" ng-if="info.fap_job_ad_is_mismatching == 'C4900' " ng-init="infoIndex = $index">
-					<ul class="peoplemain" ng-repeat="finalCheck in info.finalResultMap" ng-if="::finalCheck.fap_job_app_final_rt_acp == 'D0000' ">
-						<li class="wid1">
-							<span class="resume-check">
-								<label class="resume-check-label">
-								</label>
-							</span>
-						</li>
-						<li class="wid4">
-							<input type="hidden" name="fap_job_apply_info_list[{{infoIndex}}].user_id" value="{{info.user_id}}">
-							<div class="screenshot" tooltip="/fap/user/resume_photo_image/{{info.resumeMap.fap_resume_pic_saved}}">
-								<span ng-bind="info.resumeNmList[2].fap_resume_nm"></span>
-								<img class="tooltip-image" alt="photo" src="<c:url value="/resources/segroup/society/fap/images/icon-photo.png" />">
-							</div>
-							<div ng-if="info.resumeMap.fap_resume_gender == 'A0000' ">
-								<code value="A0000"></code>
-							</div>
-							<div ng-if="info.resumeMap.fap_resume_gender == 'A0001' ">
-								<code value="A0001"></code>
-							</div>
-							<div class="user-code" cd="{{info.user_flag}}"></div>
-							<div><button type="button" class="resumeButton btn3" value="{{info.resumeMap.fap_resume_seq}}" id="{{info.user_id}}" ng-click="resumeModal($event)"><spring:message code="fap.common.resume" /></button></div>
-						</li>
-						<li class="wid6" ng-repeat="result in info.applyResultMap">
-							<input type="hidden" name="fap_job_apply_info_list[{{infoIndex}}].jobApplyResult.fap_job_app_rt_list[{{$index}}].fap_job_app_rt_seq" value="{{result.fap_job_app_rt_seq}}">
-							<select name="fap_job_apply_info_list[{{infoIndex}}].jobApplyResult.fap_job_app_rt_list[{{$index}}].fap_job_app_rt_acp" class="app_result_select" ng-model="::result.fap_job_app_rt_acp" disabled="disabled">
-								<option selectcode value="D0000" selected></option>
-								<option selectcode value="D0001"></option>
-								<option selectcode value="D0002"></option>
-								<option selectcode value="D0003" hidden></option>
-							</select>
-						</li>
-						<li class="wid7" ng-repeat="final in info.finalResultMap">
-							<input type="hidden" name="fap_job_apply_info_list[{{infoIndex}}].fap_job_app_final_rt_seq" value="{{final.fap_job_app_final_rt_seq}}" index="{{infoIndex}}">
-							<select name="fap_job_apply_info_list[{{infoIndex}}].fap_job_app_final_rt_acp" class="final_result_select" ng-model="::final.fap_job_app_final_rt_acp" onchange="angular.element(this).scope().onChange(this)" disabled="disabled">
-								<option selectcode value="D0000"></option>
-								<option selectcode value="D0001"></option>
-								<option selectcode value="D0002"></option>
-								<option selectcode value="D0004"></option>
-							</select>
-							<div class="waiting_list_ranking_div" ng-if="::final.fap_job_app_final_rt_acp == 'D0004'">
-								<select name="fap_job_apply_info_list[{{infoIndex}}].fap_job_app_standby_rank" class="standby_rank" ng-model="::final.fap_job_app_standby_rank" disabled="disabled">
-									<option disabled="disabled"><spring:message code="fap.comp.app_final_stand_by_ranking" /></option>
-									<option ng-value="1">1</option>
-									<option ng-value="2">2</option>
-									<option ng-value="3">3</option>
-									<option ng-value="4">4</option>
-									<option ng-value="5">5</option>
-									<option ng-value="6">6</option>
-									<option ng-value="7">7</option>
-									<option ng-value="8">8</option>
-									<option ng-value="9">9</option>
-									<option ng-value="10">10</option>
-								</select>
-							</div>
-						</li>
-						<li class="wid8" ng-repeat="finalRe in info.finalResultMap">
-							<div ng-if="finalRe.fap_job_app_approval_gb == 'D0801' ">
-								<code value="D0700"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0700' "></code>
-								<code value="D0701"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0701' "></code>
-								<code value="D0702"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0702' "></code>
-								<code value="D0703"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0703' "></code>
-							</div>
-							<div ng-if="finalRe.fap_job_app_approval_gb == 'D0800' ">
-								<code value="D0700"></code>
-							</div>
-						</li>
-						<li class="wid9" ng-repeat="finalResult in info.finalResultMap">
-							<button type="button" ng-if="finalResult.fap_job_app_pass_comment != null && finalResult.fap_job_app_pass_comment != '' " infoIndex="{{infoIndex}}" ng-click="updatePassComment(infoIndex, $event ,finalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
-							<button type="button" ng-if="finalResult.fap_job_app_pass_comment == null || finalResult.fap_job_app_pass_comment == '' " infoIndex="{{infoIndex}}" ng-click="insertPassComment(infoIndex, $event ,finalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
-							<div class="pass_comment_div">
-								
-							</div>
-						</li>
-					</ul>
-					<ul  class="peoplemain" ng-repeat="final in info.finalResultMap" ng-if="::final.fap_job_app_final_rt_acp != 'D0000' ">
-						<li class="wid1">
-							<span class="resume-check">
-								<label class="resume-check-label">
-								</label>
-							</span>
-						</li>
-						<li class="wid4">
-							<div class="screenshot" tooltip="/fap/user/resume_photo_image/{{info.resumeMap.fap_resume_pic_saved}}">
-								<span ng-bind="info.resumeNmList[2].fap_resume_nm"></span>
-								<img class="tooltip-image" alt="photo" src="<c:url value="/resources/segroup/society/fap/images/icon-photo.png" />">
-							</div>
-							<div ng-if="info.resumeMap.fap_resume_gender == 'A0000' ">
-								<code value="A0000"></code>
-							</div>
-							<div ng-if="info.resumeMap.fap_resume_gender == 'A0001' ">
-								<code value="A0001"></code>
-							</div>
-							<div class="user-code" cd="{{info.user_flag}}"></div>
-							<div><button type="button" class="resumeButton btn3" value="{{info.resumeMap.fap_resume_seq}}" id="{{info.user_id}}" ng-click="resumeModal($event)"><spring:message code="fap.common.resume" /></button></div>
-						</li>
-						<li class="wid6" ng-repeat="result in info.applyResultMap">
-							<select class="app_result_select" ng-model="::result.fap_job_app_rt_acp" disabled="disabled">
-								<option selectcode value="D0000" selected></option>
-								<option selectcode value="D0001"></option>
-								<option selectcode value="D0002"></option>
-								<option selectcode value="D0003" hidden></option>
-							</select>
-						</li>
-						<li class="wid7" ng-repeat="final in info.finalResultMap">
-							<select class="final_result_select" ng-model="::final.fap_job_app_final_rt_acp" disabled="disabled">
-								<option selectcode value="D0000" selected></option>
-								<option selectcode value="D0001"></option>
-								<option selectcode value="D0002"></option>
-								<option selectcode value="D0004"></option>
-							</select>
-							<div class="waiting_list_ranking_div" ng-if="final.fap_job_app_final_rt_acp == 'D0004'">
-								<select class="standby_rank" ng-model="::final.fap_job_app_standby_rank" disabled="disabled">
-									<option disabled="disabled"><spring:message code="fap.comp.app_final_stand_by_ranking" /></option>
-									<option ng-value="1">1</option>
-									<option ng-value="2">2</option>
-									<option ng-value="3">3</option>
-									<option ng-value="4">4</option>
-									<option ng-value="5">5</option>
-									<option ng-value="6">6</option>
-									<option ng-value="7">7</option>
-									<option ng-value="8">8</option>
-									<option ng-value="9">9</option>
-									<option ng-value="10">10</option>
-								</select>
-							</div>
-						</li>
-						<li class="wid8" ng-repeat="finalRe in info.finalResultMap">
-							<div ng-if="finalRe.fap_job_app_approval_gb == 'D0801' ">
-								<code value="D0700"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0700' "></code>
-								<code value="D0701"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0701' "></code>
-								<code value="D0702"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0702' "></code>
-								<code value="D0703"  ng-if="finalRe.fap_job_app_choice_comp_gb == 'D0703' "></code>
-							</div>
-							<div ng-if="finalRe.fap_job_app_approval_gb == 'D0800' ">
-								<code value="D0700"></code>
-							</div>
-						</li>
-						<li class="wid9" ng-repeat="finalResult in info.finalResultMap">
-							<button type="button" ng-if="finalResult.fap_job_app_pass_comment != null && finalResult.fap_job_app_pass_comment != '' " infoIndex="{{infoIndex}}" ng-click="updatePassComment(infoIndex, $event ,finalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
-							<button type="button" ng-if="finalResult.fap_job_app_pass_comment == null || finalResult.fap_job_app_pass_comment == '' " infoIndex="{{infoIndex}}" ng-click="insertPassComment(infoIndex, $event , finalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
-							<div class="pass_comment_div">
-								
-							</div>
-						</li>
-					</ul>
-				</div>
-				</form>
-			<br><br><br><br>
-		</div>		
-		
-		<!-- 미스매칭 지원자 -->
-		<div id="peopleBBS" ng-if="missApplicantInfo[0] != null">
-			<ul class="peoplechk" display="table">
-				<li class="pb-5" display="table-cell">
-					<h2><spring:message code="fap.comp.missmatching_apply" /></h2>
-					<select class="miss_fap_job_recruit_pcs_gb" style="width: 150px;">
-						<option ng-repeat="miss_recruit_pcs in recruitPcs" ng-if="miss_recruit_pcs.fap_job_recruit_pcs_gb == 'C2500'" selectcode value="C2500" pcs_seq="{{miss_recruit_pcs.fap_job_recruit_pcs_seq}}" selected></option>
-						<option ng-repeat="miss_recruit_pcs in recruitPcs" ng-if="miss_recruit_pcs.fap_job_recruit_pcs_gb == 'C2501'" selectcode value="C2501" pcs_seq="{{miss_recruit_pcs.fap_job_recruit_pcs_seq}}"></option>
-						<option ng-repeat="miss_recruit_pcs in recruitPcs" ng-if="miss_recruit_pcs.fap_job_recruit_pcs_gb == 'C2502'" selectcode value="C2502" pcs_seq="{{miss_recruit_pcs.fap_job_recruit_pcs_seq}}"></option>
-						<option ng-repeat="miss_recruit_pcs in recruitPcs" ng-if="miss_recruit_pcs.fap_job_recruit_pcs_gb == 'C2503'" selectcode value="C2503" pcs_seq="{{miss_recruit_pcs.fap_job_recruit_pcs_seq}}"></option>
-						<option ng-repeat="miss_recruit_pcs in recruitPcs" ng-if="miss_recruit_pcs.fap_job_recruit_pcs_gb == 'C2504'" selectcode value="C2504" pcs_seq="{{miss_recruit_pcs.fap_job_recruit_pcs_seq}}"></option>
-					</select>
-					<button class="btn3 btn-primary resume_print"><spring:message code="fap.comp.app_print" /></button>
-				</li>
-			</ul>
-					
-				<ul class="peopletitle">
-					<li class="wid1"></li>
-					<li class="wid4"><spring:message code="fap.comp.applicant_info" /></li>
-					<li class="wid6" ng-repeat="miss_pcs in recruitPcs">
-						<code value="C2500" ng-if="miss_pcs.fap_job_recruit_pcs_gb == 'C2500' "></code>
-						<code value="C2501" ng-if="miss_pcs.fap_job_recruit_pcs_gb == 'C2501' "></code>
-						<code value="C2502" ng-if="miss_pcs.fap_job_recruit_pcs_gb == 'C2502' "></code>
-						<code value="C2503" ng-if="miss_pcs.fap_job_recruit_pcs_gb == 'C2503' "></code>
-						<code value="C2504" ng-if="miss_pcs.fap_job_recruit_pcs_gb == 'C2504' "></code>
-					</li>
-					<li class="wid7"><spring:message code="fap.comp.app_final_rt" /></li>
-					<li class="wid8"><span><spring:message code="fap.comp.join_work_or_not" /></span></li>
-					<li class="wid9"><spring:message code="fap.comp.app_final_rt_pass_reason" /></li>
-				</ul>
-				<form id="missmatching_apply_btn">
-					<input type="hidden" name="fap_job_ad_seq" value="${fap_job_ad_seq}">
-					<input type="hidden" name="fap_comp_id" value="${fap_comp_id}">
-					<input type="hidden" name="fap_jobfair_divide_seq" value="${fap_jobfair_divide_seq}">
-				<div ng-repeat="missInfo in missApplicantInfo" ng-if="missInfo.fap_job_ad_is_mismatching == 'C4901' " ng-init="missInfoIndex = $index">
-					<ul class="peoplemain1" ng-repeat="missFinalCheck in missInfo.missFinalResultMap" ng-if="::missFinalCheck.fap_job_app_final_rt_acp == 'D0000' ">
-					<li class="wid1">
-						<span class="resume-check">
-							<label class="resume-check-label">
-							</label>
-						</span>
-					</li>
+				<ul class="peoplemain2" ng-repeat="un_info in unacceptedApplicantInfo" ng-init="un_infoIndex = $index">
 					<li class="wid4">
-						<input type="hidden" name="fap_job_apply_info_list[{{missInfoIndex}}].user_id" value="{{missInfo.user_id}}">
-						<div class="screenshot" tooltip="/fap/user/resume_photo_image/{{missInfo.missResumeMap.fap_resume_pic_saved}}">
-							<span ng-bind="missInfo.missResumeNmList[2].fap_resume_nm"></span>
+						<div class="screenshot" tooltip="/fap/user/resume_photo_image/{{un_info.unacceptedResumeMap.fap_resume_pic_saved}}">
+							<span ng-bind="un_info.unacceptedResumeNmList[2].fap_resume_nm"></span>
 							<img class="tooltip-image" alt="photo" src="<c:url value="/resources/segroup/society/fap/images/icon-photo.png" />">
 						</div>
-						<div ng-if="missInfo.missResumeMap.fap_resume_gender == 'A0000' ">
+						<div ng-if="un_info.unacceptedResumeMap.fap_resume_gender == 'A0000' ">
 							<code value="A0000"></code>
 						</div>
-						<div ng-if="missInfo.missResumeMap.fap_resume_gender == 'A0001' ">
+						<div ng-if="un_info.unacceptedResumeMap.fap_resume_gender == 'A0001' ">
 							<code value="A0001"></code>
 						</div>
-						<div class="user-code" cd="{{missInfo.user_flag}}"></div>
-						<div><button type="button" class="resumeButton btn3" value="{{missInfo.missResumeMap.fap_resume_seq}}" id="{{missInfo.user_id}}" ng-click="resumeModal($event)"><spring:message code="fap.common.resume" /></button></div>
+						<div class="user-code" cd="{{un_info.user_flag}}"></div>
+						<div><button class="resumeButton btn3" value="{{un_info.unacceptedResumeMap.fap_resume_seq}}" id="{{un_info.user_id}}" ng-click="resumeModal($event)"><spring:message code="fap.common.resume" /></button></div>
 					</li>
-					<li class="wid6" ng-repeat="missResult in missInfo.missApplyResultMap">
-						<input type="hidden" name="fap_job_apply_info_list[{{missInfoIndex}}].jobApplyResult.fap_job_app_rt_list[{{$index}}].fap_job_app_rt_seq" value="{{missResult.fap_job_app_rt_seq}}">
-						<select name="fap_job_apply_info_list[{{missInfoIndex}}].jobApplyResult.fap_job_app_rt_list[{{$index}}].fap_job_app_rt_acp_miss" class="app_result_select" ng-model="::missResult.fap_job_app_rt_acp" disabled="disabled">
-							<option selectcode value="D0000" selected></option>
+					<li class="wid6" ng-repeat="un_result in unacceptedApplicantInfo[$index].unacceptedApplyResultMap">
+						<select ng-model="::un_result.fap_job_app_rt_acp" disabled="disabled">
+							<option selectcode value="D0000"></option>
 							<option selectcode value="D0001"></option>
 							<option selectcode value="D0002"></option>
-							<option selectcode value="D0003" hidden></option>
+							<option selectcode value="D0003" selected></option>
 						</select>
 					</li>
-					<li class="wid7" ng-repeat="missFinal in missInfo.missFinalResultMap">
-						<input type="hidden" name="fap_job_apply_info_list[{{missInfoIndex}}].fap_job_app_final_rt_seq" value="{{missFinal.fap_job_app_final_rt_seq}}" index="{{missInfoIndex}}">
-						<select name="fap_job_apply_info_list[{{missInfoIndex}}].fap_job_app_final_rt_acp_miss" class="final_result_select" ng-model="::missFinal.fap_job_app_final_rt_acp"  onchange="angular.element(this).scope().onChange(this)" disabled="disabled">
-							<option selectcode value="D0000" selected></option>
-							<option selectcode value="D0001"></option>
-							<option selectcode value="D0002"></option>
-							<option selectcode value="D0004"></option>
-						</select>
-						<div class="waiting_list_ranking_div" ng-if="::missFinal.fap_job_app_final_rt_acp == 'D0004'">
-							<select name="fap_job_apply_info_list[{{missInfoIndex}}].fap_job_app_standby_rank" class="standby_rank" ng-model="::missFinal.fap_job_app_standby_rank" disabled="disabled">
-								<option disabled="disabled"><spring:message code="fap.comp.app_final_stand_by_ranking" /></option>
-								<option ng-value="1">1</option>
-								<option ng-value="2">2</option>
-								<option ng-value="3">3</option>
-								<option ng-value="4">4</option>
-								<option ng-value="5">5</option>
-								<option ng-value="6">6</option>
-								<option ng-value="7">7</option>
-								<option ng-value="8">8</option>
-								<option ng-value="9">9</option>
-								<option ng-value="10">10</option>
-							</select>
-						</div>
-					</li>
-					<li class="wid8" ng-repeat="missFinalRe in missInfo.missFinalResultMap">
-						<div ng-if="missFinalRe.fap_job_app_approval_gb == 'D0801' ">
-							<code value="D0700"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0700' "></code>
-							<code value="D0701"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0701' "></code>
-							<code value="D0702"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0702' "></code>
-							<code value="D0703"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0703' "></code>
-						</div>
-						<div ng-if="missFinalRe.fap_job_app_approval_gb == 'D0800' ">
-							<code value="D0700"></code>
-						</div>
-					</li>
-					<li class="wid9" ng-repeat="missFinalResult in missInfo.missFinalResultMap">
-						<button type="button" ng-if="missFinalResult.fap_job_app_pass_comment != null && missFinalResult.fap_job_app_pass_comment != '' " infoIndex="{{missInfoIndex}}" ng-click="missUpdatePassComment(missInfoIndex, $event ,missFinalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
-						<button type="button" ng-if="missFinalResult.fap_job_app_pass_comment == null || missFinalResult.fap_job_app_pass_comment == '' " infoIndex="{{missInfoIndex}}" ng-click="insertPassComment(missInfoIndex, $event ,missFinalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
-						<div class="pass_comment_div">
-							
-						</div>
-					</li>
-				</ul>
-				<ul class="peoplemain1" ng-repeat="missFinalCheck in missInfo.missFinalResultMap" ng-if="::missFinalCheck.fap_job_app_final_rt_acp != 'D0000' ">
-					<li class="wid1">
-						<span class="resume-check">
-							<label class="resume-check-label">
-							</label>
-						</span>
-					</li>
-					<li class="wid4">
-						<div class="screenshot" tooltip="/fap/user/resume_photo_image/{{missInfo.missResumeMap.fap_resume_pic_saved}}">
-							<span ng-bind="missInfo.missResumeNmList[2].fap_resume_nm"></span>
-							<img class="tooltip-image" alt="photo" src="<c:url value="/resources/segroup/society/fap/images/icon-photo.png" />">
-						</div>
-						<div ng-if="missInfo.missResumeMap.fap_resume_gender == 'A0000' ">
-							<code value="A0000"></code>
-						</div>
-						<div ng-if="missInfo.missResumeMap.fap_resume_gender == 'A0001' ">
-							<code value="A0001"></code>
-						</div>
-						<div class="user-code" cd="{{missInfo.user_flag}}"></div>
-						<div><button type="button" class="resumeButton btn3" value="{{missInfo.missResumeMap.fap_resume_seq}}" id="{{missInfo.user_id}}" ng-click="resumeModal($event)"><spring:message code="fap.common.resume" /></button></div>
-					</li>
-					<li class="wid6" ng-repeat="missResult in missInfo.missApplyResultMap">
-						<select class="app_result_select" ng-model="::missResult.fap_job_app_rt_acp" disabled="disabled">
-							<option selectcode value="D0000" selected></option>
-							<option selectcode value="D0001"></option>
-							<option selectcode value="D0002"></option>
-							<option selectcode value="D0003" hidden></option>
+					<li class="wid7">
+						<select disabled="disabled">
+							<option selectcode value="D0002" selected></option>
 						</select>
 					</li>
-					<li class="wid7" ng-repeat="missFinal in missInfo.missFinalResultMap">
-						<select class="final_result_select" ng-model="::missFinal.fap_job_app_final_rt_acp"  onchange="angular.element(this).scope().onChange(this)" disabled="disabled">
-							<option selectcode value="D0000" selected></option>
-							<option selectcode value="D0001"></option>
-							<option selectcode value="D0002"></option>
-							<option selectcode value="D0004"></option>
-						</select>
-						<div class="waiting_list_ranking_div" ng-if="missFinal.fap_job_app_final_rt_acp == 'D0004'">
-							<select class="standby_rank" ng-model="::missFinal.fap_job_app_standby_rank" disabled="disabled">
-								<option disabled="disabled"><spring:message code="fap.comp.app_final_stand_by_ranking" /></option>
-								<option ng-value="1">1</option>
-								<option ng-value="2">2</option>
-								<option ng-value="3">3</option>
-								<option ng-value="4">4</option>
-								<option ng-value="5">5</option>
-								<option ng-value="6">6</option>
-								<option ng-value="7">7</option>
-								<option ng-value="8">8</option>
-								<option ng-value="9">9</option>
-								<option ng-value="10">10</option>
-							</select>
-						</div>
-					</li>
-					<li class="wid8" ng-repeat="missFinalRe in missInfo.missFinalResultMap">
-						<div ng-if="missFinalRe.fap_job_app_approval_gb == 'D0801' ">
-							<code value="D0700"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0700' "></code>
-							<code value="D0701"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0701' "></code>
-							<code value="D0702"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0702' "></code>
-							<code value="D0703"  ng-if="missFinalRe.fap_job_app_choice_comp_gb == 'D0703' "></code>
-						</div>
-						<div ng-if="missFinalRe.fap_job_app_approval_gb == 'D0800' ">
-							<code value="D0700"></code>
-						</div>
-					</li>
-					<li class="wid9" ng-repeat="missFinalResult in missInfo.missFinalResultMap">
-						<button type="button" ng-if="missFinalResult.fap_job_app_pass_comment != null && missFinalResult.fap_job_app_pass_comment != '' " infoIndex="{{missInfoIndex}}" ng-click="missUpdatePassComment(missInfoIndex, $event ,missFinalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
-						<button type="button" ng-if="missFinalResult.fap_job_app_pass_comment == null || missFinalResult.fap_job_app_pass_comment == '' " infoIndex="{{missInfoIndex}}" ng-click="insertPassComment(missInfoIndex, $event ,missFinalResult.fap_job_app_final_rt_seq)" class="btn3 btn-primary">확인</button>
-						<div class="pass_comment_div">
-							
-						</div>
-					</li>
-				</ul>
-				</div>
-			</form>
-			<br><br><br><br>
-		</div>						
-						
-		<!-- 불합격자 -->
-		<div id="peopleBBS" ng-if="unacceptedApplicantInfo[0] != null">
-			<h2><spring:message code="fap.comp.unaccepted_applicant" /></h2>
-			<ul class="peopletitle" style="width: 100%;">
-				<li class="wid4"><spring:message code="fap.comp.applicant_info" /></li>
-				<li class="wid6" ng-repeat="pcs in recruitPcs">
-					<code value="C2500" ng-if="pcs.fap_job_recruit_pcs_gb == 'C2500' "></code>
-					<code value="C2501" ng-if="pcs.fap_job_recruit_pcs_gb == 'C2501' "></code>
-					<code value="C2502" ng-if="pcs.fap_job_recruit_pcs_gb == 'C2502' "></code>
-					<code value="C2503" ng-if="pcs.fap_job_recruit_pcs_gb == 'C2503' "></code>
-					<code value="C2504" ng-if="pcs.fap_job_recruit_pcs_gb == 'C2504' "></code>
-				</li>
-				<li class="wid7"><spring:message code="fap.comp.app_final_rt" /></li>
-			</ul>
+				</ul>			
+			</div>	
+				
+			<!-- 정규지원자, 미스매칭 지원자, 불합격자가 없는 경우 -->			
+			<div ng-if="applicantInfo[0] == null && missApplicantInfo[0] == null && unacceptedApplicantInfo[0] == null">
+				<h1><spring:message code="fap.comp.applicant_does_not_exist" /></h1>
+			</div>	
 			
-			<ul class="peoplemain2" ng-repeat="un_info in unacceptedApplicantInfo" ng-init="un_infoIndex = $index">
-				<li class="wid4">
-					<div class="screenshot" tooltip="/fap/user/resume_photo_image/{{un_info.unacceptedResumeMap.fap_resume_pic_saved}}">
-						<span ng-bind="un_info.unacceptedResumeNmList[2].fap_resume_nm"></span>
-						<img class="tooltip-image" alt="photo" src="<c:url value="/resources/segroup/society/fap/images/icon-photo.png" />">
-					</div>
-					<div ng-if="un_info.unacceptedResumeMap.fap_resume_gender == 'A0000' ">
-						<code value="A0000"></code>
-					</div>
-					<div ng-if="un_info.unacceptedResumeMap.fap_resume_gender == 'A0001' ">
-						<code value="A0001"></code>
-					</div>
-					<div class="user-code" cd="{{un_info.user_flag}}"></div>
-					<div><button class="resumeButton btn3" value="{{un_info.unacceptedResumeMap.fap_resume_seq}}" id="{{un_info.user_id}}" ng-click="resumeModal($event)"><spring:message code="fap.common.resume" /></button></div>
-				</li>
-				<li class="wid6" ng-repeat="un_result in unacceptedApplicantInfo[$index].unacceptedApplyResultMap">
-					<select ng-model="::un_result.fap_job_app_rt_acp" disabled="disabled">
-						<option selectcode value="D0000"></option>
-						<option selectcode value="D0001"></option>
-						<option selectcode value="D0002"></option>
-						<option selectcode value="D0003" selected></option>
-					</select>
-				</li>
-				<li class="wid7">
-					<select disabled="disabled">
-						<option selectcode value="D0002" selected></option>
-					</select>
-				</li>
-			</ul>			
-		</div>	
-			
-		<!-- 정규지원자, 미스매칭 지원자, 불합격자가 없는 경우 -->			
-		<div ng-if="applicantInfo[0] == null && missApplicantInfo[0] == null && unacceptedApplicantInfo[0] == null">
-			<h1><spring:message code="fap.comp.applicant_does_not_exist" /></h1>
-		</div>	
-		
-		<button class="side-btn btn-gradient cyan small" onclick="return_list()"><spring:message code="fap.jobfair.main.board.list" /></button>
-			
+			<button class="side-btn btn-gradient cyan small" onclick="return_list()"><spring:message code="fap.jobfair.main.board.list" /></button>
+				
+		</div>
 	</div>
-</div>
-
-
-	<!-- Modal --------------->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog" style="max-width: 1200px;">
-      <!-- Modal content------------------------->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title" id="title"></h4>
-        </div>
-        <div class="modal-body">
-        	<div class="resume_wrap">
-				<div class="resume_sub">
-				
-					<div class="userjoinBox">
-						<div id="sub3_bbs2" class="basic_top">
-							<h2><spring:message code="fap.resume.user_info" /></h2>
-							<ul class="tit1">
-								<li class="photo">
-									<img alt="" ng-src="/fap/user/resume_photo_image/{{resumeApply.fap_resume_pic_saved}}">
-								</li>
-							</ul>
-							<ul class="tit2 first">
-								<li class="wid1"><code value="B3100"></code></li>
-								<li class="wid2">
-									<span ng-bind="resumeApply.resumeNameList[0].fap_resume_nm"></span>
-								</li>
-								<li class="wid3"><spring:message code="fap.resume.user_nationality" /></li>
-								<li class="wid4">
-									<span ng-bind="resumeApply.fap_resume_nationality"></span>
-								</li>
-							</ul>
-							<ul class="tit2">
-								<li class="wid1"><code value="B3102"></code></li>
-								<li class="wid2">
-									<span ng-bind="resumeApply.resumeNameList[2].fap_resume_nm"></span>
-								</li>
-								<li class="wid3"><code value="B3103"></code></li>
-								<li class="wid4">
-									<span ng-bind="resumeApply.resumeNameList[3].fap_resume_nm"></span>
-								</li>						
-							</ul>
-							<ul class="tit2">
-								<li class="wid1"><code value="B3101"></code></li>
-								<li class="wid2">
-									<span ng-bind="resumeApply.resumeNameList[1].fap_resume_nm"></span>
-								</li>
-								<li class="wid3"><spring:message code="fap.resume.user_dependent" /></li>
-								<li class="wid4">
-									<span ng-bind="resumeApply.fap_resume_dependents"></span><spring:message code="com.placeholder.people" />
-								</li>						
-							</ul>
+	
+	
+		<!-- Modal --------------->
+	  <div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog" style="max-width: 1200px;">
+	      <!-- Modal content------------------------->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title" id="title"></h4>
+	        </div>
+	        <div class="modal-body">
+	        	<div class="resume_wrap">
+					<div class="resume_sub">
+					
+						<div class="userjoinBox">
+							<div id="sub3_bbs2" class="basic_top">
+								<h2><spring:message code="fap.resume.user_info" /></h2>
+								<ul class="tit1">
+									<li class="photo">
+										<img alt="" ng-src="/fap/user/resume_photo_image/{{resumeApply.fap_resume_pic_saved}}">
+									</li>
+								</ul>
+								<ul class="tit2 first">
+									<li class="wid1"><code value="B3100"></code></li>
+									<li class="wid2">
+										<span ng-bind="resumeApply.resumeNameList[0].fap_resume_nm"></span>
+									</li>
+									<li class="wid3"><spring:message code="fap.resume.user_nationality" /></li>
+									<li class="wid4">
+										<span ng-bind="resumeApply.fap_resume_nationality"></span>
+									</li>
+								</ul>
+								<ul class="tit2">
+									<li class="wid1"><code value="B3102"></code></li>
+									<li class="wid2">
+										<span ng-bind="resumeApply.resumeNameList[2].fap_resume_nm"></span>
+									</li>
+									<li class="wid3"><code value="B3103"></code></li>
+									<li class="wid4">
+										<span ng-bind="resumeApply.resumeNameList[3].fap_resume_nm"></span>
+									</li>						
+								</ul>
+								<ul class="tit2">
+									<li class="wid1"><code value="B3101"></code></li>
+									<li class="wid2">
+										<span ng-bind="resumeApply.resumeNameList[1].fap_resume_nm"></span>
+									</li>
+									<li class="wid3"><spring:message code="fap.resume.user_dependent" /></li>
+									<li class="wid4">
+										<span ng-bind="resumeApply.fap_resume_dependents"></span><spring:message code="com.placeholder.people" />
+									</li>						
+								</ul>
+							</div>
+							<div id="sub3_bbs2">
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.user_birth" /></li>
+									<li class="wid2_birth">
+										<span ng-bind="resumeApply.fap_resume_birth.substr(0,4)"></span><spring:message code="com.placeholder.year" />
+									</li>
+									<li class="wid2_birth">
+										<span ng-bind="resumeApply.fap_resume_birth.substr(5,2)"></span><spring:message code="com.placeholder.month" />
+									</li>
+									<li class="wid2_birth"> 
+										<span ng-bind="resumeApply.fap_resume_birth.substr(8,2)"></span><spring:message code="com.placeholder.day" />
+									</li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.user_address" /></li>
+									<li class="wid2 resumeAddr" ng-repeat="addr in resumeApply.resumeAddrList">	
+										<span ng-bind="addr.fap_resume_address"></span>
+									</li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.user_gender" /></li>
+									<li class="wid2">
+										<div class="span-code" cd="{{resumeApply.fap_resume_gender}}"></div>
+									</li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.user_married_or_not" /></li>
+									<li class="wid2">
+										<div class="span-code" cd="{{resumeApply.fap_resume_marital}}"></div>
+									</li>
+								</ul>
+							</div><!-- <div id="sub3_bbs2"> -->
+						</div> <!-- <div id="userjoinBox"> -->		
+			
+						<!-- ------------------------------------기본정보---------------------------------------------->
+						<div class="userjoinBox">
+							<h2><spring:message code="fap.resume.edu_history" /></h2>
+							<div class="sub3_bbs3 resume_edu" ng-repeat="eduHistory in resumeApply.resumeEduList">
+								<ul class="tit2 title">
+									<li class="wid1"><spring:message code="fap.resume.edu_entrance" /></li>
+									<li class="wid2"><spring:message code="fap.resume.edu_graduation" /></li>
+									<li class="wid3"><spring:message code="fap.resume.edu_period" /></li>
+									<li class="wid4"><spring:message code="fap.resume.edu_graduated_or_not" /></li>
+								</ul>
+								<ul class="tit2">
+									<li class="wid1">
+										<span ng-bind="eduHistory.fap_resume_edu_er_dt"></span>
+									</li>
+									<li class="wid2">
+										<span ng-bind="eduHistory.fap_resume_edu_gd_dt"></span>
+									</li>
+									<li class="wid3">
+										<span ng-bind="eduHistory.fap_resume_edu_pd_summary"></span>
+									</li>
+									<li class="wid4">
+										<div class="span-code" cd="{{eduHistory.fap_resume_edu_gd_ck}}"></div>
+									</li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.edu_school_nm" /></li>
+									<li class="wid2">
+										<span ng-bind="eduHistory.fap_resume_edu_sc_nm"></span>
+									</li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.edu_curriculum" /></li>
+									<li class="wid2">
+										<span ng-bind="eduHistory.fap_resume_edu_coll"></span>
+									</li>					
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.edu_major_field" /></li>
+									<li class="wid2">
+										<div class="span-code" cd="{{eduHistory.fap_resume_edu_field}}"></div>
+									</li>					
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.edu_major_nm" /></li>
+									<li class="wid2">
+										<span ng-bind="eduHistory.fap_resume_edu_major"></span>
+									</li>					
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.edu_remarks" /></li>
+									<li class="wid2 textarea">
+										<textarea class="readonly_textarea" ng-bind="eduHistory.fap_resume_edu_note" readonly="readonly"></textarea>
+									</li>
+								</ul>					
+							</div><!-- <div id="sub3_bbs3"> -->
+						</div><!-- <div id="userjoinBox"> -->
+						<!-- ------------------------------------학력관련 교육이수 ---------------------------------------------->
+						<div class="userjoinBox">
+							<h2><spring:message code="fap.resume.career" /></h2>
+							<div class="sub3_bbs3 resume_crr" ng-repeat ="career in resumeApply.resumeCareerList">
+								<ul class="tit2 title">
+									<li class="wid1"><spring:message code="fap.resume.career_service_start_day" /></li>
+									<li class="wid2"><spring:message code="fap.resume.career_service_completion_day" /></li>
+									<li class="wid3"><spring:message code="fap.resume.edu_period" /></li>
+									<li class="wid4"><spring:message code="fap.resume.career_position" /></li>
+								</ul>
+								<ul class="tit2">
+									<li class="wid1">
+										<span ng-bind="career.fap_resume_crr_st"></span>
+									</li>
+									<li class="wid2">
+										<span ng-bind="career.fap_resume_crr_et"></span>
+									</li>
+									<li class="wid3">
+										<span ng-bind="career.fap_resume_crr_pd_summary"></span>
+									</li>
+									<li class="wid4">
+										<span ng-bind="career.fap_resume_crr_job_position"></span>
+									</li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.career_comp_nm" /></li>
+									<li class="wid2">
+										<span ng-bind="career.fap_resume_crr_comp_nm"></span>
+									</li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.career_comp_major_business" /></li>
+									<li class="wid2">
+										<span ng-bind="career.fap_resume_crr_major_bussiness"></span>
+									</li>					
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.career_field" /></li>
+									<li class="wid2">
+										<div class="span-code" cd="{{career.fap_resume_crr_gb}}"></div>
+									</li>					
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.career_responsibility" /></li>
+									<li class="wid2 textarea">
+										<textarea class="readonly_textarea" ng-bind="career.fap_resume_crr_job_function" readonly="readonly"></textarea>
+									</li>
+								</ul>					
+							</div>
+						</div>	
+						<!-- ------------------------------------사회 경력 ---------------------------------------------->
+						<div class="userjoinBox">
+							<h2><spring:message code="fap.resume.certification" /></h2>
+							<div class="sub3_bbs3 resume_license" ng-repeat="license in resumeApply.resumeLicenseList">
+								<ul class="tit2 title">
+									<li class="wid1"><spring:message code="fap.resume.certification_license" /></li>
+									<li class="wid2"><spring:message code="fap.resume.certification_obtained_year" /></li>
+									<li class="wid3"><spring:message code="fap.resume.certification_obtained_month" /></li>
+									<li class="wid4"><spring:message code="fap.resume.certification_issuing_organization" /></li>
+								</ul>
+								<ul class="tit2">
+									<li class="wid1">
+										<div class="span-code" cd="{{license.fap_resume_license_nm}}"></div>
+									</li>
+									<li class="wid2">
+										<span ng-bind="license.fap_resume_license_get_year"></span>
+									</li>
+									<li class="wid3">
+										<span ng-bind="license.fap_resume_license_get_month"></span>
+									</li>
+									<li class="wid4">
+										<span ng-bind="license.fap_resume_license_issuing_organization"></span>
+									</li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.certification_score" /></li>
+									<li class="wid2">
+										<span ng-bind="license.fap_resume_license_score"></span>
+									</li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.certification_remarks" /></li>
+									<li class="wid2 textarea">
+										<textarea class="readonly_textarea" ng-bind="license.fap_resume_license_note" readonly="readonly"></textarea>
+									</li>
+								</ul>					
+							</div><!-- <div id="sub3_bbs3"> -->
 						</div>
-						<div id="sub3_bbs2">
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.user_birth" /></li>
-								<li class="wid2_birth">
-									<span ng-bind="resumeApply.fap_resume_birth.substr(0,4)"></span><spring:message code="com.placeholder.year" />
-								</li>
-								<li class="wid2_birth">
-									<span ng-bind="resumeApply.fap_resume_birth.substr(5,2)"></span><spring:message code="com.placeholder.month" />
-								</li>
-								<li class="wid2_birth"> 
-									<span ng-bind="resumeApply.fap_resume_birth.substr(8,2)"></span><spring:message code="com.placeholder.day" />
-								</li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.user_address" /></li>
-								<li class="wid2 resumeAddr" ng-repeat="addr in resumeApply.resumeAddrList">	
-									<span ng-bind="addr.fap_resume_address"></span>
-								</li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.user_gender" /></li>
-								<li class="wid2">
-									<div class="span-code" cd="{{resumeApply.fap_resume_gender}}"></div>
-								</li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.user_married_or_not" /></li>
-								<li class="wid2">
-									<div class="span-code" cd="{{resumeApply.fap_resume_marital}}"></div>
-								</li>
-							</ul>
-						</div><!-- <div id="sub3_bbs2"> -->
-					</div> <!-- <div id="userjoinBox"> -->		
-		
-					<!-- ------------------------------------기본정보---------------------------------------------->
-					<div class="userjoinBox">
-						<h2><spring:message code="fap.resume.edu_history" /></h2>
-						<div class="sub3_bbs3 resume_edu" ng-repeat="eduHistory in resumeApply.resumeEduList">
-							<ul class="tit2 title">
-								<li class="wid1"><spring:message code="fap.resume.edu_entrance" /></li>
-								<li class="wid2"><spring:message code="fap.resume.edu_graduation" /></li>
-								<li class="wid3"><spring:message code="fap.resume.edu_period" /></li>
-								<li class="wid4"><spring:message code="fap.resume.edu_graduated_or_not" /></li>
-							</ul>
-							<ul class="tit2">
-								<li class="wid1">
-									<span ng-bind="eduHistory.fap_resume_edu_er_dt"></span>
-								</li>
-								<li class="wid2">
-									<span ng-bind="eduHistory.fap_resume_edu_gd_dt"></span>
-								</li>
-								<li class="wid3">
-									<span ng-bind="eduHistory.fap_resume_edu_pd_summary"></span>
-								</li>
-								<li class="wid4">
-									<div class="span-code" cd="{{eduHistory.fap_resume_edu_gd_ck}}"></div>
-								</li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.edu_school_nm" /></li>
-								<li class="wid2">
-									<span ng-bind="eduHistory.fap_resume_edu_sc_nm"></span>
-								</li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.edu_curriculum" /></li>
-								<li class="wid2">
-									<span ng-bind="eduHistory.fap_resume_edu_coll"></span>
-								</li>					
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.edu_major_field" /></li>
-								<li class="wid2">
-									<div class="span-code" cd="{{eduHistory.fap_resume_edu_field}}"></div>
-								</li>					
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.edu_major_nm" /></li>
-								<li class="wid2">
-									<span ng-bind="eduHistory.fap_resume_edu_major"></span>
-								</li>					
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.edu_remarks" /></li>
-								<li class="wid2 textarea">
-									<textarea class="readonly_textarea" ng-bind="eduHistory.fap_resume_edu_note" readonly="readonly"></textarea>
-								</li>
-							</ul>					
-						</div><!-- <div id="sub3_bbs3"> -->
-					</div><!-- <div id="userjoinBox"> -->
-					<!-- ------------------------------------학력관련 교육이수 ---------------------------------------------->
-					<div class="userjoinBox">
-						<h2><spring:message code="fap.resume.career" /></h2>
-						<div class="sub3_bbs3 resume_crr" ng-repeat ="career in resumeApply.resumeCareerList">
-							<ul class="tit2 title">
-								<li class="wid1"><spring:message code="fap.resume.career_service_start_day" /></li>
-								<li class="wid2"><spring:message code="fap.resume.career_service_completion_day" /></li>
-								<li class="wid3"><spring:message code="fap.resume.edu_period" /></li>
-								<li class="wid4"><spring:message code="fap.resume.career_position" /></li>
-							</ul>
-							<ul class="tit2">
-								<li class="wid1">
-									<span ng-bind="career.fap_resume_crr_st"></span>
-								</li>
-								<li class="wid2">
-									<span ng-bind="career.fap_resume_crr_et"></span>
-								</li>
-								<li class="wid3">
-									<span ng-bind="career.fap_resume_crr_pd_summary"></span>
-								</li>
-								<li class="wid4">
-									<span ng-bind="career.fap_resume_crr_job_position"></span>
-								</li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.career_comp_nm" /></li>
-								<li class="wid2">
-									<span ng-bind="career.fap_resume_crr_comp_nm"></span>
-								</li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.career_comp_major_business" /></li>
-								<li class="wid2">
-									<span ng-bind="career.fap_resume_crr_major_bussiness"></span>
-								</li>					
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.career_field" /></li>
-								<li class="wid2">
-									<div class="span-code" cd="{{career.fap_resume_crr_gb}}"></div>
-								</li>					
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.career_responsibility" /></li>
-								<li class="wid2 textarea">
-									<textarea class="readonly_textarea" ng-bind="career.fap_resume_crr_job_function" readonly="readonly"></textarea>
-								</li>
-							</ul>					
-						</div>
-					</div>	
-					<!-- ------------------------------------사회 경력 ---------------------------------------------->
-					<div class="userjoinBox">
-						<h2><spring:message code="fap.resume.certification" /></h2>
-						<div class="sub3_bbs3 resume_license" ng-repeat="license in resumeApply.resumeLicenseList">
-							<ul class="tit2 title">
-								<li class="wid1"><spring:message code="fap.resume.certification_license" /></li>
-								<li class="wid2"><spring:message code="fap.resume.certification_obtained_year" /></li>
-								<li class="wid3"><spring:message code="fap.resume.certification_obtained_month" /></li>
-								<li class="wid4"><spring:message code="fap.resume.certification_issuing_organization" /></li>
-							</ul>
-							<ul class="tit2">
-								<li class="wid1">
-									<div class="span-code" cd="{{license.fap_resume_license_nm}}"></div>
-								</li>
-								<li class="wid2">
-									<span ng-bind="license.fap_resume_license_get_year"></span>
-								</li>
-								<li class="wid3">
-									<span ng-bind="license.fap_resume_license_get_month"></span>
-								</li>
-								<li class="wid4">
-									<span ng-bind="license.fap_resume_license_issuing_organization"></span>
-								</li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.certification_score" /></li>
-								<li class="wid2">
-									<span ng-bind="license.fap_resume_license_score"></span>
-								</li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.certification_remarks" /></li>
-								<li class="wid2 textarea">
-									<textarea class="readonly_textarea" ng-bind="license.fap_resume_license_note" readonly="readonly"></textarea>
-								</li>
-							</ul>					
-						</div><!-- <div id="sub3_bbs3"> -->
+						<!-- ----------------------------자격(기술 및 외국어 역량 중심) --------------------------------------------->
+						<div class="userjoinBox page-break">
+							<h2><spring:message code="fap.resume.talent" /></h2>
+							<div class="sub3_bbs7 resume_talent" ng-repeat="talent in resumeApply.resumeTalentList">
+								<ul class="tit2">
+									<li class="wid1"><spring:message code="fap.resume.talent_number" /></li>
+									<li class="wid2"><spring:message code="fap.resume.talent_context" /></li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1">{{$index+1}}</li>
+									<li class="wid2 textarea">
+										<textarea class="readonly_textarea_talent" ng-bind="talent.fap_resume_talent_content" readonly="readonly"></textarea>
+									</li>
+								</ul>				
+							</div><!-- <div id="sub3_bbs7"> -->
+						</div><!-- <div id="userjoinBox"> -->				
+						<!-- ----------------------------역량/재능(ICT, 외국어, 인간관계 등 업무 관련 상세) --------------------------------------------->
+						<div class="userjoinBox">
+							<h2><spring:message code="fap.resume.project_development_career" /></h2>
+							<div class="sub3_bbs3 resume_project" ng-repeat="project in resumeApply.resumeProjectList">
+								<ul class="tit2 title">
+									<li class="wid1"><spring:message code="fap.resume.project_development_start_date" /></li>
+									<li class="wid2"><spring:message code="fap.resume.project_development_end_date" /></li>
+									<li class="wid3"><spring:message code="fap.resume.edu_period" /></li>
+									<li class="wid4"><spring:message code="fap.resume.project_development_member" /></li>
+								</ul>
+								<ul class="tit2">
+									<li class="wid1">
+										<span ng-bind="project.fap_resume_project_st"></span>
+									</li>
+									<li class="wid2">
+										<span ng-bind="project.fap_resume_project_et"></span>
+									</li>
+									<li class="wid3">
+										<span ng-bind="project.fap_resume_project_pd_summary"></span>
+									</li>
+									<li class="wid4">
+										<span ng-bind="project.fap_resume_project_peoples_num"></span>
+										<spring:message code="com.placeholder.people" />
+									</li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.project_nm" /></li>
+									<li class="wid2">
+										<span ng-bind="project.fap_resume_project_nm"></span>
+									</li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.project_main_service" /></li>
+									<li class="wid2 textarea">
+										<textarea class="readonly_textarea" ng-bind="project.fap_resume_project_service" readonly="readonly"></textarea>
+									</li>					
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.project_charge_filed" /></li>
+									<li class="wid2 textarea">
+										<textarea class="readonly_textarea" ng-bind="project.fap_resume_project_responsibility" readonly="readonly"></textarea>
+									</li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1"><spring:message code="fap.resume.project_used_technique" /></li>
+									<li class="wid2 textarea">
+										<textarea class="readonly_textarea" ng-bind="project.fap_resume_project_technique" readonly="readonly"></textarea>
+									</li>
+								</ul>					
+							</div><!-- <div id="sub3_bbs3"> -->
+						</div>		
+						<!-- ----------------------------SW 프로젝트 개발경력 --------------------------------------------->
+						<div class="userjoinBox page-break">
+							<h2><spring:message code="fap.resume.self_introduction" /></h2>
+							<div class="sub3_bbs8">
+								<ul class="tit2">
+									<li class="wid1">
+										<code value="B4100"></code>
+									</li>					
+								</ul>
+								<ul class="tit3">
+									<li class="wid1">
+										<textarea class="readonly_textarea_pr" ng-bind="resumeApply.resumeProfileList[0].fap_resume_pr_content" readonly="readonly"></textarea>
+									</li>						
+								</ul>
+								<ul class="tit2">
+									<li class="wid1">
+										<code value="B4101"></code>
+									</li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1">
+										<textarea class="readonly_textarea_pr" ng-bind="resumeApply.resumeProfileList[1].fap_resume_pr_content" readonly="readonly"></textarea>
+									</li>						
+								</ul>
+								<ul class="tit2">
+									<li class="wid1">
+										<code value="B4102"></code>
+									</li>
+								</ul>
+								<ul class="tit3">
+									<li class="wid1">
+										<textarea class="readonly_textarea_pr" ng-bind="resumeApply.resumeProfileList[2].fap_resume_pr_content" readonly="readonly"></textarea>
+									</li>						
+								</ul>
+							</div> <!-- <div id="sub3_bbs8"> -->
+						</div><!-- <div id="userjoinBox"> -->				
+						<!-- ----------------------------------------------자기소개서----------- --------------------------------------------->
+						<div class="userjoinBox resumeFileDiv">
+							<h2><spring:message code="fap.resume.self_introduction_video_portfolio" /></h2>
+							<div id="sub3_bbs9">
+								<ul class="tit2 resumeFile" ng-switch="!!resumeApply.resumeFileList[0].fap_resume_file_origin">
+									<li class="wid1"><spring:message code="fap.resume.self_introduction_file" /></li>	
+									<li class="wid2" ng-switch-when="true">
+										<a class="display-inline" ng-href="/file_download?origin={{resumeApply.resumeFileList[0].fap_resume_file_origin}}&saved={{resumeApply.resumeFileList[0].fap_resume_file_saved}}&path=/fap/user/resume_movie_file">
+											{{resumeApply.resumeFileList[0].fap_resume_file_origin}}
+										</a>
+									</li>
+								</ul>
+								<ul class="tit2 resumeFile" ng-switch="!!resumeApply.resumeFileList[1].fap_resume_file_origin">
+									<li class="wid1"></li>
+									<li class="wid2" ng-switch-when="true">
+										<a class="display-inline" ng-href="/file_download?origin={{resumeApply.resumeFileList[1].fap_resume_file_origin}}&saved={{resumeApply.resumeFileList[1].fap_resume_file_saved}}&path=/fap/user/resume_portfolio_file">
+											{{resumeApply.resumeFileList[1].fap_resume_file_origin}}
+										</a>
+									</li>
+								</ul>	
+								<ul class="tit2 resumeFile" ng-switch="!!resumeApply.resumeFileList[2].fap_resume_file_origin">
+									<li class="wid1"></li>	
+									<li class="wid2" ng-switch-when="true">
+										<a class="display-inline" ng-href="/file_download?origin={{resumeApply.resumeFileList[2].fap_resume_file_origin}}&saved={{resumeApply.resumeFileList[2].fap_resume_file_saved}}&path=/fap/user/resume_project_file">
+											{{resumeApply.resumeFileList[2].fap_resume_file_origin}}
+										</a>
+									</li>
+								</ul>		
+								<ul class="tit2">
+									<li class="wid1"><spring:message code="fap.resume.self_introduction_url" /></li>
+									<li class="wid2">
+										<a href="{{resumeApply.fap_resume_url}}" target="_blank">{{resumeApply.fap_resume_url}}</a>
+									</li>
+								</ul>
+							</div> <!-- <div id="sub3_bbs9"> -->
+						</div><!-- <div id="userjoinBox"> -->				
+						<!-- ----------------------------------------------개인 동영상 및 포트폴리오 파일----------- --------------------------------------------->
 					</div>
-					<!-- ----------------------------자격(기술 및 외국어 역량 중심) --------------------------------------------->
-					<div class="userjoinBox page-break">
-						<h2><spring:message code="fap.resume.talent" /></h2>
-						<div class="sub3_bbs7 resume_talent" ng-repeat="talent in resumeApply.resumeTalentList">
-							<ul class="tit2">
-								<li class="wid1"><spring:message code="fap.resume.talent_number" /></li>
-								<li class="wid2"><spring:message code="fap.resume.talent_context" /></li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1">{{$index+1}}</li>
-								<li class="wid2 textarea">
-									<textarea class="readonly_textarea_talent" ng-bind="talent.fap_resume_talent_content" readonly="readonly"></textarea>
-								</li>
-							</ul>				
-						</div><!-- <div id="sub3_bbs7"> -->
-					</div><!-- <div id="userjoinBox"> -->				
-					<!-- ----------------------------역량/재능(ICT, 외국어, 인간관계 등 업무 관련 상세) --------------------------------------------->
-					<div class="userjoinBox">
-						<h2><spring:message code="fap.resume.project_development_career" /></h2>
-						<div class="sub3_bbs3 resume_project" ng-repeat="project in resumeApply.resumeProjectList">
-							<ul class="tit2 title">
-								<li class="wid1"><spring:message code="fap.resume.project_development_start_date" /></li>
-								<li class="wid2"><spring:message code="fap.resume.project_development_end_date" /></li>
-								<li class="wid3"><spring:message code="fap.resume.edu_period" /></li>
-								<li class="wid4"><spring:message code="fap.resume.project_development_member" /></li>
-							</ul>
-							<ul class="tit2">
-								<li class="wid1">
-									<span ng-bind="project.fap_resume_project_st"></span>
-								</li>
-								<li class="wid2">
-									<span ng-bind="project.fap_resume_project_et"></span>
-								</li>
-								<li class="wid3">
-									<span ng-bind="project.fap_resume_project_pd_summary"></span>
-								</li>
-								<li class="wid4">
-									<span ng-bind="project.fap_resume_project_peoples_num"></span>
-									<spring:message code="com.placeholder.people" />
-								</li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.project_nm" /></li>
-								<li class="wid2">
-									<span ng-bind="project.fap_resume_project_nm"></span>
-								</li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.project_main_service" /></li>
-								<li class="wid2 textarea">
-									<textarea class="readonly_textarea" ng-bind="project.fap_resume_project_service" readonly="readonly"></textarea>
-								</li>					
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.project_charge_filed" /></li>
-								<li class="wid2 textarea">
-									<textarea class="readonly_textarea" ng-bind="project.fap_resume_project_responsibility" readonly="readonly"></textarea>
-								</li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1"><spring:message code="fap.resume.project_used_technique" /></li>
-								<li class="wid2 textarea">
-									<textarea class="readonly_textarea" ng-bind="project.fap_resume_project_technique" readonly="readonly"></textarea>
-								</li>
-							</ul>					
-						</div><!-- <div id="sub3_bbs3"> -->
-					</div>		
-					<!-- ----------------------------SW 프로젝트 개발경력 --------------------------------------------->
-					<div class="userjoinBox page-break">
-						<h2><spring:message code="fap.resume.self_introduction" /></h2>
-						<div class="sub3_bbs8">
-							<ul class="tit2">
-								<li class="wid1">
-									<code value="B4100"></code>
-								</li>					
-							</ul>
-							<ul class="tit3">
-								<li class="wid1">
-									<textarea class="readonly_textarea_pr" ng-bind="resumeApply.resumeProfileList[0].fap_resume_pr_content" readonly="readonly"></textarea>
-								</li>						
-							</ul>
-							<ul class="tit2">
-								<li class="wid1">
-									<code value="B4101"></code>
-								</li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1">
-									<textarea class="readonly_textarea_pr" ng-bind="resumeApply.resumeProfileList[1].fap_resume_pr_content" readonly="readonly"></textarea>
-								</li>						
-							</ul>
-							<ul class="tit2">
-								<li class="wid1">
-									<code value="B4102"></code>
-								</li>
-							</ul>
-							<ul class="tit3">
-								<li class="wid1">
-									<textarea class="readonly_textarea_pr" ng-bind="resumeApply.resumeProfileList[2].fap_resume_pr_content" readonly="readonly"></textarea>
-								</li>						
-							</ul>
-						</div> <!-- <div id="sub3_bbs8"> -->
-					</div><!-- <div id="userjoinBox"> -->				
-					<!-- ----------------------------------------------자기소개서----------- --------------------------------------------->
-					<div class="userjoinBox resumeFileDiv">
-						<h2><spring:message code="fap.resume.self_introduction_video_portfolio" /></h2>
-						<div id="sub3_bbs9">
-							<ul class="tit2 resumeFile" ng-switch="!!resumeApply.resumeFileList[0].fap_resume_file_origin">
-								<li class="wid1"><spring:message code="fap.resume.self_introduction_file" /></li>	
-								<li class="wid2" ng-switch-when="true">
-									<a class="display-inline" ng-href="/file_download?origin={{resumeApply.resumeFileList[0].fap_resume_file_origin}}&saved={{resumeApply.resumeFileList[0].fap_resume_file_saved}}&path=/fap/user/resume_movie_file">
-										{{resumeApply.resumeFileList[0].fap_resume_file_origin}}
-									</a>
-								</li>
-							</ul>
-							<ul class="tit2 resumeFile" ng-switch="!!resumeApply.resumeFileList[1].fap_resume_file_origin">
-								<li class="wid1"></li>
-								<li class="wid2" ng-switch-when="true">
-									<a class="display-inline" ng-href="/file_download?origin={{resumeApply.resumeFileList[1].fap_resume_file_origin}}&saved={{resumeApply.resumeFileList[1].fap_resume_file_saved}}&path=/fap/user/resume_portfolio_file">
-										{{resumeApply.resumeFileList[1].fap_resume_file_origin}}
-									</a>
-								</li>
-							</ul>	
-							<ul class="tit2 resumeFile" ng-switch="!!resumeApply.resumeFileList[2].fap_resume_file_origin">
-								<li class="wid1"></li>	
-								<li class="wid2" ng-switch-when="true">
-									<a class="display-inline" ng-href="/file_download?origin={{resumeApply.resumeFileList[2].fap_resume_file_origin}}&saved={{resumeApply.resumeFileList[2].fap_resume_file_saved}}&path=/fap/user/resume_project_file">
-										{{resumeApply.resumeFileList[2].fap_resume_file_origin}}
-									</a>
-								</li>
-							</ul>		
-							<ul class="tit2">
-								<li class="wid1"><spring:message code="fap.resume.self_introduction_url" /></li>
-								<li class="wid2">
-									<a href="{{resumeApply.fap_resume_url}}" target="_blank">{{resumeApply.fap_resume_url}}</a>
-								</li>
-							</ul>
-						</div> <!-- <div id="sub3_bbs9"> -->
-					</div><!-- <div id="userjoinBox"> -->				
-					<!-- ----------------------------------------------개인 동영상 및 포트폴리오 파일----------- --------------------------------------------->
-				</div>
-				</div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>  
-  <!-- end of Resume Modal -->
-
-<form action="/fap/admin/admin_job_applicant_resume_print_form" method="post" name="resume_popup" id="resume_popup">
+					</div>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	    </div>
+	  </div>  
+	  <!-- end of Resume Modal -->
 	
-</form>
-
-<form action="/fap/admin/admin_job_applicant_score_print_form" method="post" name="score_popup" id="score_popup">
+	<form action="/fap/admin/admin_job_applicant_resume_print_form" method="post" name="resume_popup" id="resume_popup">
+		
+	</form>
 	
-</form>
-
+	<form action="/fap/admin/admin_job_applicant_score_print_form" method="post" name="score_popup" id="score_popup">
+		
+	</form>
+</div>
 </body>
 </html>

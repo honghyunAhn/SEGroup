@@ -13,7 +13,6 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Soft Engineer Society">
 <meta property="og:image" content="http://www.softsociety.net/edu/apply/ckeditor/ses_main_image.png">
-<title>FINE APPs for sw peopLE 개인취업자</title>
 <script src="<c:url value="/resources/segroup/js/jquery-3.1.1.js" />"></script>
 <script src="<c:url value="/resources/segroup/js/angular.min.js" />"></script> 
 <script src="<c:url value="/resources/segroup/society/fap/js/swiper.js" />" charset="utf-8"></script>
@@ -23,14 +22,12 @@
 	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/all.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/reset.css" />">
 	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/swiper.min.css" />">
-<%-- 	<link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/index.css" />"> --%>
-<%--     <link rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/common.css" />"> --%>
 </head>
 <body>
 <%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
-<div align="center">
-<spring:message code="fap.comp_partner" />
-</div>
+	<div align="center">
+		<spring:message code="fap.comp_partner" />
+	</div>
  <%@include file="../common_footer_fap.jsp"%>
 </body>
 </html>

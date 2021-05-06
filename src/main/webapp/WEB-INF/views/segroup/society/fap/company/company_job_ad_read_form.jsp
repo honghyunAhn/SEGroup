@@ -17,6 +17,7 @@
 
 <!-- 추가한 css -->
 <link rel="stylesheet" type="text/css" href="/resources/segroup/society/fap/css/default.css" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/segroup/society/fap/css/userDefault.css" />" />
 <link type="text/css" rel="stylesheet" href="/resources/segroup/society/fap/css/popModal.css">
 <link type="text/css" rel="stylesheet" href="/resources/segroup/society/fap/css/scrollspy.css">
 <title>Bridge Job Fair</title>
@@ -2425,6 +2426,7 @@
 	<!------------------------/헤드영역-------------------------->
 	
 	<!-----------------------서브컨텐츠 영역--------------------------->
+	<div class="job-content">
 	<div class="job-ad-wrap">
 		<div class="job-ad-subcontents">
 		<div class="job-ad-content">
@@ -3959,13 +3961,12 @@
      		 </div>
 		</div>
 		
-		
-		</div> <!-- subcontents end -->
-		
-		<div id="footerdiv">
+			</div> <!-- subcontents end -->
 		</div>
-		<%@include file="../common_footer_fap.jsp"%>
-	</div>
+		</div>
+		<div id="footerdiv">
+			<%@include file="../common_footer_fap.jsp"%>
+		</div>
 	
 </body>
 </html>

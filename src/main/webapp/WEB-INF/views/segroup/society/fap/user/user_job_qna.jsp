@@ -101,17 +101,21 @@
 
 <div class="join-wrap">
 	<div id="subcontents">
+		<div>
+			<h1>
+				질문수정
+			</h1>
+			<h6>내용 작성 후 수정 버튼을 클릭해주세요.</h6>
+		</div>
 		<div class="joinBox">
 			<div id="qna-q">
 				<form action="/fap/user/user_job_qna_update" method="post" id="update_form">
 					<input type="hidden" name="fap_job_qna_question_seq" value="${job_qna.fap_job_qna_question_seq}">
 					<input type="hidden" name="fap_job_ad_seq" value="${job_qna.fap_job_ad_seq}">
-					<table class="board_view">
+					<table class="board_view board_view_qna">
 						<colgroup>
-							<col width="17%"/>
-							<col width="58%"/>
-							<col width="10%"/>
 							<col width="15%"/>
+							<col width="85%"/>
 						</colgroup>
 						<tbody>
 							
@@ -120,7 +124,9 @@
 							    <td>
 							       	<input name="fap_job_qna_question_title" type="text" id="qna_title" value="${job_qna.fap_job_qna_question_title}" disabled="disabled">
 							    </td>
-							    <th scope="row"><spring:message code="fap.jobfair.main.board.indate" /></th>
+							</tr>
+							<tr>
+								<th scope="row"><spring:message code="fap.jobfair.main.board.indate" /></th>
 						    	<td>
 						    		${job_qna.fap_job_qna_question_udt_dt}
 						    	</td>
@@ -172,8 +178,8 @@
 			
 			<div class="boardManagerDiv">
 				<c:if test="${is_editable}">
-					<button onclick="update()" id="boardListBtn" type="button">수정</button>
-					<button onclick="delete_func()" id="boardListBtn" type="button">삭제</button>
+					<button onclick="update()" class="job-qna-btn">수정</button>
+					<button onclick="delete_func()" id="boardListBtn">삭제</button>
 				</c:if>
 				<a href="/fap/user/user_job_qna_management?fap_job_ad_seq=${job_qna.fap_job_ad_seq}"><button id="boardListBtn"><spring:message code="fap.jobfair.main.board.list" /></button></a>
 				<a href="/fap/user/user_main"><button id="boardMainBtn"><spring:message code="fap.jobfair.main.board.main" /></button></a>

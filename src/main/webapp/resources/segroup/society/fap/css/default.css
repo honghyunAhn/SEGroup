@@ -378,7 +378,7 @@ body, .adv-img p, .caption-bottom p, .adv-circle .caption p, .advs-box p, .list-
 #subcontents.admin{width: 1400px;}
 
 #subcontents h1 {font-weight:bold;color:#595959;font-size: 40px;}
-#subcontents h6 {color:#b5b7b4;padding-bottom:50px;padding-top:20px;}
+#subcontents h6 {color:#b5b7b4;padding-top:20px;}
 
 
 #nowBox {width:1127px;border:1px solid #b0b0b0; background-color:#f8f8f8;display: inline-block; }
@@ -1002,7 +1002,8 @@ width:710px; height:100px; margin-top:5px;
 
 #rewritebtn{margin:0 auto;padding-top:20px;padding-bottom:20px;}
 
-#peopleBBS {margin:0 auto;width:1100px; text-align:left;}
+#peopleBBS {margin:0% 20% 0% 30%;width:1100px; text-align:left;}
+#peopleBBS.applicant-status {margin:0 auto;width:1100px; text-align:left;}
 #peopleBBS li {display:inline-block;}
 
 #peopleBBS .peopletitle ul {border-bottom: 1px solid #ddd;}
@@ -1064,8 +1065,8 @@ width:710px; height:100px; margin-top:5px;
 #peopleBBS .peopleqna {border-bottom: 1px solid #ddd;vertical-align:central;}
 #peopleBBS .peoplechk{padding-left: 10px;padding-bottom:5px;padding-top:30px;}
 #peopleBBS .peoplefind{text-align:right;padding-right:0px;margin-top:-40px;padding-bottom:5px;}
-#peopleBBS .input1{padding:3px;margin: 3px; color:#3a3a3a;border:1px solid #9b9b9b;width:150px;height:20px;}
-#peopleBBS select { width: 90px; height: 30px; padding-left: 10px; padding-right:20px; font-size: 13px; color: #2f2f2f; border: 1px solid #b0b0b0; padding-top:5px;
+#peopleBBS .input1{padding:3px;margin: 3px; color:#3a3a3a;border:1px solid #9b9b9b;width:600px;height:28px;}
+#peopleBBS select { width: 90px; height: 30px; padding-left: 10px; padding-right:20px; font-size: 13px; color: #2f2f2f; border: 1px solid #b0b0b0;}
 -webkit-appearance: none;  
 -moz-appearance: none;     
 appearance: none; 
@@ -1083,12 +1084,12 @@ background: url('../images/select_arrow2.png') no-repeat 95% 50%; /* �솕��
 #qnaBBS {margin:0 auto;width:1100px; text-align:left;border: 1px solid #ddd; background-color:#fff; margin-bottom:20px; box-sizing: unset;}
 #qnaBBS li {display:inline-block; }
 #qnaBBS .qnatitle ul {border-bottom: 1px solid #ddd;border: 1px solid #ddd;}
-#qnaBBS .qnatitle {background-color:#333;font-weight:bolder;height:30px; color:#fff;font-size:15px ;padding-top:4px; padding-bottom:7px; text-align: center;box-sizing: unset;}
-#qnaBBS .qnatitle2 {font-size:15px;border-bottom: 1px solid #ddd;text-align:center;padding-top:10px;}
+#qnaBBS .qnatitle {background-color:#333;font-weight:bolder;height:30px; color:#fff;font-size:15px ;padding-top:8px; text-align: center;box-sizing: unset;}
+#qnaBBS .qnatitle2 {font-size:15px;border-bottom: 1px solid #ddd;text-align:center;padding-top:10px;padding-bottom: 10px;}
 #qnaBBS .qnatitle2 .wid2 {text-align: left;}
 
-#qnaBBS .wid1{text-align:center;width:200px;height:40px; padding-top:10px;}
-#qnaBBS .wid2{text-align:center;width:689px;white-space: nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;}
+#qnaBBS .wid1{text-align:center;width:200px;height:40px; padding-top:6px;}
+#qnaBBS .wid2{text-align:center;width:689px;white-space: nowrap;text-overflow:ellipsis;cursor:pointer;padding-top: 5px;}
 #qnaBBS .wid3{text-align:center;width:200px;}
 #qnaBBS .wid4{text-align:center;width:200px;}
 
@@ -1287,6 +1288,13 @@ background: url('../images/select_arrow2.png') no-repeat 95% 50%; /* �솕��
 
 
 /*#footerdiv{clear: both;}*/
+
+.job-content {
+	display: inline-block;
+	width: 100%;
+	justify-content: center;
+}
+
 .job-ad-btn{margin-top: 20px; margin-bottom: 20px;}
 .job-ad-box{margin-top: 20px; border: 1px soild #e2e6eb; background-color: #fff; padding: 50px 30px 50px;}
 .job-ad-box .job-ad-hd{color: #333; padding-bottom: 25px; border-bottom: 1px solid #f1f1f4;}
@@ -1444,7 +1452,7 @@ background: url('../images/select_arrow2.png') no-repeat 95% 50%; /* �솕��
 .accordion .accordion-header,.accordion-load .accordion-header-load{height: 43px; padding: 10px; margin: 20px 0 -10px; background-color: #fafbfc; border: 1px solid #d4d6d9; position: relative;box-sizing: border-box; font-size: 17px; color: #666; letter-spacing: -1px; cursor: pointer;}
 .accordion .accordion-header.on::after,.accordion-load .accordion-header-load.on::after{background-position: -120px 0;}
 .accordion .accordion-header.before-job-open,.accordion-load .accordion-header-load.before-job-open{margin-bottom: 0px;}
-.accordion .accordion-header::after,.accordion-load .accordion-header-load::after{content: ""; display: inline-block; background: url(../images/icon-images.png) 0 0 no-repeat; background-size: 300px 300px; width: 11px; height: 6px; position: absolute; right: 390px; top: 50%; margin-top: -2px; background-position: -136px 0;}
+.accordion .accordion-header::after,.accordion-load .accordion-header-load::after{content: ""; display: inline-block; background: url(../images/icon-images.png) 0 0 no-repeat; background-size: 300px 300px; width: 11px; height: 6px; position: absolute; right: 350px; top: 50%; margin-top: -2px; background-position: -136px 0;}
 .before-job-area{display: block;border: 1px solid #eee; background-color: #fff; padding: 10px 50px 27px;}
 .before-job-area .before-job-table table{width: 100%; table-layout: fixed; border-collapse: collapse; border-spacing: 0; empty-cells: show; border: 0 none;}
 .before-job-area .before-job-table table tbody td{padding: 15px 5px 11px; text-align: center; font-size: 15px; color: #333; border-bottom: 1px solid #edeef0; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
@@ -2306,7 +2314,13 @@ filter: alpha(opacity=0);
 }
 
 .board_view tbody th, .board_view tbody td {
-	padding: 15px 0 16px 16px;
+	padding: 10px 0px 20px 30px;
+	border-bottom: 1px solid #ccc;
+	white-space: nowrap;
+}
+
+.board_view_qna tbody th, .board_view tbody td {
+	padding: 10px 0px 10px 10px;
 	border-bottom: 1px solid #ccc;
 	white-space: nowrap;
 }
@@ -2652,9 +2666,9 @@ filter: alpha(opacity=0);
 
 /* 梨꾩슜怨듦퀬 Q&A */
 #job-qna-input{width: 820px; padding: 8px 13px 8px 13px; line-height: 25px; display: inline;box-sizing: border-box;height: 200px;border: 1px solid #e1e2e6; border-radius: 3px; vertical-align: top;background-color: #fcfdff; text-align: left;resize: none;}
-#qna_title{width: 450px; padding: 8px 8px 8px 8px; line-height: 25px; display: inline;box-sizing: border-box;height: 40px;border: 1px solid #e1e2e6; border-radius: 3px; vertical-align: top;background-color: #fcfdff; text-align: left;resize: none;}
+#qna_title{width: 100%; padding: 8px 8px 8px 8px; line-height: 25px; display: inline;box-sizing: border-box;height: 40px;border: 1px solid #e1e2e6; border-radius: 3px; vertical-align: top;background-color: #fcfdff; text-align: left;resize: none;}
 #qna_date{width: 90px; padding: 8px 8px 8px 8px; line-height: 25px; display: inline;box-sizing: border-box;height: 40px;border: 1px solid #e1e2e6; border-radius: 3px; vertical-align: top;background-color: #fcfdff; text-align: left;resize: none;}
-#qna_content{width: 672px; padding: 8px 8px 8px 8px; line-height: 25px; display: inline;box-sizing: border-box;height: 120px;border: 1px solid #e1e2e6; border-radius: 3px; vertical-align: top;background-color: #fcfdff; text-align: left;resize: none;}
+#qna_content{width: 100%; padding: 8px 8px 8px 8px; line-height: 25px; display: inline;box-sizing: border-box;height: 120px;border: 1px solid #e1e2e6; border-radius: 3px; vertical-align: top;background-color: #fcfdff; text-align: left;resize: none;}
 #my-qna-board{text-align: right; padding-right: 110px; padding-top: 10px; padding-bottom: 10px;}
 .qna-btn-list{text-align: right; padding-right: 16px !important;}
 /* 梨꾩슜怨듦퀬 �댋�똻 �씠誘몄� */
@@ -2677,8 +2691,8 @@ filter: alpha(opacity=0);
 #job-qna-btn-black{display: inline-block; 	width: 60px;	height: 40px;	font-size: 18.67px;	color: #fff;	border: 0;	background: #000;	border-radius: 7px;	outline: none;	cursor: pointer;}
 #job-qna-btn-black-wide{display: inline-block; 	width: 90px;	height: 40px;	font-size: 18.67px;	color: #fff;	border: 0;	background: #000;	border-radius: 7px;	outline: none;	cursor: pointer;}
 .job-qna-btn{display: inline-block; 	width: 100px;	height: 40px;	font-size: 18.67px;	color: #fff;	border: 0;	background: #4286f4;	border-radius: 7px;	outline: none;	cursor: pointer;}
-#qna-q .qna-q-title{width: 600px; min-height: 28px; padding: 8px 70px 12px 16px; border: 1px solid #e1e2e6; background-color: #fcfdff; font-size: 16px;}
-#qna-q .qna-q-content{width: 688px; min-height: 140px; padding: 8px 13px 8px 13px; line-height: 25px; display: block;box-sizing: border-box;border: 1px solid #e1e2e6; border-radius: 3px; vertical-align: top;background-color: #fcfdff; text-align: left;resize: none; font-size: 16px;}
+#qna-q .qna-q-title{width: 100%; min-height: 28px; padding: 8px 70px 12px 16px; border: 1px solid #e1e2e6; background-color: #fcfdff; font-size: 16px;}
+#qna-q .qna-q-content{width: 100%; min-height: 140px; padding: 8px 13px 8px 13px; line-height: 25px; display: block;box-sizing: border-box;border: 1px solid #e1e2e6; border-radius: 3px; vertical-align: top;background-color: #fcfdff; text-align: left;resize: none; font-size: 16px;}
 
 /*�씠�젰�꽌*/
 .resume_wrap{background-color: #f2f4f7;min-height: 660px;}

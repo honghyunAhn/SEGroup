@@ -257,6 +257,22 @@ public class SocietyFapUserViewController implements PathConstants {
 	}
 	
 	/**
+	 * @Method Name : user_language_change
+	 * @Date : 2021. 04. 26
+	 * @User : 김나영
+	 * @Param : 
+	 * @Return : 사용자 메인 페이지
+	 * @Method 설명 : 사용자 언어 변경 요청
+	 */
+	@RequestMapping(value = PathConstants.SOCIETY_FAP_USER_LANGUAGE_CHANGE, method = RequestMethod.GET)
+	public String user_language_change(String lo,HttpServletRequest request , HttpServletResponse response) {
+		
+		LocaleUtil.setLocale(request, response, lo);
+		
+		return "redirect:"+PathConstants.SOCIETY_FAP_USER_MAIN;
+	}
+	
+	/**
 	 * @Method Name : resume_management
 	 * @Date : 2018. 12. 11.
 	 * @User : 남유송

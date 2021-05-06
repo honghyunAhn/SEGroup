@@ -154,7 +154,7 @@
 							</select>	
 					  </td>
 					   <td>
-					   		<input type="text" id="searchValue" name="searchValue"  class="input1" style="width: 700px;">	
+					   		<input type="text" id="searchValue" name="searchValue"  class="input1">	
 					   	</td>
 					   	<td>
 							<input  type="button" class="btn_search"   value="검색" ng-click="ilist(${map.adminPager.curPage})" style="width: 100px; height:28px;">	

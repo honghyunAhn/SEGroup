@@ -120,6 +120,11 @@
 	<%@include file="user_menu.jsp"%><%@include file="user_quick_menu.jsp"%>
 
 	<div id="subcontents">
+		<div style="margin-bottom: 50px;">
+			<h1>
+				질문하기
+			</h1>
+		</div>
 		<div id="qnaBBS">
 			<div>
 				<ul class="qnatitle">

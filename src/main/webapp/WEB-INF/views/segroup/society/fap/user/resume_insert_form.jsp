@@ -1631,9 +1631,9 @@
 				<h2>
 					<spring:message code="fap.resume.self_introduction_video_portfolio" />
 				</h2>
-				<h4>
+				<span class="red">
 					<spring:message code="fap.resume.fap.resume.self_introduction_text" />
-				</h4>
+				</span>
 				<%-- <div id="sub3_bbs2">
 					<ul class="tit3">
 						<li class="wid1"><spring:message code="fap.resume.self_introduction_file" /><br><small><font color="red">(최대 3개까지)</font></small></li>

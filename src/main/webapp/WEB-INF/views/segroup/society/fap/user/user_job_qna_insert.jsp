@@ -87,19 +87,19 @@
 
 <div class="join-wrap">
 	<div id="subcontents">
+		<div>
+			<h1>
+				질문작성
+			</h1>
+			<h6>내용 작성 후 등록 버튼을 클릭해주세요.</h6>
+		</div>
 		<div class="joinBox">
 			<div id="qna-q">
 				<form action="/fap/user/user_job_qna_insert" method="post" id="insert_job_qna">
 					<div id="hidden-box">
 						<input type="hidden" name="fap_job_ad_seq" value="${fap_job_ad_seq}">
 					</div>
-					<table class="board_view">
-						<colgroup>
-							<col width="17%"/>
-							<col width="58%"/>
-							<col width="10%"/>
-							<col width="15%"/>
-						</colgroup>
+					<table class=" board_view board_view_qna">
 						<tbody>
 							<tr>
 								

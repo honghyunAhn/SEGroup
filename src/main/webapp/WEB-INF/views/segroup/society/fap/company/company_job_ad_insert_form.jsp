@@ -21,6 +21,7 @@
 
 <!-- 추가한 css -->
 <link rel="stylesheet" type="text/css" href="/resources/segroup/society/fap/css/default.css" />
+<%-- <link rel="stylesheet" type="text/css" href="<c:url value="/resources/segroup/society/fap/css/userDefault.css" />" /> --%>
 <link type="text/css" rel="stylesheet" href="/resources/segroup/society/fap/css/popModal.css">
 <link type="text/css" rel="stylesheet" href="/resources/segroup/society/fap/css/scrollspy.css">
 <title>Bridge Job Fair</title>
@@ -2243,1785 +2244,1791 @@
 	<!------------------------/헤드영역-------------------------->
 	
 	<!-----------------------서브컨텐츠 영역--------------------------->
-	<div class="job-ad-wrap">
-		<div class="job-ad-subcontents">
-		<div class="job-ad-content">
-		
-		<!-- 해당 기업의 과거 작성한 채용공고 불러오기 -->
-		<c:if test="${not empty select_job_ad_load_list}">
-			<div class="job-ad-load">
-				<div class="accordion-load">
-					<div class="accordion-header-load before-job-open">
-						<span><spring:message code="fap.jobad.call_pre_jobad" /></span>
-					</div>
-					<div class="ui-accordion-content-load">
-						<div class="ui-accordion-content-header">
-							<div class="before-job-area">
-								<div class="before-job-table">
-									<table>
-										<colgroup>
-											<col width="10%">
-											<col width="50%">
-											<col width="30%">
-											<col width="10%">
-										</colgroup>
-										<tbody class="before-job-table-tbd">
-										<c:forEach var="adLoadList" items="${select_job_ad_load_list}" varStatus="status">									
-											<tr>
-												<td scope="col">${jobAdLoadNum - (status.count-1)}</td>
-												<td scope="col" title="${adLoadList.fap_job_ad_title}">${adLoadList.fap_job_ad_title}</td>
-												<td scope="col" title="${adLoadList.fap_jobfair_title}">${adLoadList.fap_jobfair_title}</td>
-												<td scope="col"><button style="cursor: pointer;" onclick="ad_load(${adLoadList.fap_job_ad_seq})"><spring:message code="fap.comp.select" /></button></td>
-											</tr>
-										</c:forEach>
-										</tbody>
-									</table>
+	<div class="job-content">
+		<div class="job-ad-wrap">
+			<div class="job-ad-subcontents">
+				<div class="job-ad-content">
+				
+					<div class="job-ad-box">
+					
+					<!-- 해당 기업의 과거 작성한 채용공고 불러오기 -->
+					<c:if test="${not empty select_job_ad_load_list}">
+						<div class="job-ad-load">
+							<div class="accordion-load">
+								<div class="accordion-header-load before-job-open">
+									<span><spring:message code="fap.jobad.call_pre_jobad" /></span>
 								</div>
-								<div class="before-page">
-									<ul class="before-page-ul">
-											<li>
-												<a href="javascript:changePageLoadList(${repNavi.currentPage - repNavi.pagePerGroup})">◁◁</a>
-											</li>
-											<li>
-												<a href="javascript:changePageLoadList(${repNavi.currentPage - 1})">◀</a>
-											</li>
-										<c:forEach var="i" begin="${repNavi.startPageGroup}" end="${repNavi.endPageGroup}" step="1">
-											<li>
-											<c:choose>					
-												<c:when test="${i eq repNavi.currentPage}">
-													<span class="now">${i}</span>
-												</c:when>
-												<c:otherwise>
-													<a href="javascript:changePageLoadList(${i})">${i}</a>
-												</c:otherwise>
-											</c:choose>									
-											</li>
-										</c:forEach>
-											<li>
-												<a href="javascript:changePageLoadList(${repNavi.currentPage + 1})">▶</a>
-											</li>
-											<li>
-												<a href="javascript:changePageLoadList(${repNavi.currentPage + repNavi.pagePerGroup})">▷▷</a>
-											</li>
-									</ul>
+								<div class="ui-accordion-content-load">
+									<div class="ui-accordion-content-header">
+										<div class="before-job-area">
+											<div class="before-job-table">
+												<table>
+													<colgroup>
+														<col width="10%">
+														<col width="50%">
+														<col width="30%">
+														<col width="10%">
+													</colgroup>
+													<tbody class="before-job-table-tbd">
+													<c:forEach var="adLoadList" items="${select_job_ad_load_list}" varStatus="status">									
+														<tr>
+															<td scope="col">${jobAdLoadNum - (status.count-1)}</td>
+															<td scope="col" title="${adLoadList.fap_job_ad_title}">${adLoadList.fap_job_ad_title}</td>
+															<td scope="col" title="${adLoadList.fap_jobfair_title}">${adLoadList.fap_jobfair_title}</td>
+															<td scope="col"><button style="cursor: pointer;" onclick="ad_load(${adLoadList.fap_job_ad_seq})"><spring:message code="fap.comp.select" /></button></td>
+														</tr>
+													</c:forEach>
+													</tbody>
+												</table>
+											</div>
+											<div class="before-page">
+												<ul class="before-page-ul">
+														<li>
+															<a href="javascript:changePageLoadList(${repNavi.currentPage - repNavi.pagePerGroup})">◁◁</a>
+														</li>
+														<li>
+															<a href="javascript:changePageLoadList(${repNavi.currentPage - 1})">◀</a>
+														</li>
+													<c:forEach var="i" begin="${repNavi.startPageGroup}" end="${repNavi.endPageGroup}" step="1">
+														<li>
+														<c:choose>					
+															<c:when test="${i eq repNavi.currentPage}">
+																<span class="now">${i}</span>
+															</c:when>
+															<c:otherwise>
+																<a href="javascript:changePageLoadList(${i})">${i}</a>
+															</c:otherwise>
+														</c:choose>									
+														</li>
+													</c:forEach>
+														<li>
+															<a href="javascript:changePageLoadList(${repNavi.currentPage + 1})">▶</a>
+														</li>
+														<li>
+															<a href="javascript:changePageLoadList(${repNavi.currentPage + repNavi.pagePerGroup})">▷▷</a>
+														</li>
+												</ul>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-		</c:if>
-		
-		<form action="company_job_ad_insert" method="post" enctype="multipart/form-data" id="insert_form">
-		<div class="job-ad-box">
+					</c:if>
+					
+					<form action="company_job_ad_insert" method="post" enctype="multipart/form-data" id="insert_form">
+					<div class="job-ad-box">
+									
+						<input type="hidden" name="fap_job_ad_ins_id" value="${fap_comp_id }">
+						<input type="hidden" name="fap_job_ad_udt_id" value="${fap_comp_id }">
+						<input type="hidden" name="fap_job_dorm_ins_id" value="${fap_comp_id }">
+						<input type="hidden" name="fap_job_dorm_udt_id" value="${fap_comp_id }">
+						<input type="hidden" name="fap_job_jit_employee_ins_id" value="${fap_comp_id }">
+						<input type="hidden" name="fap_job_jit_employee_udt_id" value="${fap_comp_id }">
+						<input type="hidden" name="fap_job_ja_level_ins_id" value="${fap_comp_id }">
+						<input type="hidden" name="fap_job_ja_level_udt_id" value="${fap_comp_id }">
+						<input type="hidden" name="fap_job_trial_ins_id" value="${fap_comp_id }">
+						<input type="hidden" name="fap_job_trial_udt_id" value="${fap_comp_id }">
 						
-			<input type="hidden" name="fap_job_ad_ins_id" value="${fap_comp_id }">
-			<input type="hidden" name="fap_job_ad_udt_id" value="${fap_comp_id }">
-			<input type="hidden" name="fap_job_dorm_ins_id" value="${fap_comp_id }">
-			<input type="hidden" name="fap_job_dorm_udt_id" value="${fap_comp_id }">
-			<input type="hidden" name="fap_job_jit_employee_ins_id" value="${fap_comp_id }">
-			<input type="hidden" name="fap_job_jit_employee_udt_id" value="${fap_comp_id }">
-			<input type="hidden" name="fap_job_ja_level_ins_id" value="${fap_comp_id }">
-			<input type="hidden" name="fap_job_ja_level_udt_id" value="${fap_comp_id }">
-			<input type="hidden" name="fap_job_trial_ins_id" value="${fap_comp_id }">
-			<input type="hidden" name="fap_job_trial_udt_id" value="${fap_comp_id }">
-			
-			<input type="hidden" id="fap_jobfair_seq" name="fap_jobfair_seq" value="${fap_jobfair_seq}">
-			<input type="hidden" id="fap_jobfair_divide_seq" name="fap_jobfair_divide_seq" value="${fap_jobfair_divide_seq}">
-			<input type="hidden" name="fap_comp_id" value="${fap_comp_id}">
-			
-			<!-- <h1 style="width: 430px;">채용공고 등록 form</h1> -->
-			<!-- 기업정보 -->
-			<div id="company_info" class="scrollspy">
-			<div class="job-ad-hd scrollspy">
-			       <p class="job-ad-hd-tx">
-			       		<spring:message code="fap.common.responsible_company_info" />
-			       </p>
-			</div>
-	
-			<div class="job-ad-contents scrollspy">
-				<div class="job-ad-row">
-					<!-- 채용공고 제목 -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.jobad.title" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt">
-						<input class="input2" type="text" name="fap_job_ad_title" id="fap_job_ad_title" maxlength="50" placeholder="50<spring:message code="fap.placeholder.limit_characters" />">
-					</div>
-		    	</div>
-				<div class="job-ad-row">
-					<!-- 기업명(일본어) -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.comp.ja_nm" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt">
-						<input type="text" class="input3" id="fap_job_comp_ja_nm" name="jobCompList[1].fap_job_comp_nm" ng-model="comp_info.fap_comp_ja_nm" maxlength="50" placeholder="50<spring:message code="fap.placeholder.limit_characters" />"/>
-						<input type="hidden" name="jobCompList[1].fap_job_comp_gb" value="C0201" />
-					</div>
-		    	</div>
-		    	<div class="job-ad-row">
-					<!-- 기업명(영어) -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.comp.en_nm" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt">
-						<input type="text" class="input1" id="fap_job_comp_en_nm" name="jobCompList[0].fap_job_comp_nm" ng-model="comp_info.fap_comp_en_nm" maxlength="50" placeholder="50<spring:message code="fap.placeholder.limit_characters" />"/>
-						<input type="hidden" name="jobCompList[0].fap_job_comp_gb" value="C0200" />
-					</div>
-		    	</div>
-		    	<div class="job-ad-row">
-					<!-- 주요사업분야 -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.comp.major_bussiness" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt">
-						<input class="input2" type="text" id="fap_job_ad_major_business"name="fap_job_ad_major_business" ng-model="comp_info.fap_comp_major_bussiness" maxlength="100" placeholder="100<spring:message code="fap.placeholder.limit_characters" />">
-					</div>
-		    	</div>
-				<div class="job-ad-row">
-					<!-- 설립일, 자본금 -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.comp.est_dt" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt-md">
-						<input class="input3" type="text" id="fap_job_ad_est_dt" name="fap_job_ad_est_dt" ng-model="comp_info.fap_comp_est_dt" maxlength="15" placeholder="<spring:message code="fap.placeholder.est_dt" />">
-					</div>
-					<div class="job-ad-lt-md point">
-							<spring:message code="fap.comp.stock" />
-							<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt-la">
-						<input class="input3 currency" type="text" id="fap_job_ad_stock" name="fap_job_ad_stock" ng-model="comp_info.fap_comp_stock" blur-currency maxlength="22">
-						<span class="hiddenTx">円</span>
-					</div>
-		    	</div>				
-				<div class="job-ad-row">
-					<!-- 최근 3년간 매출 -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.comp.3years_avg_sales" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt">
-						<input class="input2 currency" type="text" id="fap_job_ad_3years_avg_sales" name="fap_job_ad_3years_avg_sales" ng-model="comp_info.fap_comp_3years_avg_sales" blur-currency maxlength="22">
-						<span class="hiddenTx">円</span>
-					</div>
-		    	</div>
-		    	<div class="job-ad-row">
-					<!-- 사원수 -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.comp.employee_num" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt">
-						<input class="input3 currency" id="fap_job_ad_employee_num" type="text" name="fap_job_ad_employee_num" ng-model="comp_info.fap_comp_employee_num" blur-currency maxlength="9">
-						<span class="hiddenTx">名</span>
-					</div>
-		    	</div>
-		    	<div class="job-ad-row">
-					<!-- 외국인 사원수, 한국인 사원수 -->
-					<div class="job-ad-lt">
-						<spring:message code="fap.comp.foreigner_num" />
-					</div>
-					<div class="job-ad-rt-md">
-						<input class="input3 currency" type="text" name="fap_job_ad_foreigner_num" ng-model="comp_info.fap_comp_foreigner_num" blur-currency maxlength="9">
-						<span class="hiddenTx sm">名</span>
-					</div>
-					<div class="job-ad-lt-md">
-						<spring:message code="fap.comp.korean_num" />
-					</div>
-					<div class="job-ad-rt-la">
-						<input class="input3 currency" type="text" name="fap_job_ad_korean_num" ng-model="comp_info.fap_comp_korean_num" blur-currency maxlength="9">
-						<span class="hiddenTx">名</span>
-					</div>
-		    	</div>
-		    	<div class="job-ad-row">
-					<!-- 우편번호 -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.comp.postcode" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt">
-						<input class="input2" type="text" id="fap_job_ad_postcode" name="fap_job_ad_postcode" ng-model="comp_info.fap_comp_postcode" maxlength="10" placeholder="<spring:message code="fap.placholder.postcode" />">
-					</div>
-		    	</div>
-		    	<div class="job-ad-row">
-					<!-- 주소 -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.comp.address" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt">
-						<input class="input2" type="text" id="fap_job_ad_address" name="fap_job_ad_address" ng-model="comp_info.fap_comp_address" maxlength="150">
-					</div>
-		    	</div>
-		    	<div class="job-ad-row">
-					<!-- 주소 -->
-					<div class="job-ad-lt">
-						<spring:message code="fap.comp.address_detail" />
-					</div>
-					<div class="job-ad-rt">
-						<input class="input2" type="text" name="fap_job_ad_address_dtl" ng-model="comp_info.fap_comp_address_detail" maxlength="150">
-					</div>
-		    	</div>
-				<div class="job-ad-row">
-					<!-- 홈페이지 -->
-					<div class="job-ad-lt">
-						<spring:message code="fap.comp.homepage" />
-					</div>
-					<div class="job-ad-rt">
-						<input class="input2" type="text" name="fap_job_ad_homepage" ng-model="comp_info.fap_comp_homepage" maxlength="75">
-					</div>
-		    	</div>
-		
-			</div>
-			
-		</div>
-		</div>
-		<div id="hire_info" class="job-ad-box scrollspy">
-			<!-- 고용정보 -->
-			<div class="job-ad-hd scrollspy">
-				<p class="job-ad-hd-tx">
-			        <spring:message code="fap.jobad.hire_info" />
-		        </p>
-			</div>
-			
-			<div class="job-ad-contents">
-				<div id="job_category_div">
-					<div class="job-ad-row">
-						<!-- 고용형태 -->
-						<div class="job-ad-lt point">
-							<spring:message code="fap.jobad.job_category" />
-							<span class="red-point"></span>
+						<input type="hidden" id="fap_jobfair_seq" name="fap_jobfair_seq" value="${fap_jobfair_seq}">
+						<input type="hidden" id="fap_jobfair_divide_seq" name="fap_jobfair_divide_seq" value="${fap_jobfair_divide_seq}">
+						<input type="hidden" name="fap_comp_id" value="${fap_comp_id}">
+						
+						<!-- <h1 style="width: 430px;">채용공고 등록 form</h1> -->
+						<!-- 기업정보 -->
+						<div id="company_info" class="scrollspy">
+						<div class="job-ad-hd scrollspy">
+						       <p class="job-ad-hd-tx">
+						       		<spring:message code="fap.common.responsible_company_info" />
+						       </p>
 						</div>
-						<div class="job-ad-rt radio-row">
-							<span class="job-radio category-type ict-type">
-								<label class="job-radio-label">
-									<code value="C5400"></code>
-								</label>
-								<input type="radio" name="fap_job_ad_category_type" value="C5400"/>
-							</span>
-							<span class="job-radio category-type etc-type">
-								<label class="job-radio-label">
-									<code value="C5401"></code>
-								</label>
-								<input type="radio" name="fap_job_ad_category_type" value="C5401" />
-							</span>
-							<div class="sub-area">
-								<!-- ICT -->
-								<div class="sub-area-inner ict-area category-none">
-									<div class="bar-inner">
-										<h5 class="inner-title">
-											<code value="C5400"></code>
-										</h5>
-										<span class="inner-item">
-											<span class="job-check">
-												<label class="job-check-label">
-													<code value="C3700"></code>
-												</label>
-												<input type="checkbox" id="se_input_ck_autofocus" name="jobCategoryList[0].fap_job_category_gb" value="C3700">
-											</span>
-											<span class="job-check">
-												<label class="job-check-label">
-													<code value="C3701"></code>
-												</label>
-												<input type="checkbox" name="jobCategoryList[1].fap_job_category_gb" value="C3701">
-											</span>
-											<span class="job-check">
-												<label class="job-check-label">
-													<code value="C3702"></code>
-												</label>
-												<input type="checkbox" name="jobCategoryList[2].fap_job_category_gb" value="C3702">
-											</span>
-											<span class="job-check">
-												<label class="job-check-label">
-													<code value="C3703"></code>
-												</label>
-												<input type="checkbox" name="jobCategoryList[3].fap_job_category_gb" value="C3703">
-											</span>
-										</span>
-									</div>
-								</div>
-								<!-- 비ICT -->
-								<div class="sub-area-inner etc-area category-none">
-									<div class="bar-inner">
-										<h5 class="inner-title">
-											<code value="C5401"></code>
-										</h5>
-										<span class="inner-item">
-											<span class="job-check">
-												<label class="job-check-label">
-													<code value="C3705"></code>
-												</label>
-												<input type="checkbox" id="se_input_ck_autofocus" name="jobCategoryList[5].fap_job_category_gb" value="C3705">
-											</span>
-											<span class="job-check">
-												<label class="job-check-label">
-													<code value="C3706"></code>
-												</label>
-												<input type="checkbox" name="jobCategoryList[6].fap_job_category_gb" value="C3706">
-											</span>
-											<span class="job-check">
-												<label class="job-check-label">
-													<code value="C3707"></code>
-												</label>
-												<input type="checkbox" name="jobCategoryList[7].fap_job_category_gb" value="C3707">
-											</span>
-											<span class="job-check">
-												<label class="job-check-label">
-													<code value="C3708"></code>
-												</label>
-												<input type="checkbox" name="jobCategoryList[8].fap_job_category_gb" value="C3708">
-											</span>
-											<span class="job-check">
-												<label class="job-check-label">
-													<code value="C3709"></code>
-												</label>
-												<input type="checkbox" name="jobCategoryList[9].fap_job_category_gb" value="C3709">
-											</span>
-											<span class="job-check">
-												<label class="job-check-label">
-													<code value="C3710"></code>
-												</label>
-												<input type="checkbox" name="jobCategoryList[10].fap_job_category_gb" value="C3710">
-											</span>
-											<span class="job-check category-etc">
-												<label class="job-check-label">
-													<code value="C3704"></code>
-												</label>
-												<input type="checkbox" name="jobCategoryList[4].fap_job_category_gb" value="C3704">
-											</span>
-										</span>
-									</div>
-								</div>
-								<!-- 기타 -->
-								<div class="sub-area-inner etc-context category-none">
-									<div class="bar-inner">
-										<h5 class="inner-title"><spring:message code="fap.jobad.job_category.detail" /></h5>
-										<span class="inner-item">
-											<textarea rows="4" cols="20" name="jobCategoryList[4].JobCategoryEtc.fap_job_category_etc_dtl" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
-			    	</div>
-				</div>
-				<div class="job-ad-row" id="fap_job_join_dt_gb_div">
-					<!-- 입사예정일 -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.jobad.join_work_dt" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt check-row">
-						<span class="job-check long-check work-first">
-							<label class="job-check-label">
-								<code value="C1500"></code>
-							</label>
-							<input type="checkbox" name="jobJoinDtList[0].fap_job_join_dt_gb" value="C1500" />
-						</span>
-						<span class="job-check long-check work-last">
-							<label class="job-check-label">
-								<code value="C1501"></code>
-							</label>
-							<input type="checkbox" name="jobJoinDtList[1].fap_job_join_dt_gb" value="C1501" />
-						</span>
-						<div class="sub-area work-first">
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><code value="C1500"></code></h5>
-									<span class="inner-item">
-										<textarea rows="4" cols="20" name="jobJoinDtList[0].fap_job_join_dt_dtl" maxlength="200"></textarea>
-									</span>
-								</div>
-							</div>
-						</div>
-						<div class="sub-area work-last">
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><code value="C1501"></code></h5>
-									<span class="inner-item">
-										<textarea rows="4" cols="20" name="jobJoinDtList[1].fap_job_join_dt_dtl" maxlength="200"></textarea>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-		    	</div>
-				<div class="job-ad-row">
-					<!-- 근무시간, 평균잔업시간 -->
-					<div class="job-ad-lt">
-						<spring:message code="fap.jobad.worktime" />
-					</div>
-					<div class="job-ad-rt-md">
-						<input class="input3" type="text" name="fap_job_ad_worktime" maxlength="15" placeholder="<spring:message code="fap.placeholder.worktime" />">
-					</div>
-					<div class="job-ad-lt-md">
-						<spring:message code="fap.jobad.overtime" />
-					</div>
-					<div class="job-ad-rt-la">
-						<input class="input3" type="text" name="fap_job_ad_overtime" maxlength="15">
-						<span class="hiddenTx">時間</span>
-					</div>
-		    	</div>
-		    	<div class="job-ad-row">
-					<!-- 고용형태 -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.jobad.hire_type" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt radio-row">
-						<span class="job-radio hire-type regular">
-							<label class="job-radio-label">
-								<code value="C0400"></code>
-							</label>
-							<input type="radio" name="fap_job_ad_hire_type" value="C0400"/>
-						</span>
-						<span class="job-radio hire-type contract">
-							<label class="job-radio-label">
-								<code value="C0401"></code>
-							</label>
-							<input type="radio" name="fap_job_ad_hire_type" value="C0401" />
-						</span>
-						<div class="sub-area">
-							<div class="sub-area-inner emp-contract">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.is_permanent" /></h5>
-									<span class="inner-item radio">
-										<span class="job-radio emp-switch yes">
-											<label class="job-radio-label">
-												<code value="C3800"></code>
-											</label>
-											<input type="radio" name="fap_job_jit_employee_isswitch" value="C3800" />
-										</span>
-										<span class="job-radio emp-switch no">
-											<label class="job-radio-label">
-												<code value="C3801"></code>
-											</label>
-											<input type="radio" name="fap_job_jit_employee_isswitch" value="C3801" />
-										</span>
-										<span class="job-radio emp-switch yet">
-											<label class="job-radio-label">
-												<code value="C3802"></code>
-											</label>
-											<input type="radio" name="fap_job_jit_employee_isswitch" value="C3802" />
-										</span>
-									</span>
-								</div>
-							</div>
-							<div class="sub-area-inner emp-contract">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.employee_term" /></h5>
-									<span class="inner-item">
-										<textarea rows="4" cols="20" name="fap_job_jit_employee_term" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
-									</span>
-								</div>
-							</div>
-							<div class="sub-area-inner emp-contract">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.employee_condition" /></h5>
-									<span class="inner-item">
-										<textarea rows="4" cols="20" name="fap_job_jit_employee_dtl" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-		    	</div>
-				<div class="job-ad-row m50">
-					<!-- 채용예정인원 -->
-					<div class="job-ad-lt doubleline point">
-						<spring:message code="fap.jobad.recruit_num" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt">
-						<input class="input2 currency" id="fap_job_ad_recruit_num" ng-model="fap_job_ad_recruit_num" type="text" name="fap_job_ad_recruit_num" blur-currency maxlength="9">
-						<span class="hiddenTx">名</span>
-					</div>
-		    	</div>	
 				
-				<div class="job-ad-row" id="fap_job_workplace_gb_div">
-					<!-- 근무예정지  -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.jobad.workplace" />
-						<span class="red-point"></span>
+						<div class="job-ad-contents scrollspy">
+							<div class="job-ad-row">
+								<!-- 채용공고 제목 -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.jobad.title" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt">
+									<input class="input2" type="text" name="fap_job_ad_title" id="fap_job_ad_title" maxlength="50" placeholder="50<spring:message code="fap.placeholder.limit_characters" />">
+								</div>
+					    	</div>
+							<div class="job-ad-row">
+								<!-- 기업명(일본어) -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.comp.ja_nm" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt">
+									<input type="text" class="input3" id="fap_job_comp_ja_nm" name="jobCompList[1].fap_job_comp_nm" ng-model="comp_info.fap_comp_ja_nm" maxlength="50" placeholder="50<spring:message code="fap.placeholder.limit_characters" />"/>
+									<input type="hidden" name="jobCompList[1].fap_job_comp_gb" value="C0201" />
+								</div>
+					    	</div>
+					    	<div class="job-ad-row">
+								<!-- 기업명(영어) -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.comp.en_nm" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt">
+									<input type="text" class="input1" id="fap_job_comp_en_nm" name="jobCompList[0].fap_job_comp_nm" ng-model="comp_info.fap_comp_en_nm" maxlength="50" placeholder="50<spring:message code="fap.placeholder.limit_characters" />"/>
+									<input type="hidden" name="jobCompList[0].fap_job_comp_gb" value="C0200" />
+								</div>
+					    	</div>
+					    	<div class="job-ad-row">
+								<!-- 주요사업분야 -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.comp.major_bussiness" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt">
+									<input class="input2" type="text" id="fap_job_ad_major_business"name="fap_job_ad_major_business" ng-model="comp_info.fap_comp_major_bussiness" maxlength="100" placeholder="100<spring:message code="fap.placeholder.limit_characters" />">
+								</div>
+					    	</div>
+							<div class="job-ad-row">
+								<!-- 설립일, 자본금 -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.comp.est_dt" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt-md">
+									<input class="input3" type="text" id="fap_job_ad_est_dt" name="fap_job_ad_est_dt" ng-model="comp_info.fap_comp_est_dt" maxlength="15" placeholder="<spring:message code="fap.placeholder.est_dt" />">
+								</div>
+								<div class="job-ad-lt-md point">
+										<spring:message code="fap.comp.stock" />
+										<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt-la">
+									<input class="input3 currency" type="text" id="fap_job_ad_stock" name="fap_job_ad_stock" ng-model="comp_info.fap_comp_stock" blur-currency maxlength="22">
+									<span class="hiddenTx">円</span>
+								</div>
+					    	</div>				
+							<div class="job-ad-row">
+								<!-- 최근 3년간 매출 -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.comp.3years_avg_sales" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt">
+									<input class="input2 currency" type="text" id="fap_job_ad_3years_avg_sales" name="fap_job_ad_3years_avg_sales" ng-model="comp_info.fap_comp_3years_avg_sales" blur-currency maxlength="22">
+									<span class="hiddenTx">円</span>
+								</div>
+					    	</div>
+					    	<div class="job-ad-row">
+								<!-- 사원수 -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.comp.employee_num" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt">
+									<input class="input3 currency" id="fap_job_ad_employee_num" type="text" name="fap_job_ad_employee_num" ng-model="comp_info.fap_comp_employee_num" blur-currency maxlength="9">
+									<span class="hiddenTx">名</span>
+								</div>
+					    	</div>
+					    	<div class="job-ad-row">
+								<!-- 외국인 사원수, 한국인 사원수 -->
+								<div class="job-ad-lt">
+									<spring:message code="fap.comp.foreigner_num" />
+								</div>
+								<div class="job-ad-rt-md">
+									<input class="input3 currency" type="text" name="fap_job_ad_foreigner_num" ng-model="comp_info.fap_comp_foreigner_num" blur-currency maxlength="9">
+									<span class="hiddenTx sm">名</span>
+								</div>
+								<div class="job-ad-lt-md">
+									<spring:message code="fap.comp.korean_num" />
+								</div>
+								<div class="job-ad-rt-la">
+									<input class="input3 currency" type="text" name="fap_job_ad_korean_num" ng-model="comp_info.fap_comp_korean_num" blur-currency maxlength="9">
+									<span class="hiddenTx">名</span>
+								</div>
+					    	</div>
+					    	<div class="job-ad-row">
+								<!-- 우편번호 -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.comp.postcode" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt">
+									<input class="input2" type="text" id="fap_job_ad_postcode" name="fap_job_ad_postcode" ng-model="comp_info.fap_comp_postcode" maxlength="10" placeholder="<spring:message code="fap.placholder.postcode" />">
+								</div>
+					    	</div>
+					    	<div class="job-ad-row">
+								<!-- 주소 -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.comp.address" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt">
+									<input class="input2" type="text" id="fap_job_ad_address" name="fap_job_ad_address" ng-model="comp_info.fap_comp_address" maxlength="150">
+								</div>
+					    	</div>
+					    	<div class="job-ad-row">
+								<!-- 주소 -->
+								<div class="job-ad-lt">
+									<spring:message code="fap.comp.address_detail" />
+								</div>
+								<div class="job-ad-rt">
+									<input class="input2" type="text" name="fap_job_ad_address_dtl" ng-model="comp_info.fap_comp_address_detail" maxlength="150">
+								</div>
+					    	</div>
+							<div class="job-ad-row">
+								<!-- 홈페이지 -->
+								<div class="job-ad-lt">
+									<spring:message code="fap.comp.homepage" />
+								</div>
+								<div class="job-ad-rt">
+									<input class="input2" type="text" name="fap_job_ad_homepage" ng-model="comp_info.fap_comp_homepage" maxlength="75">
+								</div>
+					    	</div>
+					
+						</div>
+						
 					</div>
-					<div class="job-ad-rt check-row p0">
-						<div class="job-ad-inner-box">
-							<span class="job-check long-check">
-								<label class="job-check-label">
-									<code value="C3900"></code>
-								</label>
-								<input type="checkbox" name="jobWorkplaceList[0].fap_job_workplace_gb" value="C3900">
-							</span>
-							<span class="job-check long-check">
-								<label class="job-check-label">
-									<code value="C3901"></code>
-								</label>
-								<input type="checkbox" name="jobWorkplaceList[1].fap_job_workplace_gb" value="C3901">
-							</span>
-							<span class="job-check long-check">
-								<label class="job-check-label">
-									<code value="C3902"></code>
-								</label>
-								<input type="checkbox" name="jobWorkplaceList[2].fap_job_workplace_gb" value="C3902">
-							</span>
-							<span class="job-check long-check">
-								<label class="job-check-label">
-									<code value="C3903"></code>
-								</label>
-								<input type="checkbox" name="jobWorkplaceList[3].fap_job_workplace_gb" value="C3903">
-							</span>
+					</div>
+					<div id="hire_info" class="job-ad-box scrollspy">
+						<!-- 고용정보 -->
+						<div class="job-ad-hd scrollspy">
+							<p class="job-ad-hd-tx">
+						        <spring:message code="fap.jobad.hire_info" />
+					        </p>
 						</div>
-						<div class="job-ad-inner-box p10">
-							<span class="job-check long-check">
-								<label class="job-check-label">
-									<code value="C3904"></code>
-								</label>
-								<input type="checkbox" name="jobWorkplaceList[4].fap_job_workplace_gb" value="C3904">
-							</span>
-							<span class="job-check long-check">
-								<label class="job-check-label">
-									<code value="C3905"></code>
-								</label>
-								<input type="checkbox" name="jobWorkplaceList[5].fap_job_workplace_gb" value="C3905">
-							</span>
-							<span class="job-check long-check">
-								<label class="job-check-label">
-									<code value="C3906"></code>
-								</label>
-								<input type="checkbox" name="jobWorkplaceList[6].fap_job_workplace_gb" value="C3906">
-							</span>
-							<span class="job-check long-check">
-								<label class="job-check-label">
-									<code value="C3907"></code>
-								</label>
-								<input type="checkbox" name="jobWorkplaceList[7].fap_job_workplace_gb" value="C3907">
-							</span>
-						</div>
-						<div class="job-ad-inner-box p10">
-							<span class="job-check long-check">
-								<label class="job-check-label">
-									<code value="C3908"></code>
-								</label>
-								<input type="checkbox" name="jobWorkplaceList[8].fap_job_workplace_gb" value="C3908">
-							</span>
-						</div>
-						<div class="sub-area area-work">
-							<!-- 1 -->
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title">
-										<code value="C3900"></code>
-									</h5>
-									<span class="inner-item">
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4000"></code>
+						
+						<div class="job-ad-contents">
+							<div id="job_category_div">
+								<div class="job-ad-row">
+									<!-- 고용형태 -->
+									<div class="job-ad-lt point">
+										<spring:message code="fap.jobad.job_category" />
+										<span class="red-point"></span>
+									</div>
+									<div class="job-ad-rt radio-row">
+										<span class="job-radio category-type ict-type">
+											<label class="job-radio-label">
+												<code value="C5400"></code>
 											</label>
-											<input type="checkbox" name="jobWorkplaceList[0].jobWorkplaceDtl.jobWorkplaceDtlList[0].fap_job_workplace_dtl_gb" value="C4000">
+											<input type="radio" name="fap_job_ad_category_type" value="C5400"/>
 										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4001"></code>
+										<span class="job-radio category-type etc-type">
+											<label class="job-radio-label">
+												<code value="C5401"></code>
 											</label>
-											<input type="checkbox" name="jobWorkplaceList[0].jobWorkplaceDtl.jobWorkplaceDtlList[1].fap_job_workplace_dtl_gb" value="C4001">
+											<input type="radio" name="fap_job_ad_category_type" value="C5401" />
 										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4002"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[0].jobWorkplaceDtl.jobWorkplaceDtlList[2].fap_job_workplace_dtl_gb" value="C4002">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4003"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[0].jobWorkplaceDtl.jobWorkplaceDtlList[3].fap_job_workplace_dtl_gb" value="C4003">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4004"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[0].jobWorkplaceDtl.jobWorkplaceDtlList[4].fap_job_workplace_dtl_gb" value="C4004">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4005"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[0].jobWorkplaceDtl.jobWorkplaceDtlList[5].fap_job_workplace_dtl_gb" value="C4005">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4006"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[0].jobWorkplaceDtl.jobWorkplaceDtlList[6].fap_job_workplace_dtl_gb" value="C4006">
-										</span>
-									</span>
-								</div>
+										<div class="sub-area">
+											<!-- ICT -->
+											<div class="sub-area-inner ict-area category-none">
+												<div class="bar-inner">
+													<h5 class="inner-title">
+														<code value="C5400"></code>
+													</h5>
+													<span class="inner-item">
+														<span class="job-check">
+															<label class="job-check-label">
+																<code value="C3700"></code>
+															</label>
+															<input type="checkbox" id="se_input_ck_autofocus" name="jobCategoryList[0].fap_job_category_gb" value="C3700">
+														</span>
+														<span class="job-check">
+															<label class="job-check-label">
+																<code value="C3701"></code>
+															</label>
+															<input type="checkbox" name="jobCategoryList[1].fap_job_category_gb" value="C3701">
+														</span>
+														<span class="job-check">
+															<label class="job-check-label">
+																<code value="C3702"></code>
+															</label>
+															<input type="checkbox" name="jobCategoryList[2].fap_job_category_gb" value="C3702">
+														</span>
+														<span class="job-check">
+															<label class="job-check-label">
+																<code value="C3703"></code>
+															</label>
+															<input type="checkbox" name="jobCategoryList[3].fap_job_category_gb" value="C3703">
+														</span>
+													</span>
+												</div>
+											</div>
+											<!-- 비ICT -->
+											<div class="sub-area-inner etc-area category-none">
+												<div class="bar-inner">
+													<h5 class="inner-title">
+														<code value="C5401"></code>
+													</h5>
+													<span class="inner-item">
+														<span class="job-check">
+															<label class="job-check-label">
+																<code value="C3705"></code>
+															</label>
+															<input type="checkbox" id="se_input_ck_autofocus" name="jobCategoryList[5].fap_job_category_gb" value="C3705">
+														</span>
+														<span class="job-check">
+															<label class="job-check-label">
+																<code value="C3706"></code>
+															</label>
+															<input type="checkbox" name="jobCategoryList[6].fap_job_category_gb" value="C3706">
+														</span>
+														<span class="job-check">
+															<label class="job-check-label">
+																<code value="C3707"></code>
+															</label>
+															<input type="checkbox" name="jobCategoryList[7].fap_job_category_gb" value="C3707">
+														</span>
+														<span class="job-check">
+															<label class="job-check-label">
+																<code value="C3708"></code>
+															</label>
+															<input type="checkbox" name="jobCategoryList[8].fap_job_category_gb" value="C3708">
+														</span>
+														<span class="job-check">
+															<label class="job-check-label">
+																<code value="C3709"></code>
+															</label>
+															<input type="checkbox" name="jobCategoryList[9].fap_job_category_gb" value="C3709">
+														</span>
+														<span class="job-check">
+															<label class="job-check-label">
+																<code value="C3710"></code>
+															</label>
+															<input type="checkbox" name="jobCategoryList[10].fap_job_category_gb" value="C3710">
+														</span>
+														<span class="job-check category-etc">
+															<label class="job-check-label">
+																<code value="C3704"></code>
+															</label>
+															<input type="checkbox" name="jobCategoryList[4].fap_job_category_gb" value="C3704">
+														</span>
+													</span>
+												</div>
+											</div>
+											<!-- 기타 -->
+											<div class="sub-area-inner etc-context category-none">
+												<div class="bar-inner">
+													<h5 class="inner-title"><spring:message code="fap.jobad.job_category.detail" /></h5>
+													<span class="inner-item">
+														<textarea rows="4" cols="20" name="jobCategoryList[4].JobCategoryEtc.fap_job_category_etc_dtl" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+						    	</div>
 							</div>
-							<!-- 2 -->
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title">
-										<code value="C3901"></code>
-									</h5>
-									<span class="inner-item">
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4007"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[1].jobWorkplaceDtl.jobWorkplaceDtlList[0].fap_job_workplace_dtl_gb" value="C4007">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4008"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[1].jobWorkplaceDtl.jobWorkplaceDtlList[1].fap_job_workplace_dtl_gb" value="C4008">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4009"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[1].jobWorkplaceDtl.jobWorkplaceDtlList[2].fap_job_workplace_dtl_gb" value="C4009">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4010"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[1].jobWorkplaceDtl.jobWorkplaceDtlList[3].fap_job_workplace_dtl_gb" value="C4010">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4011"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[1].jobWorkplaceDtl.jobWorkplaceDtlList[4].fap_job_workplace_dtl_gb" value="C4011">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4012"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[1].jobWorkplaceDtl.jobWorkplaceDtlList[5].fap_job_workplace_dtl_gb" value="C4012">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4013"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[1].jobWorkplaceDtl.jobWorkplaceDtlList[6].fap_job_workplace_dtl_gb" value="C4013">
-										</span>
-									</span>
+							<div class="job-ad-row" id="fap_job_join_dt_gb_div">
+								<!-- 입사예정일 -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.jobad.join_work_dt" />
+									<span class="red-point"></span>
 								</div>
-							</div>
-							<!-- 3 -->
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title">
-										<code value="C3902"></code>
-									</h5>
-									<span class="inner-item">
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4014"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[2].jobWorkplaceDtl.jobWorkplaceDtlList[0].fap_job_workplace_dtl_gb" value="C4014">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4015"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[2].jobWorkplaceDtl.jobWorkplaceDtlList[1].fap_job_workplace_dtl_gb" value="C4015">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4016"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[2].jobWorkplaceDtl.jobWorkplaceDtlList[2].fap_job_workplace_dtl_gb" value="C4016">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4017"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[2].jobWorkplaceDtl.jobWorkplaceDtlList[3].fap_job_workplace_dtl_gb" value="C4017">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4018"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[2].jobWorkplaceDtl.jobWorkplaceDtlList[4].fap_job_workplace_dtl_gb" value="C4018">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4019"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[2].jobWorkplaceDtl.jobWorkplaceDtlList[5].fap_job_workplace_dtl_gb" value="C4019">
-										</span>
+								<div class="job-ad-rt check-row">
+									<span class="job-check long-check work-first">
+										<label class="job-check-label">
+											<code value="C1500"></code>
+										</label>
+										<input type="checkbox" name="jobJoinDtList[0].fap_job_join_dt_gb" value="C1500" />
 									</span>
-								</div>
-							</div>
-							<!-- 4 -->
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title">
-										<code value="C3903"></code>
-									</h5>
-									<span class="inner-item">
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4020"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[3].jobWorkplaceDtl.jobWorkplaceDtlList[0].fap_job_workplace_dtl_gb" value="C4020">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4021"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[3].jobWorkplaceDtl.jobWorkplaceDtlList[1].fap_job_workplace_dtl_gb" value="C4021">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4022"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[3].jobWorkplaceDtl.jobWorkplaceDtlList[2].fap_job_workplace_dtl_gb" value="C4022">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4023"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[3].jobWorkplaceDtl.jobWorkplaceDtlList[3].fap_job_workplace_dtl_gb" value="C4023">
-										</span>
+									<span class="job-check long-check work-last">
+										<label class="job-check-label">
+											<code value="C1501"></code>
+										</label>
+										<input type="checkbox" name="jobJoinDtList[1].fap_job_join_dt_gb" value="C1501" />
 									</span>
+									<div class="sub-area work-first">
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><code value="C1500"></code></h5>
+												<span class="inner-item">
+													<textarea rows="4" cols="20" name="jobJoinDtList[0].fap_job_join_dt_dtl" maxlength="200"></textarea>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="sub-area work-last">
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><code value="C1501"></code></h5>
+												<span class="inner-item">
+													<textarea rows="4" cols="20" name="jobJoinDtList[1].fap_job_join_dt_dtl" maxlength="200"></textarea>
+												</span>
+											</div>
+										</div>
+									</div>
 								</div>
-							</div>
-							<!-- 5 -->
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title">
-										<code value="C3904"></code>
-									</h5>
-									<span class="inner-item">
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4024"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[4].jobWorkplaceDtl.jobWorkplaceDtlList[0].fap_job_workplace_dtl_gb" value="C4024">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4025"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[4].jobWorkplaceDtl.jobWorkplaceDtlList[1].fap_job_workplace_dtl_gb" value="C4025">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4026"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[4].jobWorkplaceDtl.jobWorkplaceDtlList[2].fap_job_workplace_dtl_gb" value="C4026">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4027"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[4].jobWorkplaceDtl.jobWorkplaceDtlList[3].fap_job_workplace_dtl_gb" value="C4027">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4028"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[4].jobWorkplaceDtl.jobWorkplaceDtlList[4].fap_job_workplace_dtl_gb" value="C4028">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4029"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[4].jobWorkplaceDtl.jobWorkplaceDtlList[5].fap_job_workplace_dtl_gb" value="C4029">
-										</span>
+					    	</div>
+							<div class="job-ad-row">
+								<!-- 근무시간, 평균잔업시간 -->
+								<div class="job-ad-lt">
+									<spring:message code="fap.jobad.worktime" />
+								</div>
+								<div class="job-ad-rt-md">
+									<input class="input3" type="text" name="fap_job_ad_worktime" maxlength="15" placeholder="<spring:message code="fap.placeholder.worktime" />">
+								</div>
+								<div class="job-ad-lt-md">
+									<spring:message code="fap.jobad.overtime" />
+								</div>
+								<div class="job-ad-rt-la">
+									<input class="input3" type="text" name="fap_job_ad_overtime" maxlength="15">
+									<span class="hiddenTx">時間</span>
+								</div>
+					    	</div>
+					    	<div class="job-ad-row">
+								<!-- 고용형태 -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.jobad.hire_type" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt radio-row">
+									<span class="job-radio hire-type regular">
+										<label class="job-radio-label">
+											<code value="C0400"></code>
+										</label>
+										<input type="radio" name="fap_job_ad_hire_type" value="C0400"/>
 									</span>
-								</div>
-							</div>
-							<!-- 6 -->
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title">
-										<code value="C3905"></code>
-									</h5>
-									<span class="inner-item">
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4030"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[0].fap_job_workplace_dtl_gb" value="C4030">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4031"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[1].fap_job_workplace_dtl_gb" value="C4031">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4032"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[2].fap_job_workplace_dtl_gb" value="C4032">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4033"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[3].fap_job_workplace_dtl_gb" value="C4033">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4034"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[4].fap_job_workplace_dtl_gb" value="C4034">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4035"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[5].fap_job_workplace_dtl_gb" value="C4035">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4036"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[6].fap_job_workplace_dtl_gb" value="C4036">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4037"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[7].fap_job_workplace_dtl_gb" value="C4037">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4038"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[8].fap_job_workplace_dtl_gb" value="C4038">
-										</span>
+									<span class="job-radio hire-type contract">
+										<label class="job-radio-label">
+											<code value="C0401"></code>
+										</label>
+										<input type="radio" name="fap_job_ad_hire_type" value="C0401" />
 									</span>
+									<div class="sub-area">
+										<div class="sub-area-inner emp-contract">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.is_permanent" /></h5>
+												<span class="inner-item radio">
+													<span class="job-radio emp-switch yes">
+														<label class="job-radio-label">
+															<code value="C3800"></code>
+														</label>
+														<input type="radio" name="fap_job_jit_employee_isswitch" value="C3800" />
+													</span>
+													<span class="job-radio emp-switch no">
+														<label class="job-radio-label">
+															<code value="C3801"></code>
+														</label>
+														<input type="radio" name="fap_job_jit_employee_isswitch" value="C3801" />
+													</span>
+													<span class="job-radio emp-switch yet">
+														<label class="job-radio-label">
+															<code value="C3802"></code>
+														</label>
+														<input type="radio" name="fap_job_jit_employee_isswitch" value="C3802" />
+													</span>
+												</span>
+											</div>
+										</div>
+										<div class="sub-area-inner emp-contract">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.employee_term" /></h5>
+												<span class="inner-item">
+													<textarea rows="4" cols="20" name="fap_job_jit_employee_term" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
+												</span>
+											</div>
+										</div>
+										<div class="sub-area-inner emp-contract">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.employee_condition" /></h5>
+												<span class="inner-item">
+													<textarea rows="4" cols="20" name="fap_job_jit_employee_dtl" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
+												</span>
+											</div>
+										</div>
+									</div>
 								</div>
-							</div>
-							<!-- 7 -->
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title">
-										<code value="C3906"></code>
-									</h5>
-									<span class="inner-item">
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4039"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[0].fap_job_workplace_dtl_gb" value="C4039">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4040"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[1].fap_job_workplace_dtl_gb" value="C4040">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4041"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[2].fap_job_workplace_dtl_gb" value="C4041">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4042"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[3].fap_job_workplace_dtl_gb" value="C4042">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4043"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[4].fap_job_workplace_dtl_gb" value="C4043">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4044"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[5].fap_job_workplace_dtl_gb" value="C4044">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4045"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[6].fap_job_workplace_dtl_gb" value="C4045">
-										</span>
-										<span class="job-check wp-dtl">
-											<label class="job-check-label">
-												<code value="C4046"></code>
-											</label>
-											<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[7].fap_job_workplace_dtl_gb" value="C4046">
-										</span>
-									</span>
+					    	</div>
+							<div class="job-ad-row m50">
+								<!-- 채용예정인원 -->
+								<div class="job-ad-lt doubleline point">
+									<spring:message code="fap.jobad.recruit_num" />
+									<span class="red-point"></span>
 								</div>
-							</div>
-							<!-- 8 -->
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title">
-										<code value="C3908"></code>
-									</h5>
-									<span class="inner-item">
-										<span class="job-check wp-dtl wp-textarea">
-											<textarea rows="4" cols="20" name="jobWorkplaceList[8].JobWorkplaceEtc.fap_job_workplace_etc_address" maxlength="150"></textarea>
-										</span>
-									</span>
+								<div class="job-ad-rt">
+									<input class="input2 currency" id="fap_job_ad_recruit_num" ng-model="fap_job_ad_recruit_num" type="text" name="fap_job_ad_recruit_num" blur-currency maxlength="9">
+									<span class="hiddenTx">名</span>
 								</div>
-							</div>
+					    	</div>	
 							
-						</div>
-					</div>
-		    	</div>
-				
-				<div class="job-ad-row m50">
-					<!-- 시용기간유무 -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.jobad.intern" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt radio-row">
-						<span class="job-radio intern yes">
-							<label class="job-radio-label">
-								<code value="C0500"></code>
-							</label>
-							<input type="radio" name="fap_job_ad_intern" value="C0500"/>
-						</span>
-						<span class="job-radio intern no">
-							<label class="job-radio-label">
-								<code value="C0501"></code>
-							</label>
-							<input type="radio" name="fap_job_ad_intern" value="C0501"/>
-						</span>
-						<div class="sub-area display">
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.jobtrial_pd" /></h5>
-									<span class="inner-item">
-										<input type="text" name="fap_job_trial_pd" maxlength="50"/>
-										<span class="hiddenTx"><spring:message code="fap.jobad.dorm_month" /></span>
-									</span>
+							<div class="job-ad-row" id="fap_job_workplace_gb_div">
+								<!-- 근무예정지  -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.jobad.workplace" />
+									<span class="red-point"></span>
 								</div>
-							</div>
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.jobtrial_pay" /></h5>
-									<span class="inner-item">
-										<input type="text" class="currency" name="fap_job_trial_pay" ng-model="comp_info.fap_job_trial_pay" blur-currency/>
-										<span class="hiddenTx">円</span>
-									</span>
-								</div>
-							</div>
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.jobtrial_pay_condition" /></h5>
-									<span class="inner-item radio">
-										<span class="job-radio trial-pay">
-											<label class="job-radio-label">
-												<code value="C2400"></code>
+								<div class="job-ad-rt check-row p0">
+									<div class="job-ad-inner-box">
+										<span class="job-check long-check">
+											<label class="job-check-label">
+												<code value="C3900"></code>
 											</label>
-											<input type="radio" name="fap_job_trial_pay_equal" value="C2400"/>
+											<input type="checkbox" name="jobWorkplaceList[0].fap_job_workplace_gb" value="C3900">
 										</span>
-										<span class="job-radio trial-pay">
-											<label class="job-radio-label">
-												<code value="C2401"></code>
+										<span class="job-check long-check">
+											<label class="job-check-label">
+												<code value="C3901"></code>
 											</label>
-											<input type="radio" name="fap_job_trial_pay_equal" value="C2401"/>
+											<input type="checkbox" name="jobWorkplaceList[1].fap_job_workplace_gb" value="C3901">
 										</span>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-		    	</div>
-				
-				<div class="job-ad-row m50">
-					<!-- 기숙사유무 -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.jobad.is_dorm" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt radio-row">
-						<span class="job-radio isdorm yes">
-							<label class="job-radio-label">
-								<code value="C0800"></code>
-							</label>
-							<input type="radio" name="fap_job_ad_isdorm" value="C0800"/>
-						</span>
-						<span class="job-radio isdorm no">
-							<label class="job-radio-label">
-								<code value="C0801"></code>
-							</label>
-							<input type="radio" name="fap_job_ad_isdorm" value="C0801"/>
-						</span>
-						<div class="sub-area display">
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.dorm_lo" /></h5>
-									<span class="inner-item">
-										<input type="text" name="fap_job_dorm_lo" maxlength="100" placeholder="100<spring:message code="fap.placeholder.limit_characters" />"/>
-									</span>
-								</div>
-							</div>
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.dorm_cost" /></h5>
-									<span class="inner-item">
-										<input type="text" class="currency" name="fap_job_dorm_cost" ng-model="comp_info.fap_job_dorm_cost" blur-currency/>
-										<span class="hiddenTx">円/月</span>
-									</span>
-								</div>
-							</div>
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.dorm_note" /></h5>
-									<span class="inner-item">
-										<textarea rows="4" cols="20" name="fap_job_dorm_note" maxlength="200" placeholder="<spring:message code="fap.placeholder.currency" />(200<spring:message code="fap.placeholder.limit_characters" />)"></textarea>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-		    	</div>
-				<div class="job-ad-row m50">
-					<!-- 승급 -->
-					<div class="job-ad-lt">
-						<spring:message code="fap.jobad.promotion" />
-					</div>
-					<div class="job-ad-rt">
-						<input class="input2" type="text" name="fap_job_ad_promotion" maxlength="100" placeholder="100<spring:message code="fap.placeholder.limit_characters" />">
-					</div>
-		    	</div>
-		    	<div class="job-ad-row">
-					<!-- 휴일 -->
-					<div class="job-ad-lt">
-						<spring:message code="fap.jobad.vacation" />
-					</div>
-					<div class="job-ad-rt">
-						<textarea rows="4" cols="20" name="fap_job_ad_vacation" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
-					</div>
-		    	</div>
-				<div class="job-ad-row">
-					<!-- 보험 및 퇴직금  -->
-					<div class="job-ad-lt">
-						<spring:message code="fap.jobad.insurance" />
-					</div>
-					<div class="job-ad-rt check-row">
-						<span class="job-check">
-							<label class="job-check-label">
-								<code value="C0600"></code>
-							</label>
-							<input type="checkbox" name="jobIsrList[0].fap_job_isr_gb" value="C0600">
-						</span>
-						<span class="job-check">
-							<label class="job-check-label">
-								<code value="C0601"></code>
-							</label>
-							<input type="checkbox" name="jobIsrList[1].fap_job_isr_gb" value="C0601">
-						</span>
-						<span class="job-check">
-							<label class="job-check-label">
-								<code value="C0602"></code>
-							</label>
-							<input type="checkbox" name="jobIsrList[2].fap_job_isr_gb" value="C0602">
-						</span>
-						<span class="job-check">
-							<label class="job-check-label">
-								<code value="C0603"></code>
-							</label>
-							<input type="checkbox" name="jobIsrList[3].fap_job_isr_gb" value="C0603">
-						</span>
-						<span class="job-check">
-							<label class="job-check-label">
-								<code value="C0604"></code>
-							</label>
-							<input type="checkbox" name="jobIsrList[4].fap_job_isr_gb" value="C0604">
-						</span>
-					</div>
-		    	</div>
-				<div class="job-ad-row m50">
-					<!-- 기타 복리후생 -->
-					<div class="job-ad-lt">
-						<spring:message code="fap.jobad.welfare" />
-					</div>
-					<div class="job-ad-rt">
-						<textarea rows="4" cols="20" name="fap_job_ad_welfare" maxlength="500" placeholder="500<spring:message code="fap.placeholder.limit_characters" />"></textarea>
-					</div>
-		    	</div>
-			</div>	
-		</div>	
-		
-		<div id="detail" class="job-ad-box scrollspy">
-			<!-- 상세정보 -->
-			<div class="job-ad-hd scrollspy">
-				    <p class="job-ad-hd-tx">
-		       				<spring:message code="fap.jobad.detail.title" />
-		       		</p>
-			</div>
-			
-			<div class="job-ad-contents">
-				<div class="job-ad-row">
-					<!-- 주요업무 -->
-					<div class="job-ad-lt doubleline point">
-						<spring:message code="fap.jobad.work" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt">
-						<div class="job-ad-dropdown">
-							<div class="job-ad-select">
-								<button type="button" class="job-ad-select-btn"><code value="C0300"></code></button>
-								<input type="hidden" id="work-gb" name="jobWorkList[0].fap_job_work_gb" value="C0300">
-							</div>
-							<div class="job-ad-select-option">
-								<ul class="option-list">
-									<li class="work-type selected">
-										<button type="button" work-code="C0300"><code value="C0300"></code></button>
-									</li>
-									<li class="work-type">
-										<button type="button" work-code="C0301"><code value="C0301"></code></button>
-									</li>
-									<li class="work-type">
-										<button type="button" work-code="C0302"><code value="C0302"></code></button>
-									</li>
-									<li class="work-type">
-										<button type="button" work-code="C0304"><code value="C0304"></code></button>
-									</li>
-									<li class="work-type">
-										<button type="button" work-code="C0305"><code value="C0305"></code></button>
-									</li>
-									<li class="work-type">
-										<button type="button" work-code="C0306"><code value="C0306"></code></button>
-									</li>
-									<li class="work-type">
-										<button type="button" work-code="C0307"><code value="C0307"></code></button>
-									</li>
-									<li class="work-type">
-										<button type="button" work-code="C0308"><code value="C0308"></code></button>
-									</li>
-									<li class="work-type">
-										<button type="button" work-code="C0309"><code value="C0309"></code></button>
-									</li>
-									<li class="work-type">
-										<button type="button" work-code="C0303"><code value="C0303"></code></button>
-									</li>
-								</ul>
-							</div>
-						</div>
-					<span><spring:message code="fap.jobad.work.select" /></span>
-					</div>
-		    	</div>
-		    	<div class="job-ad-row m10">
-					<!-- 주요업무 추가/삭제 버튼 -->
-					<div class="job-ad-lt bnt-lt">
-						<button type="button" class="btn-add" ng-click="addWork()"></button>
-						<button type="button" class="btn-remove" ng-click="removeWork()"></button>
-					</div>
-					<div class="job-ad-rt">
-						<textarea rows="4" cols="20" name="jobWorkList[0].fap_job_work_dtl" maxlength="1000" placeholder="1000<spring:message code="fap.placeholder.limit_characters" />"></textarea>
-					</div>
-		    	</div>
-		    	<!-- 주요업무 Inner Html 영역 -->
-		    	<div class="work-type-plus">
-					
-				</div>
-				
-				<div class="job-ad-row">
-					<!-- 희망 성별 -->
-					<div class="job-ad-lt">
-						<spring:message code="fap.jobad.gender" />
-					</div>
-					<div class="job-ad-rt radio-row">
-						<span class="job-radio ad-gender">
-							<label class="job-radio-label">
-								<code value="C4200"></code>
-							</label>
-							<input type="radio" name="fap_job_ad_gender" value="C4200"/>
-						</span>
-						<span class="job-radio ad-gender">
-							<label class="job-radio-label">
-								<code value="C4201"></code>
-							</label>
-							<input type="radio" name="fap_job_ad_gender" value="C4201"/>
-						</span>
-						<span class="job-radio ad-gender">
-							<label class="job-radio-label">
-								<code value="C4202"></code>
-							</label>
-							<input type="radio" name="fap_job_ad_gender" value="C4202"/>
-						</span>
-					</div>
-		    	</div>
-		    	
-		    	<div class="job-ad-row m50">
-					<!-- 희망 연령 -->
-					<div class="job-ad-lt">
-						<spring:message code="fap.jobad.age" />
-					</div>
-					<div class="job-ad-rt radio-row">
-						<span class="job-radio ad-age">
-							<label class="job-radio-label">
-								<code value="C1400"></code>
-							</label>
-							<input type="radio" name="fap_job_ad_age" value="C1400"/>
-						</span>
-						<span class="job-radio ad-age">
-							<label class="job-radio-label">
-								<code value="C1401"></code>
-							</label>
-							<input type="radio" name="fap_job_ad_age" value="C1401"/>
-						</span>
-						<span class="job-radio ad-age">
-							<label class="job-radio-label">
-								<code value="C1402"></code>
-							</label>
-							<input type="radio" name="fap_job_ad_age" value="C1402"/>
-						</span>
-						<span class="job-radio ad-age">
-							<label class="job-radio-label">
-								<code value="C1403"></code>
-							</label>
-							<input type="radio" name="fap_job_ad_age" value="C1403"/>
-						</span>
-					</div>
-		    	</div>
-		    	
-		    	<div class="job-ad-row m50">
-					<!-- 희망 일본어 -->
-					<div class="job-ad-lt">
-						<spring:message code="fap.jobad.required_ja_level" />
-					</div>
-					<div class="job-ad-rt radio-row">
-						<span class="job-radio ad-ja">
-							<label class="job-radio-label">
-								<code value="C4400"></code>
-							</label>
-							<input type="radio" name="fap_job_ja_level_gb" value="C4400"/>
-						</span>
-						<span class="job-radio ad-ja">
-							<label class="job-radio-label">
-								<code value="C4401"></code>
-							</label>
-							<input type="radio" name="fap_job_ja_level_gb" value="C4401"/>
-						</span>
-						<span class="job-radio ad-ja">
-							<label class="job-radio-label">
-								<code value="C4402"></code>
-							</label>
-							<input type="radio" name="fap_job_ja_level_gb" value="C4402"/>
-						</span>
-						<span class="job-radio ad-ja">
-							<label class="job-radio-label">
-								<code value="C4403"></code>
-							</label>
-							<input type="radio" name="fap_job_ja_level_gb" value="C4403"/>
-						</span>
-						<div class="sub-area">
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.required_ja_level.detail" /></h5>
-									<span class="inner-item">
-										<textarea rows="4" cols="20" name="fap_job_ja_level_dtl" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-		    	</div>
-		    	
-		    	<div class="job-ad-row">
-					<!-- 우대사항 -->
-					<div class="job-ad-lt doubleline">
-						<spring:message code="fap.jobad.preferences" />
-					</div>
-					<div class="job-ad-rt">
-						<div class="job-ad-dropdown">
-							<div class="job-ad-select">
-								<button type="button" class="job-ad-select-btn"><code value="C4106"></code></button>
-								<input type="hidden" id="preferences-gb" name="jobPrefList[0].fap_job_pref_gb" value="C4106">
-							</div>
-							<div class="job-ad-select-option">
-								<ul class="option-list">
-									<li class="preferences-type selected">
-										<button type="button" preferences-code="C4106"><code value="C4106"></code></button>
-									</li>
-									<li class="preferences-type">
-										<button type="button" preferences-code="C4100"><code value="C4100"></code></button>
-									</li>
-									<li class="preferences-type">
-										<button type="button" preferences-code="C4101"><code value="C4101"></code></button>
-									</li>
-									<li class="preferences-type">
-										<button type="button" preferences-code="C4102"><code value="C4102"></code></button>
-									</li>
-									<li class="preferences-type">
-										<button type="button" preferences-code="C4103"><code value="C4103"></code></button>
-									</li>
-									<li class="preferences-type">
-										<button type="button" preferences-code="C4104"><code value="C4104"></code></button>
-									</li>
-									<li class="preferences-type">
-										<button type="button" preferences-code="C4105"><code value="C4105"></code></button>
-									</li>
-								</ul>
-							</div>
-						</div>
-					<span><spring:message code="fap.jobad.work.select" /></span>
-					</div>
-		    	</div>
-		    	<div class="job-ad-row m10">
-					<!-- 우대사항 추가/삭제 버튼 -->
-					<div class="job-ad-lt bnt-lt">
-						<button type="button" class="btn-add" ng-click="addPref()"></button>
-						<button type="button" class="btn-remove" ng-click="removePref()"></button>
-					</div>
-					<div class="job-ad-rt">
-						<textarea rows="4" cols="20" name="jobPrefList[0].fap_job_pref_dtl" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
-					</div>
-		    	</div>
-		    	<!-- 우대사항 Inner Html 영역 -->
-		    	<div class="preferences-type-plus">
-					
-				</div>
-				<div class="job-ad-row">
-					<!-- 인재상 -->
-					<div class="job-ad-lt">
-						<spring:message code="fap.jobad.ideal_person" />
-					</div>
-					<div class="job-ad-rt">
-						<textarea rows="4" cols="20" name="fap_job_ad_ideal_person" maxlength="800" placeholder="800<spring:message code="fap.placeholder.limit_characters" />"></textarea>
-					</div>
-		    	</div>
-			</div>
-		</div>
-		
-		<div id="pay_detail" class="job-ad-box scrollspy">
-			<div class="job-ad-hd scrollspy">
-				<p class="job-ad-hd-tx">
-					<spring:message code="fap.jobad.pay_detail" />
-				</p>
-			</div>
-			
-			<div class="job-ad-contents">
-				<div class="job-ad-row">
-					<!-- 기본급 -->
-					<input type="hidden" name="jobPayList[0].fap_job_pay_gb" value="C2200">
-					<input type="hidden" name="jobPayList[0].jobPayBase.jobPayBaseList[0].fap_job_pay_base_gb" value="C2300">
-					<input type="hidden" name="jobPayList[0].jobPayBase.jobPayBaseList[1].fap_job_pay_base_gb" value="C2301">
-					<input type="hidden" name="jobPayList[0].jobPayBase.jobPayBaseList[2].fap_job_pay_base_gb" value="C2302">
-					<input type="hidden" name="jobPayList[0].jobPayBase.jobPayBaseList[3].fap_job_pay_base_gb" value="C2303">
-					
-					<div class="job-ad-lt">
-						<spring:message code="fap.jobad.basic_sal_total" />
-						<div>
-							<span class="basic-total">0</span>
-							<spring:message code="fap.jobad.basic_sal_total_yen" />
-						</div>
-					</div>
-					<div class="job-ad-rt sal-row">
-						<div class="sub-area">
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<div class="job-ad-lt point" style="margin-top: 2%; margin-left: -1%;"><h5 class="inner-title"><spring:message code="fap.jobad.basic_sal" /><span class="red-point"></span></h5></div>
-									<span class="inner-item">
-										<input type="text" class="currency basic-fee" id="basic_pay_input" name="jobPayList[0].jobPayBase.jobPayBaseList[0].fap_job_pay_base_info" ng-model="jobPayList[0].jobPayBase.jobPayBaseList[0].fap_job_pay_base_info" blur-currency/>
-										<span class="hiddenTx">円</span>
-									</span>
-								</div>
-							</div>
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.housing_fee" /></h5>
-									<span class="inner-item">
-										<input type="text" class="currency basic-fee" name="jobPayList[0].jobPayBase.jobPayBaseList[1].fap_job_pay_base_info" ng-model="jobPayList[0].jobPayBase.jobPayBaseList[1].fap_job_pay_base_info" blur-currency/>
-										<span class="hiddenTx">円</span>
-									</span>
-								</div>
-							</div>
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<div class="inner-float">
-										<h5 class="inner-title"><spring:message code="fap.jobad.service_overtime_fee" /></h5>
-										<span class="inner-item">
-											<input type="text" class="currency half basic-fee" name="jobPayList[0].jobPayBase.jobPayBaseList[2].fap_job_pay_base_info" ng-model="jobPayList[0].jobPayBase.jobPayBaseList[2].fap_job_pay_base_info" blur-currency/>
-											<span class="hiddenTx">円</span>
+										<span class="job-check long-check">
+											<label class="job-check-label">
+												<code value="C3902"></code>
+											</label>
+											<input type="checkbox" name="jobWorkplaceList[2].fap_job_workplace_gb" value="C3902">
+										</span>
+										<span class="job-check long-check">
+											<label class="job-check-label">
+												<code value="C3903"></code>
+											</label>
+											<input type="checkbox" name="jobWorkplaceList[3].fap_job_workplace_gb" value="C3903">
 										</span>
 									</div>
-									<div class="inner-float">
-										<h5 class="inner-title right-title"><spring:message code="fap.jobad.service_overtime_time" /></h5>
-										<span class="inner-item right-title">
-											<input type="text" class="currency half" name="jobPayList[0].jobPayBase.jobPayBaseList[2].jobServiceWork.fap_job_service_work_tm" ng-model="jobPayList[0].jobPayBase.jobPayBaseList[2].jobServiceWork.fap_job_service_work_tm" blur-currency/>
-											<span class="hiddenTx"><spring:message code="fap.jobad.service_overtime_time" /></span>
+									<div class="job-ad-inner-box p10">
+										<span class="job-check long-check">
+											<label class="job-check-label">
+												<code value="C3904"></code>
+											</label>
+											<input type="checkbox" name="jobWorkplaceList[4].fap_job_workplace_gb" value="C3904">
+										</span>
+										<span class="job-check long-check">
+											<label class="job-check-label">
+												<code value="C3905"></code>
+											</label>
+											<input type="checkbox" name="jobWorkplaceList[5].fap_job_workplace_gb" value="C3905">
+										</span>
+										<span class="job-check long-check">
+											<label class="job-check-label">
+												<code value="C3906"></code>
+											</label>
+											<input type="checkbox" name="jobWorkplaceList[6].fap_job_workplace_gb" value="C3906">
+										</span>
+										<span class="job-check long-check">
+											<label class="job-check-label">
+												<code value="C3907"></code>
+											</label>
+											<input type="checkbox" name="jobWorkplaceList[7].fap_job_workplace_gb" value="C3907">
 										</span>
 									</div>
+									<div class="job-ad-inner-box p10">
+										<span class="job-check long-check">
+											<label class="job-check-label">
+												<code value="C3908"></code>
+											</label>
+											<input type="checkbox" name="jobWorkplaceList[8].fap_job_workplace_gb" value="C3908">
+										</span>
+									</div>
+									<div class="sub-area area-work">
+										<!-- 1 -->
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title">
+													<code value="C3900"></code>
+												</h5>
+												<span class="inner-item">
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4000"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[0].jobWorkplaceDtl.jobWorkplaceDtlList[0].fap_job_workplace_dtl_gb" value="C4000">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4001"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[0].jobWorkplaceDtl.jobWorkplaceDtlList[1].fap_job_workplace_dtl_gb" value="C4001">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4002"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[0].jobWorkplaceDtl.jobWorkplaceDtlList[2].fap_job_workplace_dtl_gb" value="C4002">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4003"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[0].jobWorkplaceDtl.jobWorkplaceDtlList[3].fap_job_workplace_dtl_gb" value="C4003">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4004"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[0].jobWorkplaceDtl.jobWorkplaceDtlList[4].fap_job_workplace_dtl_gb" value="C4004">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4005"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[0].jobWorkplaceDtl.jobWorkplaceDtlList[5].fap_job_workplace_dtl_gb" value="C4005">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4006"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[0].jobWorkplaceDtl.jobWorkplaceDtlList[6].fap_job_workplace_dtl_gb" value="C4006">
+													</span>
+												</span>
+											</div>
+										</div>
+										<!-- 2 -->
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title">
+													<code value="C3901"></code>
+												</h5>
+												<span class="inner-item">
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4007"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[1].jobWorkplaceDtl.jobWorkplaceDtlList[0].fap_job_workplace_dtl_gb" value="C4007">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4008"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[1].jobWorkplaceDtl.jobWorkplaceDtlList[1].fap_job_workplace_dtl_gb" value="C4008">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4009"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[1].jobWorkplaceDtl.jobWorkplaceDtlList[2].fap_job_workplace_dtl_gb" value="C4009">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4010"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[1].jobWorkplaceDtl.jobWorkplaceDtlList[3].fap_job_workplace_dtl_gb" value="C4010">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4011"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[1].jobWorkplaceDtl.jobWorkplaceDtlList[4].fap_job_workplace_dtl_gb" value="C4011">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4012"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[1].jobWorkplaceDtl.jobWorkplaceDtlList[5].fap_job_workplace_dtl_gb" value="C4012">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4013"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[1].jobWorkplaceDtl.jobWorkplaceDtlList[6].fap_job_workplace_dtl_gb" value="C4013">
+													</span>
+												</span>
+											</div>
+										</div>
+										<!-- 3 -->
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title">
+													<code value="C3902"></code>
+												</h5>
+												<span class="inner-item">
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4014"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[2].jobWorkplaceDtl.jobWorkplaceDtlList[0].fap_job_workplace_dtl_gb" value="C4014">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4015"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[2].jobWorkplaceDtl.jobWorkplaceDtlList[1].fap_job_workplace_dtl_gb" value="C4015">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4016"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[2].jobWorkplaceDtl.jobWorkplaceDtlList[2].fap_job_workplace_dtl_gb" value="C4016">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4017"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[2].jobWorkplaceDtl.jobWorkplaceDtlList[3].fap_job_workplace_dtl_gb" value="C4017">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4018"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[2].jobWorkplaceDtl.jobWorkplaceDtlList[4].fap_job_workplace_dtl_gb" value="C4018">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4019"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[2].jobWorkplaceDtl.jobWorkplaceDtlList[5].fap_job_workplace_dtl_gb" value="C4019">
+													</span>
+												</span>
+											</div>
+										</div>
+										<!-- 4 -->
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title">
+													<code value="C3903"></code>
+												</h5>
+												<span class="inner-item">
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4020"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[3].jobWorkplaceDtl.jobWorkplaceDtlList[0].fap_job_workplace_dtl_gb" value="C4020">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4021"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[3].jobWorkplaceDtl.jobWorkplaceDtlList[1].fap_job_workplace_dtl_gb" value="C4021">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4022"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[3].jobWorkplaceDtl.jobWorkplaceDtlList[2].fap_job_workplace_dtl_gb" value="C4022">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4023"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[3].jobWorkplaceDtl.jobWorkplaceDtlList[3].fap_job_workplace_dtl_gb" value="C4023">
+													</span>
+												</span>
+											</div>
+										</div>
+										<!-- 5 -->
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title">
+													<code value="C3904"></code>
+												</h5>
+												<span class="inner-item">
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4024"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[4].jobWorkplaceDtl.jobWorkplaceDtlList[0].fap_job_workplace_dtl_gb" value="C4024">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4025"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[4].jobWorkplaceDtl.jobWorkplaceDtlList[1].fap_job_workplace_dtl_gb" value="C4025">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4026"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[4].jobWorkplaceDtl.jobWorkplaceDtlList[2].fap_job_workplace_dtl_gb" value="C4026">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4027"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[4].jobWorkplaceDtl.jobWorkplaceDtlList[3].fap_job_workplace_dtl_gb" value="C4027">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4028"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[4].jobWorkplaceDtl.jobWorkplaceDtlList[4].fap_job_workplace_dtl_gb" value="C4028">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4029"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[4].jobWorkplaceDtl.jobWorkplaceDtlList[5].fap_job_workplace_dtl_gb" value="C4029">
+													</span>
+												</span>
+											</div>
+										</div>
+										<!-- 6 -->
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title">
+													<code value="C3905"></code>
+												</h5>
+												<span class="inner-item">
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4030"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[0].fap_job_workplace_dtl_gb" value="C4030">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4031"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[1].fap_job_workplace_dtl_gb" value="C4031">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4032"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[2].fap_job_workplace_dtl_gb" value="C4032">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4033"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[3].fap_job_workplace_dtl_gb" value="C4033">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4034"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[4].fap_job_workplace_dtl_gb" value="C4034">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4035"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[5].fap_job_workplace_dtl_gb" value="C4035">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4036"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[6].fap_job_workplace_dtl_gb" value="C4036">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4037"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[7].fap_job_workplace_dtl_gb" value="C4037">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4038"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[5].jobWorkplaceDtl.jobWorkplaceDtlList[8].fap_job_workplace_dtl_gb" value="C4038">
+													</span>
+												</span>
+											</div>
+										</div>
+										<!-- 7 -->
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title">
+													<code value="C3906"></code>
+												</h5>
+												<span class="inner-item">
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4039"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[0].fap_job_workplace_dtl_gb" value="C4039">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4040"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[1].fap_job_workplace_dtl_gb" value="C4040">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4041"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[2].fap_job_workplace_dtl_gb" value="C4041">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4042"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[3].fap_job_workplace_dtl_gb" value="C4042">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4043"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[4].fap_job_workplace_dtl_gb" value="C4043">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4044"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[5].fap_job_workplace_dtl_gb" value="C4044">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4045"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[6].fap_job_workplace_dtl_gb" value="C4045">
+													</span>
+													<span class="job-check wp-dtl">
+														<label class="job-check-label">
+															<code value="C4046"></code>
+														</label>
+														<input type="checkbox" name="jobWorkplaceList[6].jobWorkplaceDtl.jobWorkplaceDtlList[7].fap_job_workplace_dtl_gb" value="C4046">
+													</span>
+												</span>
+											</div>
+										</div>
+										<!-- 8 -->
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title">
+													<code value="C3908"></code>
+												</h5>
+												<span class="inner-item">
+													<span class="job-check wp-dtl wp-textarea">
+														<textarea rows="4" cols="20" name="jobWorkplaceList[8].JobWorkplaceEtc.fap_job_workplace_etc_address" maxlength="150"></textarea>
+													</span>
+												</span>
+											</div>
+										</div>
+										
+									</div>
 								</div>
-							</div>
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.extra_fee_title" /></h5>
-									<span class="inner-item">
-										<button type="button" class="btn-add" ng-click="add_job_pay_etc()"></button>
-										<button type="button" class="btn-remove" ng-click="remove_job_pay_etc()"></button>
-									</span>
-								</div>
-							</div>
+					    	</div>
 							
-							<div class="extra-fee-plus">
+							<div class="job-ad-row m50">
+								<!-- 시용기간유무 -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.jobad.intern" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt radio-row">
+									<span class="job-radio intern yes">
+										<label class="job-radio-label">
+											<code value="C0500"></code>
+										</label>
+										<input type="radio" name="fap_job_ad_intern" value="C0500"/>
+									</span>
+									<span class="job-radio intern no">
+										<label class="job-radio-label">
+											<code value="C0501"></code>
+										</label>
+										<input type="radio" name="fap_job_ad_intern" value="C0501"/>
+									</span>
+									<div class="sub-area display">
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.jobtrial_pd" /></h5>
+												<span class="inner-item">
+													<input type="text" name="fap_job_trial_pd" maxlength="50"/>
+													<span class="hiddenTx"><spring:message code="fap.jobad.dorm_month" /></span>
+												</span>
+											</div>
+										</div>
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.jobtrial_pay" /></h5>
+												<span class="inner-item">
+													<input type="text" class="currency" name="fap_job_trial_pay" ng-model="comp_info.fap_job_trial_pay" blur-currency/>
+													<span class="hiddenTx">円</span>
+												</span>
+											</div>
+										</div>
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.jobtrial_pay_condition" /></h5>
+												<span class="inner-item radio">
+													<span class="job-radio trial-pay">
+														<label class="job-radio-label">
+															<code value="C2400"></code>
+														</label>
+														<input type="radio" name="fap_job_trial_pay_equal" value="C2400"/>
+													</span>
+													<span class="job-radio trial-pay">
+														<label class="job-radio-label">
+															<code value="C2401"></code>
+														</label>
+														<input type="radio" name="fap_job_trial_pay_equal" value="C2401"/>
+													</span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+					    	</div>
+							
+							<div class="job-ad-row m50">
+								<!-- 기숙사유무 -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.jobad.is_dorm" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt radio-row">
+									<span class="job-radio isdorm yes">
+										<label class="job-radio-label">
+											<code value="C0800"></code>
+										</label>
+										<input type="radio" name="fap_job_ad_isdorm" value="C0800"/>
+									</span>
+									<span class="job-radio isdorm no">
+										<label class="job-radio-label">
+											<code value="C0801"></code>
+										</label>
+										<input type="radio" name="fap_job_ad_isdorm" value="C0801"/>
+									</span>
+									<div class="sub-area display">
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.dorm_lo" /></h5>
+												<span class="inner-item">
+													<input type="text" name="fap_job_dorm_lo" maxlength="100" placeholder="100<spring:message code="fap.placeholder.limit_characters" />"/>
+												</span>
+											</div>
+										</div>
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.dorm_cost" /></h5>
+												<span class="inner-item">
+													<input type="text" class="currency" name="fap_job_dorm_cost" ng-model="comp_info.fap_job_dorm_cost" blur-currency/>
+													<span class="hiddenTx">円/月</span>
+												</span>
+											</div>
+										</div>
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.dorm_note" /></h5>
+												<span class="inner-item">
+													<textarea rows="4" cols="20" name="fap_job_dorm_note" maxlength="200" placeholder="<spring:message code="fap.placeholder.currency" />(200<spring:message code="fap.placeholder.limit_characters" />)"></textarea>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+					    	</div>
+							<div class="job-ad-row m50">
+								<!-- 승급 -->
+								<div class="job-ad-lt">
+									<spring:message code="fap.jobad.promotion" />
+								</div>
+								<div class="job-ad-rt">
+									<input class="input2" type="text" name="fap_job_ad_promotion" maxlength="100" placeholder="100<spring:message code="fap.placeholder.limit_characters" />">
+								</div>
+					    	</div>
+					    	<div class="job-ad-row">
+								<!-- 휴일 -->
+								<div class="job-ad-lt">
+									<spring:message code="fap.jobad.vacation" />
+								</div>
+								<div class="job-ad-rt">
+									<textarea rows="4" cols="20" name="fap_job_ad_vacation" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
+								</div>
+					    	</div>
+							<div class="job-ad-row">
+								<!-- 보험 및 퇴직금  -->
+								<div class="job-ad-lt">
+									<spring:message code="fap.jobad.insurance" />
+								</div>
+								<div class="job-ad-rt check-row">
+									<span class="job-check">
+										<label class="job-check-label">
+											<code value="C0600"></code>
+										</label>
+										<input type="checkbox" name="jobIsrList[0].fap_job_isr_gb" value="C0600">
+									</span>
+									<span class="job-check">
+										<label class="job-check-label">
+											<code value="C0601"></code>
+										</label>
+										<input type="checkbox" name="jobIsrList[1].fap_job_isr_gb" value="C0601">
+									</span>
+									<span class="job-check">
+										<label class="job-check-label">
+											<code value="C0602"></code>
+										</label>
+										<input type="checkbox" name="jobIsrList[2].fap_job_isr_gb" value="C0602">
+									</span>
+									<span class="job-check">
+										<label class="job-check-label">
+											<code value="C0603"></code>
+										</label>
+										<input type="checkbox" name="jobIsrList[3].fap_job_isr_gb" value="C0603">
+									</span>
+									<span class="job-check">
+										<label class="job-check-label">
+											<code value="C0604"></code>
+										</label>
+										<input type="checkbox" name="jobIsrList[4].fap_job_isr_gb" value="C0604">
+									</span>
+								</div>
+					    	</div>
+							<div class="job-ad-row m50">
+								<!-- 기타 복리후생 -->
+								<div class="job-ad-lt">
+									<spring:message code="fap.jobad.welfare" />
+								</div>
+								<div class="job-ad-rt">
+									<textarea rows="4" cols="20" name="fap_job_ad_welfare" maxlength="500" placeholder="500<spring:message code="fap.placeholder.limit_characters" />"></textarea>
+								</div>
+					    	</div>
+						</div>	
+					</div>	
+					
+					<div id="detail" class="job-ad-box scrollspy">
+						<!-- 상세정보 -->
+						<div class="job-ad-hd scrollspy">
+							    <p class="job-ad-hd-tx">
+					       				<spring:message code="fap.jobad.detail.title" />
+					       		</p>
+						</div>
+						
+						<div class="job-ad-contents">
+							<div class="job-ad-row">
+								<!-- 주요업무 -->
+								<div class="job-ad-lt doubleline point">
+									<spring:message code="fap.jobad.work" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt">
+									<div class="job-ad-dropdown">
+										<div class="job-ad-select">
+											<button type="button" class="job-ad-select-btn"><code value="C0300"></code></button>
+											<input type="hidden" id="work-gb" name="jobWorkList[0].fap_job_work_gb" value="C0300">
+										</div>
+										<div class="job-ad-select-option">
+											<ul class="option-list">
+												<li class="work-type selected">
+													<button type="button" work-code="C0300"><code value="C0300"></code></button>
+												</li>
+												<li class="work-type">
+													<button type="button" work-code="C0301"><code value="C0301"></code></button>
+												</li>
+												<li class="work-type">
+													<button type="button" work-code="C0302"><code value="C0302"></code></button>
+												</li>
+												<li class="work-type">
+													<button type="button" work-code="C0304"><code value="C0304"></code></button>
+												</li>
+												<li class="work-type">
+													<button type="button" work-code="C0305"><code value="C0305"></code></button>
+												</li>
+												<li class="work-type">
+													<button type="button" work-code="C0306"><code value="C0306"></code></button>
+												</li>
+												<li class="work-type">
+													<button type="button" work-code="C0307"><code value="C0307"></code></button>
+												</li>
+												<li class="work-type">
+													<button type="button" work-code="C0308"><code value="C0308"></code></button>
+												</li>
+												<li class="work-type">
+													<button type="button" work-code="C0309"><code value="C0309"></code></button>
+												</li>
+												<li class="work-type">
+													<button type="button" work-code="C0303"><code value="C0303"></code></button>
+												</li>
+											</ul>
+										</div>
+									</div>
+								<span><spring:message code="fap.jobad.work.select" /></span>
+								</div>
+					    	</div>
+					    	<div class="job-ad-row m10">
+								<!-- 주요업무 추가/삭제 버튼 -->
+								<div class="job-ad-lt bnt-lt">
+									<button type="button" class="btn-add" ng-click="addWork()"></button>
+									<button type="button" class="btn-remove" ng-click="removeWork()"></button>
+								</div>
+								<div class="job-ad-rt">
+									<textarea rows="4" cols="20" name="jobWorkList[0].fap_job_work_dtl" maxlength="1000" placeholder="1000<spring:message code="fap.placeholder.limit_characters" />"></textarea>
+								</div>
+					    	</div>
+					    	<!-- 주요업무 Inner Html 영역 -->
+					    	<div class="work-type-plus">
 								
 							</div>
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.incentive.detail" /></h5>
-									<span class="inner-item">
-										<textarea rows="4" cols="20" name="jobPayList[0].fap_job_pay_dtl" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
+							
+							<div class="job-ad-row">
+								<!-- 희망 성별 -->
+								<div class="job-ad-lt">
+									<spring:message code="fap.jobad.gender" />
+								</div>
+								<div class="job-ad-rt radio-row">
+									<span class="job-radio ad-gender">
+										<label class="job-radio-label">
+											<code value="C4200"></code>
+										</label>
+										<input type="radio" name="fap_job_ad_gender" value="C4200"/>
+									</span>
+									<span class="job-radio ad-gender">
+										<label class="job-radio-label">
+											<code value="C4201"></code>
+										</label>
+										<input type="radio" name="fap_job_ad_gender" value="C4201"/>
+									</span>
+									<span class="job-radio ad-gender">
+										<label class="job-radio-label">
+											<code value="C4202"></code>
+										</label>
+										<input type="radio" name="fap_job_ad_gender" value="C4202"/>
 									</span>
 								</div>
+					    	</div>
+					    	
+					    	<div class="job-ad-row m50">
+								<!-- 희망 연령 -->
+								<div class="job-ad-lt">
+									<spring:message code="fap.jobad.age" />
+								</div>
+								<div class="job-ad-rt radio-row">
+									<span class="job-radio ad-age">
+										<label class="job-radio-label">
+											<code value="C1400"></code>
+										</label>
+										<input type="radio" name="fap_job_ad_age" value="C1400"/>
+									</span>
+									<span class="job-radio ad-age">
+										<label class="job-radio-label">
+											<code value="C1401"></code>
+										</label>
+										<input type="radio" name="fap_job_ad_age" value="C1401"/>
+									</span>
+									<span class="job-radio ad-age">
+										<label class="job-radio-label">
+											<code value="C1402"></code>
+										</label>
+										<input type="radio" name="fap_job_ad_age" value="C1402"/>
+									</span>
+									<span class="job-radio ad-age">
+										<label class="job-radio-label">
+											<code value="C1403"></code>
+										</label>
+										<input type="radio" name="fap_job_ad_age" value="C1403"/>
+									</span>
+								</div>
+					    	</div>
+					    	
+					    	<div class="job-ad-row m50">
+								<!-- 희망 일본어 -->
+								<div class="job-ad-lt">
+									<spring:message code="fap.jobad.required_ja_level" />
+								</div>
+								<div class="job-ad-rt radio-row">
+									<span class="job-radio ad-ja">
+										<label class="job-radio-label">
+											<code value="C4400"></code>
+										</label>
+										<input type="radio" name="fap_job_ja_level_gb" value="C4400"/>
+									</span>
+									<span class="job-radio ad-ja">
+										<label class="job-radio-label">
+											<code value="C4401"></code>
+										</label>
+										<input type="radio" name="fap_job_ja_level_gb" value="C4401"/>
+									</span>
+									<span class="job-radio ad-ja">
+										<label class="job-radio-label">
+											<code value="C4402"></code>
+										</label>
+										<input type="radio" name="fap_job_ja_level_gb" value="C4402"/>
+									</span>
+									<span class="job-radio ad-ja">
+										<label class="job-radio-label">
+											<code value="C4403"></code>
+										</label>
+										<input type="radio" name="fap_job_ja_level_gb" value="C4403"/>
+									</span>
+									<div class="sub-area">
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.required_ja_level.detail" /></h5>
+												<span class="inner-item">
+													<textarea rows="4" cols="20" name="fap_job_ja_level_dtl" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+					    	</div>
+					    	
+					    	<div class="job-ad-row">
+								<!-- 우대사항 -->
+								<div class="job-ad-lt doubleline">
+									<spring:message code="fap.jobad.preferences" />
+								</div>
+								<div class="job-ad-rt">
+									<div class="job-ad-dropdown">
+										<div class="job-ad-select">
+											<button type="button" class="job-ad-select-btn"><code value="C4106"></code></button>
+											<input type="hidden" id="preferences-gb" name="jobPrefList[0].fap_job_pref_gb" value="C4106">
+										</div>
+										<div class="job-ad-select-option">
+											<ul class="option-list">
+												<li class="preferences-type selected">
+													<button type="button" preferences-code="C4106"><code value="C4106"></code></button>
+												</li>
+												<li class="preferences-type">
+													<button type="button" preferences-code="C4100"><code value="C4100"></code></button>
+												</li>
+												<li class="preferences-type">
+													<button type="button" preferences-code="C4101"><code value="C4101"></code></button>
+												</li>
+												<li class="preferences-type">
+													<button type="button" preferences-code="C4102"><code value="C4102"></code></button>
+												</li>
+												<li class="preferences-type">
+													<button type="button" preferences-code="C4103"><code value="C4103"></code></button>
+												</li>
+												<li class="preferences-type">
+													<button type="button" preferences-code="C4104"><code value="C4104"></code></button>
+												</li>
+												<li class="preferences-type">
+													<button type="button" preferences-code="C4105"><code value="C4105"></code></button>
+												</li>
+											</ul>
+										</div>
+									</div>
+								<span><spring:message code="fap.jobad.work.select" /></span>
+								</div>
+					    	</div>
+					    	<div class="job-ad-row m10">
+								<!-- 우대사항 추가/삭제 버튼 -->
+								<div class="job-ad-lt bnt-lt">
+									<button type="button" class="btn-add" ng-click="addPref()"></button>
+									<button type="button" class="btn-remove" ng-click="removePref()"></button>
+								</div>
+								<div class="job-ad-rt">
+									<textarea rows="4" cols="20" name="jobPrefList[0].fap_job_pref_dtl" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
+								</div>
+					    	</div>
+					    	<!-- 우대사항 Inner Html 영역 -->
+					    	<div class="preferences-type-plus">
+								
 							</div>
+							<div class="job-ad-row">
+								<!-- 인재상 -->
+								<div class="job-ad-lt">
+									<spring:message code="fap.jobad.ideal_person" />
+								</div>
+								<div class="job-ad-rt">
+									<textarea rows="4" cols="20" name="fap_job_ad_ideal_person" maxlength="800" placeholder="800<spring:message code="fap.placeholder.limit_characters" />"></textarea>
+								</div>
+					    	</div>
 						</div>
 					</div>
-					<!-- 기본급 끝 -->
-		    	</div>
-		    	<!-- 잔업수당(기본급에 포함되지 않는) -->
-		    	<div class="job-ad-row">
-		    		<input type="hidden" name="jobPayList[1].fap_job_pay_gb" value="C2202">
-		    		<div class="job-ad-lt">
-		    			<spring:message code="fap.jobad.overtime_fee" />
-		    			<div>
-		    			<spring:message code="fap.jobad.overtime_fee_sub" />
-		    			</div>
-		    		</div>
-		    		<div class="job-ad-rt sal-row">
-						<div class="sub-area">
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<div class="inner-float">
-										<h5 class="inner-title"><spring:message code="fap.jobad.overtime_fee" /></h5>
-										<span class="inner-item">
-											<input type="text" class="currency half" name="jobPayList[1].fap_job_pay_info" ng-model="jobPayList[1].fap_job_pay_info" blur-currency/>
-											<span class="hiddenTx">円/時</span>
-										</span>
-									</div>
-									<div class="inner-float">
-										<h5 class="inner-title right-title"></h5>
-										<span class="inner-item right-title">
-											<input type="text" class="currency half" name="jobPayList[1].jobPayExtra.fap_job_pay_extra_tm" ng-model="jobPayList[1].jobPayExtra.fap_job_pay_extra_tm" blur-currency/>
-											<span class="hiddenTx">時間以上</span>
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.incentive.detail" /></h5>
-									<span class="inner-item">
-										<textarea rows="4" cols="20" name="jobPayList[1].fap_job_pay_dtl" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
-									</span>
-								</div>
-							</div>
+					
+					<div id="pay_detail" class="job-ad-box scrollspy">
+						<div class="job-ad-hd scrollspy">
+							<p class="job-ad-hd-tx">
+								<spring:message code="fap.jobad.pay_detail" />
+							</p>
 						</div>
 						
-					</div>
-					<!-- 잔업수당(기본급에 포함되지 않는) 끝 -->
-		    	</div>
-		    	
-		    	<div class="job-ad-row m50">
-		    		<input type="hidden" name="jobPayList[2].fap_job_pay_gb" value="C2203">
-					<!-- 교통비유무 -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.jobad.transport_fee" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt radio-row" id="transport_ck_div">
-						<span class="job-radio transport yes">
-							<label class="job-radio-label">
-								<code value="C0800"></code>
-							</label>
-						</span>
-						<span class="job-radio transport no">
-							<label class="job-radio-label">
-								<code value="C0801"></code>
-							</label>
-						</span>
-						<div class="sub-area display">
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.transport_fee.max" /></h5>
-									<span class="inner-item">
-										<input type="text" class="currency" name="jobPayList[2].fap_job_pay_info" ng-model="jobPayList[2].fap_job_pay_info" blur-currency/>
-										<span class="hiddenTx">円</span>
+						<div class="job-ad-contents">
+							<div class="job-ad-row">
+								<!-- 기본급 -->
+								<input type="hidden" name="jobPayList[0].fap_job_pay_gb" value="C2200">
+								<input type="hidden" name="jobPayList[0].jobPayBase.jobPayBaseList[0].fap_job_pay_base_gb" value="C2300">
+								<input type="hidden" name="jobPayList[0].jobPayBase.jobPayBaseList[1].fap_job_pay_base_gb" value="C2301">
+								<input type="hidden" name="jobPayList[0].jobPayBase.jobPayBaseList[2].fap_job_pay_base_gb" value="C2302">
+								<input type="hidden" name="jobPayList[0].jobPayBase.jobPayBaseList[3].fap_job_pay_base_gb" value="C2303">
+								
+								<div class="job-ad-lt">
+									<spring:message code="fap.jobad.basic_sal_total" />
+									<div>
+										<span class="basic-total">0</span>
+										<spring:message code="fap.jobad.basic_sal_total_yen" />
+									</div>
+								</div>
+								<div class="job-ad-rt sal-row">
+									<div class="sub-area">
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<div class="job-ad-lt point" style="margin-top: 2%; margin-left: -1%;"><h5 class="inner-title"><spring:message code="fap.jobad.basic_sal" /><span class="red-point"></span></h5></div>
+												<span class="inner-item">
+													<input type="text" class="currency basic-fee" id="basic_pay_input" name="jobPayList[0].jobPayBase.jobPayBaseList[0].fap_job_pay_base_info" ng-model="jobPayList[0].jobPayBase.jobPayBaseList[0].fap_job_pay_base_info" blur-currency/>
+													<span class="hiddenTx">円</span>
+												</span>
+											</div>
+										</div>
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.housing_fee" /></h5>
+												<span class="inner-item">
+													<input type="text" class="currency basic-fee" name="jobPayList[0].jobPayBase.jobPayBaseList[1].fap_job_pay_base_info" ng-model="jobPayList[0].jobPayBase.jobPayBaseList[1].fap_job_pay_base_info" blur-currency/>
+													<span class="hiddenTx">円</span>
+												</span>
+											</div>
+										</div>
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<div class="inner-float">
+													<h5 class="inner-title"><spring:message code="fap.jobad.service_overtime_fee" /></h5>
+													<span class="inner-item">
+														<input type="text" class="currency half basic-fee" name="jobPayList[0].jobPayBase.jobPayBaseList[2].fap_job_pay_base_info" ng-model="jobPayList[0].jobPayBase.jobPayBaseList[2].fap_job_pay_base_info" blur-currency/>
+														<span class="hiddenTx">円</span>
+													</span>
+												</div>
+												<div class="inner-float">
+													<h5 class="inner-title right-title"><spring:message code="fap.jobad.service_overtime_time" /></h5>
+													<span class="inner-item right-title">
+														<input type="text" class="currency half" name="jobPayList[0].jobPayBase.jobPayBaseList[2].jobServiceWork.fap_job_service_work_tm" ng-model="jobPayList[0].jobPayBase.jobPayBaseList[2].jobServiceWork.fap_job_service_work_tm" blur-currency/>
+														<span class="hiddenTx"><spring:message code="fap.jobad.service_overtime_time" /></span>
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.extra_fee_title" /></h5>
+												<span class="inner-item">
+													<button type="button" class="btn-add" ng-click="add_job_pay_etc()"></button>
+													<button type="button" class="btn-remove" ng-click="remove_job_pay_etc()"></button>
+												</span>
+											</div>
+										</div>
+										
+										<div class="extra-fee-plus">
+											
+										</div>
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.incentive.detail" /></h5>
+												<span class="inner-item">
+													<textarea rows="4" cols="20" name="jobPayList[0].fap_job_pay_dtl" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- 기본급 끝 -->
+					    	</div>
+					    	<!-- 잔업수당(기본급에 포함되지 않는) -->
+					    	<div class="job-ad-row">
+					    		<input type="hidden" name="jobPayList[1].fap_job_pay_gb" value="C2202">
+					    		<div class="job-ad-lt">
+					    			<spring:message code="fap.jobad.overtime_fee" />
+					    			<div>
+					    			<spring:message code="fap.jobad.overtime_fee_sub" />
+					    			</div>
+					    		</div>
+					    		<div class="job-ad-rt sal-row">
+									<div class="sub-area">
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<div class="inner-float">
+													<h5 class="inner-title"><spring:message code="fap.jobad.overtime_fee" /></h5>
+													<span class="inner-item">
+														<input type="text" class="currency half" name="jobPayList[1].fap_job_pay_info" ng-model="jobPayList[1].fap_job_pay_info" blur-currency/>
+														<span class="hiddenTx">円/時</span>
+													</span>
+												</div>
+												<div class="inner-float">
+													<h5 class="inner-title right-title"></h5>
+													<span class="inner-item right-title">
+														<input type="text" class="currency half" name="jobPayList[1].jobPayExtra.fap_job_pay_extra_tm" ng-model="jobPayList[1].jobPayExtra.fap_job_pay_extra_tm" blur-currency/>
+														<span class="hiddenTx">時間以上</span>
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.incentive.detail" /></h5>
+												<span class="inner-item">
+													<textarea rows="4" cols="20" name="jobPayList[1].fap_job_pay_dtl" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />"></textarea>
+												</span>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+								<!-- 잔업수당(기본급에 포함되지 않는) 끝 -->
+					    	</div>
+					    	
+					    	<div class="job-ad-row m50">
+					    		<input type="hidden" name="jobPayList[2].fap_job_pay_gb" value="C2203">
+								<!-- 교통비유무 -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.jobad.transport_fee" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt radio-row" id="transport_ck_div">
+									<span class="job-radio transport yes">
+										<label class="job-radio-label">
+											<code value="C0800"></code>
+										</label>
 									</span>
+									<span class="job-radio transport no">
+										<label class="job-radio-label">
+											<code value="C0801"></code>
+										</label>
+									</span>
+									<div class="sub-area display">
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.transport_fee.max" /></h5>
+												<span class="inner-item">
+													<input type="text" class="currency" name="jobPayList[2].fap_job_pay_info" ng-model="jobPayList[2].fap_job_pay_info" blur-currency/>
+													<span class="hiddenTx">円</span>
+												</span>
+											</div>
+										</div>
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.detail" /></h5>
+												<span class="inner-item">
+													<textarea rows="4" cols="20" name="jobPayList[2].fap_job_pay_dtl" maxlength="200" placeholder="<spring:message code="fap.placeholder.currency" />(200<spring:message code="fap.placeholder.limit_characters" />)"></textarea>
+												</span>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+					    	</div>
+					    	
+					    	<div class="job-ad-row m50">
+					    		<input type="hidden" name="jobPayList[3].fap_job_pay_gb" value="C2204">
+								<!-- 상여 유무 -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.jobad.incentive" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt radio-row" id="incentive_ck_div">
+									<span class="job-radio incentive yes">
+										<label class="job-radio-label">
+											<code value="C0800"></code>
+										</label>
+									</span>
+									<span class="job-radio incentive no">
+										<label class="job-radio-label">
+											<code value="C0801"></code>
+										</label>
+									</span>
+									<div class="sub-area display">
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.incentive.fee" /></h5>
+												<span class="inner-item">
+													<input type="text" class="currency" name="jobPayList[3].fap_job_pay_info" ng-model="jobPayList[3].fap_job_pay_info" blur-currency/>
+													<span class="hiddenTx">円</span>
+												</span>
+											</div>
+										</div>
+										<div class="sub-area-inner">
+											<div class="bar-inner">
+												<h5 class="inner-title"><spring:message code="fap.jobad.incentive.detail" /></h5>
+												<span class="inner-item">
+													<textarea rows="4" cols="20" name="jobPayList[3].fap_job_pay_dtl" maxlength="200" placeholder="<spring:message code="fap.placeholder.currency" />(200<spring:message code="fap.placeholder.limit_characters" />)"></textarea>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+					    	</div>
+					    	
+					    	<div class="job-ad-row m50">
+								<!-- 기타 수당 -->
+								<div class="job-ad-lt">
+									<spring:message code="fap.jobad.extra_fee_title" />
+								</div>
+								<div class="job-ad-rt sal-row">
+									<button type="button" class="btn-add" ng-click="add_job_pay()"></button>
+									<button type="button" class="btn-remove" ng-click="remove_job_pay()"></button>
+									<div class="job-extra-plus">
+									</div>
+								</div>
+					    	</div>
+					    	
+					    </div>
+					</div>
+				
+					<div id="recruit_pcs" class="job-ad-box scrollspy">
+						<div class="job-ad-hd"> 
+							<p class="job-ad-hd-tx">
+					       		<spring:message code="fap.jobad.recruit_pcs" />
+							</p>
+							<p>
+								<spring:message code="fap.jobad.recruit_pcs.comment" />
+							</p>
+						</div>
+						
+						<div class="job-ad-contents">
+							<div class="job-ad-row">
+								<!-- 전형종류 -->
+								<div class="job-ad-lt point">
+									<spring:message code="fap.jobad.recruit_pcs" />
+									<span class="red-point"></span>
+								</div>
+								<div class="job-ad-rt sal-row">
+									<button type="button" class="btn-add" ng-click="addRecruitPcs()"></button>
+									<button type="button" class="btn-remove" ng-click="removeRecruitPcs()"></button>
 								</div>
 							</div>
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.detail" /></h5>
-									<span class="inner-item">
-										<textarea rows="4" cols="20" name="jobPayList[2].fap_job_pay_dtl" maxlength="200" placeholder="<spring:message code="fap.placeholder.currency" />(200<spring:message code="fap.placeholder.limit_characters" />)"></textarea>
-									</span>
+							<div class="accordion scrollspy">
+							</div>
+						</div>
+					</div>
+					
+					<div id="company_introduction" class="job-ad-box scrollspy">
+						<div id="" class="job-ad-hd scrollspy">
+							<p class="job-ad-hd-tx">
+							 	<spring:message code="fap.jobad.company_introduction" />
+							 </p>
+						</div>
+						
+						<div class="job-ad-contents scrollspy">
+							<div class="job-ad-row">
+								<!-- 기업소개영상 -->
+								<div class="job-ad-lt">
+									<code value="C0700"></code>
 								</div>
+								<div class="job-ad-rt">
+									<input type="hidden" value="C0700" name="jobFileList[0].fap_job_file_gb">
+									<input type="file" name="jobFileList[0].job_ad_file" id="job_ad_file_video" accept="video/*">
+									<label for="job_ad_file_video"><spring:message code="fap.placeholder.video_size" /></label>
+								</div>
+							</div>
+							
+							<div class="job-ad-row">
+								<!-- 기업소개자료 -->
+								<div class="job-ad-lt">
+									<code value="C0701"></code>
+								</div>
+								<div class="job-ad-rt">
+									<input type="hidden" value="C0701" name="jobFileList[1].fap_job_file_gb">	
+									<input type="file" name="jobFileList[1].job_ad_file" id="job_ad_file_pdf" accept=".pdf">
+									<label for="job_ad_file_pdf"><spring:message code="fap.placeholder.file_size" /></label>
+								</div>
+							</div>
+							
+							<div class="job-ad-row">
+								<!-- 기업소개사진 -->
+								<div class="job-ad-lt">
+									<code value="C0702"></code>
+								</div>
+								<div class="job-ad-rt">
+									<input type="hidden" value="C0702" name="jobFileList[2].fap_job_file_gb">	
+									<input type="file" name="jobFileList[2].job_ad_file" id="job_ad_file_img" accept="image/*">
+									<label for="job_ad_file_img"><spring:message code="fap.placeholder.file_size" /></label>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					<div id="etc" class="job-ad-box scrollspy">
+						<div class="job-ad-hd">
+							<p class="job-ad-hd-tx">
+								<spring:message code="fap.common.etc" />
+					       	</p>
+						</div>
+						<div class="job-ad-contents scrollspy">
+							<div class="job-ad-row etc">
+								<!-- SCIT 마스터 성적 필요 -->
+								<h4><spring:message code="fap.jobad.etc.grade" /></h4>
+								<span class="job-radio etc-grade yes">
+									<label class="job-radio-label">
+										<spring:message code="fap.jobad.etc.yes" />
+									</label>
+									<input type="radio" name="fap_job_ad_open_grade" value="C1600"/>
+								</span>
+								<span class="job-radio etc-grade no">
+									<label class="job-radio-label">
+										<spring:message code="fap.jobad.etc.no" />
+									</label>
+									<input type="radio" name="fap_job_ad_open_grade" value="C1601"/>
+								</span>
+							</div>
+							
+							<div class="job-ad-row etc">
+								<!-- 재류자격 신청 시, 정보처리기사(산업기사) 필요 -->
+								<h4><spring:message code="fap.jobad.etc.qual_dpe" /></h4>
+								<span class="job-radio etc-qual_dpe yes">
+									<label class="job-radio-label">
+										<spring:message code="fap.jobad.etc.yes" />
+									</label>
+									<input type="radio" name="fap_job_ad_qual_dpe" value="C1700"/>
+								</span>
+								<span class="job-radio etc-qual_dpe no">
+									<label class="job-radio-label">
+										<spring:message code="fap.jobad.etc.no" />
+									</label>
+									<input type="radio" name="fap_job_ad_qual_dpe" value="C1701"/>
+								</span>
+							</div>
+							
+							<div class="job-ad-row etc">
+								<!-- 채용조건으로서 정보처리기사(산업기사) 필요 -->
+								<h4><spring:message code="fap.jobad.etc.terms_dpe" /></h4>
+								<span class="job-radio etc-terms_dpe yes">
+									<label class="job-radio-label">
+										<spring:message code="fap.jobad.etc.yes" />
+									</label>
+									<input type="radio" name="fap_job_ad_terms_dpe" value="C1800"/>
+								</span>
+								<span class="job-radio etc-terms_dpe no">
+									<label class="job-radio-label">
+										<spring:message code="fap.jobad.etc.no" />
+									</label>
+									<input type="radio" name="fap_job_ad_terms_dpe" value="C1801"/>
+								</span>
+							</div>
+							
+							<div class="job-ad-row etc">
+								<!-- 중복지원 여부 -->
+								<h4><spring:message code="fap.jobad.etc.overlap" /></h4>
+								<span class="job-radio etc-overlap yes">
+									<label class="job-radio-label">
+										<spring:message code="fap.jobad.etc.yes" />
+									</label>
+									<input type="radio" name="fap_job_ad_overlap" value="C2000"/>
+								</span>
+								<span class="job-radio etc-overlap no">
+									<label class="job-radio-label">
+										<spring:message code="fap.jobad.etc.no" />
+									</label>
+									<input type="radio" name="fap_job_ad_overlap" value="C2001"/>
+								</span>
+							</div>
+							
+							<div class="job-ad-row etc">
+								<!-- 채용 시, SCIT 마스터 과정 수료조건 필수 동의 -->
+								<h4><spring:message code="fap.jobad.etc.coc_agree" /></h4>
+								<span class="job-radio etc-coc_agree yes">
+									<label class="job-radio-label">
+										<spring:message code="fap.jobad.etc.yes" />
+									</label>
+									<input type="radio" id="fap_job_ad_coc_agree" name="fap_job_ad_coc_agree" value="C1900"/>
+								</span>
+							</div>
+							
+							<div class="job-ad-row etc">
+								<!-- 등록시 승인요청 문구-->
+								<h4><spring:message code="fap.jobad.approval_requests.title" /></h4>
 							</div>
 							
 						</div>
 					</div>
-		    	</div>
-		    	
-		    	<div class="job-ad-row m50">
-		    		<input type="hidden" name="jobPayList[3].fap_job_pay_gb" value="C2204">
-					<!-- 상여 유무 -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.jobad.incentive" />
-						<span class="red-point"></span>
+					<div class="job-ad-btn">
+						<button type="button" class="side-btn btn-gradient blue small" onclick="form_check(1);"><spring:message code="fap.jobad.register_jobad" /></button>
+						<button type="button" class="side-btn btn-gradient red small" onclick="temp_save();"><spring:message code="fap.jobad.save_temp_jobad" /></button>
+						<button type="button" class="side-btn btn-gradient cyan small" onclick="return_list()"><spring:message code="fap.jobfair.main.board.list"/></button>
 					</div>
-					<div class="job-ad-rt radio-row" id="incentive_ck_div">
-						<span class="job-radio incentive yes">
-							<label class="job-radio-label">
-								<code value="C0800"></code>
-							</label>
-						</span>
-						<span class="job-radio incentive no">
-							<label class="job-radio-label">
-								<code value="C0801"></code>
-							</label>
-						</span>
-						<div class="sub-area display">
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.incentive.fee" /></h5>
-									<span class="inner-item">
-										<input type="text" class="currency" name="jobPayList[3].fap_job_pay_info" ng-model="jobPayList[3].fap_job_pay_info" blur-currency/>
-										<span class="hiddenTx">円</span>
-									</span>
-								</div>
-							</div>
-							<div class="sub-area-inner">
-								<div class="bar-inner">
-									<h5 class="inner-title"><spring:message code="fap.jobad.incentive.detail" /></h5>
-									<span class="inner-item">
-										<textarea rows="4" cols="20" name="jobPayList[3].fap_job_pay_dtl" maxlength="200" placeholder="<spring:message code="fap.placeholder.currency" />(200<spring:message code="fap.placeholder.limit_characters" />)"></textarea>
-									</span>
-								</div>
-							</div>
-						</div>
+					</form>
 					</div>
-		    	</div>
-		    	
-		    	<div class="job-ad-row m50">
-					<!-- 기타 수당 -->
-					<div class="job-ad-lt">
-						<spring:message code="fap.jobad.extra_fee_title" />
-					</div>
-					<div class="job-ad-rt sal-row">
-						<button type="button" class="btn-add" ng-click="add_job_pay()"></button>
-						<button type="button" class="btn-remove" ng-click="remove_job_pay()"></button>
-						<div class="job-extra-plus">
-						</div>
-					</div>
-		    	</div>
-		    	
-		    </div>
-		</div>
-	
-		<div id="recruit_pcs" class="job-ad-box scrollspy">
-			<div class="job-ad-hd"> 
-				<p class="job-ad-hd-tx">
-		       		<spring:message code="fap.jobad.recruit_pcs" />
-				</p>
-				<p>
-					<spring:message code="fap.jobad.recruit_pcs.comment" />
-				</p>
-			</div>
-			
-			<div class="job-ad-contents">
-				<div class="job-ad-row">
-					<!-- 전형종류 -->
-					<div class="job-ad-lt point">
-						<spring:message code="fap.jobad.recruit_pcs" />
-						<span class="red-point"></span>
-					</div>
-					<div class="job-ad-rt sal-row">
-						<button type="button" class="btn-add" ng-click="addRecruitPcs()"></button>
-						<button type="button" class="btn-remove" ng-click="removeRecruitPcs()"></button>
-					</div>
+				
 				</div>
-				<div class="accordion scrollspy">
+				<div class="side-bar">
+					<div id="side-bar" class="" style="">
+						<ul class="section table-of-contents">
+			     		  <li><a href="#company_info"><spring:message code="fap.common.responsible_company_info" /></a></li>
+					      <li><a href="#hire_info"><spring:message code="fap.jobad.hire_info" /></a></li>
+					      <li><a href="#detail"><spring:message code="fap.jobad.detail" /></a></li>
+					      <li><a href="#pay_detail"><spring:message code="fap.jobad.pay_detail" /></a></li>
+					      <li><a href="#recruit_pcs"><spring:message code="fap.jobad.recruit_pcs"/></a></li>
+					      <li><a href="#company_introduction"><spring:message code="fap.jobad.company_introduction"/></a></li>
+					      <li><a href="#etc"><spring:message code="fap.common.etc" /></a></li>
+					      <li><button class="side-btn btn-gradient red small" onclick="temp_save();"><spring:message code="fap.jobad.save_temp_jobad" /></button></li>
+					      <li><button class="side-btn btn-gradient blue small" onclick="form_check(1);"><spring:message code="fap.jobad.register_jobad" /></button></li>
+					      <li><button class="side-btn btn-gradient cyan small" onclick="return_list()"><spring:message code="fap.jobfair.main.board.list" /></button></li>
+			     		 </ul>
+			    		 </div>
 				</div>
 			</div>
 		</div>
-		
-		<div id="company_introduction" class="job-ad-box scrollspy">
-			<div id="" class="job-ad-hd scrollspy">
-				<p class="job-ad-hd-tx">
-				 	<spring:message code="fap.jobad.company_introduction" />
-				 </p>
-			</div>
-			
-			<div class="job-ad-contents scrollspy">
-				<div class="job-ad-row">
-					<!-- 기업소개영상 -->
-					<div class="job-ad-lt">
-						<code value="C0700"></code>
-					</div>
-					<div class="job-ad-rt">
-						<input type="hidden" value="C0700" name="jobFileList[0].fap_job_file_gb">
-						<input type="file" name="jobFileList[0].job_ad_file" id="job_ad_file_video" accept="video/*">
-						<label for="job_ad_file_video"><spring:message code="fap.placeholder.video_size" /></label>
-					</div>
-				</div>
-				
-				<div class="job-ad-row">
-					<!-- 기업소개자료 -->
-					<div class="job-ad-lt">
-						<code value="C0701"></code>
-					</div>
-					<div class="job-ad-rt">
-						<input type="hidden" value="C0701" name="jobFileList[1].fap_job_file_gb">	
-						<input type="file" name="jobFileList[1].job_ad_file" id="job_ad_file_pdf" accept=".pdf">
-						<label for="job_ad_file_pdf"><spring:message code="fap.placeholder.file_size" /></label>
-					</div>
-				</div>
-				
-				<div class="job-ad-row">
-					<!-- 기업소개사진 -->
-					<div class="job-ad-lt">
-						<code value="C0702"></code>
-					</div>
-					<div class="job-ad-rt">
-						<input type="hidden" value="C0702" name="jobFileList[2].fap_job_file_gb">	
-						<input type="file" name="jobFileList[2].job_ad_file" id="job_ad_file_img" accept="image/*">
-						<label for="job_ad_file_img"><spring:message code="fap.placeholder.file_size" /></label>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		
-		<div id="etc" class="job-ad-box scrollspy">
-			<div class="job-ad-hd">
-				<p class="job-ad-hd-tx">
-					<spring:message code="fap.common.etc" />
-		       	</p>
-			</div>
-			<div class="job-ad-contents scrollspy">
-				<div class="job-ad-row etc">
-					<!-- SCIT 마스터 성적 필요 -->
-					<h4><spring:message code="fap.jobad.etc.grade" /></h4>
-					<span class="job-radio etc-grade yes">
-						<label class="job-radio-label">
-							<spring:message code="fap.jobad.etc.yes" />
-						</label>
-						<input type="radio" name="fap_job_ad_open_grade" value="C1600"/>
-					</span>
-					<span class="job-radio etc-grade no">
-						<label class="job-radio-label">
-							<spring:message code="fap.jobad.etc.no" />
-						</label>
-						<input type="radio" name="fap_job_ad_open_grade" value="C1601"/>
-					</span>
-				</div>
-				
-				<div class="job-ad-row etc">
-					<!-- 재류자격 신청 시, 정보처리기사(산업기사) 필요 -->
-					<h4><spring:message code="fap.jobad.etc.qual_dpe" /></h4>
-					<span class="job-radio etc-qual_dpe yes">
-						<label class="job-radio-label">
-							<spring:message code="fap.jobad.etc.yes" />
-						</label>
-						<input type="radio" name="fap_job_ad_qual_dpe" value="C1700"/>
-					</span>
-					<span class="job-radio etc-qual_dpe no">
-						<label class="job-radio-label">
-							<spring:message code="fap.jobad.etc.no" />
-						</label>
-						<input type="radio" name="fap_job_ad_qual_dpe" value="C1701"/>
-					</span>
-				</div>
-				
-				<div class="job-ad-row etc">
-					<!-- 채용조건으로서 정보처리기사(산업기사) 필요 -->
-					<h4><spring:message code="fap.jobad.etc.terms_dpe" /></h4>
-					<span class="job-radio etc-terms_dpe yes">
-						<label class="job-radio-label">
-							<spring:message code="fap.jobad.etc.yes" />
-						</label>
-						<input type="radio" name="fap_job_ad_terms_dpe" value="C1800"/>
-					</span>
-					<span class="job-radio etc-terms_dpe no">
-						<label class="job-radio-label">
-							<spring:message code="fap.jobad.etc.no" />
-						</label>
-						<input type="radio" name="fap_job_ad_terms_dpe" value="C1801"/>
-					</span>
-				</div>
-				
-				<div class="job-ad-row etc">
-					<!-- 중복지원 여부 -->
-					<h4><spring:message code="fap.jobad.etc.overlap" /></h4>
-					<span class="job-radio etc-overlap yes">
-						<label class="job-radio-label">
-							<spring:message code="fap.jobad.etc.yes" />
-						</label>
-						<input type="radio" name="fap_job_ad_overlap" value="C2000"/>
-					</span>
-					<span class="job-radio etc-overlap no">
-						<label class="job-radio-label">
-							<spring:message code="fap.jobad.etc.no" />
-						</label>
-						<input type="radio" name="fap_job_ad_overlap" value="C2001"/>
-					</span>
-				</div>
-				
-				<div class="job-ad-row etc">
-					<!-- 채용 시, SCIT 마스터 과정 수료조건 필수 동의 -->
-					<h4><spring:message code="fap.jobad.etc.coc_agree" /></h4>
-					<span class="job-radio etc-coc_agree yes">
-						<label class="job-radio-label">
-							<spring:message code="fap.jobad.etc.yes" />
-						</label>
-						<input type="radio" id="fap_job_ad_coc_agree" name="fap_job_ad_coc_agree" value="C1900"/>
-					</span>
-				</div>
-				
-				<div class="job-ad-row etc">
-					<!-- 등록시 승인요청 문구-->
-					<h4><spring:message code="fap.jobad.approval_requests.title" /></h4>
-				</div>
-				
-			</div>
-		</div>
-		<div class="job-ad-btn">
-			<button type="button" class="side-btn btn-gradient blue small" onclick="form_check(1);"><spring:message code="fap.jobad.register_jobad" /></button>
-			<button type="button" class="side-btn btn-gradient red small" onclick="temp_save();"><spring:message code="fap.jobad.save_temp_jobad" /></button>
-			<button type="button" class="side-btn btn-gradient cyan small" onclick="return_list()"><spring:message code="fap.jobfair.main.board.list"/></button>
-		</div>
-		</form>
-		</div>
-		<div class="side-bar">
-			<div id="side-bar" class="" style="">
-				<ul class="section table-of-contents">
-	     		  <li><a href="#company_info"><spring:message code="fap.common.responsible_company_info" /></a></li>
-			      <li><a href="#hire_info"><spring:message code="fap.jobad.hire_info" /></a></li>
-			      <li><a href="#detail"><spring:message code="fap.jobad.detail" /></a></li>
-			      <li><a href="#pay_detail"><spring:message code="fap.jobad.pay_detail" /></a></li>
-			      <li><a href="#recruit_pcs"><spring:message code="fap.jobad.recruit_pcs"/></a></li>
-			      <li><a href="#company_introduction"><spring:message code="fap.jobad.company_introduction"/></a></li>
-			      <li><a href="#etc"><spring:message code="fap.common.etc" /></a></li>
-			      <li><button class="side-btn btn-gradient red small" onclick="temp_save();"><spring:message code="fap.jobad.save_temp_jobad" /></button></li>
-			      <li><button class="side-btn btn-gradient blue small" onclick="form_check(1);"><spring:message code="fap.jobad.register_jobad" /></button></li>
-			      <li><button class="side-btn btn-gradient cyan small" onclick="return_list()"><spring:message code="fap.jobfair.main.board.list" /></button></li>
-	     		 </ul>
-     		 </div>
-		</div>
-		</div> <!-- subcontents end -->
-		<div id="footerdiv">
-		</div>
-		<%@include file="../common_footer_fap.jsp"%>
 	</div>
+		<div id="footerdiv">
+			<%@include file="../common_footer_fap.jsp"%>
+		</div>
 </body>
 </html>

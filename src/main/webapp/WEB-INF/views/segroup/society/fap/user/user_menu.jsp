@@ -183,6 +183,17 @@
 			});	
 		}
 		//[end] 개인별 참가가능한 잡페어 출력 종료
+		//언어팩 컨펌
+		function language_chage(language){
+			console.log(language)
+			var flag = confirm('<spring:message code="fap.err.language_change_confirm" />');
+			if(flag){
+				if(language == 'ko') location.href="/fap/user/language_change?lo=ko";
+				if(language == 'ja') location.href="/fap/user/language_change?lo=ja";
+			}else{
+				return;
+			}
+		}
 	</script>
 </head>
 <body>
@@ -209,7 +220,15 @@
 						<li><a href="#none" id="logout">Logout</a></li>
 					</c:otherwise>
 				</c:choose>
-				<!-- <li><a href="/fap/user/user_faq">FAQ</a></li> -->
+				<li class="">
+					<div class="dropdown">
+					  <button class="langSelect">Language</button>
+					  <div class="dropdown-content">
+					    <a onclick="language_chage('ko');" style="color:black;">한국어(KR)</a>
+					    <a onclick="language_chage('ja');" style="color:black;">日本語(JP)</a>
+					  </div>
+					</div>
+				</li>
 			</ul>
 		</div>
 		<!-- 회원은 jobfair라는 디렉토리를 한번 더 들어가기 때문에 c태그로 링크 걸어야함 -->

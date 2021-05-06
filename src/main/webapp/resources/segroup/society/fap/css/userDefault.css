@@ -1585,7 +1585,7 @@ body {
 }
 
 #fairBox {
-	width: 1127px;
+/* 	width: 1127px; */
 	border: 1px solid #b0b0b0;
 	background-color: #f8f8f8;
 	padding-bottom: 20px;
@@ -1652,10 +1652,11 @@ body {
 #fairbbs2 {
 	text-align: left;
 	margin-top: 15px;
+	margin-bottom: 30px;
 }
 
 #fairbbs2 li {
-	
+	padding-top: 4px;
 }
 
 #fairbbs3 {
@@ -1682,6 +1683,7 @@ body {
 #fairright .msgbox2 {
 	position: relative;
 	font-size: 16px;
+	padding-top: 4px;
 }
 
 .msgbox2>textarea {
@@ -4770,7 +4772,7 @@ body {
 .job-ad-box .job-ad-contents .job-ad-row .job-ad-rt.sal-row .sub-area .sub-area-inner .bar-inner .inner-item.right-title
 	{
 	margin-left: 95px;
-	width: 73%;
+	width:65%;
 }
 
 .job-ad-box .job-ad-contents .job-ad-row .job-ad-rt.sal-row .sub-area .sub-area-inner .bar-inner .inner-item input[type="text"]
@@ -4809,7 +4811,7 @@ body {
 
 .job-ad-box .job-ad-contents .job-ad-row .job-ad-rt-md {
 	position: relative;
-	width: 40%;
+	width: 25%;
 }
 
 .job-ad-box .job-ad-contents .job-ad-row .job-ad-rt-md input {
@@ -4863,7 +4865,10 @@ body {
 }
 
 .hiddenTx.sm {
-	right: 50px !important;
+	right: 120px !important;
+}
+.hiddenTx.sm2 {
+	right: 40px !important;
 }
 
 .job-ad-box .job-ad-contents .job-ad-row .job-ad-rt .job-ad-dropdown {
@@ -5974,7 +5979,7 @@ textarea.form-control {
 }
 
 .red {
-	color: #BA2B2B;
+	color: red;
 }
 
 .blue {
@@ -9341,7 +9346,21 @@ padding:5px; margin:5px;
 /* #sub3_bbs2 */
 .hiddenTx {
 	position: absolute;
+	right: 110px;
+	top: 25%;
+	font-size: 15px;
+	color: #999;
+}
+.hiddenTxt {
+	position: absolute;
 	right: 18px;
+	top: 25%;
+	font-size: 15px;
+	color: #999;
+}
+.hiddenTx.modLocationR {
+	position: absolute;
+	right: 107px;
 	top: 14px;
 	font-size: 15px;
 	color: #999;
@@ -9606,7 +9625,7 @@ padding:5px; margin:5px;
 .sub3_bbs3 .tit2 {
 	border-bottom: 1px solid #ddd;
 	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-bottom: 53px;
 	color: #000;
 	font-weight: bold;
 	height: 60px
@@ -9813,6 +9832,7 @@ padding:5px; margin:5px;
 .resume-dropdown {
 	width: 222px;
 	margin-right: 3px;
+	margin-bottom: 7px;
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
@@ -10277,6 +10297,7 @@ padding:5px; margin:5px;
 	border-bottom: 1px solid #ddd;
 	height: 30px;
 	padding-top: 10px;
+	padding-bottom: 30px;
 }
 
 .sub3_bbs7 .tit2 .wid1 {
@@ -10301,6 +10322,7 @@ padding:5px; margin:5px;
 	border-bottom: 1px solid #ddd;
 	min-height: 110px;
 	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .sub3_bbs7 .tit3 .wid1 {
@@ -10393,6 +10415,7 @@ padding:5px; margin:5px;
 	border-bottom: 1px solid #ddd;
 	height: 30px;
 	padding-top: 10px;
+	padding-bottom: 30px;
 }
 
 .sub3_bbs8 .tit2 .wid1 {
@@ -10404,6 +10427,7 @@ padding:5px; margin:5px;
 	border-bottom: 1px solid #ddd;
 	min-height: 310px;
 	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .sub3_bbs8 .tit3 .wid1 {

@@ -18,6 +18,7 @@
 	<!-- modal을 위한 bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/newAdminDefault.css" />" media="" />
 	<script type="text/javascript">
 		$(function() {			
 			
@@ -830,878 +831,896 @@
 </head>
 <body ng-app="myapp" ng-controller="MainController">
 <%@include file="admin_menu.jsp"%>
-	<br>
-	<div class="page_title">
-		<h2>JobFair 관리</h2>
-	</div>
-	<br>
-	<select id="opening_jobfair_Select" onchange="angular.element(this).scope().search_change()">
-		
-	</select>
-	<span>검색</span><input type="text" ng-model="query">
-	<button class="btn btn-primary" data-toggle="modal" data-target="#registerModal">잡페어 등록</button>
-	<button id="jobfair_update_Btn" class="btn btn-info">잡페어 수정</button>
-	<button id="jobfair_delete_Btn" class="btn btn-danger">잡페어 삭제</button>
-	<button id="additionalApplyCompanyConfigured" class="btn btn-primary">추가지원 기업설정</button>
-	<button id="applyBusinessRuleApplicationBtn" class="btn btn-danger">지원룰 적용</button>
-	<button id="miss_matching_btn" class="btn btn-info">미스매칭/추가지원허용</button>
-	
-	<table class="table">
-		<thead>
-			<tr>
-				<th><span>선택</span></th>
-				<th><span>No</span></th>
-				<th><span>잡페어 시퀀스</span></th>
-				<th><span>제목</span></th>	
-				<th><span>시작일</span></th>
-				<th><span>종료일</span></th>
-				<th><span>노출여부</span></th>
-			</tr>
-		</thead>
-		<tbody id="search_data">	
-		
-		</tbody>
-	</table>	
-	
-	<br><br>
-	
-	<!-- 잡페어 등록 Modal -->
-	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="modal">잡페어 등록</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<form action="/fap/admin/jobfair_insert" method="post" onsubmit="return form_Check();" enctype="multipart/form-data">
-					<div class="modal-body">					
-						<!-- 잡페어 -->
-						<div class="form-group">
-							<label>제목</label>
-							<input type="text" name="fap_jobfair_title" id="fap_jobfair_title" class="form-control" maxlength="50">
-						</div>
-						<div class="form-row">
-							<label>개최기간</label>
-						</div> 
-						<div class="form-row">
-							<div class="form-group col-sm-6">								
-								<input type="text" name="fap_jobfair_st" id="fap_jobfair_st" class="date_format" maxlength="20" value="">
+	<div class="container">
+		<br>
+		<div class="page_title">
+			<h2>JobFair 관리</h2>
+		</div>
+		<br>
+		<div class="search_div">
+			<div class="search_box">
+				<table class="search_box">
+					<colgroup>
+						<col width="30%">
+						<col width="80%">
+					</colgroup>
+					<tr>	
+						<td>
+							<select id="opening_jobfair_Select" onchange="angular.element(this).scope().search_change()"></select>
+							<input type="text" ng-model="query" placeholder="검색어 입력">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button class="btn btn-primary" data-toggle="modal" data-target="#registerModal">잡페어 등록</button>
+							<button id="jobfair_update_Btn" class="btn btn-info">잡페어 수정</button>
+							<button id="jobfair_delete_Btn" class="btn btn-danger">잡페어 삭제</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button id="additionalApplyCompanyConfigured" class="btn btn-primary">추가지원 기업설정</button>
+							<button id="applyBusinessRuleApplicationBtn" class="btn btn-danger">지원룰 적용</button>
+							<button id="miss_matching_btn" class="btn btn-info">미스매칭/추가지원허용</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<br><br>
+		<table class="table">
+			<thead>
+				<tr>
+					<th><span>선택</span></th>
+					<th><span>No</span></th>
+					<th><span>잡페어 시퀀스</span></th>
+					<th><span>제목</span></th>	
+					<th><span>시작일</span></th>
+					<th><span>종료일</span></th>
+					<th><span>노출여부</span></th>
+				</tr>
+			</thead>
+			<tbody id="search_data"></tbody>
+		</table>	
+		<br><br>
+		<!-- 잡페어 등록 Modal -->
+		<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">잡페어 등록</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form action="/fap/admin/jobfair_insert" method="post" onsubmit="return form_Check();" enctype="multipart/form-data">
+						<div class="modal-body">					
+							<!-- 잡페어 -->
+							<div class="form-group">
+								<label>제목</label>
+								<input type="text" name="fap_jobfair_title" id="fap_jobfair_title" class="form-control" maxlength="50">
 							</div>
-							<div class="form-group col-sm-6">
-								<label>&nbsp;</label>
-								<input type="text" name="fap_jobfair_et" id="fap_jobfair_et" class="date_format" maxlength="20" value="">
+							<div class="form-row">
+								<label>개최기간</label>
+							</div> 
+							<div class="form-row">
+								<div class="form-group col-sm-6">								
+									<input type="text" name="fap_jobfair_st" id="fap_jobfair_st" class="date_format" maxlength="20" value="">
+								</div>
+								<div class="form-group col-sm-6">
+									<label>&nbsp;</label>
+									<input type="text" name="fap_jobfair_et" id="fap_jobfair_et" class="date_format" maxlength="20" value="">
+								</div>
 							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group col-sm-2">
-								<label>개최지</label>
-								<input type="checkbox" name="fap_jobfair_lo_list[0].fap_jobfair_lo" id="checkBox_Seoul" class="form-control" value="C0000">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C0000"></code></h5>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="checkbox" name="fap_jobfair_lo_list[1].fap_jobfair_lo" id="checkBox_Tokyo" class="form-control" value="C0001">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C0001"></code></h5>
-							</div>
-						</div>						
-						
-						<div class="form-row">
-							<div class="form-group col-sm-2">
-								<label>세부구분</label>
-								<input type="checkbox" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_gb" id="k_fair_checkbox" class="form-control" value="C0100">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C0100"></code></h5>
-							</div>	
-							<div class="form-group col-sm-2">
-								<label></label>
-								<input type="checkbox" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_gb" id="j_fair_checkbox" class="form-control" value="C0101">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C0101"></code></h5>
-							</div>
-							<div class="form-group col-sm-2">
-								<label></label>
-								<input type="checkbox" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_gb" id="post_season_checkbox" class="form-control" value="C0102">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C0102"></code></h5>
-							</div>
-							<%-- <div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="checkbox" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_gb" id="missmatching_checkbox" class="form-control" value="C0103">
-							</div>	
-							<div class="form-group col-sm-3">
-								<label>&nbsp;</label>
-								<h5><code value="C0103"></code></h5>
-							</div>	 --%>							
-						</div>						
-						
-						<div class="form-row">						
-							<div class="form-group col-sm-2">
-								<label>노출여부</label>
-								<input type="radio" name="fap_jobfair_eps" id="fap_jobfair_not_eps" class="form-control" value="C1200">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C1200"></code></h5>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="radio" name="fap_jobfair_eps" id="fap_jobfair_eps" class="form-control" value="C1201">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C1201"></code></h5>
-							</div>		
-						</div>	
-						
-						<div class="form-row">
-							<div class="form-group col-sm-6">
-								<label>지원가능 인원 배수</label>
-								<select class="form-control" name="fap_apply_max_multiple" id="fap_apply_max_multiple">
-									<option value="0">선택</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-								</select>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5 class="form-control">배수</h5>
-							</div>
-						</div>	
-						
-						<div class="form-row">
-							<div class="form-group col-sm-6">
-								<label>현지인원 제한 배수</label>
-								<select class="form-control" name="fap_limit_interview_count" id="fap_limit_interview_count">
-									<option value="0">선택</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-								</select>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5 class="form-control">배수</h5>
-							</div>
-						</div>
-						
-						<div class="form-row">
-							<div class="form-group col-sm-2">
-								<label>제한 대상</label>
-								<input type="radio" name="fap_limit_interview_type" class="form-control" value="C5400">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C5400"></code></h5>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="radio" name="fap_limit_interview_type" class="form-control" value="C5401">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C5401"></code></h5>
-							</div>	
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="radio" name="fap_limit_interview_type" class="form-control" value="C5402">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C5402"></code></h5>
-							</div>	
-						</div>
-						
-						
-						<div class="comp_group_div">
 							<div class="form-row">
 								<div class="form-group col-sm-2">
-									<label>회사그룹</label>
-									<input type="text" class="form-control" name="fap_comp_group_list[0].fap_comp_groupcode" id="fap_comp_groupcode_0">									
-								</div>
-								<div class="form-group col-sm-4">
-									<label>자본금(엔)↑</label>
-									<input type="text" class="form-control currency" name="fap_comp_group_list[0].fap_comp_stock" id="fap_comp_stock_0" ng-model="commaTest" blur-currency>
-								</div>
-								<div class="form-group col-sm-4">
-									<label>매출액(엔)↑</label>
-									<input type="text" class="form-control currency" name="fap_comp_group_list[0].fap_comp_3years_avg_sales" id="fap_comp_3years_avg_sales_0" ng-model="commaTest" blur-currency>
+									<label>개최지</label>
+									<input type="checkbox" name="fap_jobfair_lo_list[0].fap_jobfair_lo" id="checkBox_Seoul" class="form-control" value="C0000">
 								</div>
 								<div class="form-group col-sm-2">
-									<label>사원(명)↑</label>
-									<input type="text" class="form-control currency" name="fap_comp_group_list[0].fap_comp_employee_num" id="fap_comp_employee_num_0" ng-model="commaTest" blur-currency>
+									<label>&nbsp;</label>
+									<h5><code value="C0000"></code></h5>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="checkbox" name="fap_jobfair_lo_list[1].fap_jobfair_lo" id="checkBox_Tokyo" class="form-control" value="C0001">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5><code value="C0001"></code></h5>
 								</div>
 							</div>						
-						</div>
-						
-						<div class="form-row">
-							<img alt="" src="/resources/segroup/society/fap/images/main/plus_icon.png" id="plug_comp_group" ng-click="add_comp_group()">
-							<img alt="" src="/resources/segroup/society/fap/images/main/minus_icon.png" id="minus_comp_group" ng-click="delete_comp_group()">
-						</div>
-						
-						<br>					
-						<div class="form-row">
-								<label>로고(선택사항, 크기는 400*300)</label>
-								<input type="file" id="fap_jobfair_log_file" name="fap_jobfair_log_file" accept="image/*">					
-						</div>
-						<div class="form-row" id="imgDiv"></div>			
-						
-						<br><br>
-						
-						<!-- K-fair -->
-						<div id="k_body" style="display: none;">
-						------------------------------------------------------------------------
-							<div class="form-row">
-								<label>K-fair 기간</label>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-6">									
-									<input type="text" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_st" id="fap_k_fair_st" class="date_format" maxlength="20" value="">
-								</div>
-								<div class="form-group col-sm-6">
-									<label>&nbsp;</label>
-									<input type="text" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_et" id="fap_k_fair_et" class="date_format" maxlength="20" value="">
-								</div>
-							</div>							
-							<div class="form-row">
-								<label>K-fair 신청가능기간</label>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-6">									
-									<input type="text" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_app_st" id="fap_k_fair_app_st" class="date_format" maxlength="20" value="">
-								</div>
-								<div class="form-group col-sm-6">
-									<label>&nbsp;</label>
-									<input type="text" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_app_et" id="fap_k_fair_app_et" class="date_format" maxlength="20" value="">
-								</div>
-							</div>		
 							
 							<div class="form-row">
-								<label>K-fair 지원자 지원허가 최초여부</label>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-1">
-									<input checked="checked" type="radio" name="fap_k_fair_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_k_fair_time_first" class="form-control" value="D0300">
+								<div class="form-group col-sm-2">
+									<label>세부구분</label>
+									<input type="checkbox" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_gb" id="k_fair_checkbox" class="form-control" value="C0100">
 								</div>
-								<div class="form-group col-sm-3">
-									<h5><code value="D0300"></code></h5>
-								</div>
-								<%-- <div class="form-group col-sm-1">
-									<input type="radio" name="fap_k_fair_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_k_fair_time_not_first" class="form-control" value="D0301">
-								</div>
-								<div class="form-group col-sm-3">
-									<h5><code value="D0301"></code></h5>
-								</div>
-								<div class="form-group col-sm-1">
-									<input type="radio" name="fap_k_fair_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_k_fair_time_missmatching" class="form-control" value="D0302">
-								</div>
-								<div class="form-group col-sm-3">
-									<h5><code value="D0302"></code></h5>
-								</div>	 --%>
-							</div>
-							
-							<div class="form-row">
-								<label>K-fair 지원자 지원가능기간</label>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-3">									
-									<input type="text" name="fap_k_fair_applicable_time_list[0].fap_jobfair_divide_user_date_st" id="fap_k_fair_user_date_st" class="date_format" value="" style="width: 100px;">
-								</div>
-								<div class="form-group col-sm-3">
+								<div class="form-group col-sm-2">
 									<label>&nbsp;</label>
-									<input type="text" name="fap_k_fair_applicable_time_list[0].fap_jobfair_divide_user_time_st" id="fap_k_fair_user_time_st" class="time_format" value="" style="width: 80px;">&ensp;~
-								</div>
-								<div class="form-group col-sm-3">									
-									<input type="text" name="fap_k_fair_applicable_time_list[0].fap_jobfair_divide_user_date_et" id="fap_k_fair_user_date_et" class="date_format" value="" style="width: 100px;">
-								</div>
-								<div class="form-group col-sm-3">
-									<label>&nbsp;</label>
-									<input type="text" name="fap_k_fair_applicable_time_list[0].fap_jobfair_divide_user_time_et" id="fap_k_fair_user_time_et" class="time_format" value="" style="width: 80px;">
-								</div>
-							</div>	
-												
-							<div class="form-row">
-							<div class="form-group col-sm-2">
-								<label style="width: 120px;">K-fair채용대상</label>
-								<input type="checkbox" name="fap_jobfair_k_fair_rc_list[0].fap_jobfair_divide_rc" id="k_fair_master_checkbox" class="form-control" value="A0101">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0101"></code></h6>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="checkbox" name="fap_jobfair_k_fair_rc_list[1].fap_jobfair_divide_rc" id="k_fair_k_move_checkbox" class="form-control" value="A0106">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0106"></code></h6>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="checkbox" name="fap_jobfair_k_fair_rc_list[2].fap_jobfair_divide_rc" id="k_fair_user_checkbox" class="form-control" value="A0100">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0100"></code></h6>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="checkbox" name="fap_jobfair_k_fair_rc_list[3].fap_jobfair_divide_rc" id="k_fair_jap_checkbox" class="form-control" value="A0108">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0108"></code></h6>
-							</div>
-						</div>
-						
-						<div class="form-row">
-						<div class="form-group col-sm-2">
-								<label>노출여부</label>
-								<input type="radio" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_gb_eps" id="fap_jobfair_k_fair_not_eps" class="form-control" value="C1300">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C1300"></code></h5>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="radio" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_gb_eps" id="fap_jobfair_k_fair_eps" class="form-control" value="C1301">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C1301"></code></h5>
-							</div>		
-						</div>
-						
-						<div class="form-row">
-							<div class="form-group col-sm-6">
-								<label>지망가능 개수</label>
-								<select class="form-control" id="fap_jobfair_k_fair_app_num" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_app_num">
-									<option value="0">선택</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-								</select>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5 class="form-control">개</h5>
-							</div>
-						</div>
-						
-							<div class="form-group">
-								<label>K-fair 설명</label>
-								<textarea name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_detail" class="form-control" maxlength="600" style="height: 40px;" placeholder="K-fair 설명을 작성해주세요."></textarea>
-							</div>
-						</div>
-						
-						<!-- J-fair -->
-						<div id="j_body" style="display: none;">
-						------------------------------------------------------------------------
-							<div class="form-row">
-								<label>J-fair 기간</label>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-6">									
-									<input type="text" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_st" id="fap_j_fair_st" class="date_format" maxlength="20" value="">
-								</div>
-								<div class="form-group col-sm-6">
-									<label>&nbsp;</label>
-									<input type="text" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_et" id="fap_j_fair_et" class="date_format" maxlength="20" value="">
-								</div>
-							</div>
-							
-							<div class="form-row">
-								<label>J-fair 신청가능기간</label>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-6">									
-									<input type="text" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_app_st" id="fap_j_fair_app_st" class="date_format" maxlength="20" value="">
-								</div>
-								<div class="form-group col-sm-6">
-									<label>&nbsp;</label>
-									<input type="text" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_app_et" id="fap_j_fair_app_et" class="date_format" maxlength="20" value="">
-								</div>
-							</div>
-							
-							<div class="form-row">
-								<label>J-fair 지원자 지원허가 최초여부</label>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-1">
-									<input checked="checked" type="radio" name="fap_j_fair_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_j_fair_time_first" class="form-control" value="D0300">
-								</div>
-								<div class="form-group col-sm-3">
-									<h5><code value="D0300"></code></h5>
-								</div>
-								<%-- <div class="form-group col-sm-1">
-									<input type="radio" name="fap_j_fair_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_j_fair_time_not_first" class="form-control" value="D0301">
-								</div>
-								<div class="form-group col-sm-3">
-									<h5><code value="D0301"></code></h5>
+									<h5><code value="C0100"></code></h5>
 								</div>	
-								<div class="form-group col-sm-1">
-									<input type="radio" name="fap_j_fair_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_j_fair_time_missmatching" class="form-control" value="D0302">
+								<div class="form-group col-sm-2">
+									<label></label>
+									<input type="checkbox" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_gb" id="j_fair_checkbox" class="form-control" value="C0101">
 								</div>
-								<div class="form-group col-sm-3">
-									<h5><code value="D0302"></code></h5>
-								</div>	 --%>
-							</div>
-							
-							<div class="form-row">
-								<label>J-fair 지원자 지원가능기간</label>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-3">									
-									<input type="text" name="fap_j_fair_applicable_time_list[0].fap_jobfair_divide_user_date_st" id="fap_j_fair_user_date_st" class="date_format" value="" style="width: 100px;">
-								</div>
-								<div class="form-group col-sm-3">
+								<div class="form-group col-sm-2">
 									<label>&nbsp;</label>
-									<input type="text" name="fap_j_fair_applicable_time_list[0].fap_jobfair_divide_user_time_st" id="fap_j_fair_user_time_st" class="time_format" value="" style="width: 80px;">&ensp;~
+									<h5><code value="C0101"></code></h5>
 								</div>
-								<div class="form-group col-sm-3">									
-									<input type="text" name="fap_j_fair_applicable_time_list[0].fap_jobfair_divide_user_date_et" id="fap_j_fair_user_date_et" class="date_format" value="" style="width: 100px;">
+								<div class="form-group col-sm-2">
+									<label></label>
+									<input type="checkbox" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_gb" id="post_season_checkbox" class="form-control" value="C0102">
 								</div>
-								<div class="form-group col-sm-3">
+								<div class="form-group col-sm-2">
 									<label>&nbsp;</label>
-									<input type="text" name="fap_j_fair_applicable_time_list[0].fap_jobfair_divide_user_time_et" id="fap_j_fair_user_time_et" class="time_format" value="" style="width: 80px;">
+									<h5><code value="C0102"></code></h5>
 								</div>
-							</div>	
-							
-							<div class="form-row">
-							<div class="form-group col-sm-2">
-								<label style="width: 120px;">J-fair채용대상</label>
-								<input type="checkbox" name="fap_jobfair_j_fair_rc_list[0].fap_jobfair_divide_rc" id="j_fair_master_checkbox" class="form-control" value="A0101">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0101"></code></h6>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="checkbox" name="fap_jobfair_j_fair_rc_list[1].fap_jobfair_divide_rc" id="j_fair_k_move_checkbox" class="form-control" value="A0106">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0106"></code></h6>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="checkbox" name="fap_jobfair_j_fair_rc_list[2].fap_jobfair_divide_rc" id="j_fair_user_checkbox" class="form-control" value="A0100">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0100"></code></h6>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="checkbox" name="fap_jobfair_j_fair_rc_list[3].fap_jobfair_divide_rc" id="j_fair_jap_checkbox" class="form-control" value="A0108">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0108"></code></h6>
-							</div>
-						</div>
-						
-						<div class="form-row">
-						<div class="form-group col-sm-2">
-								<label>노출여부</label>
-								<input type="radio" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_gb_eps" id="fap_jobfair_j_fair_not_eps" class="form-control" value="C1300">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C1300"></code></h5>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="radio" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_gb_eps" id="fap_jobfair_j_fair_eps" class="form-control" value="C1301">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C1301"></code></h5>
-							</div>		
-						</div>
-						
-						<div class="form-row">
-							<div class="form-group col-sm-6">
-								<label>지망가능 개수</label>
-								<select class="form-control" id="fap_jobfair_j_fair_app_num" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_app_num">
-									<option value="0">선택</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-								</select>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5 class="form-control">개</h5>
-							</div>
-						</div>
-						
-							<div class="form-group">
-								<label>J-fair 설명</label>
-								<textarea name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_detail" class="form-control" maxlength="600" style="height: 40px;" placeholder="J-fair 설명을 작성해주세요."></textarea>
-							</div>
-						</div>
-						
-						<!-- 포스트시즌 -->
-						<div id="p_body" style="display: none;">
-						------------------------------------------------------------------------
-							<div class="form-row">
-								<label>포스트시즌 기간</label>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-6">									
-									<input type="text" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_st" id="fap_post_season_st" class="date_format" maxlength="20" value="">
-								</div>
-								<div class="form-group col-sm-6">
+								<%-- <div class="form-group col-sm-2">
 									<label>&nbsp;</label>
-									<input type="text" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_et" id="fap_post_season_et" class="date_format" maxlength="20" value="">
-								</div>
-							</div>
-							
-							<div class="form-row">
-								<label>포스트시즌 신청가능기간</label>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-6">									
-									<input type="text" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_app_st" id="fap_post_season_app_st" class="date_format" maxlength="20" value="">
-								</div>
-								<div class="form-group col-sm-6">
-									<label>&nbsp;</label>
-									<input type="text" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_app_et" id="fap_post_season_app_et" class="date_format" maxlength="20" value="">
-								</div>
-							</div>
-							
-							<div class="form-row">
-								<label>포스트시즌 지원자 지원허가 최초여부</label>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-1">
-									<input checked="checked" type="radio" name="fap_post_season_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_post_season_time_first" class="form-control" value="D0300">
-								</div>
-								<div class="form-group col-sm-3">
-									<h5><code value="D0300"></code></h5>
-								</div>
-								<%-- <div class="form-group col-sm-1">
-									<input type="radio" name="fap_post_season_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_post_season_time_not_first" class="form-control" value="D0301">
-								</div>
-								<div class="form-group col-sm-3">
-									<h5><code value="D0301"></code></h5>
+									<input type="checkbox" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_gb" id="missmatching_checkbox" class="form-control" value="C0103">
 								</div>	
-								<div class="form-group col-sm-1">
-									<input type="radio" name="fap_post_season_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_post_season_time_missmatching" class="form-control" value="D0302">
-								</div>
 								<div class="form-group col-sm-3">
-									<h5><code value="D0302"></code></h5>
-								</div>	 --%>
-							</div>
+									<label>&nbsp;</label>
+									<h5><code value="C0103"></code></h5>
+								</div>	 --%>							
+							</div>						
+							
+							<div class="form-row">						
+								<div class="form-group col-sm-2">
+									<label>노출여부</label>
+									<input type="radio" name="fap_jobfair_eps" id="fap_jobfair_not_eps" class="form-control" value="C1200">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5><code value="C1200"></code></h5>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="radio" name="fap_jobfair_eps" id="fap_jobfair_eps" class="form-control" value="C1201">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5><code value="C1201"></code></h5>
+								</div>		
+							</div>	
 							
 							<div class="form-row">
-								<label>포스트시즌 지원자 지원가능기간</label>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-3">									
-									<input type="text" name="fap_post_season_applicable_time_list[0].fap_jobfair_divide_user_date_st" id="fap_post_season_user_date_st" class="date_format" value="" style="width: 100px;">
+								<div class="form-group col-sm-6">
+									<label>지원가능 인원 배수</label>
+									<select class="form-control" name="fap_apply_max_multiple" id="fap_apply_max_multiple">
+										<option value="0">선택</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+									</select>
 								</div>
-								<div class="form-group col-sm-3">
+								<div class="form-group col-sm-2">
 									<label>&nbsp;</label>
-									<input type="text" name="fap_post_season_applicable_time_list[0].fap_jobfair_divide_user_time_st" id="fap_post_season_user_time_st" class="time_format" value="" style="width: 80px;">&ensp;~
-								</div>
-								<div class="form-group col-sm-3">									
-									<input type="text" name="fap_post_season_applicable_time_list[0].fap_jobfair_divide_user_date_et" id="fap_post_season_user_date_et" class="date_format" value="" style="width: 100px;">
-								</div>
-								<div class="form-group col-sm-3">
-									<label>&nbsp;</label>
-									<input type="text" name="fap_post_season_applicable_time_list[0].fap_jobfair_divide_user_time_et" id="fap_post_season_user_time_et" class="time_format" value="" style="width: 80px;">
+									<h5 class="form-control">배수</h5>
 								</div>
 							</div>	
 							
 							<div class="form-row">
-							<div class="form-group col-sm-2">
-								<label style="width: 200px;">포스트시즌 채용대상</label>
-								<input type="checkbox" name="fap_jobfair_post_season_rc_list[0].fap_jobfair_divide_rc" id="post_season_master_checkbox" class="form-control" value="A0101">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0101"></code></h6>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="checkbox" name="fap_jobfair_post_season_rc_list[1].fap_jobfair_divide_rc" id="post_season_k_move_checkbox" class="form-control" value="A0106">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0106"></code></h6>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="checkbox" name="fap_jobfair_post_season_rc_list[2].fap_jobfair_divide_rc" id="post_season_user_checkbox" class="form-control" value="A0100">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0100"></code></h6>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="checkbox" name="fap_jobfair_post_season_rc_list[3].fap_jobfair_divide_rc" id="post_season_user_checkbox" class="form-control" value="A0108">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0108"></code></h6>
-							</div>
-						</div>
-						
-						<div class="form-row">
-						<div class="form-group col-sm-2">
-								<label>노출여부</label>
-								<input type="radio" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_gb_eps" id="fap_jobfair_post_season_not_eps" class="form-control" value="C1300">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C1300"></code></h5>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="radio" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_gb_eps" id="fap_jobfair_post_season_eps" class="form-control" value="C1301">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C1301"></code></h5>
-							</div>		
-						</div>
-						
-						<div class="form-row">
-							<div class="form-group col-sm-6">
-								<label>지망가능 개수</label>
-								<select class="form-control" id="fap_jobfair_post_season_app_num" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_app_num">
-									<option value="0">선택</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-								</select>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5 class="form-control">개</h5>
-							</div>
-						</div>
-						
-							<div class="form-group">
-								<label>포스트시즌 설명</label>
-								<textarea name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_detail" class="form-control" maxlength="600" style="height: 40px;" placeholder="포스트시즌 설명을 작성해주세요."></textarea>
-							</div>
-						</div>	
-						
-						<%-- <!-- 미스매칭 -->
-						<div id="m_body" style="display: none;">
-						------------------------------------------------------------------------
-							<div class="form-row">
-								<label>미스매칭 기간</label>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-6">									
-									<input type="text" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_st" id="fap_missmatching_st" class="date_format" maxlength="20" value="">
-								</div>
 								<div class="form-group col-sm-6">
-									<label>&nbsp;</label>
-									<input type="text" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_et" id="fap_missmatching_et" class="date_format" maxlength="20" value="">
+									<label>현지인원 제한 배수</label>
+									<select class="form-control" name="fap_limit_interview_count" id="fap_limit_interview_count">
+										<option value="0">선택</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+									</select>
 								</div>
-							</div>							
-							<div class="form-row">
-								<label>미스매칭 신청가능기간</label>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5 class="form-control">배수</h5>
+								</div>
 							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-6">									
-									<input type="text" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_app_st" id="fap_missmatching_app_st" class="date_format" maxlength="20" value="">
-								</div>
-								<div class="form-group col-sm-6">
-									<label>&nbsp;</label>
-									<input type="text" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_app_et" id="fap_missmatching_app_et" class="date_format" maxlength="20" value="">
-								</div>
-							</div>	
 							
 							<div class="form-row">
-								<label>미스매칭 지원자 지원허가 최초여부</label>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-sm-1">
-									<input type="radio" name="fap_missmatching_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_missmatching_time_first" class="form-control" value="D0300">
+								<div class="form-group col-sm-2">
+									<label>제한 대상</label>
+									<input type="radio" name="fap_limit_interview_type" class="form-control" value="C5400">
 								</div>
-								<div class="form-group col-sm-3">
-									<h5><code value="D0300"></code></h5>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5><code value="C5400"></code></h5>
 								</div>
-								<div class="form-group col-sm-1">
-									<input type="radio" name="fap_missmatching_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_missmatching_time_not_first" class="form-control" value="D0301">
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="radio" name="fap_limit_interview_type" class="form-control" value="C5401">
 								</div>
-								<div class="form-group col-sm-3">
-									<h5><code value="D0301"></code></h5>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5><code value="C5401"></code></h5>
 								</div>	
-								<div class="form-group col-sm-1">
-									<input type="radio" name="fap_missmatching_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_missmatching_time_missmatching" class="form-control" value="D0302">
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="radio" name="fap_limit_interview_type" class="form-control" value="C5402">
 								</div>
-								<div class="form-group col-sm-3">
-									<h5><code value="D0302"></code></h5>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5><code value="C5402"></code></h5>
+								</div>	
+							</div>
+							
+							
+							<div class="comp_group_div">
+								<div class="form-row">
+									<div class="form-group col-sm-2">
+										<label>회사그룹</label>
+										<input type="text" class="form-control" name="fap_comp_group_list[0].fap_comp_groupcode" id="fap_comp_groupcode_0">									
+									</div>
+									<div class="form-group col-sm-4">
+										<label>자본금(엔)↑</label>
+										<input type="text" class="form-control currency" name="fap_comp_group_list[0].fap_comp_stock" id="fap_comp_stock_0" ng-model="commaTest" blur-currency>
+									</div>
+									<div class="form-group col-sm-4">
+										<label>매출액(엔)↑</label>
+										<input type="text" class="form-control currency" name="fap_comp_group_list[0].fap_comp_3years_avg_sales" id="fap_comp_3years_avg_sales_0" ng-model="commaTest" blur-currency>
+									</div>
+									<div class="form-group col-sm-2">
+										<label>사원(명)↑</label>
+										<input type="text" class="form-control currency" name="fap_comp_group_list[0].fap_comp_employee_num" id="fap_comp_employee_num_0" ng-model="commaTest" blur-currency>
+									</div>
+								</div>						
+							</div>
+							
+							<div class="form-row">
+								<img alt="" src="/resources/segroup/society/fap/images/main/plus_icon.png" id="plug_comp_group" ng-click="add_comp_group()">
+								<img alt="" src="/resources/segroup/society/fap/images/main/minus_icon.png" id="minus_comp_group" ng-click="delete_comp_group()">
+							</div>
+							
+							<br>					
+							<div class="form-row">
+									<label>로고(선택사항, 크기는 400*300)</label>
+									<input type="file" id="fap_jobfair_log_file" name="fap_jobfair_log_file" accept="image/*">					
+							</div>
+							<div class="form-row" id="imgDiv"></div>			
+							
+							<br><br>
+							
+							<!-- K-fair -->
+							<div id="k_body" style="display: none;">
+							------------------------------------------------------------------------
+								<div class="form-row">
+									<label>K-fair 기간</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-6">									
+										<input type="text" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_st" id="fap_k_fair_st" class="date_format" maxlength="20" value="">
+									</div>
+									<div class="form-group col-sm-6">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_et" id="fap_k_fair_et" class="date_format" maxlength="20" value="">
+									</div>
+								</div>							
+								<div class="form-row">
+									<label>K-fair 신청가능기간</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-6">									
+										<input type="text" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_app_st" id="fap_k_fair_app_st" class="date_format" maxlength="20" value="">
+									</div>
+									<div class="form-group col-sm-6">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_app_et" id="fap_k_fair_app_et" class="date_format" maxlength="20" value="">
+									</div>
+								</div>		
+								
+								<div class="form-row">
+									<label>K-fair 지원자 지원허가 최초여부</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-1">
+										<input checked="checked" type="radio" name="fap_k_fair_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_k_fair_time_first" class="form-control" value="D0300">
+									</div>
+									<div class="form-group col-sm-3">
+										<h5><code value="D0300"></code></h5>
+									</div>
+									<%-- <div class="form-group col-sm-1">
+										<input type="radio" name="fap_k_fair_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_k_fair_time_not_first" class="form-control" value="D0301">
+									</div>
+									<div class="form-group col-sm-3">
+										<h5><code value="D0301"></code></h5>
+									</div>
+									<div class="form-group col-sm-1">
+										<input type="radio" name="fap_k_fair_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_k_fair_time_missmatching" class="form-control" value="D0302">
+									</div>
+									<div class="form-group col-sm-3">
+										<h5><code value="D0302"></code></h5>
+									</div>	 --%>
+								</div>
+								
+								<div class="form-row">
+									<label>K-fair 지원자 지원가능기간</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-3">									
+										<input type="text" name="fap_k_fair_applicable_time_list[0].fap_jobfair_divide_user_date_st" id="fap_k_fair_user_date_st" class="date_format" value="" style="width: 100px;">
+									</div>
+									<div class="form-group col-sm-3">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_k_fair_applicable_time_list[0].fap_jobfair_divide_user_time_st" id="fap_k_fair_user_time_st" class="time_format" value="" style="width: 80px;">&ensp;~
+									</div>
+									<div class="form-group col-sm-3">									
+										<input type="text" name="fap_k_fair_applicable_time_list[0].fap_jobfair_divide_user_date_et" id="fap_k_fair_user_date_et" class="date_format" value="" style="width: 100px;">
+									</div>
+									<div class="form-group col-sm-3">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_k_fair_applicable_time_list[0].fap_jobfair_divide_user_time_et" id="fap_k_fair_user_time_et" class="time_format" value="" style="width: 80px;">
+									</div>
+								</div>	
+													
+								<div class="form-row">
+								<div class="form-group col-sm-2">
+									<label style="width: 120px;">K-fair채용대상</label>
+									<input type="checkbox" name="fap_jobfair_k_fair_rc_list[0].fap_jobfair_divide_rc" id="k_fair_master_checkbox" class="form-control" value="A0101">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0101"></code></h6>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="checkbox" name="fap_jobfair_k_fair_rc_list[1].fap_jobfair_divide_rc" id="k_fair_k_move_checkbox" class="form-control" value="A0106">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0106"></code></h6>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="checkbox" name="fap_jobfair_k_fair_rc_list[2].fap_jobfair_divide_rc" id="k_fair_user_checkbox" class="form-control" value="A0100">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0100"></code></h6>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="checkbox" name="fap_jobfair_k_fair_rc_list[3].fap_jobfair_divide_rc" id="k_fair_jap_checkbox" class="form-control" value="A0108">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0108"></code></h6>
+								</div>
+							</div>
+							
+							<div class="form-row">
+							<div class="form-group col-sm-2">
+									<label>노출여부</label>
+									<input type="radio" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_gb_eps" id="fap_jobfair_k_fair_not_eps" class="form-control" value="C1300">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5><code value="C1300"></code></h5>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="radio" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_gb_eps" id="fap_jobfair_k_fair_eps" class="form-control" value="C1301">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5><code value="C1301"></code></h5>
 								</div>		
 							</div>
 							
 							<div class="form-row">
-								<label>미스매칭 지원자 지원가능기간</label>
+								<div class="form-group col-sm-6">
+									<label>지망가능 개수</label>
+									<select class="form-control" id="fap_jobfair_k_fair_app_num" name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_app_num">
+										<option value="0">선택</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+									</select>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5 class="form-control">개</h5>
+								</div>
 							</div>
+							
+								<div class="form-group">
+									<label>K-fair 설명</label>
+									<textarea name="fap_jobfair_divide_gb_list[0].fap_jobfair_divide_detail" class="form-control" maxlength="600" style="height: 40px;" placeholder="K-fair 설명을 작성해주세요."></textarea>
+								</div>
+							</div>
+							
+							<!-- J-fair -->
+							<div id="j_body" style="display: none;">
+							------------------------------------------------------------------------
+								<div class="form-row">
+									<label>J-fair 기간</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-6">									
+										<input type="text" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_st" id="fap_j_fair_st" class="date_format" maxlength="20" value="">
+									</div>
+									<div class="form-group col-sm-6">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_et" id="fap_j_fair_et" class="date_format" maxlength="20" value="">
+									</div>
+								</div>
+								
+								<div class="form-row">
+									<label>J-fair 신청가능기간</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-6">									
+										<input type="text" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_app_st" id="fap_j_fair_app_st" class="date_format" maxlength="20" value="">
+									</div>
+									<div class="form-group col-sm-6">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_app_et" id="fap_j_fair_app_et" class="date_format" maxlength="20" value="">
+									</div>
+								</div>
+								
+								<div class="form-row">
+									<label>J-fair 지원자 지원허가 최초여부</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-1">
+										<input checked="checked" type="radio" name="fap_j_fair_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_j_fair_time_first" class="form-control" value="D0300">
+									</div>
+									<div class="form-group col-sm-3">
+										<h5><code value="D0300"></code></h5>
+									</div>
+									<%-- <div class="form-group col-sm-1">
+										<input type="radio" name="fap_j_fair_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_j_fair_time_not_first" class="form-control" value="D0301">
+									</div>
+									<div class="form-group col-sm-3">
+										<h5><code value="D0301"></code></h5>
+									</div>	
+									<div class="form-group col-sm-1">
+										<input type="radio" name="fap_j_fair_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_j_fair_time_missmatching" class="form-control" value="D0302">
+									</div>
+									<div class="form-group col-sm-3">
+										<h5><code value="D0302"></code></h5>
+									</div>	 --%>
+								</div>
+								
+								<div class="form-row">
+									<label>J-fair 지원자 지원가능기간</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-3">									
+										<input type="text" name="fap_j_fair_applicable_time_list[0].fap_jobfair_divide_user_date_st" id="fap_j_fair_user_date_st" class="date_format" value="" style="width: 100px;">
+									</div>
+									<div class="form-group col-sm-3">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_j_fair_applicable_time_list[0].fap_jobfair_divide_user_time_st" id="fap_j_fair_user_time_st" class="time_format" value="" style="width: 80px;">&ensp;~
+									</div>
+									<div class="form-group col-sm-3">									
+										<input type="text" name="fap_j_fair_applicable_time_list[0].fap_jobfair_divide_user_date_et" id="fap_j_fair_user_date_et" class="date_format" value="" style="width: 100px;">
+									</div>
+									<div class="form-group col-sm-3">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_j_fair_applicable_time_list[0].fap_jobfair_divide_user_time_et" id="fap_j_fair_user_time_et" class="time_format" value="" style="width: 80px;">
+									</div>
+								</div>	
+								
+								<div class="form-row">
+								<div class="form-group col-sm-2">
+									<label style="width: 120px;">J-fair채용대상</label>
+									<input type="checkbox" name="fap_jobfair_j_fair_rc_list[0].fap_jobfair_divide_rc" id="j_fair_master_checkbox" class="form-control" value="A0101">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0101"></code></h6>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="checkbox" name="fap_jobfair_j_fair_rc_list[1].fap_jobfair_divide_rc" id="j_fair_k_move_checkbox" class="form-control" value="A0106">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0106"></code></h6>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="checkbox" name="fap_jobfair_j_fair_rc_list[2].fap_jobfair_divide_rc" id="j_fair_user_checkbox" class="form-control" value="A0100">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0100"></code></h6>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="checkbox" name="fap_jobfair_j_fair_rc_list[3].fap_jobfair_divide_rc" id="j_fair_jap_checkbox" class="form-control" value="A0108">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0108"></code></h6>
+								</div>
+							</div>
+							
 							<div class="form-row">
-								<div class="form-group col-sm-3">									
-									<input type="text" name="fap_missmatching_applicable_time_list[0].fap_jobfair_divide_user_date_st" id="fap_missmatching_user_date_st" class="date_format" value="" style="width: 100px;">
+							<div class="form-group col-sm-2">
+									<label>노출여부</label>
+									<input type="radio" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_gb_eps" id="fap_jobfair_j_fair_not_eps" class="form-control" value="C1300">
 								</div>
-								<div class="form-group col-sm-3">
+								<div class="form-group col-sm-2">
 									<label>&nbsp;</label>
-									<input type="text" name="fap_missmatching_applicable_time_list[0].fap_jobfair_divide_user_time_st" id="fap_missmatching_user_time_st" class="time_format" value="" style="width: 80px;">&ensp;~
+									<h5><code value="C1300"></code></h5>
 								</div>
-								<div class="form-group col-sm-3">									
-									<input type="text" name="fap_missmatching_applicable_time_list[0].fap_jobfair_divide_user_date_et" id="fap_missmatching_user_date_et" class="date_format" value="" style="width: 100px;">
-								</div>
-								<div class="form-group col-sm-3">
+								<div class="form-group col-sm-2">
 									<label>&nbsp;</label>
-									<input type="text" name="fap_missmatching_applicable_time_list[0].fap_jobfair_divide_user_time_et" id="fap_missmatching_user_time_et" class="time_format" value="" style="width: 80px;">
+									<input type="radio" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_gb_eps" id="fap_jobfair_j_fair_eps" class="form-control" value="C1301">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5><code value="C1301"></code></h5>
+								</div>		
+							</div>
+							
+							<div class="form-row">
+								<div class="form-group col-sm-6">
+									<label>지망가능 개수</label>
+									<select class="form-control" id="fap_jobfair_j_fair_app_num" name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_app_num">
+										<option value="0">선택</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+									</select>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5 class="form-control">개</h5>
+								</div>
+							</div>
+							
+								<div class="form-group">
+									<label>J-fair 설명</label>
+									<textarea name="fap_jobfair_divide_gb_list[1].fap_jobfair_divide_detail" class="form-control" maxlength="600" style="height: 40px;" placeholder="J-fair 설명을 작성해주세요."></textarea>
+								</div>
+							</div>
+							
+							<!-- 포스트시즌 -->
+							<div id="p_body" style="display: none;">
+							------------------------------------------------------------------------
+								<div class="form-row">
+									<label>포스트시즌 기간</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-6">									
+										<input type="text" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_st" id="fap_post_season_st" class="date_format" maxlength="20" value="">
+									</div>
+									<div class="form-group col-sm-6">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_et" id="fap_post_season_et" class="date_format" maxlength="20" value="">
+									</div>
+								</div>
+								
+								<div class="form-row">
+									<label>포스트시즌 신청가능기간</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-6">									
+										<input type="text" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_app_st" id="fap_post_season_app_st" class="date_format" maxlength="20" value="">
+									</div>
+									<div class="form-group col-sm-6">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_app_et" id="fap_post_season_app_et" class="date_format" maxlength="20" value="">
+									</div>
+								</div>
+								
+								<div class="form-row">
+									<label>포스트시즌 지원자 지원허가 최초여부</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-1">
+										<input checked="checked" type="radio" name="fap_post_season_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_post_season_time_first" class="form-control" value="D0300">
+									</div>
+									<div class="form-group col-sm-3">
+										<h5><code value="D0300"></code></h5>
+									</div>
+									<%-- <div class="form-group col-sm-1">
+										<input type="radio" name="fap_post_season_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_post_season_time_not_first" class="form-control" value="D0301">
+									</div>
+									<div class="form-group col-sm-3">
+										<h5><code value="D0301"></code></h5>
+									</div>	
+									<div class="form-group col-sm-1">
+										<input type="radio" name="fap_post_season_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_post_season_time_missmatching" class="form-control" value="D0302">
+									</div>
+									<div class="form-group col-sm-3">
+										<h5><code value="D0302"></code></h5>
+									</div>	 --%>
+								</div>
+								
+								<div class="form-row">
+									<label>포스트시즌 지원자 지원가능기간</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-3">									
+										<input type="text" name="fap_post_season_applicable_time_list[0].fap_jobfair_divide_user_date_st" id="fap_post_season_user_date_st" class="date_format" value="" style="width: 100px;">
+									</div>
+									<div class="form-group col-sm-3">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_post_season_applicable_time_list[0].fap_jobfair_divide_user_time_st" id="fap_post_season_user_time_st" class="time_format" value="" style="width: 80px;">&ensp;~
+									</div>
+									<div class="form-group col-sm-3">									
+										<input type="text" name="fap_post_season_applicable_time_list[0].fap_jobfair_divide_user_date_et" id="fap_post_season_user_date_et" class="date_format" value="" style="width: 100px;">
+									</div>
+									<div class="form-group col-sm-3">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_post_season_applicable_time_list[0].fap_jobfair_divide_user_time_et" id="fap_post_season_user_time_et" class="time_format" value="" style="width: 80px;">
+									</div>
+								</div>	
+								
+								<div class="form-row">
+								<div class="form-group col-sm-2">
+									<label style="width: 200px;">포스트시즌 채용대상</label>
+									<input type="checkbox" name="fap_jobfair_post_season_rc_list[0].fap_jobfair_divide_rc" id="post_season_master_checkbox" class="form-control" value="A0101">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0101"></code></h6>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="checkbox" name="fap_jobfair_post_season_rc_list[1].fap_jobfair_divide_rc" id="post_season_k_move_checkbox" class="form-control" value="A0106">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0106"></code></h6>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="checkbox" name="fap_jobfair_post_season_rc_list[2].fap_jobfair_divide_rc" id="post_season_user_checkbox" class="form-control" value="A0100">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0100"></code></h6>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="checkbox" name="fap_jobfair_post_season_rc_list[3].fap_jobfair_divide_rc" id="post_season_user_checkbox" class="form-control" value="A0108">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0108"></code></h6>
+								</div>
+							</div>
+							
+							<div class="form-row">
+							<div class="form-group col-sm-2">
+									<label>노출여부</label>
+									<input type="radio" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_gb_eps" id="fap_jobfair_post_season_not_eps" class="form-control" value="C1300">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5><code value="C1300"></code></h5>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="radio" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_gb_eps" id="fap_jobfair_post_season_eps" class="form-control" value="C1301">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5><code value="C1301"></code></h5>
+								</div>		
+							</div>
+							
+							<div class="form-row">
+								<div class="form-group col-sm-6">
+									<label>지망가능 개수</label>
+									<select class="form-control" id="fap_jobfair_post_season_app_num" name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_app_num">
+										<option value="0">선택</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+									</select>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5 class="form-control">개</h5>
+								</div>
+							</div>
+							
+								<div class="form-group">
+									<label>포스트시즌 설명</label>
+									<textarea name="fap_jobfair_divide_gb_list[2].fap_jobfair_divide_detail" class="form-control" maxlength="600" style="height: 40px;" placeholder="포스트시즌 설명을 작성해주세요."></textarea>
 								</div>
 							</div>	
-													
+							
+							<%-- <!-- 미스매칭 -->
+							<div id="m_body" style="display: none;">
+							------------------------------------------------------------------------
+								<div class="form-row">
+									<label>미스매칭 기간</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-6">									
+										<input type="text" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_st" id="fap_missmatching_st" class="date_format" maxlength="20" value="">
+									</div>
+									<div class="form-group col-sm-6">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_et" id="fap_missmatching_et" class="date_format" maxlength="20" value="">
+									</div>
+								</div>							
+								<div class="form-row">
+									<label>미스매칭 신청가능기간</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-6">									
+										<input type="text" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_app_st" id="fap_missmatching_app_st" class="date_format" maxlength="20" value="">
+									</div>
+									<div class="form-group col-sm-6">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_app_et" id="fap_missmatching_app_et" class="date_format" maxlength="20" value="">
+									</div>
+								</div>	
+								
+								<div class="form-row">
+									<label>미스매칭 지원자 지원허가 최초여부</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-1">
+										<input type="radio" name="fap_missmatching_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_missmatching_time_first" class="form-control" value="D0300">
+									</div>
+									<div class="form-group col-sm-3">
+										<h5><code value="D0300"></code></h5>
+									</div>
+									<div class="form-group col-sm-1">
+										<input type="radio" name="fap_missmatching_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_missmatching_time_not_first" class="form-control" value="D0301">
+									</div>
+									<div class="form-group col-sm-3">
+										<h5><code value="D0301"></code></h5>
+									</div>	
+									<div class="form-group col-sm-1">
+										<input type="radio" name="fap_missmatching_applicable_time_list[0].fap_jobfair_applicable_time_first" id="fap_missmatching_time_missmatching" class="form-control" value="D0302">
+									</div>
+									<div class="form-group col-sm-3">
+										<h5><code value="D0302"></code></h5>
+									</div>		
+								</div>
+								
+								<div class="form-row">
+									<label>미스매칭 지원자 지원가능기간</label>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-sm-3">									
+										<input type="text" name="fap_missmatching_applicable_time_list[0].fap_jobfair_divide_user_date_st" id="fap_missmatching_user_date_st" class="date_format" value="" style="width: 100px;">
+									</div>
+									<div class="form-group col-sm-3">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_missmatching_applicable_time_list[0].fap_jobfair_divide_user_time_st" id="fap_missmatching_user_time_st" class="time_format" value="" style="width: 80px;">&ensp;~
+									</div>
+									<div class="form-group col-sm-3">									
+										<input type="text" name="fap_missmatching_applicable_time_list[0].fap_jobfair_divide_user_date_et" id="fap_missmatching_user_date_et" class="date_format" value="" style="width: 100px;">
+									</div>
+									<div class="form-group col-sm-3">
+										<label>&nbsp;</label>
+										<input type="text" name="fap_missmatching_applicable_time_list[0].fap_jobfair_divide_user_time_et" id="fap_missmatching_user_time_et" class="time_format" value="" style="width: 80px;">
+									</div>
+								</div>	
+														
+								<div class="form-row">
+								<div class="form-group col-sm-2">
+									<label style="width: 200px;">미스매칭채용대상</label>
+									<input type="checkbox" name="fap_jobfair_missmatching_rc_list[0].fap_jobfair_divide_rc" id="missmatching_master_checkbox" class="form-control" value="A0101">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0101"></code></h6>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="checkbox" name="fap_jobfair_missmatching_rc_list[1].fap_jobfair_divide_rc" id="missmatching_k_move_checkbox" class="form-control" value="A0106">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0106"></code></h6>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="checkbox" name="fap_jobfair_missmatching_rc_list[2].fap_jobfair_divide_rc" id="missmatching_user_checkbox" class="form-control" value="A0100">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h6><code value="A0100"></code></h6>
+								</div>
+							</div>
+							
 							<div class="form-row">
 							<div class="form-group col-sm-2">
-								<label style="width: 200px;">미스매칭채용대상</label>
-								<input type="checkbox" name="fap_jobfair_missmatching_rc_list[0].fap_jobfair_divide_rc" id="missmatching_master_checkbox" class="form-control" value="A0101">
+									<label>노출여부</label>
+									<input type="radio" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_gb_eps" id="fap_jobfair_missmatching_not_eps" class="form-control" value="C1300">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5><code value="C1300"></code></h5>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<input type="radio" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_gb_eps" id="fap_jobfair_missmatching_eps" class="form-control" value="C1301">
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5><code value="C1301"></code></h5>
+								</div>		
 							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0101"></code></h6>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="checkbox" name="fap_jobfair_missmatching_rc_list[1].fap_jobfair_divide_rc" id="missmatching_k_move_checkbox" class="form-control" value="A0106">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0106"></code></h6>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="checkbox" name="fap_jobfair_missmatching_rc_list[2].fap_jobfair_divide_rc" id="missmatching_user_checkbox" class="form-control" value="A0100">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h6><code value="A0100"></code></h6>
-							</div>
-						</div>
-						
-						<div class="form-row">
-						<div class="form-group col-sm-2">
-								<label>노출여부</label>
-								<input type="radio" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_gb_eps" id="fap_jobfair_missmatching_not_eps" class="form-control" value="C1300">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C1300"></code></h5>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<input type="radio" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_gb_eps" id="fap_jobfair_missmatching_eps" class="form-control" value="C1301">
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5><code value="C1301"></code></h5>
-							</div>		
-						</div>
-						
-						<div class="form-row">
-							<div class="form-group col-sm-6">
-								<label>지망가능 개수</label>
-								<select class="form-control" id="fap_jobfair_missmatching_app_num" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_app_num">
-									<option value="0">선택</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-								</select>
-							</div>
-							<div class="form-group col-sm-2">
-								<label>&nbsp;</label>
-								<h5 class="form-control">개</h5>
-							</div>
-						</div>
-						
-							<div class="form-group">
-								<label>미스매칭 설명</label>
-								<textarea name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_detail" class="form-control" maxlength="600" style="height: 40px;" placeholder="미스매칭 설명을 작성해주세요."></textarea>
-							</div>
-						</div>		 --%>
-															
-					</div>						
-					<!-- modal-body 끝 -->		
 							
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-						<button type="submit" class="btn btn-primary">등록하기</button>
-					</div>
-					
-				</form>
+							<div class="form-row">
+								<div class="form-group col-sm-6">
+									<label>지망가능 개수</label>
+									<select class="form-control" id="fap_jobfair_missmatching_app_num" name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_app_num">
+										<option value="0">선택</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+									</select>
+								</div>
+								<div class="form-group col-sm-2">
+									<label>&nbsp;</label>
+									<h5 class="form-control">개</h5>
+								</div>
+							</div>
+							
+								<div class="form-group">
+									<label>미스매칭 설명</label>
+									<textarea name="fap_jobfair_divide_gb_list[3].fap_jobfair_divide_detail" class="form-control" maxlength="600" style="height: 40px;" placeholder="미스매칭 설명을 작성해주세요."></textarea>
+								</div>
+							</div>		 --%>
+																
+						</div>						
+						<!-- modal-body 끝 -->		
+								
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+							<button type="submit" class="btn btn-primary">등록하기</button>
+						</div>
+						
+					</form>
+				</div>
 			</div>
-		</div>
-	</div>	
-	<!-- 잡페어 등록 Modal 끝 -->
+		</div>	
+		<!-- 잡페어 등록 Modal 끝 -->
+	</div>
 </body>
 </html>

@@ -219,7 +219,6 @@ a {
     text-decoration: none;
     color: inherit;
     /* selected width */
-    display: block;
     width: 100%;
 }
 

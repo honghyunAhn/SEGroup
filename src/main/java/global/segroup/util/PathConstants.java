@@ -4161,6 +4161,11 @@ public interface PathConstants {
 	public static final String SOCIETY_FAP_COMPANY_LANGUAGE_CHANGE = SOCIETY_FAP_COMPANY + "/language_change";
 	
 	/**
+	 * FAP 사용자 언어변경 요청
+	 * */
+	public static final String SOCIETY_FAP_USER_LANGUAGE_CHANGE = SOCIETY_FAP_USER + "/language_change";
+	
+	/**
 	 * FAP 기업 로드맵
 	 * */
 	public static final String SOCIETY_FAP_COMPANY_ROADMAP_IMAGE = SOCIETY_FAP_COMPANY + "/company_roadmap_image";

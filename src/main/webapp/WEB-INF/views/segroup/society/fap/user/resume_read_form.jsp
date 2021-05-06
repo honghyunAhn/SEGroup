@@ -1330,9 +1330,9 @@ var resume_project_length;
 			<!-- ----------------------------------------------자기소개서----------- --------------------------------------------->
 			<div class="userjoinBox">
 				<h2><spring:message code="fap.resume.self_introduction_video_portfolio" /></h2>
-				<h4>
+				<span class="red">
 					<spring:message code="fap.resume.fap.resume.self_introduction_text" />
-				</h4>
+				</span>
 				<div id="sub3_bbs9">
 					<ul class="tit2 resumeFile" ng-switch="!!resumeApply.resumeFileList[0].fap_resume_file_origin">
 						<li class="wid1"><spring:message code="fap.resume.self_introduction_file" /></li>	
@@ -1366,10 +1366,10 @@ var resume_project_length;
 							등록된 파일이 없습니다.
 						</li>
 						<li class="wid4">
-							<label for="resume_file_pdf"><font color="red"><small>● 파일은 pdf, zip, mp4, wmv, mpg, mpeg, avi 만 가능합니다.</small></font></label><br>
+							<label for="resume_file_pdf"><font color="red"><small>● 파일은 pdf, zip, mp4, wmv, mpg, mpeg, avi 만 가능합니다.</small></font></label>
 							<span class="resume_file_tx_sub"><font color="red"><small>다른형태의 파일은 압축하여 올려주세요.</small></font></span>
 						</li>
-					</ul>	
+					</ul>
 					<ul class="tit2 resumeFile" ng-switch="!!resumeApply.resumeFileList[2].fap_resume_file_origin">
 						<li class="wid1"></li>	
 						<li class="wid3" ng-switch-when="true">
@@ -1390,7 +1390,8 @@ var resume_project_length;
 					<ul class="tit2">
 						<li class="wid1"><spring:message code="fap.resume.self_introduction_url" /></li>
 						<li class="wid2" ng-switch="!!resumeApply.fap_resume_url">
-							<font color="red"><small>http:// 혹은 https:// 로 시작해야 합니다.</small></font><br>
+							<font color="red"><small>http:// 혹은 https:// 로 시작해야 합니다.</small></font>
+							<br>
 							<input type="text" ng-switch-when="true" class="input1" id="fap_resume_url" name="fap_resume_url" maxlength="100" placeholder="ex) http://www.bridge.career" value="{{resumeApply.fap_resume_url}}" readonly>
 							<input type="text" ng-switch-default class="input1" id="fap_resume_url" name="fap_resume_url" maxlength="100" readonly>
 						</li>

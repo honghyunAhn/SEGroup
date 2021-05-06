@@ -19,7 +19,6 @@
 
 <script type="text/javascript">
 	$(function() {
-		console.log('${contentDetail.fap_intern_view_target_ck}'); 
 		if('${contentDetail.fap_intern_view_target_ck}' == 'B2601') {
 			alert('비밀글입니다.');
 			history.back();

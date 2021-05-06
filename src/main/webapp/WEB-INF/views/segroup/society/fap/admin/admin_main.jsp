@@ -11,6 +11,7 @@
 	<script src="<c:url value="/resources/segroup/js/jquery-3.1.1.js" />"></script>
 	<script src="<c:url value="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js" />"></script>
 	<link rel="stylesheet" type="text/css" href="<c:url value="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />" />
+	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/newAdminDefault.css" />" media="" />
 	<script type="text/javascript">
 		//[start] 잡페어 선택 모달창
 		function select_jobfair_list(){
@@ -115,41 +116,43 @@
 </head>
 <body>
 	<%@include file="admin_menu.jsp"%>
-	<br>
-	<div class="page_title">
-		<h2>관리자 메인 페이지</h2>
-	</div>
-	<br>
-	<a href="#" onclick='location.href="/fap/admin/admin_company_group_code_management_per_job_fair"'>잡페어별 기업 그룹코드</a>
-	<!-- Modal -->
-	<div class="modal fade" role="dialog" id="myModal">
-		<div class="modal-dialog">
-	 		<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">채용공고 리스트</h4>
-				</div>
-				<div class="modal-body">
-			    	<div>잡페어 리스트 출력
-						<!-- body 시작-->
-						<div id="buttonDiv">
-							<select id="chooseJobFair" onchange="myJobFairDivide()">
-								<!-- 잡페어 리스트 출력 -->
-							</select>
-							<select id="selectDivideJobFair" onchange="selectedJobFairSeq()">
-								<!-- 값 넘겨주는 버튼 들어가는곳 -->
-							</select>
-						</div>
-						<!-- body 끝 -->
-						<div class="modal-footer">
-							<p>여기는 modal footer</p>
-						</div>
+	<div class="container">
+		<br>
+		<div class="page_title">
+			<h2>관리자 메인 페이지</h2>
+		</div>
+		<br>
+		<a href="#" onclick='location.href="/fap/admin/admin_company_group_code_management_per_job_fair"'>잡페어별 기업 그룹코드</a>
+		<!-- Modal -->
+		<div class="modal fade" role="dialog" id="myModal">
+			<div class="modal-dialog">
+		 		<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">채용공고 리스트</h4>
 					</div>
-					<br>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<div class="modal-body">
+				    	<div>잡페어 리스트 출력
+							<!-- body 시작-->
+							<div id="buttonDiv">
+								<select id="chooseJobFair" onchange="myJobFairDivide()">
+									<!-- 잡페어 리스트 출력 -->
+								</select>
+								<select id="selectDivideJobFair" onchange="selectedJobFairSeq()">
+									<!-- 값 넘겨주는 버튼 들어가는곳 -->
+								</select>
+							</div>
+							<!-- body 끝 -->
+							<div class="modal-footer">
+								<p>여기는 modal footer</p>
+							</div>
+						</div>
+						<br>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
 				</div>
 			</div>
 		</div>
