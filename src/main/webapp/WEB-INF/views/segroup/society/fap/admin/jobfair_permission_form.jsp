@@ -891,7 +891,7 @@
 					<tr>
 						<th>이름으로 검색</th>
 						<td>
-							<input type="text" class="inputMid" id="searchName">
+							<input type="text" id="searchName">
 							<button type="button" class="btn_search" ng-click="search_change()">검색</button>
 						</td>
 					</tr>

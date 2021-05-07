@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<!--  modal을 위한 bootstrap 끝 -->
+	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/newAdminDefault.css" />" media="" />
 	
 	<title>Bridge Job Fair</title>
 		
@@ -198,60 +199,57 @@
 </head>
 <body id="myBody" ng-app="myapp" ng-controller="PermissionController">
 <%@include file="admin_menu.jsp"%><br>
-	<div class="page_title">
-		<h2>잡페어 지원자 지망가능 갯수 설정</h2>
+	<div class="container">
+		<div class="page_title">
+			<h2>Jobfair 지원자 지망가능 갯수 설정</h2>
+		</div>
+		<br>
+		<div class="search_div">
+			<div class="search_box">
+				<form action="/fap/admin/update_user_apply_numbers" method="post">
+					<table class="search_box">
+						<colgroup>
+							<col width="30%">
+							<col width="80%">
+						</colgroup>
+						<tr>
+							<th>잡페어명으로 검색</th>
+							<td>
+								<select id="select_jobfair" class="selectMid" onchange="angular.element(this).scope().search_change(1)">
+									<option value="0">잡페어를 선택하세요</option>
+									<c:forEach var="data" items="${jobfairList }">
+										<option value="${data.fap_jobfair_seq }">${data.fap_jobfair_title }</option>
+									</c:forEach>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>세부 잡페어명으로 검색</th>
+							<td>
+								<select id="select_jobfair_divide" class="selectMid" onchange="angular.element(this).scope().search_change(2)">
+									<option value="0" id="jobfair_divide_hidden" seq="0" hidden>선택 불가</option>
+								</select>
+								<button class="btn_search">설정</button>
+							</td>
+						</tr>
+					</table>
+					<br><br>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>No &nbsp;</th>
+								<th>지원자명 &nbsp;</th>
+								<th>아이디 &nbsp;</th>
+								<th>회원구분 &nbsp;</th>
+								<th>지망개수 &nbsp;</th>
+								<th>설정구분 &nbsp;</th>
+							</tr>
+						</thead>
+						<tbody id="search_data"></tbody>
+					</table>			
+				</form>
+			</div>
+		</div>
 	</div>
-	<br>
-	<div class="search_div">
-		<form action="/fap/admin/update_user_apply_numbers" method="post">
-			<table class="search_box">
-				<tr>
-					<th>잡페어명으로 검색</th>	
-					<td>
-						<select id="select_jobfair" onchange="angular.element(this).scope().search_change(1)">
-							<option value="0">잡페어를 선택하세요</option>
-							<c:forEach var="data" items="${jobfairList }">
-								<option value="${data.fap_jobfair_seq }">${data.fap_jobfair_title }</option>
-							</c:forEach>
-						</select>
-					</td>
-					<th>세부 잡페어명으로 검색</th>	
-					<td>
-						<select id="select_jobfair_divide" onchange="angular.element(this).scope().search_change(2)">
-							<option value="0" id="jobfair_divide_hidden" seq="0" hidden>선택 불가</option>
-						</select>
-					</td>
-					<th>
-						<button>설정</button>
-					</th>			
-				</tr>
-			</table>
-		
-			<table class="table">
-				<thead>
-					<tr>
-						<th>No &nbsp;</th>
-						<th>지원자명 &nbsp;</th>
-						<th>아이디 &nbsp;</th>
-						<th>회원구분 &nbsp;</th>
-						<th>지망개수 &nbsp;</th>
-						<th>설정구분 &nbsp;</th>
-					</tr>
-				</thead>
-				<tbody id="search_data">
-					
-				</tbody>
-			</table>			
-		</form>
-		
-	</div>
-	
-	<!-- <div class="pagination_wrap"></div>
-	<div style="display: none;">
-		<input type="hidden" id="curPage1" value="">
-		<input type="hidden" id="orderType1" value="">
-		<input type="hidden" id="orderValue1" value="">
-	</div> -->
-	
 </body>
 </html>
