@@ -18,6 +18,7 @@
 <script src="<c:url value="/resources/segroup/js/jquery-3.1.1.js" />"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/newAdminDefault.css" />" media="" />
 <script type="text/javascript">
 $(function(){
 	
@@ -117,7 +118,7 @@ function myJobFairDivide(){
 			$('#selectDivideJobFair').append('<option selected="selected" value="defaultOption">선택해주세요.</option>');
 		}else {
 			var html='';
-			html +='<button type="button" id="jobfarirButton" onclick="selectedJobfair('+fap_jobfair_divide_seq +')">선택</button>'
+			html +='<button type="button" id="jobfarirButton" class="btn btn-primary" onclick="selectedJobfair('+fap_jobfair_divide_seq +')">선택</button>'
 			$('#buttonDiv').append(html);
 		}
 	}	
@@ -229,12 +230,17 @@ function selectRank(fap_job_ad_seq){
 </script>
 <body>
 <%@include file="admin_menu.jsp"%>
+<div class="container">
 	<input type="hidden" id="fap_jobfair_divide_seq" name="fap_jobfair_divide_seq" value="${fap_jobfair_divide_seq}">
 	<div class="join-wrap">
 		<div id="subcontents">
-		<h1>잡페어별 기업 그룹코드 관리</h1><h6><spring:message code="fap.comp.login_invite_phrase" /></h6>
-		   	   
-			<div id="buttonDiv">잡페어 리스트 출력 
+			<h1>JobFair별 기업 그룹코드 관리</h1>
+			<h6>
+				<spring:message code="fap.comp.login_invite_phrase" />
+			</h6>
+			<hr>
+			<div id="buttonDiv">
+				<h4>잡페어 리스트 출력</h4> 
 				<select id="chooseJobFair" onchange="myJobFairDivide()">					 
 				<!-- 잡페어/세부잡페어 selectbox -->
 				</select> 
@@ -243,98 +249,101 @@ function selectRank(fap_job_ad_seq){
 				</select>
 			</div>
          	 
-		<div id="count_per_group" style="margin-right: -70%;">
+		<div id="count_per_group" style="margin-right: -85%; font-size: 20px; font-weight: bold;">
 			<c:forEach items="${count_per_group}" var="group">
 				<c:if test="${group.fap_job_ad_groupcode eq 'D0500'}">
 					- : ${group.count_per_group}
 				</c:if>
 				<c:if test="${not empty group.fap_job_ad_groupcode and group.fap_job_ad_groupcode ne 'D0500'}">
-				${group.fap_job_ad_groupcode} : ${group.count_per_group}
+					${group.fap_job_ad_groupcode} : ${group.count_per_group}
 				</c:if>		
 			</c:forEach> 
 		</div>
-		<table>
-			<thead id="headTr">
-				<tr>
-					<th></th>
-					<th>회사명</th>
-					<th>채용공고제목</th>
-					<th>자본금</th>
-					<th>3년간 매출</th>
-					<th>사원수</th>
-					<th>직군
-						<%-- <c:choose>
-							<c:when test="${sort_info eq 'desc'}">
-								<img src="<c:url value="/resources/segroup/society/fap/images/main/triangle_down.png" />" style="height: 10%; width: 10%;" onclick="sort_groupcode('asc')">
-							</c:when>
-							<c:when test="${sort_info eq 'asc'}">
-								<img src="<c:url value="/resources/segroup/society/fap/images/main/triangle_up.png" />" style="height: 10%; width: 10%;" onclick="sort_groupcode('desc')">
-							</c:when>
-							<c:otherwise>
-								<img src="<c:url value="/resources/segroup/society/fap/images/main/triangle_down.png" />" style="height: 10%; width: 10%;" onclick="sort_groupcode('asc')">				
-							</c:otherwise>
-						</c:choose> --%>
-					</th>
-					<!-- <th>변경하기</th> -->
-					<th>순위</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${jobFairAdList}" var="jobad">
+		<br>
+		<div>
+			<table class="table">
+				<thead id="headTr">
 					<tr>
-							<td><input type="hidden" value="${jobad.fap_job_ad_seq}"></td>
-							<td>${jobad.fap_comp_en_nm}</td>
-							<td>${jobad.fap_job_ad_title}</td>
-							<td>${jobad.fap_job_ad_stock}</td>
-							<td>${jobad.fap_job_ad_3years_avg_sales}</td>
-							<td>${jobad.fap_job_ad_employee_num}</td>
-							<td>
-								<select id="SelectGroupcode${jobad.fap_job_ad_seq}" onchange="changeGroupcode(${jobad.fap_job_ad_seq})" style="width:60px">
-									<option hidden value="선택해주세요">선택</option>
-									<c:forEach items="${companyGroupcodeList}" var="companygroupcode">
-										<c:choose>
-											<c:when test="${companygroupcode.fap_comp_groupcode eq 'D0500' and jobad.fap_job_ad_groupcode eq 'D0500'}">
-												<option selected="selected" value="D0500"> - </option>
-											</c:when>
-											<c:when test="${jobad.fap_job_ad_groupcode eq companygroupcode.fap_comp_groupcode}">
-												<option selected="selected" value="${jobad.fap_job_ad_groupcode}">${jobad.fap_job_ad_groupcode}</option>
-											</c:when>
-											<c:when test="${companygroupcode.fap_comp_groupcode eq 'D0500'}">
-												<option value="D0500"> - </option>
-											</c:when>	
-											<c:otherwise>
-												<option value="${companygroupcode.fap_comp_groupcode}">
-													${companygroupcode.fap_comp_groupcode}
-												</option>
-											</c:otherwise> 
-										</c:choose>
-									</c:forEach>
-								</select>
-							</td>
-							<%-- <td style="width: 7%">
-								<button type="button" onclick="changeGroupcode(${jobad.fap_job_ad_seq})">변경</button>	
-							</td> --%>
-							
-							<!-- 순위 선택 -->
-							<td>
-								<select id="selectRank${jobad.fap_job_ad_seq}" onchange="selectRank('${jobad.fap_job_ad_seq}');" style="width:60px">
-									<c:if test = "${jobad.fap_job_ad_rank == null}">
-										<option hidden value="선택">선택</option>
-									</c:if>
-									<c:if test = "${jobad.fap_job_ad_rank != null}">
-										<option hidden value="선택">${jobad.fap_job_ad_rank}</option>
-									</c:if>
-									<c:forEach var="i" begin="1" end="8">
-										<option value="${i}">${i}</option>
-									</c:forEach>
-								</select>
-							</td>
+						<th></th>
+						<th>회사명</th>
+						<th>채용공고제목</th>
+						<th>자본금</th>
+						<th>3년간 매출</th>
+						<th>사원수</th>
+						<th>직군
+							<%-- <c:choose>
+								<c:when test="${sort_info eq 'desc'}">
+									<img src="<c:url value="/resources/segroup/society/fap/images/main/triangle_down.png" />" style="height: 10%; width: 10%;" onclick="sort_groupcode('asc')">
+								</c:when>
+								<c:when test="${sort_info eq 'asc'}">
+									<img src="<c:url value="/resources/segroup/society/fap/images/main/triangle_up.png" />" style="height: 10%; width: 10%;" onclick="sort_groupcode('desc')">
+								</c:when>
+								<c:otherwise>
+									<img src="<c:url value="/resources/segroup/society/fap/images/main/triangle_down.png" />" style="height: 10%; width: 10%;" onclick="sort_groupcode('asc')">				
+								</c:otherwise>
+							</c:choose> --%>
+						</th>
+						<!-- <th>변경하기</th> -->
+						<th>순위</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<c:forEach items="${jobFairAdList}" var="jobad">
+						<tr>
+								<td><input type="hidden" value="${jobad.fap_job_ad_seq}"></td>
+								<td>${jobad.fap_comp_en_nm}</td>
+								<td>${jobad.fap_job_ad_title}</td>
+								<td>${jobad.fap_job_ad_stock}</td>
+								<td>${jobad.fap_job_ad_3years_avg_sales}</td>
+								<td>${jobad.fap_job_ad_employee_num}</td>
+								<td>
+									<select id="SelectGroupcode${jobad.fap_job_ad_seq}" onchange="changeGroupcode(${jobad.fap_job_ad_seq})" style="width:60px">
+										<option hidden value="선택해주세요">선택</option>
+										<c:forEach items="${companyGroupcodeList}" var="companygroupcode">
+											<c:choose>
+												<c:when test="${companygroupcode.fap_comp_groupcode eq 'D0500' and jobad.fap_job_ad_groupcode eq 'D0500'}">
+													<option selected="selected" value="D0500"> - </option>
+												</c:when>
+												<c:when test="${jobad.fap_job_ad_groupcode eq companygroupcode.fap_comp_groupcode}">
+													<option selected="selected" value="${jobad.fap_job_ad_groupcode}">${jobad.fap_job_ad_groupcode}</option>
+												</c:when>
+												<c:when test="${companygroupcode.fap_comp_groupcode eq 'D0500'}">
+													<option value="D0500"> - </option>
+												</c:when>	
+												<c:otherwise>
+													<option value="${companygroupcode.fap_comp_groupcode}">
+														${companygroupcode.fap_comp_groupcode}
+													</option>
+												</c:otherwise> 
+											</c:choose>
+										</c:forEach>
+									</select>
+								</td>
+								<%-- <td style="width: 7%">
+									<button type="button" onclick="changeGroupcode(${jobad.fap_job_ad_seq})">변경</button>	
+								</td> --%>
+								
+								<!-- 순위 선택 -->
+								<td>
+									<select id="selectRank${jobad.fap_job_ad_seq}" onchange="selectRank('${jobad.fap_job_ad_seq}');" style="width:60px">
+										<c:if test = "${jobad.fap_job_ad_rank == null}">
+											<option hidden value="선택">선택</option>
+										</c:if>
+										<c:if test = "${jobad.fap_job_ad_rank != null}">
+											<option hidden value="선택">${jobad.fap_job_ad_rank}</option>
+										</c:if>
+										<c:forEach var="i" begin="1" end="8">
+											<option value="${i}">${i}</option>
+										</c:forEach>
+									</select>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>
-<%@include file="admin_footer.jsp"%>
 </body>
 </html>

@@ -492,7 +492,7 @@
 							content += '</li>';
 							content += '<li class="wid4">';
 							content += '<input type="number" class="input1 fap_resume_project_peoples_num" name="resumeProjectList['+projectIndex+'].fap_resume_project_peoples_num" id="fap_resume_project_peoples_num'+projectIndex+'"  maxlength="10" placeholder="10<spring:message code="fap.placeholder.limit_characters" />">';
-							content += '<span class="hiddenTx"><spring:message code="com.placeholder.people" /></span>';
+							content += '<span class="hiddenTxt"><spring:message code="com.placeholder.people" /></span>';
 							content += '</li>';
 							content += '</ul>';
 							content += '<ul class="tit3">';
@@ -1489,8 +1489,8 @@
 						</li>
 						<li class="wid3"><spring:message code="fap.resume.user_dependent" /></li>
 						<li class="wid4">
-							<input type="text" class="input1" name="fap_resume_dependents" value="0">
-							<span class="hiddenTx"><spring:message code="com.placeholder.people" /></span>
+							<input type="text" class="input1" name="fap_resume_dependents" maxlength="10" value="0">
+							<span class="hiddenTxt"><spring:message code="com.placeholder.people" /></span>
 						</li>						
 					</ul>
 				</div>
@@ -1500,15 +1500,15 @@
 						<c:set var="birth" value="${detail.user_birth}" />
 						<li class="wid2_birth">
 							<input type="text" class="input" name="fap_resume_birth" value="${fn:substring(birth,0,4) }" readonly>
-							<span class="hiddenTx"><spring:message code="com.placeholder.year" /></span>
+							<span class="hiddenTxt"><spring:message code="com.placeholder.year" /></span>
 						</li>
 						<li class="wid2_birth">
 							<input type="text" class="input" name="fap_resume_birth" value="${fn:substring(birth,5,7) }" readonly>
-							<span class="hiddenTx"><spring:message code="com.placeholder.month" /></span>
+							<span class="hiddenTxt"><spring:message code="com.placeholder.month" /></span>
 						</li>
 						<li class="wid2_birth"> 
 							<input type="text" class="input" name="fap_resume_birth" value="${fn:substring(birth,8,10) }"readonly>
-							<span class="hiddenTx"><spring:message code="com.placeholder.day" /></span>
+							<span class="hiddenTxt"><spring:message code="com.placeholder.day" /></span>
 						</li>
 					</ul>
 					<ul class="tit3">

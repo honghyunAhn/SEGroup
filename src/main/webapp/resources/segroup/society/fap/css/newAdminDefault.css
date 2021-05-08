@@ -42,8 +42,11 @@ table.search_box td{width:28%;padding: 10px 0px 10px 10px;}
 
 table.search_box select{width:20%;}
 table.search_box .selectMid{width:50%;}
+table.search_box .select30{width:30%;}
 
 table.search_box input[type='text']{width:50%;height: auto;}
+
+table.search_box .input30{width:30% !important;height: auto;}
 
 button.btn_search{color:white;font-weight:bold;background-color:#3af;border-radius:10px;border:none;padding:5px;width:15%;}
 td.td_search{text-align:left;}

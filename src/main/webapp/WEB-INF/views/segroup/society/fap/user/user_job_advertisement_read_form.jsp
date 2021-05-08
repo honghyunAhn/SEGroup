@@ -2411,12 +2411,7 @@
 						</div>
 						<div class="job-ad-rt">
 							<input class="input3 currency" type="text" ng-model="::jobAd.fap_job_ad_employee_num" blur-currency maxlength="9" disabled="disabled">
-<<<<<<< .mine
-||||||| .r805
 							<span class="hiddenTx">名</span>
-=======
-							<span class="hiddenTx modLocationR">名</span>
->>>>>>> .r819
 						</div>
 						<span class="hiddenTx">名</span>
 			    	</div>
@@ -3542,13 +3537,7 @@
 											<h5 class="inner-title right-title"><spring:message code="fap.jobad.service_overtime_time" /></h5>
 											<span class="inner-item right-title">
 												<input type="text" class="currency half" ng-model="::jobAdPay.JobPayList[0].JobPayBaseList[2].JobServiceWorkList[0].fap_job_service_work_tm" blur-currency disabled="disabled"/>
-<<<<<<< .mine
 												<span class="hiddenTxt"><spring:message code="fap.jobad.service_overtime_time" /></span>
-||||||| .r805
-												<span class="hiddenTx"><spring:message code="fap.jobad.service_overtime_time" /></span>
-=======
-												<span class="hiddenTx sm2"><spring:message code="fap.jobad.service_overtime_time" /></span>
->>>>>>> .r819
 											</span>
 										</div>
 									</div>
@@ -3597,13 +3586,7 @@
 											<h5 class="inner-title right-title"></h5>
 											<span class="inner-item right-title">
 												<input type="text" class="currency half" ng-model="::jobAdPay.JobPayList[1].JobPayExtraList[0].fap_job_pay_extra_tm" blur-currency disabled="disabled"/>
-<<<<<<< .mine
 												<span class="hiddenTxt">時間以上</span>
-||||||| .r805
-												<span class="hiddenTx">時間以上</span>
-=======
-												<span class="hiddenTx sm2">時間以上</span>
->>>>>>> .r819
 											</span>
 										</div>
 									</div>
