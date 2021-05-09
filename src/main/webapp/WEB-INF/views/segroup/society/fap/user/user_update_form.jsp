@@ -1388,11 +1388,11 @@ var first_email = "";
 							</div>
 							<div class="joinBBS-row">
 								<div class="joinlt">비밀번호</div>
-								<div class="joinrt"><input type="password" id="user_pw" name="user_pw" placeholder="<spring:message code="fap.placholder.pw" />"></div>
+								<div class="joinrt"><input type="password" id="user_pw" name="user_pw" maxlength="40" placeholder="<spring:message code="fap.placholder.pw" />"></div>
 							</div>
 							<div class="joinBBS-row">
 								<div class="joinlt">비밀번호 확인</div>
-								<div class="joinrt"><input type="password" id="user_pw_check" placeholder="<spring:message code="fap.placholder.pw" />"></div>
+								<div class="joinrt"><input type="password" id="user_pw_check" maxlength="40" placeholder="<spring:message code="fap.placholder.pw" />"></div>
 							</div>
 							<div class="joinBBS-row">
 								<div class="joinlt">이름</div>
