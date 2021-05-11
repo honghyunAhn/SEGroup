@@ -1002,7 +1002,7 @@ width:710px; height:100px; margin-top:5px;
 
 #rewritebtn{margin:0 auto;padding-top:20px;padding-bottom:20px;}
 
-#peopleBBS {margin:0% 20% 0% 30%;width:1100px; text-align:left;}
+#peopleBBS {width:1100px; text-align:left;}
 #peopleBBS.applicant-status {margin:0 auto;width:1100px; text-align:left;}
 #peopleBBS li {display:inline-block;}
 

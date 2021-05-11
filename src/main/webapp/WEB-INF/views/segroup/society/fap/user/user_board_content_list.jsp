@@ -143,28 +143,27 @@
 		</h1>
 	  </div>
  
-	   <!-- 검색 -->      
-		  <div id="peopleBBS" style="padding:10px;"> 	 
-			  <table>          
-				  <tr>
-					  <td>
-					  		<select id="searchKey"  name="searchKey" style=" width: 150px; height:28px;" >
-								<option value="searchTitle" >제목</option>
-								<option value="searchContent" >내용</option>
-							</select>	
-					  </td>
-					   <td>
-					   		<input type="text" id="searchValue" name="searchValue"  class="input1">	
-					   	</td>
-					   	<td>
-							<input  type="button" class="btn_search"   value="검색" ng-click="ilist(${map.adminPager.curPage})" style="width: 100px; height:28px;">	
-					   </td>
-				  </tr>			
-			  </table> 									
-		  </div>
-		 
 		<!-- 게시판 출력 -->
 			<div id="qnaBBS">
+			   <!-- 검색 -->      
+				<div id="peopleBBS" style="padding:10px;"> 	 
+					  <table>          
+						  <tr>
+							  <td>
+							  		<select id="searchKey"  name="searchKey" style=" width: 150px; height:28px;" >
+										<option value="searchTitle" >제목</option>
+										<option value="searchContent" >내용</option>
+									</select>	
+							  </td>
+							   <td>
+							   		<input type="text" id="searchValue" name="searchValue"  class="input1">	
+							   	</td>
+							   	<td>
+									<input  type="button" class="btn_search"   value="검색" ng-click="ilist(${map.adminPager.curPage})" style="width: 100px; height:28px;">	
+							   </td>
+						  </tr>			
+					  </table> 									
+				  </div>
 				<div>
 					<ul class="qnatitle">
 						<li class="wid1"><spring:message code="fap.jobfair.main.board.no" /></li>

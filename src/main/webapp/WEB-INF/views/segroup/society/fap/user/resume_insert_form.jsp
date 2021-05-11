@@ -1514,7 +1514,7 @@
 					<ul class="tit3">
 						<li class="wid1"><spring:message code="fap.resume.user_address" /></li>
 						<li class="wid2">
-							<input type="text" class="input1" name="resumeAddrList[0].fap_resume_address" maxlength="100" placeholder="100<spring:message code="fap.placeholder.limit_characters" />">
+							<input type="text" class="input1" name="resumeAddrList[0].fap_resume_address" maxlength="50" placeholder="50<spring:message code="fap.placeholder.limit_characters" />">
 						</li>
 					</ul>
 					<ul class="tit3">
