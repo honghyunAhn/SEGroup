@@ -218,7 +218,7 @@
 		
 		<div id="sub1Box">
 			<br>
-			<h1>채용상세검색</h1>
+			<h1><spring:message code="fap.search.details"/></h1>
 			<h6><span class="red">다양한 준비로 더 많은 취업성공을 이끕니다!</span></h6>
 			
 			<div id="sub1_tab"></div>
