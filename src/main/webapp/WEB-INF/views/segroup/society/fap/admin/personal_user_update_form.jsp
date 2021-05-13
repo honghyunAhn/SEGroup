@@ -155,6 +155,11 @@
 		}
 	} ]);
 	
+	function selectAndFocus(checkdata){
+		checkdata.focus();
+		checkdata.select();
+	}
+	
 	/**
 	 * 이메일 중복 검사를 진행한다
 	 */
