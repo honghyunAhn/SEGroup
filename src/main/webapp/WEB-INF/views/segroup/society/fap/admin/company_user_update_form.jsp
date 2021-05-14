@@ -183,6 +183,10 @@
 		return true;
 	}
 	
+	function selectAndFocus(checkdata){
+		checkdata.focus();
+		checkdata.select();
+	}
 	/**
 	 * 패스워드 검사를 진행한다
 	 * return: 같으면 true, 다르면 false
@@ -234,15 +238,8 @@
 	function isNameCorrect() {
 		var input_nm = $('#user_nm');
 		if (input_nm.val() == '') {
-			/* alert('이름을 입력해 주시기 바랍니다');
-			selectAndFocus(input_nm); */
-			alert('본인인증을 완료하여 주시기 바랍니다.');
-			return false;
-		}
-		if (nm_regex.test(input_nm.val()) == false) {
-			/* alert('이름은 한국어로 작성해 주시기 바랍니다');
-			selectAndFocus(input_nm); */
-			alert('본인인증을 완료하여 주시기 바랍니다.');
+			alert('이름을 입력해 주시기 바랍니다');
+			selectAndFocus(input_nm);
 			return false;
 		}
 		return true;
@@ -273,13 +270,11 @@
 		var phoneNum = $('#user_phone').val();
 		
 		if (phoneNum == '') {
-			/* alert('휴대폰 번호를 입력해 주시기 바랍니다'); */
-			alert('본인인증을 완료하여 주시기 바랍니다.');
+			alert('휴대폰 번호를 입력해 주시기 바랍니다');
 			return false;
 		}
 		if(phone_regex.test(phoneNum) == false){
-	        /* alert("휴대폰 번호를 양식에 맞게 입력해 주세요."); */
-	        alert('본인인증을 완료하여 주시기 바랍니다.');
+	        alert('휴대폰 번호를 숫자로만 적어주세요');
 	        return false;
 		}
 		

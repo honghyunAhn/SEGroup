@@ -38,7 +38,7 @@
 		});
 		</script>
 		
-		<script type="text/javascript">	
+	<script type="text/javascript">	
 		
 		var myApp = angular.module('myapp', []);	
 		
@@ -844,11 +844,6 @@
 	     }
 			
 	</script>
-	
-	<style type="text/css">
-	
-	</style>
-		
 </head>
 <body id="myBody" ng-app="myapp" ng-controller="PermissionController">
 <%@include file="admin_menu.jsp"%><br>

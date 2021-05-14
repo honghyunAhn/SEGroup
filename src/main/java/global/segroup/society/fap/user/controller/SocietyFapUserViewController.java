@@ -157,7 +157,7 @@ public class SocietyFapUserViewController implements PathConstants {
 	 * @Method 설명 : FAP 회원 로그인 성공시 권한별 페이지 이동하는 컨트롤러 함수
 	 */
 	@RequestMapping(value = PathConstants.SOCIETY_FAP_USER_LOGIN_SUCCESS, method = RequestMethod.GET)
-	public String user_login_success(Authentication auth, RedirectAttributes rttr, HttpServletRequest request){
+	public String user_login_success(Authentication auth, RedirectAttributes rttr, HttpServletRequest request, HttpSession session){
 		logger.debug("FAP 회원 로그인 성공 컨트롤러 시작");
 		
 		String user_ip = service.getClintIp(request);
@@ -180,11 +180,14 @@ public class SocietyFapUserViewController implements PathConstants {
 			rttr.addFlashAttribute("dormancy_msg", "휴면 상태가 해제되었습니다. 일시: " + todayStr);
 		}
 		//접속이력 저장 2020-10-29 김나영
-		MemberForm member = new MemberForm();
-		member.setId(user_id);
-		member.setUser_ip(user_ip);
-		service.insertUserAccInfo(member);
+		MemberForm memberAcc = new MemberForm();
+		memberAcc.setId(user_id);
+		memberAcc.setUser_ip(user_ip);
+		service.insertUserAccInfo(memberAcc);
 		
+		//user_flag 저장
+		HashMap<String, Object> member = service.selectMemberInfo(user_id);
+		session.setAttribute("user_flag", member.get("USER_FLAG"));
 		logger.debug("FAP 회원 로그인 성공 컨트롤러 종료");
 		return "redirect:"+PathConstants.SOCIETY_FAP_USER_MAIN;
 		

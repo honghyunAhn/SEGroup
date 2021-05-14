@@ -16,6 +16,7 @@
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/segroup/society/fap/css/default.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/segroup/society/fap/css/popModal.css" />" />
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/newAdminDefault.css" />" media="" />
 
 <script type="text/javascript">
 	var myApp = angular.module('myapp', []);
@@ -978,95 +979,99 @@
 </script>
 </head>
 <body ng-app="myapp" ng-controller="JobAdController">
+
 	<%@include file="admin_menu.jsp"%>
-	<div class="join-wrap">
-		<div id="subcontents" class="admin">
-			<h1>
-				<spring:message code="fap.common.manage_jobad" />
-			</h1>
-			<h6>
-				<spring:message code="fap.comp.login_invite_phrase" />
-			</h6>
-
-			<div id="nowBox">
-
-				<div class="nowfind" id="select-box-layout">
-					<spring:message code="fap.jobad.search_per_jobfair" />
-				</div>
-				<!-- 검색 -->
-				<div class="searchDiv">
-					   <table>
-						  <tr>
-							  <td>
-							  		<select id="searchSelect"  name="searchSelect" style=" width: 150px; height:28px;"   >
+	<div class="container">
+		<div class="join-wrap">
+			<div id="subcontents" class="admin">
+				<h1>
+					<spring:message code="fap.common.manage_jobad" />
+				</h1>
+				<br>
+				<h4>
+					<spring:message code="fap.comp.login_invite_phrase" />
+				</h4>
+				
+				<div class="search_div">
+					<div class="search_box">
+						<table class="search_box">
+							<colgroup>
+								<col width="20%">
+								<col width="80%">
+							</colgroup>
+							<tr>
+								<th>
+									<spring:message code="fap.jobad.search_per_jobfair" />
+								</th>
+								<td>
+									<div class="nowfind" id="select-box-layout"></div>
+								</td>
+							</tr>
+							<tr>
+								<th>회사명으로 검색</th>
+								<td>
+									<select id="searchSelect"  name="searchSelect" class="select20">
 										<option value="searchJaNm">회사명(일본어)</option>
 										<option value="searchEnNm">회사명(영어)</option>
 									</select>
-							  </td>
-							   <td>
-							   		<input type="text" id="searchInput" name="searchInput"  class="input1" style="width: 700px; height:28px;" placeholder="">
-							   	</td>
-							   	<td>
-									<input  type="button" class="btn_search"   value="검색" ng-click="search()" style="width: 100px; height:28px;">
-							   </td>
-						  </tr>
-					  </table>		
+									<input type="text" id="searchInput" name="searchInput"  class="input34-3" placeholder="검색어 입력">
+									<input  type="button" class="btn-search" value="검색" ng-click="search()" style="width: 100px; height:28px;">
+								</td>
+							</tr>
+							<tr>
+								<th colspan="2">
+										<button id="approvalRequestAdBtn" class="btn btn-primary2" ng-click="draw_approvalRequest_job_ad_list()">승인요청중인 채용공고</button>
+										
+										<button id="progressingAdBtn" class="btn btn-primary2" ng-click="draw_progressing_job_ad_list()">진행중인 채용공고</button>
+										
+										<button id="standbyAdBtn" class="btn btn-primary2" ng-click="draw_standby_job_ad_list()">대기중인 채용공고</button>
+										
+										<button id="completedAdBtn" class="btn btn-primary2" ng-click="draw_completed_job_ad_list()">마감된 채용공고</button>
+								</th>
+							</tr>
+						</table>
+					</div>
 				</div>
+				<br>
+				<!-- 채용공고 Div-->
+				<div id="nowBBS"></div>
+			</div>
+		</div>
+	</div>		 
+	<!-- 공고대상 설정 모달 -->
+	<div class="modal fade" id="job_ad_show_modal" role="dialog">
 		
-				<div id="rewrite_tab">
-				<button id="approvalRequestAdBtn" class="btn btn-primary2" ng-click="draw_approvalRequest_job_ad_list()">승인요청중인 채용공고</button>
+		<!-- Modal dialog------------------------->
+		<div class="modal-dialog" id="modal-dialog">
+		
+			<!-- 1 Modal content------------------------->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="title">
+						채용공고 대상 설정
+					</h4>
+				</div>
 				
-				<button id="progressingAdBtn" class="btn btn-primary2" ng-click="draw_progressing_job_ad_list()">진행중인 채용공고</button>
-				
-				<button id="standbyAdBtn" class="btn btn-primary2" ng-click="draw_standby_job_ad_list()">대기중인 채용공고</button>
-				
-				<button id="completedAdBtn" class="btn btn-primary2" ng-click="draw_completed_job_ad_list()">마감된 채용공고</button>
-			</div>
+				<!-- body 시작-->
+				<div class="job_ad_show_body" style="text-align: center;">
+					<div id="job_ad_show_content" style="text-align:center;">
+						
+					</div>
+	
+	       		</div>
+				<!-- body 끝 -->
+	
+				<div class="modal-footer">
+					<button type="button" id="show_insert_btn" class="btn btn-default" onclick="show_insert()">변경</button>
+					<button type="button" id="show_close_btn" class="btn btn-default" data-dismiss="modal">닫기</button>
+				</div>
 			
-			<div id="nowBBS">
-				<!-- 채용공고 들어가는 부분 -->
 			</div>
+			<!-- modal content div 종료 -->
 			
 		</div>
-	</div>
-</div>		 
-
-<!-- 공고대상 설정 모달 -->
-<div class="modal fade" id="job_ad_show_modal" role="dialog">
-	
-	<!-- Modal dialog------------------------->
-	<div class="modal-dialog" id="modal-dialog">
-	
-		<!-- 1 Modal content------------------------->
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="title">
-					채용공고 대상 설정
-				</h4>
-			</div>
-			
-			<!-- body 시작-->
-			<div class="job_ad_show_body" style="text-align: center;">
-				<div id="job_ad_show_content" style="text-align:center;">
-					
-				</div>
-
-       		</div>
-			<!-- body 끝 -->
-
-			<div class="modal-footer">
-				<button type="button" id="show_insert_btn" class="btn btn-default" onclick="show_insert()">변경</button>
-				<button type="button" id="show_close_btn" class="btn btn-default" data-dismiss="modal">닫기</button>
-			</div>
+		<!-- modal-dialog div 종료 -->
 		
-		</div>
-		<!-- modal content div 종료 -->
-		
-	</div>
-	<!-- modal-dialog div 종료 -->
-	
-</div>  
-
-
+	</div>  
 </body>
 </html>

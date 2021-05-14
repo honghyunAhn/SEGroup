@@ -297,7 +297,7 @@
 		    	<ul>
 		    		<li><a href='/fap/admin/user_management'>회원 관리</a></li>
 					<li><a href='/fap/admin/company_management'>기업 관리</a></li>
-					<li><a href="/fap/admin/resume_update_management">이력서 수정여부 관리(임시)</a>
+<!-- 					<li><a href="/fap/admin/resume_update_management">이력서 수정여부 관리(임시)</a> -->
 		    	</ul>
 		    </li>
 		    <li><a>오픈잡페어</a>
