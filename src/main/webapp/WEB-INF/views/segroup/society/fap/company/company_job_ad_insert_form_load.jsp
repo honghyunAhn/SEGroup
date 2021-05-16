@@ -4346,6 +4346,7 @@
 	<!------------------------/헤드영역-------------------------->
 	
 	<!-----------------------서브컨텐츠 영역--------------------------->
+	<div class="job-content">
 	<div class="job-ad-wrap">
 		<div class="job-ad-subcontents">
 		<div class="job-ad-content">
@@ -6009,9 +6010,10 @@
      		 </div>
 		</div>
 		</div> <!-- subcontents end -->
-		<div id="footerdiv">
 		</div>
-		<%@include file="../common_footer_fap.jsp"%>
 	</div>
+		<div id="footerdiv">
+			<%@include file="../common_footer_fap.jsp"%>
+		</div>
 </body>
 </html>
