@@ -12,6 +12,8 @@
 	<script src="<c:url value="/resources/segroup/js/angular.min.js" />"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/newAdminDefault.css" />" media="" />
+	
 	<script type="text/javascript">
 		$(function() {
 			$('#logout').off("click").on("click", function() {
@@ -30,8 +32,6 @@
 				var fap_job_ad_seq = '${fap_job_ad_seq}';
 				var fap_jobfair_seq = '${fap_jobfair_seq}';
 				var fap_comp_id = '${fap_comp_id}';
-				console.log('1111111');
-				
 				
 				$http({
 					method: 'POST',
@@ -96,10 +96,10 @@
 					context += '<tr ng-repeat="result in results | filter:query">';
 					context += '<td><input type="text" value="{{result.fap_common_required_doc_title}}" readonly="readonly"></td>';
 					context += '<td><span><input type="text" value="{{result.fap_common_required_doc_origin}}" style="width: 400px;" readonly="readonly"></span></td>';
-					context += '<td><button value="{{result.fap_common_required_doc_detail}}" ng-click="detail(result.fap_common_required_doc_detail)">설명보기</button></td>';
-					context += '<td><a href="/file_download?origin={{result.fap_common_required_doc_origin}}&saved={{result.fap_common_required_doc_saved}}&path=/fap/company/required_doc_file/{{result.fap_comp_id}}_{{result.fap_job_ad_seq}}"><button value="{{result.fap_common_required_doc_seq}}">다운로드</button></a></td>';
-					context += '<td><button value="{{result.fap_common_required_doc_seq}}" ng-click="update(result.fap_common_required_doc_seq)">수정</button></td>';
-					context += '<td><a href="/fap/admin/common_required_doc_delete?fap_common_required_doc_seq={{result.fap_common_required_doc_seq}}&fap_common_required_doc_saved={{result.fap_common_required_doc_saved}}&fap_comp_id={{result.fap_comp_id}}&fap_job_ad_seq={{result.fap_job_ad_seq}}&fap_jobfair_seq={{result.fap_jobfair_seq}}"><button value="{{result.fap_common_required_doc_seq}}">삭제</button></a></td>';
+					context += '<td><button value="{{result.fap_common_required_doc_detail}}" ng-click="detail(result.fap_common_required_doc_detail)" class="btn_searchWidthAuto">설명보기</button></td>';
+					context += '<td><a href="/file_download?origin={{result.fap_common_required_doc_origin}}&saved={{result.fap_common_required_doc_saved}}&path=/fap/company/required_doc_file/{{result.fap_comp_id}}_{{result.fap_job_ad_seq}}"><button value="{{result.fap_common_required_doc_seq}}" class="btn_searchWidthAuto">다운로드</button></a></td>';
+					context += '<td><button value="{{result.fap_common_required_doc_seq}}" ng-click="update(result.fap_common_required_doc_seq)" class="btn_searchWidthAuto">수정</button></td>';
+					context += '<td><a href="/fap/admin/common_required_doc_delete?fap_common_required_doc_seq={{result.fap_common_required_doc_seq}}&fap_common_required_doc_saved={{result.fap_common_required_doc_saved}}&fap_comp_id={{result.fap_comp_id}}&fap_job_ad_seq={{result.fap_job_ad_seq}}&fap_jobfair_seq={{result.fap_jobfair_seq}}"><button value="{{result.fap_common_required_doc_seq}}" class="btn_searchWidthAuto">삭제</button></a></td>';
 					context += '</tr>';
 					
 					$("#search_data").html($compile(context)($scope)); 	
@@ -134,7 +134,7 @@
 					context += '<span selectcode value="A0001"></span>';
 					context += '</td>';
 					context += '<td>{{nomi_1.fap_resume_birth}}</td>';
-					context += '<td><button value="{{nomi_1.fap_nominee_seq}}" ng-click="personal_doc(nomi_1.fap_nominee_seq, ad_seq)">개인서류</button></td>';
+					context += '<td><button value="{{nomi_1.fap_nominee_seq}}" ng-click="personal_doc(nomi_1.fap_nominee_seq, ad_seq)" class="btn_searchWidthAuto">개인서류</button></td>';
 					context += '</tr>';
 					
 					$("#nominee_data").html($compile(context)($scope));
@@ -216,10 +216,10 @@
 					context += '<tr ng-repeat="doc in docu | filter:query">';
 					context += '<td><input type="text" value="{{doc.fap_common_required_doc_title}}" readonly="readonly"></td>';
 					context += '<td><span><input type="text" value="{{doc.fap_common_required_doc_origin}}" style="width: 400px;" readonly="readonly"></span></td>';
-					context += '<td><button value="{{doc.fap_common_required_doc_detail}}" ng-click="detail(doc.fap_common_required_doc_detail)">설명보기</button></td>';
-					context += '<td><a href="/file_download?origin={{doc.fap_common_required_doc_origin}}&saved={{doc.fap_common_required_doc_saved}}&path=/fap/company/required_doc_file/{{doc.fap_comp_id}}_{{doc.fap_job_ad_seq}}"><button value="{{doc.fap_common_required_doc_seq}}">다운로드</button></a></td>';
-					context += '<td><button value="{{doc.fap_common_required_doc_seq}}" ng-click="update(doc.fap_common_required_doc_seq)">수정</button></td>';
-					context += '<td><a href="/fap/admin/common_required_doc_delete?fap_common_required_doc_seq={{doc.fap_common_required_doc_seq}}&fap_common_required_doc_saved={{doc.fap_common_required_doc_saved}}&fap_comp_id={{doc.fap_comp_id}}&fap_job_ad_seq={{doc.fap_job_ad_seq}}&fap_jobfair_seq={{doc.fap_jobfair_seq}}"><button value="{{doc.fap_common_required_doc_seq}}">삭제</button></a></td>';
+					context += '<td><button value="{{doc.fap_common_required_doc_detail}}" ng-click="detail(doc.fap_common_required_doc_detail)" class="btn_searchWidthAuto">설명보기</button></td>';
+					context += '<td><a href="/file_download?origin={{doc.fap_common_required_doc_origin}}&saved={{doc.fap_common_required_doc_saved}}&path=/fap/company/required_doc_file/{{doc.fap_comp_id}}_{{doc.fap_job_ad_seq}}"><button value="{{doc.fap_common_required_doc_seq}}" class="btn_searchWidthAuto">다운로드</button></a></td>';
+					context += '<td><button value="{{doc.fap_common_required_doc_seq}}" ng-click="update(doc.fap_common_required_doc_seq)" class="btn_searchWidthAuto">수정</button></td>';
+					context += '<td><a href="/fap/admin/common_required_doc_delete?fap_common_required_doc_seq={{doc.fap_common_required_doc_seq}}&fap_common_required_doc_saved={{doc.fap_common_required_doc_saved}}&fap_comp_id={{doc.fap_comp_id}}&fap_job_ad_seq={{doc.fap_job_ad_seq}}&fap_jobfair_seq={{doc.fap_jobfair_seq}}"><button value="{{doc.fap_common_required_doc_seq}}" class="btn_searchWidthAuto">삭제</button></a></td>';
 					context += '</tr>';
 					
 					$("#search_data").html($compile(context)($scope)); 	
@@ -253,7 +253,7 @@
 					context += '<span selectcode value="A0001"></span>';
 					context += '</td>';
 					context += '<td>{{nomi_2.fap_resume_birth}}</td>';
-					context += '<td><button value="{{nomi_2.fap_nominee_seq}}" ng-click="personal_doc(nomi_2.fap_nominee_seq, ad_seq)">개인서류</button></td>';
+					context += '<td><button value="{{nomi_2.fap_nominee_seq}}" ng-click="personal_doc(nomi_2.fap_nominee_seq, ad_seq)" class="btn_searchWidthAuto">개인서류</button></td>';
 					context += '</tr>';
 					
 					$("#nominee_data").html($compile(context)($scope));
@@ -343,6 +343,7 @@
 							'fap_job_ad_seq' : fap_job_ad_seq, 'fap_comp_id' : fap_comp_id
 						}
 					}).then(function successCallback(response) {
+						console.log(response)
 						$scope.common_required_doc_draw(response);
 						$(".modal-body #fap_job_ad_seq").val(fap_job_ad_seq);
 						
@@ -405,10 +406,10 @@
 						context += '<tr ng-repeat="result in results | filter:query">';
 						context += '<td><input type="text" value="{{result.fap_common_required_doc_title}}" readonly="readonly"></td>';
 						context += '<td><span><input type="text" value="{{result.fap_common_required_doc_origin}}" style="width: 400px;" readonly="readonly"></span></td>';
-						context += '<td><button value="{{result.fap_common_required_doc_detail}}" ng-click="detail(result.fap_common_required_doc_detail)">설명보기</button></td>';
-						context += '<td><a href="/file_download?origin={{result.fap_common_required_doc_origin}}&saved={{result.fap_common_required_doc_saved}}&path=/fap/company/required_doc_file/{{result.fap_comp_id}}_{{result.fap_job_ad_seq}}"><button value="{{result.fap_common_required_doc_seq}}">다운로드</button></a></td>';
-						context += '<td><button value="{{result.fap_common_required_doc_seq}}" ng-click="update(result.fap_common_required_doc_seq)">수정</button></td>';
-						context += '<td><a href="/fap/admin/common_required_doc_delete?fap_common_required_doc_seq={{result.fap_common_required_doc_seq}}&fap_common_required_doc_saved={{result.fap_common_required_doc_saved}}&fap_comp_id={{result.fap_comp_id}}&fap_job_ad_seq={{result.fap_job_ad_seq}}&fap_jobfair_seq={{result.fap_jobfair_seq}}"><button value="{{result.fap_common_required_doc_seq}}">삭제</button></a></td>';
+						context += '<td><button value="{{result.fap_common_required_doc_detail}}" ng-click="detail(result.fap_common_required_doc_detail)" class="btn_searchWidthAuto">설명보기</button></td>';
+						context += '<td><a href="/file_download?origin={{result.fap_common_required_doc_origin}}&saved={{result.fap_common_required_doc_saved}}&path=/fap/company/required_doc_file/{{result.fap_comp_id}}_{{result.fap_job_ad_seq}}"><button value="{{result.fap_common_required_doc_seq}}" class="btn_searchWidthAuto">다운로드</button></a></td>';
+						context += '<td><button value="{{result.fap_common_required_doc_seq}}" ng-click="update(result.fap_common_required_doc_seq)" class="btn_searchWidthAuto">수정</button></td>';
+						context += '<td><a href="/fap/admin/common_required_doc_delete?fap_common_required_doc_seq={{result.fap_common_required_doc_seq}}&fap_common_required_doc_saved={{result.fap_common_required_doc_saved}}&fap_comp_id={{result.fap_comp_id}}&fap_job_ad_seq={{result.fap_job_ad_seq}}&fap_jobfair_seq={{result.fap_jobfair_seq}}"><button value="{{result.fap_common_required_doc_seq}}" class="btn_searchWidthAuto">삭제</button></a></td>';
 						context += '</tr>';
 						
 						$("#search_data").html($compile(context)($scope)); 	
@@ -441,7 +442,7 @@
 						context += '<span selectcode value="A0001"></span>';
 						context += '</td>';
 						context += '<td>{{nomi_3.fap_resume_birth}}</td>';
-						context += '<td><button value="{{nomi_3.fap_nominee_seq}}" ng-click="personal_doc(nomi_3.fap_nominee_seq, ad_seq)">개인서류</button></td>';
+						context += '<td><button value="{{nomi_3.fap_nominee_seq}}" ng-click="personal_doc(nomi_3.fap_nominee_seq, ad_seq)" class="btn_searchWidthAuto">개인서류</button></td>';
 						context += '</tr>';
 						
 						$("#nominee_data").html($compile(context)($scope));
@@ -692,97 +693,86 @@
 </c:if>-->
 
 <%@include file="admin_menu.jsp"%>
-	<br>
-	<div class="page_title">
-		<h2>관리자 내정서류관리 페이지</h2>
-	</div>
-	<br>
- 
-
-	<table>
-		<thead>
-			<tr>
-				<th>내정서류 관리</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>
-					<select id="fap_jobfair_select" onchange="angular.element(this).scope().search_change()">
-						<option value="0">잡페어 선택</option>
-						<c:forEach var="jobfair" items="${jobfair_list}">									
-							<option value="${jobfair.fap_jobfair_seq}" <c:if test="${fap_jobfair_seq == jobfair.fap_jobfair_seq}">selected</c:if>>${jobfair.fap_jobfair_title}</option>		
-						</c:forEach>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<select id="fap_jobfair_comp_select" onchange="angular.element(this).scope().search_change()">
-						<option value="">회사 선택</option>
-						<c:forEach var="comp" items="${comp_list}">
-							<option value="${comp.fap_comp_id}" <c:if test="${fap_comp_id == comp.fap_comp_id}">selected</c:if>>${comp.fap_comp_en_nm}</option>		
-						</c:forEach>
-					</select>					
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<select id="fap_job_ad_select" onchange="angular.element(this).scope().search_change()">
-						<option value="0">채용공고 선택</option>
-						
-					</select>					
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<br>
-
-	<h4 style="display: inline;">내정자 공통서류</h4>
-	<img alt="" src="/resources/segroup/society/fap/images/main/plus_icon.png" data-toggle="modal" data-target="#registerModal">
-	<br>
-	
-	<div id="fap_required_doc_div">
-		<table border="1" bordercolor="black">
-			<thead>
-				<tr>
-				<th>내정서류제목&emsp;</th>
-				<th>내정서류파일&emsp;</th>
-				<th>설명보기&emsp;</th>
-				<th>다운로드&emsp;</th>
-				<th>수정&emsp;</th>
-				<th>삭제&emsp;</th>
-				</tr>
-			</thead>
-			<tbody id="search_data">
-			
-			</tbody>
-		</table>	
-	</div>
-	<br><br><br><br><br>
-	
-	<h4>내정자</h4>
-	
-	<div id="nominee_div">
-		<table border="1" bordercolor="black">
-			<thead>
-				<tr>
-					<th>No&emsp;</th>
-					<th>이름(한글)&emsp;</th>
-					<th>이름(영어)&emsp;</th>
-					<th>이름(한자)&emsp;</th>
-					<th>이름(일어)&emsp;</th>
-					<th>성별&emsp;</th>
-					<th>생년월일&emsp;</th>
-					<th>개인서류&emsp;</th>
-				</tr>
-			</thead>
-			<tbody id="nominee_data">
-			
-			</tbody>
-		</table>
-	</div>
+	<div class="container">
+		<br>
+		<div class="page_title">
+			<h2>관리자 내정서류관리 페이지</h2>
+		</div>
+		<br>
 		
+		<div class="search_div">
+			<div class="search_box">
+				<table class="search_box">
+					<colgroup>
+						<col width="30%">
+						<col width="80%">
+					</colgroup>
+					<tr>
+						<th>내정서류 관리</th>
+						<td>
+							<select id="fap_jobfair_select" onchange="angular.element(this).scope().search_change()" class="select30">
+								<option value="0">잡페어 선택</option>
+								<c:forEach var="jobfair" items="${jobfair_list}">									
+									<option value="${jobfair.fap_jobfair_seq}" <c:if test="${fap_jobfair_seq == jobfair.fap_jobfair_seq}">selected</c:if>>${jobfair.fap_jobfair_title}</option>		
+								</c:forEach>
+							</select>
+							<select id="fap_jobfair_comp_select" onchange="angular.element(this).scope().search_change()" class="select30">
+								<option value="">회사 선택</option>
+								<c:forEach var="comp" items="${comp_list}">
+									<option value="${comp.fap_comp_id}" <c:if test="${fap_comp_id == comp.fap_comp_id}">selected</c:if>>${comp.fap_comp_en_nm}</option>		
+								</c:forEach>
+							</select>
+							<select id="fap_job_ad_select" onchange="angular.element(this).scope().search_change()" class="select30">
+								<option value="0">채용공고 선택</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<br><br>
+		<h4 style="display: inline;">내정자 공통서류</h4>
+		<img alt="" src="/resources/segroup/society/fap/images/main/plus_icon.png" data-toggle="modal" data-target="#registerModal">
+		<br>
+		<div id="fap_required_doc_div">
+			<table class="table">
+				<thead>
+					<tr>
+					<th>내정서류제목&emsp;</th>
+					<th>내정서류파일&emsp;</th>
+					<th>설명보기&emsp;</th>
+					<th>다운로드&emsp;</th>
+					<th>수정&emsp;</th>
+					<th>삭제&emsp;</th>
+					</tr>
+				</thead>
+				<tbody id="search_data">
+				</tbody>
+			</table>	
+		</div>
+		<br><br><br><br><br>
+		
+		<h4>내정자</h4>
+		
+		<div id="nominee_div">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>No&emsp;</th>
+						<th>이름(한글)&emsp;</th>
+						<th>이름(영어)&emsp;</th>
+						<th>이름(한자)&emsp;</th>
+						<th>이름(일어)&emsp;</th>
+						<th>성별&emsp;</th>
+						<th>생년월일&emsp;</th>
+						<th>개인서류&emsp;</th>
+					</tr>
+				</thead>
+				<tbody id="nominee_data">
+				</tbody>
+			</table>
+		</div>
+	</div>
 	<!-- 내정자 공통서류 등록 MODAL 시작-->
 	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">

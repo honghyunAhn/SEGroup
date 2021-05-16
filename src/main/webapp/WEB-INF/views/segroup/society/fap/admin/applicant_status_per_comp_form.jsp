@@ -19,6 +19,7 @@
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/segroup/society/fap/css/default.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/segroup/society/fap/css/popModal.css" />" />
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/newAdminDefault.css" />" media="" />
 
 <script type="text/javascript">
 	var myApp = angular.module('myapp', []);
@@ -37,7 +38,7 @@
 		
 		/* -------------------------- [start] jobfair selectbox 그리기 시작 -------------------------- */
 		var context = '';
-		context +=	'<select onchange="angular.element(this).scope().select_change(1)" id="select_jobfair" ng-model="fap_jobfair_seq">';
+		context +=	'<select onchange="angular.element(this).scope().select_change(1)" id="select_jobfair" ng-model="fap_jobfair_seq" class="select20">';
 		if($scope.fap_jobfair_seq == 0){
 		context +=		'<option value= "0" hidden>선택해주세요.</option>';
 		}
@@ -61,7 +62,7 @@
 		context +=		'</optgroup>';
 		context +=	'</select>';
 		context+='&nbsp;';
-		context +=	'<select onchange="angular.element(this).scope().select_change(2)" id="select_jobfair_detail" disabled="disabled">';
+		context +=	'<select onchange="angular.element(this).scope().select_change(2)" id="select_jobfair_detail" disabled="disabled" class="select20">';
 		context +=		'<option value="" id="jobfair_detail_hidden" hidden>선택해주세요.</option>';
 		context +=	'</select>';
 		$('#select-box-layout').append($compile(context)($scope));
@@ -559,47 +560,54 @@
 </head>
 <body ng-app="myapp" ng-controller="JobAdController">
  <%@include file="admin_menu.jsp"%>
-<div class="join-wrap">
-	<div id="subcontents">
-		<h1>채용공고별 지원자 관리</h1><br>
-		
-		<div id="nowBox">
-		
-			<div class="nowfind" id="select-box-layout"><spring:message code="fap.jobad.search_per_jobfair" />
-				<button id="excelBtn" >엑셀다운로드</button>
-			</div>
-			<!-- 검색 -->
-			  <div class="searchDiv"> 	
-					  <table>
-						  <tr>
-							  <td>
-							  		<select id="searchSelect"  name="searchSelect" style=" width: 150px; height:28px;"   >
+	<div class="container">
+		<div class="join-wrap">
+			<div id="subcontents">
+				<h1>채용공고별 지원자 관리</h1>
+				<br>
+				<div class="search_div">
+					<div class="search_box">
+						<table class="search_box">
+							<colgroup>
+								<col width="20%">
+								<col width="80%">
+							</colgroup>
+							<tr>
+								<th>
+									<spring:message code="fap.jobad.search_per_jobfair" />
+								</th>
+								<td>
+									<div class="nowfind" id="select-box-layout"></div>
+								</td>
+							</tr>
+							<tr>
+								<th>회사명으로 검색</th>
+								<td>
+									<select id="searchSelect"  name="searchSelect" class="select20">
 										<option value="searchJaNm">회사명(일본어)</option>
 										<option value="searchEnNm">회사명(영어)</option>
 									</select>
-							  </td>
-							   <td>
-							   		<input type="text" id="searchInput" name="searchInput"  class="input1" style="width: 700px;" placeholder="">
-							   	</td>
-							   	<td>
+									<input type="text" id="searchInput" name="searchInput" class="input34-3" placeholder="">
 									<input  type="button" class="btn_search"   value="검색" ng-click="search()" style="width: 100px; height:28px;">
-							   </td>
-						  </tr>
-					  </table>					
-			 </div>
-			<div id="rewrite_tab">
-				<button id="progressingAdBtn" class="btn btn-primary2" ng-click="draw_progressing_job_ad_list()">진행중인 채용공고</button>
-				<button id="completedAdBtn" class="btn btn-primary2" ng-click="draw_completed_job_ad_list()">마감된 채용공고</button>
+								</td>
+							</tr>
+							<tr>
+								<th colspan="2">
+									<button id="progressingAdBtn" class="btn btn-primary2" ng-click="draw_progressing_job_ad_list()">진행중인 채용공고</button>
+									<button id="completedAdBtn" class="btn btn-primary2" ng-click="draw_completed_job_ad_list()">마감된 채용공고</button>
+									<button id="excelBtn" class="btn btn-primary">엑셀다운로드</button>
+								</th>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<br>
+				<!-- 채용공고 Div 시작 -->
+				<div id="nowBBS"></div>
+				<!-- 채용공고 Div 종료 -->
 			</div>
-			
-			<div id="nowBBS">
-				<!-- 채용공고 들어가는 부분 -->
-			</div>
-			
 		</div>
 	</div>
-</div>		
-	
 	<form action="/fap/admin/applicant_status_per_comp_excel" method="post" id="excel_form">
 		<input type="hidden" name="jobfair_seq" id="jobfair_seq">
 	</form>	

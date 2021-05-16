@@ -32,52 +32,54 @@
   gtag('config', 'G-2ZSHPMZBSM');
 </script>
 <script type="text/javascript">
-	$( document ).ready(function() {
+//팝업용
+// 	$( document ).ready(function() {
 	
-		cookiedata = document.cookie; 
+// 		cookiedata = document.cookie; 
 	
-		if ( cookiedata.indexOf("ncookie=done") < 0 ){ 
-			document.getElementById('popup').style.display = "block";    //  팝업창 아이디
+// 		if ( cookiedata.indexOf("ncookie=done") < 0 ){ 
+// 			document.getElementById('popup').style.display = "block";    //  팝업창 아이디
 	
-		} else {
-			document.getElementById('popup').style.display = "none";    // 팝업창 아이디
-		}
+// 		} else {
+// 			document.getElementById('popup').style.display = "none";    // 팝업창 아이디
+// 		}
 	
-	});
+// 	});
 	
-	function setCookie( name, value, expiredays ) { 
+// 	function setCookie( name, value, expiredays ) { 
 	
-		var todayDate = new Date(); 
-		todayDate.setDate( todayDate.getDate() + expiredays );
-		document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
-	}
-	function closeWin() { 
+// 		var todayDate = new Date(); 
+// 		todayDate.setDate( todayDate.getDate() + expiredays );
+// 		document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + ";"
+// 	}
+// 	function closeWin() { 
 	
-		document.getElementById('popup').style.display = "none";    // 팝업창 아이디
+// 		document.getElementById('popup').style.display = "none";    // 팝업창 아이디
 	
-	}
+// 	}
 	
-	function todaycloseWin() { 
-		setCookie( "ncookie", "done" , 1);     // 저장될 쿠키명 , 쿠키 value값 , 기간( ex. 1은 하루, 7은 일주일)
-		document.getElementById('popup').style.display = "none";    // 팝업창 아이디
+// 	function todaycloseWin() { 
+// 		setCookie( "ncookie", "done" , 1);     // 저장될 쿠키명 , 쿠키 value값 , 기간( ex. 1은 하루, 7은 일주일)
+// 		document.getElementById('popup').style.display = "none";    // 팝업창 아이디
 	
-	}
+// 	}
 	
 
 </script>
 </head>
 
-<div id="popup" style="position:absolute; z-index:9999; visibility:done; margin: auto; left: 0; right: 0; bottom: 30vh; top: 0; width: 1100px; height: 350px;">
-	<div style="background-color: white;">
-		<a href="https:///www.softsociety.net/smtp/course/scmaster/scmaster-info?course_id=c000000526">
-			<img src="/edu/admin/banner_save_image/20210309.jpg"/>
-		</a>
-		<div style="padding: 10px; text-align: right;">
-			<a href="#" onclick="todaycloseWin();" style="color: blue; margin-right: 20px;">오늘하루 열지 않기</a>
-			<a href="#" onclick="closeWin();" style="color: blue;">닫기</a>
-		</div>
-	</div>
-</div>
+<!-- 팝업 -->
+<!-- <div id="popup" style="position:absolute; z-index:9999; visibility:done; margin: auto; left: 0; right: 0; bottom: 30vh; top: 0; width: 1100px; height: 350px;"> -->
+<!-- 	<div style="background-color: white;"> -->
+<!-- 		<a href="https:///www.softsociety.net/smtp/course/scmaster/scmaster-info?course_id=c000000526"> -->
+<!-- 			<img src="/edu/admin/banner_save_image/20210309.jpg"/> -->
+<!-- 		</a> -->
+<!-- 		<div style="padding: 10px; text-align: right;"> -->
+<!-- 			<a href="#" onclick="todaycloseWin();" style="color: blue; margin-right: 20px;">오늘하루 열지 않기</a> -->
+<!-- 			<a href="#" onclick="closeWin();" style="color: blue;">닫기</a> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </div> -->
 <body>
 	<!-- 01. 콘텐츠 바로가기(웹 접근성) -->
 	<div class="skip-navigation">
@@ -188,11 +190,6 @@
 							<div class="swiper-slide banner1" href="https://smartstore.naver.com/softsociety/products/4957899809">
 								<a href="https://smartstore.naver.com/softsociety/products/4957899809">
 									<!-- <img src="/resources/lms/img/banner1.png" alt="Japan Career Market 일본취업 성공전략 자세히보기"> -->
-								</a>
-							</div>
-							<div class="swiper-slide banner2">
-								<a href="https:///www.softsociety.net/smtp/course/scmaster/scmaster-info?course_id=c000000526"> 
-									<!-- <img src="/resources/lms/img/banner2.png" alt="SoftWare DevOps마스터 과정 자세히보기"> -->
 								</a>
 							</div>
 						</div>

@@ -1929,10 +1929,10 @@ public class SocietyFapUserDAO {
 	 * @Return : HashMapList
 	 * @Method 설명 : FAP 취업지원자 잡페어별 전체지원현황 셀렉트
 	 */
-	public ArrayList<HashMap<String, Object>> select_job_ad_total_application_status(int fap_jobfair_divide_seq){
+	public ArrayList<HashMap<String, Object>> select_job_ad_total_application_status(HashMap<String, Object> params){
 		logger.debug("FAP 취업지원자 잡페어별 전체지원현황 셀렉트 DAO 시작");
 		SocietyFapUserMapper sfuMapper = sqlSession.getMapper(SocietyFapUserMapper.class);
-		ArrayList<HashMap<String, Object>> perJobfairTotalApplyList = sfuMapper.select_job_ad_total_application_status(fap_jobfair_divide_seq);
+		ArrayList<HashMap<String, Object>> perJobfairTotalApplyList = sfuMapper.select_job_ad_total_application_status(params);
 		logger.debug("FAP 취업지원자 잡페어별 전체지원현황 셀렉트 DAO 종료");
 		return perJobfairTotalApplyList;
 	}

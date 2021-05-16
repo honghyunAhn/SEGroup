@@ -1395,7 +1395,7 @@ public class SocietyFapUserViewController implements PathConstants {
 	 * @Method 설명 : FAP 취업지원자 전체지원현황 요청(JSP로 이동)
 	 */
 	@RequestMapping(value = PathConstants.SOCIETY_FAP_USER_TOTAL_APPLY_STATUS_FORM , method = RequestMethod.GET)
-	public String user_total_apply_status_form(HttpSession session, Model model) {
+	public String user_total_apply_status_form(HttpSession session, Model model, Authentication auth) {
 		logger.debug("FAP 취업지원자 전체지원현황 요청(JSP로 이동) 컨트롤러 시작");
 		
 		//[start] 세션 만료로 인한 예외 발생시 메인페이지로 이동시키는 예외처리 시작
@@ -1410,7 +1410,11 @@ public class SocietyFapUserViewController implements PathConstants {
 		}
 		//[end] 세션 만료로 인한 예외 발생시 메인페이지로 이동시키는 예외처리 종료
 		
-		ArrayList<HashMap<String, Object>> perJobfairTotalApplyList = sfuService.select_job_ad_total_application_status(fap_jobfair_divide_seq);
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("user_id", (String) auth.getPrincipal());
+		params.put("fap_jobfair_divide_seq", fap_jobfair_divide_seq);
+		
+		ArrayList<HashMap<String, Object>> perJobfairTotalApplyList = sfuService.select_job_ad_total_application_status(params);
 		model.addAttribute("perJobfairTotalApplyList", perJobfairTotalApplyList);
 		logger.debug("FAP 취업지원자 전체지원현황 요청(JSP로 이동) 컨트롤러 종료");
 		return PathConstants.SEGROUP_SOCIETY + PathConstants.SOCIETY_FAP_USER_TOTAL_APPLY_STATUS_FORM;

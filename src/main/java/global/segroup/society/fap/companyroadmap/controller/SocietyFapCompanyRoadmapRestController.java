@@ -127,9 +127,13 @@ public class SocietyFapCompanyRoadmapRestController implements PathConstants {
 	 */
 	@ResponseBody
 	@RequestMapping(value=PathConstants.SOCIETY_FAP_COMPANY_ROADMAP_SELECT_JOB_AD_TITLE_LIST, method = RequestMethod.POST)
-	public ArrayList<SocietyFapJobAd> select_job_ad_title_list(int fap_jobfair_divide_seq, Authentication auth){
+	public ArrayList<SocietyFapJobAd> select_job_ad_title_list(int fap_jobfair_divide_seq, Authentication auth, HttpSession session){
 		logger.info("FAP 세부 잡페어별 진행중,마감된 채용공고(제목) 리스트 조회 컨트롤러 시작");
-		String user_id = (String)auth.getPrincipal();
+		String user_id = "";
+		
+		if(auth != null) user_id = (String)auth.getPrincipal();
+		else user_id = (String) session.getAttribute("user_id");
+		
 		String fap_comp_id = sfcService.select_fap_comp_id(user_id);
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("fap_jobfair_divide_seq", fap_jobfair_divide_seq);

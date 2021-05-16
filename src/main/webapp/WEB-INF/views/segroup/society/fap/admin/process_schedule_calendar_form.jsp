@@ -24,6 +24,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<!--  modal을 위한 bootstrap 끝 -->
+	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/newAdminDefault.css" />" media="" />
 
 	<script type="text/javascript">
 		$(function() {
@@ -104,7 +105,7 @@
 	    }	    
 	    #calendar {
 	        max-width : 1150px;
-	        margin : 0 auto;
+	        margin : 30px 0px 100px 0px;
 	    }
 	    
 	   .fc-sat {color : blue;}
@@ -765,9 +766,7 @@
 		}
 	</script>
 	</head>
-	<body id="myBody" ng-app="myapp" ng-controller="CalendarController">
-	 
-	
+<body id="myBody" ng-app="myapp" ng-controller="CalendarController">
 	<sec:authorize access="isAuthenticated()">
 		<sec:authentication property="details" var="check" />
 	</sec:authorize>
@@ -779,57 +778,95 @@
 	</c:if>
     -->
     <%@include file="admin_menu.jsp"%>
-	<br>
-	<div class="page_title">
-		<h2>관리자 전형일정 Calendar</h2>
-	</div>
-	<br>
-	 
-
-	<div id="top">
+	<div class="container">
+		<br>
 		<div>
-			<span>잡페어로 검색 : </span>
-			<select onchange="angular.element(this).scope().select_change(1)" id="select_jobfair" style="width: 200px; height: 26px;">
-				<option value="0" >선택</option>
-				<optgroup label="진행중인 잡페어" flag="1">
-					<c:forEach var="jobfair" items="${jobfair_map.jobfair_list_now}">
-						<option value="${jobfair.fap_jobfair_seq}" <c:if test="${fap_jobfair_seq == jobfair.fap_jobfair_seq}">selected</c:if>>${jobfair.fap_jobfair_title}</option>
-					</c:forEach>
-				</optgroup>
-				<optgroup label="예정된 잡페어" flag="2">
-					<c:forEach var="jobfair" items="${jobfair_map.jobfair_list_before}">
-						<option value="${jobfair.fap_jobfair_seq}" <c:if test="${fap_jobfair_seq == jobfair.fap_jobfair_seq}">selected</c:if>>${jobfair.fap_jobfair_title}</option>
-					</c:forEach>
-				</optgroup>
-			</select>
-			&emsp;&emsp;
-			<span>잡페어 세부로 검색 : </span>
-			<select onchange="angular.element(this).scope().select_change()" id="select_jobfair_divide" disabled="disabled" style="width: 100px; height: 26px;">
-				<option value="0" id="jobfair_divide_hidden" seq="0" hidden>선택 불가</option>						
-			</select>
-			&emsp;&emsp;
-			<span>전형으로 검색 :</span> 
-			<select id="pcsSelect" onchange="angular.element(this).scope().select_change()" ng-model="fap_job_recruit_pcs_gb" style="width: 100px; height: 26px;">
-				<option value="">선택</option>
-				<option selectcode value="C2500"></option>
-				<option selectcode value="C2501"></option>
-				<option selectcode value="C2502"></option>	
-				<option selectcode value="C2503"></option>
-				<option selectcode value="C2504"></option>
-			</select>
-			&emsp;&emsp;
-			<span>회사명으로 검색 :</span>
-			<input type="text" id="searchCompNm" style="height: 26px;" value="{{comp_nm}}"> 
-			<button type="button" class="btn_search" ng-click="select_change()">검색</button>
-			&emsp;&emsp;
-			<span>Language : <select id="locale_selector" style="height: 26px;"></select></span>
-		</div>		
+			<h2>관리자 전형일정 Calendar</h2>
+		</div>
+		<br>
+		
+		<div class="search_div">
+			<div class="search_box">
+				<table class="search_box">
+					<colgroup>
+						<col width="30%">
+						<col width="80%">
+					</colgroup>
+					<tr>
+						<th>잡페어명으로 검색</th>
+						<td>
+							<select onchange="angular.element(this).scope().select_change(1)" id="select_jobfair" class="selectMid">
+								<option value="0" >선택</option>
+								<optgroup label="진행중인 잡페어" flag="1">
+									<c:forEach var="jobfair" items="${jobfair_map.jobfair_list_now}">
+										<option value="${jobfair.fap_jobfair_seq}" <c:if test="${fap_jobfair_seq == jobfair.fap_jobfair_seq}">selected</c:if>>${jobfair.fap_jobfair_title}</option>
+									</c:forEach>
+								</optgroup>
+								<optgroup label="예정된 잡페어" flag="2">
+									<c:forEach var="jobfair" items="${jobfair_map.jobfair_list_before}">
+										<option value="${jobfair.fap_jobfair_seq}" <c:if test="${fap_jobfair_seq == jobfair.fap_jobfair_seq}">selected</c:if>>${jobfair.fap_jobfair_title}</option>
+									</c:forEach>
+								</optgroup>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>잡페어로 검색 : </th>
+						<td>
+							<select onchange="angular.element(this).scope().select_change(1)" id="select_jobfair" class="selectMid">
+								<option value="0" >선택</option>
+								<optgroup label="진행중인 잡페어" flag="1">
+									<c:forEach var="jobfair" items="${jobfair_map.jobfair_list_now}">
+										<option value="${jobfair.fap_jobfair_seq}" <c:if test="${fap_jobfair_seq == jobfair.fap_jobfair_seq}">selected</c:if>>${jobfair.fap_jobfair_title}</option>
+									</c:forEach>
+								</optgroup>
+								<optgroup label="예정된 잡페어" flag="2">
+									<c:forEach var="jobfair" items="${jobfair_map.jobfair_list_before}">
+										<option value="${jobfair.fap_jobfair_seq}" <c:if test="${fap_jobfair_seq == jobfair.fap_jobfair_seq}">selected</c:if>>${jobfair.fap_jobfair_title}</option>
+									</c:forEach>
+								</optgroup>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>잡페어 세부로 검색 : </th>
+						<td>
+							<select onchange="angular.element(this).scope().select_change()" id="select_jobfair_divide" disabled="disabled" class="selectMid">
+								<option value="0" id="jobfair_divide_hidden" seq="0" hidden>선택 불가</option>						
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>전형으로 검색 : </th>
+						<td>
+							<select id="pcsSelect" onchange="angular.element(this).scope().select_change()" ng-model="fap_job_recruit_pcs_gb" class="selectMid">
+								<option value="">선택</option>
+								<option selectcode value="C2500"></option>
+								<option selectcode value="C2501"></option>
+								<option selectcode value="C2502"></option>	
+								<option selectcode value="C2503"></option>
+								<option selectcode value="C2504"></option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>회사명으로 검색 : </th>
+						<td>
+							<input type="text" id="searchCompNm" style="height: 26px;" value="{{comp_nm}}"> 
+							<button type="button" class="btn_search" ng-click="select_change()">검색</button>
+						</td>
+					</tr>
+					<tr>
+						<th>Language : </th>
+						<td>
+							<select id="locale_selector" style="height: 26px;"></select>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="calendar"></div>
 	</div>
-	
-	<div id="calendar" style="margin-top: 10px;">
-	
-	</div>
-
 	<!-- 서류전형 일정설정 등록 MODAL 시작-->
 	<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">

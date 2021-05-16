@@ -2603,7 +2603,7 @@
 	<!-- FAP 회원 메뉴 체크 종료 -->
 
 	<!-- FAP 통합잡페어 취업지원자 잡페어 세부별 전체지원현황 시작; 2019. 2. 22. 정대영-->
-	<select id="select_job_ad_total_application_status" parameterType="Int" resultType="hashmap">
+	<select id="select_job_ad_total_application_status" parameterType="hashmap" resultType="hashmap">
 		select 
 			ad.fap_job_ad_seq as fap_job_ad_seq
 			,ad.fap_job_ad_title as fap_job_ad_title
@@ -2626,9 +2626,21 @@
 			fap_job_apply_info_tb info
             on ad.fap_job_ad_seq = info.fap_job_ad_seq
 			and ad.fap_jobfair_divide_seq = info.fap_jobfair_divide_seq
+		inner join
+        	fap_job_ad_show_tb ad_show
+        	on ad.fap_job_ad_seq = ad_show.fap_job_ad_seq
 		where
 			ad.fap_jobfair_divide_seq = #{fap_jobfair_divide_seq}
 			and ad.fap_job_ad_state = 'C2101'
+			and
+		    	ad_show.fap_job_ad_show_gb = (
+					select
+						user_flag
+					from
+						com_user_tb
+					where
+						user_id = #{user_id}
+				)
 		group by 
 			ad.fap_job_ad_seq
 		order by

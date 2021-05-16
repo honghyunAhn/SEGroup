@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<!--  modal을 위한 bootstrap 끝 -->	
+	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/newAdminDefault.css" />" media="" />
 	<title>Bridge Job Fair</title>
 	
 	<script type="text/javascript">	
@@ -135,8 +136,8 @@
 				context += '<td ng-if="result.fap_job_qna_question_per == \'C5101\' ">';				
 				context += '<span selectcode value="C5101"></span>';
 				context += '</td>';
-				context += '<td ng-if="result.fap_job_qna_refuse_reason == null"><button ng-click="insert_refuse_reason(result.fap_job_qna_question_seq)">작성</button></td>';
-				context += '<td ng-if="result.fap_job_qna_refuse_reason != null"><button ng-click="update_refuse_reason(result.fap_job_qna_question_seq, result.fap_job_qna_refuse_reason)">수정</button></td>';
+				context += '<td ng-if="result.fap_job_qna_refuse_reason == null"><button ng-click="insert_refuse_reason(result.fap_job_qna_question_seq)" class="btn_search" style="width:100%;">작성</button></td>';
+				context += '<td ng-if="result.fap_job_qna_refuse_reason != null"><button ng-click="update_refuse_reason(result.fap_job_qna_question_seq, result.fap_job_qna_refuse_reason)" class="btn_search" style="width:100%; background-color:crimson;">수정</button></td>';
 				context += '</tr>';
 
 				$("#search_data").html($compile(context)($scope)); 				
@@ -256,59 +257,61 @@
 </head>
 <body id="myBody" ng-app="myapp" ng-controller="PermissionController">
  <%@include file="admin_menu.jsp"%>
-	<br>
-	<div class="page_title">
-		<h2>JobFair 지원자 채용공고 질문 승인 페이지</h2>
-	</div>
-	<br>
-	 
-	<div class="search_div">
-		<table class="search_box">
-			<tr>
-				<th>채용기업명으로 검색</th>	
-				<td>
-					<select id="compSelect" onchange="angular.element(this).scope().search_change(1)">
-						<option value="">선택</option>
-						<c:forEach var="comp" items="${qna_comp_list}" varStatus="status">
-							<option value="${comp.fap_comp_id}">${comp.fap_comp_en_nm }</option>
-						</c:forEach>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>채용공고로 검색</th>	
-				<td>
-					<select id="jobAdSelect" onchange="angular.element(this).scope().search_change(2)">
-						<option value="0">선택</option>						
-						
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>승인 여부로 검색</th>	
-				<td>
-					<select id="perSelect" onchange="angular.element(this).scope().search_change(3)">
-					
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>질문자명으로 검색</th>
-				<td>
-					<input type="text" id="searchName">
-				</td>
-				<td class="td_search" colspan="2">
-					<button type="button" class="btn_search" ng-click="search_change()">검색</button>
-				</td>
-			</tr>
-		</table>
-				
-		<button type="button" class="btn_search" onclick="qna_permission()" style="float: right; margin-top: 20px; margin-right: 10px; width: 100px;">질문승인</button>
-		<button type="button" class="btn_search" onclick="qna_nonpermission()" style="float: right; margin-top: 20px; margin-right: 10px; width: 120px;">질문 미승인</button>
-		<button type="button" class="btn_search" onclick="all_agree()" style="float: right; margin-top: 20px; margin-right: 10px; width: 150px;">전체선택 / 해제</button>
-		<br><br>
-		
-		<table class="table">
+	<div class="container">
+		<br>
+		<div class="page_title">
+			<h2>JobFair 지원자 채용공고 질문 승인 페이지</h2>
+		</div>
+		<br>
+		 <div class="search_div">
+			<div class="search_box">
+				<table class="search_box">
+					<colgroup>
+						<col width="30%">
+						<col width="80%">
+					</colgroup>
+					<tr>
+						<th>채용기업명으로 검색</th>
+						<td>
+							<select id="compSelect" onchange="angular.element(this).scope().search_change(1)" class="selectMid">
+								<option value="">선택</option>
+								<c:forEach var="comp" items="${qna_comp_list}" varStatus="status">
+									<option value="${comp.fap_comp_id}">${comp.fap_comp_en_nm }</option>
+								</c:forEach>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>채용공고로 검색</th>	
+						<td>
+							<select id="jobAdSelect" onchange="angular.element(this).scope().search_change(2)" class="selectMid">
+								<option value="0">선택</option>						
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>승인 여부로 검색</th>	
+						<td>
+							<select id="perSelect" onchange="angular.element(this).scope().search_change(3)" class="selectMid">
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>질문자명으로 검색</th>
+						<td>
+							<input type="text" id="searchName">
+							<button type="button" class="btn_search" ng-click="search_change()">검색</button>
+						</td>
+					</tr>
+				</table>
+				<div class="sub_search_box">
+					<button type="button" class="btn_search" onclick="qna_permission()">질문승인</button>
+					<button type="button" class="btn_search" onclick="qna_nonpermission()">질문 미승인</button>
+					<button type="button" class="btn_search" onclick="all_agree()">전체선택 / 해제</button>
+				</div>
+			</div>
+		</div>
+		<table class="table" style="margin-top: 70px;">
 			<thead>
 				<tr>
 					<th>선택 &emsp;</th>
@@ -323,12 +326,9 @@
 				</tr>
 			</thead>
 			<tbody id="search_data">
-			
 			</tbody>
 		</table>
-		
 	</div>
-	
 	<input type="hidden" id="fap_comp_id" name="fap_comp_id" value="">
 	<input type="hidden" id="fap_job_ad_seq" name="fap_job_ad_seq" value="0">
 	<input type="hidden" id="fap_job_qna_question_per" name="fap_job_qna_question_per" value="">

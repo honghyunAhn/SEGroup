@@ -1131,7 +1131,7 @@ public interface SocietyFapUserMapper {
 	 * @Return : HashMapList
 	 * @Method 설명 : FAP 취업지원자 잡페어별 전체지원현황 셀렉트
 	 */
-	public ArrayList<HashMap<String, Object>> select_job_ad_total_application_status(int fap_jobfair_divide_seq);
+	public ArrayList<HashMap<String, Object>> select_job_ad_total_application_status(HashMap<String, Object> params);
 	
 	/**
 	 * @Method Name : user_board_contents_search

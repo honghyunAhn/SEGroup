@@ -16,6 +16,7 @@
 	<!-- modal을 위한 bootstrap 시작-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="<c:url value="/resources/segroup/society/fap/css/newAdminDefault.css" />" media="" />
 
 	<!--  modal을 위한 bootstrap 끝 -->	
 	<title>Bridge Job Fair</title>
@@ -754,59 +755,65 @@
 </head>
 <body id="myBody" ng-app="myapp" ng-controller="ScheduleSetController">
 <%@include file="admin_menu.jsp"%>
-	<br>
-	<div class="page_title">
-		<h2>채용전형 일정관리</h2>
-	</div>
-	<br>
-	<div class="search_div">
-		<table class="search_table">
-			<tr>
-				<th>잡페어명으로 검색</th>	
-				<td>
-					<select onchange="angular.element(this).scope().select_change(1)" id="select_jobfair">
-						<option value="0" >선택</option>
-						<optgroup label="진행중인 잡페어" flag="1">
-							<c:forEach var="jobfair" items="${jobfair_map.jobfair_list_now}">
-								<option value="${jobfair.fap_jobfair_seq}" <c:if test="${fap_jobfair_seq == jobfair.fap_jobfair_seq}">selected</c:if>>${jobfair.fap_jobfair_title}</option>
-							</c:forEach>
-						</optgroup>
-						<optgroup label="예정된 잡페어" flag="2">
-							<c:forEach var="jobfair" items="${jobfair_map.jobfair_list_before}">
-								<option value="${jobfair.fap_jobfair_seq}" <c:if test="${fap_jobfair_seq == jobfair.fap_jobfair_seq}">selected</c:if>>${jobfair.fap_jobfair_title}</option>
-							</c:forEach>
-						</optgroup>						
-					</select>
-				</td>			
-			</tr>
-			<tr>
-				<th>잡페어 세부로 검색</th>	
-				<td>
-					<select onchange="angular.element(this).scope().select_change()" id="select_jobfair_divide" disabled="disabled">
-						<option value="0" id="jobfair_divide_hidden" seq="0" hidden>선택 불가</option>						
-					</select>
-				</td>
-			<tr>
-			<tr>
-				<th>설정 여부로 검색</th>	
-				<td>
-					<select id="setSelect" onchange="angular.element(this).scope().select_change()" ng-model="fap_job_recruit_pcs_sch_ck">
-						<option value="">선택</option>
-						<option selectcode value="C5000"></option>
-						<option selectcode value="C5001"></option>					
-					</select>
-				</td>
-			<tr>
-				<th>회사명으로 검색</th>
-				<td>
-					<input type="text" id="searchCompNm"  ng-model="comp_nm">
-				</td>
-				<td class="td_search" colspan="2">
-					<button type="button" class="btn_search" ng-click="select_change()">검색</button>
-				</td>
-			</tr>
-		</table>				
-	
+	<div class="container">
+		<br>
+		<div class="page_title">
+			<h2>채용전형 일정관리</h2>
+		</div>
+		<br>
+		
+		<div class="search_div">
+			<div class="search_box">
+				<table class="search_box">
+					<colgroup>
+						<col width="30%">
+						<col width="80%">
+					</colgroup>
+					<tr>
+						<th>잡페어명으로 검색</th>	
+						<td>
+							<select onchange="angular.element(this).scope().select_change(1)" id="select_jobfair" class="selectMid">
+								<option value="0" >선택</option>
+								<optgroup label="진행중인 잡페어" flag="1">
+									<c:forEach var="jobfair" items="${jobfair_map.jobfair_list_now}">
+										<option value="${jobfair.fap_jobfair_seq}" <c:if test="${fap_jobfair_seq == jobfair.fap_jobfair_seq}">selected</c:if>>${jobfair.fap_jobfair_title}</option>
+									</c:forEach>
+								</optgroup>
+								<optgroup label="예정된 잡페어" flag="2">
+									<c:forEach var="jobfair" items="${jobfair_map.jobfair_list_before}">
+										<option value="${jobfair.fap_jobfair_seq}" <c:if test="${fap_jobfair_seq == jobfair.fap_jobfair_seq}">selected</c:if>>${jobfair.fap_jobfair_title}</option>
+									</c:forEach>
+								</optgroup>						
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>잡페어 세부로 검색</th>	
+						<td>
+							<select onchange="angular.element(this).scope().select_change()" id="select_jobfair_divide" disabled="disabled" class="selectMid">
+								<option value="0" id="jobfair_divide_hidden" seq="0" hidden>선택 불가</option>						
+							</select>
+						</td>
+					<tr>
+					<tr>
+						<th>설정 여부로 검색</th>	
+						<td>
+							<select id="setSelect" onchange="angular.element(this).scope().select_change()" ng-model="fap_job_recruit_pcs_sch_ck" class="selectMid">
+								<option value="">선택</option>
+								<option selectcode value="C5000"></option>
+								<option selectcode value="C5001"></option>					
+							</select>
+						</td>
+					<tr>
+						<th>회사명으로 검색</th>
+						<td>
+							<input type="text" id="searchCompNm"  ng-model="comp_nm">
+							<button type="button" class="btn_search" ng-click="select_change()">검색</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
 		<br><br>
 		
 		<table class="table">
@@ -821,135 +828,55 @@
 			
 			</tbody>
 		</table>
-	</div>
-	
-	<!-- 서류전형 일정설정 등록 MODAL 시작-->
-	<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-			
-				<div class="modal-header">
-					<h5 class="modal-title" id="modal">서류전형 일정설정</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
+		
+		<!-- 서류전형 일정설정 등록 MODAL 시작-->
+		<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
 				
-				<form action="/fap/admin/review_process_schedule_update" method="post" onsubmit="return review_form_check();" enctype="multipart/form-data">
-					<div class="modal-body">
-						<input type="hidden" name="fap_job_recruit_pcs_sch_seq" value="{{review.fap_job_recruit_pcs_sch_seq}}">
-						<input type="hidden" name="fap_job_recruit_pcs_seq" value="{{review.fap_job_recruit_pcs_seq}}">
-						<input type="hidden" name="fap_jobfair_seq" class="fap_jobfair_seq" value="0">
-						<input type="hidden" name="fap_jobfair_divide_seq" class="fap_jobfair_divide_seq" value="0">
-						<input type="hidden" name="fap_job_recruit_pcs_sch_ck" class="fap_job_recruit_pcs_sch_ck" value="">
-						<input type="hidden" name="comp_nm" class="comp_nm" value="">
-												
-						<div class="form-group">
-							<div class="form-row">
-								<label>서류 전형 시작일</label>
-							</div>
-							<div class="form-row">
-								<input type="text" id="fap_job_review_date_st" name="fap_job_review_date_st">&emsp;
-								<input type="text" id="fap_job_review_time_st" name="fap_job_review_time_st">
-							</div>		
-							<div class="form-row">
-								<label>서류 전형 마감일</label>
-							</div>
-							<div class="form-row">
-								<input type="text" id="fap_job_review_date_et" name="fap_job_review_date_et" >&emsp;
-								<input type="text" id="fap_job_review_time_et" name="fap_job_review_time_et" >
-							</div>							
-						</div>
-						<div class="form-row">
-							<label>제출서류 목록</label>
-						</div>
-						<div class="form-row">
-							<textarea id="fap_job_recruit_pcs_dtl" name="fap_job_recruit_pcs_dtl" class="form-control" maxlength="500" style="width: 490px; height: 100px;" ng-model="review.fap_job_recruit_pcs_dtl"></textarea>
-						</div>
-						<div class="form-row">
-								<label>표시 색상</label>
-							</div>
-						<div class="form-row">
-							<select id="fap_job_review_pcs_sch_color" name="fap_job_recruit_pcs_sch_color" class="colorSelect" ng-model="review.fap_job_recruit_pcs_sch_color">
-								<option value="" style="background-color: #ffffff">선택</option>
-								<option selectcode value="C4600" style="background-color: #ed090d" ></option>
-								<option selectcode value="C4601" style="background-color: #ff6100"></option>
-								<option selectcode value="C4602" style="background-color: #fcfc80"></option>
-								<option selectcode value="C4603" style="background-color: #abfc80"></option>
-								<option selectcode value="C4604" style="background-color: #8cf7f0"></option>
-								<option selectcode value="C4605" style="background-color: #3b41ed"></option>
-								<option selectcode value="C4606" style="background-color: #8716e2"></option>
-								<option selectcode value="C4607" style="background-color: #fcb0b9"></option>
-								<option selectcode value="C4608" style="background-color: #c1bfc0"></option>									
-							</select>								
-						</div>
-					</div>
-										
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-						<button type="submit" class="btn btn-primary">설정하기</button>
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">서류전형 일정설정</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
 					
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- 서류전형 일정설정 등록 MODAL 종료-->
-	
-	<!-- 시험전형 일정설정 등록 MODAL 시작-->
-	<div class="modal fade" id="examModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-			
-				<div class="modal-header">
-					<h5 class="modal-title" id="modal">시험전형 일정설정</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				
-				<form action="/fap/admin/exam_process_schedule_update" method="post" onsubmit="return exam_form_check();" enctype="multipart/form-data">
-					<div class="modal-body">
-						<input type="hidden" name="fap_job_recruit_pcs_seq" value="{{exam.fap_job_recruit_pcs_seq}}">
-						<input type="hidden" name="fap_job_recruit_pcs_sch_seq" value="{{exam.fap_job_recruit_pcs_sch_seq}}">
-					    <input type="hidden" name="fap_job_exam_seq" value="{{exam.fap_job_exam_seq}}"> 	 	  	 
-						<input type="hidden" name="fap_jobfair_seq" class="fap_jobfair_seq" value="0">
-						<input type="hidden" name="fap_jobfair_divide_seq" class="fap_jobfair_divide_seq" value="0">
-						<input type="hidden" name="fap_job_recruit_pcs_sch_ck" class="fap_job_recruit_pcs_sch_ck" value="">
-						<input type="hidden" name="comp_nm" class="comp_nm" value="">
-						 
-						<div class="form-group">
-							<div class="form-row">
-								<label>시험 시작일자</label>&emsp;&emsp;&emsp;&emsp;&emsp;<label>시험 시작시간</label>
+					<form action="/fap/admin/review_process_schedule_update" method="post" onsubmit="return review_form_check();" enctype="multipart/form-data">
+						<div class="modal-body">
+							<input type="hidden" name="fap_job_recruit_pcs_sch_seq" value="{{review.fap_job_recruit_pcs_sch_seq}}">
+							<input type="hidden" name="fap_job_recruit_pcs_seq" value="{{review.fap_job_recruit_pcs_seq}}">
+							<input type="hidden" name="fap_jobfair_seq" class="fap_jobfair_seq" value="0">
+							<input type="hidden" name="fap_jobfair_divide_seq" class="fap_jobfair_divide_seq" value="0">
+							<input type="hidden" name="fap_job_recruit_pcs_sch_ck" class="fap_job_recruit_pcs_sch_ck" value="">
+							<input type="hidden" name="comp_nm" class="comp_nm" value="">
+													
+							<div class="form-group">
+								<div class="form-row">
+									<label>서류 전형 시작일</label>
+								</div>
+								<div class="form-row">
+									<input type="text" id="fap_job_review_date_st" name="fap_job_review_date_st">&emsp;
+									<input type="text" id="fap_job_review_time_st" name="fap_job_review_time_st">
+								</div>		
+								<div class="form-row">
+									<label>서류 전형 마감일</label>
+								</div>
+								<div class="form-row">
+									<input type="text" id="fap_job_review_date_et" name="fap_job_review_date_et" >&emsp;
+									<input type="text" id="fap_job_review_time_et" name="fap_job_review_time_et" >
+								</div>							
 							</div>
 							<div class="form-row">
-								<input type="text" id="fap_job_exam_date_st" name="fap_job_exam_date_st" >&emsp;
-								<input type="text" id="fap_job_exam_time_st" name="fap_job_exam_time_st">
+								<label>제출서류 목록</label>
 							</div>
 							<div class="form-row">
-								<label>시험 종료일자</label>&emsp;&emsp;&emsp;&emsp;&emsp;<label>시험 종료시간</label>
+								<textarea id="fap_job_recruit_pcs_dtl" name="fap_job_recruit_pcs_dtl" class="form-control" maxlength="500" style="width: 490px; height: 100px;" ng-model="review.fap_job_recruit_pcs_dtl"></textarea>
 							</div>
 							<div class="form-row">
-								<input type="text" id="fap_job_exam_date_et" name="fap_job_exam_date_et">&emsp;
-								<input type="text" id="fap_job_exam_time_et" name="fap_job_exam_time_et">
-							</div>	
+									<label>표시 색상</label>
+								</div>
 							<div class="form-row">
-								<label>시험 장소</label>
-							</div>
-							<div class="form-row">
-								<input type="text" id="fap_job_exam_pcs_sch_lo" name="fap_job_recruit_pcs_sch_lo" value="{{exam.fap_job_recruit_pcs_sch_lo}}" style="width: 490px;">
-							</div>	
-							<div class="form-row">
-								<label>시험 상세내용</label>
-							</div>
-							<div class="form-row">
-								<textarea id="fap_job_exam_pcs_sch_detail" name="fap_job_recruit_pcs_sch_detail" maxlength="500" style="width: 490px; height: 100px;">{{exam.fap_job_recruit_pcs_sch_detail}}</textarea>
-							</div>	
-							<div class="form-row">
-								<label>표시 색상</label>
-							</div>
-							<div class="form-row">
-								<select id="fap_job_exam_pcs_sch_color" name="fap_job_recruit_pcs_sch_color" class="colorSelect" ng-model="exam.fap_job_recruit_pcs_sch_color">
+								<select id="fap_job_review_pcs_sch_color" name="fap_job_recruit_pcs_sch_color" class="colorSelect" ng-model="review.fap_job_recruit_pcs_sch_color">
 									<option value="" style="background-color: #ffffff">선택</option>
 									<option selectcode value="C4600" style="background-color: #ed090d" ></option>
 									<option selectcode value="C4601" style="background-color: #ff6100"></option>
@@ -961,344 +888,423 @@
 									<option selectcode value="C4607" style="background-color: #fcb0b9"></option>
 									<option selectcode value="C4608" style="background-color: #c1bfc0"></option>									
 								</select>								
-							</div>					
-						</div>	
+							</div>
+						</div>
+											
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+							<button type="submit" class="btn btn-primary">설정하기</button>
+						</div>
 						
-						<div class="form-group">
-							<div class="form-row">
-								<label>시험 대상자</label>
-							</div>
-							<div class="form-row">
-								<select id="fap_job_exam_obj" name="fap_job_exam_obj" ng-model="exam.fap_job_exam_obj">
-									<option selectcode value="C2700"></option>
-									<option selectcode value="C2701"></option>
-									<option selectcode value="C2702"></option>
-								</select>
-								&emsp;<input type="text" id="fap_job_exam_obj_etc_dtl" name="fap_job_exam_obj_etc_dtl" value="{{exam.fap_job_exam_obj_etc_dtl}}">					
-							</div>
-							<div class="form-row">
-								<label>시험구분</label>
-							</div>
-							<div class="form-row">
-								<select id="fap_job_exam_gb" name="fap_job_exam_gb" ng-model="exam.fap_job_exam_gb">
-									<option selectcode value="C2600"></option>
-									<option selectcode value="C2601"></option>
-								</select>								
-							</div>
-							<div class="form-row">
-								<label>상세시험 종류</label>
-							</div>
-							<div class="form-row">
-								<div ng-repeat="recruitExam in exam.fapRecruitExamList">
-									<div class="fap_job_exam_type_gb" cd="{{recruitExam.fap_job_exam_type_gb}}"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- 서류전형 일정설정 등록 MODAL 종료-->
+		
+		<!-- 시험전형 일정설정 등록 MODAL 시작-->
+		<div class="modal fade" id="examModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">시험전형 일정설정</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					
+					<form action="/fap/admin/exam_process_schedule_update" method="post" onsubmit="return exam_form_check();" enctype="multipart/form-data">
+						<div class="modal-body">
+							<input type="hidden" name="fap_job_recruit_pcs_seq" value="{{exam.fap_job_recruit_pcs_seq}}">
+							<input type="hidden" name="fap_job_recruit_pcs_sch_seq" value="{{exam.fap_job_recruit_pcs_sch_seq}}">
+						    <input type="hidden" name="fap_job_exam_seq" value="{{exam.fap_job_exam_seq}}"> 	 	  	 
+							<input type="hidden" name="fap_jobfair_seq" class="fap_jobfair_seq" value="0">
+							<input type="hidden" name="fap_jobfair_divide_seq" class="fap_jobfair_divide_seq" value="0">
+							<input type="hidden" name="fap_job_recruit_pcs_sch_ck" class="fap_job_recruit_pcs_sch_ck" value="">
+							<input type="hidden" name="comp_nm" class="comp_nm" value="">
+							 
+							<div class="form-group">
+								<div class="form-row">
+									<label>시험 시작일자</label>&emsp;&emsp;&emsp;&emsp;&emsp;<label>시험 시작시간</label>
 								</div>
-								<!-- <select id="fap_job_exam_type_gb" name="fap_job_exam_type_gb" ng-model="exam.fap_job_exam_type_gb">
-									<option selectcode value="C3200"></option>
-									<option selectcode value="C3201"></option>
-									<option selectcode value="C3202"></option>
-									<option selectcode value="C3203"></option>
-									<option selectcode value="C3204"></option>
-									<option selectcode value="C3205"></option>
-								</select> -->
-							</div>
-							<div class="form-row">
-								<label>시험 대상자 메일주소 필요여부</label>
-							</div>
-							<div class="form-row">
-								<select id="fap_job_exam_mail" name="fap_job_exam_mail" ng-model="exam.fap_job_exam_mail">
-									<option selectcode value="C2800"></option>
-									<option selectcode value="C2801"></option>
-								</select>								
-							</div>
-							<div class="form-row">
-								<label>소요 시간</label>
-							</div>
-							<div class="form-row">
-								<input type="text" id="fap_job_exam_tm" name="fap_job_exam_tm" value="{{exam.fap_job_exam_tm}}">
+								<div class="form-row">
+									<input type="text" id="fap_job_exam_date_st" name="fap_job_exam_date_st" >&emsp;
+									<input type="text" id="fap_job_exam_time_st" name="fap_job_exam_time_st">
+								</div>
+								<div class="form-row">
+									<label>시험 종료일자</label>&emsp;&emsp;&emsp;&emsp;&emsp;<label>시험 종료시간</label>
+								</div>
+								<div class="form-row">
+									<input type="text" id="fap_job_exam_date_et" name="fap_job_exam_date_et">&emsp;
+									<input type="text" id="fap_job_exam_time_et" name="fap_job_exam_time_et">
+								</div>	
+								<div class="form-row">
+									<label>시험 장소</label>
+								</div>
+								<div class="form-row">
+									<input type="text" id="fap_job_exam_pcs_sch_lo" name="fap_job_recruit_pcs_sch_lo" value="{{exam.fap_job_recruit_pcs_sch_lo}}" style="width: 490px;">
+								</div>	
+								<div class="form-row">
+									<label>시험 상세내용</label>
+								</div>
+								<div class="form-row">
+									<textarea id="fap_job_exam_pcs_sch_detail" name="fap_job_recruit_pcs_sch_detail" maxlength="500" style="width: 490px; height: 100px;">{{exam.fap_job_recruit_pcs_sch_detail}}</textarea>
+								</div>	
+								<div class="form-row">
+									<label>표시 색상</label>
+								</div>
+								<div class="form-row">
+									<select id="fap_job_exam_pcs_sch_color" name="fap_job_recruit_pcs_sch_color" class="colorSelect" ng-model="exam.fap_job_recruit_pcs_sch_color">
+										<option value="" style="background-color: #ffffff">선택</option>
+										<option selectcode value="C4600" style="background-color: #ed090d" ></option>
+										<option selectcode value="C4601" style="background-color: #ff6100"></option>
+										<option selectcode value="C4602" style="background-color: #fcfc80"></option>
+										<option selectcode value="C4603" style="background-color: #abfc80"></option>
+										<option selectcode value="C4604" style="background-color: #8cf7f0"></option>
+										<option selectcode value="C4605" style="background-color: #3b41ed"></option>
+										<option selectcode value="C4606" style="background-color: #8716e2"></option>
+										<option selectcode value="C4607" style="background-color: #fcb0b9"></option>
+										<option selectcode value="C4608" style="background-color: #c1bfc0"></option>									
+									</select>								
+								</div>					
 							</div>	
-							<div class="form-row">
-								<label>감독관</label>
+							
+							<div class="form-group">
+								<div class="form-row">
+									<label>시험 대상자</label>
+								</div>
+								<div class="form-row">
+									<select id="fap_job_exam_obj" name="fap_job_exam_obj" ng-model="exam.fap_job_exam_obj">
+										<option selectcode value="C2700"></option>
+										<option selectcode value="C2701"></option>
+										<option selectcode value="C2702"></option>
+									</select>
+									&emsp;<input type="text" id="fap_job_exam_obj_etc_dtl" name="fap_job_exam_obj_etc_dtl" value="{{exam.fap_job_exam_obj_etc_dtl}}">					
+								</div>
+								<div class="form-row">
+									<label>시험구분</label>
+								</div>
+								<div class="form-row">
+									<select id="fap_job_exam_gb" name="fap_job_exam_gb" ng-model="exam.fap_job_exam_gb">
+										<option selectcode value="C2600"></option>
+										<option selectcode value="C2601"></option>
+									</select>								
+								</div>
+								<div class="form-row">
+									<label>상세시험 종류</label>
+								</div>
+								<div class="form-row">
+									<div ng-repeat="recruitExam in exam.fapRecruitExamList">
+										<div class="fap_job_exam_type_gb" cd="{{recruitExam.fap_job_exam_type_gb}}"></div>
+									</div>
+									<!-- <select id="fap_job_exam_type_gb" name="fap_job_exam_type_gb" ng-model="exam.fap_job_exam_type_gb">
+										<option selectcode value="C3200"></option>
+										<option selectcode value="C3201"></option>
+										<option selectcode value="C3202"></option>
+										<option selectcode value="C3203"></option>
+										<option selectcode value="C3204"></option>
+										<option selectcode value="C3205"></option>
+									</select> -->
+								</div>
+								<div class="form-row">
+									<label>시험 대상자 메일주소 필요여부</label>
+								</div>
+								<div class="form-row">
+									<select id="fap_job_exam_mail" name="fap_job_exam_mail" ng-model="exam.fap_job_exam_mail">
+										<option selectcode value="C2800"></option>
+										<option selectcode value="C2801"></option>
+									</select>								
+								</div>
+								<div class="form-row">
+									<label>소요 시간</label>
+								</div>
+								<div class="form-row">
+									<input type="text" id="fap_job_exam_tm" name="fap_job_exam_tm" value="{{exam.fap_job_exam_tm}}">
+								</div>	
+								<div class="form-row">
+									<label>감독관</label>
+								</div>
+								<div class="form-row">
+									<select id="fap_job_exam_sv" name="fap_job_exam_sv" ng-model="exam.fap_job_exam_sv">
+										<option selectcode value="C2900"></option>
+										<option selectcode value="C2901"></option>
+										<option selectcode value="C2902"></option>
+										<option selectcode value="C2903"></option>
+									</select>
+									&emsp;<input type="text" id="fap_job_exam_sv_etc_dtl" name="fap_job_exam_sv_etc_dtl" value="{{exam.fap_job_exam_sv_etc_dtl}}">								
+								</div>
+								<div class="form-row">
+									<label>준비물</label>
+								</div>
+								<div class="form-row">
+									<select id="fap_job_exam_need" name="fap_job_exam_need" ng-model="exam.fap_job_exam_need">
+										<option selectcode value="C3000"></option>
+										<option selectcode value="C3001"></option>
+										<option selectcode value="C3002"></option>
+									</select>
+									&emsp;<input type="text" id="fap_job_exam_need_etc_dtl" name="fap_job_exam_need_etc_dtl" value="{{fap_job_exam_need_etc_dtl}}">
+								</div>
 							</div>
 							<div class="form-row">
-								<select id="fap_job_exam_sv" name="fap_job_exam_sv" ng-model="exam.fap_job_exam_sv">
-									<option selectcode value="C2900"></option>
-									<option selectcode value="C2901"></option>
-									<option selectcode value="C2902"></option>
-									<option selectcode value="C2903"></option>
-								</select>
-								&emsp;<input type="text" id="fap_job_exam_sv_etc_dtl" name="fap_job_exam_sv_etc_dtl" value="{{exam.fap_job_exam_sv_etc_dtl}}">								
+									<label>시험문제 파일</label>
 							</div>
 							<div class="form-row">
-								<label>준비물</label>
+								<input type="hidden" name="fap_job_exam_file_origin" value="{{exam.fap_job_exam_file_origin}}">
+								<input type="hidden" name="fap_job_exam_file_saved" value="{{exam.fap_job_exam_file_saved}}">
+								&emsp;<input type="file" name="fap_job_exam_file" id="fap_job_exam_file" src="${path}{{exam.fap_job_exam_file_saved}}" >
+								<span class="uploadedFile">
+								    <a href="/file_download?origin={{exam.fap_job_exam_file_origin}}&saved={{exam.fap_job_exam_file_saved}}&path=/fap/company/job_recruit_exam_file/" >{{exam.fap_job_exam_file_origin}}</a>  
+								    <img class="x_icon" ng-click='deleteFile()' src="<c:url value="/resources/segroup/society/fap/images/main/deletePic.png" />" alt=""  style="height:20px;" />
+								</span>
+							</div>						
+							
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+								<button type="submit" class="btn btn-primary" >설정하기</button>
 							</div>
-							<div class="form-row">
-								<select id="fap_job_exam_need" name="fap_job_exam_need" ng-model="exam.fap_job_exam_need">
-									<option selectcode value="C3000"></option>
-									<option selectcode value="C3001"></option>
-									<option selectcode value="C3002"></option>
-								</select>
-								&emsp;<input type="text" id="fap_job_exam_need_etc_dtl" name="fap_job_exam_need_etc_dtl" value="{{fap_job_exam_need_etc_dtl}}">
+						
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- 시험전형 일정설정 등록 MODAL 종료-->
+		
+		<!-- 면접전형 일정설정 등록 MODAL 시작-->
+		<div class="modal fade" id="itvModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">면접전형 일정설정</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					
+					<form action="/fap/admin/interview_process_schedule_update" method="post" onsubmit="return itv_form_check();" enctype="multipart/form-data">
+						<div class="modal-body">
+							<input type="hidden" name="fap_job_recruit_pcs_seq" value="{{itv.fap_job_recruit_pcs_seq}}">
+							<input type="hidden" name="fap_job_recruit_pcs_sch_seq" value="{{itv.fap_job_recruit_pcs_sch_seq}}">
+							<input type="hidden" name="fap_job_itv_seq" value="{{itv.fap_job_itv_seq}}">
+							<input type="hidden" name="fap_jobfair_seq" class="fap_jobfair_seq" value="0">
+							<input type="hidden" name="fap_jobfair_divide_seq" class="fap_jobfair_divide_seq" value="0">
+							<input type="hidden" name="fap_job_recruit_pcs_sch_ck" class="fap_job_recruit_pcs_sch_ck" value="">
+							<input type="hidden" name="comp_nm" class="comp_nm" value="">
+							
+							<div class="form-group">
+								<div class="form-row">
+									<label>면접 시작일자</label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label>면접 시작시간</label>
+								</div>
+								<div class="form-row">
+									<input type="text" id="fap_job_itv_date_st" name="fap_job_itv_date_st" >&emsp;
+									<input type="text" id="fap_job_itv_time_st" name="fap_job_itv_time_st">
+								</div>
+								<div class="form-row">
+									<label>면접 종료일자</label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<label>면접 종료시간</label>
+								</div>
+								<div class="form-row">
+									<input type="text" id="fap_job_itv_date_et" name="fap_job_itv_date_et">&emsp;
+									<input type="text" id="fap_job_itv_time_et" name="fap_job_itv_time_et">
+								</div>	
+								<div class="form-row">
+									<label>면접 장소</label>
+								</div>
+								<div class="form-row">
+									<input type="text" id="fap_job_itv_pcs_sch_lo" name="fap_job_recruit_pcs_sch_lo" style="width:490px;" value="{{itv.fap_job_recruit_pcs_sch_lo}}">
+								</div>	
+								<div class="form-row">
+									<label>대기실</label>
+								</div>
+								<div class="form-row">
+									<input type="text" id="fap_job_itv_pcs_sch_waitingroom" name="fap_job_recruit_pcs_sch_waitingroom" style="width:490px;" value="{{itv.fap_job_recruit_pcs_sch_waitingroom}}">
+								</div>	
+								<div class="form-row">
+									<label>면접 상세내용</label>
+								</div>
+								<div class="form-row">
+									<textarea id="fap_job_itv_pcs_sch_detail" name="fap_job_recruit_pcs_sch_detail" maxlength="500" style="width: 490px; height: 100px;">{{itv.fap_job_recruit_pcs_sch_detail}}</textarea>
+								</div>	
+								<div class="form-row">
+									<label>표시 색상</label>
+								</div>
+								<div class="form-row">
+									<select id="fap_job_itv_pcs_sch_color" name="fap_job_recruit_pcs_sch_color" class="colorSelect" ng-model="itv.fap_job_recruit_pcs_sch_color">
+										<option value="" style="background-color: #ffffff">선택</option>
+										<option selectcode value="C4600" style="background-color: #ed090d" ></option>
+										<option selectcode value="C4601" style="background-color: #ff6100"></option>
+										<option selectcode value="C4602" style="background-color: #fcfc80"></option>
+										<option selectcode value="C4603" style="background-color: #abfc80"></option>
+										<option selectcode value="C4604" style="background-color: #8cf7f0"></option>
+										<option selectcode value="C4605" style="background-color: #3b41ed"></option>
+										<option selectcode value="C4606" style="background-color: #8716e2"></option>
+										<option selectcode value="C4607" style="background-color: #fcb0b9"></option>
+										<option selectcode value="C4608" style="background-color: #c1bfc0"></option>									
+									</select>									
+								</div>					
+							</div>						
+							
+							<div class="form-group">
+								<div class="form-row">
+									<label>면접 대상자</label>
+								</div>
+								<div class="form-row">
+									<select id="fap_job_itv_obj" name="fap_job_itv_obj" ng-model="itv.fap_job_itv_obj">
+										<option selectcode value="C3400"></option>
+										<option selectcode value="C3401"></option>
+										<option selectcode value="C3402"></option>
+										<option selectcode value="C3403"></option>
+									</select>
+									&emsp;<input type="text" id="fap_job_itv_obj_etc_dtl" name="fap_job_itv_obj_etc_dtl" value="{{itv.fap_job_itv_obj_etc_dtl}}">
+								</div>
+								<div class="form-row">
+									<label>면접 구분</label>
+								</div>
+								<div class="form-row">
+									<select id="fap_job_itv_gb" name="fap_job_itv_gb" ng-model="itv.fap_job_itv_gb">
+										<option selectcode value="C3300"></option>
+										<option selectcode value="C3301"></option>
+									</select>								
+								</div>
+								<div class="form-row">
+									<label>면접 방식</label>
+								</div>
+								<div class="form-row">
+									<select id="fap_job_itv_tp" name="fap_job_itv_tp" ng-model="itv.fap_job_itv_tp">
+										<option selectcode value="C3500"></option>
+										<option selectcode value="C3501"></option>
+										<option selectcode value="C3502"></option>
+										<option selectcode value="C3503"></option>
+									</select>
+									&emsp;<input type="text" id="fap_job_itv_tp_etc_dtl" name="fap_job_itv_tp_etc_dtl" value="{{itv.fap_job_itv_tp_etc_dtl}}">								
+								</div>
+								<div class="form-row">
+									<label>소요 시간</label>
+								</div>
+								<div class="form-row">
+									<input type="text" id="fap_job_itv_tm" name="fap_job_itv_tm" value="{{itv.fap_job_itv_tm}}">
+								</div>	
+								<div class="form-row">
+									<label>면접 상세내용</label>
+								</div>
+								<div class="form-row">
+									<textarea id="fap_job_itv_pcs_dtl" name="fap_job_recruit_pcs_dtl" maxlength="500" style="width: 490px; height: 100px;" placeholder="화상면접인 경우에는 skype 아이디를 입력하세요.">{{itv.fap_job_recruit_pcs_dtl}}</textarea>
+								</div>	
 							</div>
 						</div>
-						<div class="form-row">
-								<label>시험문제 파일</label>
-						</div>
-						<div class="form-row">
-							<input type="hidden" name="fap_job_exam_file_origin" value="{{exam.fap_job_exam_file_origin}}">
-							<input type="hidden" name="fap_job_exam_file_saved" value="{{exam.fap_job_exam_file_saved}}">
-							&emsp;<input type="file" name="fap_job_exam_file" id="fap_job_exam_file" src="${path}{{exam.fap_job_exam_file_saved}}" >
-							<span class="uploadedFile">
-							    <a href="/file_download?origin={{exam.fap_job_exam_file_origin}}&saved={{exam.fap_job_exam_file_saved}}&path=/fap/company/job_recruit_exam_file/" >{{exam.fap_job_exam_file_origin}}</a>  
-							    <img class="x_icon" ng-click='deleteFile()' src="<c:url value="/resources/segroup/society/fap/images/main/deletePic.png" />" alt=""  style="height:20px;" />
-							</span>
-						</div>						
 						
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-							<button type="submit" class="btn btn-primary" >설정하기</button>
+							<button type="submit" class="btn btn-primary">설정하기</button>
 						</div>
-					
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- 시험전형 일정설정 등록 MODAL 종료-->
-	
-	<!-- 면접전형 일정설정 등록 MODAL 시작-->
-	<div class="modal fade" id="itvModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-			
-				<div class="modal-header">
-					<h5 class="modal-title" id="modal">면접전형 일정설정</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+						
+					</form>
 				</div>
-				
-				<form action="/fap/admin/interview_process_schedule_update" method="post" onsubmit="return itv_form_check();" enctype="multipart/form-data">
-					<div class="modal-body">
-						<input type="hidden" name="fap_job_recruit_pcs_seq" value="{{itv.fap_job_recruit_pcs_seq}}">
-						<input type="hidden" name="fap_job_recruit_pcs_sch_seq" value="{{itv.fap_job_recruit_pcs_sch_seq}}">
-						<input type="hidden" name="fap_job_itv_seq" value="{{itv.fap_job_itv_seq}}">
-						<input type="hidden" name="fap_jobfair_seq" class="fap_jobfair_seq" value="0">
-						<input type="hidden" name="fap_jobfair_divide_seq" class="fap_jobfair_divide_seq" value="0">
-						<input type="hidden" name="fap_job_recruit_pcs_sch_ck" class="fap_job_recruit_pcs_sch_ck" value="">
-						<input type="hidden" name="comp_nm" class="comp_nm" value="">
-						
-						<div class="form-group">
-							<div class="form-row">
-								<label>면접 시작일자</label>&emsp;&emsp;&emsp;&emsp;&emsp;<label>면접 시작시간</label>
-							</div>
-							<div class="form-row">
-								<input type="text" id="fap_job_itv_date_st" name="fap_job_itv_date_st" >&emsp;
-								<input type="text" id="fap_job_itv_time_st" name="fap_job_itv_time_st">
-							</div>
-							<div class="form-row">
-								<label>면접 종료일자</label>&emsp;&emsp;&emsp;&emsp;&emsp;<label>면접 종료시간</label>
-							</div>
-							<div class="form-row">
-								<input type="text" id="fap_job_itv_date_et" name="fap_job_itv_date_et">&emsp;
-								<input type="text" id="fap_job_itv_time_et" name="fap_job_itv_time_et">
-							</div>	
-							<div class="form-row">
-								<label>면접 장소</label>
-							</div>
-							<div class="form-row">
-								<input type="text" id="fap_job_itv_pcs_sch_lo" name="fap_job_recruit_pcs_sch_lo" style="width:490px;" value="{{itv.fap_job_recruit_pcs_sch_lo}}">
-							</div>	
-							<div class="form-row">
-								<label>대기실</label>
-							</div>
-							<div class="form-row">
-								<input type="text" id="fap_job_itv_pcs_sch_waitingroom" name="fap_job_recruit_pcs_sch_waitingroom" style="width:490px;" value="{{itv.fap_job_recruit_pcs_sch_waitingroom}}">
-							</div>	
-							<div class="form-row">
-								<label>면접 상세내용</label>
-							</div>
-							<div class="form-row">
-								<textarea id="fap_job_itv_pcs_sch_detail" name="fap_job_recruit_pcs_sch_detail" maxlength="500" style="width: 490px; height: 100px;">{{itv.fap_job_recruit_pcs_sch_detail}}</textarea>
-							</div>	
-							<div class="form-row">
-								<label>표시 색상</label>
-							</div>
-							<div class="form-row">
-								<select id="fap_job_itv_pcs_sch_color" name="fap_job_recruit_pcs_sch_color" class="colorSelect" ng-model="itv.fap_job_recruit_pcs_sch_color">
-									<option value="" style="background-color: #ffffff">선택</option>
-									<option selectcode value="C4600" style="background-color: #ed090d" ></option>
-									<option selectcode value="C4601" style="background-color: #ff6100"></option>
-									<option selectcode value="C4602" style="background-color: #fcfc80"></option>
-									<option selectcode value="C4603" style="background-color: #abfc80"></option>
-									<option selectcode value="C4604" style="background-color: #8cf7f0"></option>
-									<option selectcode value="C4605" style="background-color: #3b41ed"></option>
-									<option selectcode value="C4606" style="background-color: #8716e2"></option>
-									<option selectcode value="C4607" style="background-color: #fcb0b9"></option>
-									<option selectcode value="C4608" style="background-color: #c1bfc0"></option>									
-								</select>									
-							</div>					
-						</div>						
-						
-						<div class="form-group">
-							<div class="form-row">
-								<label>면접 대상자</label>
-							</div>
-							<div class="form-row">
-								<select id="fap_job_itv_obj" name="fap_job_itv_obj" ng-model="itv.fap_job_itv_obj">
-									<option selectcode value="C3400"></option>
-									<option selectcode value="C3401"></option>
-									<option selectcode value="C3402"></option>
-									<option selectcode value="C3403"></option>
-								</select>
-								&emsp;<input type="text" id="fap_job_itv_obj_etc_dtl" name="fap_job_itv_obj_etc_dtl" value="{{itv.fap_job_itv_obj_etc_dtl}}">
-							</div>
-							<div class="form-row">
-								<label>면접 구분</label>
-							</div>
-							<div class="form-row">
-								<select id="fap_job_itv_gb" name="fap_job_itv_gb" ng-model="itv.fap_job_itv_gb">
-									<option selectcode value="C3300"></option>
-									<option selectcode value="C3301"></option>
-								</select>								
-							</div>
-							<div class="form-row">
-								<label>면접 방식</label>
-							</div>
-							<div class="form-row">
-								<select id="fap_job_itv_tp" name="fap_job_itv_tp" ng-model="itv.fap_job_itv_tp">
-									<option selectcode value="C3500"></option>
-									<option selectcode value="C3501"></option>
-									<option selectcode value="C3502"></option>
-									<option selectcode value="C3503"></option>
-								</select>
-								&emsp;<input type="text" id="fap_job_itv_tp_etc_dtl" name="fap_job_itv_tp_etc_dtl" value="{{itv.fap_job_itv_tp_etc_dtl}}">								
-							</div>
-							<div class="form-row">
-								<label>소요 시간</label>
-							</div>
-							<div class="form-row">
-								<input type="text" id="fap_job_itv_tm" name="fap_job_itv_tm" value="{{itv.fap_job_itv_tm}}">
-							</div>	
-							<div class="form-row">
-								<label>면접 상세내용</label>
-							</div>
-							<div class="form-row">
-								<textarea id="fap_job_itv_pcs_dtl" name="fap_job_recruit_pcs_dtl" maxlength="500" style="width: 490px; height: 100px;" placeholder="화상면접인 경우에는 skype 아이디를 입력하세요.">{{itv.fap_job_recruit_pcs_dtl}}</textarea>
-							</div>	
-						</div>
-					</div>
-					
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-						<button type="submit" class="btn btn-primary">설정하기</button>
-					</div>
-					
-				</form>
 			</div>
 		</div>
-	</div>
-	<!-- 면접전형 일정설정 등록 MODAL 종료-->
-	
-	<!-- 기타전형 일정설정 등록 MODAL 시작-->
-	<div class="modal fade" id="testEtcModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-			
-				<div class="modal-header">
-					<h5 class="modal-title" id="modal">기타전형 일정설정</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				
-				<form action="/fap/admin/test_etc_process_schedule_update" method="post" onsubmit="return test_etc_form_check();" enctype="multipart/form-data">
-					<div class="modal-body">
-						<input type="hidden" name="fap_job_recruit_pcs_seq" value="{{etc.fap_job_recruit_pcs_seq}}">
-						<input type="hidden" name="fap_job_recruit_pcs_sch_seq" value="{{etc.fap_job_recruit_pcs_sch_seq}}">
-						<input type="hidden" name="fap_job_test_etc_seq" value="{{etc.fap_job_test_etc_seq}}">
-						<input type="hidden" name="fap_jobfair_seq" class="fap_jobfair_seq" value="0">
-						<input type="hidden" name="fap_jobfair_divide_seq" class="fap_jobfair_divide_seq" value="0">
-						<input type="hidden" name="fap_job_recruit_pcs_sch_ck" class="fap_job_recruit_pcs_sch_ck" value="">
-						<input type="hidden" name="comp_nm" class="comp_nm" value="">
-						
-						<div class="form-group">
-							<div class="form-row">
-								<label>기타전형 시작일자</label>&emsp;&emsp;&emsp;<label>기타전형 시작시간</label>
-							</div>
-							<div class="form-row">
-								<input type="text" id="fap_job_test_etc_date_st" name="fap_job_test_etc_date_st" >&emsp;
-								<input type="text" id="fap_job_test_etc_time_st" name="fap_job_test_etc_time_st">
-							</div>
-							<div class="form-row">
-								<label>기타전형 종료일자</label>&emsp;&emsp;&emsp;<label>기타전형 종료시간</label>
-							</div>
-							<div class="form-row">
-								<input type="text" id="fap_job_test_etc_date_et" name="fap_job_test_etc_date_et">&emsp;
-								<input type="text" id="fap_job_test_etc_time_et" name="fap_job_test_etc_time_et">
-							</div>	
-							<div class="form-row">
-								<label>기타전형 장소</label>
-							</div>
-							<div class="form-row">
-								<input type="text" id="fap_job_test_etc_pcs_sch_lo" name="fap_job_recruit_pcs_sch_lo" style="width: 490px;" value="{{etc.fap_job_recruit_pcs_sch_lo}}">
-							</div>
-							<div class="form-row">
-								<label>기타전형 상세내용</label>
-							</div>
-							<div class="form-row">
-								<textarea id="fap_job_test_etc_pcs_sch_detail" name="fap_job_recruit_pcs_sch_detail" maxlength="500" style="width: 490px; height: 100px;">{{etc.fap_job_recruit_pcs_sch_detail}}</textarea>
-							</div>	
-							<div class="form-row">
-								<label>표시 색상</label>
-							</div>
-							<div class="form-row">
-								<select id="fap_job_test_etc_pcs_sch_color" name="fap_job_recruit_pcs_sch_color" class="colorSelect" ng-model="etc.fap_job_recruit_pcs_sch_color">
-									<option value="" style="background-color: #ffffff">선택</option>
-									<option selectcode value="C4600" style="background-color: #ed090d" ></option>
-									<option selectcode value="C4601" style="background-color: #ff6100"></option>
-									<option selectcode value="C4602" style="background-color: #fcfc80"></option>
-									<option selectcode value="C4603" style="background-color: #abfc80"></option>
-									<option selectcode value="C4604" style="background-color: #8cf7f0"></option>
-									<option selectcode value="C4605" style="background-color: #3b41ed"></option>
-									<option selectcode value="C4606" style="background-color: #8716e2"></option>
-									<option selectcode value="C4607" style="background-color: #fcb0b9"></option>
-									<option selectcode value="C4608" style="background-color: #c1bfc0"></option>									
-								</select>									
-							</div>	
-						</div>						
-						
-						<div class="form-group">
-							<div class="form-row">
-								<label>기타전형 대상자</label>
-							</div>
-							<div class="form-row">
-								<select id="fap_job_test_etc_obj" name="fap_job_test_etc_obj" ng-model="etc.fap_job_test_etc_obj">
-									<option selectcode value="C3600"></option>
-									<option selectcode value="C3601"></option>
-									<option selectcode value="C3602"></option>
-									<option selectcode value="C3603"></option>
-								</select>
-								&emsp;<input type="text" id="fap_job_test_etc_obj_dtl" name="fap_job_test_etc_obj_dtl" value="{{etc.fap_job_test_etc_obj_dtl}}">
-							</div>
-							<div class="form-row">
-								<label>기타전형 상세내용</label>
-							</div>
-							<div class="form-row">
-								<textarea id="fap_job_test_etc_dtl" name="fap_job_test_etc_dtl" maxlength="500" style="width: 490px; height: 100px;">{{etc.fap_job_test_etc_dtl}}</textarea>
-							</div>	
-						</div>
-					</div>
-					
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-						<button type="submit" class="btn btn-primary">설정하기</button>
-					</div>
-					
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- 기타전형 일정설정 등록 MODAL 종료-->	
+		<!-- 면접전형 일정설정 등록 MODAL 종료-->
 		
+		<!-- 기타전형 일정설정 등록 MODAL 시작-->
+		<div class="modal fade" id="testEtcModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				
+					<div class="modal-header">
+						<h5 class="modal-title" id="modal">기타전형 일정설정</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					
+					<form action="/fap/admin/test_etc_process_schedule_update" method="post" onsubmit="return test_etc_form_check();" enctype="multipart/form-data">
+						<div class="modal-body">
+							<input type="hidden" name="fap_job_recruit_pcs_seq" value="{{etc.fap_job_recruit_pcs_seq}}">
+							<input type="hidden" name="fap_job_recruit_pcs_sch_seq" value="{{etc.fap_job_recruit_pcs_sch_seq}}">
+							<input type="hidden" name="fap_job_test_etc_seq" value="{{etc.fap_job_test_etc_seq}}">
+							<input type="hidden" name="fap_jobfair_seq" class="fap_jobfair_seq" value="0">
+							<input type="hidden" name="fap_jobfair_divide_seq" class="fap_jobfair_divide_seq" value="0">
+							<input type="hidden" name="fap_job_recruit_pcs_sch_ck" class="fap_job_recruit_pcs_sch_ck" value="">
+							<input type="hidden" name="comp_nm" class="comp_nm" value="">
+							
+							<div class="form-group">
+								<div class="form-row">
+									<label>기타전형 시작일자</label>&emsp;&emsp;&emsp;<label>기타전형 시작시간</label>
+								</div>
+								<div class="form-row">
+									<input type="text" id="fap_job_test_etc_date_st" name="fap_job_test_etc_date_st" >&emsp;
+									<input type="text" id="fap_job_test_etc_time_st" name="fap_job_test_etc_time_st">
+								</div>
+								<div class="form-row">
+									<label>기타전형 종료일자</label>&emsp;&emsp;&emsp;<label>기타전형 종료시간</label>
+								</div>
+								<div class="form-row">
+									<input type="text" id="fap_job_test_etc_date_et" name="fap_job_test_etc_date_et">&emsp;
+									<input type="text" id="fap_job_test_etc_time_et" name="fap_job_test_etc_time_et">
+								</div>	
+								<div class="form-row">
+									<label>기타전형 장소</label>
+								</div>
+								<div class="form-row">
+									<input type="text" id="fap_job_test_etc_pcs_sch_lo" name="fap_job_recruit_pcs_sch_lo" style="width: 490px;" value="{{etc.fap_job_recruit_pcs_sch_lo}}">
+								</div>
+								<div class="form-row">
+									<label>기타전형 상세내용</label>
+								</div>
+								<div class="form-row">
+									<textarea id="fap_job_test_etc_pcs_sch_detail" name="fap_job_recruit_pcs_sch_detail" maxlength="500" style="width: 490px; height: 100px;">{{etc.fap_job_recruit_pcs_sch_detail}}</textarea>
+								</div>	
+								<div class="form-row">
+									<label>표시 색상</label>
+								</div>
+								<div class="form-row">
+									<select id="fap_job_test_etc_pcs_sch_color" name="fap_job_recruit_pcs_sch_color" class="colorSelect" ng-model="etc.fap_job_recruit_pcs_sch_color">
+										<option value="" style="background-color: #ffffff">선택</option>
+										<option selectcode value="C4600" style="background-color: #ed090d" ></option>
+										<option selectcode value="C4601" style="background-color: #ff6100"></option>
+										<option selectcode value="C4602" style="background-color: #fcfc80"></option>
+										<option selectcode value="C4603" style="background-color: #abfc80"></option>
+										<option selectcode value="C4604" style="background-color: #8cf7f0"></option>
+										<option selectcode value="C4605" style="background-color: #3b41ed"></option>
+										<option selectcode value="C4606" style="background-color: #8716e2"></option>
+										<option selectcode value="C4607" style="background-color: #fcb0b9"></option>
+										<option selectcode value="C4608" style="background-color: #c1bfc0"></option>									
+									</select>									
+								</div>	
+							</div>						
+							
+							<div class="form-group">
+								<div class="form-row">
+									<label>기타전형 대상자</label>
+								</div>
+								<div class="form-row">
+									<select id="fap_job_test_etc_obj" name="fap_job_test_etc_obj" ng-model="etc.fap_job_test_etc_obj">
+										<option selectcode value="C3600"></option>
+										<option selectcode value="C3601"></option>
+										<option selectcode value="C3602"></option>
+										<option selectcode value="C3603"></option>
+									</select>
+									&emsp;<input type="text" id="fap_job_test_etc_obj_dtl" name="fap_job_test_etc_obj_dtl" value="{{etc.fap_job_test_etc_obj_dtl}}">
+								</div>
+								<div class="form-row">
+									<label>기타전형 상세내용</label>
+								</div>
+								<div class="form-row">
+									<textarea id="fap_job_test_etc_dtl" name="fap_job_test_etc_dtl" maxlength="500" style="width: 490px; height: 100px;">{{etc.fap_job_test_etc_dtl}}</textarea>
+								</div>	
+							</div>
+						</div>
+						
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+							<button type="submit" class="btn btn-primary">설정하기</button>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- 기타전형 일정설정 등록 MODAL 종료-->	
+	</div>
 </body>
 </html>
