@@ -208,11 +208,10 @@ public class SocietyFapAdminCommonViewController implements PathConstants {
 	 * @Method 설명 : FAP 관리자 로그인 성공시 권한별 페이지 이동하는 컨트롤러 함수
 	 */
 	@RequestMapping(value = PathConstants.SOCIETY_FAP_ADMIN_LOGIN_SUCCESS, method = RequestMethod.GET)
-	public String admin_login_success(Authentication auth, HttpSession session){
+	public String admin_login_success(Authentication auth){
 		logger.debug("FAP 관리자 로그인 성공 컨트롤러 시작");
 		Object authObj = auth.getDetails();
-		String user_id = (String)auth.getPrincipal();
-		session.setAttribute("user_id", user_id);
+		
 		if(authObj instanceof UserSecurity){
 			logger.debug("FAP 관리자 로그인 성공 컨트롤러 종료");
 			return "redirect:"+PathConstants.SOCIETY_FAP_ADMIN_ACCESS_DENIED;
