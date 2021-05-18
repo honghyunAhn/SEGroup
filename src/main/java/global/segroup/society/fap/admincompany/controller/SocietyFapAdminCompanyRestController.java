@@ -6,6 +6,8 @@ package global.segroup.society.fap.admincompany.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,9 +58,13 @@ public class SocietyFapAdminCompanyRestController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = PathConstants.SOCIETY_FAP_ADMIN_UPDATE_JOB_AD_STATE, method = RequestMethod.POST)
-	public boolean update_job_ad_state(@RequestBody SocietyFapJobAd jobAd, Authentication auth){
+	public boolean update_job_ad_state(@RequestBody SocietyFapJobAd jobAd, Authentication auth, HttpSession session){
 		logger.debug("FAP 관리자 채용공고 상태 수정 시작");
-		String admin_id = (String) auth.getPrincipal();
+		
+		String admin_id = "";
+		if(auth != null) admin_id = (String) auth.getPrincipal();
+		else admin_id = (String) session.getAttribute("user_id");
+		
 		boolean result = sfacService.admin_approve_job_ad(jobAd, admin_id);
 		logger.debug("FAP 관리자 채용공고 상태 수정 종료");
 		return result;

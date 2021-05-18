@@ -361,7 +361,7 @@ public class SocietyFapAdminCompanyService {
 			SocietyFapJobRecruitPcsSch sch = new SocietyFapJobRecruitPcsSch();	//등록할 스케줄의 정보를 담을 객체
 			
 			//서류전형 스케줄 등록
-			if(pcs.getFap_job_recruit_pcs_gb().equals("C2500")){
+			if(pcs.getFap_job_recruit_pcs_gb() != null && pcs.getFap_job_recruit_pcs_gb().equals("C2500")){
 				SocietyFapJobfairApplicableTime time = sfacmDAO.search_approved_review_pcs_date(jobAd.getFap_job_ad_seq());
 				sch.setFap_job_recruit_pcs_seq(pcs.getFap_job_recruit_pcs_seq());
 				try {

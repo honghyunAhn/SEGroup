@@ -153,6 +153,7 @@
 				context += '<td ng-if="results.user_flag == \'A0100\' "><code value="A0100"></code></td>';
 				context += '<td ng-if="results.user_flag == \'A0101\' "><code value="A0101"></code></td>';
 				context += '<td ng-if="results.user_flag == \'A0106\' "><code value="A0106"></code></td>';
+				context += '<td ng-if="results.user_flag == \'A0108\' "><code value="A0108"></code></td>';
 				context += '<td><input type="number" name="fap_user_apply_numbers_list[{{$index}}].fap_user_apply_numbers_fixed" value="{{results.fap_user_apply_numbers_fixed}}"></td>';
 				context += '<td ng-if="results.fap_user_apply_numbers_auto_gb == \'D0100\' "><code value="D0100"></code></td>';
 				context += '<td ng-if="results.fap_user_apply_numbers_auto_gb == \'D0101\' "><code value="D0101"></code></td>';

@@ -454,26 +454,30 @@
 /* 메인배너 */
 .container_rainbow .mainBannerWrapper{
     width: 100%;
-    padding-top: 80px;
+    padding-top: 148px;
 }
 .container_rainbow .mainBannerWrapper>.d-flex{}
 .container_rainbow .mainBannerWrapper>.swiper-buttonWrap{
     width: 1400px;
     height: 40px;
     position: absolute;
-    top: 0;
+    top: 148px;
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
 }
 .container_rainbow .mainBannerWrapper>.mainBannerWrap{
-    width: calc(1920px *  2);
+    /* width: calc(1920px *  2); */
+     width: 100%;
 
 }
 .container_rainbow .mainBannerWrapper>.mainBannerWrap .mainBanner{
-    height: 560px;
-    background-color: #fc0;
+    /* height: 600px; */
+    /* background-color: #fc0; */
+}
+.container_rainbow .mainBannerWrapper>.mainBannerWrap .mainBanner img{
+	width : 100%;
 }
 .container_rainbow>.content .mainBannerWrapper .bannerTextWrap{
     padding: 130px 0 220px;

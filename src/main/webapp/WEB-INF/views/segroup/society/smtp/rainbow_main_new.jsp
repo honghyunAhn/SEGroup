@@ -116,27 +116,28 @@
 		<%@include file="include/rainbow_header_basic.jsp"%>
         <div class="content" id="main">
         	<!-- 210209추가 Start -->
-<!--         	<div class="mainBannerWrapper swiper-container"> -->
-<!--                 <div class="d-flex justify_between swiper-buttonWrap"> -->
-<!--                     <div class="swiper-button-prev img-icon chevron-left_pp btn_left"></div> -->
-<!--                     <div class="swiper-button-next img-icon chevron-right_pp btn_right"></div> -->
-<!--                 </div> -->
-<!--                 <div class="swiper-wrapper mainBannerWrap d-flex"> -->
-<%--                 	<c:forEach var="data" items="${banner_list}"> --%>
-<!--                 		<div class="swiper-slide mainBanner mainBanner"> -->
-<%-- 	                        <div class="background" style="background-image: url(<c:out value="${data.img_full_path}"/>); background-repeat: no-repeat;"> --%>
-<!-- 	                            <div class="opacity_bg"> -->
-<!-- 	                                <div class="bannerTextWrap"> -->
-<%-- 	                                	<a href="${data.edu_ban_link}"><img class="top_img" src="${data.img_full_path}"></a> --%>
-<!-- 	                                </div> -->
-<!-- 	                            </div> -->
-<!-- 	                        </div> -->
-<!-- 	                    </div> -->
-<%--                 	</c:forEach> --%>
-<!--                 </div> -->
-<!--             </div> -->
+         	<div class="mainBannerWrapper swiper-container">
+                 <!-- <div class="d-flex justify_between swiper-buttonWrap">
+                     <div class="swiper-button-prev img-icon chevron-left_pp btn_left"></div>
+                     <div class="swiper-button-next img-icon chevron-right_pp btn_right"></div>
+                 </div> -->
+                <div class="swiper-wrapper mainBannerWrap d-flex">
+                	<c:forEach var="data" items="${banner_list}">
+                 		<div class="swiper-slide mainBanner mainBanner">
+ 	                        <!-- <div class="background" style="background-image: url(<c:out value="${data.img_full_path}"/>); background-repeat: no-repeat;"> 
+ 	                            <div class="opacity_bg">
+ 	                                <div class="bannerTextWrap">
+	                                	<a href="${data.edu_ban_link}"><img class="top_img" src="${data.img_full_path}"></a>
+ 	                                </div>
+ 	                            </div>
+ 	                        </div> -->
+ 	                        <img src="/resources/segroup/society/smtp/img/mainBannerImg01.jpg">
+ 	                    </div>
+                 	</c:forEach>
+                 </div>
+             </div>
             <!-- 210209추가 End -->
-            <div class="bannerWrapper" style="padding-top: 160px;">
+            <!--  <div class="bannerWrapper" style="padding-top: 160px;">
             	<div class="clearfix" style="max-width:100%;">
 	                <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
 	                	<c:forEach var="data" items="${banner_list}">
@@ -146,7 +147,7 @@
 	                	</c:forEach>
 	                </ul>
 	            </div>
-            </div>
+            </div> -->
 				<div class="bannerWrapper">
 					<div class="title_barPoint_wh fz40 margin-bottom20">
 						모집과정
