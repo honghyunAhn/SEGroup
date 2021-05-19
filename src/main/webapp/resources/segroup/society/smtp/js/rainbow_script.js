@@ -3,23 +3,32 @@
 $(function() {
     // index >> 이벤트 배너 이미지 슬라이더
     var swiper = new Swiper('.swiper-container', {
-        slidesPerView: 'auto',
-//		  spaceBetween: 60,
-//        speed: 1000,
-        centeredSlides: true,
-//        loop: true,
-//        autoplay: {
-//            delay: 6000,
-//            disableOnInteraction: false,
-//        },
-//        pagination: {
-//            el: '.swiper-pagination',
-//            clickable: true,
-//        },
-//        navigation: {
-//            nextEl: '.swiper-button-next',
-//            prevEl: '.swiper-button-prev',
-//        },
+        slidesPerView: 3,
+		spaceBetween: 20,
+        speed: 1000,
+        autoplay: {
+            delay: 6000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            // when window width is >= 320px
+        	640: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            1200: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            }
+          }
     });
 
     // index >> nav
@@ -39,7 +48,7 @@ $(function() {
         var $gnb = $('.container_rainbow>.headerWrap>.header-menuWrap>.point_bgTxt01');
         var $lnb = $('.container_rainbow>.headerWrap>.header-menuWrap>.header-subMenuWrap');
         $lnb.hide();
-        $gnb.mouseenter(function() {
+        $nav.mouseenter(function() {
             $lnb.slideDown();
         });
         $nav.mouseleave(function() {
@@ -139,32 +148,21 @@ $(function() {
 
     // 반응형
     var responsive480 = window.matchMedia("screen and (max-width : 480px)"),
+    	responsive767 = window.matchMedia("screen and (max-width : 767px)"),
         responsive1024 = window.matchMedia("screen and (max-width : 1024px)");
 
-    if (responsive480.matches) {
-
-    };
-
     if (responsive1024.matches) {
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 'auto',
-            spaceBetween: 40,
-            centeredSlides: false,
-            loop: true,
-            autoplay: {
-                delay: 6000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-    }
+        
+    };
+    
+    if (responsive767.matches) {
+    	
+    };
+    
+    if (responsive480.matches) {
+    	
+    };
+    
   //form태그 객체화하는 함수
     $.fn.serializeObject = function() {
       	"use strict"

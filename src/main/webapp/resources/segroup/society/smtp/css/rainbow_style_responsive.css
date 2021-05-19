@@ -15,11 +15,11 @@
 
     /* common_layout */
     .container_rainbow>.headerWrap>.header,
+    .container_rainbow>.headerWrap>.header-menuWrap .header-menu,
     .container_rainbow .fullWrapper>.full-navGroup,
     .container_rainbow>.headerWrap>.header-menuWrap>.header-menu,
     .container_rainbow>.content>.background>.opacity_bg>.bannerTextWrap,
     .container_rainbow>.content .fieldWrap,
-    /* .container_rainbow>.content .courseWrapper>.d-flex, */
     .container_rainbow>.content .bannerWrapper,
     .container_rainbow>.content .employmentWrap,
     .container_rainbow>.footerWrap>.footer,
@@ -36,19 +36,33 @@
     .container_rainbow .fullWrapper .menuDivWrap>.menu-title-division:nth-child(3n)~*{
         margin-top: 0;
     }
-
+	
+	
     /* content */
-    /* .container_rainbow>.content .courseWrapper>.courseWrap {
-        width: calc(940px * 3);
+    .container_rainbow .courseWrapper{
+    	width : 730px;
     }
-
-    .container_rainbow>.content .courseWrapper>.courseWrap>.course {
-        width: 900px;
+    
+    .container_rainbow .courseWrapper>.courseWrap>.course{
+    	width : 355px;	
     }
-    .sub-content>.coursePeriodWrap>.background>.opacity_bg>.coursePeriod>.d-flex>.periodBoxWrap{
-        width: calc(50% - 20px);
-    } */
-
+    
+    .container_rainbow .courseWrapper>.courseWrap>.course:nth-child(n+2){
+    	margin-left : 0;
+    }
+    .container_rainbow .courseWrapper>.courseWrap>.course:nth-child(2n){
+    	margin-left : 20px;
+    }
+    .container_rainbow .courseWrapper>.courseWrap>.course:nth-child(n+3){
+		margin-top : 20px;
+	}
+    
+    .container_rainbow .bannerWrapper_bg .bannerWrapper .bannerWrap{
+    	width : 100%;
+    	height : 0;
+    	padding-top: calc(257 / 386 * 100%);
+    }
+    
 }
 
 /*--------------------------------------------------------------
@@ -58,9 +72,11 @@
     html {
         font-size: 13px;
     }
-
+	.container_rainbow>.headerWrap>.header-menuWrap .header-menu>.hdrMenu .highlightWrap>.highlight{
+		display : none;
+	}
     /* content */
-
+		
     /* - 관심분야 */
     .container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .courseList-tabWrap>li.btn_normal,
     .m-courseList-tabWrap>li>.btn_normal{
@@ -155,9 +171,11 @@
     }
     /* common Layout */
 
-    .container_rainbow>.headerWrap>.header, .container_rainbow>.headerWrap>.fullWrapper>.full-navGroup, .container_rainbow>.content>.background>.opacity_bg>.bannerTextWrap,
-    /* .container_rainbow>.content .courseWrapper>.d-flex,*/
-    .container_rainbow>.content .bannerWrapper, .container_rainbow>.content .employmentWrap, .container_rainbow>.footerWrap>.footer,
+    .container_rainbow>.headerWrap>.header, .container_rainbow>.headerWrap>.fullWrapper>.full-navGroup,
+    .container_rainbow>.content>.background>.opacity_bg>.bannerTextWrap,
+    /* .container_rainbow>.content .courseWrapper>.d-flex,
+	.container_rainbow>.content .bannerWrapper,*/
+    .container_rainbow>.content .employmentWrap, .container_rainbow>.footerWrap>.footer,
     .container_rainbow>.headerWrap>.header, .container_rainbow .fullWrapper>.full-navGroup, .container_rainbow>.headerWrap>.header-menuWrap>.header-menu, .container_rainbow>.content>.background>.opacity_bg>.bannerTextWrap, .container_rainbow>.content .fieldWrap,
     .sub-content>.background>.opacity_bg>.course-title,
     .sub-content>.courseGuideWrap,
@@ -168,6 +186,7 @@
     .sub-content>.courseReviewWrap>.courseReview,
     .sub-content>.RecommendationWrap, .courseRegistrationWrap, .container_rainbow>.sub01_content, .container_rainbow>.sub04_content, .container_rainbow>.sub05_content, .rainbow_myClass>.content_myClsss>.section_sub05-01{
         width: calc(100% - 40px);
+        min-width : 300px;
     }
     .container_rainbow>.content .fieldWrap{
         width: 100%;
@@ -218,6 +237,15 @@
 
 
     /* content */
+    .container_rainbow .mainBannerWrapper{
+		padding-top : 60px;
+	}
+	.container_rainbow .mainBannerWrapper>.mainBannerWrap .mainBanner img.webBanner{
+		display : none;
+	}
+	.container_rainbow .mainBannerWrapper>.mainBannerWrap .mainBanner img.mobileBanner{
+		display : block;
+	}
     .container_rainbow>.content>.background>.opacity_bg{
         height: 540px;
     }
@@ -268,24 +296,26 @@
     .container_rainbow>.content .courseWrapper>.courseWrap>.course .course-img{
         height: 168px;
     } */
-
+    
     /* 배너영역 */
-    .container_rainbow>.content .bannerWrapper{
-        padding: 80px 0 0;
-    }
-    .container_rainbow>.content .bannerWrapper>.d-flex{
-        -webkit-box-lines: multiple;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    }
-    .container_rainbow>.content .bannerWrapper>.d-flex>a{
-        width: 100%;
-    }
-    .container_rainbow>.content .bannerWrapper>.d-flex>a:nth-child(1)~*{
-        margin-top: 40px;
-    }
-    .container_rainbow>.content .bannerWrapper .bannerWrap{}
-    .container_rainbow>.content .bannerWrapper .bannerTxt{}
+    
+    .container_rainbow .courseWrapper,
+	.container_rainbow>.content .bannerWrapper{
+		width: 300px;
+	}
+	.container_rainbow .courseWrapper,
+	.container_rainbow .bannerWrapper_bg{
+		padding : 60px 0;
+	}
+	.container_rainbow .courseWrapper>.courseWrap>.course:nth-child(2n){
+		margin-left : 0;
+	}
+	.container_rainbow .courseWrapper>.courseWrap>.course:nth-child(n+2){
+		margin-top : 20px;
+	}
+
+    
+    
 
 
     /* .employmentWrap */

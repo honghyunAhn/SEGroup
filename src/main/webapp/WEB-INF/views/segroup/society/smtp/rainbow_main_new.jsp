@@ -115,15 +115,13 @@
         <!-- header-include -->
 		<%@include file="include/rainbow_header_basic.jsp"%>
         <div class="content" id="main">
-        	<!-- 210209추가 Start -->
-         	<div class="mainBannerWrapper swiper-container">
-                 <!-- <div class="d-flex justify_between swiper-buttonWrap">
-                     <div class="swiper-button-prev img-icon chevron-left_pp btn_left"></div>
-                     <div class="swiper-button-next img-icon chevron-right_pp btn_right"></div>
-                 </div> -->
-                <div class="swiper-wrapper mainBannerWrap d-flex">
+        
+        	<!-- 210513 메인배너영역 슬라이드 변경 Start -->
+         	<div class="mainBannerWrapper">
+                
+                <div class="mainBannerWrap d-flex">
                 	<c:forEach var="data" items="${banner_list}">
-                 		<div class="swiper-slide mainBanner mainBanner">
+                 		<div class="mainBanner mainBanner">
  	                        <!-- <div class="background" style="background-image: url(<c:out value="${data.img_full_path}"/>); background-repeat: no-repeat;"> 
  	                            <div class="opacity_bg">
  	                                <div class="bannerTextWrap">
@@ -131,13 +129,13 @@
  	                                </div>
  	                            </div>
  	                        </div> -->
- 	                        <img src="/resources/segroup/society/smtp/img/mainBannerImg01.jpg">
+ 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg01.jpg">
+ 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg01_mobile.jpg">
  	                    </div>
                  	</c:forEach>
                  </div>
-             </div>
-            <!-- 210209추가 End -->
-            <!--  <div class="bannerWrapper" style="padding-top: 160px;">
+             </div>            
+             <!--  <div class="bannerWrapper" style="padding-top: 160px;">
             	<div class="clearfix" style="max-width:100%;">
 	                <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
 	                	<c:forEach var="data" items="${banner_list}">
@@ -148,82 +146,131 @@
 	                </ul>
 	            </div>
             </div> -->
-				<div class="bannerWrapper">
-					<div class="title_barPoint_wh fz40 margin-bottom20">
-						모집과정
+            <!-- 210513 메인배너영역 슬라이드 변경 End -->
+            
+            <!-- 210514 메인 모집과정 영역 수정 Start -->
+			<!-- <div class="bannerWrapper">
+				<div class="title_barPoint_wh fz40 margin-bottom20">모집과정</div>
+				<div class="item d-flex justify_between">
+			    	<ul id="content-slider" class="content-slider d-flex">
+			        	<c:forEach var="data" items="${subbanner_list}">
+			            <li>
+			            	<a href="${data.edu_sub_ban_link}"><img src="${data.img_full_path}"></a>
+			                <div class="sub_ban_nm">
+			                	${data.edu_sub_ban_nm}
+			                </div>
+			                <div class="sub_ban_dt">
+								<c:if test="${data.edu_sub_ban_st != null && data.edu_sub_ban_st != ''}">
+									신청기간 : ${data.edu_sub_ban_st} ~ ${data.edu_sub_ban_et}
+								</c:if>
+			                </div>
+						</li>
+			            </c:forEach>
+			        </ul>
+			    </div>
+			</div> -->
+			<div class="courseWrapper">
+				<div class="title_barPoint_wh fz40">모집과정</div>
+				<div class="d-flex flexWrap courseWrap">
+					<div class="course">
+						<a href="#"><img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb01.jpg"></a>
+						<div class="course-txt">
+							<div class="course-name">4주 완성! 코딩 챌린지 과정</div>
+							<div class="course-term">모집마감 2021.06.15 까지</div>
+						</div>
 					</div>
-					<div class="item d-flex justify_between">
-			            <ul id="content-slider" class="content-slider d-flex">
-			                <c:forEach var="data" items="${subbanner_list}">
-			                	<li>
-			                		<a href="${data.edu_sub_ban_link}">
-			                			<img src="${data.img_full_path}">
-			                		</a>
-			                		<div class="sub_ban_nm">
-			                			${data.edu_sub_ban_nm}
-			                		</div>
-			                		<div class="sub_ban_dt">
-			                			<c:if test="${data.edu_sub_ban_st != null && data.edu_sub_ban_st != ''}">
-			                				신청기간 : ${data.edu_sub_ban_st} ~ ${data.edu_sub_ban_et}
-			                			</c:if>
-			                		</div>
-			                	</li>
-			                </c:forEach>
-			                
-			            </ul>
-			        </div>
+					<div class="course">
+						<a href="#"><img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb02.jpg"></a>
+						<div class="course-txt">
+							<div class="course-name">[광주] SoftWare DevOps 마스터 과정</div>
+							<div class="course-term">모집마감 2021.07.11 까지</div>
+						</div>
+					</div>
+					<div class="course">
+						<a href="#"><img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb03.jpg"></a>
+						<div class="course-txt">
+							<div class="course-name">[부산] ABC 마스터 과정</div>
+							<div class="course-term">모집마감 2021.07.11 까지</div>
+							<!-- 학습기간 : 2021.07.20 ~ 2022.05.26 -->
+						</div>
+					</div>
 				</div>
+				
+			</div>
 
-			<!-- 배너영역 -->
-            <div class="bannerWrapper">
+			<!-- 210514 메인 썸네일 슬라이드 영역 수정 Start -->
+            <div class="bannerWrapper_bg">
                 <!-- <div class="title_barPoint_wh fz40"></div> -->
-                <div class="d-flex justify_between">
-                    <a href="/smtp/course/schedule">
-                        <div class="bannerWrap banner01"></div>
-                        <!-- <div class="bannerTxt">2021년 연간 교육 일정을 확인하실 수 있습니다.</div> -->
-                    </a>
-                    <a href="http://doitcampus.com/">
-                        <div class="bannerWrap banner02"></div>
-                        <!-- <div class="bannerTxt">나에게 맞는 강의가 궁금하다면?<br>두잇캠퍼스에서 확인해보세요.</div> -->
-                    </a>
-                    <a href="https://www.softsociety.net/smtp/course/short-term/short-term-info?course_id=c000000541">
-                        <div class="bannerWrap banner03"></div>
-                        <!-- <div class="bannerTxt">아직 자격증이 없으신가요?<br>일본취업 필수과정을 확인해보세요.</div> -->
-                    </a>
-                </div>
+                <div class="bannerWrapper swiper-container">
+	                <div class="d-flex swiper-wrapper">
+	                	<div class="swiper-slide">
+		                    <a href="/smtp/course/schedule" class="swiper-slide">
+		                        <div class="bannerWrap banner01"></div>
+		                        <!-- <div class="bannerTxt">2021년 연간 교육 일정을 확인하실 수 있습니다.</div> -->
+		                    </a>
+	                    </div>
+	                    <div class="swiper-slide">
+		                    <a href="http://doitcampus.com/" class="swiper-slide">
+		                        <div class="bannerWrap banner02"></div>
+		                        <!-- <div class="bannerTxt">나에게 맞는 강의가 궁금하다면?<br>두잇캠퍼스에서 확인해보세요.</div> -->
+		                    </a>
+	                    </div>
+	                    <div class="swiper-slide">
+		                    <a href="https://www.softsociety.net/smtp/course/short-term/short-term-info?course_id=c000000541" class="swiper-slide">
+		                        <div class="bannerWrap banner03"></div>
+		                        <!-- <div class="bannerTxt">아직 자격증이 없으신가요?<br>일본취업 필수과정을 확인해보세요.</div> -->
+		                    </a>
+	                    </div>
+	                    <div class="swiper-slide">
+		                    <a href="/smtp/community/sub04-05" class="swiper-slide">
+		                        <div class="bannerWrap banner06"></div>
+		                        <!-- 과정후기 보러가기 -->
+		                    </a>
+	                    </div>
+	                    <div class="swiper-slide">
+		                    <a href="https://blog.naver.com/scitmaster" class="swiper-slide">
+		                        <div class="bannerWrap banner04"></div>
+		                        <!-- 네이버블로그 바로가기 -->
+		                    </a>
+	                    </div>
+	                    <div class="swiper-slide">
+		                    <a href="https://www.youtube.com/channel/UCCsiCEQ8g6PacQLuJEYEWpw?view_as=subscriber" class="swiper-slide">
+		                        <div class="bannerWrap banner05"></div>
+		                        <!-- 유튜브 채널 바로가기 -->
+		                    </a>
+	                    </div>
+	                    
+	                </div>
+	                <div class="swiper-pagination"></div>
+	            </div>
             </div>
+            <!-- 210514 메인 썸네일 슬라이드 영역 수정 End -->
             
 			<!-- 바로가기배너영역 210209 추가 Start -->
-            <div class="linkBannerWrapper">
+            <!-- <div class="linkBannerWrapper">
                 <div class="linkBannerWrap">
-                    <div class="d-flex flexWrap">
-                        <!-- 모집중인 과정 -->
+                    <div class="d-flex flexWrap">                        
                         <div class="linkBanner link_banner01" style="cursor: pointer;">
                             <a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000526')"></a>
-                        </div>
-                        <!-- 공지사항 -->
+                        </div>                        
                         <div class="linkBanner link_banner02">
                            <a href="/smtp/community/sub04-01"></a> 
-                        </div>
-                        <!-- Q&A -->
+                        </div>                        
                         <div class="linkBanner link_banner03">
                             <a href="/smtp/support/sub04-02"></a>
-                        </div>
-                        <!-- 네이버블로그 바로가기 -->
+                        </div>                        
                         <div class="linkBanner link_banner04">
                             <a href="https://blog.naver.com/scitmaster"></a>
-                        </div>
-                        <!-- 유튜브 채널 바로가기 -->
+                        </div>                        
                         <div class="linkBanner link_banner05">
                             <a href="https://www.youtube.com/channel/UCCsiCEQ8g6PacQLuJEYEWpw?view_as=subscriber"></a>
                         </div>
-                        <!-- 과정후기 보러가기 -->
                         <div class="linkBanner link_banner06">
                             <a href="/smtp/community/sub04-05"></a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- 바로가기배너영역 210209 추가 End -->
         </div>
         <%@include file="include/common_footer_rainbow.jsp"%>
