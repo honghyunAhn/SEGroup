@@ -49,11 +49,17 @@ $(function() {
         var $lnb = $('.container_rainbow>.headerWrap>.header-menuWrap>.header-subMenuWrap');
         $lnb.hide();
         $nav.mouseenter(function() {
-            $lnb.slideDown();
+        	$lnb.show();
         });
         $nav.mouseleave(function() {
-            $lnb.slideUp();
+        	$lnb.hide();
         });
+//        $nav.mouseenter(function() {
+//            $lnb.slideDown();
+//        });
+//        $nav.mouseleave(function() {
+//            $lnb.slideUp();
+//        });
         $lnb.find('.hdrSubMenu').mouseenter(function(){
             $(this).addClass('point_fc01');
         });

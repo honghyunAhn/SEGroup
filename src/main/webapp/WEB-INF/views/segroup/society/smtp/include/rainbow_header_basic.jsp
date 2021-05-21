@@ -106,22 +106,20 @@
 	        </div>
 	        <div class="menuDivWrap d-flex fc_fff">
 	            <ul class="menu-title-division">
-	                <li class="gnb">SW·AI·클라우드</li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000543');" href="javascript:void(0);">SWDO 마스터 사전학습반</a></li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000538');" href="javascript:void(0);">AI 개요와 딥러닝 개념</a></li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000539');" href="javascript:void(0);">코딩한줄 없는 AI 활용</a></li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000535');" href="javascript:void(0);">입문 : 이제부터파이썬<br>- 딥러닝을 위한 파이썬 기초과정</a></li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000537');" href="javascript:void(0);">파이썬으로 배우는 데이터분석과 시각화</a></li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000540');" href="javascript:void(0);">파이썬을 이용한 웹 스크래핑</a></li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000536');" href="javascript:void(0);">파이썬기반 데이터 사이언스 기초</a></li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000545');" href="javascript:void(0);">(과정평가형)정보처리산업기사 자격 취득과정</a></li>
-	            </ul>
-	            <ul class="menu-title-division">
-	                <li class="gnb">외국어</li>
-	                <li class="lnb"><a href="/smtp/course/short-term/short-term-info?course_id=c000000541">일본취업을 위한 JPT & SJPT</a></li>
+	                <li class="gnb">IT 단기과정</li>
+	                <li class="lnb"><a href="javascript:alert('준비중입니다.');">JAVA 기반 웹 개발자 과정</a></li>
+	                <li class="lnb"><a href="javascript:alert('준비중입니다.');">파이썬 기초 과정</a></li>
+<!-- 	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000538');" href="javascript:void(0);">AI 개요와 딥러닝 개념</a></li> -->
+<!-- 	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000539');" href="javascript:void(0);">코딩한줄 없는 AI 활용</a></li> -->
+<!-- 	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000535');" href="javascript:void(0);">입문 : 이제부터파이썬<br>- 딥러닝을 위한 파이썬 기초과정</a></li> -->
+<!-- 	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000537');" href="javascript:void(0);">파이썬으로 배우는 데이터분석과 시각화</a></li> -->
+<!-- 	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000540');" href="javascript:void(0);">파이썬을 이용한 웹 스크래핑</a></li> -->
+<!-- 	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000536');" href="javascript:void(0);">파이썬기반 데이터 사이언스 기초</a></li> -->
+<!-- 	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000545');" href="javascript:void(0);">(과정평가형)정보처리산업기사 자격 취득과정</a></li> -->
 	            </ul>
 	            <ul class="menu-title-division">
 	                <li class="gnb">96% ICT 취업캠퍼스</li>
+	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000543');" href="javascript:void(0);">SWDO 마스터 사전학습반</a></li>
 	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000526');" href="javascript:void(0);">SWDO 마스터</a></li>
 <!-- 	                <li class="lnb"><a href="https://newtradecampus.kita.net/page/user_job_CloudIT_apply?course_category=JOBA&course_code=1498&class_seq=41&site_id=KITAACAD&viewMode=detail#appView_courseDetailView">SCIT 마스터</a></li> -->
 	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000525');" href="javascript:void(0);">SCIT 마스터</a></li>
@@ -132,7 +130,8 @@
 	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000527');" href="javascript:void(0);">미 융복합 SW인력 양성과정</a></li>
 	            </ul>
 	            <ul class="menu-title-division">
-	                <li class="gnb">Japan Biz Expert</li>
+	                <li class="gnb">취업 스킬업</li>
+	                <li class="lnb"><a href="/smtp/course/short-term/short-term-info?course_id=c000000541">일본취업을 위한 JPT & SJPT</a></li>
 	                <li class="lnb"><a href="/smtp/course/short-term/short-term-info?course_id=c000000544">일본취업 스킬업</a></li>
 	            </ul>
 	            <ul class="menu-title-division">
@@ -161,8 +160,7 @@
 		<div class="header-menuWrap">
         <div class="point_bgTxt01">
             <ul class="header-menu d-flex justify_between">
-                <li class="hdrMenu"><a href="#">SW · AI · 클라우드</a></li>
-                <li class="hdrMenu"><a href="#">외국어</a></li>
+                <li class="hdrMenu"><a href="#">IT 단기과정</a></li>
                 <li class="hdrMenu">
                     <a href="#" class="highlightWrap">
                         <span class="highlight h5 point_fc01">96%</span>
@@ -170,7 +168,7 @@
                     </a>
                 </li>
                 <li class="hdrMenu"><a href="#">미국인턴십</a></li>
-                <li class="hdrMenu"><a href="#">Japan Biz Expert</a></li>
+                <li class="hdrMenu"><a href="#">취업 스킬업</a></li>
                 <li class="hdrMenu"><a href="#">커뮤니티</a></li>
                 <c:if test="${sessionScope.user_id ne null}">
                 	<li class="hdrMenu"><a href="#">나의강의실</a></li>
@@ -179,19 +177,18 @@
         </div>
         <div class="header-subMenuWrap d-flex justify_between">
             <ul class="header-subMenu">
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000543');" href="javascript:void(0);">SWDO 마스터 사전학습반</a></li>
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000538');" href="javascript:void(0);">AI 개요와 딥러닝 개념</a></li>
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000539');" href="javascript:void(0);">코딩한줄 없는 AI 활용</a></li>
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000535');" href="javascript:void(0);">입문 : 이제부터파이썬<br>- 딥러닝을 위한 파이썬 기초과정</a></li>
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000537');" href="javascript:void(0);">파이썬으로 배우는 데이터분석과 시각화</a></li>
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000540');" href="javascript:void(0);">파이썬을 이용한 웹 스크래핑</a></li>
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000536');" href="javascript:void(0);">파이썬기반 데이터 사이언스 기초</a></li>
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000545');" href="javascript:void(0);">(과정평가형)정보처리산업기사 자격 취득과정</a></li>
+            	<li class="hdrSubMenu"><a href="javascript:alert('준비중입니다.');">JAVA 기반 웹 개발자과정</a></li>
+                <li class="hdrSubMenu"><a href="javascript:alert('준비중입니다.');">파이썬 기초 과정</a></li>
+<!--                 <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000538');" href="javascript:void(0);">AI 개요와 딥러닝 개념</a></li> -->
+<!--                 <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000539');" href="javascript:void(0);">코딩한줄 없는 AI 활용</a></li> -->
+<!--                 <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000535');" href="javascript:void(0);">입문 : 이제부터파이썬<br>- 딥러닝을 위한 파이썬 기초과정</a></li> -->
+<!--                 <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000537');" href="javascript:void(0);">파이썬으로 배우는 데이터분석과 시각화</a></li> -->
+<!--                 <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000540');" href="javascript:void(0);">파이썬을 이용한 웹 스크래핑</a></li> -->
+<!--                 <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000536');" href="javascript:void(0);">파이썬기반 데이터 사이언스 기초</a></li> -->
+<!--                 <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000545');" href="javascript:void(0);">(과정평가형)정보처리산업기사 자격 취득과정</a></li> -->
             </ul>
             <ul class="header-subMenu">
-                <li class="hdrSubMenu"><a href="/smtp/course/short-term/short-term-info?course_id=c000000541">일본취업을 위한 JPT & SJPT</a></li>
-            </ul>
-            <ul class="header-subMenu">
+            	<li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000543');" href="javascript:void(0);">SWDO 마스터 사전학습반</a></li>
                 <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000526');" href="javascript:void(0);">SWDO 마스터</a></li>
                 <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000525');" href="javascript:void(0);">SCIT 마스터</a></li>
             </ul>
@@ -199,6 +196,7 @@
                 <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000527');" href="javascript:void(0);">美 융복합 SW인력 양성과정</a></li>
             </ul>
             <ul class="header-subMenu">
+                <li class="hdrSubMenu"><a href="/smtp/course/short-term/short-term-info?course_id=c000000541">일본취업을 위한 JPT & SJPT</a></li>
                 <li class="hdrSubMenu"><a href="/smtp/course/short-term/short-term-info?course_id=c000000544">일본취업 스킬업</a></li>
             </ul>
             <ul class="header-subMenu">

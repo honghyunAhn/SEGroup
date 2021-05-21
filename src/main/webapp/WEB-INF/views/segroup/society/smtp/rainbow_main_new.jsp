@@ -173,21 +173,21 @@
 				<div class="title_barPoint_wh fz40">모집과정</div>
 				<div class="d-flex flexWrap courseWrap">
 					<div class="course">
-						<a href="#"><img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb01.jpg"></a>
+						<a href="#"><img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb01.gif"></a>
 						<div class="course-txt">
 							<div class="course-name">4주 완성! 코딩 챌린지 과정</div>
 							<div class="course-term">모집마감 2021.06.15 까지</div>
 						</div>
 					</div>
 					<div class="course">
-						<a href="#"><img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb02.jpg"></a>
+						<a href="#"><img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb02.gif"></a>
 						<div class="course-txt">
 							<div class="course-name">[광주] SoftWare DevOps 마스터 과정</div>
 							<div class="course-term">모집마감 2021.07.11 까지</div>
 						</div>
 					</div>
 					<div class="course">
-						<a href="#"><img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb03.jpg"></a>
+						<a href="#"><img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb03.gif"></a>
 						<div class="course-txt">
 							<div class="course-name">[부산] ABC 마스터 과정</div>
 							<div class="course-term">모집마감 2021.07.11 까지</div>
