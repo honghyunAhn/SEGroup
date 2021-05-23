@@ -1357,6 +1357,18 @@
 	</update>
 	<!-- FAP 관리자 기업순위 삭제 종료 -->
 	
+	<!-- FAP 관리자 그룹코드 일반회원 지원 허용; 2021. 05. 18. 김나영-->
+	<update id="allow_common_user_yn" parameterType="hashmap">
+		update
+			fap_job_ad_tb
+		set
+			fap_job_ad_allow_common_user_yn = #{allow_common_user_yn}
+		where
+			fap_job_ad_seq = #{fap_job_ad_seq}
+	</update>
+	<!-- FAP 관리자 그룹코드 일반회원 지원 허용 종료-->
+	
+	
 	<!-- FAP 관리자 현지제한 인원 수정 시작 -->
 	<update id="admin_job_itv_per_update" parameterType="hashmap">
 		update

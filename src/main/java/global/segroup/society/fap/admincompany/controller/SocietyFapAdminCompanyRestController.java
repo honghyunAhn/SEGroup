@@ -186,7 +186,25 @@ public class SocietyFapAdminCompanyRestController {
 		logger.info("기업 그룹 순위 업데이트 컨트롤러 종료");
 		return res;
 	}
-	
+	/**
+	 * @Method Name : allow_common_user
+	 * @Date : 2021.05.18
+	 * @User : 김나영
+	 * @Param : Hashmap
+	 * @Return : -
+	 * @Method 설명 : 잡페어 관리자 그룹코드 일반회원 지원 허용
+	 */
+	@ResponseBody
+	@RequestMapping(value=PathConstants.SOCIETY_FAP_ADMIN_ALLOW_COMMON_USER_YN, method = RequestMethod.POST)
+	public int allow_common_user_yn(String fap_job_ad_seq, String allow_common_user_yn){
+		logger.info("잡페어 관리자 그룹코드 일반회원 지원 허용 컨트롤러 시작");
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("fap_job_ad_seq", fap_job_ad_seq);
+		params.put("allow_common_user_yn", allow_common_user_yn);
+		int res = sfacService.allow_common_user_yn(params);
+		logger.info("잡페어 관리자 그룹코드 일반회원 지원 허용 컨트롤러 종료");
+		return res;
+	}
 	/**
 	 * @Method Name : admin_job_app_per_update
 	 * @Date : 2019. 2. 27.

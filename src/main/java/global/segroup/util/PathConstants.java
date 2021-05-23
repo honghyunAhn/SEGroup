@@ -5294,6 +5294,12 @@ public interface PathConstants {
 	 */
 	public static final String SOCIETY_FAP_ADMIN_COMPANY_ADMIN_UPDATE_RANK = SOCIETY_FAP_ADMIN +"/admin_update_rank";
 	
+	/**
+	 * FAP 관리자 그룹코드 관리 일반회원도 지원허용 2021. 05. 18. 김나영
+	 */
+	public static final String SOCIETY_FAP_ADMIN_ALLOW_COMMON_USER_YN = SOCIETY_FAP_ADMIN +"/allow_common_user_yn";
+	
+	
 	/*
 	 * FAP 미국인턴십 지원 2021. 04. 16. 김나영
 	 */

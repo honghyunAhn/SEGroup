@@ -1265,6 +1265,7 @@
 		    ,ad.fap_jobfair_divide_seq as fap_jobfair_divide_seq
 		    ,ad.fap_jobfair_seq as fap_jobfair_seq
 		    ,ad.fap_job_ad_rank as fap_job_ad_rank
+		    ,ad.fap_job_ad_allow_common_user_yn as fap_job_ad_allow_common_user_yn
             ,comp.fap_comp_en_nm as fap_comp_en_nm
             ,comp.fap_comp_ja_nm as fap_comp_ja_nm
 		from

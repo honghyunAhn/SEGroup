@@ -3423,7 +3423,7 @@
 		<result property="fap_jobfair_seq" column="fap_jobfair_seq" />
 		<result property="fap_jobfair_divide_seq" column="fap_jobfair_divide_seq" />
 		<result property="fap_jobfair_title" column="fap_jobfair_title" />
-		
+		<result property="fap_job_ad_allow_common_user_yn" column="fap_job_ad_allow_common_user_yn" />
 		<collection property="fap_job_work" javaType="java.util.ArrayList" resultMap="fap_job_work" />
 		<collection property="fap_job_cate" javaType="java.util.ArrayList" resultMap="fap_job_cate" />
 	</resultMap>
@@ -3460,6 +3460,7 @@
 		    ,cate_etc.fap_job_category_etc_dtl as fap_job_category_etc_dtl
 		    ,wp.fap_job_workplace_seq as fap_job_workplace_seq
 		    ,wp.fap_job_workplace_gb as fap_job_workplace_gb
+		    ,ad.fap_job_ad_allow_common_user_yn
 		from
 			fap_mainpage_ct_tb main
 		inner join

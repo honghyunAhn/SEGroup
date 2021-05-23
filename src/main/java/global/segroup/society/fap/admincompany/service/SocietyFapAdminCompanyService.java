@@ -537,6 +537,20 @@ public class SocietyFapAdminCompanyService {
 		logger.info("FAP id에 따른 이름 출력 서비스 종료");
 		return result;
 	}
+	/**
+	 * @Method Name : allow_common_user
+	 * @Date : 2021.05.18
+	 * @User : 김나영
+	 * @Param : Hashmap
+	 * @Return : -
+	 * @Method 설명 : 잡페어 관리자 그룹코드 일반회원 지원 허용
+	 */
+	public int allow_common_user_yn(HashMap<String, Object> params) {
+		logger.info("잡페어 관리자 그룹코드 일반회원 지원 허용 서비스 시작");
+		int result = sfacDAO.allow_common_user_yn(params);
+		logger.info("잡페어 관리자 그룹코드 일반회원 지원 허용 서비스 시작");
+		return result;
+	}
 
  
  

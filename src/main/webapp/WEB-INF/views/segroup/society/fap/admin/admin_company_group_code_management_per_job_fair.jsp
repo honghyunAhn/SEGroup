@@ -227,6 +227,32 @@ function selectRank(fap_job_ad_seq){
 		}
 	});
 }
+//ICT 일반회원 지원가능여부 변경
+function allowCommonUserYn(fap_job_ad_seq) {
+	var allow_common_user_yn = $('#allowCommonUserYn' + fap_job_ad_seq).val();
+	var fap_jobfair_divide_seq = $('#fap_jobfair_divide_seq').val();
+	console.log(fap_job_ad_seq + ' ' + allow_common_user_yn);
+	$.ajax({	
+		url: 'allow_common_user_yn',
+		type: 'post',
+		data: {
+			'fap_job_ad_seq' : fap_job_ad_seq,
+			'allow_common_user_yn' : allow_common_user_yn
+			},
+		success: function(res){
+			if(res != 0){
+				location.href="/fap/admin/admin_company_group_code_management_per_job_fair?fap_jobfair_divide_seq="+fap_jobfair_divide_seq;
+			}
+		},
+		error: function(data) {
+			console.log(data);
+			if(data.status == 403){
+				alert('<spring:message code="com.login.ajaxSesstion" javaScriptEscape="true" />');
+				location.href = "/fap/admin/admin_login";
+			}
+		}
+	});
+}
 </script>
 <body>
 <%@include file="admin_menu.jsp"%>
@@ -237,6 +263,8 @@ function selectRank(fap_job_ad_seq){
 			<h1>JobFair별 기업 그룹코드 관리</h1>
 			<h6>
 				<spring:message code="fap.comp.login_invite_phrase" />
+				<br>
+				<span class="red">※ '일반지원' 열의 경우, 일반회원이 지원가능한 ICT 기업에만 적용됩니다.</span>
 			</h6>
 			<hr>
 			<div id="buttonDiv">
@@ -262,6 +290,17 @@ function selectRank(fap_job_ad_seq){
 		<br>
 		<div>
 			<table class="table">
+				<colgroup>
+					<col width="0">
+					<col width="0">
+					<col width="0">
+					<col width="50">
+					<col width="10">
+					<col width="60">
+					<col width="10">
+					<col width="10">
+					<col width="80">
+				</colgroup>
 				<thead id="headTr">
 					<tr>
 						<th></th>
@@ -285,6 +324,7 @@ function selectRank(fap_job_ad_seq){
 						</th>
 						<!-- <th>변경하기</th> -->
 						<th>순위</th>
+						<th>일반지원</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -335,6 +375,13 @@ function selectRank(fap_job_ad_seq){
 										<c:forEach var="i" begin="1" end="8">
 											<option value="${i}">${i}</option>
 										</c:forEach>
+									</select>
+								</td>
+								<!-- 일반회원 지원가능 여부 변경 -->
+								<td>
+									<select id="allowCommonUserYn${jobad.fap_job_ad_seq}" onchange="allowCommonUserYn('${jobad.fap_job_ad_seq}');" style="width:60px">
+										<option value="Y" <c:if test="${jobad.fap_job_ad_allow_common_user_yn eq 'Y'}">selected</c:if>>가능</option>
+										<option value="N" <c:if test="${jobad.fap_job_ad_allow_common_user_yn eq 'N'}">selected</c:if>>불가</option>
 									</select>
 								</td>
 							</tr>

@@ -820,4 +820,21 @@ public class SocietyFapAdminCompanyDAO {
 		logger.info("기업 그룹순위 업데이트 DAO 종료");
 		return res;
 	}
+
+	/**
+	 * @Method Name : allow_common_user
+	 * @Date : 2021.05.18
+	 * @User : 김나영
+	 * @Param : Hashmap
+	 * @Return : -
+	 * @Method 설명 : 잡페어 관리자 그룹코드 일반회원 지원 허용
+	 */
+	public int allow_common_user_yn(HashMap<String, Object> params) {
+		logger.info("잡페어 관리자 그룹코드 일반회원 지원 허용 DAO 시작");
+		SocietyFapAdminCompanyMapper sfacMapper = sqlSession.getMapper(SocietyFapAdminCompanyMapper.class);
+		int res = 0;
+		res = sfacMapper.allow_common_user_yn(params);
+		logger.info("잡페어 관리자 그룹코드 일반회원 지원 허용 DAO 시작");
+		return res;
+	}
 }
