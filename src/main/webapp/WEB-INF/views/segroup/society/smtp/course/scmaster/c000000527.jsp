@@ -143,7 +143,7 @@
                                     코로나 바이러스 확산에 대비하여 온라인/오프라인 Blended 수업을 실시합니다.
                                 </div>
                             </div>
-                            <div class="d-flex justify_between">
+                            <div class="d-flex justify_between applyCardinal">
                             </div>
                         </div>
                     </div>

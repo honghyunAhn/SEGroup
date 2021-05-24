@@ -29,9 +29,9 @@
 }
 
 /* Footer Nav Group */
-.footer_navWrap>.navGroup .gnb a {
-    opacity: .7;
-}
+/* .footer_navWrap>.navGroup .gnb a { */
+/*     opacity: .7; */
+/* } */
 
 .footer_navWrap>.navGroup .gnb a:hover {
     opacity: 1;

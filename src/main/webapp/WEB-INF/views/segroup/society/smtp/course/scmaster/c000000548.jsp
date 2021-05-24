@@ -33,8 +33,8 @@
     </script>
 </head>
 <body>
-	<div class="container_rainbow">
-		<!-- SWDO 마스터 -->
+    <div class="container_rainbow">
+		<!-- ABC 마스터 -->
 		<!-- Header-include -->
 		<%@include file="../../include/rainbow_header_basic.jsp"%>
 <!-- 		<div id="codeTxtDiv"> -->
@@ -44,8 +44,7 @@
             <div class="background sub02-01_content">
                 <div class="opacity_bg">
                     <div class="course-title fz40 fc_fff">
-                    	&lt;SoftWare DevOps 마스터 과정&gt;
-                        <br>광주/전남특화 SWDO마스터 - 글로벌SW인재양성과정
+                    	&lt;Digital ABC 마스터 과정&gt;
 					</div>
                 </div>
             </div>
@@ -53,21 +52,30 @@
             <div class="courseGuideWrap">
                 <div class="title_barPoint_wh fz40">과정개요</div>
                 <p class="course_textWrap fz20">
-                    광주/전남 지역 해외취업인재 양성을 위해 광주해외취업협의회 광주지역 내 9개 대학과 5개의 유관기관이 협력하여 만들어진 과정으로 2018년 10월 1기를 시작으로 현재 6기 까지 교육이 진행되고 있으며, 1기 ~ 4기 94%가 연봉 3200만원 이상의 일본 유수의 기업에 취업 성공을 달성하였습니다.
-                </p>
+					2001년 이후 한국무역협회와 함께 글로벌 ICT 전문 인력을 양성해온 Soft Engineer Society는 
+					지역청년을 위한 교육센터를 광주(2018)에 이어 부산(2021)에 개소합니다.
+					부산교육센터에서 첫 번째로 런칭하는 교육과정은 지년 21년간 취업률 97%를 기록했던 일본 ICT 직무 취업연계과정인 
+「Digital ABC 마스터」 과정(K-MOVE 스쿨)입니다. 
+					<br>
+프로그래밍, 디지털/AI, 외국어(일본어) 등의 커리큘럼으로 구성되며 글로벌 ICT기업 정규직 취업을 목표로 하고 있습니다.
+				</p>
             </div>
-
             <!-- 수강효과 -->
             <div class="courseEffectWrapper">
                 <div class="courseEffect">
                     <div class="fz40">
                         <!-- 강조하는문구 1 (민트색) -->
                         <div class="fc_eg">
-                        	“서울에서 20년간 진행된 국내 최고의 글로벌 SW인재 양성과정이 이제는 광주에서”
+                        	미래지향 글로벌 인재로 거듭날 수 있는 기회!
                         </div>
                         <!-- 강조하는문구 2 (흰색) -->
                         <div class="fc_fff">
-                        	2001년부터 현재까지 20년간 해외취업인재 2500명 이상을 배출하여 일본 ICT정규직 취업성공 97%를 달성한 노하우를 가지고 있는 Soft Engineer Society에서 운영하는 과정입니다.
+                        	<span style="font-size: 60px;">A</span>I, 
+                        	<span style="font-size: 60px;">B</span>ig-data, 
+                        	<span style="font-size: 60px;">C</span>loud 
+                        	<span style="font-size: 60px;">마스터</span>하고, 글로벌 기업에서 커리어를 시작!
+                        	<br>
+							#해외취업 #일본취업 #SW취업 #부산현지교육과정
                         </div>
                     </div>
                     <!-- 수강효과 설명 -->
@@ -81,25 +89,19 @@
                 <div class="targetWrap target01">
                     <div class="fz20">
                     	<div class="fc_pp">IT/일본어 전공자, 비전공자 모두 환영합니다!</div>
-                        <div class="fc_333">SWDO마스터 과정은 다음과 같은 분들을 대상으로 합니다.</div>
+						<div class="fc_333">ABC 마스터과정은 다음과 같은 분들을 대상으로 합니다.</div>
                     </div>
                     <div class="targetBoxWrap d-flex">
                         <div class="targetBox">
                             <div class="target_img target01"></div>
                             <div class="target_txt">
-                            	전문학사 이상 졸업생 및 졸업예정자
+                            	- 2/4년제 대학 졸업자 및 예정자(2022. 03)
                             </div>
                         </div>
                         <div class="targetBox">
                             <div class="target_img target02"></div>
                             <div class="target_txt">
-                            	해외취업에 대한 의지가 확고한 분
-                            </div>
-                        </div>
-                        <div class="targetBox">
-                            <div class="target_img target03"></div>
-                            <div class="target_txt">
-                            	ICT 글로벌 커리어를 쌓고 싶은 대한민국 청년(전공무관)
+                            - 만 34세 이하 대한민국 청년
                             </div>
                         </div>
                     </div>
@@ -137,10 +139,10 @@
                         <div class="coursePeriod">
                             <div class="title_barPoint fz40 fc_fff">수강기간</div>
                             <div class="fz20">
-                                <div class="fc_eg">코로나 바이러스? 걱정마세요! </div>
-                                <div class="fc_fff">
-                                    코로나 바이러스 확산에 대비하여 온라인/오프라인 Blended 수업을 실시합니다.
-                                </div>
+<!--                             	<div class="fc_eg">코로나 바이러스? 걱정마세요!</div> -->
+<!-- 								<div class="fc_fff"> -->
+<!-- 									코로나 바이러스 확산에 대비하여 온라인/오프라인 Blended 수업을 실시합니다. -->
+<!-- 								</div> -->
                             </div>
                             <div class="d-flex justify_between applyCardinal">
                             </div>
@@ -156,23 +158,69 @@
                         <div class="background">
                             <div class="opacity_bg">
                             	<div class="courseTitle fz20 fc_fff">
-                                    &lt;SW DO 마스터 과정&gt;
-                                </div>
+									&lt;Digital ABC 마스터 과정&gt;
+								</div>
                             </div>
                         </div>
                     </div>
-                    <div class="cc_segWrap">
+                    <div class="cc_segWrap d-flex justify_center">
                         <div class="segmentWrap">
                             <ul class="seg-list fz20">
-                            	<li>프로그래밍 기초</li>
-                                <li>데이터베이스</li>
-                                <li>웹 프로그래밍(Front-end, Back-end)</li>
-                                <li>데이터 분석 및 머신러닝</li>
-                                <li>산학연계 프로젝트</li>
-                                <li>일본어 초/중/고급</li>
-                                <li>자기분석 및 이력서 작성</li>
-								<li>비즈니스 일본어</li>
-                            </ul>
+								<li><strong>■ ICT 교육</strong></li>
+								<li>
+									컴퓨터 활용 기초부터 프로그래밍 언어를 활용한 웹 개발,
+									<br>
+									클라우드 기반의 서비스 관리,
+									데이터를 활용한 AI 분야까지
+									<br>
+									배울 수 있습니다.
+									<br>
+									이론 수업과 단계별 실습을 통해 다양한 기술을 경험하고
+									<br> 
+									ICT분야 진출하기 위한 직무능력을 갖추게 됩니다.
+								</li>
+								<li><br></li>
+								<li>- 컴퓨터 활용 기초</li>
+								<li>- 프로그래밍 언어</li>
+								<li>- 자료구조와 알고리즘</li>
+								<li>- 웹 프로그래밍</li>
+								<li>- 프레임워크 활용</li>
+								<li>- 리눅스 서버 운영</li>
+								<li>- 클라우드 기반 서비스 관리</li>
+								<li>- 데이터 분석 및 시각화</li>
+								<li>- AI 활용</li>
+								<li>- 프로젝트 분석 및 설계</li>
+								<li>- 기술면접대비</li>
+								<li>- 포트폴리오 작성</li>
+								<li class="margin-top20"></li>
+								<li><strong>■ 외국어 교육</strong></li>
+								<li>
+									일본어 기초 문법과 회화부터 면접을 위한 비즈니스
+									<br>
+									일본어까지 취업에 최적화된 교육을 제공합니다.
+									<br>
+									개개인의 일본어 역량을 파악하고 소그룹으로 나누어
+									<br>
+									레벨에 맞게 교육을 진행합니다. 
+								</li>
+								<li><br></li>
+								<li>- 기초 문법 및 회화</li>
+								<li>- 어휘/작문/독해</li>
+								<li>- 주제별 회화능력 향상</li>
+								<li>- 비즈니스 문서 작성</li>
+								<li>- 비즈니스 회화</li>
+								<li>- 프레젠테이션</li>
+								<li>- JPT 특별시험</li>
+								<li>- 이력서 작성</li>
+								<li>- 모의면접</li>
+								<li>- 일본기업 문화</li>
+								<li class="margin-top20"></li>
+								<li><strong>정규 교육 외 취업역량향상을 위해 다음과 같은 교육을 실시합니다.</strong></li>
+								<li>- 일본 ICT산업 재직자(졸업자 등) 초청 특강 및 토크콘서트</li>
+								<li>- 일본취업 커리어 관리</li>
+								<li>- 개별 면접 코칭 및 매너</li>
+								<li>- 기술 트랜드 특강</li>
+							</ul>
 <!--                             <div class="btnWrap d-flex"> -->
 <!--                                 <div class="btn_normal btn_large btn_pp"> -->
 <!--                                 	 <a href="/file_download?origin=Python.pdf&saved=2020122819307696.pdf&path=uploadImage" download>커리큘럼 다운받기</a> -->
@@ -220,57 +268,31 @@
                 </div>
             </div> -->
             <!-- 추천과정 -->
-            <div class="RecommendationWrap">
-                <div class="title_barPoint_wh fz40">추천 사전학습과정</div>
-                <div class="fz20">
-                	<div class="fc_pp">수강 전 무엇을 준비해야 하는지 고민되시나요?
-                    </div>
-                    <div class="fc_333">
-                        걱정하지마세요! 단계별로 학습하여 원하는 수준까지 도달! 학습의 방향성까지 제시해드립니다!
-                    </div>
-                </div>
-                <div class="d-flex">
-                    <div class="rcmdBox">
-                    	<a href="https://www.softsociety.net/smtp/course/short-term/short-term-info?course_id=c000000543">
-                            <div class="rcmd_div">
-                                바로가기
-                            </div>
-                            <div class="rcmd_img">
-                                <img src="/upload/course/mainImg/2021020330569032.PNG" alt="sw do 사전학습반" style="max-width: 100%; max-height: 100%; width: 100%; height: 100%;">
-                            </div>
-                            <div class="rcmd_txt">
-                               [오프라인] SW DO 사전학습반
-                            </div>
-                        </a>
-                    </div>
-                    <div class="rcmdBox">
-                    	<a href="https://www.softsociety.net/lms/course/search/movePage?course_id=c000000383&grand=ICT">
-                            <div class="rcmd_div">
-                                바로가기
-                            </div>
-                            <div class="rcmd_img">
-                            	<img src="/upload/course/mainImg/2020082581511079.gif" alt="쉽게 배우는 Java 알고리즘 입문" style="max-width: 100%; max-height: 100%; width: 100%; height: 100%;">
-                            </div>
-                            <div class="rcmd_txt">
-                            	[온라인] 쉽게 배우는 Java 알고리즘 입문
-                            </div>
-                        </a>
-                    </div>
-                    <div class="rcmdBox">
-                    	<a href="https://www.softsociety.net/lms/course/search/movePage?course_id=c000000298&grand=%EC%99%B8%EA%B5%AD%EC%96%B4">
-                            <div class="rcmd_div">
-                                바로가기
-                            </div>
-                            <div class="rcmd_img">
-                            	<img src="/upload/course/mainImg/2020032482073857.jpg" alt="일본어 초급" style="max-width: 100%; max-height: 100%; width: 100%; height: 100%;">
-                            </div>
-                            <div class="rcmd_txt">
-                            	[온라인] 일본어 초급
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+<!--             <div class="RecommendationWrap"> -->
+<!--                 <div class="title_barPoint_wh fz40">추천과정</div> -->
+<!--                 <div class="fz20"> -->
+<!--                     <div class="fc_pp">다음 과정은 뭘 들을지 고민되시나요? -->
+<!--                     </div> -->
+<!--                     <div class="fc_333"> -->
+<!--                         걱정하지마세요! 단계별로 학습하여 원하는 수준까지 도달! 학습의 방향성까지 제시해드립니다! -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="d-flex"> -->
+<!--                     <div class="rcmdBox"> -->
+<!--                     	<a href="/smtp/course/short-term/short-term-info?course_id=c000000536"> -->
+<!--                             <div class="rcmd_div"> -->
+<!--                                 NEXT STEP -->
+<!--                             </div> -->
+<!--                             <div class="rcmd_img"> -->
+<!--                             	<img src="/upload/course/mainImg/2020122963527171.jpg" alt="Python기반 데이터 사이언스 기초" style="max-width: 100%; max-height: 100%; width: 100%; height: 100%;"> -->
+<!--                             </div> -->
+<!--                             <div class="rcmd_txt"> -->
+<!--                             	Python기반 데이터 사이언스 기초 -->
+<!--                             </div> -->
+<!--                         </a> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
         </div>
 		<div class="modal">
 			<div class="modal-layer"></div>

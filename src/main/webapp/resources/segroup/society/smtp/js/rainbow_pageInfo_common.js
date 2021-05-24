@@ -126,8 +126,8 @@ function setContent(validCardinals, applyFormYn) {
 			//지원서를 제출하는 과목인 경우(SWDO SCIT)
 			if(applyFormYn == "Y") {
 				content +=		'<div class="btn_normal btn_large btn_eg">';
-				//SWDO
-				if(course_id == 'c000000526') {
+				//SWDO,ABC
+				if(course_id == 'c000000526' || course_id == 'c000000548') {
 					content +=			'<a class="applyBtn">지원하기</a>';
 					
 					var btn = '<div class="btn_normal btn_large btn_eg course_btn"><a class="applyBtn">지원하기</a>';
@@ -138,9 +138,9 @@ function setContent(validCardinals, applyFormYn) {
 					$('.container_rainbow .sub02-01_content .opacity_bg .course-title').append(btn);
 					
 				//scit 면 리디렉션
-				} else {
+				} else if(course_id == 'c000000525') {
 					content +=			'<a onclick="redirectToKITA()">지원하기</a>';
-				}
+				} 
 			//일반 단과과정
 			} else {
 				content +=		'<div class="btn_normal btn_large btn_eg modal-popup">';
@@ -162,7 +162,7 @@ function setContent(validCardinals, applyFormYn) {
 		content += 		'</div>';
 		content += '</div>';
 	}
-	$('div.coursePeriod div.justify_between').append(content);
+	$('div.coursePeriod div.applyCardinal').append(content);
 }
 
 

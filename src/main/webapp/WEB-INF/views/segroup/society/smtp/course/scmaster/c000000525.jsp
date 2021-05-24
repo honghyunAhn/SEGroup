@@ -140,7 +140,7 @@
                             	<div class="fc_eg">SMART Cloud IT마스터 과정은 KITA-SES가 컨소시움으로 운영하는 과정입니다.</div>
 								<div class="fc_fff">지원신청은 무역아카데미 홈페이지에서 가능합니다. 아래 버튼을 누르시면 지원신청 페이지로 이동합니다.</div>
                             </div>
-                            <div class="d-flex justify_between">
+                            <div class="d-flex justify_between applyCardinal">
                             </div>
                         </div>
                     </div>

@@ -44,8 +44,12 @@
     }
     
     .container_rainbow .courseWrapper>.courseWrap>.course{
-    	width : 355px;	
+    	width : 355px;
+    	
     }
+    /* .container_rainbow .courseWrapper>.courseWrap>.course>a{
+    	height : 237px;	
+    } */
     
     .container_rainbow .courseWrapper>.courseWrap>.course:nth-child(n+2){
     	margin-left : 0;

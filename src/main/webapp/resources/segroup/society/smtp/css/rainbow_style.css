@@ -501,7 +501,14 @@
 
 .container_rainbow .courseWrapper>.courseWrap>.course {
     width: 386px;
+    
 }
+/* .container_rainbow .courseWrapper>.courseWrap>.course>a{
+	width : 100%;
+	display : inline-block;
+	height : 258px;
+    overflow:hidden;
+} */
 .container_rainbow .courseWrapper>.courseWrap>.course:nth-child(n+2){
 	margin-left : 20px;
 }
@@ -518,7 +525,7 @@
 }
 .container_rainbow .courseWrapper>.courseWrap>.course:hover .course-img{
 	box-shadow: 0px 20px 30px 0px rgba(12,0,46,.1);
-    transform: scale(1);
+    transform: scale(1.01);
 }
 .container_rainbow .courseWrapper>.courseWrap>.course .course-txt {
    text-align : center;
