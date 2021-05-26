@@ -890,7 +890,6 @@
 .sub02_content>.background.sub02-01_content {
     background-image: url('../img/course_back_sub02-01.jpg');
 }
-
 .sub02_content>.background.sub02-02_content {
     background-image: url('../img/course_back_sub02-02.jpg');
 }
@@ -909,16 +908,7 @@
 .sub02_content>.background.sub02-11_content {
     background-image: url('../img/course_back_sub02-11.jpg');
 }
-/* 과정 개별 배너 */
 
-/* [과정] 코딩챌린지 */
-.sub02_content>.background.sub02-01_content.bg_challenge{
-	background-image: url('../img/course_back_sub02-01-chanllenge.jpg');
-}
-.container_rainbow>.content>.background.bg_challenge>.opacity_bg{
-	background-color : inherit;
-	height : 650px;
-}
 .container_rainbow>.sub02_content>.background>.opacity_bg,
 .rainbow_myClass>.content>.background>.opacity_bg,
 .container_rainbow>.content_schedule>.background>.opacity_bg{
