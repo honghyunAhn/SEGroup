@@ -173,7 +173,9 @@
 				<div class="title_barPoint_wh fz40">모집과정</div>
 				<div class="d-flex flexWrap courseWrap">
 					<div class="course">
-						<a href="#"><img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb01.jpg"></a>
+						<a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000543');" href="javascript:void(0);">
+							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb01.jpg">
+						</a>
 						<div class="course-txt">
 							<div class="course-name">4주 완성! 코딩 챌린지 과정</div>
 							<div class="course-term">모집마감 2021.06.15 까지</div>

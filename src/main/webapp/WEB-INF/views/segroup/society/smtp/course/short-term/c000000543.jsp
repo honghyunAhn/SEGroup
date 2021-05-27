@@ -45,19 +45,22 @@
 <%-- 			<c:out value="${courseInfo.page_codes}" escapeXml="false"/> --%>
 <!-- 		</div> -->
 																																																																																																																																						<div class="content sub-content sub02_content" id="main">
-            <div class="background sub02-01_content">
+            <div class="background sub02-01_content bg_challenge">
                 <div class="opacity_bg">
-                    <div class="course-title fz40 fc_fff">
-						&lt;SoftWare DevOps 마스터 사전학습과정&gt;
-						<br>광주/전남특화 SWDO마스터 - 글로벌SW인재양성과정
-					</div>
+                    <!-- <div class="course-title fz40 fc_fff">
+						 &lt;SoftWare DevOps 마스터 사전학습과정&gt;
+						<br>광주/전남특화 SWDO마스터 - 글로벌SW인재양성과정 
+					</div> -->
                 </div>
             </div>
             <!-- 과정개요 -->
             <div class="courseGuideWrap">
                 <div class="title_barPoint_wh fz40">과정개요</div>
                 <p class="course_textWrap fz20">
-		        	광주/전남 지역 해외취업인재 양성을 위해 광주해외취업협의회 광주지역 내 9개 대학과 5개의 유관기관이 협력하여 만들어진 과정으로 2018년 10월 1기를 시작으로 현재 6기 까지 교육이 진행되고 있으며, 1기 ~ 4기 94%가 연봉 3200만원 이상의 일본 유수의 기업에 취업 성공을 달성하였습니다.
+		        	AI 빅데이터, 딥러닝, 4차산업혁명 등 말만 들어도 머리 아프죠? 😱<br>
+		        	뉴스, 미디어, 소셜 등에서 매일 같이 쏟아지는 IT 관련 뉴스들.. 세상이 뭔가 크게 바뀌고 있는데..<br>
+		        	그게 뭔지는 잘 모르겠고😰 IT분야인건 맞는 것 같은데 문과생에게는 너무나 먼 얘기?<br>
+		        	코린이, 웹린이👶 복잡하게 묻지도 따지지도 말고! 코딩챌린지 과정을 시작하자! 🙌
 		    	</p>
             </div>
 
@@ -67,15 +70,16 @@
                     <div class="fz40">
                         <!-- 강조하는문구 1 (민트색) -->
                         <div class="fc_eg">
-                            “서울에서 20년간 진행된 국내 최고의 글로벌 SW인재 양성과정이 이제는 광주에서”
+							회차별로 진행되는 프로그래밍 첫걸음 !! 
                         </div>
                         <!-- 강조하는문구 2 (흰색) -->
                         <div class="fc_fff">
-                        	2001년부터 현재까지 20년간 해외취업인재 2500명 이상을 배출하여 일본 ICT정규직 취업성공 97%를 달성한 노하우를 가지고 있는 Soft Engineer Society에서 운영하는 과정입니다.
+                        	챌린지 3개 달성하고 수강료 50% 환급받자!👍
                         </div>
                     </div>
                     <!-- 수강효과 설명 -->
                     <div class="fz20 fc_fff">
+                    	출석률(90% 이상), 수업 성실도(90% 이상), 평가 스코어(80점 이상)<br>챌린지 3개 달성시 수강료 무려 50%나 환급!! ㄴ😮ㄱ
                     </div>
                 </div>
             </div>
@@ -84,26 +88,26 @@
                 <div class="title_barPoint_wh fz40">수강대상</div>
                 <div class="targetWrap target01">
                     <div class="fz20">
-                    	<div class="fc_pp">IT/일본어 전공자, 비전공자 모두 환영합니다!</div>
-		            	<div class="fc_333">SWDO마스터 과정은 다음과 같은 분들을 대상으로 합니다.</div>
+                    	<div class="fc_pp">문과생, 초보자도 무섭지 않아요!</div>
+		            	<div class="fc_333">누구나 쉽게 접근할수 있는 난이도 조절 진행 방식과 디테일한 강의 코치!</div>
                     </div>
                     <div class="targetBoxWrap d-flex">
                         <div class="targetBox">
                             <div class="target_img target01"></div>
                             <div class="target_txt">
-                                전문학사 이상 졸업생 및 졸업예정자
+                                IT 분야 및 프로그래에 대한 관심 대상자
                             </div>
                         </div>
                         <div class="targetBox">
                             <div class="target_img target02"></div>
                             <div class="target_txt">
-                                해외취업에 대한 의지가 확고한 분
+								해외취업 진출 분야 선택시 IT직군 진출자 
                             </div>
                         </div>
                         <div class="targetBox">
                             <div class="target_img target03"></div>
                             <div class="target_txt">
-                            	ICT 글로벌 커리어를 쌓고 싶은 대한민국 청년(전공무관)
+                            	대학생/취준생/졸업생/직장인등 역량개발이 필요한자
                             </div>
                          </div>
                     </div>
@@ -143,15 +147,19 @@
                             <div class="fz20">
                                 <div class="fc_eg">코로나 바이러스? 걱정마세요!</div>
                                 <div class="fc_fff">
-                                	코로나 바이러스 확산에 대비하여 온라인/오프라인 Blended 수업을 실시합니다.
+                                	코로나 바이러스 확산에 대비하여 서울/광주/부산 통합 실시간 온라인/오프라인 Blended 수업을 실시합니다.                              	
                                 </div>
                             </div>
-                            <div class="d-flex justify_between">
+                            <div class="fc_fff"><br>※ 오프라인 수업 진행시 각 지역 교육장소 출석 상기 일정은 사정에 따라 변동이 있을 수 있습니다.</div>
+                            <div class="d-flex justify_between applyCardinal">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
+             <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_sub02-01-chanllenge01.jpg" alt="코딩 챌린지 과정을 선택해야하는 이유">
+            
             <!-- 커리큘럼 -->
             <div class="curriculumWrap">
                 <div class="title_barPoint_wh fz40">커리큘럼</div>
@@ -168,14 +176,23 @@
                     <div class="cc_segWrap">
                         <div class="segmentWrap">
                             <ul class="seg-list fz20">
-                                <li>프로그래밍 기초</li>
-		                        <li>데이터베이스</li>
-		                        <li>웹 프로그래밍(Front-end, Back-end)</li>
-		                        <li>데이터 분석 및 머신러닝</li>
-		                        <li>산학연계 프로젝트</li>
-		                        <li>일본어 초/중/고급</li>
-		                        <li>자기분석 및 이력서 작성</li>
-								<li>비즈니스 일본어</li>
+                                <li>■ ICT 기초프로그래밍 완전정복 (프로그래밍의 이해, 알고리즘 구현 등)</li>
+		                        <li>1. 프로그래밍 기초 - 기본 알고리즘, 자료형, 연산자, 제어문, 배열</li>
+		                        <li>2. 객체지향프로그래밍 - 객체지향 프로그래밍의 개요와 특징 </li>
+		                        <li>3. 4차산업혁명을 대비한 프로그램밍의 이해</li>
+		                        <li>4. 기본 알고리즘 구현을 위한 코딩</li>
+		                        <li><br></li>
+		                        <li>■ 히라가나부터 현장 일본어까지 준비 기초회화 완전정복</li>
+								<li>1. 기초문법, 회화, 어휘, 독해</li>
+								<li>2. 일본 직장내에티켓 - 일본 기업문화의 이해</li>
+								<li>3. 일본 문화 - 일본 생활문화의 이해</li>
+								<li>4. 일본 IT 기초 회화 - 일본 IT 기업문화의 특징 및 이해</li>
+								<li><br></li>
+								<li>■ 미국정복첫걸음 실전 영어</li>
+								<li>1. 현지에서 바로 사용하는 말하기 </li>
+								<li>2. 엘크 그로브 빌리지 </li>
+								<li>3. IL 취업전략</li>
+								<li>4. 비즈니스 잉글리쉬</li>
                             </ul>
 <!--                             <div class="btnWrap d-flex"> -->
 <!--                                 <div class="btn_normal btn_large btn_pp"> -->
@@ -224,7 +241,7 @@
                 </div>
             </div> -->
             <!-- 추천과정 -->
-            <div class="RecommendationWrap">
+            <!-- <div class="RecommendationWrap">
                 <div class="title_barPoint_wh fz40">추천 사전학습과정</div>
                 <div class="fz20">
                     <div class="fc_pp">수강 전 무엇을 준비해야 하는지 고민되시나요?
@@ -262,7 +279,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 		<div class="modal">
 			<div class="modal-layer"></div>
