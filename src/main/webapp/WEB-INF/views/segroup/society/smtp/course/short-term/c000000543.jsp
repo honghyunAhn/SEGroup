@@ -167,8 +167,8 @@
                     <div class="cc_imgWrap">
                         <div class="background">
                             <div class="opacity_bg">
-                                <div>
-                                    <img src="/upload/course/mainImg/2021020330569032.PNG" alt="SWDO 마스터 사전학습과정" style="max-width: 100%; max-height: 100%; width: 100%; height: 100%;">
+                            	<div class="courseTitle fz20 fc_fff">
+                                    &lt;코딩 챌린지&gt;
                                 </div>
                             </div>
                         </div>

@@ -73,13 +73,13 @@
                         	<span style="font-size: 60px;">A</span>I, 
                         	<span style="font-size: 60px;">B</span>ig-data, 
                         	<span style="font-size: 60px;">C</span>loud 
-                        	<span style="font-size: 60px;">마스터</span>하고, 글로벌 기업에서 커리어를 시작!
-                        	<br>
-							#해외취업 #일본취업 #SW취업 #부산현지교육과정
+                        	<span style="font-size: 60px;">마스터</span>하고,<br>
+                        	글로벌 기업에서 커리어를 시작하자!                       	
                         </div>
                     </div>
                     <!-- 수강효과 설명 -->
                     <div class="fz20 fc_fff">
+                    	#해외취업 #일본취업 #SW취업 #부산현지교육과정
                     </div>
                 </div>
             </div>
@@ -150,6 +150,7 @@
                     </div>
                 </div>
             </div>
+            
             <!-- 커리큘럼 -->
             <div class="curriculumWrap">
                 <div class="title_barPoint_wh fz40">커리큘럼</div>
@@ -233,6 +234,8 @@
                     </div>
                 </div>
             </div>
+            
+            <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_back_sub02-01-digitalAbc01.jpg" alt="O2O 교육 플랫폼, 교육시설 및 장비, 교육장소 안내 및 과정FAQ">
             <!-- 수강후기 -->
             <!-- <div class="courseReviewWrap">
                 <div class="courseReview fc_fff">
