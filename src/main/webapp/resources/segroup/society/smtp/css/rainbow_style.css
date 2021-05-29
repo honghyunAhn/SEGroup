@@ -54,7 +54,8 @@
 .container_rainbow .bannerWrapper_bg .bannerWrapper,
 .container_rainbow>.content .linkBannerWrapper .linkBannerWrap,
 /* .container_rainbow>.footerWrap>.footer, */
-.container_rainbow>.content .employmentWrap{
+.container_rainbow>.content .employmentWrap,
+.container_rainbow .videoWrapper{
     width: 1200px;
     margin: 0 auto;
 }
@@ -531,6 +532,13 @@
    text-align : center;
 }
 
+/* video */
+.container_rainbow .videoWrapper{
+	margin : 0 auto 160px;
+}
+.container_rainbow .videoWrapper>.video01{
+	width : 100%;
+}
 
 /* 배너영역 */
 .container_rainbow .bannerWrapper_bg{

@@ -89,6 +89,17 @@ $(function() {
         }
     });
 
+    // index >> video
+    function togglePlay() {
+        var video = document.getElementById("video");
+        console.log(video.currentTime)
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
+    }
+    
     // myClass >> learningStatus-tabMenu
     var $learningTab = $('.section_sub05-01 .class-tabMenu .tabGroup>li'),
         $learningSub = $('.section_sub05-01 .class-tabMenu .subGroup>.tab-sub'),

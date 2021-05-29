@@ -203,7 +203,14 @@
 				</div>
 				
 			</div>
-
+			
+			<!-- 210525 메인 동영상 추가 Start -->
+			<div class="videoWrapper">
+				<video class="video01" id="video" src="/resources/segroup/society/smtp/video/softsociety02.mp4" controls></video>
+			</div>
+			
+			<!-- 210525 메인 동영상 추가 End -->
+			
 			<!-- 210514 메인 썸네일 슬라이드 영역 수정 Start -->
             <div class="bannerWrapper_bg">
                 <!-- <div class="title_barPoint_wh fz40"></div> -->
