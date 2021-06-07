@@ -107,14 +107,14 @@
 	        <div class="menuDivWrap d-flex fc_fff">
 	            <ul class="menu-title-division">
 	                <li class="gnb">96% 해외국비과정</li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000543');" href="javascript:void(0);">코딩 챌린지</a></li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000526');" href="javascript:void(0);">SWDO 마스터</a></li>
+	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000543');" href="javascript:void(0);">코딩챌린지과정</a></li>
+	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000526');" href="javascript:void(0);">SWDO-광주</a></li>
+	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000548');" href="javascript:void(0);">Digital ABC-부산</a></li>
+	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000525');" href="javascript:void(0);">SCIT-서울</a></li>
 <!-- 	                <li class="lnb"><a href="https://newtradecampus.kita.net/page/user_job_CloudIT_apply?course_category=JOBA&course_code=1498&class_seq=41&site_id=KITAACAD&viewMode=detail#appView_courseDetailView">SCIT 마스터</a></li> -->
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000525');" href="javascript:void(0);">SCIT 마스터</a></li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000548');" href="javascript:void(0);">Digital ABC 마스터</a></li>
 	            </ul>
 	            <ul class="menu-title-division">
-	                <li class="gnb">IT 단기과정</li>
+	                <li class="gnb">내일배움카드과정</li>
 	                <li class="lnb"><a href="javascript:alert('준비중입니다.');">JAVA 기반 웹 개발자 과정</a></li>
 	                <li class="lnb"><a href="javascript:alert('준비중입니다.');">파이썬 기초 과정</a></li>
 	            </ul>
@@ -159,7 +159,7 @@
                         <span class="highlightTxt">해외국비과정</span>
                     </a>
                 </li>
-                <li class="hdrMenu"><a href="#">IT 단기과정</a></li>
+                <li class="hdrMenu"><a href="#">내일배움카드과정</a></li>
                 <li class="hdrMenu"><a href="#">미국인턴십</a></li>
                 <li class="hdrMenu"><a href="#">취업 스킬업</a></li>
                 <li class="hdrMenu"><a href="#">커뮤니티</a></li>
@@ -170,10 +170,10 @@
         </div>
         <div class="header-subMenuWrap d-flex justify_between">
             <ul class="header-subMenu">
-            	<li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000543');" href="javascript:void(0);">코딩 챌린지</a></li>
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000526');" href="javascript:void(0);">SWDO 마스터</a></li>
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000525');" href="javascript:void(0);">SCIT 마스터</a></li>
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000548');" href="javascript:void(0);">Digital ABC 마스터</a></li>
+            	<li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000543');" href="javascript:void(0);">코딩챌린지과정</a></li>
+                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000526');" href="javascript:void(0);">SWDO-광주</a></li>
+                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000548');" href="javascript:void(0);">Digital ABC-부산</a></li>
+                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000525');" href="javascript:void(0);">SCIT-서울</a></li>
             </ul>
             <ul class="header-subMenu">
             	<li class="hdrSubMenu"><a href="javascript:alert('준비중입니다.');">JAVA 기반 웹 개발자과정</a></li>
