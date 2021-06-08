@@ -19,7 +19,7 @@
 	<repositories>
 		<repository>
 			<id>mvn2</id>
-			<url>http://repo1.maven.org/maven2/</url>
+			<url>https://repo1.maven.org/maven2/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -29,7 +29,9 @@
 		</repository>
 		<repository>
 			<id>egovframe</id>
-			<url>http://maven.egovframe.kr:8080/maven/</url>
+<!-- 			<url>http://maven.egovframe.kr:8080/maven/</url> -->
+<!-- 			<url>http://www.egovframe.kr:8080/maven/</url> -->
+			<url>http://maven.egovframe.go.kr/maven/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -39,6 +41,13 @@
 		</repository>
 	</repositories>
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		    <version>1.10</version>
+		</dependency>
+		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>

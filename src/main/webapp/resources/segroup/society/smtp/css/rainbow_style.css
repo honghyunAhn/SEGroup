@@ -146,7 +146,6 @@
 .container_rainbow>.headerWrap>.header-menuWrap .header-menu>.hdrMenu,
 .container_rainbow>.headerWrap>.header-menuWrap>.header-subMenuWrap>.header-subMenu{
     width: 200px;
-    text-align: center;
 }
 
 .container_rainbow>.headerWrap>.header-menuWrap>.header-subMenuWrap>.header-subMenu{
@@ -477,8 +476,32 @@
 .container_rainbow .mainBannerWrapper>.mainBannerWrap .mainBanner img.mobileBanner{
 	display : none;
 }
-.container_rainbow>.content .mainBannerWrapper .bannerTextWrap{
+/* .container_rainbow>.content .mainBannerWrapper .bannerTextWrap{
     padding: 130px 0 220px;
+} */
+.container_rainbow>.content .mainBannerWrapper .mainBanner{
+	position : relative;
+}
+.container_rainbow>.content .mainBannerWrapper .mainBanner>.bannerTextWrap{
+	position : absolute;
+	margin : auto;
+	left : 0; right : 0;
+	bottom : 40px;
+	padding : 0;
+}
+.container_rainbow>.content .mainBannerWrapper .mainBanner>.bannerTextWrap>.button{
+	color : #e2b236;
+	border : 1px solid #e2b236;
+	padding : 10px;
+	font-weight : bold;
+	background-color:rgba(255,255,255,.2);
+}
+.container_rainbow>.content .mainBannerWrapper .mainBanner>.bannerTextWrap>.button:hover{
+	background-color : #e2b236;
+	color : #333;
+}
+.container_rainbow>.content .mainBannerWrapper .mainBanner>.bannerTextWrap>.button:nth-child(1)~*{
+	margin-left : 20px;
 }
 .container_rainbow>.content .background {
     /* 고정이미지 */
@@ -923,7 +946,13 @@
 .sub02_content>.background.sub02-01_content.bg_challenge{
 	background-image: url('../img/course_back_sub02-01-chanllenge.jpg');
 }
-.container_rainbow>.content>.background.bg_challenge>.opacity_bg{
+
+/* [과정] Digital ABC 과정 */
+.sub02_content>.background.sub02-01_content.bg_digitalABC{
+	background-image: url('../img/course_back_sub02-01-digitalABC.jpg');
+}
+.container_rainbow>.content>.background.bg_challenge>.opacity_bg,
+.sub02_content>.background.sub02-01_content.bg_digitalABC>.opacity_bg{
 	background-color : inherit;
 	height : 650px;
 }
@@ -931,8 +960,7 @@
 .rainbow_myClass>.content>.background>.opacity_bg,
 .container_rainbow>.content_schedule>.background>.opacity_bg{
    height: 504px;
-}
-
+}.
 .sub02_content>.background>.opacity_bg>.course-title {
     line-height: 60px;
     padding: 264px 0 120px;

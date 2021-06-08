@@ -157,8 +157,7 @@
                     </div>
                 </div>
             </div>
-            
-             <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_sub02-01-chanllenge01.jpg" alt="코딩 챌린지 과정을 선택해야하는 이유">
+            <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_sub02-01-chanllenge01.jpg" alt="코딩 챌린지 과정을 선택해야하는 이유">
             
             <!-- 커리큘럼 -->
             <div class="curriculumWrap">
@@ -206,6 +205,7 @@
                     </div>
                 </div>
             </div>
+			
             <!-- 수강후기 -->
             <!-- <div class="courseReviewWrap">
                 <div class="courseReview fc_fff">

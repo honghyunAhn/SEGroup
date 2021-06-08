@@ -2253,6 +2253,7 @@ public class SocietyFapAdminCommonDAO {
 		logger.info("FAP 관리자 공지사항 파일 저장 DAO 시작");
 		SocietyFapAdminCommonMapper sfaMapper = sqlSession.getMapper(SocietyFapAdminCommonMapper.class);
 		sfaMapper.insert_board_file(boardFile);
+		System.out.println(boardFile);
 		logger.info("FAP 관리자 공지사항 파일 저장 DAO 시작");
 	}
 	

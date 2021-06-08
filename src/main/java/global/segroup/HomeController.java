@@ -156,52 +156,56 @@ public class HomeController implements PathConstants {
 		return PathConstants.SES + PathConstants.SES_SOCIETY_HISTORY;
 	}
 
-	@RequestMapping(value = PathConstants.SOCIETY_ICTCENTER, method = { RequestMethod.GET, RequestMethod.POST })
-	public String ictcenter(Model model, String sessionExpire, HttpServletRequest request, HttpServletResponse response) {
-		
-		LocaleUtil.setLocale(request, response);
-		if(sessionExpire != null) {
-			model.addAttribute("sessionExpire", sessionExpire);
-		}
-		// 메인에 보여줄 모집과정 DB 습득
-		ArrayList<HashMap<String, Object>> slideList = new ArrayList<HashMap<String, Object>>();
-		/*if (sw_devops_master.size() > 0) {
-			longTermList = sw_devops_master.get(0);
-			slideList.add(longTermList);
-		}*/
-		try{
-		slideList.addAll(seaService.selectShortTermList("", "SC IT MASTER CUP과정"));
-		slideList.addAll(seaService.selectShortTermInfo("IT 101"));
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		model.addAttribute("slideList", slideList);
-
-		// 메인에 보여줄 게시판 DB 습득
-		model.addAttribute("mediainitList", (ArrayList<HashMap<String, Object>>) seaService.main_mediainit_list());
-		model.addAttribute("graduateList", (ArrayList<HashMap<String, Object>>) seaService.main_graduate_list());
-		model.addAttribute("noticeList", (ArrayList<HashMap<String, Object>>) seaService.main_notice_list());
-		model.addAttribute("faqList", (ArrayList<HashMap<String, Object>>) seaService.main_faq_list());
-
-		String path = eduApplyCurriculumGisuInsertImage;
-		model.addAttribute("path", path);
-		
-		// 메인에 보여줄 메인 배너 정보; 2018. 10. 1. 김준영
-		ArrayList<SocietyEduAdminBanner> banner_list = seadService.banner_shown_list();
-		
-		for(SocietyEduAdminBanner lists : banner_list){
-			lists.setImg_full_path(seadService.banner_img_loading(lists.getEdu_ban_saved()));
-		}
-		model.addAttribute("banner_list", banner_list);
-
-		// 메인에 보여줄 서브 배너 정보; 2018. 10. 1. 김준영
-		ArrayList<SocietyEduAdminSubBanner> subbanner_list = seadService.subbanner_shown_list();
-		for(SocietyEduAdminSubBanner lists : subbanner_list){
-			lists.setImg_full_path(seadService.subbanner_img_loading(lists.getEdu_sub_ban_saved()));
-		}
-		model.addAttribute("subbanner_list", subbanner_list);
-		
-		return PathConstants.SEGROUP_SOCIETY + PathConstants.SOCIETY_EDU_MAIN;
+//	@RequestMapping(value = PathConstants.SOCIETY_ICTCENTER, method = { RequestMethod.GET, RequestMethod.POST })
+//	public String ictcenter(Model model, String sessionExpire, HttpServletRequest request, HttpServletResponse response) {
+//		
+//		LocaleUtil.setLocale(request, response);
+//		if(sessionExpire != null) {
+//			model.addAttribute("sessionExpire", sessionExpire);
+//		}
+//		// 메인에 보여줄 모집과정 DB 습득
+//		ArrayList<HashMap<String, Object>> slideList = new ArrayList<HashMap<String, Object>>();
+//		/*if (sw_devops_master.size() > 0) {
+//			longTermList = sw_devops_master.get(0);
+//			slideList.add(longTermList);
+//		}*/
+//		try{
+//		slideList.addAll(seaService.selectShortTermList("", "SC IT MASTER CUP과정"));
+//		slideList.addAll(seaService.selectShortTermInfo("IT 101"));
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
+//		model.addAttribute("slideList", slideList);
+//
+//		// 메인에 보여줄 게시판 DB 습득
+//		model.addAttribute("mediainitList", (ArrayList<HashMap<String, Object>>) seaService.main_mediainit_list());
+//		model.addAttribute("graduateList", (ArrayList<HashMap<String, Object>>) seaService.main_graduate_list());
+//		model.addAttribute("noticeList", (ArrayList<HashMap<String, Object>>) seaService.main_notice_list());
+//		model.addAttribute("faqList", (ArrayList<HashMap<String, Object>>) seaService.main_faq_list());
+//
+//		String path = eduApplyCurriculumGisuInsertImage;
+//		model.addAttribute("path", path);
+//		
+//		// 메인에 보여줄 메인 배너 정보; 2018. 10. 1. 김준영
+//		ArrayList<SocietyEduAdminBanner> banner_list = seadService.banner_shown_list();
+//		
+//		for(SocietyEduAdminBanner lists : banner_list){
+//			lists.setImg_full_path(seadService.banner_img_loading(lists.getEdu_ban_saved()));
+//		}
+//		model.addAttribute("banner_list", banner_list);
+//
+//		// 메인에 보여줄 서브 배너 정보; 2018. 10. 1. 김준영
+//		ArrayList<SocietyEduAdminSubBanner> subbanner_list = seadService.subbanner_shown_list();
+//		for(SocietyEduAdminSubBanner lists : subbanner_list){
+//			lists.setImg_full_path(seadService.subbanner_img_loading(lists.getEdu_sub_ban_saved()));
+//		}
+//		model.addAttribute("subbanner_list", subbanner_list);
+//		
+//		return PathConstants.SEGROUP_SOCIETY + PathConstants.SOCIETY_EDU_MAIN;
+//	}
+	@RequestMapping(value = PathConstants.SOCIETY_ICTCENTER, method = RequestMethod.GET)
+	public String ictcenter() {
+		return "redirect:/rainbow";
 	}
 
 	@RequestMapping(value = PathConstants.PRIVACY_POLICY, method = RequestMethod.GET)

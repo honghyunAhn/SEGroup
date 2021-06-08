@@ -121,7 +121,7 @@
                 
                 <div class="mainBannerWrap d-flex">
                 	<c:forEach var="data" items="${banner_list}">
-                 		<div class="mainBanner mainBanner">
+                 		<div class="mainBanner">
  	                        <!-- <div class="background" style="background-image: url(<c:out value="${data.img_full_path}"/>); background-repeat: no-repeat;"> 
  	                            <div class="opacity_bg">
  	                                <div class="bannerTextWrap">
@@ -129,8 +129,14 @@
  	                                </div>
  	                            </div>
  	                        </div> -->
- 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg01.jpg">
- 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg01_mobile.jpg">
+ 	                        <!-- <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg01.jpg">
+ 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg01_mobile.jpg"> -->
+ 	                        <div class="bannerTextWrap d-flex justify_center">
+	                        	<a class="button btn_normal" onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000526');" href="javascript:void(0);">광주과정 바로가기</a>
+	                        	<a class="button btn_normal" onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000548');" href="javascript:void(0);">부산과정 바로가기</a>
+ 	                        </div>
+ 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg02.jpg" alt="페이스메이커 운영 중! 최종합격까지 함께 뛴다! 단계별 맞춤형 코칭 프로그램으로 최종 합격까지!">
+ 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg02_mobile.jpg" alt="페이스메이커 운영 중! 최종합격까지 함께 뛴다! 단계별 맞춤형 코칭 프로그램으로 최종 합격까지!">
  	                    </div>
                  	</c:forEach>
                  </div>

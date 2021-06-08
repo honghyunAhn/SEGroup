@@ -81,7 +81,12 @@
 		display : none;
 	}
     /* content */
-		
+	.container_rainbow>.content .mainBannerWrapper .mainBanner>.bannerTextWrap{
+	bottom : 30px;
+	}
+	.container_rainbow>.content .mainBannerWrapper .mainBanner>.bannerTextWrap>.button{
+		padding : 5px;
+	}	
     /* - 관심분야 */
     .container_rainbow>.content .fieldWrap>.field-tabMenu>.subGroup>.tab-sub .courseList-tabWrap>li.btn_normal,
     .m-courseList-tabWrap>li>.btn_normal{
@@ -262,6 +267,9 @@
         margin: 20px 0;
         line-height: 40px;
     }
+	.container_rainbow>.content .mainBannerWrapper .mainBanner>.bannerTextWrap{
+	display : none;
+	}
 
     /* fieldWrap */
     .container_rainbow>.content .fieldWrap{

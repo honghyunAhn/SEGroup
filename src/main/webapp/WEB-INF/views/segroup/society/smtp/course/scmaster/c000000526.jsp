@@ -148,6 +148,7 @@
                     </div>
                 </div>
             </div>
+            <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_sub02-01-chanllenge02.jpg" alt="단계별 맞춤형 코칭 프로그램 페이스메이커 시스템으로 최종 합격까지 함께 합니다!">
             <!-- 커리큘럼 -->
             <div class="curriculumWrap">
                 <div class="title_barPoint_wh fz40">커리큘럼</div>
@@ -236,10 +237,10 @@
                                 바로가기
                             </div>
                             <div class="rcmd_img">
-                                <img src="/upload/course/mainImg/2021020330569032.PNG" alt="sw do 사전학습반" style="max-width: 100%; max-height: 100%; width: 100%; height: 100%;">
+                                <img src="/upload/course/mainImg/2021052865466033.jpg" alt="코딩챌린지" style="max-width: 100%; max-height: 100%; width: 100%; height: 100%;">
                             </div>
                             <div class="rcmd_txt">
-                               [오프라인] SW DO 사전학습반
+                               [오프라인] 코딩 챌린지
                             </div>
                         </a>
                     </div>

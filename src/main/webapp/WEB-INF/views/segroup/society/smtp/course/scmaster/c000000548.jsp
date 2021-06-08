@@ -41,11 +41,11 @@
 <%-- 			<c:out value="${courseInfo.page_codes}" escapeXml="false"/> --%>
 <!-- 		</div> -->
 																																																																																																																																						<div class="content sub-content sub02_content" id="main">
-            <div class="background sub02-01_content">
+            <div class="background sub02-01_content bg_digitalABC">
                 <div class="opacity_bg">
-                    <div class="course-title fz40 fc_fff">
+                    <!-- <div class="course-title fz40 fc_fff">
                     	&lt;Digital ABC 마스터 과정&gt;
-					</div>
+					</div> -->
                 </div>
             </div>
             <!-- 과정개요 -->
@@ -54,7 +54,7 @@
                 <p class="course_textWrap fz20">
 					2001년 이후 한국무역협회와 함께 글로벌 ICT 전문 인력을 양성해온 Soft Engineer Society는 
 					지역청년을 위한 교육센터를 광주(2018)에 이어 부산(2021)에 개소합니다.
-					부산교육센터에서 첫 번째로 런칭하는 교육과정은 지년 21년간 취업률 97%를 기록했던 일본 ICT 직무 취업연계과정인 
+					부산교육센터에서 첫 번째로 런칭하는 교육과정은 지난 21년간 취업률 97%를 기록했던 일본 ICT 직무 취업연계과정인 
 「Digital ABC 마스터」 과정(K-MOVE 스쿨)입니다. 
 					<br>
 프로그래밍, 디지털/AI, 외국어(일본어) 등의 커리큘럼으로 구성되며 글로벌 ICT기업 정규직 취업을 목표로 하고 있습니다.
@@ -150,7 +150,8 @@
                     </div>
                 </div>
             </div>
-            
+            <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_sub02-01-chanllenge02.jpg" alt="단계별 맞춤형 코칭 프로그램 페이스메이커 시스템으로 최종 합격까지 함께 합니다!">
+			
             <!-- 커리큘럼 -->
             <div class="curriculumWrap">
                 <div class="title_barPoint_wh fz40">커리큘럼</div>
@@ -234,8 +235,13 @@
                     </div>
                 </div>
             </div>
-            
             <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_back_sub02-01-digitalAbc01.jpg" alt="O2O 교육 플랫폼, 교육시설 및 장비, 교육장소 안내 및 과정FAQ">
+            
+            <div class="btn_normal btn_large btn_eg" style="margin:0 auto 120px">
+            	<a class="applyBtn">지원하기</a>
+            	<input type="hidden" value="n000000583" name="cardinal_id">
+            	<input type="hidden" value="Sun Jul 11 2021 00:00:00 GMT+0900 (대한민국 표준시)" name="aedDate">
+            </div>
             <!-- 수강후기 -->
             <!-- <div class="courseReviewWrap">
                 <div class="courseReview fc_fff">
