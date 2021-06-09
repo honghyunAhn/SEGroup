@@ -31,7 +31,7 @@
 			<id>egovframe</id>
 <!-- 			<url>http://maven.egovframe.kr:8080/maven/</url> -->
 <!-- 			<url>http://www.egovframe.kr:8080/maven/</url> -->
-			<url>http://maven.egovframe.go.kr/maven/</url>
+			<url>https://repo.maven.apache.org/maven2/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>

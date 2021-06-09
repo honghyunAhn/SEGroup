@@ -3401,12 +3401,11 @@ public class SocietyFapAdminCommonViewController implements PathConstants {
 			@RequestParam String search_division,
 			@RequestParam String search_type){		
 			logger.debug("FAP 오픈잡페어  게시판 글 등록 컨트롤러 시작");	
-			 			
+			System.out.println(boardFile);
 			boardContent.setBoard_content_ins_id((String)auth.getPrincipal());
 		    boardContent.setBoard_content_udt_id((String)auth.getPrincipal());
 		    boardContent.setBoard_content_nm((String)auth.getPrincipal());	   
-		   
-		   sfaService.fap_open_insert_additional_info(auth, boardContent, openJobInfo, noticeContent, boardFile, board_detail_gb);		 
+		    sfaService.fap_open_insert_additional_info(auth, boardContent, openJobInfo, noticeContent, boardFile, board_detail_gb);		 
 		     		    	
 	  	     model.addAttribute("search_division",search_division);
 			 model.addAttribute("search_type",search_type);		
