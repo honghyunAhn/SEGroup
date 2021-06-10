@@ -83,75 +83,7 @@
                     </div>
                 </div>
             </div>
-            <!-- 수강대상 -->
-            <div class="courseTargetWrap">
-                <div class="title_barPoint_wh fz40">수강대상</div>
-                <div class="targetWrap target01">
-                    <div class="fz20">
-                    	<div class="fc_pp">IT/일본어 전공자, 비전공자 모두 환영합니다!</div>
-						<div class="fc_333">ABC 마스터과정은 다음과 같은 분들을 대상으로 합니다.</div>
-                    </div>
-                    <div class="targetBoxWrap d-flex">
-                        <div class="targetBox">
-                            <div class="target_img target01"></div>
-                            <div class="target_txt">
-                            	- 2/4년제 대학 졸업자 및 예정자(2022. 03)
-                            </div>
-                        </div>
-                        <div class="targetBox">
-                            <div class="target_img target02"></div>
-                            <div class="target_txt">
-                            - 만 34세 이하 대한민국 청년
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="targetWrap target02">
-                    <div class="fz20">
-                        레인보우에서는 다음과 같은 수준이더라도 충분히 수강할 수 있습니다.
-                    </div>
-                    <div class="targetBoxWrap d-flex justify_between">
-                        <div class="targetBox">
-                            <div class="target_img target04"></div>
-                            <div class="target_txt">
-                                딥러닝에 관심은 있는데 시작할 엄두가 안나는 비전공자
-                            </div>
-                        </div>
-                        <div class="targetBox">
-                            <div class="target_img target05"></div>
-                            <div class="target_txt">
-                                이론만 알고 적용은 해본적 없는, 못하는 애매한 입문자
-                            </div>
-                        </div>
-                        <div class="targetBox">
-                            <div class="target_img target06"></div>
-                            <div class="target_txt">
-                                딥러닝을 배우고 싶지만 막막한 현업자
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-            <!-- 수강기간 -->
-            <div class="coursePeriodWrap">
-                <div class="background">
-                    <div class="opacity_bg">
-                        <div class="coursePeriod">
-                            <div class="title_barPoint fz40 fc_fff">수강기간</div>
-                            <div class="fz20">
-<!--                             	<div class="fc_eg">코로나 바이러스? 걱정마세요!</div> -->
-<!-- 								<div class="fc_fff"> -->
-<!-- 									코로나 바이러스 확산에 대비하여 온라인/오프라인 Blended 수업을 실시합니다. -->
-<!-- 								</div> -->
-                            </div>
-                            <div class="d-flex justify_between applyCardinal">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_sub02-01-chanllenge02.jpg" alt="단계별 맞춤형 코칭 프로그램 페이스메이커 시스템으로 최종 합격까지 함께 합니다!">
-			
             <!-- 커리큘럼 -->
             <div class="curriculumWrap">
                 <div class="title_barPoint_wh fz40">커리큘럼</div>
@@ -235,10 +167,77 @@
                     </div>
                 </div>
             </div>
-            <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_back_sub02-01-digitalAbc01.jpg" alt="O2O 교육 플랫폼, 교육시설 및 장비, 교육장소 안내 및 과정FAQ">
+			 <!-- 수강대상 -->
+            <div class="courseTargetWrap">
+                <div class="title_barPoint_wh fz40">수강대상</div>
+                <div class="targetWrap target01">
+                    <div class="fz20">
+                    	<div class="fc_pp">IT/일본어 전공자, 비전공자 모두 환영합니다!</div>
+						<div class="fc_333">ABC 마스터과정은 다음과 같은 분들을 대상으로 합니다.</div>
+                    </div>
+                    <div class="targetBoxWrap d-flex">
+                        <div class="targetBox">
+                            <div class="target_img target01"></div>
+                            <div class="target_txt">
+                            	- 2/4년제 대학 졸업자 및 예정자(2022. 03)
+                            </div>
+                        </div>
+                        <div class="targetBox">
+                            <div class="target_img target02"></div>
+                            <div class="target_txt">
+                            - 만 34세 이하 대한민국 청년
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="targetWrap target02">
+                    <div class="fz20">
+                        레인보우에서는 다음과 같은 수준이더라도 충분히 수강할 수 있습니다.
+                    </div>
+                    <div class="targetBoxWrap d-flex justify_between">
+                        <div class="targetBox">
+                            <div class="target_img target04"></div>
+                            <div class="target_txt">
+                                딥러닝에 관심은 있는데 시작할 엄두가 안나는 비전공자
+                            </div>
+                        </div>
+                        <div class="targetBox">
+                            <div class="target_img target05"></div>
+                            <div class="target_txt">
+                                이론만 알고 적용은 해본적 없는, 못하는 애매한 입문자
+                            </div>
+                        </div>
+                        <div class="targetBox">
+                            <div class="target_img target06"></div>
+                            <div class="target_txt">
+                                딥러닝을 배우고 싶지만 막막한 현업자
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <!-- 수강기간 -->
+            <div class="coursePeriodWrap">
+                <div class="background">
+                    <div class="opacity_bg">
+                        <div class="coursePeriod">
+                            <div class="title_barPoint fz40 fc_fff">수강기간</div>
+                            <div class="fz20">
+<!--                             	<div class="fc_eg">코로나 바이러스? 걱정마세요!</div> -->
+<!-- 								<div class="fc_fff"> -->
+<!-- 									코로나 바이러스 확산에 대비하여 온라인/오프라인 Blended 수업을 실시합니다. -->
+<!-- 								</div> -->
+                            </div>
+                            <div class="d-flex justify_between applyCardinal">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_back_sub02-01-digitalAbc01.jpg" alt="O2O 교육 플랫폼, 교육시설 및 장비, 교육장소 안내 및 과정FAQ">
             
-            <div class="btn_normal btn_large btn_eg" style="margin:0 auto 120px">
-            	<a class="applyBtn">지원하기</a>
+            <div class="btn_normal btn_xlarge btn_digitalAbc" style="margin:0 auto 120px">
+            	<a class="applyBtn fz20">지원하기</a>
             	<input type="hidden" value="n000000583" name="cardinal_id">
             	<input type="hidden" value="Sun Jul 11 2021 00:00:00 GMT+0900 (대한민국 표준시)" name="aedDate">
             </div>

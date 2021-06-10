@@ -31,6 +31,11 @@
         form.remove();
     }
 </script>
+	<sec:authorize access="hasAnyRole('ROLE_A0100,ROLE_A0101,ROLE_A0102,ROLE_A0106,ROLE_A0108')">
+		<sec:authentication property="details" var="check" />
+		<sec:authentication property="details.user" var="user" />
+		<input type="hidden" id="user_id_ck" value="${user.user_id}">
+	</sec:authorize>
 	<div class="headerWrap">
 		<!-- rainbow_header_basic -->
 		<header class="header d-flex justify_between">
@@ -44,29 +49,15 @@
 		        </a>
 		    </h1>
 		    <ul class="header-menu d-flex fz16 justify_end">
-	<%-- 	    	<sec:authorize access="isAuthenticated()"> --%>
-	<%-- 				<sec:authentication property="details" var="check" /> --%>
-	<%-- 			</sec:authorize> --%>
-	<%-- 			<c:choose> --%>
-	<%-- 				<c:when test="${empty check }"> --%>
-	<!-- 			        <li class="hdrMenu login fc_fff"><a href="/smtp/user/sub01-01">로그인</a></li> -->
-	<!-- 			        <li class="hdrMenu join fc_eg"><a href="/smtp/user/sub01-02">회원가입</a></li> -->
-	<%-- 				</c:when> --%>
-	<%-- 				<c:otherwise> --%>
-	<%-- 					<li class="hdrMenu userInfo fc_fff" id="userInfo"><span>${sessionScope.user_id} 님 환영합니다.</span></li> --%>
-	<!-- 		            <li class="hdrMenu logout fc_fff"><a>로그아웃</a></li> -->
-	<!-- 		            <li class="hdrMenu join fc_eg"><a href="/smtp/user/sub05-01">나의강의실</a></li> -->
-	<%-- 				</c:otherwise> --%>
-	<%-- 			</c:choose> --%>
 				<c:choose>
-					<c:when test="${sessionScope.user_id eq null}">
-				        <li class="hdrMenu login"><a href="/smtp/user/sub01-01">로그인</a></li>
-				        <li class="hdrMenu join point_fc01"><a href="/smtp/user/sub01-02">회원가입</a></li>
-					</c:when>
-					<c:otherwise>
+					<c:when test="${sessionScope.user_id ne null}">
 						<li class="hdrMenu userInfo" id="userInfo"><span>${sessionScope.user_id} 님 환영합니다.</span></li>
 			            <li class="hdrMenu logout"><a>로그아웃</a></li>
 			            <li class="hdrMenu join point_fc01"><a href="/smtp/user/sub05-01">나의강의실</a></li>
+					</c:when>
+					<c:otherwise>
+				        <li class="hdrMenu login"><a href="/smtp/user/sub01-01">로그인</a></li>
+				        <li class="hdrMenu join point_fc01"><a href="/smtp/user/sub01-02">회원가입</a></li>
 					</c:otherwise>
 				</c:choose>
 		    </ul>
@@ -75,30 +66,18 @@
 	    <div class="full-navGroup">
 	        <div class="d-flex justify_between">
 	            <ul class="header-menu d-flex fz16 fc_fff">
-	            
-<%-- 	            	<c:choose> --%>
-<%-- 	               		<c:when test="${empty check }"> --%>
-<!-- 		                    <li class="hdrMenu login"><a href="/smtp/user/sub01-01">로그인</a></li> -->
-<!-- 		                    <li class="hdrMenu join fc_eg"><a href="/smtp/user/sub01-02" class="">회원가입</a></li> -->
-<%-- 	               		</c:when> --%>
-<%-- 	               		<c:otherwise> --%>
-<%-- 	               			<li class="hdrMenu userInfo fc_fff" id="userInfo"><span>${sessionScope.user_id} 님 환영합니다.</span></li> --%>
-<!-- 				            <li class="hdrMenu logout fc_fff"><a>로그아웃</a></li> -->
-				            <form id="logoutForm" action="/smtp/logout" method="post" style="display: none">
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-							</form>
-<!-- 				            <li class="hdrMenu join margin-left20 fc_eg"><a href="/smtp/user/sub05-01">나의강의실</a></li> -->
-<%-- 						</c:otherwise> --%>
-<%-- 	               	</c:choose> --%>
+		            <form id="logoutForm" action="/smtp/logout" method="post" style="display: none">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					</form>
 					<c:choose>
-						<c:when test="${sessionScope.user_id eq null}">
-					        <li class="hdrMenu login fc_fff margin-right20"><a href="/smtp/user/sub01-01">로그인</a></li>
-					        <li class="hdrMenu join fc_eg"><a href="/smtp/user/sub01-02">회원가입</a></li>
-						</c:when>
-						<c:otherwise>
+						<c:when test="${sessionScope.user_id ne null}">
 							<li class="hdrMenu userInfo fc_fff margin-right20" id="userInfo"><span>${sessionScope.user_id} 님 환영합니다.</span></li>
 				            <li class="hdrMenu logout fc_fff margin-right20"><a>로그아웃</a></li>
 				            <li class="hdrMenu join fc_eg"><a href="/smtp/user/sub05-01">나의강의실</a></li>
+						</c:when>
+						<c:otherwise>
+					        <li class="hdrMenu login fc_fff margin-right20"><a href="/smtp/user/sub01-01">로그인</a></li>
+					        <li class="hdrMenu join fc_eg"><a href="/smtp/user/sub01-02">회원가입</a></li>
 						</c:otherwise>
 					</c:choose>
 	            </ul>

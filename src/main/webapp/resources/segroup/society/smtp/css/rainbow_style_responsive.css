@@ -26,7 +26,8 @@
     .sub-content>.background>.opacity_bg>.course-title, .sub-content>.courseGuideWrap, .sub-content>.courseEffectWrapper>.courseEffect, .sub-content>.courseTargetWrap, .sub-content>.coursePeriodWrap .coursePeriod, .sub-content>.curriculumWrap, .sub-content>.courseReviewWrap>.courseReview, .sub-content>.RecommendationWrap, .courseRegistrationWrap,
     .container_rainbow>.sub01_content, .container_rainbow>.sub04_content, .container_rainbow>.sub05_content,
     .rainbow_myClass>.content_myClsss>.section_sub05-01,
-    .container_rainbow .videoWrapper{
+    .container_rainbow .videoWrapper,
+    .container_rainbow>.headerWrap>.header-menuWrap>.header-subMenuWrap{
         width: calc(100% - 80px);
     }
     /* fullWrapper */

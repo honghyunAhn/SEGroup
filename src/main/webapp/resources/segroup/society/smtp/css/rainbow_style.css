@@ -951,8 +951,31 @@
 .sub02_content>.background.sub02-01_content.bg_digitalABC{
 	background-image: url('../img/course_back_sub02-01-digitalABC.jpg');
 }
+/* [과정] SoftWare DevOps 과정 */
+.sub02_content>.background.sub02-01_content.bg_swdo{
+	background-image: url('../img/course_back_sub02-01-swdo.jpg');
+}
+.btn_digitalAbc,
+.btn_swdo{
+	color : #fff;
+	border-radius : 10px;
+	height : 60px;
+	line-height : 60px;
+}
+.btn_swdo>a,
+.btn_digitalAbc>a{
+	display : inline-block;
+	width : 100%;
+}
+.btn_digitalAbc{
+	background-color : #00afef;
+}
+.btn_swdo{
+	background-color : #ff6801;
+}
 .container_rainbow>.content>.background.bg_challenge>.opacity_bg,
-.sub02_content>.background.sub02-01_content.bg_digitalABC>.opacity_bg{
+.sub02_content>.background.sub02-01_content.bg_digitalABC>.opacity_bg,
+.sub02_content>.background.sub02-01_content.bg_swdo>.opacity_bg{
 	background-color : inherit;
 	height : 650px;
 }
@@ -1169,6 +1192,7 @@
 /* 수강후기 */
 .sub-content>.courseReviewWrap {
     background-color: #582ec8;
+    margin-top : 120px;
 }
 
 .sub-content>.courseReviewWrap>.courseReview {}
@@ -1194,11 +1218,14 @@
     border-radius: 5px;
 }
 
-.sub-content>.courseReviewWrap>.courseReview>.d-flex>.reviewBox:hover {
+/* .sub-content>.courseReviewWrap>.courseReview>.d-flex>.reviewBox:hover {
     background-color: rgba(255, 255, 255, .1);
     cursor: pointer;
-}
+} */
 
+.sub-content>.courseReviewWrap>.courseReview>.d-flex>.reviewBox .studentName{
+	margin-top:20px;
+}
 .sub-content>.courseReviewWrap>.courseReview>.d-flex>.reviewBox:nth-child(3n) {
     margin-right: 0;
 }

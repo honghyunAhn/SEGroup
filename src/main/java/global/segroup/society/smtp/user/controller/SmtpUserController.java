@@ -179,14 +179,13 @@ public class SmtpUserController {
 	}
 	
 	@RequestMapping(value = "/smtp/user/user_login_success", method = RequestMethod.GET)
-	public String smtp_user_login_success(Authentication auth, HttpSession session, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) {
+	public String smtp_user_login_success(Authentication auth, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) {
 		logger.info("smtp 회원 로그인 성공 컨트롤러 시작");
 		
 		String user_ip = service.getClintIp(request);
 		logger.info(user_ip);
 		
 		String user_id = auth.getName();
-		session.setAttribute("user_id", user_id);
 		
 		User user = service.selectRestMemberInfo(user_id);
 

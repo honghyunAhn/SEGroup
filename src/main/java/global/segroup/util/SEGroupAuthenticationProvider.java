@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.security.auth.login.AccountExpiredException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -72,6 +73,7 @@ public class SEGroupAuthenticationProvider implements AuthenticationProvider {
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		WebApplicationContext ctx = ContextLoader.getCurrentWebApplicationContext();
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		HttpSession session = request.getSession();
 		
 		//어디로 부터 로그인 시도인지 확인
 		String pathCheck = request.getServletPath();
@@ -83,6 +85,9 @@ public class SEGroupAuthenticationProvider implements AuthenticationProvider {
 
 		String user_id = (String) authentication.getPrincipal();
 		String user_pw = (String) authentication.getCredentials();
+		
+		//auth를 못가져오는 경우가 있어서 user_id를 세션에 등록함
+		session.setAttribute("user_id", user_id);
 
 		SEGroupCommonMapper mapper = sqlSession.getMapper(SEGroupCommonMapper.class);
 		SocietyFapUserMapper uMapper = sqlSession.getMapper(SocietyFapUserMapper.class);
@@ -198,7 +203,6 @@ public class SEGroupAuthenticationProvider implements AuthenticationProvider {
 						roles.add(new SimpleGrantedAuthority("ROLE_" + user.getUser_flag()));
 						UsernamePasswordAuthenticationToken result = new UsernamePasswordAuthenticationToken(user_id,user_pw, roles);
 						result.setDetails(new UserSecurity(user));
-
 						return result;
 					}
 				}

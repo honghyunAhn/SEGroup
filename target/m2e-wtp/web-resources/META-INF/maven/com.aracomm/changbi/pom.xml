@@ -17,28 +17,26 @@
 		<egovframework.rte.version>3.6.0</egovframework.rte.version>
 	</properties>
 	<repositories>
-		<repository>
-			<id>mvn2</id>
-			<url>https://repo1.maven.org/maven2/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>egovframe</id>
-<!-- 			<url>http://maven.egovframe.kr:8080/maven/</url> -->
-<!-- 			<url>http://www.egovframe.kr:8080/maven/</url> -->
-			<url>https://repo.maven.apache.org/maven2/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
+	    <repository>
+	        <id>mvn2s</id>
+	        <url>https://repo1.maven.org/maven2/</url>
+	        <releases>
+	            <enabled>true</enabled>
+	        </releases>
+	        <snapshots>
+	            <enabled>true</enabled>
+	        </snapshots>
+	    </repository>
+	    <repository>
+	        <id>egovframe</id>
+	        <url>http://maven.egovframe.go.kr/maven/</url>
+	        <releases>
+	            <enabled>true</enabled>
+	        </releases>
+	        <snapshots>
+	            <enabled>false</enabled>
+	        </snapshots>
+	    </repository>
 	</repositories>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->

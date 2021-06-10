@@ -38,7 +38,7 @@
 </head>
 <body>
     <div class="container_rainbow">
-		<!-- SWDO 마스터 사전학습과정 -->
+		<!-- 코딩챌린지 -->
 		<!-- Header-include -->
 		<%@include file="../../include/rainbow_header_basic.jsp"%>
 <!-- 		<div id="codeTxtDiv"> -->
@@ -63,8 +63,7 @@
 		        	코린이, 웹린이👶 복잡하게 묻지도 따지지도 말고! 코딩챌린지 과정을 시작하자! 🙌
 		    	</p>
             </div>
-
-            <!-- 수강효과 -->
+			<!-- 수강효과 -->
             <div class="courseEffectWrapper">
                 <div class="courseEffect">
                     <div class="fz40">
@@ -83,6 +82,55 @@
                     </div>
                 </div>
             </div>
+			<img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_sub02-01-chanllenge01.jpg" alt="코딩 챌린지 과정을 선택해야하는 이유">
+            
+            <!-- 커리큘럼 -->
+            <div class="curriculumWrap">
+                <div class="title_barPoint_wh fz40">커리큘럼</div>
+                <div class="curriculum d-flex">
+                    <div class="cc_imgWrap">
+                        <div class="background">
+                            <div class="opacity_bg">
+                            	<div class="courseTitle fz20 fc_fff">
+                                    &lt;코딩 챌린지&gt;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cc_segWrap">
+                        <div class="segmentWrap">
+                            <ul class="seg-list fz20">
+                                <li>■ ICT 기초프로그래밍 완전정복 (프로그래밍의 이해, 알고리즘 구현 등)</li>
+		                        <li>1. 프로그래밍 기초 - 기본 알고리즘, 자료형, 연산자, 제어문, 배열</li>
+		                        <li>2. 객체지향프로그래밍 - 객체지향 프로그래밍의 개요와 특징 </li>
+		                        <li>3. 4차산업혁명을 대비한 프로그램밍의 이해</li>
+		                        <li>4. 기본 알고리즘 구현을 위한 코딩</li>
+		                        <li><br></li>
+		                        <li>■ 히라가나부터 현장 일본어까지 준비 기초회화 완전정복</li>
+								<li>1. 기초문법, 회화, 어휘, 독해</li>
+								<li>2. 일본 직장내에티켓 - 일본 기업문화의 이해</li>
+								<li>3. 일본 문화 - 일본 생활문화의 이해</li>
+								<li>4. 일본 IT 기초 회화 - 일본 IT 기업문화의 특징 및 이해</li>
+								<li><br></li>
+								<li>■ 미국정복첫걸음 실전 영어</li>
+								<li>1. 현지에서 바로 사용하는 말하기 </li>
+								<li>2. 엘크 그로브 빌리지 </li>
+								<li>3. IL 취업전략</li>
+								<li>4. 비즈니스 잉글리쉬</li>
+                            </ul>
+<!--                             <div class="btnWrap d-flex"> -->
+<!--                                 <div class="btn_normal btn_large btn_pp"> -->
+<!--                                     <a href="/file_download?origin=Python.pdf&saved=2020122819307696.pdf&path=uploadImage" download>커리큘럼 다운받기</a> -->
+<!--                                 </div> -->
+<!--                                 <div class="btn_normal btn_large btn_pp_bg margin-left20 "> -->
+<!--                                     <a href="sub02-01-01.html">수강신청 하러가기</a> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <!-- 수강대상 -->
             <div class="courseTargetWrap">
                 <div class="title_barPoint_wh fz40">수강대상</div>
@@ -157,54 +205,7 @@
                     </div>
                 </div>
             </div>
-            <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_sub02-01-chanllenge01.jpg" alt="코딩 챌린지 과정을 선택해야하는 이유">
             
-            <!-- 커리큘럼 -->
-            <div class="curriculumWrap">
-                <div class="title_barPoint_wh fz40">커리큘럼</div>
-                <div class="curriculum d-flex">
-                    <div class="cc_imgWrap">
-                        <div class="background">
-                            <div class="opacity_bg">
-                            	<div class="courseTitle fz20 fc_fff">
-                                    &lt;코딩 챌린지&gt;
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cc_segWrap">
-                        <div class="segmentWrap">
-                            <ul class="seg-list fz20">
-                                <li>■ ICT 기초프로그래밍 완전정복 (프로그래밍의 이해, 알고리즘 구현 등)</li>
-		                        <li>1. 프로그래밍 기초 - 기본 알고리즘, 자료형, 연산자, 제어문, 배열</li>
-		                        <li>2. 객체지향프로그래밍 - 객체지향 프로그래밍의 개요와 특징 </li>
-		                        <li>3. 4차산업혁명을 대비한 프로그램밍의 이해</li>
-		                        <li>4. 기본 알고리즘 구현을 위한 코딩</li>
-		                        <li><br></li>
-		                        <li>■ 히라가나부터 현장 일본어까지 준비 기초회화 완전정복</li>
-								<li>1. 기초문법, 회화, 어휘, 독해</li>
-								<li>2. 일본 직장내에티켓 - 일본 기업문화의 이해</li>
-								<li>3. 일본 문화 - 일본 생활문화의 이해</li>
-								<li>4. 일본 IT 기초 회화 - 일본 IT 기업문화의 특징 및 이해</li>
-								<li><br></li>
-								<li>■ 미국정복첫걸음 실전 영어</li>
-								<li>1. 현지에서 바로 사용하는 말하기 </li>
-								<li>2. 엘크 그로브 빌리지 </li>
-								<li>3. IL 취업전략</li>
-								<li>4. 비즈니스 잉글리쉬</li>
-                            </ul>
-<!--                             <div class="btnWrap d-flex"> -->
-<!--                                 <div class="btn_normal btn_large btn_pp"> -->
-<!--                                     <a href="/file_download?origin=Python.pdf&saved=2020122819307696.pdf&path=uploadImage" download>커리큘럼 다운받기</a> -->
-<!--                                 </div> -->
-<!--                                 <div class="btn_normal btn_large btn_pp_bg margin-left20 "> -->
-<!--                                     <a href="sub02-01-01.html">수강신청 하러가기</a> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
 			
             <!-- 수강후기 -->
             <!-- <div class="courseReviewWrap">
