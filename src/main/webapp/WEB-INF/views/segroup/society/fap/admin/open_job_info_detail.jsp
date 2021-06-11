@@ -229,12 +229,6 @@ myApp.controller('JobInfoController',['$scope','$compile', function($scope, $com
 			return false;
 		}
 	}
-	
-		
-		
-	 
-
- 
 </script>
 </head>
 <body ng-app="myapp" ng-controller="JobInfoController">
