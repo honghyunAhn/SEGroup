@@ -640,6 +640,7 @@
                                     </h5>
                                 </li>
                             </ul>
+                               		<strong><spring:message code="fap.user_main_content.text06_4" /></strong>
                             <button class="button bgcPoint" type="button"  id="registerNow"><spring:message code="fap.user_main_content.register_now" />
                             </button> 
                         </div>

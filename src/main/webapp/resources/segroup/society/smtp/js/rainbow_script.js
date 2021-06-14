@@ -1,13 +1,31 @@
 // rainbow_script.js
 
 $(function() {
-    // index >> 이벤트 배너 이미지 슬라이더
-    var swiper = new Swiper('.swiper-container', {
+	// index >> 메인 배너 슬라이더
+	var swiper = new Swiper('.mainBannerWrapper', {
+        centeredSlides: true,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+    });
+	
+	
+    // index >> 이벤트 배너 이미지 슬라이더 커밋용
+    var swiper = new Swiper('.bannerWrapper', {
         slidesPerView: 3,
 		spaceBetween: 20,
         speed: 1000,
         autoplay: {
-            delay: 6000,
+            delay: 9000,
             disableOnInteraction: false,
         },
         pagination: {

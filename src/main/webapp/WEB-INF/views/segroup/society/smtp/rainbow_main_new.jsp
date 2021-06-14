@@ -117,11 +117,10 @@
         <div class="content" id="main">
         
         	<!-- 210513 메인배너영역 슬라이드 변경 Start -->
-         	<div class="mainBannerWrapper">
-                
-                <div class="mainBannerWrap d-flex">
+         	<div class="mainBannerWrapper swiper-container">
+                <div class="mainBannerWrap d-flex swiper-wrapper">
                 	<c:forEach var="data" items="${banner_list}">
-                 		<div class="mainBanner">
+                 		<div class="mainBanner swiper-slide">
  	                        <!-- <div class="background" style="background-image: url(<c:out value="${data.img_full_path}"/>); background-repeat: no-repeat;"> 
  	                            <div class="opacity_bg">
  	                                <div class="bannerTextWrap">
@@ -138,8 +137,24 @@
  	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg02.jpg" alt="페이스메이커 운영 중! 최종합격까지 함께 뛴다! 단계별 맞춤형 코칭 프로그램으로 최종 합격까지!">
  	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg02_mobile.jpg" alt="페이스메이커 운영 중! 최종합격까지 함께 뛴다! 단계별 맞춤형 코칭 프로그램으로 최종 합격까지!">
  	                    </div>
+ 	                    
+ 	                    <div class="mainBanner swiper-slide">
+ 	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10117">
+	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg03.jpg" alt="한번에 합격! 2021 부산/광주 해외취업 설명회! 부산 : 2021.07.03(토) 오전 11시 부산무역회관 / 광주 : 2021.06.25(금) 오후 2시 광주무역회관 / 디지털 ABC 또는 SWDO 검색">
+	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg03_mobile.png" alt="한번에 합격! 2021 부산/광주 해외취업 설명회! 부산 : 2021.07.03(토) 오전 11시 부산무역회관 / 광주 : 2021.06.25(금) 오후 2시 광주무역회관 / 디지털 ABC 또는 SWDO 검색">
+ 	                    	</a>
+ 	                    </div>
+ 	                    <div class="mainBanner swiper-slide">
+ 	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10115">
+	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg04.jpg" alt="Grand Open 회원가입 경품 대잔치! 2021.06.07(월)~06.30(수) 4주간 진행! 추첨을 통해 커피쿠폰 10명, 치킨추폰 10명, 피자쿠폰 10명 증정! 당첨자 공지는 7월 13일 안내 예정 ">
+	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg04_mobile.png" alt="Grand Open 회원가입 경품 대잔치! 2021.06.07(월)~06.30(수) 4주간 진행! 추첨을 통해 커피쿠폰 10명, 치킨추폰 10명, 피자쿠폰 10명 증정! 당첨자 공지는 7월 13일 안내 예정">
+ 	                    	</a>
+ 	                    </div>
                  	</c:forEach>
                  </div>
+                 <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
              </div>            
              <!--  <div class="bannerWrapper" style="padding-top: 160px;">
             	<div class="clearfix" style="max-width:100%;">
