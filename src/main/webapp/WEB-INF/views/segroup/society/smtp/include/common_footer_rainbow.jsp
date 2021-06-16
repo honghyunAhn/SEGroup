@@ -58,6 +58,16 @@
 	
 	  gtag('config', 'G-2144BMVDQ5');
 	</script>
+	
+	<!-- Naver Analytics -->
+	<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+	<script type="text/javascript">
+	if(!wcs_add) var wcs_add = {};
+	wcs_add["wa"] = "d80668a99611b0";
+	if(window.wcs) {
+	  wcs_do();
+	}
+	</script>
 </head>
 
 <body>
@@ -72,8 +82,8 @@
                     <li>(주) 소프트엔지니어소사이어티</li>
                     <li>서울시 강남구 영동대로513 코엑스4F ICT교육센터</li>
                     <li>광주시 광산구 무진대로282 광주무역회관7F 소프트엔지니어소사이어티아카데미</li>
-                    <li>사업자등록번호 : 468-81-00409</li>
-                    <li>통신판매업신고번호 : 제 강남-03736호</li>
+                    <li>부산광역시 중구 충장대로 11 부산무역회관2F</li>
+                    <li>사업자등록번호 : 468-81-00409 | 통신판매업신고번호 : 제 강남-03736호</li>
                     <li><a href="/privacy_policy"><button><strong>개인정보처리방침</strong></button></a></li>
                 </ul>
             </div>
