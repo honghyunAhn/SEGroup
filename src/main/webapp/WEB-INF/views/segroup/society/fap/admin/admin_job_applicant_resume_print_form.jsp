@@ -8,12 +8,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="<c:url value="/resources/segroup/js/jquery-3.1.1.js" />"></script>
+<%-- <script src="<c:url value="/resources/segroup/js/jquery-3.1.1.js" />"></script>
 <script src="<c:url value="/resources/segroup/js/jquery-ui.js" />"></script>
 <script src="<c:url value="/resources/segroup/js/angular.min.js" />"></script>
 <script src="<c:url value="/resources/segroup/js/datepicker.js" />"></script>
 <script src="<c:url value="/resources/segroup/society/fap/js/lodash.js" />"></script>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/segroup/society/fap/css/userDefault.css" />" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> --%>
+
+<script src="<c:url value="/resources/segroup/js/jquery-3.1.1.js" />"></script>
+<script src="<c:url value="/resources/segroup/js/jquery-ui.js" />"></script>
+<script src="<c:url value="/resources/segroup/js/angular.min.js" />"></script>
+<script src="<c:url value="/resources/segroup/js/datepicker.js" />"></script>
+<script src="<c:url value="/resources/segroup/society/fap/js/lodash.js" />"></script>
+<%-- <link rel="stylesheet" type="text/css" href="<c:url value="/resources/segroup/society/fap/css/userDefault.css" />" /> --%>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/segroup/society/fap/css/default.css" />" />
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500">		
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <title>Bridge Job Fair</title>
 <script type="text/javascript">
@@ -24,6 +34,7 @@
 		},500,true);
 		
 		cleanDatepicker();
+		//calPrintHeight();
 		
 		//이력서 사진 파일에 관한 함수
 		$('#fap_resume_pic').change(function() {
@@ -419,13 +430,78 @@
 		}
 	}
 	function printWindow() {
+		//calPrintHeight();
 		window.print();
 	}
+	
+	// 용지 크기에 맞게 지원서 잘라주는 메소드 현재 수정 필요
+	function calPrintHeight() {
+		
+		//지원서가 들어있는 div를 가져온다
+		var resumeContent = $(".resume_wrap");
+		
+		$.each(resumeContent, function(index, item) {
+			
+			//지원서 안에 요소들을 가지고 있는 div를 가져온다
+			var resumeSection = $(this).children("#subcontents");
+			
+			//지원서 요소를 가지고 있는 div의 높이가 a4 용지를 넘을 때
+			if (resumeSection.outerHeight() > 1500) {
+				
+				//헤더의 높이
+				//var headerHeight = resumeSection.children("h2").outerHeight();
+				//각 요소들을 가져온다
+				var resumeWrap = resumeSection.find(".userjoinBox");
+				//요소들의 총 높이
+				var totalElemHeight = 0;
+				
+				//요소들의 높이를 더하다가, A4 크기가 넘어가는 순간 
+				//해당 요소에 페이지를 넘겨주는 css를 가진 class값을 추가한다
+				$.each(resumeWrap, function(index, item){
+					
+					totalElemHeight += $(item).outerHeight();
+					
+					if(totalElemHeight > 1500) {
+						var ul = $(this).children();
+						console.log(ul.get().reverse())
+						$.each(ul.get().reverse(), function(index, item){
+							if($(item).is('div')) {
+								$.each($(item).find('ul').get().reverse(), function(index, item){
+									totalElemHeight = totalElemHeight - $(item).outerHeight();
+									
+									if(totalElemHeight < 1500) {
+										console.log("dd = " + totalElemHeight)
+										console.log($(item))
+										$(item).addClass("pageBreak");
+										totalElemHeight = 0;
+										return false
+									}
+								})
+							} else if($(item).is('h2')){
+								console.log("h2")
+								totalElemHeight = totalElemHeight - $(item).outerHeight();
+								
+								if(totalElemHeight < 1500) {
+									console.log("dd = " + totalElemHeight)
+									console.log($(item))
+									$(item).addClass("pageBreak");
+									totalElemHeight = 0;
+								}
+							}
+							if(totalElemHeight == 0) {
+								return false
+							}
+						})
+					}
+				});
+			}
+		});
+	}
 </script>
-<style type="text/css" media="print">
+<!-- <style>
 @page {
 	size: auto; /* auto is the initial value */
-	margin: 30mm; /* this affects the margin in the printer settings */
+	margin: 0; /* this affects the margin in the printer settings */
 }
 
 html {
@@ -435,8 +511,111 @@ html {
 body {
 	margin: 0mm; /* margin you want for the content */
 }
+.sub3_bbs3 {
+ 	margin-top: 0px;
+ 	margin-bottom: 0px;
+}
+.sub3_bbs3 .tit2 {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	/* border-bottom: none; */
+}
+.sub3_bbs3 .tit3 {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+.userjoinBox {
+	padding-bottom: 0px;
+}
+.print_style ul	{
+display:table;
+width: 100%;
+text-align: center;
+table-layout:fixed;
+word-break : break-all;
+}
+.print_style ul > li{
+display: table-cell !important;
+vertical-align : middle;
+border : 1px solid #ccc; 
+padding: 2px;
+text-align: center !important;
+}
+.print_style ul > li:nth-child(1)~*{
+	border-left:none;
+}
+textarea.auto_heigth {
+	height: inherit;
+	min-height: 25px;
+}
+.sub3_bbs7 .tit3 {
+	min-height: 0px;
+}
+.sub3_bbs7 .tit3 .wid2 {
+	/* height: auto; */
+}
+</style> -->
+<style type="text/css" media="print">
+@page {
+	size: auto; /* auto is the initial value */
+	margin: 0; /* this affects the margin in the printer settings */
+	margin-top: 4%;
+}
+
+html {
+	margin: 0px;
+}
+
+body {
+	margin: 0mm; /* margin you want for the content */
+	
+}
 .printBtn {
 	display: none !important;
+}
+#sub3_bbs2.basic_top {
+	height: 230px;
+}
+textarea.auto_heigth {
+	height: auto; 
+	min-height: 25px;
+}
+.sub3_bbs3 {
+ 	margin-top: 0px;
+ 	margin-bottom: 0px;
+ 	
+}
+.sub3_bbs3 .tit2 {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	/* border-bottom: none; */
+}
+.sub3_bbs3 .tit3 {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+.userjoinBox {
+	padding-bottom: 0px;
+}
+.print_style ul	{
+display:table;
+width: 100%;
+text-align: center;
+table-layout:fixed;
+word-break : break-all;
+       }
+.print_style ul > li{
+display: table-cell !important;
+vertical-align : middle;
+/* border : 1px solid #ccc; */
+padding: 2px;
+text-align: center !important;
+       }
+.print_style ul>li:nth-child(1)~*{
+border-left:none;
+       }
+.pageBreak {
+	page-break-before: always;
 }
 </style>
 </head>
@@ -448,8 +627,8 @@ body {
 		<div id="subcontents">
 			
 			<div class="userjoinBox">
+				<h2><spring:message code="fap.resume.user_info" /></h2>
 				<div id="sub3_bbs2" class="basic_top">
-					<h2><spring:message code="fap.resume.user_info" /></h2>
 					<ul class="tit1">
 						<li class="photo">
 							<img alt="" ng-src="/fap/user/resume_photo_image/{{resumeApply.fap_resume_pic_saved}}">
@@ -458,67 +637,43 @@ body {
 					<ul class="tit2 first">
 						<li class="wid1"><code value="B3100"></code></li>
 						<li class="wid2">
-							<input type="text" class="input1" name="resumeNameList[0].fap_resume_nm" id="fap_resume_nm" ng-model="resumeApply.resumeNameList[0].fap_resume_nm" readonly>
+							<span ng-bind="resumeApply.resumeNameList[0].fap_resume_nm"></span>
 						</li>
 						<li class="wid3"><spring:message code="fap.resume.user_nationality" /></li>
 						<li class="wid4">
-							<input type="text" class="input1" name="fap_resume_nationality" ng-model="resumeApply.fap_resume_nationality" maxlength="10" placeholder="10<spring:message code="fap.placeholder.limit_characters" />" readonly>
+							<span ng-bind="resumeApply.fap_resume_nationality"></span>
 						</li>
-					</ul>
-					<ul class="tit2">
 						<li class="wid1"><code value="B3102"></code></li>
 						<li class="wid2">
-							<input type="hidden" name="resumeNameList[2].fap_resume_lang_gb" value="B3102">
-							<input type="text" class="input1" name="resumeNameList[2].fap_resume_nm" id="fap_resume_nm_ja" ng-model="resumeApply.resumeNameList[2].fap_resume_nm" maxlength="10" placeholder="10<spring:message code="fap.placeholder.limit_characters" />" readonly>
+							<span ng-bind="resumeApply.resumeNameList[2].fap_resume_nm"></span>
 						</li>
 						<li class="wid3"><code value="B3103"></code></li>
 						<li class="wid4">
-							<input type="hidden" name="resumeNameList[3].fap_resume_lang_gb" value="B3103">
-							<input type="text" class="input1" name="resumeNameList[3].fap_resume_nm" id="fap_resume_nm_yomi" ng-model="resumeApply.resumeNameList[3].fap_resume_nm" maxlength="10" placeholder="10<spring:message code="fap.placeholder.limit_characters" />" readonly>
-						</li>						
-					</ul>
-					<ul class="tit2">
-						<li class="wid1"><code value="B3101"></code></li>
+							<span ng-bind="resumeApply.resumeNameList[3].fap_resume_nm"></span>
+						</li>
+							<li class="wid1"><code value="B3101"></code></li>
 						<li class="wid2">
-							<input type="hidden" name="resumeNameList[1].fap_resume_lang_gb" value="B3101">
-							<input type="text" class="input1" name="resumeNameList[1].fap_resume_nm" id="fap_resume_nm_eng"  ng-model="resumeApply.resumeNameList[1].fap_resume_nm" maxlength="10" placeholder="10<spring:message code="fap.placeholder.limit_characters" />" readonly>
+							<span ng-bind="resumeApply.resumeNameList[1].fap_resume_nm"></span>
 						</li>
 						<li class="wid3"><spring:message code="fap.resume.user_dependent" /></li>
 						<li class="wid4">
-							<input type="text" class="input1" name="fap_resume_dependents" ng-model="resumeApply.fap_resume_dependents" readonly>
-							<span class="hiddenTx"><spring:message code="com.placeholder.people" /></span>
-						</li>						
-					</ul>
-				</div>
-				<div id="sub3_bbs2">
-					<ul class="tit3">
-						<li class="wid1"><spring:message code="fap.resume.user_birth" /></li>
-						<li class="wid2_birth">
-							<span ng-bind="resumeApply.fap_resume_birth.substr(0,4)"></span><spring:message code="com.placeholder.year" />
+							<span ng-bind="resumeApply.fap_resume_dependents"></span><spring:message code="com.placeholder.people" />
 						</li>
-						<li class="wid2_birth">
-							<span ng-bind="resumeApply.fap_resume_birth.substr(5,2)"></span><spring:message code="com.placeholder.month" />
-						</li>
-						<li class="wid2_birth"> 
-							<span ng-bind="resumeApply.fap_resume_birth.substr(8,2)"></span><spring:message code="com.placeholder.day" />
-						</li>
-					</ul>
-					<ul class="tit3">
-						<li class="wid1"><spring:message code="fap.resume.user_address" /></li>
-						<li class="wid2 resumeAddr" ng-repeat="addr in resumeApply.resumeAddrList">
-							<input type="text" class="input1" name="resumeAddrList[{{$index}}].fap_resume_address" ng-model="addr.fap_resume_address" maxlength="100" placeholder="100<spring:message code="fap.placeholder.limit_characters" />" readonly>
-						</li>
-					</ul>
-					<ul class="tit3">
 						<li class="wid1"><spring:message code="fap.resume.user_gender" /></li>
 						<li class="wid2">
-							<div class="span-code" cd="{{resumeApply.fap_resume_gender}}"></div>																			
+							<div class="span-code" cd="{{resumeApply.fap_resume_gender}}"></div>
 						</li>
-					</ul>
-					<ul class="tit3">
 						<li class="wid1"><spring:message code="fap.resume.user_married_or_not" /></li>
 						<li class="wid2">
 							<div class="span-code" cd="{{resumeApply.fap_resume_marital}}"></div>
+						</li>
+						<li class="wid1"><spring:message code="fap.resume.user_birth" /></li>
+						<li class="wid2">
+							<span ng-bind="resumeApply.fap_resume_birth"></span>
+						</li>
+						<li class="wid1"><spring:message code="fap.resume.user_address" /></li>
+						<li class="wid2 resumeAddr" ng-repeat="addr in resumeApply.resumeAddrList">	
+							<span ng-bind="addr.fap_resume_address"></span>
 						</li>
 					</ul>
 				</div><!-- <div id="sub3_bbs2"> -->
@@ -527,325 +682,198 @@ body {
 			<!-- ------------------------------------기본정보---------------------------------------------->
 			<div class="userjoinBox">
 				<h2><spring:message code="fap.resume.edu_history" /></h2>
-				<div class="resume_edu_wrap">
-					<div class="sub3_bbs3 resume_edu" ng-repeat="eduHistory in resumeApply.resumeEduList">
-						<ul class="tit2 title">
-							<li class="wid1"><spring:message code="fap.resume.edu_entrance" /></li>
-							<li class="wid2"><spring:message code="fap.resume.edu_graduation" /></li>
-							<li class="wid3"><spring:message code="fap.resume.edu_period" /></li>
-							<li class="wid4"><spring:message code="fap.resume.edu_graduated_or_not" /></li>
-						</ul>
-						<ul class="tit2">
-							<li class="wid1">
-								<input type="text" class="input1 fap_resume_edu_er_dt" name="resumeEduList[{{$index}}].fap_resume_edu_er_dt" id="fap_resume_edu_er_dt_{{$index}}" ng-model="eduHistory.fap_resume_edu_er_dt" readonly>
-							</li>
-							<li class="wid2">
-								<input type="text" class="input1 fap_resume_edu_gd_dt" name="resumeEduList[{{$index}}].fap_resume_edu_gd_dt" id="fap_resume_edu_gd_dt_{{$index}}" ng-model="eduHistory.fap_resume_edu_gd_dt" readonly>
-							</li>
-							<li class="wid3">
-								<input type="text" class="input1 fap_resume_edu_pd_summary" name="resumeEduList[{{$index}}].fap_resume_edu_pd_summary" ng-model="eduHistory.fap_resume_edu_pd_summary" maxlength="10" placeholder="10<spring:message code="fap.placeholder.limit_characters" />" readonly>
-							</li>
-							<li class="wid4">
-								<div class="resume-dropdown">
-									<div class="resume-select">
-										<button type="button" class="resume-select-btn" cd="{{eduHistory.fap_resume_edu_gd_ck}}"></button>
-										<input type="hidden" id="resume-gd-gb" name="resumeEduList[{{$index}}].fap_resume_edu_gd_ck" value="{{eduHistory.fap_resume_edu_gd_ck}}">
-									</div>
-									<div class="resume-select-option">
-										<ul class="option-list">
-											<li class="resume-gd"  ng-class="{'selected' : eduHistory.fap_resume_edu_gd_ck=='B1000'}">
-												<button type="button" resume-gd="B1000"><code value="B1000"></code></button>
-											</li>
-											<li class="resume-gd"  ng-class="{'selected' : eduHistory.fap_resume_edu_gd_ck=='B1001'}">
-												<button type="button" resume-gd="B1001"><code value="B1001"></code></button>
-											</li>
-											<li class="resume-gd"  ng-class="{'selected' : eduHistory.fap_resume_edu_gd_ck=='B1002'}">
-												<button type="button" resume-gd="B1002"><code value="B1002"></code></button>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</li>
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.edu_school_nm" /></li>
-							<li class="wid2">
-								<input type="text" class="input2 fap_resume_edu_sc_nm" name="resumeEduList[0].fap_resume_edu_sc_nm" ng-model="eduHistory.fap_resume_edu_sc_nm" maxlength="50" placeholder="50<spring:message code="fap.placeholder.limit_characters" />" readonly>
-							</li>
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.edu_curriculum" /></li>
-							<li class="wid2">
-								<input type="text" class="input2" name="resumeEduList[{{$index}}].fap_resume_edu_coll" ng-model="eduHistory.fap_resume_edu_coll"  maxlength="50" placeholder="50<spring:message code="fap.placeholder.limit_characters" />" readonly>
-							</li>					
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.edu_major_field" /></li>
-							<li class="wid2">
-								<div class="resume-dropdown">
-									<div class="resume-select">
-										<button type="button" class="resume-select-btn" cd="{{eduHistory.fap_resume_edu_field}}"></button>
-										<input type="hidden" id="resume-field-gb" name="resumeEduList[{{$index}}].fap_resume_edu_field" value="{{eduHistory.fap_resume_edu_field}}">
-									</div>
-									<div class="resume-select-option">
-										<ul class="option-list">
-											<li class="resume-field" ng-class="{'selected' : eduHistory.fap_resume_edu_field=='B2800'}">
-												<button type="button" resume-field="B2800"><code value="B2800"></code></button>
-											</li>
-											<li class="resume-field" ng-class="{'selected' : eduHistory.fap_resume_edu_field=='B2801'}">
-												<button type="button" resume-field="B2801"><code value="B2801"></code></button>
-											</li>
-											<li class="resume-field" ng-class="{'selected' : eduHistory.fap_resume_edu_field=='B2802'}">
-												<button type="button" resume-field="B2802"><code value="B2802"></code></button>
-											</li>
-											<li class="resume-field" ng-class="{'selected' : eduHistory.fap_resume_edu_field=='B2803'}">
-												<button type="button" resume-field="B2803"><code value="B2803"></code></button>
-											</li>
-											<li class="resume-field" ng-class="{'selected' : eduHistory.fap_resume_edu_field=='B2804'}">
-												<button type="button" resume-field="B2804"><code value="B2804"></code></button>
-											</li>
-											<li class="resume-field" ng-class="{'selected' : eduHistory.fap_resume_edu_field=='B2805'}">
-												<button type="button" resume-field="B2805"><code value="B2805"></code></button>
-											</li>
-											<li class="resume-field" ng-class="{'selected' : eduHistory.fap_resume_edu_field=='B2806'}">
-												<button type="button" resume-field="B2806"><code value="B2806"></code></button>
-											</li>
-											<li class="resume-field" ng-class="{'selected' : eduHistory.fap_resume_edu_field=='B2807'}">
-												<button type="button" resume-field="B2807"><code value="B2807"></code></button>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</li>					
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.edu_major_nm" /></li>
-							<li class="wid2">
-								<input type="text" class="input2" name="resumeEduList[{{$index}}].fap_resume_edu_major" ng-model="eduHistory.fap_resume_edu_major"  maxlength="50" placeholder="50<spring:message code="fap.placeholder.limit_characters" />" readonly>
-							</li>					
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.edu_remarks" /></li>
-							<li class="wid2">
-								<textarea class="auto_heigth" rows="4" cols="20" name="resumeEduList[{{$index}}].fap_resume_edu_note" ng-model="eduHistory.fap_resume_edu_note"  maxlength="150" placeholder="150<spring:message code="fap.placeholder.limit_characters" />" readonly></textarea>
-							</li>
-						</ul>					
-					</div><!-- <div id="sub3_bbs3"> -->
-				</div>
+				<div class="sub3_bbs3 resume_edu print_style" ng-repeat="eduHistory in resumeApply.resumeEduList">
+					<ul class="tit2 title">
+						<li class="wid1"><spring:message code="fap.resume.edu_entrance" /></li>
+						<li class="wid2"><spring:message code="fap.resume.edu_graduation" /></li>
+						<li class="wid3"><spring:message code="fap.resume.edu_period" /></li>
+						<li class="wid4"><spring:message code="fap.resume.edu_graduated_or_not" /></li>
+					</ul>
+					<ul class="tit2">
+						<li class="wid1">
+							<span ng-bind="eduHistory.fap_resume_edu_er_dt"></span>
+						</li>
+						<li class="wid2">
+							<span ng-bind="eduHistory.fap_resume_edu_gd_dt"></span>
+						</li>
+						<li class="wid3">
+							<span ng-bind="eduHistory.fap_resume_edu_pd_summary"></span>
+						</li>
+						<li class="wid4">
+							<div class="span-code" cd="{{eduHistory.fap_resume_edu_gd_ck}}"></div>
+						</li>
+					</ul>
+					<ul class="tit2 title">
+						<li class="wid1"><spring:message code="fap.resume.edu_school_nm" /></li>
+						<li class="wid2"><spring:message code="fap.resume.edu_curriculum" /></li>
+						<li class="wid3"><spring:message code="fap.resume.edu_major_field" /></li>
+						<li class="wid4"><spring:message code="fap.resume.edu_major_nm" /></li>
+					</ul>
+					<ul class="tit2">
+						<li class="wid1">
+							<span ng-bind="eduHistory.fap_resume_edu_sc_nm"></span>
+						</li>
+						<li class="wid2 ">
+							<span ng-bind="eduHistory.fap_resume_edu_coll"></span>
+						</li>
+						<li class="wid3">
+							<div class="span-code" cd="{{eduHistory.fap_resume_edu_field}}"></div>
+						</li>
+						<li class="wid4">
+							<span ng-bind="eduHistory.fap_resume_edu_major"></span>
+						</li>
+					</ul>
+					<ul class="tit3" ng-if="eduHistory.fap_resume_edu_note != ''">
+						<li class="wid1"><spring:message code="fap.resume.edu_remarks" /></li>
+						<li class="wid2">
+							<textarea class="auto_heigth"  ng-bind="eduHistory.fap_resume_edu_note" readonly="readonly"></textarea>
+						</li>
+					</ul>		
+				</div><!-- <div id="sub3_bbs3"> -->
 			</div><!-- <div id="userjoinBox"> -->
 			<!-- ------------------------------------학력관련 교육이수 ---------------------------------------------->
 			<div class="userjoinBox">
 				<h2><spring:message code="fap.resume.career" /></h2>
-				<div class="resume_crr_wrap">
-					<div class="sub3_bbs3 resume_crr" ng-repeat ="career in resumeApply.resumeCareerList">
-						<ul class="tit2 title">
-							<li class="wid1"><spring:message code="fap.resume.career_service_start_day" /></li>
-							<li class="wid2"><spring:message code="fap.resume.career_service_completion_day" /></li>
-							<li class="wid3"><spring:message code="fap.resume.edu_period" /></li>
-							<li class="wid4"><spring:message code="fap.resume.career_position" /></li>
-						</ul>
-						<ul class="tit2">
-							<li class="wid1">
-								<input type="text" class="input1 fap_resume_crr_st" name="resumeCareerList[{{$index}}].fap_resume_crr_st" id="fap_resume_crr_st_{{$index}}" ng-model="career.fap_resume_crr_st" readonly>
-							</li>
-							<li class="wid2">
-								<input type="text" class="input1 fap_resume_crr_et" name="resumeCareerList[{{$index}}].fap_resume_crr_et" id="fap_resume_crr_et_{{$index}}" ng-model="career.fap_resume_crr_et" readonly>
-							</li>
-							<li class="wid3">
-								<input type="text" class="input1 fap_resume_crr_pd_summary" name="resumeCareerList[{{$index}}].fap_resume_crr_pd_summary" id ="fap_resume_crr_pd_summary{{$index}}" ng-model="career.fap_resume_crr_pd_summary" maxlength="10" placeholder="10<spring:message code="fap.placeholder.limit_characters" />" readonly>
-							</li>
-							<li class="wid4">
-								<input type="text" class="input1 fap_resume_crr_job_position" name="resumeCareerList[{{$index}}].fap_resume_crr_job_position" ng-model="career.fap_resume_crr_job_position" maxlength="10" placeholder="10<spring:message code="fap.placeholder.limit_characters" />" readonly>
-							</li>
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.career_comp_nm" /></li>
-							<li class="wid2">
-								<input type="text" class="input2 fap_resume_crr_comp_nm" name="resumeCareerList[{{$index}}].fap_resume_crr_comp_nm" ng-model="career.fap_resume_crr_comp_nm" maxlength="50" placeholder="50<spring:message code="fap.placeholder.limit_characters" />" readonly>
-							</li>
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.career_comp_major_business" /></li>
-							<li class="wid2">
-								<input type="text" class="input2 fap_resume_crr_major_bussiness" name="resumeCareerList[{{$index}}].fap_resume_crr_major_bussiness" ng-model="career.fap_resume_crr_major_bussiness" maxlength="50" placeholder="50<spring:message code="fap.placeholder.limit_characters" />" readonly>
-							</li>					
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.career_field" /></li>
-							<li class="wid2">
-								<div class="resume-dropdown">
-									<div class="resume-select">
-										<button type="button" class="resume-select-btn" cd="{{career.fap_resume_crr_gb}}"></button>
-										<input type="hidden" id="resume-crr-gb" name="resumeCareerList[{{$index}}].fap_resume_crr_gb"  value="{{career.fap_resume_crr_gb}}">
-									</div>
-									<div class="resume-select-option">
-										<ul class="option-list">
-											<li class="resume-crr">
-												<button type="button" resume-crr="B3900"><code value="B3900"></code></button>
-											</li>
-											<li class="resume-crr">
-												<button type="button" resume-crr="B3901"><code value="B3901"></code></button>
-											</li>
-											<li class="resume-crr">
-												<button type="button" resume-crr="B3902"><code value="B3902"></code></button>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</li>					
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.career_responsibility" /></li>
-							<li class="wid2">
-								<textarea class="auto_heigth" rows="4" cols="20" class="fap_resume_crr_job_function" name="resumeCareerList[{{$index}}].fap_resume_crr_job_function"  ng-model="career.fap_resume_crr_job_function" maxlength="150" placeholder="150<spring:message code="fap.placeholder.limit_characters" />" readonly></textarea>
-							</li>
-						</ul>					
-					</div>
+				<div class="sub3_bbs3 resume_crr print_style" ng-repeat ="career in resumeApply.resumeCareerList">
+					<ul class="tit2 title">
+						<li class="wid1"><spring:message code="fap.resume.career_service_start_day" /></li>
+						<li class="wid2"><spring:message code="fap.resume.career_service_completion_day" /></li>
+						<li class="wid3"><spring:message code="fap.resume.edu_period" /></li>
+						<li class="wid4"><spring:message code="fap.resume.career_position" /></li>
+					</ul>
+					<ul class="tit2">
+						<li class="wid1">
+							<span ng-bind="career.fap_resume_crr_st"></span>
+						</li>
+						<li class="wid2">
+							<span ng-bind="career.fap_resume_crr_et"></span>
+						</li>
+						<li class="wid3">
+							<span ng-bind="career.fap_resume_crr_pd_summary"></span>
+						</li>
+						<li class="wid4">
+							<span ng-bind="career.fap_resume_crr_job_position"></span>
+						</li>
+					</ul>
+					<ul class="tit2 title">
+						<li class="wid1"><spring:message code="fap.resume.career_comp_nm" /></li>
+						<li class="wid2"><spring:message code="fap.resume.career_comp_major_business" /></li>
+						<li class="wid3"><spring:message code="fap.resume.career_field" /></li>
+					</ul>
+					<ul class="tit2">
+						<li class="wid1">
+							<span ng-bind="career.fap_resume_crr_comp_nm"></span>
+						</li>
+						<li class="wid2">
+							<span ng-bind="career.fap_resume_crr_major_bussiness"></span>
+						</li>
+						<li class="wid3">
+							<div class="span-code" cd="{{career.fap_resume_crr_gb}}"></div>
+						</li>	
+					</ul>
+					<ul class="tit3" ng-if="career.fap_resume_crr_job_function != ''">
+						<li class="wid1"><spring:message code="fap.resume.career_responsibility" /></li>
+						<li class="wid2">
+							<textarea class="auto_heigth"  ng-bind="career.fap_resume_crr_job_function" readonly="readonly"></textarea>
+						</li>
+					</ul>				
 				</div>
 			</div>	
 			<!-- ------------------------------------사회 경력 ---------------------------------------------->
 			<div class="userjoinBox">
 				<h2><spring:message code="fap.resume.certification" /></h2>
-				<div class="resume_license_wrap">
-					<div class="sub3_bbs3 resume_license" ng-repeat="license in resumeApply.resumeLicenseList">
-						<ul class="tit2 title">
-							<li class="wid1"><spring:message code="fap.resume.certification_license" /></li>
-							<li class="wid2"><spring:message code="fap.resume.certification_obtained_year" /></li>
-							<li class="wid3"><spring:message code="fap.resume.certification_obtained_month" /></li>
-							<li class="wid4"><spring:message code="fap.resume.certification_issuing_organization" /></li>
-						</ul>
-						<ul class="tit2">
-							<li class="wid1">
-								<div class="resume-dropdown">
-									<div class="resume-select">
-										<button type="button" class="resume-select-btn" cd="{{license.fap_resume_license_nm}}"></button>
-										<input type="hidden" id="resume-license-gb" name="resumeLicenseList[{{$index}}].fap_resume_license_nm" value="{{license.fap_resume_license_nm}}">
-									</div>
-									<div class="resume-select-option">
-										<ul class="option-list">
-											<li class="resume-license selected">
-												<button type="button" resume-license="B2900"><code value="B2900"></code></button>
-											</li>
-											<li class="resume-license">
-												<button type="button" resume-license="B2901"><code value="B2901"></code></button>
-											</li>
-											<li class="resume-license">
-												<button type="button" resume-license="B2902"><code value="B2902"></code></button>
-											</li>
-											<li class="resume-license">
-												<button type="button" resume-license="B2903"><code value="B2903"></code></button>
-											</li>
-											<li class="resume-license">
-												<button type="button" resume-license="B2904"><code value="B2904"></code></button>
-											</li>
-											<li class="resume-license">
-												<button type="button" resume-license="B2905"><code value="B2905"></code></button>
-											</li>
-											<li class="resume-license">
-												<button type="button" resume-license="B2906"><code value="B2906"></code></button>
-											</li>
-										</ul>
-									</div>
-								</div>						
-							</li>
-							<li class="wid2">
-								<input type="text" class="input1 fap_resume_license_get_year" name="resumeLicenseList[{{$index}}].fap_resume_license_get_year" ng-model="license.fap_resume_license_get_year" maxlength="4" placeholder="<spring:message code="com.placeholder.yyyy" />" readonly>
-							</li>
-							<li class="wid3">
-								<input type="text" class="input1 fap_resume_license_get_month" name="resumeLicenseList[{{$index}}].fap_resume_license_get_month" ng-model="license.fap_resume_license_get_month" maxlength="2" placeholder="<spring:message code="com.placeholder.mm" />" readonly>
-							</li>
-							<li class="wid4">
-								<input type="text" class="input1 fap_resume_license_issuing_organization" name="resumeLicenseList[{{$index}}].fap_resume_license_issuing_organization" ng-model="license.fap_resume_license_issuing_organization" maxlength="15" placeholder="15<spring:message code="fap.placeholder.limit_characters" />" readonly>
-							</li>
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.certification_score" /></li>
-							<li class="wid2">
-								<input type="number" class="input2" name="resumeLicenseList[{{$index}}].fap_resume_license_score" ng-model="license.fap_resume_license_score" maxlength="10" placeholder="10<spring:message code="fap.placeholder.limit_characters" />" readonly>
-							</li>
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.certification_remarks" /></li>
-							<li class="wid2">
-								<textarea class="auto_heigth" rows="4" cols="20" name="resumeLicenseList[{{$index}}].fap_resume_license_note" ng-model="license.fap_resume_license_note" maxlength="150" placeholder="150<spring:message code="fap.placeholder.limit_characters" />" readonly></textarea>
-							</li>
-						</ul>					
-					</div><!-- <div id="sub3_bbs3"> -->
-				</div>
+				<div class="sub3_bbs3 resume_license print_style" ng-repeat="license in resumeApply.resumeLicenseList">
+					<ul class="tit2 title">
+						<li class="wid1"><spring:message code="fap.resume.certification_license" /></li>
+						<li class="wid2"><spring:message code="fap.resume.certification_obtained_year" /></li>
+						<li class="wid3"><spring:message code="fap.resume.certification_issuing_organization" /></li>
+						<li class="wid4"><spring:message code="fap.resume.certification_score" /></li>
+					</ul>
+					<ul class="tit2">
+						<li class="wid1">
+							<div class="span-code" cd="{{license.fap_resume_license_nm}}"></div>
+						</li>
+						<li class="wid2">
+							<span ng-bind="license.fap_resume_license_get_year"></span>-<span ng-bind="license.fap_resume_license_get_month"></span>
+						</li>
+						<li class="wid3">
+							<span ng-bind="license.fap_resume_license_issuing_organization"></span>
+						</li>
+						<li class="wid4">
+							<span ng-bind="license.fap_resume_license_score"></span>
+						</li>
+					</ul>
+					<ul class="tit3" ng-if="license.fap_resume_license_note != ''">
+						<li class="wid1"><spring:message code="fap.resume.certification_remarks" /></li>
+						<li class="wid2">
+							<textarea class="auto_heigth"  ng-bind="license.fap_resume_license_note" readonly="readonly"></textarea>
+						</li>
+					</ul>				
+				</div><!-- <div id="sub3_bbs3"> -->
 			</div>
 			<!-- ----------------------------자격(기술 및 외국어 역량 중심) --------------------------------------------->
-			<div class="userjoinBox page-break">
+			<div class="userjoinBox ">
 				<h2><spring:message code="fap.resume.talent" /></h2>
-				<div class="resume_talent_wrap">
-					<div class="sub3_bbs7 resume_talent" ng-repeat="talent in resumeApply.resumeTalentList">
-						<ul class="tit2">
-							<li class="wid1"><spring:message code="fap.resume.talent_number" /></li>
-							<li class="wid2"><spring:message code="fap.resume.talent_context" /></li>
-						</ul>
-						<ul class="tit3">
-							<li class="wid1">{{$index+1}}</li>
-							<li class="wid2">
-								<textarea class="auto_heigth" rows="4" cols="20" class="fap_resume_talent_content" name="resumeTalentList[{{$index}}].fap_resume_talent_content" ng-model="talent.fap_resume_talent_content" maxlength="200" placeholder="200<spring:message code="fap.placeholder.limit_characters" />" readonly></textarea>
-							</li>
-						</ul>				
-					</div><!-- <div id="sub3_bbs7"> -->
-				</div>
+				<div class="sub3_bbs7 resume_talent print_style">
+					<ul class="tit2">
+						<li class="wid1"><spring:message code="fap.resume.talent_number" /></li>
+						<li class="wid2"><spring:message code="fap.resume.talent_context" /></li>
+					</ul>
+					<ul class="tit3" ng-repeat="talent in resumeApply.resumeTalentList">
+						<li class="wid1">{{$index+1}}</li>
+						<li class="wid2">
+							<textarea class="auto_heigth" ng-bind="talent.fap_resume_talent_content" readonly="readonly"></textarea>
+						</li>
+					</ul>				
+				</div><!-- <div id="sub3_bbs7"> -->
 			</div><!-- <div id="userjoinBox"> -->				
 			<!-- ----------------------------역량/재능(ICT, 외국어, 인간관계 등 업무 관련 상세) --------------------------------------------->
 			<div class="userjoinBox">
 				<h2><spring:message code="fap.resume.project_development_career" /></h2>
-				<div class="resume_project_wrap">
-					<div class="sub3_bbs3 resume_project" ng-repeat="project in resumeApply.resumeProjectList">
-						<ul class="tit2 title">
-							<li class="wid1"><spring:message code="fap.resume.project_development_start_date" /></li>
-							<li class="wid2"><spring:message code="fap.resume.project_development_end_date" /></li>
-							<li class="wid3"><spring:message code="fap.resume.edu_period" /></li>
-							<li class="wid4"><spring:message code="fap.resume.project_development_member" /></li>
-						</ul>
-						<ul class="tit2">
-							<li class="wid1">
-								<input type="text" class="input1 fap_resume_project_st" name="resumeProjectList[{{$index}}].fap_resume_project_st" id="fap_resume_project_st_{{$index}}" ng-model="project.fap_resume_project_st" readonly>
-							</li>
-							<li class="wid2">
-								<input type="text" class="input1 fap_resume_project_et" name="resumeProjectList[{{$index}}].fap_resume_project_et" id="fap_resume_project_et_{{$index}}" ng-model="project.fap_resume_project_et" readonly>
-							</li>
-							<li class="wid3">
-								<input type="text" class="input1 fap_resume_project_pd_summary" name="resumeProjectList[{{$index}}].fap_resume_project_pd_summary" id ="fap_resume_project_pd_summary{{$index}}" ng-model="project.fap_resume_project_pd_summary"  maxlength="10" placeholder="10<spring:message code="fap.placeholder.limit_characters" />" readonly>
-							</li>
-							<li class="wid4">
-								<input type="number" class="input1 fap_resume_project_peoples_num" name="resumeProjectList[{{$index}}].fap_resume_project_peoples_num" id="fap_resume_project_peoples_num{{$index}}" ng-model="project.fap_resume_project_peoples_num" maxlength="10" placeholder="10<spring:message code="fap.placeholder.limit_characters" />" readonly>
-								<span class="hiddenTx"><spring:message code="com.placeholder.people" /></span>
-							</li>
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.project_nm" /></li>
-							<li class="wid2">
-								<input type="text" class="input2 fap_resume_project_nm" name="resumeProjectList[{{$index}}].fap_resume_project_nm" ng-model="project.fap_resume_project_nm" maxlength="50" placeholder="50<spring:message code="fap.placeholder.limit_characters" />" readonly>
-							</li>
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.project_main_service" /></li>
-							<li class="wid2">
-								<textarea class="auto_heigth" rows="4" cols="20" class="fap_resume_project_service" name="resumeProjectList[{{$index}}].fap_resume_project_service" ng-model="project.fap_resume_project_service" maxlength="150" placeholder="150<spring:message code="fap.placeholder.limit_characters" />" readonly></textarea>
-							</li>					
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.project_charge_filed" /></li>
-							<li class="wid2">
-								<textarea class="auto_heigth" rows="4" cols="20" class="fap_resume_project_responsibility" name="resumeProjectList[{{$index}}].fap_resume_project_responsibility"  ng-model="project.fap_resume_project_responsibility" maxlength="150" placeholder="150<spring:message code="fap.placeholder.limit_characters" />" readonly></textarea>
-							</li>
-						</ul>
-						<ul class="tit3">
-							<li class="wid1"><spring:message code="fap.resume.project_used_technique" /></li>
-							<li class="wid2">
-								<textarea class="auto_heigth" rows="4" cols="20" class="fap_resume_project_technique" name="resumeProjectList[{{$index}}].fap_resume_project_technique" ng-model="project.fap_resume_project_technique" maxlength="150" placeholder="150<spring:message code="fap.placeholder.limit_characters" />" readonly></textarea>
-							</li>
-						</ul>					
-					</div><!-- <div id="sub3_bbs3"> -->
-				</div>
+				<div class="sub3_bbs3 resume_project print_style" ng-repeat="project in resumeApply.resumeProjectList">
+					<ul class="tit2 title">
+						<li class="wid1"><spring:message code="fap.resume.project_development_start_date" /></li>
+						<li class="wid2"><spring:message code="fap.resume.project_development_end_date" /></li>
+						<li class="wid3"><spring:message code="fap.resume.project_development_member" /></li>
+						<li class="wid4"><spring:message code="fap.resume.project_nm" /></li>
+					</ul>
+					<ul class="tit2">
+						<li class="wid1">
+							<span ng-bind="project.fap_resume_project_st"></span>
+						</li>
+						<li class="wid2">
+							<span ng-bind="project.fap_resume_project_et"></span>
+						</li>
+						<li class="wid3">
+							<span ng-bind="project.fap_resume_project_peoples_num"></span>
+							<spring:message code="com.placeholder.people" />
+						</li>
+						<li class="wid4">
+							<span ng-bind="project.fap_resume_project_nm"></span>
+						</li>
+					</ul>
+					<ul class="tit3">
+						<li class="wid1"><spring:message code="fap.resume.project_main_service" /></li>
+						<li class="wid2">
+							<textarea class="auto_heigth"  ng-bind="project.fap_resume_project_service" readonly="readonly"></textarea>
+						</li>					
+					</ul>
+					<ul class="tit3 ">
+						<li class="wid1"><spring:message code="fap.resume.project_charge_filed" /></li>
+						<li class="wid2">
+							<textarea class="auto_heigth"  ng-bind="project.fap_resume_project_responsibility" readonly="readonly"></textarea>
+						</li>
+					</ul>
+					<ul class="tit3">
+						<li class="wid1"><spring:message code="fap.resume.project_used_technique" /></li>
+						<li class="wid2">
+							<textarea class="auto_heigth" ng-bind="project.fap_resume_project_technique" readonly="readonly"></textarea>
+						</li>
+					</ul>			
+				</div><!-- <div id="sub3_bbs3"> -->
 			</div>		
 			<!-- ----------------------------SW 프로젝트 개발경력 --------------------------------------------->
-			<div class="userjoinBox">
+			<div class="userjoinBox ">
 				<h2><spring:message code="fap.resume.self_introduction" /></h2>
 				<div class="sub3_bbs8">
 					<ul class="tit2">
@@ -855,34 +883,34 @@ body {
 					</ul>
 					<ul class="tit3">
 						<li class="wid1">
-							<textarea class="auto_heigth" rows="4" cols="20" name="resumeProfileList[0].fap_resume_pr_content" ng-model="resumeApply.resumeProfileList[0].fap_resume_pr_content" maxlength="1000" placeholder="1000<spring:message code="fap.placeholder.limit_characters" />" readonly></textarea>
+							<textarea class="auto_heigth"  ng-bind="resumeApply.resumeProfileList[0].fap_resume_pr_content" readonly="readonly"></textarea>
 						</li>						
 					</ul>
 					<ul class="tit2">
 						<li class="wid1">
 							<code value="B4101"></code>
-						</li>					
+						</li>
 					</ul>
 					<ul class="tit3">
 						<li class="wid1">
-							<textarea class="auto_heigth" rows="4" cols="20" name="resumeProfileList[1].fap_resume_pr_content" ng-model="resumeApply.resumeProfileList[1].fap_resume_pr_content" maxlength="1000" placeholder="1000<spring:message code="fap.placeholder.limit_characters" />" readonly></textarea>
+							<textarea class="auto_heigth"  ng-bind="resumeApply.resumeProfileList[1].fap_resume_pr_content" readonly="readonly"></textarea>
 						</li>						
 					</ul>
 					<ul class="tit2">
 						<li class="wid1">
 							<code value="B4102"></code>
-						</li>				
+						</li>
 					</ul>
 					<ul class="tit3">
 						<li class="wid1">
-							<textarea class="auto_heigth" rows="4" cols="20" name="resumeProfileList[2].fap_resume_pr_content" ng-model="resumeApply.resumeProfileList[2].fap_resume_pr_content" maxlength="1000" placeholder="1000<spring:message code="fap.placeholder.limit_characters" />" readonly></textarea>
+							<textarea class="auto_heigth"  ng-bind="resumeApply.resumeProfileList[2].fap_resume_pr_content" readonly="readonly"></textarea>
 						</li>						
 					</ul>
 				</div> <!-- <div id="sub3_bbs8"> -->
-			</div><!-- <div id="userjoinBox"> -->			
+			</div><!-- <div id="userjoinBox"> -->	
 			<div class="userjoinBox">
 				<h2><spring:message code="fap.resume.self_introduction_video_portfolio" /></h2>
-				<div id="sub3_bbs9">
+				<div id="sub3_bbs9" class="sub3">
 					<ul class="tit2">
 						<li class="wid1"><spring:message code="fap.resume.self_introduction_url" /></li>
 						<li class="wid2">
@@ -890,7 +918,7 @@ body {
 						</li>
 					</ul>
 				</div>
-			</div>		
+			</div>
 		</div>
 		</div>
 	</body>

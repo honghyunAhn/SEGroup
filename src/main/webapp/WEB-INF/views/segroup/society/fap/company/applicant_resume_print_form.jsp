@@ -559,6 +559,7 @@ textarea.auto_heigth {
 @page {
 	size: auto; /* auto is the initial value */
 	margin: 0; /* this affects the margin in the printer settings */
+	margin-top: 4%;
 }
 
 html {
@@ -567,6 +568,7 @@ html {
 
 body {
 	margin: 0mm; /* margin you want for the content */
+	
 }
 .printBtn {
 	display: none !important;
@@ -581,6 +583,7 @@ textarea.auto_heigth {
 .sub3_bbs3 {
  	margin-top: 0px;
  	margin-bottom: 0px;
+ 	
 }
 .sub3_bbs3 .tit2 {
 	padding-top: 0px;
