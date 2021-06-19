@@ -120,47 +120,8 @@
                     </div> -->
                 </div>
             </div>
-            
-            <!-- 커리큘럼 -->
-            <div class="curriculumWrap">
-                <div class="title_barPoint_wh fz40">커리큘럼</div>
-                <div class="curriculum d-flex">
-                    <div class="cc_imgWrap">
-                        <div class="background">
-                            <div class="opacity_bg">
-                            	<div class="courseTitle fz20 fc_fff">
-                                    &lt;SW DO 마스터 과정&gt;
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cc_segWrap">
-                        <div class="segmentWrap">
-                            <ul class="seg-list fz20">
-                            	<li>프로그래밍 기초</li>
-                                <li>데이터베이스</li>
-                                <li>웹 프로그래밍(Front-end, Back-end)</li>
-                                <li>데이터 분석 및 머신러닝</li>
-                                <li>산학연계 프로젝트</li>
-                                <li>일본어 초/중/고급</li>
-                                <li>자기분석 및 이력서 작성</li>
-								<li>비즈니스 일본어</li>
-                            </ul>
-<!--                             <div class="btnWrap d-flex"> -->
-<!--                                 <div class="btn_normal btn_large btn_pp"> -->
-<!--                                 	 <a href="/file_download?origin=Python.pdf&saved=2020122819307696.pdf&path=uploadImage" download>커리큘럼 다운받기</a> -->
-<!--                                 </div> -->
-<!--                                 <div class="btn_normal btn_large btn_pp_bg margin-left20 "> -->
-<!--                                     <a href="sub02-01-01.html">수강신청 하러가기</a> -->
-<!--                                 </div> -->
-<!--                             </div> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
             <!-- 수강대상 -->
-            <div class="courseTargetWrap">
+            <div class="courseTargetWrap" style="padding-bottom : 0">
                 <div class="title_barPoint_wh fz40">수강대상</div>
                 <div class="targetWrap target01">
                     <div class="fz20">
@@ -214,6 +175,45 @@
                     </div>
                 </div> -->
             </div>
+            <!-- 커리큘럼 -->
+            <!-- <div class="curriculumWrap">
+                <div class="title_barPoint_wh fz40">커리큘럼</div>
+                <div class="curriculum d-flex">
+                    <div class="cc_imgWrap">
+                        <div class="background">
+                            <div class="opacity_bg">
+                            	<div class="courseTitle fz20 fc_fff">
+                                    &lt;SW DO 마스터 과정&gt;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cc_segWrap">
+                        <div class="segmentWrap">
+                            <ul class="seg-list fz20">
+                            	<li>프로그래밍 기초</li>
+                                <li>데이터베이스</li>
+                                <li>웹 프로그래밍(Front-end, Back-end)</li>
+                                <li>데이터 분석 및 머신러닝</li>
+                                <li>산학연계 프로젝트</li>
+                                <li>일본어 초/중/고급</li>
+                                <li>자기분석 및 이력서 작성</li>
+								<li>비즈니스 일본어</li>
+                            </ul>
+                            <div class="btnWrap d-flex">
+                                <div class="btn_normal btn_large btn_pp">
+                                	 <a href="/file_download?origin=Python.pdf&saved=2020122819307696.pdf&path=uploadImage" download>커리큘럼 다운받기</a>
+                                </div>
+                                <div class="btn_normal btn_large btn_pp_bg margin-left20 ">
+                                    <a href="sub02-01-01.html">수강신청 하러가기</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_back_sub02-01-swdo02.jpg" alt="커리큘럼(ICT/외국어 외 취업역량향상 교육)">
+            
             <!-- 수강기간 -->
             <div class="coursePeriodWrap">
                 <div class="background">

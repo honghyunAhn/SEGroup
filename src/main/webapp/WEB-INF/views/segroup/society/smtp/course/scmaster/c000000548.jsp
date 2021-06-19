@@ -84,8 +84,9 @@
                 </div>
             </div>
             <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_sub02-01-chanllenge02.jpg" alt="단계별 맞춤형 코칭 프로그램 페이스메이커 시스템으로 최종 합격까지 함께 합니다!">
+            
             <!-- 커리큘럼 -->
-            <div class="curriculumWrap">
+            <!-- <div class="curriculumWrap">
                 <div class="title_barPoint_wh fz40">커리큘럼</div>
                 <div class="curriculum d-flex">
                     <div class="cc_imgWrap">
@@ -155,20 +156,21 @@
 								<li>- 개별 면접 코칭 및 매너</li>
 								<li>- 기술 트랜드 특강</li>
 							</ul>
-<!--                             <div class="btnWrap d-flex"> -->
-<!--                                 <div class="btn_normal btn_large btn_pp"> -->
-<!--                                 	 <a href="/file_download?origin=Python.pdf&saved=2020122819307696.pdf&path=uploadImage" download>커리큘럼 다운받기</a> -->
-<!--                                 </div> -->
-<!--                                 <div class="btn_normal btn_large btn_pp_bg margin-left20 "> -->
-<!--                                     <a href="sub02-01-01.html">수강신청 하러가기</a> -->
-<!--                                 </div> -->
-<!--                             </div> -->
+                            <div class="btnWrap d-flex">
+                                <div class="btn_normal btn_large btn_pp">
+                                	 <a href="/file_download?origin=Python.pdf&saved=2020122819307696.pdf&path=uploadImage" download>커리큘럼 다운받기</a>
+                                </div>
+                                <div class="btn_normal btn_large btn_pp_bg margin-left20 ">
+                                    <a href="sub02-01-01.html">수강신청 하러가기</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            
 			 <!-- 수강대상 -->
-            <div class="courseTargetWrap">
+            <div class="courseTargetWrap" style="padding-bottom:0;">
                 <div class="title_barPoint_wh fz40">수강대상</div>
                 <div class="targetWrap target01">
                     <div class="fz20">
@@ -216,6 +218,8 @@
                     </div>
                 </div> -->
             </div>
+            
+            <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_back_sub02-01-digitalAbc02.jpg" alt="커리큘럼(ICT/외국어 외 취업역량향상 교육)">
             <!-- 수강기간 -->
             <div class="coursePeriodWrap">
                 <div class="background">
@@ -236,7 +240,7 @@
             </div>
 			<img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_back_sub02-01-digitalAbc01.jpg" alt="O2O 교육 플랫폼, 교육시설 및 장비, 교육장소 안내 및 과정FAQ">
             
-            <div class="btn_normal btn_xlarge btn_digitalAbc" style="margin:0 auto 120px">
+            <div class="btn_normal btn_xlarge btn_digitalAbc" style="margin:120px auto">
             	<a class="applyBtn fz20">지원하기</a>
             	<input type="hidden" value="n000000583" name="cardinal_id">
             	<input type="hidden" value="Sun Jul 11 2021 00:00:00 GMT+0900 (대한민국 표준시)" name="aedDate">

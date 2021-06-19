@@ -36,8 +36,9 @@
         <div class="content sub-content sub04_content" id="main">
             <div class="header_textWrap">
                 <h3 class="h3">오시는길</h3>
-                <p class="fc_999">서울센터: 06164 서울특별시 강남구 영동대로 513(삼성동, 코엑스)4층 ICT센터</p>
-                <p class="fc_999">광주센터: 62364 광주 광산구 무진대로 282 광주 무역회관</p>
+                <p class="fc_999">서울센터 : 06164 서울특별시 강남구 영동대로 513(삼성동, 코엑스)4층 ICT센터</p>
+                <p class="fc_999">광주센터 : 62364 광주광역시 광산구 무진대로 282 광주무역회관 7F</p>
+                <p class="fc_999">부산센터 : 48939 부산광역시 중구 충장대로 11 부산무역회관2F</p>
             </div>
 	        <div class="section section_sub04-01-01 d-flex">
 	        	<div class="header_textWrap">
@@ -80,6 +81,7 @@
                         <ul class="way">
                             <li>코엑스 옥상 주차장 - 코엑스 서문(EAST GATE)</li>
                             <li>E20 엘리베이터 탑승 - 4F으로 이동</li>
+                            <li class="fc_999">※ 주차비 미지원</li>
                         </ul>
                     </div>
                 </div>
@@ -121,6 +123,50 @@
                             <li>터미널 방향 - 광주여대방향 80m 도로 끝 유턴 후 직진</li>
                             <li>광산 IC에서 흑석사거리 방향 직진 후,</li>
                             <li>지하도 진입하지말고 유턴 후 직진</li>
+                            <li class="fc_999">※ 주차비 미지원</li>
+                        </ul>
+                    </div>
+                </div>
+	        </div>
+	        <div class="section section_sub04-01-02 d-flex">
+	        	<div class="header_textWrap">
+                	<h3 class="h3">부산센터</h3>
+                </div>
+	        	<div class="mapBusan">
+                	<div id="daumRoughmapContainer1623141807900" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%"></div>
+                </div>
+                <div class="map-wayWrap">
+                	<div class="map-way">
+                        <div class="d-flex map-way-hdr">
+                            <div class="img-icon bus"></div>
+                            <strong class="cMain">버스 이용고객</strong>
+                        </div>
+                        <ul class="way">
+                            <li>일반버스<span class="c-green">5-1, 17, 26, 27, 40, 41, 66, 81, 82, 87, 88</span> 등</li>
+                            <li>급행버스<span class="c-orange">1003</span></li>
+                        </ul>
+                    </div>
+                    <div class="map-way">
+                        <div class="d-flex map-way-hdr">
+                            <div class="img-icon subway"></div>
+                            <strong class="cMain">지하철 이용고객</strong>
+                        </div>
+                        <ul class="way">
+                            <li>지하철<span class="c-dred">1호선 중앙역 </span>EXIT 12</li>
+                        </ul>
+                    </div>
+                    <div class="map-way">
+                        <div class="d-flex map-way-hdr">
+                            <div class="img-icon car"></div>
+                            <strong class="cMain">자가용 이용고객</strong>
+                        </div>
+                        <ul class="way">
+                        	<li>(부산역 기준) 중앙대로260번길 우회전 후 16m 이동</li>
+                            <li>중앙대로260번길 지하차도 진입 후 331m 이동</li>
+                            <li>충장대로 부산역 방면으로 U턴 후 754m 이동</li>
+                            <li>충장대로 고가도로 옆도로 진입 후 1.1km 이동</li>
+                            <li>충장대로13번길 우회전 후 53m 이동</li>
+                            <li class="fc_999">※ 주차비 미지원</li>
                         </ul>
                     </div>
                 </div>
@@ -145,6 +191,13 @@
        		"mapWidth" : "640",
        		"mapHeight" : "360"
        	}).render();
+       	
+    	new daum.roughmap.Lander({
+    		"timestamp" : "1623141807900",
+    		"key" : "265de",
+    		"mapWidth" : "640",
+    		"mapHeight" : "360"
+    	}).render();
     </script>
 </body>
 
