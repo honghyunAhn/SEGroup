@@ -98,7 +98,8 @@ public class FileService {
 		
 		//리눅스 용도
 		path = "/usr/local/"+path;
-		
+		System.out.println(path);
+		System.out.println(saved);
 		String fullPath = path + "/" + saved;
 		//파일 삭제 여부를 리턴할 변수
 		boolean result = false;
