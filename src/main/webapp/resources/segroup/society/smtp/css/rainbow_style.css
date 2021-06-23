@@ -55,7 +55,8 @@
 .container_rainbow>.content .linkBannerWrapper .linkBannerWrap,
 /* .container_rainbow>.footerWrap>.footer, */
 .container_rainbow>.content .employmentWrap,
-.container_rainbow .videoWrapper{
+.container_rainbow .videoWrapper,
+.course-infoTable{
     width: 1200px;
     margin: 0 auto;
 }
@@ -950,6 +951,39 @@
 /* [과정] Digital ABC 과정 */
 .sub02_content>.background.sub02-01_content.bg_digitalABC{
 	background-image: url('../img/course_back_sub02-01-digitalABC.jpg');
+}
+
+/* [과정] Digital ABC 과정 >> 개요 추가  */
+.course-infoTable{
+    background-color: #f7f7f7;
+    border : 1px solid #bcbcbc;
+    margin : 40px auto 0;
+    font-weight : bold;
+}
+.course-infoTable>.d-flex{}
+    .course-infoTable>.d-flex:nth-child(1)~*{
+        border-top: 1px solid #bcbcbc;
+    }
+.course-infoTable>.d-flex>.infoTh,
+.course-infoTable>.d-flex>.infoTd{
+    padding: 20px;
+}
+.course-infoTable>.d-flex>.infoTh{
+    align-items: center;
+    min-width : 130px;
+	justify-content: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+}
+.course-infoTable>.d-flex>.infoTh>.img-icon{
+    margin-right: 5px;
+}
+.course-infoTable>.d-flex>.infoTd{
+    line-height: 30px;
+}
+
+.course-infoTable .fc_point01{
+	color: #ff6d56;
 }
 /* [과정] SoftWare DevOps 과정 */
 .sub02_content>.background.sub02-01_content.bg_swdo{

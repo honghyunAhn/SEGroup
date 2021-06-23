@@ -59,7 +59,78 @@
 					<br>
 프로그래밍, 디지털/AI, 외국어(일본어) 등의 커리큘럼으로 구성되며 글로벌 ICT기업 정규직 취업을 목표로 하고 있습니다.
 				</p>
+				<!-- 2021-06-10 과정개요 추가 -->
+            <div class="course-infoTable fz18">
+                            <div class="d-flex">
+                                <ul class="infoTh d-flex">
+                                    <li class="img-icon calendar-day"></li>
+                                    <li class="thTxt">모집기간</li>
+                                </ul>
+                                <ul class="infoTd">
+                                    <li>2021.07.11(일) 까지</li>
+                                </ul>
+                            </div>
+                            <div class="d-flex jus">
+                                <ul class="infoTh d-flex">
+                                    <li class="img-icon calendar"></li>
+                                    <li class="thTxt">교육기간</li>
+                                </ul>
+                                <ul class="infoTd">
+                                    <li>2021.07.20 ~ 2022.05.26</li>
+                                    <li>월/화/수/목 08:30 ~ 18:00</li>
+                                </ul>
+                            </div>
+                            <div class="d-flex">
+                                <ul class="infoTh d-flex">
+                                    <li class="img-icon user"></li>
+                                    <li class="thTxt">수강대상</li>
+                                </ul>
+                                <ul class="infoTd">
+                                    <li>IT/일본어 전공자, 비전공자 모두 환영합니다!</li>
+                                    <li>- 2/4년제 대학 졸업자 및 예정자(2022.03)</li>
+                                    <li>- 만 34세 이하 대한민국 청년</li>
+                                </ul>
+                            </div>
+                            <div class="d-flex">
+                                <ul class="infoTh d-flex">
+                                    <li class="img-icon hand-holding-heart"></li>
+                                    <li class="thTxt">교육혜택</li>
+                                </ul>
+                                <ul class="infoTd">
+                                    <li>- <span class="fc_point01">국민취업제도</span> 대상 과정</li>
+                                    <li>- 해외취업정착지원금<span class="fc_point01">(최대 400만원 지급)</span></li>
+                                    <li>- 부산시 외 타 지역 거주자 주거 이전 시 <span class="fc_point01">보증금 일부지원</span>(수료 후 지원금 반납)</li>
+                                </ul>
+                            </div>
+                            <div class="d-flex">
+                                <ul class="infoTh d-flex">
+                                    <li class="img-icon won-sign"></li>
+                                    <li class="thTxt">교육비</li>
+                                </ul>
+                                <ul class="infoTd">
+                                    <li>1,000,000원</li>
+                                    <li class="fc_point01">
+                                        &lt;교육비 할인 제도&gt;
+                                    </li>
+                                    <li>
+                                        1. MOU 대학교 추천(대학교 추천서 제출 시) : <span style="text-decoration :line-through; color:rgba(0,0,0,.3)">1,000,000원</span>→ 0원
+                                    </li>
+                                    <li>
+                                        2. 코딩챌린지(사전학습반) 과정 수료 : <span style="text-decoration:line-through; color:rgba(0,0,0,.3)">1,000,000원</span>→ 500,000원
+                                    </li>
+                                    <li>
+                                        3. 기타 협약기관 추천 : <span style="text-decoration:line-through; color:rgba(0,0,0,.3)">1,000,000원</span>→ 500,000원
+                                    </li>
+                                    <li style="color : rgba(0,0,0,.3)">
+                                        ※ 교육비 할인 중복 적용은 안되며 자세한 사항은 문의 바랍니다.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
             </div>
+            
+            
+            
             <!-- 수강효과 -->
             <div class="courseEffectWrapper">
                 <div class="courseEffect">
@@ -170,7 +241,7 @@
             </div> -->
             
 			 <!-- 수강대상 -->
-            <div class="courseTargetWrap" style="padding-bottom:0;">
+            <!-- <div class="courseTargetWrap" style="padding-bottom:0;">
                 <div class="title_barPoint_wh fz40">수강대상</div>
                 <div class="targetWrap target01">
                     <div class="fz20">
@@ -192,7 +263,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="targetWrap target02">
+                <div class="targetWrap target02">
                     <div class="fz20">
                         레인보우에서는 다음과 같은 수준이더라도 충분히 수강할 수 있습니다.
                     </div>
@@ -216,28 +287,28 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
-            </div>
+                </div>
+            </div> -->
             
             <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_back_sub02-01-digitalAbc02.jpg" alt="커리큘럼(ICT/외국어 외 취업역량향상 교육)">
             <!-- 수강기간 -->
-            <div class="coursePeriodWrap">
+            <!-- <div class="coursePeriodWrap">
                 <div class="background">
                     <div class="opacity_bg">
                         <div class="coursePeriod">
                             <div class="title_barPoint fz40 fc_fff">수강기간</div>
                             <div class="fz20">
-<!--                             	<div class="fc_eg">코로나 바이러스? 걱정마세요!</div> -->
-<!-- 								<div class="fc_fff"> -->
-<!-- 									코로나 바이러스 확산에 대비하여 온라인/오프라인 Blended 수업을 실시합니다. -->
-<!-- 								</div> -->
+                            	<div class="fc_eg">코로나 바이러스? 걱정마세요!</div>
+								<div class="fc_fff">
+									코로나 바이러스 확산에 대비하여 온라인/오프라인 Blended 수업을 실시합니다.
+								</div>
                             </div>
                             <div class="d-flex justify_between applyCardinal">
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 			<img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_back_sub02-01-digitalAbc01.jpg" alt="O2O 교육 플랫폼, 교육시설 및 장비, 교육장소 안내 및 과정FAQ">
             
             <div class="btn_normal btn_xlarge btn_digitalAbc" style="margin:120px auto">

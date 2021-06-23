@@ -150,6 +150,12 @@
 	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg04_mobile.png" alt="Grand Open 회원가입 경품 대잔치! 2021.06.07(월)~06.30(수) 4주간 진행! 추첨을 통해 커피쿠폰 10명, 치킨추폰 10명, 피자쿠폰 10명 증정! 당첨자 공지는 7월 13일 안내 예정">
  	                    	</a>
  	                    </div>
+ 	                    <div class="mainBanner swiper-slide">
+ 	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10130">
+	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg05.jpg" alt="추천받은 지인이 과정에  최종 등록하면 선물이 팡팡! 부산/광주 해외취업연계과정 지인추천 이벤트!">
+	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg05_mobile.png" alt="추천받은 지인이 과정에  최종 등록하면 선물이 팡팡! 부산/광주 해외취업연계과정 지인추천 이벤트!">
+ 	                    	</a>
+ 	                    </div>
                  	</c:forEach>
                  </div>
                  <div class="swiper-button-next"></div>

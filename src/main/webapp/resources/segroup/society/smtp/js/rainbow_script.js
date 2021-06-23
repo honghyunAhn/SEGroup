@@ -5,7 +5,7 @@ $(function() {
 	var swiper = new Swiper('.mainBannerWrapper', {
         centeredSlides: true,
         autoplay: {
-          delay: 2500,
+          delay: 4000,
           disableOnInteraction: false,
         },
         pagination: {
@@ -19,7 +19,7 @@ $(function() {
     });
 	
 	
-    // index >> 이벤트 배너 이미지 슬라이더 커밋용
+    // index >> 이벤트 배너 이미지 슬라이더 커밋용ㄴㄴ
     var swiper = new Swiper('.bannerWrapper', {
         slidesPerView: 3,
 		spaceBetween: 20,

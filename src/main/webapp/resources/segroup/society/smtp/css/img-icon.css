@@ -461,3 +461,38 @@ background-position: -180px 0;
 .info-circle_pp{
     background-position: -860px 0;
 }
+
+/*--------------------------------------------------------------
+  >> 2021_rainbow
+----------------------------------------------------------------*/
+
+.user-blank{
+    width: 120px; height: 120px;
+    background-position: 0 -180px;
+}
+.university,
+.laptop-code,
+.id-card,
+.globe-stand,
+.credit-card{
+    width: 40px; height: 40px;
+}
+.id-card{background-position: -800px -60px;}
+.globe-stand{background-position: -840px -60px;}
+.laptop-code{background-position: -880px -60px;}
+.university{background-position: -920px -60px;}
+.credit-card{background-position: -960px -60px;}
+
+.gift,
+.won-sign,
+.hand-holding-heart,
+.calendar,
+.calendar-day{
+    width: 20px;
+    height: 20px;
+}
+.gift{background-position: -380px -100px;}
+.won-sign{background-position: -400px -100px;}
+.hand-holding-heart{background-position: -420px -100px;}
+.calendar{background-position: -440px -100px;}
+.calendar-day{background-position: -460px -100px;}

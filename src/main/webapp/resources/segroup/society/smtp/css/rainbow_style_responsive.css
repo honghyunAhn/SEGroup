@@ -27,7 +27,8 @@
     .container_rainbow>.sub01_content, .container_rainbow>.sub04_content, .container_rainbow>.sub05_content,
     .rainbow_myClass>.content_myClsss>.section_sub05-01,
     .container_rainbow .videoWrapper,
-    .container_rainbow>.headerWrap>.header-menuWrap>.header-subMenuWrap{
+    .container_rainbow>.headerWrap>.header-menuWrap>.header-subMenuWrap,
+    .course-infoTable{
         width: calc(100% - 80px);
     }
     /* fullWrapper */
@@ -196,7 +197,8 @@
     .sub-content>.curriculumWrap,
     .sub-content>.courseReviewWrap>.courseReview,
     .sub-content>.RecommendationWrap, .courseRegistrationWrap, .container_rainbow>.sub01_content, .container_rainbow>.sub04_content, .container_rainbow>.sub05_content, .rainbow_myClass>.content_myClsss>.section_sub05-01,
-    .container_rainbow .videoWrapper{
+    .container_rainbow .videoWrapper,
+    .course-infoTable{
         width: calc(100% - 40px);
         min-width : 300px;
     }
