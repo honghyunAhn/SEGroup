@@ -310,46 +310,52 @@
                 </div>
             </div> -->
 			<img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_back_sub02-01-digitalAbc01.jpg" alt="O2O 교육 플랫폼, 교육시설 및 장비, 교육장소 안내 및 과정FAQ">
-            
+             <!-- 수강후기 -->
+            <div class="courseReviewWrap">
+                <div class="courseReview">
+                    <div class="fz20">
+                    	레인보우에서는 비전공자도 충분히 수강할 수 있습니다.
+                    </div>
+                    <div class="fz40">
+						많은 수강생 분들이 남긴 수강후기를 확인하세요!
+                    </div>
+                    <div class="d-flex">
+                    	<div class="videoContainer">
+                    		<iframe src="https://www.youtube.com/embed/KQAFw-PuBRQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    	</div>
+                    	<div class="videoContainer">
+                    	<iframe src="https://www.youtube.com/embed/mKFIuBof8ds" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    	</div>
+                        <!-- <div class="reviewBox">
+                            <a href="">
+                                <div class="companyName">취업회사명</div>
+                                <div class="studentName">SCIT 30기 홍길동</div>
+                            </a>
+                        </div>
+                        <div class="reviewBox">
+                            <a href="">
+                                <div class="companyName">취업회사명</div>
+                                <div class="studentName">SCIT 30기 홍길동</div>
+                            </a>
+                        </div>
+                        <div class="reviewBox">
+                            <a href="">
+                                <div class="companyName">취업회사명</div>
+                                <div class="studentName">SCIT 30기 홍길동</div>
+                            </a>
+                        </div> -->
+                    </div>
+                    <!-- <div class="btn_normal btn_large btn_eg">
+                        <a href="">수강후기 보러가기</a>
+                    </div> -->
+                </div>
+            </div>
             <div class="btn_normal btn_xlarge btn_digitalAbc" style="margin:120px auto">
             	<a class="applyBtn fz20">지원하기</a>
             	<input type="hidden" value="n000000583" name="cardinal_id">
             	<input type="hidden" value="Sun Jul 11 2021 00:00:00 GMT+0900 (대한민국 표준시)" name="aedDate">
             </div>
-            <!-- 수강후기 -->
-            <!-- <div class="courseReviewWrap">
-                <div class="courseReview fc_fff">
-                    <div class="fc_eg fz20">
-                        레인보우에서는 비전공자도 충분히 수강할 수 있습니다.
-                    </div>
-                    <div class="fz40">
-                        많은 수강생 분들이 남긴 수강후기를 확인하세요!
-                    </div>
-                    <div class="d-flex">
-                        <div class="reviewBox">
-                            <a href="">
-                                <div class="companyName">취업회사명</div>
-                                <div class="studentName">SCIT 30기 홍길동</div>
-                            </a>
-                        </div>
-                        <div class="reviewBox">
-                            <a href="">
-                                <div class="companyName">취업회사명</div>
-                                <div class="studentName">SCIT 30기 홍길동</div>
-                            </a>
-                        </div>
-                        <div class="reviewBox">
-                            <a href="">
-                                <div class="companyName">취업회사명</div>
-                                <div class="studentName">SCIT 30기 홍길동</div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="btn_normal btn_large btn_eg">
-                        <a href="">수강후기 보러가기</a>
-                    </div>
-                </div>
-            </div> -->
+           
             <!-- 추천과정 -->
 <!--             <div class="RecommendationWrap"> -->
 <!--                 <div class="title_barPoint_wh fz40">추천과정</div> -->

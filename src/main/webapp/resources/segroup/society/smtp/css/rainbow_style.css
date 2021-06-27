@@ -1225,7 +1225,7 @@
 
 /* 수강후기 */
 .sub-content>.courseReviewWrap {
-    background-color: #582ec8;
+    background-color: #eee;
     margin-top : 120px;
 }
 
@@ -1250,6 +1250,20 @@
     margin-right: 20px;
     text-align: center;
     border-radius: 5px;
+}
+.sub-content>.courseReviewWrap>.courseReview>.d-flex>.videoContainer{
+	position:relative;
+	width: calc(50% - 10px);
+	height:0;
+	padding-bottom:27.7%;
+}
+.sub-content>.courseReviewWrap>.courseReview>.d-flex>.videoContainer>iframe{ 
+    width: 100%; 
+    height: 100%;
+    position: absolute; 	
+}
+.sub-content>.courseReviewWrap>.courseReview>.d-flex>.videoContainer:nth-child(1)~*{
+	margin-left : 20px;
 }
 
 /* .sub-content>.courseReviewWrap>.courseReview>.d-flex>.reviewBox:hover {
