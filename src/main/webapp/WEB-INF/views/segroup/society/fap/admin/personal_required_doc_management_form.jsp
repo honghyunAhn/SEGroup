@@ -75,7 +75,8 @@
 				context += '<button value="{{result.fap_personal_required_doc_detail}}" ng-click="detail(result.fap_personal_required_doc_detail)">설명보기</button>';
 				context += '</td>';
 				context += '<td ng-if="result.fap_personal_required_doc_uploader_gb == \'C4800\' ">';
-				context += '<a href="/file_download?origin={{result.fap_personal_required_doc_origin}}&saved={{result.fap_personal_required_doc_saved}}&path=/fap/company/required_doc_file/{{result.fap_comp_id}}_{{result.fap_job_ad_seq}}/{{result.fap_nominee_seq}} "><button value="{{result.fap_personal_required_doc_seq}}">다운로드</button></a>';
+// 				context += '<a href="/file_download?origin={{result.fap_personal_required_doc_origin}}&saved={{result.fap_personal_required_doc_saved}}&path=/fap/company/required_doc_file/{{result.fap_comp_id}}_{{result.fap_job_ad_seq}}/{{result.fap_nominee_seq}} "><button value="{{result.fap_personal_required_doc_seq}}">다운로드</button></a>';
+				context += '<button value="{{result.fap_personal_required_doc_seq}}" ng-click="fileDownload(result.fap_personal_required_doc_origin, result.fap_personal_required_doc_saved, result.fap_comp_id,result.fap_job_ad_seq,result.fap_nominee_seq)">다운로드</button>';
 				context += '</td>';
 				context += '<td ng-if="result.fap_personal_required_doc_uploader_gb == \'C4800\' ">';
 				context += '<button value="{{result.fap_personal_required_doc_seq}}" ng-click="update(result.fap_personal_required_doc_seq)">수정</button>';
@@ -103,7 +104,8 @@
 				context += '<button value="{{result.fap_personal_required_doc_detail}}" ng-click="detail(result.fap_personal_required_doc_detail)">설명보기</button>';
 				context += '</td>';
 				context += '<td ng-if="result.fap_personal_required_doc_uploader_gb == \'C4801\' ">';
-				context += '<a href="/file_download?origin={{result.fap_personal_required_doc_origin}}&saved={{result.fap_personal_required_doc_saved}}&path=/fap/company/required_doc_file/{{result.fap_comp_id}}_{{result.fap_job_ad_seq}}/{{result.fap_nominee_seq}} "><button value="{{result.fap_personal_required_doc_seq}}">다운로드</button></a>';
+// 				context += '<a href="/file_download?origin={{result.fap_personal_required_doc_origin}}&saved={{result.fap_personal_required_doc_saved}}&path=/fap/company/required_doc_file/{{result.fap_comp_id}}_{{result.fap_job_ad_seq}}/{{result.fap_nominee_seq}} "><button value="{{result.fap_personal_required_doc_seq}}">다운로드</button></a>';
+				context += '<button value="{{result.fap_personal_required_doc_seq}}" ng-click="fileDownload(result.fap_personal_required_doc_origin, result.fap_personal_required_doc_saved, result.fap_comp_id,result.fap_job_ad_seq,result.fap_nominee_seq)">다운로드</button>';
 				context += '</td>';
 				context += '<td ng-if="result.fap_personal_required_doc_uploader_gb == \'C4801\' ">';
 				context += '<button value="{{result.fap_personal_required_doc_seq}}" ng-click="update(result.fap_personal_required_doc_seq)">수정</button>';
@@ -114,6 +116,12 @@
 				context += '</tr>';
 				
 				$("#search_user_data").html($compile(context)($scope)); 	
+			}
+			
+			//파일 다운로드(path 특수문자 이스케이프 처리)
+			$scope.fileDownload = function(origin, saved, comp_id, ad_seq, nominee_seq) {
+				var path = '/fap/company/required_doc_file/' + comp_id + '_' + ad_seq + '/' + nominee_seq;
+				location.href = '/file_download?origin=' + origin + '&saved=' + saved + '&path=' + encodeURIComponent(path);
 			}
 			
 			//검색한 내정자 정보 

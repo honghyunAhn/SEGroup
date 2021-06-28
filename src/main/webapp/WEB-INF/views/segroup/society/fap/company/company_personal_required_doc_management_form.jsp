@@ -102,7 +102,8 @@
 				context += '<button value="{{nomi_doc.fap_personal_required_doc_detail}}" ng-click="detail(nomi_doc.fap_personal_required_doc_detail)" class="detailBtn"><spring:message code="fap.common.details" /></button>';
 				context += '</li>';
 				context += '<li class="wi8">';
-				context += '<a href="/file_download?origin={{nomi_doc.fap_personal_required_doc_origin}}&saved={{nomi_doc.fap_personal_required_doc_saved}}&path=/fap/company/required_doc_file/{{nomi_doc.fap_comp_id}}_{{nomi_doc.fap_job_ad_seq}}/{{nomi_doc.fap_nominee_seq}} "><button value="{{nomi_doc.fap_personal_required_doc_seq}}" class="downloadBtn"><spring:message code="fap.comp.required_doc_download" /></button></a>';
+// 				context += '<a href="/file_download?origin={{nomi_doc.fap_personal_required_doc_origin}}&saved={{nomi_doc.fap_personal_required_doc_saved}}&path=/fap/company/required_doc_file/{{nomi_doc.fap_comp_id}}_{{nomi_doc.fap_job_ad_seq}}/{{nomi_doc.fap_nominee_seq}} "><button value="{{nomi_doc.fap_personal_required_doc_seq}}" class="downloadBtn"><spring:message code="fap.comp.required_doc_download" /></button></a>';
+				context += '<button value="{{nomi_doc.fap_personal_required_doc_seq}}" class="downloadBtn" ng-click="fileDownload(nomi_doc.fap_personal_required_doc_origin, nomi_doc.fap_personal_required_doc_saved, nomi_doc.fap_comp_id, nomi_doc.fap_job_ad_seq, nomi_doc.fap_nominee_seq)"><spring:message code="fap.comp.required_doc_download" /></button>';
 				context += '	</li>';
 				context += '</ul>';			
 				
@@ -125,6 +126,12 @@
 				
 				$("#nominee_data").html($compile(context)($scope));
 				
+			}
+			
+			//개인 내정서류 다운로드(path 특수문자 이스케이프 처리)
+			$scope.fileDownload = function(origin, saved, comp_id, ad_seq, nominee_seq) {
+				var path = '/fap/company/required_doc_file/' + comp_id + '_' + ad_seq + '/' + nominee_seq;
+				location.href = '/file_download?origin=' + origin + '&saved=' + saved + '&path=' + encodeURIComponent(path);
 			}
 			
 			//개인서류 등록 페이지로 이동

@@ -144,7 +144,8 @@
 				context += '<button value="{{result.fap_common_required_doc_detail}}" ng-click="detail(result.fap_common_required_doc_detail)" class="detailBtn"><spring:message code="fap.common.details" /></button>';
 				context += '</li>';
 				context += '<li class="wi8">';
-				context += '<a href="/file_download?origin={{result.fap_common_required_doc_origin}}&saved={{result.fap_common_required_doc_saved}}&path=/fap/company/required_doc_file/{{result.fap_comp_id}}_{{result.fap_job_ad_seq}}"><button value="{{result.fap_common_required_doc_seq}}" class="downloadBtn"><spring:message code="fap.comp.required_doc_download" /></button></a>';
+// 				context += '<a href="/file_download?origin={{result.fap_common_required_doc_origin}}&saved={{result.fap_common_required_doc_saved}}&path=/fap/company/required_doc_file/{{result.fap_comp_id}}_{{result.fap_job_ad_seq}}"><button value="{{result.fap_common_required_doc_seq}}" class="downloadBtn"><spring:message code="fap.comp.required_doc_download" /></button></a>';
+				context += '<button value="{{result.fap_common_required_doc_seq}}" class="downloadBtn" ng-click="fileDownload_common(result.fap_common_required_doc_origin, result.fap_common_required_doc_saved, result.fap_comp_id,result.fap_job_ad_seq)"><spring:message code="fap.comp.required_doc_download" /></button>';
 				context += '	</li>';
 				context += '</ul>';					
 				
@@ -167,7 +168,8 @@
 				context += '<button value="{{personal.fap_personal_required_doc_detail}}" ng-click="detail(personal.fap_personal_required_doc_detail)" class="detailBtn"><spring:message code="fap.common.details" /></button>';
 				context += '</li>';
 				context += '<li class="wi8">';
-				context += '<a href="/file_download?origin={{personal.fap_personal_required_doc_origin}}&saved={{personal.fap_personal_required_doc_saved}}&path=/fap/company/required_doc_file/{{personal.fap_comp_id}}_{{personal.fap_job_ad_seq}}/{{personal.fap_nominee_seq}}"><button value="{{personal.fap_personal_required_doc_seq}}" class="downloadBtn"><spring:message code="fap.comp.required_doc_download" /></button></a>';
+// 				context += '<a href="/file_download?origin={{personal.fap_personal_required_doc_origin}}&saved={{personal.fap_personal_required_doc_saved}}&path=/fap/company/required_doc_file/{{personal.fap_comp_id}}_{{personal.fap_job_ad_seq}}/{{personal.fap_nominee_seq}}"><button value="{{personal.fap_personal_required_doc_seq}}" class="downloadBtn"><spring:message code="fap.comp.required_doc_download" /></button></a>';
+				context += '<button value="{{personal.fap_personal_required_doc_seq}}" class="downloadBtn" ng-click="fileDownload_personal(personal.fap_personal_required_doc_origin,personal.fap_personal_required_doc_saved,personal.fap_comp_id,personal.fap_job_ad_seq,personal.fap_nominee_seq)"><spring:message code="fap.comp.required_doc_download" /></button>';
 				context += '	</li>';
 				context += '</ul>';
 				
@@ -200,6 +202,17 @@
 				
 				$("#nuguBB8").html($compile(context)($scope)); 
 				
+			}
+			
+			//개인 내정서류 다운로드(path 특수문자 이스케이프 처리)
+			$scope.fileDownload_personal = function(origin, saved, comp_id, ad_seq, nominee_seq) {
+				var path = '/fap/company/required_doc_file/' + comp_id + '_' + ad_seq + '/' + nominee_seq;
+				location.href = '/file_download?origin=' + origin + '&saved=' + saved + '&path=' + encodeURIComponent(path);
+			}
+			//공통 내정서류 다운로드(path 특수문자 이스케이프 처리)
+			$scope.fileDownload_common = function(origin, saved, comp_id, ad_seq) {
+				var path = '/fap/company/required_doc_file/' + comp_id + '_' + ad_seq;
+				location.href = '/file_download?origin=' + origin + '&saved=' + saved + '&path=' + encodeURIComponent(path);
 			}
 								
 			//세부내용 모달로 띄우기

@@ -1,8 +1,5 @@
 package global.segroup;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,14 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import global.segroup.society.edu.admin.domain.SocietyEduAdminBanner;
-import global.segroup.society.edu.admin.domain.SocietyEduAdminSubBanner;
 import global.segroup.society.edu.admin.service.SocietyEduAdminService;
 import global.segroup.society.edu.apply.service.SocietyEduApplyService;
 import global.segroup.util.LocaleUtil;
