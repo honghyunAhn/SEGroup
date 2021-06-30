@@ -131,8 +131,8 @@
  	                        <!-- <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg01.jpg">
  	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg01_mobile.jpg"> -->
  	                        <div class="bannerTextWrap d-flex justify_center">
-	                        	<a class="button btn_normal" onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000526');" href="javascript:void(0);">광주과정 바로가기</a>
-	                        	<a class="button btn_normal" onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000548');" href="javascript:void(0);">부산과정 바로가기</a>
+	                        	<a class="button btn_normal" href="/smtp/course/scmaster/scmaster-info?course_id=c000000526">광주과정 바로가기</a>
+	                        	<a class="button btn_normal" href="/smtp/course/scmaster/scmaster-info?course_id=c000000548">부산과정 바로가기</a>
  	                        </div>
  	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg02.jpg" alt="페이스메이커 운영 중! 최종합격까지 함께 뛴다! 단계별 맞춤형 코칭 프로그램으로 최종 합격까지!">
  	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg02_mobile.jpg" alt="페이스메이커 운영 중! 최종합격까지 함께 뛴다! 단계별 맞춤형 코칭 프로그램으로 최종 합격까지!">
@@ -200,7 +200,7 @@
 				<div class="title_barPoint_wh fz40">모집과정</div>
 				<div class="d-flex flexWrap courseWrap">
 					<div class="course">
-						<a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000543');" href="javascript:void(0);">
+						<a href="/smtp/course/short-term/short-term-info?course_id=c000000543">
 							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb01.jpg">
 						</a>
 						<div class="course-txt">
@@ -209,7 +209,7 @@
 						</div>
 					</div>
 					<div class="course">
-						<a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000526');" href="javascript:void(0);">
+						<a href="/smtp/course/scmaster/scmaster-info?course_id=c000000526">
 							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb02.jpg">
 						</a>
 						<div class="course-txt">
@@ -218,7 +218,7 @@
 						</div>
 					</div>
 					<div class="course">
-						<a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000548');" href="javascript:void(0);">
+						<a href="/smtp/course/scmaster/scmaster-info?course_id=c000000548">
 							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb03.jpg">
 						</a>
 						<div class="course-txt">

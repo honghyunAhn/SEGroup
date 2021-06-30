@@ -165,8 +165,8 @@
 .container_rainbow>.headerWrap>.header-menuWrap .header-menu>.hdrMenu .highlightWrap>.highlight{
     float: left;
     background-color: #F5EA4E;
-    padding: 5px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 30px;
     margin-right: 3px;
     line-height: 3px;
 }

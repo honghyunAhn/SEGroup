@@ -55,6 +55,60 @@
                 <p class="course_textWrap fz20">
                     광주/전남 지역 해외취업인재 양성을 위해 광주해외취업협의회 광주지역 내 9개 대학과 5개의 유관기관이 협력하여 만들어진 과정으로 2018년 10월 1기를 시작으로 현재 6기 까지 교육이 진행되고 있으며, 1기 ~ 4기 94%가 연봉 3200만원 이상의 일본 유수의 기업에 취업 성공을 달성하였습니다.
                 </p>
+                 <div class="course-infoTable fz18">
+                            <div class="d-flex">
+                                <ul class="infoTh d-flex">
+                                    <li class="img-icon calendar-day"></li>
+                                    <li class="thTxt">모집기간</li>
+                                </ul>
+                                <ul class="infoTd">
+                                    <li>2021.07.11(일) 까지</li>
+                                </ul>
+                            </div>
+                            <div class="d-flex jus">
+                                <ul class="infoTh d-flex">
+                                    <li class="img-icon calendar"></li>
+                                    <li class="thTxt">교육기간</li>
+                                </ul>
+                                <ul class="infoTd">
+                                    <li>2021.07.19 ~ 2022.05.27</li>
+                                    <li>월/화/수/목 08:30 ~ 18:00</li>
+                                </ul>
+                            </div>
+                            <div class="d-flex">
+                                <ul class="infoTh d-flex">
+                                    <li class="img-icon user"></li>
+                                    <li class="thTxt">수강대상</li>
+                                </ul>
+                                <ul class="infoTd">
+                                    <li>IT/일본어 전공자, 비전공자 모두 환영합니다!</li>
+                                    <li>- 2/4년제 대학 졸업자 및 예정자(2022.03)</li>
+                                    <li>- 만 34세 이하 대한민국 청년</li>
+                                    <li>- ICT 글로벌 커리어를 쌓고 싶은 대한민국 청년</li>
+                                    <li>- 해외취업에 대한 의지가 확고한 분</li>
+                                </ul>
+                            </div>
+                            <div class="d-flex">
+                                <ul class="infoTh d-flex">
+                                    <li class="img-icon hand-holding-heart"></li>
+                                    <li class="thTxt">교육혜택</li>
+                                </ul>
+                                <ul class="infoTd">
+                                    <li>- <span class="fc_point01">국민취업제도</span> 대상 과정</li>
+                                    <li>- 해외취업정착지원금<span class="fc_point01">(최대 400만원 지급)</span></li>
+                                    <li>- <span class="fc_point01">전액 국비지원</span>(개인부담금 없음)</li>
+                                </ul>
+                            </div>
+                            <div class="d-flex">
+                                <ul class="infoTh d-flex">
+                                    <li class="img-icon won-sign"></li>
+                                    <li class="thTxt">교육비</li>
+                                </ul>
+                                <ul class="infoTd">
+                                    <li>0원(전액 국비지원)</li>
+                                </ul>
+                            </div>
+                        </div>
             </div>
 		
             <!-- 수강효과 -->
@@ -79,7 +133,7 @@
             <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_sub02-01-chanllenge02.jpg" alt="단계별 맞춤형 코칭 프로그램 페이스메이커 시스템으로 최종 합격까지 함께 합니다!">
             
              <!-- 수강후기 -->
-            <div class="courseReviewWrap">
+            <div class="courseReviewWrap" style="background-color:#4805c7">
                 <div class="courseReview fc_fff">
                     <div class="fc_eg fz20">
                         레인보우에서는 비전공자도 충분히 수강할 수 있습니다.
@@ -121,7 +175,7 @@
                 </div>
             </div>
             <!-- 수강대상 -->
-            <div class="courseTargetWrap" style="padding-bottom : 0">
+            <!-- <div class="courseTargetWrap" style="padding-bottom : 0">
                 <div class="title_barPoint_wh fz40">수강대상</div>
                 <div class="targetWrap target01">
                     <div class="fz20">
@@ -148,7 +202,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="targetWrap target02">
                     <div class="fz20">
                         레인보우에서는 다음과 같은 수준이더라도 충분히 수강할 수 있습니다.
@@ -215,7 +269,7 @@
             <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_back_sub02-01-swdo02.jpg" alt="커리큘럼(ICT/외국어 외 취업역량향상 교육)">
             
             <!-- 수강기간 -->
-            <div class="coursePeriodWrap">
+           <!--  <div class="coursePeriodWrap">
                 <div class="background">
                     <div class="opacity_bg">
                         <div class="coursePeriod">
@@ -231,7 +285,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
            <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_back_sub02-01-swdo01.jpg" alt="교육시설 및 장비, 교육장소 안내">
             <!-- 추천과정 -->
             <!-- <div class="RecommendationWrap">

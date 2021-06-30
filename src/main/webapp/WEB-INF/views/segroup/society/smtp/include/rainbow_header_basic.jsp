@@ -85,11 +85,11 @@
 	        </div>
 	        <div class="menuDivWrap d-flex fc_fff">
 	            <ul class="menu-title-division">
-	                <li class="gnb">96% 해외국비과정</li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000543');" href="javascript:void(0);">코딩챌린지과정</a></li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000526');" href="javascript:void(0);">SWDO-광주</a></li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000548');" href="javascript:void(0);">Digital ABC-부산</a></li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000525');" href="javascript:void(0);">SCIT-서울</a></li>
+	                <li class="gnb">해외취업연계과정</li>
+	                <li class="lnb"><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000548">(부산) Digital ABC마스터</a></li>
+	                <li class="lnb"><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000526">(광주) SW DO마스터</a></li>
+	                <li class="lnb"><a href="/smtp/course/short-term/short-term-info?course_id=c000000543">코딩챌린지(사전학습반)</a></li>
+	                <!-- <li class="lnb"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000525');" href="javascript:void(0);">SCIT-서울</a></li> -->
 <!-- 	                <li class="lnb"><a href="https://newtradecampus.kita.net/page/user_job_CloudIT_apply?course_category=JOBA&course_code=1498&class_seq=41&site_id=KITAACAD&viewMode=detail#appView_courseDetailView">SCIT 마스터</a></li> -->
 	            </ul>
 	            <ul class="menu-title-division">
@@ -99,7 +99,7 @@
 	            </ul>
 	            <ul class="menu-title-division">
 	                <li class="gnb">미국 인턴십</li>
-	                <li class="lnb"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000527');" href="javascript:void(0);">미 융복합 SW인력 양성과정</a></li>
+	                <li class="lnb"><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000527">미 융복합 SW인력 양성과정</a></li>
 	            </ul>
 	            <ul class="menu-title-division">
 	                <li class="gnb">취업 스킬업</li>
@@ -134,8 +134,8 @@
             <ul class="header-menu d-flex justify_between">
                 <li class="hdrMenu">
                     <a href="#" class="highlightWrap">
-                        <span class="highlight h5 point_fc01">96%</span>
-                        <span class="highlightTxt">해외국비과정</span>
+                        <span class="highlight h5 point_fc01">국비지원</span>
+                        <span class="highlightTxt">해외취업연계</span>
                     </a>
                 </li>
                 <li class="hdrMenu"><a href="#">내일배움카드과정</a></li>
@@ -149,17 +149,17 @@
         </div>
         <div class="header-subMenuWrap d-flex justify_between">
             <ul class="header-subMenu">
-            	<li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/short-term/short-term-info','c000000543');" href="javascript:void(0);">코딩챌린지과정</a></li>
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000526');" href="javascript:void(0);">SWDO-광주</a></li>
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000548');" href="javascript:void(0);">Digital ABC-부산</a></li>
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000525');" href="javascript:void(0);">SCIT-서울</a></li>
+	            <li class="hdrSubMenu"><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000548">(부산) Digital ABC마스터</a></li>        	
+                <li class="hdrSubMenu"><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000526">(광주) SW DO마스터</a></li>
+                <li class="hdrSubMenu"><a href="/smtp/course/short-term/short-term-info?course_id=c000000543">코딩챌린지(사전학습반)</a></li>
+                <!-- <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000525');" href="javascript:void(0);">SCIT-서울</a></li> -->
             </ul>
             <ul class="header-subMenu">
             	<li class="hdrSubMenu"><a href="javascript:alert('준비중입니다.');">JAVA 기반 웹 개발자과정</a></li>
                 <li class="hdrSubMenu"><a href="javascript:alert('준비중입니다.');">파이썬 기초 과정</a></li>
             </ul>
             <ul class="header-subMenu">
-                <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000527');" href="javascript:void(0);">美 융복합 SW인력 양성과정</a></li>
+                <li class="hdrSubMenu"><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000527">美 융복합 SW인력 양성과정</a></li>
             </ul>
             <ul class="header-subMenu">
                 <li class="hdrSubMenu"><a href="/smtp/course/short-term/short-term-info?course_id=c000000541">일본취업을 위한 JPT & SJPT</a></li>
