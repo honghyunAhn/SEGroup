@@ -120,7 +120,27 @@
          	<div class="mainBannerWrapper swiper-container">
                 <div class="mainBannerWrap d-flex swiper-wrapper">
                 	<c:forEach var="data" items="${banner_list}">
-                 		<div class="mainBanner swiper-slide">
+                		<div class="mainBanner swiper-slide">
+ 	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10133">
+	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg06.jpg" alt="이젠, 부산에서 해외취업하자! 해외취업 멘토링 참여하고 갤럭시 워치, 갤럭시 버즈 등 푸짐한 상품 받아가세요!">
+	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg06_mobile.jpg" alt="이젠, 부산에서 해외취업하자! 해외취업 멘토링 참여하고 갤럭시 워치, 갤럭시 버즈 등 푸짐한 상품 받아가세요!">
+ 	                    	</a>
+ 	                    </div>
+ 	                    <div class="mainBanner swiper-slide">
+ 	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10135">
+	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg07.jpg" alt="취업률 94%의 비결, 멘토링으로 알아보자! 광주 해외취업 멘토링 참여하고 에어팟 프로 등 경품 받아가세요! 일정 : 2021.06.25(금) 14:00 장소 : (오프라인) 전남대학교 도서관 별관, (온라인) : Zoom ※상세 장소 및 온라인 참여 주소는 설명회 전에 개별 안내">
+	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg07_mobile.jpg" alt="취업률 94%의 비결, 멘토링으로 알아보자! 광주 해외취업 멘토링 참여하고 에어팟 프로 등 경품 받아가세요! 일정 : 2021.06.25(금) 14:00 장소 : (오프라인) 전남대학교 도서관 별관, (온라인) : Zoom ※상세 장소 및 온라인 참여 주소는 설명회 전에 개별 안내">
+ 	                    	</a>
+ 	                    </div>
+                 		
+ 	                    
+ 	                    <div class="mainBanner swiper-slide">
+ 	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10117">
+	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg03.jpg" alt="한번에 합격! 2021 부산/광주 해외취업 설명회! 부산 : 2021.07.03(토) 오전 11시 부산무역회관 / 광주 : 2021.06.25(금) 오후 2시 광주무역회관 / 디지털 ABC 또는 SWDO 검색">
+	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg03_mobile.png" alt="한번에 합격! 2021 부산/광주 해외취업 설명회! 부산 : 2021.07.03(토) 오전 11시 부산무역회관 / 광주 : 2021.06.25(금) 오후 2시 광주무역회관 / 디지털 ABC 또는 SWDO 검색">
+ 	                    	</a>
+ 	                    </div>
+ 	                    <div class="mainBanner swiper-slide">
  	                        <!-- <div class="background" style="background-image: url(<c:out value="${data.img_full_path}"/>); background-repeat: no-repeat;"> 
  	                            <div class="opacity_bg">
  	                                <div class="bannerTextWrap">
@@ -137,23 +157,17 @@
  	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg02.jpg" alt="페이스메이커 운영 중! 최종합격까지 함께 뛴다! 단계별 맞춤형 코칭 프로그램으로 최종 합격까지!">
  	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg02_mobile.jpg" alt="페이스메이커 운영 중! 최종합격까지 함께 뛴다! 단계별 맞춤형 코칭 프로그램으로 최종 합격까지!">
  	                    </div>
- 	                    
- 	                    <div class="mainBanner swiper-slide">
- 	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10117">
-	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg03.jpg" alt="한번에 합격! 2021 부산/광주 해외취업 설명회! 부산 : 2021.07.03(토) 오전 11시 부산무역회관 / 광주 : 2021.06.25(금) 오후 2시 광주무역회관 / 디지털 ABC 또는 SWDO 검색">
-	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg03_mobile.png" alt="한번에 합격! 2021 부산/광주 해외취업 설명회! 부산 : 2021.07.03(토) 오전 11시 부산무역회관 / 광주 : 2021.06.25(금) 오후 2시 광주무역회관 / 디지털 ABC 또는 SWDO 검색">
- 	                    	</a>
- 	                    </div>
- 	                    <div class="mainBanner swiper-slide">
+ 	                    <!-- <div class="mainBanner swiper-slide">
  	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10115">
 	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg04.jpg" alt="Grand Open 회원가입 경품 대잔치! 2021.06.07(월)~06.30(수) 4주간 진행! 추첨을 통해 커피쿠폰 10명, 치킨추폰 10명, 피자쿠폰 10명 증정! 당첨자 공지는 7월 13일 안내 예정 ">
 	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg04_mobile.png" alt="Grand Open 회원가입 경품 대잔치! 2021.06.07(월)~06.30(수) 4주간 진행! 추첨을 통해 커피쿠폰 10명, 치킨추폰 10명, 피자쿠폰 10명 증정! 당첨자 공지는 7월 13일 안내 예정">
  	                    	</a>
- 	                    </div>
+ 	                    </div> -->
+ 	                    
  	                    <div class="mainBanner swiper-slide">
  	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10130">
 	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg05.jpg" alt="추천받은 지인이 과정에  최종 등록하면 선물이 팡팡! 부산/광주 해외취업연계과정 지인추천 이벤트!">
-	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg05_mobile.png" alt="추천받은 지인이 과정에  최종 등록하면 선물이 팡팡! 부산/광주 해외취업연계과정 지인추천 이벤트!">
+	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg05_mobile.jpg" alt="추천받은 지인이 과정에  최종 등록하면 선물이 팡팡! 부산/광주 해외취업연계과정 지인추천 이벤트!">
  	                    	</a>
  	                    </div>
                  	</c:forEach>

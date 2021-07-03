@@ -474,7 +474,7 @@
 .container_rainbow .mainBannerWrapper>.mainBannerWrap .mainBanner img{
 	width : 100%;
 }
-.container_rainbow .mainBannerWrapper>.mainBannerWrap .mainBanner img.mobileBanner{
+img.mobileBanner{
 	display : none;
 }
 /* .container_rainbow>.content .mainBannerWrapper .bannerTextWrap{
@@ -1223,11 +1223,14 @@
     margin-top: 40px;
 }
 
-/* 수강후기 */
-.sub-content>.courseReviewWrap {
-    background-color: #eee;
-    margin-top : 120px;
+/* 카카오톡 채널 배너 */
+.banner_kakao{
+	display:block;
+	margin : 120px auto 0;
 }
+
+/* 수강후기 */
+.sub-content>.courseReviewWrap {}
 
 .sub-content>.courseReviewWrap>.courseReview {}
 

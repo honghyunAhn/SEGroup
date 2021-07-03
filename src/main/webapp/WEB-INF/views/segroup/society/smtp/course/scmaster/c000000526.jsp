@@ -133,7 +133,7 @@
             <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_sub02-01-chanllenge02.jpg" alt="단계별 맞춤형 코칭 프로그램 페이스메이커 시스템으로 최종 합격까지 함께 합니다!">
             
              <!-- 수강후기 -->
-            <div class="courseReviewWrap" style="background-color:#4805c7">
+            <div class="courseReviewWrap" style="background-color:#4805c7; margin-top:120px">
                 <div class="courseReview fc_fff">
                     <div class="fc_eg fz20">
                         레인보우에서는 비전공자도 충분히 수강할 수 있습니다.
@@ -287,6 +287,11 @@
                 </div>
             </div> -->
            <img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_back_sub02-01-swdo01.jpg" alt="교육시설 및 장비, 교육장소 안내">
+           
+           <a href="https://pf.kakao.com/_exoPxjs" class="banner_kakao">
+             	<img class="mobileBanner" style="width : 100%;" src="/resources/segroup/society/smtp/img/course_mobile_banner_kakao_swdo.jpg" alt="카카오톡 채널에서 abc마스터를 검색하세요! abc마스터 채널 추가하고 다양한 혜택과 다양한 이벤트 소식을 누구보다 빠르게 받아보세요.">
+             	<img class="webBanner" style="width : 100%;" src="/resources/segroup/society/smtp/img/course_banner_kakao_swdo.jpg" alt="카카오톡 채널에서 abc마스터를 검색하세요! abc마스터 채널 추가하고 다양한 혜택과 다양한 이벤트 소식을 누구보다 빠르게 받아보세요.">
+             </a>
             <!-- 추천과정 -->
             <!-- <div class="RecommendationWrap">
                 <div class="title_barPoint_wh fz40">추천 사전학습과정</div>
@@ -348,7 +353,7 @@
 		</div>
 		<!-- footer-include -->
         <%@include file="../../include/common_footer_rainbow.jsp"%>
-    </div>
+
 </body>
 
 </html>

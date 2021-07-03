@@ -310,7 +310,13 @@
                 </div>
             </div> -->
 			<img style="width : 100%;" src="/resources/segroup/society/smtp/img/course_back_sub02-01-digitalAbc01.jpg" alt="O2O 교육 플랫폼, 교육시설 및 장비, 교육장소 안내 및 과정FAQ">
+             
+             <a href="http://pf.kakao.com/_sxoRxjs" class="banner_kakao">
+             	<img class="mobileBanner" style="width : 100%;" src="/resources/segroup/society/smtp/img/course_mobile_banner_kakao_abc.jpg" alt="카카오톡 채널에서 abc마스터를 검색하세요! abc마스터 채널 추가하고 다양한 혜택과 다양한 이벤트 소식을 누구보다 빠르게 받아보세요.">
+             	<img class="webBanner" style="width : 100%;" src="/resources/segroup/society/smtp/img/course_banner_kakao_abc.jpg" alt="카카오톡 채널에서 abc마스터를 검색하세요! abc마스터 채널 추가하고 다양한 혜택과 다양한 이벤트 소식을 누구보다 빠르게 받아보세요.">
+             </a>
              <!-- 수강후기 -->
+             
             <div class="courseReviewWrap">
                 <div class="courseReview">
                     <div class="fz20">
@@ -350,7 +356,7 @@
                     </div> -->
                 </div>
             </div>
-            <div class="btn_normal btn_xlarge btn_digitalAbc" style="margin:120px auto">
+            <div class="btn_normal btn_xlarge btn_digitalAbc" style="margin: 0 auto 120px">
             	<a class="applyBtn fz20">지원하기</a>
             	<input type="hidden" value="n000000583" name="cardinal_id">
             	<input type="hidden" value="Sun Jul 11 2021 00:00:00 GMT+0900 (대한민국 표준시)" name="aedDate">

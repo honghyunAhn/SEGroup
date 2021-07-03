@@ -269,10 +269,10 @@
     .container_rainbow .mainBannerWrapper{
 		padding-top : 60px;
 	}
-	.container_rainbow .mainBannerWrapper>.mainBannerWrap .mainBanner img.webBanner{
+	img.webBanner{
 		display : none;
 	}
-	.container_rainbow .mainBannerWrapper>.mainBannerWrap .mainBanner img.mobileBanner{
+	img.mobileBanner{
 		display : block;
 	}
     .container_rainbow>.content>.background>.opacity_bg{
