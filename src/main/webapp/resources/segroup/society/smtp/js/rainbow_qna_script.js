@@ -159,7 +159,11 @@ function setReplyListUl(list) {
 		var reg_date = item.reg_date.substr(0,4) + '-' + item.reg_date.substr(4,2) + '-' + item.reg_date.substr(6,2);
 		content += '<li class="class-list replyList d-flex">';
 		content += 		'<input type="hidden" name="id" value="' + item.id + '">';
-		content += 		'<div class="c-table-02">' + rpad(item.user_id.substr(0,3), item.user_id.length, '*') + '</div>';
+		if(item.user_id !== undefined) {
+			content += 		'<div class="c-table-02">' + rpad(item.user_id.substr(0,3), item.user_id.length, '*') + '</div>';
+		} else {
+			content += 		'<div class="c-table-02">admin</div>';
+		}
 		content += 		'<div class="c-table-name-wide">' + item.comment + '</div>';
 		content += 		'<div class="c-table-num">' + item.recommend + '</div>';
 		content += 		'<div class="c-table-01"><input type="button" class="recommendBtn margin-left10 btn_normal btn_small btn_pp_bg" value="추천"></div>';

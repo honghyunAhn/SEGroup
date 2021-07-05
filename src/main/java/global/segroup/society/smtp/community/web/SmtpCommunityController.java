@@ -165,6 +165,12 @@ public class SmtpCommunityController {
 			params.put("replyStartPage", Integer.parseInt((String)params.get("replyStartPage")));
 			params.put("visiblePages", Integer.parseInt((String)params.get("visiblePages")));
 			params.put("replyVisiblePages", Integer.parseInt((String)params.get("replyVisiblePages")));
+			
+			model.addAttribute("search", params);
+			
+			if(params.get("id") != null) {
+				params.put("startPage", 0);
+			}
 			qnaList = communityService.selectCourseNotice(params);
 			result.put("qnaList", qnaList);
 			
@@ -186,8 +192,6 @@ public class SmtpCommunityController {
 			return null;
 		}
 		logger.info("과정 Qna 리스트 가져오기 컨트롤러 종료");
-		
-		model.addAttribute("search", params);
 		
 		return result;
 	}
