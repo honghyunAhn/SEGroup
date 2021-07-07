@@ -134,12 +134,12 @@
  	                    </div>
                  		
  	                    
- 	                    <div class="mainBanner swiper-slide">
+ 	                    <!-- <div class="mainBanner swiper-slide">
  	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10117">
 	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg03.jpg" alt="한번에 합격! 2021 부산/광주 해외취업 설명회! 부산 : 2021.07.03(토) 오전 11시 부산무역회관 / 광주 : 2021.06.25(금) 오후 2시 광주무역회관 / 디지털 ABC 또는 SWDO 검색">
 	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg03_mobile.png" alt="한번에 합격! 2021 부산/광주 해외취업 설명회! 부산 : 2021.07.03(토) 오전 11시 부산무역회관 / 광주 : 2021.06.25(금) 오후 2시 광주무역회관 / 디지털 ABC 또는 SWDO 검색">
  	                    	</a>
- 	                    </div>
+ 	                    </div> -->
  	                    <div class="mainBanner swiper-slide">
  	                        <!-- <div class="background" style="background-image: url(<c:out value="${data.img_full_path}"/>); background-repeat: no-repeat;"> 
  	                            <div class="opacity_bg">
@@ -218,8 +218,8 @@
 							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb01.jpg">
 						</a>
 						<div class="course-txt">
-							<div class="course-name">4주 완성! 코딩 챌린지 과정</div>
-							<div class="course-term">모집마감 2021.06.15 까지</div>
+							<div class="course-name">3주 완성! 코딩 챌린지 과정</div>
+							<div class="course-term">모집마감 2021.07.04 까지</div>
 						</div>
 					</div>
 					<div class="course">
@@ -236,7 +236,7 @@
 							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb03.jpg">
 						</a>
 						<div class="course-txt">
-							<div class="course-name">[부산] ABC 마스터 과정</div>
+							<div class="course-name">[부산] Digital ABC 마스터 과정</div>
 							<div class="course-term">모집마감 2021.07.11 까지</div>
 							<!-- 학습기간 : 2021.07.20 ~ 2022.05.26 -->
 						</div>
