@@ -50,7 +50,7 @@ public class FIleViewController implements PathConstants {
 		
 		model.addAttribute("file_path", eduApplyCkeditor+"/"+result.get("savedfile"));
 		model.addAttribute("CKEditorFuncNum", CKEditorFuncNum);
-		System.out.println("anh288 : "+ eduApplyCkeditor+"/"+result.get("savedfile"));
+
         return "segroup/society/edu/admin/board_ckeditor";
     }
 }
