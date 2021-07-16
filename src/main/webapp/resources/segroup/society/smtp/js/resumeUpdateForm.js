@@ -278,7 +278,7 @@ $(function() {
             $wrapper.css("display","block");
         }else{
 	        var clone = $(this).parent().find('.resumeFormWrapper').eq(0).clone(true).addClass('resumeForm_addStyle');
-	        var eduIndex = Number($(".edu_gd_dt").attr('id').slice(-1)) + 1; 
+	        var eduIndex = $(".edu_gd_dt").length;
 	        var eduDateId = "stu_app_eduHistory_dt_" + eduIndex;
 	        
 	        clone.find('.edu_sc_nm').attr('name', 'eduHistoryList['+eduIndex+'].stu_app_edu_sc_nm');
@@ -306,7 +306,7 @@ $(function() {
             $wrapper.css("display","block");
         }else{
             var clone = $wrapper.eq(0).clone(true);
-            var crrIndex = Number($(".crr_st").attr('id').slice(-1)) + 1;
+            var crrIndex = $(".crr_st").length;
             var crrFrmId = "stu_app_crr_frm_" + crrIndex;
     		var crrEndId = "stu_app_crr_end_" + crrIndex;
             
@@ -335,7 +335,7 @@ $(function() {
             $wrapper.css("display","block");
         }else{
             var clone = $wrapper.eq(0).clone(true);
-            var studyIndex = Number($(".study_st").attr('id').slice(-1)) + 1;
+            var studyIndex = $(".study_st").length;
             var studyFrmId = "stu_app_study_frm_" + studyIndex;
             var studyEndId = "stu_app_study_end_" + studyIndex;
             
@@ -362,7 +362,7 @@ $(function() {
             $wrapper.css("display","block");
         }else{
             var clone = $wrapper.eq(0).clone(true);
-            var langIndex = Number($(".lang_obtain_dt").attr('id').slice(-1)) + 1;
+            var langIndex = $(".lang_obtain_dt").length;
             var langDateId = "stu_app_lang_dt_" + langIndex
             
             clone.find('.lang_test_nm').attr('name', 'languageList['+langIndex+'].stu_app_lang_test_nm');
@@ -387,7 +387,7 @@ $(function() {
             $wrapper.css("display","block");
         }else{
             var clone = $wrapper.eq(0).clone(true);
-            var licenseIndex = Number($(".license_obtain_dt").attr('id').slice(-1)) + 1;
+            var licenseIndex = $(".license_obtain_dt").length;
             var licenseDateId = "stu_app_license_dt_" + licenseIndex
             
             clone.find('.license_nm').attr('name', 'licenseList['+licenseIndex+'].stu_app_license_nm');
@@ -411,7 +411,7 @@ $(function() {
             $wrapper.css("display","block");
         }else{
 	        var clone = $(this).parent().find('.resumeFormWrapper').eq(0).clone(true).addClass('resumeForm_addStyle');
-	        var sesIndex = Number($(".ses_dt").attr('id').slice(-1)) + 1;
+	        var sesIndex = $(".ses_dt").length;
 	        var sesDateId = "stu_app_ses_dt_" + sesIndex
 	        
 	        clone.find('.ses_ck').attr('name', 'sesList['+sesIndex+'].stu_app_ses_ck').prop('checked', false);;
@@ -434,7 +434,7 @@ $(function() {
             $wrapper.css("display","block");
         }else{
 	        var clone = $(this).parent().find('.resumeFormWrapper').eq(0).clone(true).addClass('resumeForm_addStyle');
-	        var kmoveIndex = Number($(".kmove_st").attr('id').slice(-1)) + 1;
+	        var kmoveIndex = $(".kmove_st").length;
 	        var kmoveFrmId = "stu_app_kmove_frm_" + kmoveIndex;
 	        var kmoveEndId = "stu_app_kmove_end_" + kmoveIndex;
 
@@ -461,7 +461,7 @@ $(function() {
             $wrapper.css("display","block");
         }else{
             var clone = $wrapper.eq(0).clone(true);
-            var overseasIndex = Number($(".overseas_st").attr('id').slice(-1)) + 1;
+            var overseasIndex = $(".overseas_st").length;
             var overseasFrmId = "stu_app_overseas_frm_" + overseasIndex;
             var overseasEndId = "stu_app_overseas_end_" + overseasIndex;
             
