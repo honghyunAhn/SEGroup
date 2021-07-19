@@ -120,7 +120,7 @@
          	<div class="mainBannerWrapper swiper-container">
                 <div class="mainBannerWrap d-flex swiper-wrapper">
                 	<c:forEach var="data" items="${banner_list}">
-                		<div class="mainBanner swiper-slide">
+                		<!-- <div class="mainBanner swiper-slide">
  	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10133">
 	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg06.jpg" alt="이젠, 부산에서 해외취업하자! 해외취업 멘토링 참여하고 갤럭시 워치, 갤럭시 버즈 등 푸짐한 상품 받아가세요!">
 	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg06_mobile.jpg" alt="이젠, 부산에서 해외취업하자! 해외취업 멘토링 참여하고 갤럭시 워치, 갤럭시 버즈 등 푸짐한 상품 받아가세요!">
@@ -131,7 +131,7 @@
 	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg07.jpg" alt="취업률 94%의 비결, 멘토링으로 알아보자! 광주 해외취업 멘토링 참여하고 에어팟 프로 등 경품 받아가세요! 일정 : 2021.06.25(금) 14:00 장소 : (오프라인) 전남대학교 도서관 별관, (온라인) : Zoom ※상세 장소 및 온라인 참여 주소는 설명회 전에 개별 안내">
 	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg07_mobile.jpg" alt="취업률 94%의 비결, 멘토링으로 알아보자! 광주 해외취업 멘토링 참여하고 에어팟 프로 등 경품 받아가세요! 일정 : 2021.06.25(금) 14:00 장소 : (오프라인) 전남대학교 도서관 별관, (온라인) : Zoom ※상세 장소 및 온라인 참여 주소는 설명회 전에 개별 안내">
  	                    	</a>
- 	                    </div>
+ 	                    </div> -->
                  		
  	                    
  	                    <!-- <div class="mainBanner swiper-slide">
@@ -163,6 +163,12 @@
 	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg04_mobile.png" alt="Grand Open 회원가입 경품 대잔치! 2021.06.07(월)~06.30(수) 4주간 진행! 추첨을 통해 커피쿠폰 10명, 치킨추폰 10명, 피자쿠폰 10명 증정! 당첨자 공지는 7월 13일 안내 예정">
  	                    	</a>
  	                    </div> -->
+ 	                    <div class="mainBanner swiper-slide">
+ 	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10138">
+	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg08.jpg" alt="일본 IT취업과정 제 1기 Digital ABC마스터 온라인 과정 설명회 / 일정 : 인원이 모이면 수시 진행 예정 / 장소 : 온라인(온라인 참여 주소는 설명회 전에 개별 안내)">
+	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg08_mobile.jpg" alt="일본 IT취업과정 제 1기 Digital ABC마스터 온라인 과정 설명회 / 일정 : 인원이 모이면 수시 진행 예정 / 장소 : 온라인(온라인 참여 주소는 설명회 전에 개별 안내)">
+ 	                    	</a>
+ 	                    </div>
  	                    
  	                    <div class="mainBanner swiper-slide">
  	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10130">
