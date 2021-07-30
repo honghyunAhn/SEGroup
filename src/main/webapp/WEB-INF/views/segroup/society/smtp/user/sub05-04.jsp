@@ -443,7 +443,7 @@
 	                        	<input type="hidden" id="pay_crc_seq_${status.index}" name="pay_crc_seq" value="${item.PAY_CRC_SEQ}">
 	                        	<input type="hidden" name="course_id" value="${item.COURSE_ID}"/>
 	                        	<input type="hidden" id="gisu_id_${status.index}" name="cardinal_id" value="${item.CARDINAL_ID}"/>
-	                        	<input type="hidden" name="realPayment" value="${item.REAL_PAY_AMOUNT }"/>
+	                        	<input type="hidden" name="realPayment" value="${item.PAY_CRC_AMOUNT }"/>
 	                        	<input type="hidden" name="courseName" value="${item.COURSE_NAME }"/>
 	                        	<input type="hidden" name="user_nm" value="${user_nm}"/>
 	                        </form> 
