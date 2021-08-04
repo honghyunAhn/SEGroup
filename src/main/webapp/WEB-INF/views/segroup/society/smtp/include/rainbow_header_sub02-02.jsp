@@ -4,10 +4,8 @@
 function page_move(url, some_data) {
     var form = document.createElement("form");
     var input;
-
     form.action = url;
     form.method = "post";
-
     input = document.createElement("input");
     input.setAttribute("type", "hidden");
     input.setAttribute('name', "course_id");

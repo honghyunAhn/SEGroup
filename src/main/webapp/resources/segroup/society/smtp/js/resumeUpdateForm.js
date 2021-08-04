@@ -234,6 +234,8 @@ $(function() {
 	$("#stu_app_lang_dt_0").datepicker();
 	$("#stu_app_license_dt_0").datepicker();
 	$("#stu_app_ses_dt_0").datepicker();
+	$("#stu_app_kmove_frm_0").datepicker();
+	$("#stu_app_kmove_end_0").datepicker();
 	
     // 등록 이미지 등록 미리보기
     function readInputFile(input) {
@@ -905,6 +907,17 @@ function basicInfo_Check(){
 	
 	return true;
 }
+//날짜 양식 체크
+function checkDateForm(date){
+    var dayRegExp = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
+    return dayRegExp.test(date);
+}
+//시작,종료날짜 체크 
+function checkDate(start,end){
+    var startDate = new Date(start).getTime();
+    var endDate = new Date(end).getTime();
+    return startDate > endDate;
+}
 
 //학력정보 체크  : 항목 하나라도 입력하면 다른 항목도 전부 입력하도록. 아무것도 작성하지 않은  행은 무시하고 service 파일에서 삭제한다.
 function edu_Check(){
@@ -926,23 +939,56 @@ function edu_Check(){
 					eduResult = false;
 					//return false;
 				} else {
-					if(index2 == 2) {
-						if($(this).parent().prev("div").find("select").val() == "B1000") {
-							var grDate = new Date(item2.value);
-							if(today.getTime() < grDate.getTime()) {
-								alert("졸업일이 잘못되었습니다.");
-								location.href = "#rsm_education";
-								eduResult = false;
-							}
-						} else if($(this).parent().prev("div").find("select").val() == "B1001"|| $(this).parent().prev("div").find("select").val() == "B1002") {
-							var grDate = new Date(item2.value);
-							if(today.getTime() >= grDate.getTime()) {
-								alert("졸업예정일이 잘못되었습니다.");
-								location.href = "#rsm_education";
-								eduResult = false;
-							}
-						}
-					}
+				    if(index2 == 3 && item2.value === "B1000"){
+				    	    var grDateBox = item2.parentNode;
+					    var stringDate = grDateBox.parentNode.childNodes[9].childNodes[3].value;
+					    var grDate = new Date(stringDate);
+					    //var dayRegExp = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
+				    	    if(today.getTime() < grDate.getTime()){
+				    		alert("졸업일이 잘못되었습니다.");
+				    		location.href = "#rsm_education";
+				    		eduResult = false;
+				    	    }
+				    	    if (!checkDateForm(stringDate)){
+				    		alert("졸업일이 잘못되었습니다.");
+				    		location.href = "#rsm_education";
+				    		eduResult = false;
+				    	    }
+				    }else if(index2 == 3 && (item2.value ==="B1001" || item2.value === "B1002")){
+					var grDateBox = item2.parentNode;
+					var stringDate = grDateBox.parentNode.childNodes[9].childNodes[3].value;
+					var grDate = new Date(stringDate);
+					//var dayRegExp = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
+					if (!checkDateForm(stringDate)){
+				    		alert("졸업예정일이 잘못되었습니다.");
+				    		location.href = "#rsm_education";
+				    		eduResult = false;
+				    	    }
+				    }
+//					if(index2 == 2) {
+//						if($(this).parent().prev("div").find("select").val() == "B1000") {
+//							var grDate = new Date(item2.value);
+//							console.log(grDate)
+//							var dayRegExp = /^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/;
+//							var yyyymmddFormat = changeFormat(grDate);
+//							if(today.getTime() < grDate.getTime()) {
+//								alert("졸업일이 잘못되었습니다.");
+//								location.href = "#rsm_education";
+//								eduResult = false;
+//							}else if(!dayRegExp.test(yyyymmddFormat)){
+//							    	alert("날짜입력이 잘못되었습니다.");
+//								location.href = "#rsm_education";
+//								eduResult = false;
+//							}
+//						} else if($(this).parent().prev("div").find("select").val() == "B1001"|| $(this).parent().prev("div").find("select").val() == "B1002") {
+//							var grDate = new Date(item2.value);
+//							if(today.getTime() >= grDate.getTime()) {
+//								alert("졸업예정일이 잘못되었습니다.");
+//								location.href = "#rsm_education";
+//								eduResult = false;
+//							}
+//						}
+//					}
 				}
 				return eduResult;
 			});
@@ -969,6 +1015,11 @@ function ses_Check(){
 				location.href = "#rsm_participation";
 				sesResult = false;
 			}
+			if (!checkDateForm(app_take_dt)){
+			    alert("날짜 입력양식이  잘못되었습니다.")
+			    location.href = "#rsm_participation";
+				sesResult = false;
+			}
 		}else if(app_take_ck == undefined){
 			if(app_take_dt.length != 0 || app_take_rt.trim().length != 0){
 				alert("본 과정 응시여부에 체크해 주세요.")
@@ -992,10 +1043,24 @@ function kmove_Check(){
 		var kmove_ag = $('input:text[name="kmoveList[' + index + '].stu_app_kmove_ag"]').val();
 		var kmove_st = $('input:text[name="kmoveList[' + index + '].stu_app_kmove_st"]').val();
 		var kmove_et = $('input:text[name="kmoveList[' + index + '].stu_app_kmove_et"]').val();
+		var startDay = new Date(kmove_st);
+		var endDay = new Date(kmove_et);
 		
 		if(kmove_ck == "B0900") {
 			if (kmove_nm.trim().length == 0 || kmove_ag.trim().length == 0 || kmove_st.length == 0 || kmove_et.length == 0) {
 				alert("K-MOVE 스쿨 참여 정보를 입력해 주세요.");
+				location.href = "#rsm_kmove";
+				kmoveResult = false;
+			}else if(!checkDateForm(kmove_st) ||!checkDateForm(kmove_et)){
+			    	alert("날짜 입력양식이  잘못되었습니다.")
+				location.href = "#rsm_kmove";
+				kmoveResult = false;
+			}else if(startDay.getTime() > endDay.getTime()){
+			    	alert("날짜 입력양식이  잘못되었습니다.")
+				location.href = "#rsm_kmove";
+				kmoveResult = false;
+			}else if(checkDate(kmove_st,kmove_et)){
+			    	alert("날짜 입력양식이  잘못되었습니다.")
 				location.href = "#rsm_kmove";
 				kmoveResult = false;
 			}
@@ -1022,12 +1087,22 @@ function overseas_Check(){
 		var overseas_st = $('input:text[name="overseasList[' + index + '].stu_app_overseas_st"]').val();
 		var overseas_et = $('input:text[name="overseasList[' + index + '].stu_app_overseas_et"]').val();
 		var overseas_purpose = $('input:text[name="overseasList[' + index + '].stu_app_overseas_purpose"]').val();
+		var startDay = new Date(overseas_st);
+		var endDay = new Date(overseas_et);
 		
 		if(overseas_ck == "B0800") {
 			if (overseas_nm.trim().length == 0 || overseas_st.length == 0 || overseas_et.length == 0 || overseas_purpose.trim().length == 0) {
 				alert("해외경험 항목을 입력해 주세요.");
 				location.href = "#rsm_experience";
 				overseasResult = false;
+			}else if(!checkDateForm(overseas_st) ||!checkDateForm(overseas_et)){
+			    	alert("날짜 입력양식이  잘못되었습니다.")
+				location.href = "#rsm_experience";
+			    	overseasResult = false;
+			}else if(startDay.getTime() > endDay.getTime()){
+			    	alert("날짜 입력양식이  잘못되었습니다.")
+				location.href = "#rsm_experience";
+			    	overseasResult = false;
 			}
 		}else if(overseas_ck == undefined){
 			if(overseas_nm.trim().length != 0 || overseas_st.length != 0 || overseas_et.length != 0 || overseas_purpose.trim().length != 0){
@@ -1066,7 +1141,9 @@ function introduce_Check(){
 	});
 	return introduceResult;
 }
-
+function checkWithin(classname,target){
+    return classname.includes(target)
+}
 // 경력, 교육이수 체크 : 항목 하나라도 입력하면 다른 항목도 전부 입력하도록
 function others_Check(div){
 	var $wrapper = $(div).find('.resumeFormWrapper');
@@ -1081,14 +1158,35 @@ function others_Check(div){
 		});
 		
 		if(cnt > 0){
+		    var dataValues = []
 			$.each($(this).find("input"), function(index2, item2) {
-				if(item2.value.trim().length == 0) {
-					alert(category_nm + " 항목을 입력해주세요.");
+			    if(item2.value.trim().length == 0) {
+				alert(category_nm + " 항목을 입력해주세요.");
+				location.href = category_position;
+				result = false;
+			    }else if(div[0].id === "rsm_career"){
+				if(item2.name.includes("crr_st")){
+				    var startDay = item2.value
+				    var endDay = item2.parentNode.parentNode.childNodes[3].childNodes[3].value;
+				    if(!checkDateForm(startDay)|| !checkDateForm(endDay) || checkDate(startDay,endDay)){
+					alert("날짜 입력양식이 잘못되었습니다.")
 					location.href = category_position;
 					result = false;
-				} 
-				return result;
-			})
+				    }
+				}
+			    }else if (div[0].id === "rsm_learn"){
+				if(item2.name.includes("study_st")){
+				    var startDay_st = item2.value;
+				    var endDay_st = item2.parentNode.parentNode.childNodes[5].childNodes[3].value;
+				    if(!checkDateForm(startDay_st)|| !checkDateForm(endDay_st) || checkDate(startDay_st,endDay_st)){
+					alert("날짜 입력양식이 잘못되었습니다.")
+					location.href = category_position;
+					result = false;
+				    }
+				}
+			    }
+			return result;
+		})
 		}
 		cnt = 0;
 		return result;
@@ -1106,7 +1204,6 @@ function others_Check2(div){
 	
 	$.each($wrapper, function(index, item) {
 		var code = $(this).find("select").val();
-		
 		switch(code){
 		case "":
 			$.each($(this).find("input"), function(index2, item2) {
@@ -1128,6 +1225,13 @@ function others_Check2(div){
 					location.href = category_position;
 					result = false;
 				} 
+				if(checkWithin(item2.className,"obtain_dt")){
+			    	    if(!checkDateForm(item2.value)){
+			    		alert("날짜 입력양식이  잘못되었습니다.")
+			    		location.href = category_position;
+					result = false;
+			    	    }
+			    	}
 				return result;
 			})
 			return result;
@@ -1141,6 +1245,13 @@ function others_Check2(div){
 					location.href = category_position;
 					result = false;
 				} 
+				if(checkWithin(item2.className,"obtain_dt")){
+			    	    if(!checkDateForm(item2.value)){
+			    		alert("날짜 입력양식이  잘못되었습니다.")
+			    		location.href = category_position;
+					result = false;
+			    	    }
+			    	}
 				return result;
 			})
 			return result;

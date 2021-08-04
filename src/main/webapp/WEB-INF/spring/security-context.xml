@@ -156,6 +156,8 @@
 		<intercept-url pattern="/smtp/apply/sub00-02" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
 		
 		<intercept-url pattern="/smtp/course/**" access="permitAll"/>
+		<intercept-url pattern="/smtp/community/**" access="permitAll"/>
+		
 		<intercept-url pattern="/**" access="permitAll" />
 		
 		<csrf disabled="true"/>		
@@ -182,7 +184,7 @@
 		<logout logout-url="/user/signout" logout-success-url="/"/>
 		<access-denied-handler ref="accessDeniedHandler" />
 		
-		<session-management invalid-session-url="/rainbow" session-authentication-strategy-ref="sas" />
+<!-- 		<session-management invalid-session-url="/rainbow" session-authentication-strategy-ref="sas" /> -->
 		
 	</http>
 	

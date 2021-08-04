@@ -67,7 +67,7 @@
                                     <li class="thTxt">모집기간</li>
                                 </ul>
                                 <ul class="infoTd">
-                                    <li>2021.07.11(일) 까지</li>
+                                    <li>2021.07.28(수) 까지</li>
                                 </ul>
                             </div>
                             <div class="d-flex jus">
@@ -76,7 +76,7 @@
                                     <li class="thTxt">교육기간</li>
                                 </ul>
                                 <ul class="infoTd">
-                                    <li>2021.07.20 ~ 2022.05.26</li>
+                                    <li>2021.07.29 ~ 2022.06.02</li>
                                     <li>월/화/수/목 08:30 ~ 18:00</li>
                                 </ul>
                             </div>

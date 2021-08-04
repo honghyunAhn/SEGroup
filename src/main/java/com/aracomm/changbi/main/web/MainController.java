@@ -360,7 +360,7 @@ public class MainController extends BaseController {
 		}
 		model.addAttribute("subbanner_list", subbanner_list);
 		
-		return "/segroup/society/smtp/rainbow_main_new";
+		return "/segroup/society/smtp/index";
 	}
 	
 	/**

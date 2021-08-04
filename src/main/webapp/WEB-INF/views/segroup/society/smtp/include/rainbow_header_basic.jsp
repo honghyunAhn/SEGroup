@@ -5,7 +5,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <script type="text/javascript">
-
 	$(document).ready(function(){
 		$('.logout').on("click", function() {
 	         $('#logoutForm').submit();
@@ -16,10 +15,8 @@
     function page_move(url, some_data) {
         var form = document.createElement("form");
         var input;
-
         form.action = url;
         form.method = "post";
-
         input = document.createElement("input");
         input.setAttribute("type", "hidden");
         input.setAttribute('name', "course_id");

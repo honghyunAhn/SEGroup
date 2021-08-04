@@ -85,7 +85,7 @@
 	}
     /* content */
 	.container_rainbow>.content .mainBannerWrapper .mainBanner>.bannerTextWrap{
-	bottom : 30px;
+	bottom : -30px;
 	}
 	.container_rainbow>.content .mainBannerWrapper .mainBanner>.bannerTextWrap>.button{
 		padding : 5px;

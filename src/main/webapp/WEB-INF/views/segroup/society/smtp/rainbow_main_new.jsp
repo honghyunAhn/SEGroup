@@ -108,6 +108,7 @@
 //     			return false;
 //     		}
 //     	}
+// 	console.log("asd");
     </script>
 </head>
 <body>
@@ -150,12 +151,12 @@
  	                        </div> -->
  	                        <!-- <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg01.jpg">
  	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg01_mobile.jpg"> -->
- 	                        <div class="bannerTextWrap d-flex justify_center">
+ 	                        <div class="bannerTextWrap d-flex justify_center fz20">
 	                        	<a class="button btn_normal" href="/smtp/course/scmaster/scmaster-info?course_id=c000000526">광주과정 바로가기</a>
 	                        	<a class="button btn_normal" href="/smtp/course/scmaster/scmaster-info?course_id=c000000548">부산과정 바로가기</a>
  	                        </div>
- 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg02.jpg" alt="페이스메이커 운영 중! 최종합격까지 함께 뛴다! 단계별 맞춤형 코칭 프로그램으로 최종 합격까지!">
- 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg02_mobile.jpg" alt="페이스메이커 운영 중! 최종합격까지 함께 뛴다! 단계별 맞춤형 코칭 프로그램으로 최종 합격까지!">
+ 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg02.jpg" alt="21년간 취업률 97% 달성! 해외 IT취업 연계과정(모집마감 임박 ~7/22까지)">
+ 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg02_mobile.jpg" alt="21년간 취업률 97% 달성! 해외 IT취업 연계과정(모집마감 임박 ~7/22까지)">
  	                    </div>
  	                    <!-- <div class="mainBanner swiper-slide">
  	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10115">
@@ -163,12 +164,12 @@
 	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg04_mobile.png" alt="Grand Open 회원가입 경품 대잔치! 2021.06.07(월)~06.30(수) 4주간 진행! 추첨을 통해 커피쿠폰 10명, 치킨추폰 10명, 피자쿠폰 10명 증정! 당첨자 공지는 7월 13일 안내 예정">
  	                    	</a>
  	                    </div> -->
- 	                    <div class="mainBanner swiper-slide">
- 	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10138">
-	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg08.jpg" alt="일본 IT취업과정 제 1기 Digital ABC마스터 온라인 과정 설명회 / 일정 : 인원이 모이면 수시 진행 예정 / 장소 : 온라인(온라인 참여 주소는 설명회 전에 개별 안내)">
-	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg08_mobile.jpg" alt="일본 IT취업과정 제 1기 Digital ABC마스터 온라인 과정 설명회 / 일정 : 인원이 모이면 수시 진행 예정 / 장소 : 온라인(온라인 참여 주소는 설명회 전에 개별 안내)">
+ 	                    <!-- <div class="mainBanner swiper-slide">
+ 	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10139">
+	 	                        <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg08.jpg" alt="2021년 DX 온라인 세미나 디지털 트랜스포메이션 '미전공자의 IT 개발자 취업' 일시 : 7.16 14:00 장소 : 온라인(참여 주소는 세미나 진행 전 개별 안내) ">
+	 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg08_mobile.jpg" alt="2021년 DX 온라인 세미나 디지털 트랜스포메이션 '미전공자의 IT 개발자 취업' 일시 : 7.16 14:00 장소 : 온라인(참여 주소는 세미나 진행 전 개별 안내)">
  	                    	</a>
- 	                    </div>
+ 	                    </div> -->
  	                    
  	                    <div class="mainBanner swiper-slide">
  	                        <a href="https://www.softsociety.net/smtp/community/sub04-01-01.do?seq=10130">
@@ -219,22 +220,22 @@
 			<div class="courseWrapper">
 				<div class="title_barPoint_wh fz40">모집과정</div>
 				<div class="d-flex flexWrap courseWrap">
-					<div class="course">
-						<a href="/smtp/course/short-term/short-term-info?course_id=c000000543">
-							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb01.jpg">
-						</a>
-						<div class="course-txt">
+<!-- 					<div class="course"> -->
+<!-- 						<a href="/smtp/course/short-term/short-term-info?course_id=c000000543"> -->
+<!-- 							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb01.jpg"> -->
+<!-- 						</a> -->
+						<!-- <div class="course-txt">
 							<div class="course-name">3주 완성! 코딩 챌린지 과정</div>
 							<div class="course-term">모집마감 2021.07.04 까지</div>
-						</div>
-					</div>
+						</div> -->
+<!-- 					</div> -->
 					<div class="course">
 						<a href="/smtp/course/scmaster/scmaster-info?course_id=c000000526">
 							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb02.jpg">
 						</a>
 						<div class="course-txt">
 							<div class="course-name">[광주] SoftWare DevOps 마스터 과정</div>
-							<div class="course-term">모집마감 2021.07.11 까지</div>
+							<div class="course-term">모집마감 2021.07.28 까지</div>
 						</div>
 					</div>
 					<div class="course">
@@ -243,7 +244,7 @@
 						</a>
 						<div class="course-txt">
 							<div class="course-name">[부산] Digital ABC 마스터 과정</div>
-							<div class="course-term">모집마감 2021.07.11 까지</div>
+							<div class="course-term">모집마감 2021.07.28 까지</div>
 							<!-- 학습기간 : 2021.07.20 ~ 2022.05.26 -->
 						</div>
 					</div>
