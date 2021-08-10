@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -49,11 +48,11 @@
                                 </div>
                                 <ul class="courseList fc_333">
                                     <li><a href="">취업뽀개기(사전학습반)</a></li>
-                                    <li><a href="">SCIT MASTER</a></li>
-                                    <li><a href="">SWDO MASTER</a></li>
+                                    <li><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000525">SCIT MASTER</a></li>
+                                    <li><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000526">SWDO MASTER</a></li>
                                 </ul>
                                 <div class="btn_moreList">
-                                    <a href="rainbow-cousre01.html">과정 더 보기 &nbsp;&gt;</a>
+                                    <a href="/smtp/course/short-term/short-term-info?course_id=rainbow-cousre01">과정 더 보기 &nbsp;&gt;</a>
                                 </div>
                             </div>
                             <div class="course bgc_point02">
@@ -62,7 +61,7 @@
                                     <div>내일배움카드 과정</div>
                                 </div>
                                 <ul class="courseList fc_333">
-                                    <li><a href="rainbow-course02-01.html">파이썬 기초 과정</a></li>
+                                    <li><a href="/smtp/course/short-term/short-term-info?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
                                     <li><a href="">JAVA기반 웹 개발자 과정</a></li>
                                 </ul>
                                 <div class="btn_moreList">
