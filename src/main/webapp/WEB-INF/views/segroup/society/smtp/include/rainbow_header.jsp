@@ -4,7 +4,7 @@
 <div class="headerWrap" id="header">
     <header class="header d-flex justify_between">
         <h1 class="header-logo">
-            <a href="index.html" title="메인">
+            <a href="/rainbow" title="메인">
                 <img src="/resources/segroup/society/smtp/img/logo-rainbow-wh_100x20px.png" alt="rainbow">
             </a>
         </h1>

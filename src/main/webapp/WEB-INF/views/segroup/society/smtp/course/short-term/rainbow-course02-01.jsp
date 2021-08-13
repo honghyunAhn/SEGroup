@@ -311,7 +311,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="course-detail.html">
+                                            <a href="/smtp/course/short-term/short-term-info?course_id=course-detail">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">SoftWare DevOps MASTER 8기</div>
@@ -320,7 +320,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="course-detail.html">
+                                            <a href="/smtp/course/short-term/short-term-info?course_id=course-detail">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">Digital Ai Big-data Cloud Master 1기</div>
@@ -329,7 +329,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="course-detail.html">
+                                            <a href="/smtp/course/short-term/short-term-info?course_id=course-detail">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">Smart Cloud IT MASTER 42기</div>
@@ -338,7 +338,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="course-detail.html">
+                                            <a href="/smtp/course/short-term/short-term-info?course_id=course-detail">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">Smart Cloud IT MASTER 42기</div>

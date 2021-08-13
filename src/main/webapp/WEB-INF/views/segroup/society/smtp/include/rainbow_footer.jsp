@@ -5,7 +5,7 @@
     <div class="footer d-flex justify_between">
         <div class="footer_textWrap">
             <!-- logoImg -->
-            <img src="resources/segroup/society/smtp/img/logo-rainbow-wh_100x20px.png" alt="rainbow">
+            <img src="/resources/segroup/society/smtp/img/logo-rainbow-wh_100x20px.png" alt="rainbow">
             <ul class="intro intro_txt">
                 <li>(주) 소프트엔지니어소사이어티</li>
                 <li>서울시 강남구 영동대로513 코엑스4F ICT교육센터</li>

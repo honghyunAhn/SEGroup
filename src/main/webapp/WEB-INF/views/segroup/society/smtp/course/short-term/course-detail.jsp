@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <%@include file="../../include/rainbow_head.jsp"%>
-    <script src="js/rainbowScript_courseDetail.js"></script>
+    <script src="/resources/segroup/society/smtp/js/rainbowScript_courseDetail.js"></script>
     <script type="text/javascript">
         const dDay = new Date("July 22,2021, 23:59:59").getTime();
     </script>
@@ -304,7 +304,7 @@
                                     <h3 class="h3 section-subTitle">강사의 다른 강의를 만나보세요! 😀</h3>
                                     <ul class="courseList d-flex flexWrap">
                                         <li class="cs_ict">
-                                            <a href="course-detail.html">
+                                            <a href="/smtp/course/short-term/short-term-info?course_id=course-detail">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">코딩 챌린지 과정 1기</div>
@@ -313,7 +313,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="course-detail.html">
+                                            <a href="/smtp/course/short-term/short-term-info?course_id=course-detail">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">SoftWare DevOps MASTER 8기</div>
@@ -322,7 +322,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="course-detail.html">
+                                            <a href="/smtp/course/short-term/short-term-info?course_id=course-detail">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">Digital Ai Big-data Cloud Master 1기</div>
@@ -331,7 +331,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="course-detail.html">
+                                            <a href="/smtp/course/short-term/short-term-info?course_id=course-detail">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">Smart Cloud IT MASTER 42기</div>
@@ -340,7 +340,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="course-detail.html">
+                                            <a href="/smtp/course/short-term/short-term-info?course_id=course-detail">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">Smart Cloud IT MASTER 42기</div>
@@ -530,7 +530,7 @@
                 <div class="course-applyWrap" id="scrollFixed03">
                     <div class="courseImgWrap">
                         <div class="courseImg">
-                            <img src="img/course_thumb03.jpg" alt="">
+                            <img src="/resources/segroup/society/smtp/img/course_thumb03.jpg" alt="">
                             <div class="bgc_point fz18 courseCount">모집마감일 : 21.07.22 까지</div>
                         </div>
                     </div>
