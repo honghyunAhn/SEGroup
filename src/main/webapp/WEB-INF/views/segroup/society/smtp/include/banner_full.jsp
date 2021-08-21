@@ -3,7 +3,7 @@
 <div class="fullBannerWrapper swiper-container">
     <div class="swiper-wrapper fullBannerWrap d-flex">
         <div class="swiper-slide fullBanner">
-            <a href="">
+            <a href="/smtp/course/short-term/short-term-info?course_id=c000000541">
                 <img src="/resources/segroup/society/smtp/img/fullBanner01.jpg" alt="일본취업 필수과정 일본취업을 위한 JPT&JLPT 바로가기">
             </a>
         </div>

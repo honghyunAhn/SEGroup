@@ -15,7 +15,7 @@
                 <li>통신판매업신고번호 : 제 강남-03736호</li>
             </ul>
             <ul class="intro intro_btn d-flex">
-                <li><a href="" class="btn_normal">개인정보처리방침</a></li>
+                <li><a href="/privacy_policy" class="btn_normal">개인정보처리방침</a></li>
             </ul>
         </div>
 

@@ -47,7 +47,7 @@
                                     <div>해외취업캠퍼스 </div>
                                 </div>
                                 <ul class="courseList fc_333">
-                                    <li><a href="">취업뽀개기(사전학습반)</a></li>
+                                    <li><a href="/smtp/course/short-term/short-term-info?course_id=c000000543">취업뽀개기(사전학습반)</a></li>
                                     <li><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000525">SCIT MASTER</a></li>
                                     <li><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000526">SWDO MASTER</a></li>
                                 </ul>
@@ -65,7 +65,7 @@
                                     <li><a href="">JAVA기반 웹 개발자 과정</a></li>
                                 </ul>
                                 <div class="btn_moreList">
-                                    <a href="rainbow-cousre02.html">과정 더 보기 &nbsp;&gt;</a>
+                                    <a href="/smtp/course/short-term/short-term-info?course_id=rainbow-cousre02">과정 더 보기 &nbsp;&gt;</a>
                                 </div>
                             </div>
                             <div class="course bgc_point03">
@@ -75,11 +75,11 @@
                                 </div>
                                 <ul class="courseList fc_333">
                                     <li><a href="">토익/토플 접수</a></li>
-                                    <li><a href="">일본취업 스킬업</a></li>
+                                    <li><a href="href=/smtp/course/short-term/short-term-info?course_id=c000000544">일본취업 스킬업</a></li>
                                     <li><a href="">정보처리자격증</a></li>
                                 </ul>
                                 <div class="btn_moreList">
-                                    <a href="rainbow-cousre03.html">과정 더 보기 &nbsp;&gt;</a>
+                                    <a href="href=/smtp/course/short-term/short-term-info?course_id=rainbow-cousre03">과정 더 보기 &nbsp;&gt;</a>
                                 </div>
                             </div>
                             <div class="course bgc_point04">
