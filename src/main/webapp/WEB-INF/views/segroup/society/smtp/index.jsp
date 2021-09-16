@@ -79,7 +79,7 @@
                                     <li><a href="">정보처리자격증</a></li>
                                 </ul>
                                 <div class="btn_moreList">
-                                    <a href="href=/smtp/course/short-term/short-term-info?course_id=rainbow-cousre03">과정 더 보기 &nbsp;&gt;</a>
+                                    <a href="/smtp/course/short-term/short-term-info?course_id=rainbow-cousre03">과정 더 보기 &nbsp;&gt;</a>
                                 </div>
                             </div>
                             <div class="course bgc_point04">
@@ -88,15 +88,15 @@
                                     <div>글로벌 잡매칭</div>
                                 </div>
                                 <ul class="courseList fc_333">
-                                    <li><a href="">브릿지 잡페어</a></li>
+                                    <li><a href="https://www.softsociety.net/fap/user/user_main">브릿지 잡페어</a></li>
                                 </ul>
                                 <div class="btn_moreList">
-                                    <a href="rainbow-cousre04.html">과정 더 보기 &nbsp;&gt;</a>
+                                    <a href="/smtp/course/short-term/short-term-info?course_id=rainbow-cousre04">과정 더 보기 &nbsp;&gt;</a>
                                 </div>
                             </div>
                         </div>
                         <div class="btn_allList">
-                            <a href="course-list.html">전체 과정 보기 &nbsp;&gt;</a>
+                            <a href="/smtp/course/short-term/short-term-info?course_id=course-list">전체 과정 보기 &nbsp;&gt;</a>
                         </div>
                     </div>
                     <%@include file="include/banner_full.jsp"%>
