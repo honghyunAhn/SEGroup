@@ -111,6 +111,21 @@ public class SmtpCourseController {
 		return url;
 	}
 	
+/* ----------------------------------smpt-new-rainbow 관련 컨트롤러 모음 ---------------------------------------------*/
+
+	
+	@RequestMapping(value = "/smtp/course/new-rainbow/new-rainbow-info", method = {RequestMethod.POST, RequestMethod.GET})
+	public String newRainbowInfo(String course_id, Model model,HttpServletRequest request) {
+				
+		logger.info("2021 Rainbow 페이지 이동 컨트롤러 시작");
+
+		String url = "segroup/society/smtp/course/new-rainbow/" + course_id;
+		
+		logger.info("2021 Rainbow 페이지 이동 컨트롤러 종료");
+		
+		return url;
+	}
+	
 	/* ----------------------------------모든 페이지에서 사용 되는 메서드 정리---------------------------------------------*/
 	
 	@RequestMapping(value = "/smtp/course/makesignature", method = RequestMethod.GET)

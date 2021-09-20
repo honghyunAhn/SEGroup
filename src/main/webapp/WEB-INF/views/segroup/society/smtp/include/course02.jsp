@@ -8,7 +8,7 @@
         </div>
         <ul class="courseList d-flex flexWrap">
             <li class="cs_tlc">
-                <a href="/smtp/course/short-term/short-term-info?course_id=rainbow-course02-01">
+                <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-course02-01">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
                         <div class="fc_666">파이썬 기초 과정</div>
@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li class="cs_tlc">
-                <a href="/smtp/course/short-term/short-term-info?course_id=course-detail.html">
+                <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=course-detail">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
                         <div class="fc_666">JAVA 기반 웹 개발자 과정</div>

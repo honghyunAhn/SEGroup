@@ -9,11 +9,11 @@
             </a>
         </h1>
         <ul class="header-menu d-flex fz16">
-            <li class="hdrMenu link"><a href="rainbow-cousre01.html">해외취업캠퍼스</a></li>
-            <li class="hdrMenu link"><a href="rainbow-cousre02.html">내일배움카드 과정</a></li>
-            <li class="hdrMenu link"><a href="rainbow-cousre03.html">자격증 코스</a></li>
-            <li class="hdrMenu link"><a href="rainbow-cousre04.html">글로벌 잡매칭</a></li>
-            <li class="hdrMenu link"><a href="rainbow-community.html">커뮤니티</a></li>
+            <li class="hdrMenu link"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre01">해외취업캠퍼스</a></li>
+            <li class="hdrMenu link"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre02">내일배움카드 과정</a></li>
+            <li class="hdrMenu link"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre03">자격증 코스</a></li>
+            <li class="hdrMenu link"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre04">글로벌 잡매칭</a></li>
+            <li class="hdrMenu link"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre-community">커뮤니티</a></li>
         </ul>
         <div class="img-icon bars-2line" id="showNav"></div>
     </header>

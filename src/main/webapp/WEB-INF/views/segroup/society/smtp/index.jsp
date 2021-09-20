@@ -52,7 +52,7 @@
                                     <li><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000526">SWDO MASTER</a></li>
                                 </ul>
                                 <div class="btn_moreList">
-                                    <a href="/smtp/course/short-term/short-term-info?course_id=rainbow-cousre01">과정 더 보기 &nbsp;&gt;</a>
+                                    <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre01">과정 더 보기 &nbsp;&gt;</a>
                                 </div>
                             </div>
                             <div class="course bgc_point02">
@@ -61,11 +61,11 @@
                                     <div>내일배움카드 과정</div>
                                 </div>
                                 <ul class="courseList fc_333">
-                                    <li><a href="/smtp/course/short-term/short-term-info?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
+                                    <li><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
                                     <li><a href="">JAVA기반 웹 개발자 과정</a></li>
                                 </ul>
                                 <div class="btn_moreList">
-                                    <a href="/smtp/course/short-term/short-term-info?course_id=rainbow-cousre02">과정 더 보기 &nbsp;&gt;</a>
+                                    <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre02">과정 더 보기 &nbsp;&gt;</a>
                                 </div>
                             </div>
                             <div class="course bgc_point03">
@@ -79,7 +79,7 @@
                                     <li><a href="">정보처리자격증</a></li>
                                 </ul>
                                 <div class="btn_moreList">
-                                    <a href="/smtp/course/short-term/short-term-info?course_id=rainbow-cousre03">과정 더 보기 &nbsp;&gt;</a>
+                                    <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre03">과정 더 보기 &nbsp;&gt;</a>
                                 </div>
                             </div>
                             <div class="course bgc_point04">
@@ -91,12 +91,12 @@
                                     <li><a href="https://www.softsociety.net/fap/user/user_main">브릿지 잡페어</a></li>
                                 </ul>
                                 <div class="btn_moreList">
-                                    <a href="/smtp/course/short-term/short-term-info?course_id=rainbow-cousre04">과정 더 보기 &nbsp;&gt;</a>
+                                    <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre04">과정 더 보기 &nbsp;&gt;</a>
                                 </div>
                             </div>
                         </div>
                         <div class="btn_allList">
-                            <a href="/smtp/course/short-term/short-term-info?course_id=course-list">전체 과정 보기 &nbsp;&gt;</a>
+                            <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=course-list">전체 과정 보기 &nbsp;&gt;</a>
                         </div>
                     </div>
                     <%@include file="include/banner_full.jsp"%>

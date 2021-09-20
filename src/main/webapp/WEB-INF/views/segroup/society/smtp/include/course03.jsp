@@ -8,7 +8,7 @@
         </div>
         <ul class="courseList d-flex flexWrap">
             <li class="cs_lcns">
-                <a href="/smtp/course/short-term/short-term-info?course_id=course-detail">
+                <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=course-detail">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
                         <div class="fc_666">토익/토플 접수</div>
@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li class="cs_lcns">
-                <a href="/smtp/course/short-term/short-term-info?course_id=course-detail">
+                <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=course-detail">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
                         <div class="fc_666">일본취업을 위한 JPT & SJPT</div>
@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li class="cs_lcns">
-                <a href="/smtp/course/short-term/short-term-info?course_id=course-detail">
+                <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=course-detail">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
                         <div class="fc_666">일본취업 스킬업</div>
@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li class="cs_lcns">
-                <a href="/smtp/course/short-term/short-term-info?course_id=course-detail">
+                <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=course-detail">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
                         <div class="fc_666">정보처리산업기사</div>
