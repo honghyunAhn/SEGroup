@@ -163,11 +163,11 @@
 		<csrf disabled="true"/>		
 		
 		<form-login
-			login-page="/smtp/user/sub01-01"
+			login-page="/smtp/user/rainbow-user01-01"
 			username-parameter="user_id"
 			password-parameter="user_pw"
 			login-processing-url="/smtp/user/login"
-			authentication-failure-url="/smtp/user/sub01-01?error=1"
+			authentication-failure-url="/smtp/user/rainbow-user01-01?error=1"
 			default-target-url="/smtp/user/user_login_success"	/>
 		
 		<logout
