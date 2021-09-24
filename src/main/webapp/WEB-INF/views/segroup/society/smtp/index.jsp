@@ -88,7 +88,7 @@
                                     <div>글로벌 잡매칭</div>
                                 </div>
                                 <ul class="courseList fc_333">
-                                    <li><a href="https://www.softsociety.net/fap/user/user_main">브릿지 잡페어</a></li>
+                                    <li><a href="/fap/user/user_main">브릿지 잡페어</a></li>
                                 </ul>
                                 <div class="btn_moreList">
                                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre04">과정 더 보기 &nbsp;&gt;</a>

@@ -97,7 +97,6 @@
     <div class="container_rainbow">
         <!-- Header-include -->
         <%@include file="../include/rainbow_header_basic.jsp"%>
-
         <div class="content sub-content sub01_content" id="main">
             <div class="section_header">
                 <strong class="h4">레인보우에 오신 것을 환영합니다.</strong>
