@@ -178,6 +178,38 @@ public class SmtpUserController {
 		return "/segroup/society/smtp/user/sub01-01";
 	}
 	
+	@RequestMapping(value = "/smtp/user/rainbow-user01-01", method = RequestMethod.GET)
+	public String rainbow_user01_01(HttpServletRequest request, HttpServletResponse response, HttpSession session, Authentication auth) {
+		logger.info("로그인 페이지 이동 컨트롤러 시작");
+		
+		Exception exception = (Exception) session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
+
+		if ((exception != null) && !(exception.getCause() instanceof UsernameNotFoundException
+				|| exception.getCause() instanceof BadCredentialsException)) {
+			// 세션 초기화
+			SecurityContextHolder.clearContext();
+			session.invalidate();
+			// 휴면 계정 처리
+//			if (exception.getCause() instanceof DisabledException) {
+//				return PathConstants.SEGROUP_SOCIETY + PathConstants.SOCIETY_EDU_USER_DORMANCY_FORM;
+//			}
+			// 탈퇴 계정 처리
+			if (exception.getCause() instanceof AccountExpiredException) {
+				return PathConstants.SEGROUP_SOCIETY + PathConstants.SOCIETY_EDU_USER_EXPIRED_FORM;
+			}
+			// 정지 계정 처리
+			else if (exception.getCause() instanceof LockedException) {
+				return PathConstants.SEGROUP_SOCIETY + PathConstants.SOCIETY_EDU_USER_LOCKED_FORM;
+			}
+			// 승인 대기 계정 처리
+			else if (exception.getCause() instanceof WaitingException) {
+				return PathConstants.SEGROUP_SOCIETY + PathConstants.SOCIETY_EDU_USER_PENDING_APPROVAL_FORM;
+			}
+		}
+		logger.info("로그인 페이지 이동 컨트롤러 종료");
+		return "/segroup/society/smtp/user/rainbow-user01-01";
+	}
+	
 	@RequestMapping(value = "/smtp/user/user_login_success", method = RequestMethod.GET)
 	public String smtp_user_login_success(Authentication auth, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response) {
 		logger.info("smtp 회원 로그인 성공 컨트롤러 시작");
