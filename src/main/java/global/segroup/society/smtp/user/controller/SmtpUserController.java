@@ -179,11 +179,13 @@ public class SmtpUserController {
 	}
 	
 	@RequestMapping(value = "/smtp/user/rainbow-user01-01", method = RequestMethod.GET)
-	public String rainbow_user01_01(HttpServletRequest request, HttpServletResponse response, HttpSession session, Authentication auth) {
+	public String rainbow_user01_01(HttpServletRequest request, HttpServletResponse response, HttpSession session, Authentication auth, 
+			@RequestParam(value="error", defaultValue="0") int error, Model model) {
 		logger.info("로그인 페이지 이동 컨트롤러 시작");
-		
 		Exception exception = (Exception) session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
-
+		if (error == 1) {
+			session.removeAttribute("user_id");
+		}
 		if ((exception != null) && !(exception.getCause() instanceof UsernameNotFoundException
 				|| exception.getCause() instanceof BadCredentialsException)) {
 			// 세션 초기화

@@ -165,10 +165,10 @@
     hideN.addEventListener("click", hideNav)
     
     //로그아웃
-    $(document).ready(function(){
-		$('.logout').on("click", function() {
+    $('.logout').on("click", function() {
 	         $('#logoutForm').submit();
 	         return false;
-	    });
+	});
+    $(document).ready(function(){
 	});
 </script>
