@@ -455,6 +455,60 @@ public class SmtpUserController {
 		return "/segroup/society/smtp/user/sub01-02";
 	}
 	
+	@RequestMapping(value = "/smtp/user/rainbow-user01-02",  method = {RequestMethod.GET,RequestMethod.POST})
+	public String rainbow_user01_02(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
+		logger.info("회원가입 이용약관 페이지 이동 컨트롤러 시작");
+		
+		  //날짜 생성 
+		  Calendar today = Calendar.getInstance(); 
+		  SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); 
+		  String day = sdf.format(today.getTime());
+		  
+		  java.util.Random ran = new Random(); 		  
+		  //랜덤 문자 길이 
+		  int numLength = 6; 
+		  String randomStr = "";
+		  
+		  for (int i = 0; i < numLength; i++) { 
+		  //0 ~ 9 랜덤 숫자 생성 
+		    randomStr +=	 ran.nextInt(10); 
+		   } 
+		  //reqNum은 최대 40byte 까지 사용 가능
+		  
+		  MsgCrypto mscr = new MsgCrypto();
+		 
+		  String reqNum = day + randomStr; 
+		  String reqInfo = ""; 
+		  String encReqInfo = "";
+		 String rtn_url = "https://www.softsociety.net/smtp/user/user_mobile_verification"; //(운영서버 적용시)
+//		 String rtn_url = "http://localhost:8080/smtp/user/user_mobile_verification";  
+		  String cpId = "sesoc"; // 회원사ID 
+		  String urlCode = "01001"; // URL 코드 
+		  String reqdate = day;  // 요청일시
+		  
+		  reqInfo = urlCode + "/" + reqNum + "/" + reqdate; //암호화 시킬 데이터 '/'로 구분해서 합친다.	 
+		 encReqInfo = mscr.msgEncrypt(reqInfo, "/usr/local/cert/sesocCert.der");	//(운영서버 적용시)	
+//		 encReqInfo = mscr.msgEncrypt(reqInfo,"D:/sesocCert.der");
+		  
+		   //deprecated 되서 수정함 - 2019.03.05 이종호
+		   //encReqInfo = URLEncoder.encode(encReqInfo);
+			try {
+				encReqInfo = URLEncoder.encode(encReqInfo,"UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//msgEncrypt(암호화 시킬 값, 인증서 경로);
+		  
+		    model.addAttribute("cpId",cpId);
+		    model.addAttribute("rtn_url",rtn_url);
+		    model.addAttribute("encReqInfo",encReqInfo);
+		 
+		logger.info("회원가입 이용약관 페이지 이동 컨트롤러 종료");
+		
+		return "/segroup/society/smtp/user/rainbow-user01-02";
+	}
+	
 	@RequestMapping(value ="/smtp/user/user_mobile_verification", method = RequestMethod.GET)
 	public String smtp_user_mobile_verification(HttpSession session ,Model model, HttpServletRequest request) {
 		logger.debug("모바일인증 페이지 이동 컨트롤러 시작");
@@ -526,6 +580,16 @@ public class SmtpUserController {
 		
 		return "/segroup/society/smtp/user/sub01-03";
 	}
+	
+	@RequestMapping(value = "smtp/user/rainbow-user01-03", method = RequestMethod.GET)
+	public String rainbow_user01_03(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		logger.info("아이디 찾기 페이지 이동 컨트롤러 시작");
+		logger.info("아이디 찾기 페이지 이동 컨트롤러 종료");
+		
+		return "/segroup/society/smtp/user/rainbow-user01-03";
+	}
+	
 	@RequestMapping(value = "/smtp/user/lostId", method = RequestMethod.POST)
 	public String smtp_lostId(String email, String name, String phone, Model model, RedirectAttributes redirectAttributes) {
 		logger.info("아이디 찾기 결과 페이지 이동 컨트롤러 시작");

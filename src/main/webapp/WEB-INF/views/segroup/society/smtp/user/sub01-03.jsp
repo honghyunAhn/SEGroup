@@ -66,7 +66,6 @@
     <div class="container_rainbow">
         <!-- Header-include -->
         <%@include file="../include/rainbow_header_basic.jsp"%>
-
         <div class="content sub-content sub01_content" id="main">
             <div class="section_header">
                 <strong class="h4">아이디찾기</strong>
