@@ -70,42 +70,42 @@
                     <li class="gnb">
                         <a href="rainbow-cousre01.html">해외취업캠퍼스</a>
                     </li>
-                    <li class="lnb"><a href="">코딩챌린지(사전학습반)</a></li>
-                    <li class="lnb"><a href="">서울 SCIT MASTER</a></li>
-                    <li class="lnb"><a href="">광주 SWDO MASTER</a></li>
-                    <li class="lnb"><a href="">부산 ABC MASTER</a></li>
+                    <li class="lnb"><a href="/smtp/course/short-term/short-term-info?course_id=c000000543">코딩챌린지(사전학습반)</a></li>
+                    <li class="lnb"><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000525">서울 SCIT MASTER</a></li>
+                    <li class="lnb"><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000526">광주 SWDO MASTER</a></li>
+                    <li class="lnb"><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000548">부산 ABC MASTER</a></li>
                 </ul>
                 <ul class="menu-title-division">
                     <li class="gnb">
-                        <a href="rainbow-cousre02.html">내일배움카드 과정</a>
+                        <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre02">내일배움카드 과정</a>
                     </li>
-                    <li class="lnb"><a href="rainbow-course02-01.html">파이썬 기초 과정</a></li>
+                    <li class="lnb"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
                     <li class="lnb"><a href="">JAVA기반 웹 개발자 과정</a></li>
                 </ul>
                 <ul class="menu-title-division">
                     <li class="gnb">
-                        <a href="rainbow-cousre03.html">자격증/단기 과정</a>
+                        <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre03">자격증/단기 과정</a>
                     </li>
                     <li class="lnb"><a href="">토익/토플 접수</a></li>
-                    <li class="lnb"><a href="">일본취업을 위한 JPT & SJPT 일본어 단기과정</a></li>
-                    <li class="lnb"><a href="">일본취업 스킬업</a></li>
+                    <li class="lnb"><a href="/smtp/course/short-term/short-term-info?course_id=c000000541">일본취업을 위한 JPT & SJPT 일본어 단기과정</a></li>
+                    <li class="lnb"><a href="/smtp/course/short-term/short-term-info?course_id=c000000544">일본취업 스킬업</a></li>
                     <li class="lnb"><a href="">정보처리산업기사</a></li>
                 </ul>
                 <ul class="menu-title-division">
                     <li class="gnb">
-                        <a href="rainbow-cousre04.html">글로벌 잡매칭</a>
+                        <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre04">글로벌 잡매칭</a>
                     </li>
-                    <li class="lnb"><a href="">2021 하반기 잡페어</a></li>
+                    <li class="lnb"><a href="/fap/user/user_main">2021 하반기 잡페어</a></li>
                 </ul>
                 <ul class="menu-title-division">
                     <li class="gnb">
-                        <a href="rainbow-community.html">커뮤니티</a>
+                        <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-community">커뮤니티</a>
                     </li>
-                    <li class="lnb"><a href="">공지사항</a></li>
-                    <li class="lnb"><a href="">FAQ</a></li>
-                    <li class="lnb"><a href="">Q&A</a></li>
-                    <li class="lnb"><a href="">졸업생 마당</a></li>
-                    <li class="lnb"><a href="">오시는 길</a></li>
+                    <li class="lnb"><a href="/smtp/community/sub04-01">공지사항</a></li>
+                    <li class="lnb"><a href="/smtp/support/sub04-02">FAQ</a></li>
+                    <li class="lnb"><a href="/smtp/support/sub04-04">Q&A</a></li>
+                    <li class="lnb"><a href="/smtp/community/sub04-05">졸업생 마당</a></li>
+                    <li class="lnb"><a href="/smtp/support/sub04-03">오시는 길</a></li>
                 </ul>
                 <ul class="menu-title-division">
                 	<c:choose>
@@ -113,12 +113,12 @@
 		                    <li class="gnb">
 		                        <a href="rainbow-myClass.html">나의강의실</a>
 		                    </li>
-		                    <li class="lnb"><a href="">학습현황</a></li>
-		                    <li class="lnb"><a href="">지원현황</a></li>
-		                    <li class="lnb"><a href="">서류발급</a></li>
-		                    <li class="lnb"><a href="">결제현황/환불</a></li>
-		                    <li class="lnb"><a href="">마일리지</a></li>
-		                    <li class="lnb"><a href="">개인정보수정</a></li>
+		                    <li class="lnb"><a href="/smtp/user/sub05-01">학습현황</a></li>
+		                    <li class="lnb"><a href="/smtp/user/sub05-02">지원현황</a></li>
+		                    <li class="lnb"><a href="/smtp/user/sub05-03">서류발급</a></li>
+		                    <li class="lnb"><a href="/smtp/user/sub05-04">결제현황/환불</a></li>
+		                    <li class="lnb"><a href="/smtp/user/sub05-05">마일리지</a></li>
+		                    <li class="lnb"><a href="/smtp/user/sub05-06">개인정보수정</a></li>
 						</c:when>
 					</c:choose>
                 </ul>
