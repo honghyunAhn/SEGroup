@@ -14,7 +14,7 @@
 
 <body>
     <div class="container_rainbow container-courseDetail bgc_eee">
-   		<%@include file="../../include/rainbow_header.jsp"%>
+    	<%@include file="../../include/rainbow_header.jsp"%>
         <div class="content course-detail course-point02" id="main">
             <div class="mainBackVideoWrap" onclick="togglePlay()">
                 <div class="background_video video_main">
@@ -84,7 +84,7 @@
                                         </ul>
                                        
                                         <ul class="infoTd">
-                                            <li>2021.08.01 ~ 2021.09.30</li>
+                                            <li>~ 2021.09.30 까지</li>
                                         </ul>
                                     </div>
                                     <div class="d-flex jus">
@@ -94,7 +94,7 @@
                                         </ul>
                                         <ul class="infoTd">
                                             <li>2021.10.04 ~ 2021.12.04(2개월)</li>
-                                            <li>월~금 10:00 ~ 16:00</li>
+                                            <li>월~금 10:00 ~ 16:00 (점심시간 12:00 ~ 13:00)</li>
                                         </ul>
                                     </div>
                                     <div class="d-flex">
@@ -338,7 +338,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=course-detail">
+                                            <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=course-detaill">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">Smart Cloud IT MASTER 42기</div>
