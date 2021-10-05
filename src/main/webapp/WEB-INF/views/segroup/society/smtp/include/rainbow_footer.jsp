@@ -15,7 +15,7 @@
                 <li>통신판매업신고번호 : 제 강남-03736호</li>
             </ul>
             <ul class="intro intro_btn d-flex">
-                <li><a href="/privacy_policy" class="btn_normal">개인정보처리방침</a></li>
+                <li><a href="" class="btn_normal">개인정보처리방침</a></li>
             </ul>
         </div>
 
@@ -24,42 +24,41 @@
                 <li class="gnb">
                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre01" class="fc_point01">해외취업캠퍼스</a>
                     <ul class="lnb">
-                        <li><a href="/smtp/course/short-term/short-term-info?course_id=c000000543">코딩챌린지(사전학습반)</a></li>
-                        <li><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000525">서울 SCIT MASTER</a></li>
-                        <li><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000526">광주 SWDO MASTER</a></li>
-                        <li><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000548">부산 ABC MASTER</a></li>
+                        <li><a href="">코딩챌린지(사전학습반)</a></li>
+                        <li><a href="">광주 SWDO MASTER</a></li>
+                        <li><a href="">부산 ABC MASTER</a></li>
                     </ul>
                 </li>
                 <li class="gnb">
-                    <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre02" class="fc_point02">내일배움카드 과정</a>
+                    <a href="rainbow-cousre02.html" class="fc_point02">내일배움카드 과정</a>
                     <ul class="lnb">
                         <li><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
-                        <li><a href="">JAVA기반 웹 개발자 과정</a></li>
+                        <li><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-course02-02">JAVA기반 웹 개발자 과정</a></li>
                     </ul>
                 </li>
                 <li class="gnb">
                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre03" class="fc_point03">자격증 코스</a>
                     <ul class="lnb">
                         <li><a href="">토익/토플 접수</a></li>
-                        <li><a href="/smtp/course/short-term/short-term-info?course_id=c000000541">일본취업을 위한 JPT & SJPT 일본어 단기과정</a></li>
-                        <li><a href="/smtp/course/short-term/short-term-info?course_id=c000000544">일본취업 스킬업</a></li>
+                        <li><a href="">일본취업을 위한 JPT & SJPT 일본어 단기과정</a></li>
+                        <li><a href="">일본취업 스킬업</a></li>
                         <li><a href="">정보처리산업기사</a></li>
                     </ul>
                 </li>
                 <li class="gnb">
                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre04" class="fc_point04">글로벌 잡매칭</a>
                     <ul class="lnb">
-                        <li><a href="/fap/user/user_main">2021 하반기 잡페어</a></li>
+                        <li><a href="">2021 하반기 잡페어</a></li>
                     </ul>
                 </li>
                 <li class="gnb">
                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-community" class="fc_point05">커뮤니티</a>
                     <ul class="lnb">
-                        <li><a href="/smtp/community/sub04-01">공지사항</a></li>
-            			<li><a href="/smtp/support/sub04-02">FAQ</a></li>
-			            <li><a href="/smtp/support/sub04-04">Q&A</a></li>
-			            <li><a href="/smtp/community/sub04-05">졸업생 마당</a></li>
-			            <li><a href="/smtp/support/sub04-03">오시는 길</a></li>
+                        <li><a href="">공지사항</a></li>
+                        <li><a href="">FAQ</a></li>
+                        <li><a href="">Q&A</a></li>
+                        <li><a href="">졸업생 마당</a></li>
+                        <li><a href="">오시는 길</a></li>
                     </ul>
                 </li>
             </ul>
