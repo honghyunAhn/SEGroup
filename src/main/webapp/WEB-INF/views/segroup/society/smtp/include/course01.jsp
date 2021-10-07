@@ -37,8 +37,8 @@
                     </div>
                 </a>
             </li>
-            <li class="cs_ict">
-                <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=course-detail">
+            <!-- <li class="cs_ict">
+                <a href="course-detail.html">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
                         <div class="fc_666">Smart Cloud IT MASTER 42기</div>
@@ -46,7 +46,7 @@
                         <div class="fc_999">[온/오프라인] 서울 강남구 코엑스</div>
                     </div>
                 </a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </div> 
