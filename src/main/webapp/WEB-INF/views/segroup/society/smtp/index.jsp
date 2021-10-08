@@ -47,9 +47,9 @@
                                     <div>해외취업캠퍼스 </div>
                                 </div>
                                 <ul class="courseList fc_333">
-                                    <li><a href="/smtp/course/short-term/short-term-info?course_id=c000000543">취업뽀개기(사전학습반)</a></li>
-                                    <li><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000525">SCIT MASTER</a></li>
-                                    <li><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000526">SWDO MASTER</a></li>
+                                    <li><a href="">코딩챌린지(사전학습반)</a></li>
+                                    <li><a href="">광주 SWDO MASTER</a></li>
+                                    <li><a href="">부산 ABC MASTER</a></li>
                                 </ul>
                                 <div class="btn_moreList">
                                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre01">과정 더 보기 &nbsp;&gt;</a>
@@ -62,7 +62,7 @@
                                 </div>
                                 <ul class="courseList fc_333">
                                     <li><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
-                                    <li><a href="">JAVA기반 웹 개발자 과정</a></li>
+                                    <li><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-course02-02">JAVA기반 웹 개발자 과정</a></li>
                                 </ul>
                                 <div class="btn_moreList">
                                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre02">과정 더 보기 &nbsp;&gt;</a>
@@ -75,7 +75,7 @@
                                 </div>
                                 <ul class="courseList fc_333">
                                     <li><a href="">토익/토플 접수</a></li>
-                                    <li><a href="href=/smtp/course/short-term/short-term-info?course_id=c000000544">일본취업 스킬업</a></li>
+                                    <li><a href="">일본취업 스킬업</a></li>
                                     <li><a href="">정보처리자격증</a></li>
                                 </ul>
                                 <div class="btn_moreList">
@@ -88,7 +88,7 @@
                                     <div>글로벌 잡매칭</div>
                                 </div>
                                 <ul class="courseList fc_333">
-                                    <li><a href="/fap/user/user_main">브릿지 잡페어</a></li>
+                                    <li><a href="">브릿지 잡페어</a></li>
                                 </ul>
                                 <div class="btn_moreList">
                                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre04">과정 더 보기 &nbsp;&gt;</a>
@@ -110,7 +110,7 @@
                         <h2 class="h2">Soft Engineer Society는<br>다양한 전공의 인재들을 ICT와 융합, 글로벌 인재를 양성합니다.</h2>
                     </div>
                     <div class="companyIntro d-flex flexWrap margin-top40">
-                        <video src="resources/segroup/society/smtp/video/softsociety.mp4" controls></video>
+                        <video src="/resources/segroup/society/smtp/video/softsociety.mp4" controls></video>
                         <div class="introWrap">
                             <ul class="intro">
                                 <li class="fz20">21세기형 융복합 ICT 인재 양성</li>
@@ -216,22 +216,22 @@
                         <p class="fz20">Soft Engineer Society는 다양한 글로벌 기업들과의 협력을 통하여 새로운 가치 창출을 목표로 합니다.</p>
                     </div>
                     <ul class="partner d-flex flexWrap">
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_01.png" alt="한국무역협회 무역아카데미"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_02.png" alt="한국산업인력공단"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_03.png" alt="고용노동부"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_04.png" alt="과학기술정보통신부"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_05.png" alt="광주광역시"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_06.png" alt="한국산업기술대학교"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_07.png" alt="전남대학교"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_08.png" alt="호남대학교"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_09.png" alt="조선대학교"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_10.png" alt="Rakuten"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_11.png" alt="IBM"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_12.png" alt="Amazon"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_13.png" alt="SoftBank"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_14.png" alt="Shima Seiki"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_15.png" alt="Cocone"></li>
-                        <li class="partnerImg"><img src="resources/segroup/society/smtp/img/img-logo_16.png" alt="Kissco"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_01.png" alt="한국무역협회 무역아카데미"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_02.png" alt="한국산업인력공단"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_03.png" alt="고용노동부"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_04.png" alt="과학기술정보통신부"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_05.png" alt="광주광역시"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_06.png" alt="한국산업기술대학교"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_07.png" alt="전남대학교"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_08.png" alt="호남대학교"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_09.png" alt="조선대학교"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_10.png" alt="Rakuten"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_11.png" alt="IBM"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_12.png" alt="Amazon"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_13.png" alt="SoftBank"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_14.png" alt="Shima Seiki"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_15.png" alt="Cocone"></li>
+                        <li class="partnerImg"><img src="/resources/segroup/society/smtp/img/img-logo_16.png" alt="Kissco"></li>
                     </ul>
                 </div>
                 <div class="rainbow-sideBg bg05 leftSide"></div>
