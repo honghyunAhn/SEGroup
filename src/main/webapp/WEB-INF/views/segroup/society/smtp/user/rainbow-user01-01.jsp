@@ -81,7 +81,7 @@
 <body>
     <div class="container_rainbow">
     	<%@include file="../include/rainbow_header.jsp"%>
-        <div class="content course-point03" id="main">
+        <div class="content course-point01" id="main">
             <div class="sub-content">
                 <div class="section_header">
                     <h3 class="h3">레인보우에 오신 것을 환영합니다.</h3>
