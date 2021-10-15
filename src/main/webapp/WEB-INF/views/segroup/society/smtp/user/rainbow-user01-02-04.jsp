@@ -42,6 +42,7 @@
             </div>
             <%@include file="../include/rainbow_footer.jsp"%>
         </div>
+	</div>
 </body>
 
 </html>

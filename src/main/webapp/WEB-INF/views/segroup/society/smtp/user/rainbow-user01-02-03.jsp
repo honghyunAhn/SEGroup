@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <? include 'include/rainbow_head.html' ?>
+    <%@include file="../include/rainbow_head.jsp"%>
     <!-- 기존 레인보우사이트 text/javascript 복사 -->
     <!-- <script type="text/javascript">
         //정규표현식
@@ -284,7 +284,7 @@
 
 <body>
     <div class="container_rainbow">
-        <? include 'include/rainbow_header.html' ?>
+    <%@include file="../include/rainbow_header.jsp"%>
         <div class="content course-point02" id="main">
             <div class="sub-content user01-02">
                 <ul class="processWrap bgc_eee d-flex">
@@ -481,7 +481,7 @@
                     </button>
                 </div>
             </div>
-            <? include 'include/rainbow_footer.html' ?>
+            <%@include file="../include/rainbow_footer.jsp"%>
         </div>
 </body>
 

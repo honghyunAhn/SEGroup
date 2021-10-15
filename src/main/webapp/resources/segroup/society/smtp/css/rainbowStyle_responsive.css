@@ -156,18 +156,6 @@
 ----------------------------------------------------------------*/
 @media(max-width:1024px) {
 
-    .courseWrapper>.courseWrap,
-    .companyIntroWrapper>.companyIntroWrap,
-    .managementWrapper>.managementWrap,
-    .partnerWrapper>.partnerWrap,
-    .sub-content {
-        padding: 120px 0;
-    }
-
-    .footerWrap>.footer {
-        padding: 120px 0 80px;
-    }
-
     .mainBackVideoWrap>.background_video {
         height: 400px;
     }
@@ -219,7 +207,10 @@
   [3] 모바일  320px - 767px >> 기준 300px
 ----------------------------------------------------------------*/
 @media(max-width:767px) {
-
+    .container_rainbow>.course-list{
+        margin-top: 60px;
+        padding-top: 60px;
+    }
     .fullWrapper>.full-navGroup .menuDivWrap>.menu-title-division {
         width: calc(100% - 20px);
     }
@@ -249,7 +240,9 @@
     .courseWrapper>.fullBannerWrapper {
         margin: 60px 0 0;
     }
-
+    .course-list .fullBannerWrapper{
+        margin: 0 0 60px;
+    }
     .courseWrapper>.courseWrap .courseFilterWrap>.courseList,
     .managementWrapper>.managementWrap>.d-flex,
     .partnerWrapper>.partnerWrap>.partner,
@@ -323,11 +316,6 @@
     .fullWrapper>.full-navGroup .menuDivWrap>.menu-title-division:nth-child(1n)~* {
         margin-top: 40px;
     }
-
-    .adBannerWrapper {
-        margin-top: 120px;
-    }
-
     
     .course-teacher>.course-tcImg {
         width: 40px;
@@ -346,7 +334,7 @@
     .course-infoTable>.d-flex{
         display: block;
     }
-    
+    .processWrap,
     .addKakaoBanner>.d-flex>.textWrap>p {
         display: none;
     }
@@ -375,7 +363,8 @@
     .partnerWrapper>.partnerWrap>.partner,
     .managementWrapper>.managementWrap>.d-flex>.management,
     .course-reviewWrap>.course-review>.course-rvTxtWrap,
-    .sub-content>.section_formStyle {
+    .sub-content>.section_formStyle,
+    .sub-content>.section_btnWrap {
         width: 100%;
         min-width: 300px;
     }
@@ -399,15 +388,21 @@
         margin: 10px 0;
     }
 
-
-   
-
-
-
+    .formStyle .select.w150,
+    .formStyle .input.w150{
+        width: 25%
+    }
+    .formStyle .select.w200,
+    .formStyle .input.w200{
+        width: 33.3%
+    }
+    .formStyle .d-flex>.select.w300,
+    .formStyle .d-flex>.input.w300{
+        width: 50%;
+    }
     .course-infoTable>.d-flex>.infoTd {
         background-color: #eee;
     }
 
 
-    .addKakaoBanner>.d-flex>.textWrap>p {}
 }

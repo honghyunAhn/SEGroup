@@ -7,7 +7,12 @@ html {
 .container_rainbow {}
 
 .container_rainbow>.content {
+    margin-top: 60px;
     min-height: calc(100vh - 618px);
+}
+.container_rainbow>.course-list{
+    margin-top: 120px;
+    padding-top: 120px;
 }
 
 /* layout_main >> common */
@@ -64,10 +69,11 @@ html {
 .companyIntroWrapper>.companyIntroWrap,
 .managementWrapper>.managementWrap,
 .partnerWrapper>.partnerWrap,
-.footerWrap>.footer {
+.footerWrap>.footer,
+.sub-content {
     width: 1200px;
     margin: 0 auto;
-    padding: 160px 0;
+    padding: 120px 0;
 }
 
 .header,
@@ -278,7 +284,7 @@ html {
 }
 
 .footerWrap>.footer {
-    padding: 160px 0 120px;
+    padding: 120px 0 80px;
 }
 
 .footerWrap .footer_textWrap {
@@ -407,7 +413,7 @@ html {
 
 /* layout_main >> courseWrapper */
 .courseContainer>.courseWrapper {
-    padding: 160px 0;
+    padding: 120px 0;
 }
 
 .courseContainer>.courseWrapper>.courseWrap {
@@ -475,7 +481,7 @@ html {
 
 .fullBannerWrapper {
     padding-top: 10px;
-    margin: 160px 0;
+    margin: 120px 0;
 }
 
 .fullBannerWrapper>.fullBannerWrap>.fullBanner {}
@@ -612,6 +618,7 @@ html {
 .adBannerWrapper {
     width: 1200px;
     border-radius: 10px;
+    margin: 0 auto;
 }
 
 .adBannerWrapper>.adBannerWrap {}
@@ -715,7 +722,7 @@ html {
 .courseWrapper>.courseWrap .courseFilterWrap>.courseList>li>a>.courseTxt {}
 
 .course-list .fullBannerWrapper {
-    margin: 0 0 160px;
+    margin: 0 0 120px;
 }
 
 /* layout_sub >> course-detail */
@@ -1348,21 +1355,25 @@ html {
 
 /* subPage >> common */
 
-.sub-content {
-    width: 1200px;
-    margin: 60px auto 0;
-    padding: 160px 0;
-}
+.sub-content {}
 
 .sub-content>.section_header {
     text-align: center;
 }
+.sub-content>.section_header>.h3 {
+    line-height: 30px;
+}
 
-.sub-content>.section_formStyle {
+.sub-content>.section_formStyle,
+.sub-content>.section_btnWrap {
     width: 600px;
     margin: 40px auto 0;
 }
-
+.sub-content>.section_formStyle>.login,
+.sub-content>.section_formStyle>.join{
+    width: 300px;
+    margin: 0 auto;
+}
 .formStyle {
     width: 100%;
 }
@@ -1374,8 +1385,7 @@ html {
     line-height: 40px;
 }
 
-.formStyle .input,
-.formStyle .select {
+.formStyle .input {
     text-indent: 10px;
 }
 
@@ -1383,6 +1393,22 @@ html {
     display: block;
     width: 100%;
     margin: 10px 0;
+}
+.formStyle .select.w100,
+.formStyle .input.w100{
+    width: 100px;
+}
+.formStyle .select.w150,
+.formStyle .input.w150{
+    width: 150px;
+}
+.formStyle .select.w200,
+.formStyle .input.w200{
+    width: 200px;
+}
+.formStyle .select.w300,
+.formStyle .input.w300{
+    width: 300px;
 }
 
 .input-btn,
@@ -1428,11 +1454,16 @@ html {
     margin-left: 10px;
 }
 
-/* subPage >> user - login */
-.sub-content>.section_formStyle>.login{
-    width: 300px;
-    margin: 0 auto;
+.section_btnWrap>button{
+    width: calc(50% - 10px);
 }
+.section_btnWrap>button:nth-child(1)~*{
+    margin-left: 20px;
+}
+
+
+/* subPage >> user - login */
+
 .division-menuWrap{
     margin: 20px 0;
 }
@@ -1443,4 +1474,63 @@ html {
 .division-menuWrap>li,
 .division-menuWrap>li.divBar:hover{
     opacity: .7;
+}
+
+
+/* subPage >> user - join */
+
+.sub-content.user01-02>.section_header{
+    margin-top: 40px;
+}
+.processWrap{}
+.processWrap>.process {
+    width: 25%;
+    border-bottom: 5px solid;
+    line-height: 55px;
+    text-indent: 20px;
+    opacity: 0.5;
+    cursor: default;
+}
+
+.processWrap>.fc_point {
+    opacity: 1;
+}
+.signUp-agree>.text-box{
+    height: 250px;
+    overflow-y: scroll;
+    border: 1px solid #eee;
+    padding: 20px;
+    font-family: "Noto Sans KR", "sans-serif";
+    font-size: 14px;
+}
+
+.certification>.section_header {
+    padding: 20px 0;
+    text-align: center;
+}
+.certification>.certificationWrap{
+    width: 300px;
+    margin: 0 auto;
+}
+
+.join .formStyle>.formWrap {
+    margin: 10px 0;
+    padding: 10px 0;
+}
+.join .formStyle>.formWrap:nth-child(1)~*{
+}
+.formStyle.courseRegistration .d-flex>.label-input>span,
+.join .formStyle>.formWrap>div>span {
+    margin: 10px 0;
+}
+.join .formStyle>.formWrap>div {
+    line-height: 40px;
+} 
+.join .formStyle>.formWrap .input-btn{
+    padding: 0 20px;
+    margin-left: 10px;
+    border-radius: 3px;
+}
+.join .formStyle .email .select{
+    margin-left: 10px;
 }

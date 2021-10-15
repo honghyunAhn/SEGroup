@@ -8,7 +8,7 @@
     
     <%@include file="../include/rainbow_head.jsp"%>
     <script type="text/javascript">
-    	
+    	const dom = 'localhost:8809/rainbow'
     	//document.domain = 'softsociety.net'; //(운영서버 적용시)
 		$(document).ready(function(){
         	//다음 버튼 숨김(인증을 통해야 이동할 수 있도록)
@@ -26,7 +26,7 @@
     	
 		//본인 인증 팝업
         //var url = "https://www.mobile-ok.com/popup/common/hscert.jsp"; //운영
-        var url = "https://dev.mobile-ok.com/popup/common/hscert.jsp"; //운영
+        var url = "https://dev.mobile-ok.com/popup/common/hscert.jsp"; //로컬
         var DRMOK2_window;
         
         function popIdentity(iden_gbn) {

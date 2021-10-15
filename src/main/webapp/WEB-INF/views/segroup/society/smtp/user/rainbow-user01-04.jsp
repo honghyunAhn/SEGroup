@@ -34,6 +34,7 @@
 		    });
         });
         //코드를 요청한다.
+        
         function request_certification_code() {
 
             var user_id = $('input[name=user_id]').val();
@@ -64,11 +65,11 @@
                         $('#user_id').attr('readonly', '');
                         $('#user_phone').attr('readonly', '');
 
-                        nextBtn.closest(".section_formStyle").style.display = "none";
                         prevBtn.closest(".section_formStyle").style.display = "block";
+                        nextBtn.closest(".section_formStyle").style.display = "none";
                         prevBtn.addEventListener('click', function(){
+                        	prevBtn.closest(".section_formStyle").style.display = "none";
                             nextBtn.closest(".section_formStyle").style.display = "block";
-                            prevBtn.closest(".section_formStyle").style.display = "none";
                         });
 
                         var input_auth = $('#certi_code');
@@ -144,7 +145,7 @@
 <body>
     <div class="container_rainbow">
     	<%@include file="../include/rainbow_header.jsp"%>
-        <div class="content course-point03 sub01_content" id="main">
+        <div class="content course-point04 sub01_content" id="main">
             <div class="sub-content">
                 <div class="section_header">
                     <h3 class="h3">비밀번호찾기</h3>
@@ -176,31 +177,24 @@
         </div>
         <%@include file="../include/rainbow_footer.jsp"%>
     </div>
-    <script type="text/javascript">
-        ////const nextBtn = document.getElementById("next_btn");
-        ////const prevBtn = document.getElementById("prev_btn");
-        ////prevBtn.closest(".section_formStyle").style.display = "none";
-        // console.log(prevBtn.closest(".section_formStyle").style.display)
-        ////nextBtn.addEventListener('click', function(){
-        ////    nextBtn.closest(".section_formStyle").style.display = "none";
-        ////    prevBtn.closest(".section_formStyle").style.display = "block";
-        ////})
-        
-        ////prevBtn.addEventListener('click', function(){
-        ////	nextBtn.closest(".section_formStyle").style.display = "block";
-        ////	prevBtn.closest(".section_formStyle").style.display = "none";
-        ////})
-        
-        // nextBtn.addEventListener('click', function(){
-        //     nextBtn.closest(".section_formStyle").style.display = "none";
-        //     prevBtn.closest(".section_formStyle").style.display = "block";
-        // })
-        // function nextStep() {
-        //     nextBtn.closest(".section_formStyle").style.display = "none";
-        //     prevBtn.closest(".section_formStyle").style.display = "block";
-        // }
-        // prevBtn.addEventListener("click", prevStep)
-    </script>
+    
+    <!-- <script type="text/javascript">
+    const prevBtn = document.getElementById("prev_btn");
+    const nextBtn = document.getElementById("certi_code_btn");
+    prevBtn.closest(".section_formStyle").style.display = "none";
+
+    function nextStep(){
+        prevBtn.closest(".section_formStyle").style.display = "block";
+        nextBtn.closest(".section_formStyle").style.display = "none";
+    }
+    function prevStep() {
+        prevBtn.closest(".section_formStyle").style.display = "none";
+        nextBtn.closest(".section_formStyle").style.display = "block";
+    }
+    // 인증코드 요청시 아래 클릭이벤트 추가할 것
+    nextBtn.addEventListener('click', nextStep)
+    prevBtn.addEventListener("click", prevStep)
+    </script> -->
 </body>
 
 </html>
