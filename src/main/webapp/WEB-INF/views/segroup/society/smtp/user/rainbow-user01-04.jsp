@@ -26,17 +26,20 @@
         $(function () {
             $('#next_btn').on('click', request_certification_code);
             $('#certi_btn').on('click', certification_code);
-            const prevBtn = document.getElementById("prev_btn");
-            prevBtn.closest(".section_formStyle").style.display = "none";
+            $('#certi_code_section').show();
 
             $("#phoneNumber").on("keyup", function() {
 		        $(this).val($(this).val().replace(/[^0-9]/g,""));
 		    });
+            
+            $('#prev_btn').on('click', function(){
+            	$('#certi_code_section').hide();
+                $('#certi-step01').show();
+            });
         });
         //코드를 요청한다.
         
         function request_certification_code() {
-
             var user_id = $('input[name=user_id]').val();
             var user_email = $('input[name=user_email]').val();
             var user_nm = $('input[name=user_nm]').val();
@@ -47,7 +50,6 @@
             }
             var btn = $('#next_btn');
             btn.off('click');
-            alert('인증번호가 전송되었습니다. 받은 메일함을 확인해주세요.');
             $.ajax({
                 url: '<c:url value="/smtp/user/user_request_certification_code" />',
                 data: {
@@ -57,21 +59,16 @@
                     "user_phone": user_phone
                 },
                 success: function (isRequested) {
-                	const nextBtn = document.getElementById("next_btn");
-                    const prevBtn = document.getElementById("prev_btn");
                     if (!isRequested) {
+                    	alert('인증번호가 전송되었습니다. 받은 메일함을 확인해주세요.');
                         $('#user_nm').attr('readonly', '');
                         $('#user_email').attr('readonly', '');
                         $('#user_id').attr('readonly', '');
                         $('#user_phone').attr('readonly', '');
-
-                        prevBtn.closest(".section_formStyle").style.display = "block";
-                        nextBtn.closest(".section_formStyle").style.display = "none";
-                        prevBtn.addEventListener('click', function(){
-                        	prevBtn.closest(".section_formStyle").style.display = "none";
-                            nextBtn.closest(".section_formStyle").style.display = "block";
-                        });
-
+						
+                        $('#certi-step01').hide();
+                        $('#certi_code_section').show();
+                        
                         var input_auth = $('#certi_code');
                         input_auth.select();
                         input_auth.focus();
