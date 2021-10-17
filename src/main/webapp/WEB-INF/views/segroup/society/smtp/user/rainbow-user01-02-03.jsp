@@ -7,8 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <%@include file="../include/rainbow_head.jsp"%>
+    <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
     <!-- 기존 레인보우사이트 text/javascript 복사 -->
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
         //정규표현식
         var userIdCheck = /^[A-Za-z0-9_\-]{6,20}$/;
         var passwdCheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
@@ -137,7 +138,7 @@
             if (email1 == "") {
                 alert("이메일을 입력하여 주시기 바랍니다.");
                 return false;
-            } else if (email2 == "" && email3 == "") {
+            } else if (email2 == "") {
                 alert("이메일을 입력하여 주시기 바랍니다.");
                 return false;
             }
@@ -149,6 +150,7 @@
         function isAddressCorrect() {
             var post_code = $('#post_code').val();
             var addr1 = $('#addr1').val();
+            var addr2 = $('#addr2').val();
             if (post_code == "") {
                 alert("우편번호를 입력하여 주시기 바랍니다.");
                 return false;
@@ -228,7 +230,16 @@
         }
         
         $(function() {
-    
+        	//가입신청 서브밋
+        	$("#goSubmit").on("click", function(){
+            	$("#saveForm").submit();
+            });
+            
+        	//이전단계
+            $("#goBack").on("click", function(){
+            	$("#backForm").submit();
+            });
+            
             //아이디 중복 체크
             $('#checkDuplId').on('click', function() {
                 var id = $('#id').val();
@@ -275,11 +286,19 @@
             $("#birth_year").val(hiddenBirthday.substring(0, 4));
             $("#birth_month").val(hiddenBirthday.substring(4, 6));
             $("#birth_date").val(hiddenBirthday.substring(6, 8));
-            $("#birth_year").prop("disabled", true);
-            $("#birth_month").prop("disabled", true);
-            $("#birth_date").prop("disabled", true);
         });
-    </script> -->
+        
+        //메일 셀렉박스
+        function mailChange() {
+			if($("#email3").val() == 0){
+				$("#email2").prop("readonly", false);
+				$("#email2").val("");
+			}else{
+				$("#email2").prop("readonly", true);
+				$("#email2").val($("#email3").val());
+			}
+		}
+    </script>
 </head>
 
 <body>
@@ -306,17 +325,17 @@
                     <form action="/smtp/user/joinMember" id="saveForm" class="formStyle" method="post"
                         onsubmit="return formCheck();">
                         <!-- .retrieve : 저장된 데이터 불러오기 -->
-                        <input type="hidden" id="veriCi" name="veriCi" value="${userVeri.veriCi }">
-                        <input type="hidden" id="veriDi" name="veriDi" value="${userVeri.veriDi }">
-                        <input type="hidden" id="veriPhone" name="veriPhone">
-                        <input type="hidden" id="veriCom" name="veriCom" value="${userVeri.veriCom }">
-                        <input type="hidden" id="veriBirth" name="veriBirth" value="${userVeri.veriBirth }">
-                        <input type="hidden" id="veriGender" name="veriGender" value="${userVeri.veriGender }">
-                        <input type="hidden" id="veriNation" name="veriNation" value="${userVeri.veriNation }">
-                        <input type="hidden" id="veriName" name="veriName" value="${userVeri.veriName }">
-                        <input type="hidden" id="veriNum" name="veriNum" value="${userVeri.veriNum }">
-                        <input type="hidden" id="veriTime" name="veriTime" value="${userVeri.veriTime }">
-                        <input type="hidden" id="user_id" name="user_id">
+	                    <input type="hidden" name="veriCi" value="${userVeri.veriCi }">
+	                    <input type="hidden" name="veriDi" value="${userVeri.veriDi }"> 
+	                    <input type="hidden" name="veriPhone"> 
+						<input type="hidden" name="veriCom" value="${userVeri.veriCom }"> 
+						<input type="hidden" name="veriBirth" value="${userVeri.veriBirth }">
+						<input type="hidden" name="veriGender" value="${userVeri.veriGender }"> 
+						<input type="hidden" name="veriNation" value="${userVeri.veriNation }">
+						<input type="hidden" name="veriName" value="${userVeri.veriName }"> 
+						<input type="hidden" name="veriNum" value="${userVeri.veriNum }">
+						<input type="hidden" name="veriTime" value="${userVeri.veriTime }"> 
+						<input type="hidden" name="user_id">
                         <div class="formWrap">
                             <label class="label" for="user-name">* 성명</label>
                             <div class="retrieve user-name">
@@ -336,24 +355,19 @@
                         <div class="formWrap">
                             <label class="label" for="user-birth">* 생년월일</label>
                             <div class="retrieve user-birth d-flex">
-                                <input class="input user-birth w300" type="text" id="birth" maxlength="8" placeholder="YYYYMMDD">
+                                <input class="input user-birth w300" value="${userVeri.veriBirth}" type="text" id="birth" maxlength="8" placeholder="YYYYMMDD" disabled="disabled">
                             </div>
-                            <!-- <div class="retrieve user-birth d-flex">
-                                <input class="input user-birth w100" type="text" id="birth_year" maxlength="4">
-                                <span>&nbsp;년&nbsp;</span>
-                                <input class="input user-birth w100" type="text" id="birth_month" maxlength="2">
-                                <span>&nbsp;월&nbsp;</span>
-                                <input class="input user-birth w100" type="text" id="birth_date" maxlength="2">
-                                <span>&nbsp;일&nbsp;</span>
-                                <input type="hidden" id="hidden_birth_day" value="${userVeri.veriBirth}">
-                                <input type="hidden" name="birth_day">
-                            </div> -->
+                            <input class="input user-birth w100" type="hidden" id="birth_year" maxlength="4"> 
+	                       	<input class="input user-birth w100" type="hidden" id="birth_month" maxlength="2">
+							<input class="input user-birth w100" type="hidden" id="birth_date" maxlength="2">
+							<input type="hidden" id="hidden_birth_day" value="${userVeri.veriBirth}">
+							<input type="hidden" name="birth_day">
                         </div>
                         <div class="formWrap">
                             <label class="label" for="userId">* 아이디</label>
                             <div class="userID d-flex">
                                 <input class="input w300" type="text" id="id" name="id" maxlength="12" value="${user.id}"
-                                    autocomplete="off">
+                                    autocomplete="off" check_result="fail">
                                 <button class="btn_normal input-btn bgc_point" type="button" id="checkDuplId">중복확인</button>
                             </div>
                             <span class="explan fc_999">&nbsp;※ 영문자로 시작하는 6~20자 영문자 또는 숫자</span>
@@ -380,9 +394,9 @@
                                 <span>&nbsp;@&nbsp;</span>
                                 <input class="input w200 email02" type="text" id="email2" autocomplete="off">
                                 <!-- 이메일 option 클릭시 email02에 값 입력되는 것 알아보기 -->
-                                <select class="select w200 email01" id="email3">
+                                <select class="select w200 email01" id="email3" onchange="mailChange()">
                                     <option value="0" selected>직접입력</option>
-                                    <option value="naver.com">naver.com</option>
+                                    <option value="naver.com" >naver.com</option>
                                     <option value="gmail.com">gmail.com</option>
                                     <option value="hanmail.net">hanmail.net</option>
                                 </select>
@@ -470,19 +484,30 @@
                         </div>
                     </form>
                 </div>
+                <form action="/smtp/user/rainbow-user01-02-02" id="backForm" method="post">
+                		<input type="hidden" id="user_phone" name="phone" value="${user.phone}">
+                        <input type="hidden" id="user_nm" name="name" value="${user.name}">
+                        <input type="hidden" id="user_sex" name="gender" value="${user.gender}">
+
+                        <input type="hidden" id="veriCi" name="veriCi" value="${userVeri.veriCi}">
+                        <input type="hidden" id="veriDi" name="veriDi" value="${userVeri.veriDi}">
+                        <input type="hidden" id="veriPhone" name="veriPhone" value="${userVeri.veriPhone}">
+                        <input type="hidden" id="veriCom" name="veriCom" value="${userVeri.veriCom}">
+                        <input type="hidden" id="veriBirth" name="veriBirth" value="${userVeri.veriBirth}">
+                        <input type="hidden" id="veriGender" name="veriGender" value="${userVeri.veriGender}">
+                        <input type="hidden" id="veriNation" name="veriNation" value="${userVeri.veriNation}">
+                        <input type="hidden" id="veriName" name="veriName" value="${userVeri.veriName}">
+                        <input type="hidden" id="veriNum" name="veriNum" value="${userVeri.veriNum}">
+                        <input type="hidden" id="veriTime" name="veriTime" value="${userVeri.veriTime}">
+                </form>
                 <div class="section_btnWrap d-flex justify_center">
-                    <button class="btn_normal btn_xlarge bgc_ccc" type="button" onclick="location.href=''">
-                        <!-- a태그 임시적용 -->
-                        <a href="rainbow-user01-02-02.html">이전단계</a>
-                    </button>
-                    <button class="btn_normal btn_xlarge bgc_point" type="submit">
-                        <!-- a태그 임시적용 -->
-                        <a href="rainbow-user01-02-04.html">가입신청</a>
-                    </button>
+                    <button class="btn_normal btn_xlarge bgc_ccc" type="button" id="goBack">이전단계</button>
+                    <button class="btn_normal btn_xlarge bgc_point" id="goSubmit" type="submit">가입신청</button>
                 </div>
             </div>
             <%@include file="../include/rainbow_footer.jsp"%>
         </div>
+	</div>
 </body>
 
 </html>
