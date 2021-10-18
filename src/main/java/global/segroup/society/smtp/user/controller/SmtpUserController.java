@@ -456,8 +456,8 @@ public class SmtpUserController {
 	}
 	
 	@RequestMapping(value = "/smtp/user/rainbow-user01-02-01",  method = {RequestMethod.GET,RequestMethod.POST})
-	public String rainbow_user01_02(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
-		logger.info("회원가입 이용약관 페이지 이동 컨트롤러 시작");
+	public String rainbow_user01_02_01(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
+		logger.info("회원가입 페이지 이동 컨트롤러 시작");
 		
 		  //날짜 생성 
 		  Calendar today = Calendar.getInstance(); 
@@ -498,13 +498,14 @@ public class SmtpUserController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			//msgEncrypt(암호화 시킬 값, 인증서 경로);
 		  
 		    model.addAttribute("cpId",cpId);
 		    model.addAttribute("rtn_url",rtn_url);
 		    model.addAttribute("encReqInfo",encReqInfo);
 		 
-		logger.info("회원가입 이용약관 페이지 이동 컨트롤러 종료");
+		logger.info("회원가입 페이지 이동 컨트롤러 종료");
 		
 		return "/segroup/society/smtp/user/rainbow-user01-02-01";
 	}
@@ -548,28 +549,46 @@ public class SmtpUserController {
 	}
 	
 	@RequestMapping(value = "/smtp/user/rainbow-user01-02-02", method = RequestMethod.POST)
-	public String rainbow_user01_02_02(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, MemberForm memberForm, UserVerification userVeri ) {
-		logger.info("회원가입 페이지 이동 컨트롤러 시작");
+	public String rainbow_user01_02_02(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, 
+			MemberForm memberForm, UserVerification userVeri, String cpId, String rtn_url, String encReqInfo) {
+		logger.info("회원가입  이용약관 페이지 이동 컨트롤러 시작");
+		logger.debug("memberForm : " + memberForm);
+		logger.debug("userVeri : " + userVeri);
+		logger.debug("cpId : " + cpId);
+		logger.debug("rtn_url : " + rtn_url);
+		logger.debug("encReqInfo : " + encReqInfo);
+		
 		model.addAttribute("user",memberForm);
 		model.addAttribute("userVeri", userVeri);
+		model.addAttribute("cpId",cpId);
+	    model.addAttribute("rtn_url",rtn_url);
+	    model.addAttribute("encReqInfo",encReqInfo);
 		
-		logger.info("회원가입 페이지 이동 컨트롤러 종료");
+		logger.info("회원가입 이용약관 페이지 이동 컨트롤러 종료");
 		return "/segroup/society/smtp/user/rainbow-user01-02-02";
 	}
 	
-	@RequestMapping(value = "/smtp/user/rainbow-user01-02-03", method = RequestMethod.POST)
-	public String rainbow_user01_02_03(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, MemberForm memberForm, UserVerification userVeri ) {
-		logger.info("회원가입 페이지 이동 컨트롤러 시작");
+	@RequestMapping(value = "smtp/user/rainbow-user01-02-03", method = RequestMethod.POST)
+	public String rainbow_user01_02_03(HttpServletRequest request, 
+			HttpServletResponse response, HttpSession session, 
+			Model model, MemberForm memberForm, UserVerification userVeri ) {
+		logger.info("회원가입 정보입력 페이지 이동 컨트롤러 시작");
+		logger.debug("memberForm : " + memberForm);
+		logger.debug("userVeri : " + userVeri);
 		model.addAttribute("user",memberForm);
 		model.addAttribute("userVeri", userVeri);
 		
-		logger.info("회원가입 페이지 이동 컨트롤러 종료");
+		logger.info("회원가입 정보입력 페이지 이동 컨트롤러 종료");
 		return "/segroup/society/smtp/user/rainbow-user01-02-03";
 	}
 	
 	@RequestMapping(value="/smtp/user/joinMember", method=RequestMethod.POST)
-	public String smtp_joinMember(MemberForm memberForm, @ModelAttribute(value="userVeri") UserVerification userVeri, HttpServletRequest request) {
-		logger.info("회원등록 컨트롤러 시작");
+	public String smtp_joinMember(MemberForm memberForm, 
+			UserVerification userVeri, 
+			HttpServletRequest request) {
+		logger.info("회원등록 폼 컨트롤러 시작");
+		logger.debug("memberForm : " + memberForm);
+		logger.debug("userVeri : " + userVeri);
 		String ip = service.getClintIp(request);
 		memberForm.setUser_ip(ip);
 		//비밀번호 암호화
@@ -578,17 +597,17 @@ public class SmtpUserController {
 		service.insertUser(memberForm);
 		service.insertUserInfo(memberForm);
 		seuService.userveri_insert(userVeri);
-		logger.info("회원등록 컨트롤러 종료");
-		return "redirect:/smtp/user/sub00-02-03";
+		logger.info("회원등록 폼 컨트롤러 종료");
+		return "redirect:/smtp/user/rainbow-user01-02-04";
 	}
 	
-	@RequestMapping(value = "smtp/user/sub00-02-03", method = RequestMethod.GET)
+	@RequestMapping(value = "smtp/user/rainbow-user01-02-04", method = RequestMethod.GET)
 	public String sub00_02_03(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
 		logger.info("회원가입 완료 페이지 이동 컨트롤러 시작");
 		logger.info("회원가입 완료 페이지 이동 컨트롤러 종료");
 		
-		return "/segroup/society/smtp/user/sub01-02-02";
+		return "/segroup/society/smtp/user/rainbow-user01-02-04";
 	}
 	
 	

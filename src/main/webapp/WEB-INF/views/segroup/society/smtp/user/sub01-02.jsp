@@ -22,7 +22,7 @@
     <script src="/resources/segroup/society/smtp/js/rainbow_script.js"></script>
     <script src="/resources/segroup/society/smtp/js/rainbow_script_responsive.js"></script>
     <script type="text/javascript">
-    	document.domain = 'softsociety.net'; //(운영서버 적용시)
+    	//document.domain = 'softsociety.net'; //(운영서버 적용시)
 		$(document).ready(function(){
         	
         	//다음 버튼 숨김(인증을 통해야 이동할 수 있도록)

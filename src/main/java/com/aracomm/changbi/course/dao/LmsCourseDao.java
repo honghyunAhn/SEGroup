@@ -107,4 +107,7 @@ public interface LmsCourseDao {
 	// 토플 결제 리스트 갯수
 	public int refundToeflUpdate(HashMap<String, Object> param);
 	
+	//코스페이지 정보 select
+	public HashMap<String, String> rainbowCourseInfo(String course_id);
+	
 }

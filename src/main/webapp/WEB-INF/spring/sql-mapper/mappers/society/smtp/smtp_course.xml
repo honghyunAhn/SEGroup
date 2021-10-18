@@ -612,19 +612,4 @@
 						, now()		        
 					)			 
 	</insert>
-		
-<!-- 		<select id="searchCoursePage" parameterType="String" resultType="String">
-
-		SELECT NAME FROM FF_CODE WHERE CODE = 
-		(
-			SELECT PARENT_CODE FROM FF_CODE WHERE CODE = 
-			(
-				SELECT PARENT_CODE FROM FF_CODE WHERE CODE = 
-				(
-					SELECT COURSE_CODE FROM CB_COURSE WHERE ID = #{course_id}
-				)
-			)
-		)
-		</select> -->
-	
 </mapper>

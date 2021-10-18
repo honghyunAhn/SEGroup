@@ -1069,4 +1069,27 @@
 		WHERE
 			PAY_TOEFL_SEQ = #{PAY_TOEFL_SEQ}
 	</update>
+	
+	<select id="rainbowCourseInfo" parameterType="String" resultType="hashmap">
+		SELECT A.*
+		FROM CB_COURSE M
+		LEFT OUTER JOIN	(	SELECT A.ID, A.NAME, A.APP_START_DATE, A.APP_END_DATE
+								 , A.LEARN_START_DATE, A.LEARN_END_DATE
+								 , A.COMPLATE_YN, A.USE_YN, A.PRICE, B.COURSE_ID
+                                 , A.CLASS_DAY, A.CLASS_START_TIME, A.CLASS_END_TIME
+							FROM CB_CARDINAL A
+							INNER JOIN CB_CN_COURSE B
+							ON A.ID = B.CARDINAL_ID
+							WHERE A.LEARN_TYPE != 'G' ) A
+		ON M.ID = A.COURSE_ID
+		LEFT OUTER JOIN	(	SELECT A.PAY_CRC_SEQ, A.PAY_CRC_PAYORDER AS PMT_CNT
+							, A.PAY_CRC_START AS PMT_START_DATE, A.PAY_CRC_END AS PMT_END_DATE
+                            , A.PAY_CRC_AMOUNT AS PMT_AMT, B.COURSE_ID, B.CARDINAL_ID
+							FROM EDU_CURRICULUM_PAY_TB A
+							INNER JOIN CB_CN_COURSE B
+							ON A.CARDINAL_ID = B.CARDINAL_ID) B
+		ON M.ID = B.COURSE_ID
+		WHERE M.ID = #{course_id}
+        order by LEARN_END_DATE desc LIMIT 1;
+	</select>
 </mapper>

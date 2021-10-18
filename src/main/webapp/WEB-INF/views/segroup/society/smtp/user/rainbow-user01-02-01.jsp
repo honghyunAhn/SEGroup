@@ -8,11 +8,10 @@
     
     <%@include file="../include/rainbow_head.jsp"%>
     <script type="text/javascript">
-    	const dom = 'localhost:8809/rainbow'
     	//document.domain = 'softsociety.net'; //(운영서버 적용시)
 		$(document).ready(function(){
         	//다음 버튼 숨김(인증을 통해야 이동할 수 있도록)
-        	//$("#goSubmit").hide();
+        	$("#goSubmit").hide();
         	      	
         	$('#goSubmit').on('click', function(){
         		$('#signUp-check').submit();
@@ -44,10 +43,11 @@
         }
         
         window.CallVerified = function() {
-     		alert('본인인증을 완료하였습니다.');      
-     		DRMOK2_window.close();
+     		//alert('본인인증을 완료하였습니다.');      
      		$('#redMessage').html("본인인증을 완료하였습니다.");
-     		$("#goSubmit").trigger("click");
+     		//$("#goSubmit").trigger("click");
+     		$("#goSubmit").show();
+     		$("#validBtn").hide();
      	}
      	
    	</script>

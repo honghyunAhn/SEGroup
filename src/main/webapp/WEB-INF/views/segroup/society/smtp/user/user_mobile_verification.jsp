@@ -25,7 +25,7 @@ function closeThis(){
 	 window.close();
 }
 //본인인증 (서브도메인 처리)
-document.domain = 'softsociety.net'; //(운영서버 적용시)
+//document.domain = 'softsociety.net'; //(운영서버 적용시)
  
 
 jQuery(document).ready(function(){
@@ -58,9 +58,8 @@ jQuery(document).ready(function(){
 		$('#veriName',opener.document).val('${mobileVerification[8]}');
 		$('#veriNum',opener.document).val('${mobileVerification[9]}');
 		$('#veriTime',opener.document).val('${mobileVerification[10]}');
-		
+	
 	opener.CallVerified();
-	//setTimeout(function () { window.close();}, 3000); 
 });
 
  

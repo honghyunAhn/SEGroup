@@ -84,8 +84,7 @@ public class SmtpCourseController {
 		logger.info("과정 - SC 과정상세 페이지 이동 컨트롤러 시작");
 		
 		model.addAttribute("courseInfo", courseService.selectCourseDetail(course_id));
-		model.addAttribute("chapterInfo", courseService.selectCourseChapterListAll(course_id));		
-		
+		model.addAttribute("chapterInfo", courseService.selectCourseChapterListAll(course_id));	
 		String url = "segroup/society/smtp/course/scmaster/" + course_id;
 
 		logger.info("과정 - SC 과정상세 페이지 이동 컨트롤러 끝");
@@ -118,10 +117,22 @@ public class SmtpCourseController {
 	public String newRainbowInfo(String course_id, Model model,HttpServletRequest request) {
 				
 		logger.info("2021 Rainbow 페이지 이동 컨트롤러 시작");
-
+		
 		String url = "segroup/society/smtp/course/new-rainbow/" + course_id;
 		
 		logger.info("2021 Rainbow 페이지 이동 컨트롤러 종료");
+		
+		return url;
+	}
+	
+	@RequestMapping(value = "/smtp/course/new-rainbow/course", method = {RequestMethod.POST, RequestMethod.GET})
+	public String newRainbowCourseInfo(String course_id, Model model,HttpServletRequest request) {
+		logger.info("2021 Rainbow Course페이지 이동 컨트롤러 시작");
+		HashMap<String, String> course_info= courseService.rainbowCourseInfo(course_id);
+		model.addAttribute("courseInfo", course_info);
+		String url = "segroup/society/smtp/course/new-rainbow/" + course_id;
+		
+		logger.info("2021 Rainbow Course페이지 이동 컨트롤러 종료");
 		
 		return url;
 	}

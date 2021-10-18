@@ -13,13 +13,15 @@
         	//인증하기 버튼
         	$('#nextBt').on('click', function() {
         		if(checkAgree()){
-        			location.href='smtp/user/rainbow-user01-02-01'
+        			$('#signUp-check').submit();
         		}else{
         			alert('약관에 동의하지 않으셨습니다.');
         		}
-        		
         	});
         	
+        	$("#backBt").on("click", function(){
+        		location.href="/smtp/user/rainbow-user01-02-01";
+        	})
         });
     	
      	// 약관 및 회원 구분 선택 체크
@@ -51,7 +53,7 @@
                     </p>
                 </div>
                 <div class="section_formStyle join">
-                    <form action="rainbow-user01-02-03.html" method="post" id="signUp-check" class="formStyle">
+                    <form action="/smtp/user/rainbow-user01-02-03" method="post" id="signUp-check" class="formStyle">
                         <!-- 2) 회원가입(2) 약관 동의 -->
                         <acrticle class="signUp-agree">
 
@@ -630,13 +632,29 @@
                                 <label for="agree02" class="label">(필수) 위 서비스 이용방침에 동의합니다.</label>
                             </div>
                         </acrticle>
+                        <input type="hidden" name="req_info" value="${encReqInfo}">
+                        <input type="hidden" name="rtn_url" value="#">
+                        <input type="hidden" name="cpid" value="${cpId}">
+                        <input type="hidden" name="newpop" value="Y">
+
+                        <input type="hidden" id="user_phone" name="phone" value="${user.phone}">
+                        <input type="hidden" id="user_nm" name="name" value="${user.name}">
+                        <input type="hidden" id="user_sex" name="gender" value="${user.gender}">
+
+                        <input type="hidden" id="veriCi" name="veriCi" value="${userVeri.veriCi}">
+                        <input type="hidden" id="veriDi" name="veriDi" value="${userVeri.veriDi}">
+                        <input type="hidden" id="veriPhone" name="veriPhone" value="${userVeri.veriPhone}">
+                        <input type="hidden" id="veriCom" name="veriCom" value="${userVeri.veriCom}">
+                        <input type="hidden" id="veriBirth" name="veriBirth" value="${userVeri.veriBirth}">
+                        <input type="hidden" id="veriGender" name="veriGender" value="${userVeri.veriGender}">
+                        <input type="hidden" id="veriNation" name="veriNation" value="${userVeri.veriNation}">
+                        <input type="hidden" id="veriName" name="veriName" value="${userVeri.veriName}">
+                        <input type="hidden" id="veriNum" name="veriNum" value="${userVeri.veriNum}">
+                        <input type="hidden" id="veriTime" name="veriTime" value="${userVeri.veriTime}">
                     </form>
                 </div>
                 <div class="section_btnWrap d-flex justify_center">
-                    <button class="btn_normal btn_xlarge bgc_ccc" type="button" onclick="location.href=''">
-                        <!-- a태그 임시적용 -->
-                        <a href="/smtp/user/rainbow-user01-02-01">이전단계</a>
-                    </button>
+                    <button class="btn_normal btn_xlarge bgc_ccc" type="button" id="backBt">이전단계</button>
                     <button class="btn_normal btn_xlarge bgc_point" id="nextBt">다음단계 </button>
                 </div>
             </div>

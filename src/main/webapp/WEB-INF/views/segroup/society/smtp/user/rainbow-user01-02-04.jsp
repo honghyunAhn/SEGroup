@@ -7,14 +7,13 @@
 <head>
     <meta charset="UTF-8">
     <%@include file="../include/rainbow_head.jsp"%>
-    <!-- 기존 레인보우사이트 text/javascript 복사 -->
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
     	$(document).ready(function(){
     		$('#mainBtn').on('click', function(){
     			location.href='/rainbow';
     		});
     	});
-    </script> -->
+    </script>
 </head>
 
 <body>

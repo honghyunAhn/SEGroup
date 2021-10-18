@@ -481,7 +481,7 @@ public class SocietyFapUserViewController implements PathConstants {
 	@RequestMapping(value=PathConstants.SOCIETY_FAP_USER_INSERT_FORM, method=RequestMethod.GET)
 	public String user_insert_form(Model model,HttpServletRequest request){
 		logger.info("일반 회원 회원가입 이동 컨트롤러 시작");
-		
+		logger.debug("anh288");
 		// 교육기관 불러오기
 		ArrayList<HashMap<String, Object>> kmoveList = sfuService.select_komve();
 		Gson gson = new Gson();
