@@ -3,7 +3,6 @@ $(document).ready(function(){
 	var validCardinals = getCardinalInfo();
 	//컨텐츠 세팅
 	setContent(validCardinals, applyFormYn);
-	
 	//(관리자페이지에서의 요청을 받는 메소드)미리보기 -> 추후 수정필요
 	function getMessage(event) {
 		var newCode = event.data.newCodeTxt;

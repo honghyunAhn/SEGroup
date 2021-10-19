@@ -9,11 +9,20 @@ window.onload = function () {
         const distance = dDay - today;
         const day = Math.floor(distance / (1000 * 60 * 60 * 24));
         const btn = document.getElementById("applyBtn");
-
+        const cardinal_id = $("#cardinal_id").val();
+        const course_id = $("#course_id").val();
+        
         if (day >= 1) {
             count.innerHTML = "모집 마감 ⏰ D-" + day;
+            $("#applyBtn").on('click', function(){
+            	document.location.href = "/smtp/apply/sub00-01?course_id="+ course_id +"&cardinal_id="+ cardinal_id;
+            });
         } else if (day >= 0 && day <= 1) {
-            setInterval(countTime, 1000)
+            setInterval(countTime, 1000);
+            $("#applyBtn").on('click', function(){
+            	document.location.href = "/smtp/apply/sub00-01?course_id="+ course_id +"&cardinal_id="+ cardinal_id;
+            });
+           
         } else if (day <= -1) {
             count.innerHTML = "모집 기간이 종료되었습니다."
             btn.disable = true
@@ -196,4 +205,67 @@ window.onload = function () {
         }
         question.addEventListener("click", slideEvent);
     })
+}
+
+//모집종료 날짜
+function app_final_day(app_end_date){
+	const week = new Array('일', '월', '화', '수', '목', '금', '토');
+	const today = new Date(app_end_date).getDay();
+	const todayLabel = week[today];
+    const endDay = app_end_date.replaceAll("-",".")
+    $(".endDay").html(endDay+"("+todayLabel+") 까지");
+}
+
+//교육기간
+function class_time(learn_start_date, learn_end_date, class_day, class_start_time, class_end_time , selp_period){
+	//교육시작
+	const re_learn_start_date = learn_start_date.replaceAll("-",".");
+	const re_learn_end_date = learn_end_date.replaceAll("-",".");
+	const tmp_learn_date = re_learn_start_date + " ~ " + re_learn_end_date;
+	$(".learn_period").html(tmp_learn_date);
+	$(".self_period").html(" ("+(selp_period/30)+"개월)");
+	//요일
+	const change_week = class_day.replaceAll(",","/");
+	//요일 + 시간
+	const tmp_study_time = change_week + "&nbsp;&nbsp;" + class_start_time + " ~ " + class_end_time;
+	$("#learnTime").html(tmp_study_time);
+}
+
+//졸업예정일 표시
+function graduation(learn_end_date){
+	const str = learn_end_date.split("-");
+	let graduationDay = "";
+	if((parseInt(str[1])) < 7 ){
+		graduationDay = str[0] + ".03";
+	}else{
+		graduationDay = str[0] + ".09";
+	}
+	$("#graduation").html("("+graduationDay+")");
+}
+
+//scit 운영 년수
+function period(app_start_date){
+	const str = app_start_date.split("-");
+	const tmp = str[0] - 2000;
+	$("#period").html(tmp);
+}
+
+//교육비
+function expenses(price){
+	//기본 교육비
+	const re_price = change_price(price);
+	$(".expenses").html(re_price);
+	
+	//MOU대학교 교육비
+	const mou_price = change_price((price-price));
+	$(".mou_price").html(mou_price);
+	
+	//사전학습반, 기타협약기관
+	const etc_price = change_price((price/2));
+	$(".etc_price").html(etc_price);
+}
+
+//교육비 천단위 쉼표
+function change_price(price){
+	return price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }

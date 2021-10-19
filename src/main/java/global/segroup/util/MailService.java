@@ -175,7 +175,6 @@ public class MailService {
 		msg.setSubject(subject);
 		msg.setText(text);
 		msg.setSentDate(new Date());
-
 		Transport.send(msg);
 	}
 	

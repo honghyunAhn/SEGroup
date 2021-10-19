@@ -26,14 +26,14 @@
                     <ul class="lnb">
                         <li><a href="">코딩챌린지(사전학습반)</a></li>
                         <li><a href="">광주 SWDO MASTER</a></li>
-                        <li><a href="">부산 ABC MASTER</a></li>
+                        <li><a href="/smtp/course/new-rainbow/course?course_id=c000000548">부산 ABC MASTER</a></li>
                     </ul>
                 </li>
                 <li class="gnb">
                     <a href="rainbow-cousre02.html" class="fc_point02">내일배움카드 과정</a>
                     <ul class="lnb">
-                        <li><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
-                        <li><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-course02-02">JAVA기반 웹 개발자 과정</a></li>
+                        <li><a href="/smtp/course/new-rainbow/course?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
+                        <li><a href="/smtp/course/new-rainbow/course?course_id=rainbow-course02-02">JAVA기반 웹 개발자 과정</a></li>
                     </ul>
                 </li>
                 <li class="gnb">

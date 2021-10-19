@@ -3,13 +3,13 @@
 <div class="fullBannerWrapper swiper-container">
     <div class="swiper-wrapper fullBannerWrap d-flex">
         <div class="swiper-slide fullBanner">
-            <a href="/smtp/course/short-term/short-term-info?course_id=c000000541">
+            <a href="">
                 <img src="/resources/segroup/society/smtp/img/fullBanner01.jpg" alt="일본취업 필수과정 일본취업을 위한 JPT&JLPT 바로가기">
             </a>
         </div>
 
         <div class="swiper-slide fullBanner">
-            <a href="https://www.softsociety.net/lms/main">
+            <a href="/lms/main">
                 <img src="/resources/segroup/society/smtp/img/fullBanner02.jpg" alt="나에게 맞는 강의가 궁금하다면? We can do it! 두잇캠퍼스 바로가기">
             </a>
         </div>

@@ -8,7 +8,7 @@
         </div>
         <ul class="courseList d-flex flexWrap">
             <li class="cs_ict">
-                <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=course-detail">
+                <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
                         <div class="fc_666">코딩 챌린지 과정 1기</div>
@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li class="cs_ict">
-                <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=course-detail">
+                <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
                         <div class="fc_666">SoftWare DevOps MASTER 8기</div>
@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li class="cs_ict">
-                <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=course-detail">
+                <a href="/smtp/course/new-rainbow/course?course_id=c000000548">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
                         <div class="fc_666">Digital Ai Big-data Cloud Master 1기</div>

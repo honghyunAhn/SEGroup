@@ -49,7 +49,7 @@
                                 <ul class="courseList fc_333">
                                     <li><a href="">코딩챌린지(사전학습반)</a></li>
                                     <li><a href="">광주 SWDO MASTER</a></li>
-                                    <li><a href="">부산 ABC MASTER</a></li>
+                                    <li><a href="/smtp/course/new-rainbow/course?course_id=c000000548">부산 ABC MASTER</a></li>
                                 </ul>
                                 <div class="btn_moreList">
                                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre01">과정 더 보기 &nbsp;&gt;</a>

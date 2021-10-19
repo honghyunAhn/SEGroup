@@ -26,7 +26,7 @@
         $(function () {
             $('#next_btn').on('click', request_certification_code);
             $('#certi_btn').on('click', certification_code);
-            $('#certi_code_section').show();
+            $('#certi_code_section').hide();
 
             $("#phoneNumber").on("keyup", function() {
 		        $(this).val($(this).val().replace(/[^0-9]/g,""));
@@ -40,10 +40,14 @@
         //코드를 요청한다.
         
         function request_certification_code() {
-            var user_id = $('input[name=user_id]').val();
+        	var user_id = "anh288";
+            var user_email = "anh2073@naver.com";
+            var user_nm = "안홍현";
+            var user_phone = "01067763120" ;
+            /* var user_id = $('input[name=user_id]').val();
             var user_email = $('input[name=user_email]').val();
             var user_nm = $('input[name=user_nm]').val();
-            var user_phone = $('input[name=user_phone]').val();
+            var user_phone = $('input[name=user_phone]').val(); */
             if (user_id == "" || user_email == "" || user_nm == "" || user_phone == "") {
                 alert("빈칸없이 입력해주세요.");
                 return false;

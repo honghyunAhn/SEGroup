@@ -130,7 +130,7 @@ public class SmtpCourseController {
 		logger.info("2021 Rainbow Course페이지 이동 컨트롤러 시작");
 		HashMap<String, String> course_info= courseService.rainbowCourseInfo(course_id);
 		model.addAttribute("courseInfo", course_info);
-		String url = "segroup/society/smtp/course/new-rainbow/" + course_id;
+		String url = "segroup/society/smtp/course/new-rainbow/course/" + course_id;
 		
 		logger.info("2021 Rainbow Course페이지 이동 컨트롤러 종료");
 		

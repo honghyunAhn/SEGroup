@@ -25,8 +25,8 @@
             <li><a href="/smtp/course/new-rainbow/course?course_id=c000000548">부산 ABC MASTER</a></li>
         </ul>
         <ul class="subHeader d-flex flexWrap course-point02">
-            <li><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
-            <li><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-course02-02">JAVA기반 웹 개발자 과정</a></li>
+            <li><a href="/smtp/course/new-rainbow/course?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
+            <li><a href="/smtp/course/new-rainbow/course?course_id=rainbow-course02-02">JAVA기반 웹 개발자 과정</a></li>
         </ul>
         <ul class="subHeader d-flex flexWrap course-point03">
             <li><a href="">토익/토플 접수</a></li>
@@ -71,14 +71,14 @@
                     </li>
                     <li class="lnb"><a href="">코딩챌린지(사전학습반)</a></li>
                     <li class="lnb"><a href="">광주 SWDO MASTER</a></li>
-                    <li class="lnb"><a href="">부산 ABC MASTER</a></li>
+                    <li class="lnb"><a href="/smtp/course/new-rainbow/course?course_id=c000000548">부산 ABC MASTER</a></li>
                 </ul>
                 <ul class="menu-title-division">
                     <li class="gnb">
                         <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre02">내일배움카드 과정</a>
                     </li>
-                    <li class="lnb"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
-                    <li class="lnb"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-course02-02">JAVA기반 웹 개발자 과정</a></li>
+                    <li class="lnb"><a href="/smtp/course/new-rainbow/course?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
+                    <li class="lnb"><a href="/smtp/course/new-rainbow/course?course_id=rainbow-course02-02">JAVA기반 웹 개발자 과정</a></li>
                 </ul>
                 <ul class="menu-title-division">
                     <li class="gnb">
