@@ -19,7 +19,7 @@
                 <div class="courseWrap textAlign_center" id="courseFilter">
                 	<%@include file="../../include/course01.jsp"%>
                 	<%@include file="../../include/course02.jsp"%>
-                	<%@include file="../../include/course03.jsp"%>
+                	<%-- <%@include file="../../include/course03.jsp"%> --%>
                 	<%@include file="../../include/course04.jsp"%>
                 </div>
             </div>

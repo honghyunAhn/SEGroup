@@ -620,13 +620,13 @@ public class SmtpUserController {
 		return "/segroup/society/smtp/user/sub01-03";
 	}
 	
-	@RequestMapping(value = "smtp/user/rainbow-user01-03", method = RequestMethod.GET)
-	public String rainbow_user01_03(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	@RequestMapping(value = "smtp/user/rainbow-user01-03-01", method = RequestMethod.GET)
+	public String rainbow_user01_03_01(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
 		logger.info("아이디 찾기 페이지 이동 컨트롤러 시작");
 		logger.info("아이디 찾기 페이지 이동 컨트롤러 종료");
 		
-		return "/segroup/society/smtp/user/rainbow-user01-03";
+		return "/segroup/society/smtp/user/rainbow-user01-03-01";
 	}
 	
 	@RequestMapping(value = "/smtp/user/lostId", method = RequestMethod.POST)
@@ -644,18 +644,26 @@ public class SmtpUserController {
 			model.addAttribute("msg", "id는 " + user.get("USER_ID") + "입니다.");
 		} else {
 			redirectAttributes.addFlashAttribute("msg", "조회결과가 없습니다. 입력정보를 확인해주세요.");
-			return "redirect:/smtp/user/rainbow-user01-03";
+			return "redirect:/smtp/user/rainbow-user01-03-01";
 		}
 		logger.info("아이디 찾기 결과 페이지 이동 컨트롤러 종료");
-		return "/segroup/society/smtp/user/sub01-03-01";
+		return "/segroup/society/smtp/user/rainbow-user01-03-02";
 	}
 	
-	@RequestMapping(value = "/smtp/user/sub01-04-01", method = RequestMethod.GET)
+	@RequestMapping(value = "/smtp/user/sub01-04-01", method = RequestMethod.POST)
 	public String sub01_04_01(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		logger.info("비밀번호 찾기 페이지 이동 컨트롤러 시작");
-
+		
 		logger.info("비밀번호 찾기 페이지 이동 컨트롤러 종료");
 		return "/segroup/society/smtp/user/sub01-04-01";
+	}
+	
+	@RequestMapping(value = "/smtp/user/rainbow-user01-04-02", method = {RequestMethod.GET,RequestMethod.POST})
+	public String rainbow_user01_04_02(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		logger.info("비밀번호 찾기 페이지 이동 컨트롤러 시작");
+		
+		logger.info("비밀번호 찾기 페이지 이동 컨트롤러 종료");
+		return "/segroup/society/smtp/user/rainbow-user01-04-02";
 	}
 	
 	@ResponseBody
@@ -682,12 +690,14 @@ public class SmtpUserController {
 		return "/segroup/society/smtp/user/sub01-04";
 	}
 	
-	@RequestMapping(value = "/smtp/user/rainbow-user01-04", method = RequestMethod.GET)
-	public String rainbow_user01_04(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	@RequestMapping(value = "/smtp/user/rainbow-user01-04-01",  method = {RequestMethod.POST, RequestMethod.GET})
+	public String rainbow_user01_04(HttpServletRequest request, HttpServletResponse response, HttpSession session, String user_id, Model model) {
 		logger.info("비밀번호 찾기 페이지 이동 컨트롤러 시작");
-
+		if(user_id != null) {
+			model.addAttribute("user_id", user_id);
+		}
 		logger.info("비밀번호 찾기 페이지 이동 컨트롤러 종료");
-		return "/segroup/society/smtp/user/rainbow-user01-04";
+		return "/segroup/society/smtp/user/rainbow-user01-04-01";
 	}
 	
 	@ResponseBody
@@ -713,11 +723,11 @@ public class SmtpUserController {
 		if(result < 1) {
 			logger.debug("비밀번호 수정 실패");
 			redirectAttributes.addFlashAttribute("msg", "비밀번호 수정에 실패했습니다.");
-			return "redirect:/smtp/user/sub01-04";
+			return "redirect:/smtp/user/rainbow-user01-04-01";
 		} else {
 			redirectAttributes.addFlashAttribute("msg", "비밀번호 수정에 성공하였습니다.");
 			logger.info("비밀번호 수정 후 로그인 페이지 이동 컨트롤러 종료");
-			return "redirect:/smtp/user/sub01-01";
+			return "redirect:/smtp/user/rainbow-user01-01";
 		}
 	}
 	

@@ -12,9 +12,14 @@
         <ul class="header-menu d-flex fz16">
             <li class="hdrMenu link"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre01">해외취업캠퍼스</a></li>
             <li class="hdrMenu link"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre02">내일배움카드 과정</a></li>
-            <li class="hdrMenu link"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre03">자격증 코스</a></li>
+            <!-- <li class="hdrMenu link"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre03">자격증 코스</a></li> -->
             <li class="hdrMenu link"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre04">글로벌 잡매칭</a></li>
             <li class="hdrMenu link"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-community">커뮤니티</a></li>
+            <c:choose>
+				<c:when test="${sessionScope.user_id ne null}">
+                        <li class="hdrMenu link"><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-myClass">나의강의실</a></li>
+				</c:when>
+			</c:choose>
         </ul>
         <div class="img-icon bars-2line" id="showNav"></div>
     </header>
@@ -26,23 +31,23 @@
         </ul>
         <ul class="subHeader d-flex flexWrap course-point02">
             <li><a href="/smtp/course/new-rainbow/course?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
-            <li><a href="/smtp/course/new-rainbow/course?course_id=rainbow-course02-02">JAVA기반 웹 개발자 과정</a></li>
+            <li><a href="/smtp/course/new-rainbow/course?course_id=c000000549">JAVA기반 웹 개발자 과정</a></li>
         </ul>
-        <ul class="subHeader d-flex flexWrap course-point03">
+        <!-- <ul class="subHeader d-flex flexWrap course-point03">
             <li><a href="">토익/토플 접수</a></li>
             <li><a href="">일본취업을 위한 JPT & SJPT 일본어 단기과정</a></li>
             <li><a href="">일본취업 스킬업</a></li>
             <li><a href="">정보처리산업기사</a></li>
-        </ul>
+        </ul> -->
         <ul class="subHeader d-flex flexWrap course-point04">
             <li><a href="">2021 하반기 잡페어</a></li>
         </ul>
         <ul class="subHeader d-flex flexWrap course-point05">
-            <li><a href="">공지사항</a></li>
-            <li><a href="">FAQ</a></li>
-            <li><a href="">Q&A</a></li>
-            <li><a href="">졸업생 마당</a></li>
-            <li><a href="">오시는 길</a></li>
+            <li><a href="/smtp/community/rainbow-community01-01">공지사항</a></li>
+            <li><a href="/smtp/community/rainbow-community02-01">FAQ</a></li>
+            <li><a href="/smtp/community/rainbow-community03-01">Q&A</a></li>
+            <li><a href="/smtp/community/rainbow-community04-01">졸업생 마당</a></li>
+            <li><a href="/smtp/community/rainbow-community05-01">오시는 길</a></li>
         </ul>
     </div>
     <div class="fullWrapper" id="fullNav">
@@ -57,10 +62,10 @@
 						<c:otherwise>
 					        <li class="hdrMenu login"><a href="/smtp/user/rainbow-user01-01">로그인</a></li>
 					        <li class="hdrMenu join point_fc01"><a href="/smtp/user/rainbow-user01-02-01">회원가입</a></li>
+					        <li class="hdrMenu"><a href="/smtp/user/rainbow-user01-03-01">아이디찾기</a></li>
+                    		<li class="hdrMenu"><a href="/smtp/user/rainbow-user01-04-01">비밀번호찾기</a></li>
 						</c:otherwise>
 					</c:choose>
-                    <li class="hdrMenu"><a href="/smtp/user/rainbow-user01-03">아이디찾기</a></li>
-                    <li class="hdrMenu"><a href="/smtp/user/rainbow-user01-04">비밀번호찾기</a></li>
                 </ul>
                 <div class="img-icon times-large-wh" id="hideNav"></div>
             </div>
@@ -78,9 +83,9 @@
                         <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre02">내일배움카드 과정</a>
                     </li>
                     <li class="lnb"><a href="/smtp/course/new-rainbow/course?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
-                    <li class="lnb"><a href="/smtp/course/new-rainbow/course?course_id=rainbow-course02-02">JAVA기반 웹 개발자 과정</a></li>
+                    <li class="lnb"><a href="/smtp/course/new-rainbow/course?course_id=c000000549">JAVA기반 웹 개발자 과정</a></li>
                 </ul>
-                <ul class="menu-title-division">
+                <!-- <ul class="menu-title-division">
                     <li class="gnb">
                         <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre03">자격증/단기 과정</a>
                     </li>
@@ -88,7 +93,7 @@
                     <li class="lnb"><a href="">일본취업을 위한 JPT & SJPT 일본어 단기과정</a></li>
                     <li class="lnb"><a href="">일본취업 스킬업</a></li>
                     <li class="lnb"><a href="">정보처리산업기사</a></li>
-                </ul>
+                </ul> -->
                 <ul class="menu-title-division">
                     <li class="gnb">
                         <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre04">글로벌 잡매칭</a>
@@ -99,11 +104,11 @@
                     <li class="gnb">
                         <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-community">커뮤니티</a>
                     </li>
-                    <li class="lnb"><a href="">공지사항</a></li>
-                    <li class="lnb"><a href="">FAQ</a></li>
-                    <li class="lnb"><a href="">Q&A</a></li>
-                    <li class="lnb"><a href="">졸업생 마당</a></li>
-                    <li class="lnb"><a href="">오시는 길</a></li>
+                    <li class="lnb"><a href="/smtp/community/rainbow-community01-01">공지사항</a></li>
+                    <li class="lnb"><a href="/smtp/community/rainbow-community02-01">FAQ</a></li>
+                    <li class="lnb"><a href="/smtp/community/rainbow-community03-01">Q&A</a></li>
+                    <li class="lnb"><a href="/smtp/community/rainbow-community04-01">졸업생 마당</a></li>
+                    <li class="lnb"><a href="/smtp/community/rainbow-community05-01">오시는 길</a></li>
                 </ul>
                 <ul class="menu-title-division">
                 	<c:choose>

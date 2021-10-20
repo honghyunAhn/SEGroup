@@ -7,3 +7,31 @@ function togglePlay() {
     video.pause();
   }
 }
+
+// [ onclick event ] --> modal show/hide
+function openModal() {
+  const modal = document.querySelector('.modal');
+  function first(){
+    modal.style.display = "block";
+    document.body.classList.add("not-scroll");
+  }
+  function second(){
+    modal.addEventListener("click", function(){
+      if(document.body.classList.contains("not-scroll")){
+        closeModal();
+      }
+    })
+  }
+  first();
+  second();
+}
+
+function closeModal() {
+  document.querySelector('.modal').style.display = "none";
+  document.body.classList.remove("not-scroll");
+}
+
+window.addEventListener("load", function() {
+  
+
+});

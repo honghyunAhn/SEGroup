@@ -3,6 +3,11 @@
 html {
     font-size: 15px;
 }
+.signUp-agree>.text-box,
+.section_table,
+.modal-table {
+    font-family: "Noto Sans KR", "sans-serif" !important;
+}
 
 .container_rainbow {}
 
@@ -10,7 +15,8 @@ html {
     margin-top: 60px;
     min-height: calc(100vh - 618px);
 }
-.container_rainbow>.course-list{
+
+.container_rainbow>.course-list {
     margin-top: 120px;
     padding-top: 120px;
 }
@@ -425,7 +431,10 @@ html {
 
 .courseWrapper>.courseWrap>.textWrap {}
 
-.courseWrapper>.courseWrap>.courseListWrap {}
+.courseWrapper>.courseWrap>.courseListWrap {
+    width: 900px;
+    margin: 0 auto;
+}
 
 .courseWrapper>.courseWrap>.courseListWrap>.course {
     width: 280px;
@@ -847,6 +856,10 @@ html {
     position: sticky;
     position: -webkit-sticky;
 }
+.disabled{
+    filter: grayscale(100%);
+    cursor: not-allowed;
+}
 
 /* layout_sub >> course-detail >> 공통 */
 
@@ -1247,7 +1260,7 @@ html {
 }
 
 .show,
-.course-faqWrap>.faqGroup>.faq>.answerWrap.show {
+.course-faqWrap>.faqGroup>.faq>.answerWrap.show{
     display: block;
 
 }
@@ -1317,9 +1330,7 @@ html {
     font-weight: normal;
 }
 
-.btn_normal {
-    
-}
+.btn_normal {}
 
 .course-navWrap {
     display: none;
@@ -1360,20 +1371,29 @@ html {
 .sub-content>.section_header {
     text-align: center;
 }
+
 .sub-content>.section_header>.h3 {
     line-height: 30px;
 }
 
-.sub-content>.section_formStyle,
-.sub-content>.section_btnWrap {
+.section_search,
+.section_table,
+.section_view,
+.section_map,
+.section_pagination,
+.section_formStyle,
+.section_btnWrap {
     width: 600px;
     margin: 40px auto 0;
 }
+
 .sub-content>.section_formStyle>.login,
-.sub-content>.section_formStyle>.join{
+.sub-content>.section_formStyle>.find,
+.sub-content>.section_formStyle>.join {
     width: 300px;
     margin: 0 auto;
 }
+
 .formStyle {
     width: 100%;
 }
@@ -1394,21 +1414,46 @@ html {
     width: 100%;
     margin: 10px 0;
 }
-.formStyle .select.w100,
-.formStyle .input.w100{
+
+.w50 {
+    width: 50px;
+}
+
+.w100 {
     width: 100px;
 }
-.formStyle .select.w150,
-.formStyle .input.w150{
+
+.w150 {
     width: 150px;
 }
-.formStyle .select.w200,
-.formStyle .input.w200{
+
+.w200 {
     width: 200px;
 }
-.formStyle .select.w300,
-.formStyle .input.w300{
+
+.w250 {
+    width: 250px;
+}
+
+.w300 {
     width: 300px;
+}
+
+.w350 {
+    width: 350px;
+}
+
+.w400 {
+    width: 400px;
+}
+.w450 {
+    width: 450px;
+}
+.w500 {
+    width: 500px;
+}
+.w550 {
+    width: 550px;
 }
 
 .input-btn,
@@ -1446,43 +1491,48 @@ html {
     border-left: 5px solid #333;
 }
 
-.formStyle .two-buttons{
+.formStyle .two-buttons {
     width: 50%;
     padding: 10px;
 }
-.formStyle .two-buttons:nth-child(2){
+
+.formStyle .two-buttons:nth-child(2) {
     margin-left: 10px;
 }
 
-.section_btnWrap>button{
+.section_btnWrap>button {
     width: calc(50% - 10px);
 }
-.section_btnWrap>button:nth-child(1)~*{
+
+.section_btnWrap>button:nth-child(1)~* {
     margin-left: 20px;
 }
 
 
 /* subPage >> user - login */
 
-.division-menuWrap{
+.division-menuWrap {
     margin: 20px 0;
 }
 
 .division-menuWrap>li:hover {
     opacity: 1;
 }
+
 .division-menuWrap>li,
-.division-menuWrap>li.divBar:hover{
+.division-menuWrap>li.divBar:hover {
     opacity: .7;
 }
 
 
 /* subPage >> user - join */
 
-.sub-content.user01-02>.section_header{
+.sub-content.user01-02>.section_header {
     margin-top: 40px;
 }
-.processWrap{}
+
+.processWrap {}
+
 .processWrap>.process {
     width: 25%;
     border-bottom: 5px solid;
@@ -1495,12 +1545,14 @@ html {
 .processWrap>.fc_point {
     opacity: 1;
 }
-.signUp-agree>.text-box{
+
+
+.signUp-agree>.text-box {
     height: 250px;
     overflow-y: scroll;
     border: 1px solid #eee;
     padding: 20px;
-    font-family: "Noto Sans KR", "sans-serif";
+
     font-size: 14px;
 }
 
@@ -1508,7 +1560,8 @@ html {
     padding: 20px 0;
     text-align: center;
 }
-.certification>.certificationWrap{
+
+.certification>.certificationWrap {
     width: 300px;
     margin: 0 auto;
 }
@@ -1517,20 +1570,259 @@ html {
     margin: 10px 0;
     padding: 10px 0;
 }
-.join .formStyle>.formWrap:nth-child(1)~*{
-}
+
+.join .formStyle>.formWrap:nth-child(1)~* {}
+
 .formStyle.courseRegistration .d-flex>.label-input>span,
 .join .formStyle>.formWrap>div>span {
     margin: 10px 0;
 }
+
 .join .formStyle>.formWrap>div {
     line-height: 40px;
-} 
-.join .formStyle>.formWrap .input-btn{
+}
+
+.join .formStyle>.formWrap .input-btn {
     padding: 0 20px;
     margin-left: 10px;
     border-radius: 3px;
 }
-.join .formStyle .email .select{
+
+.join .formStyle .email .select {
     margin-left: 10px;
 }
+
+/* subPage >> user - find */
+.find .result{
+    text-align: center;
+    padding: 20px;
+    border : 1px solid #999;
+}
+/* subPage >> community - notice */
+.section_search .d-flex>button.search {
+    margin: 20px 10px;
+}
+
+.section_search .d-flex>*:nth-child(1)~* {
+    margin-left: 10px;
+}
+
+.overX-scroll.section_table .table-title,
+.overX-scroll.section_table .table-list{
+    width: 1200px;
+}
+.section_table {}
+
+.section_table .table-title {
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+}
+
+.section_table .table-title,
+.section_table .table-list .list {
+    padding: 10px;
+    text-align: center;
+    align-items: center;
+}
+.section_table .table-list .line-list,
+.section_table .table-title.line-title{
+    padding: 0;
+}
+.section_table>.table-list .line-list>.d-flex,
+.section_table>.table-title.line-title>.d-flex{
+    padding: 10px;
+}
+.section_table .table-title>.d-flex:nth-child(1)~*,
+.section_table .table-list .line-list>.d-flex:nth-child(1)~*{
+    border-top : 1px dashed;
+}
+.section_table .table-list .answer{
+    display: none;
+    align-items: baseline;
+    background-color: #f7f7f7;
+}
+.section_table .table-list .answer.show{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.section_table .table-list .list{
+    border-bottom : 1px solid #eee;
+    
+}
+.section_table .table-list .list:hover{
+    background-color: rgba(0,0,0,.05);
+    cursor: pointer;
+}
+.section_table .list.not:hover{
+    background-color: inherit;
+    cursor: default;
+}
+.section_table .table-list .answer:hover{
+    background-color: #f7f7f7;
+    cursor: default;
+}
+.section_table .list .table-btn{
+    width: calc(100% - 20px);
+    margin: 0 5px;
+    padding: 5px; 
+}
+.section_pagination .page-item>input{
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.section_view{}
+.section_view>.view_title{
+    padding: 20px;
+}
+.view_info>li:nth-child(1)~*{
+    margin-left: 10px;
+}
+.section_view>.view_content{
+    margin: 60px 0;
+    border : 1px solid #999;
+    padding: 10px 20px;
+    line-height: 30px;
+}
+.view_content>.view_image{
+    width: 300px;
+    margin: 10px auto;
+    text-align: center;
+}
+.view_content>.view_image>*{
+    max-width: 100%;
+    height: auto;
+}
+.view_fileUpload{
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+    padding: 20px;
+}
+
+
+/* subPage >> community - map */
+.section_map{}
+
+.section_map .map_headerWrap .map_header{
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid;
+    border-bottom: none;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    color: #ccc;
+    background-color: #fff;
+}
+.section_map .map_headerWrap .map_header.active,
+.section_map .map_headerWrap .map_header:hover{
+    background-color: #666;
+    color: #fff;
+}
+
+.section_map .map_bodyWrap{
+    border: 1px solid #666;
+    padding: 20px;
+}
+.section_map .map_bodyWrap .map_body:nth-child(1)~*{
+    display: none;
+}
+.section_map .map_bodyWrap .map_body>.map{
+    margin-top: 20px;
+    width: 100%;
+}
+.section_map .map_bodyWrap .map_body>.map_wayWrap{
+}
+.section_map .map_bodyWrap .map_body>.map_wayWrap .map_way{
+    margin-top: 20px;
+}
+
+/* subPage >> community - Q&A */
+.section_view .view_question{
+    border : 1px solid #eee;
+}
+.section_view .view_answer,
+.section_view .view_question{
+    margin: 20px 0 0;
+    padding: 20px;
+}
+.section_view .view_answer .view_title,
+.section_view .view_answer .view_content,
+.section_view .view_question .view_title,
+.section_view .view_question .view_content{
+    padding: 10px;
+}
+.section_view .view_question .view_content{
+    border : 1px solid #eee;
+    border-top: none;
+}
+.section_view .view_answer{
+    border : 1px solid #999;
+    padding: 20px;
+
+}
+.section_view .view_answer .view_content{
+    border: none;
+    border-top: 1px solid #999;
+    padding: 20px 0 0;
+    margin-top: 20px;
+}
+
+/* subPage >> community - map >> daum map style */
+.root_daum_roughmap .wrap_controllers .tit_controllers,
+.root_daum_roughmap .wrap_controllers .wrap_btn_roadview>*{
+    width: auto;
+}
+
+
+
+
+/* subPage >> modal */
+
+
+
+.modal{
+    position: absolute;
+    background-color: rgba(0,0,0,.7);
+    width: 100vw;
+    height: 100vh;
+    top: 0; bottom: 0; left: 0; right: 0;
+    display: none;
+}
+.modal .close-modal{
+    cursor: pointer;
+}
+.modal>.modal-content{
+    position: absolute;
+    width: 1200px;
+    height: calc(100vh - 200px);
+    margin: auto;
+    top: 0; bottom: 0; left: 0; right: 0;
+    background-color: #fff;
+    padding: 40px;
+    z-index: 1100;
+}
+.modal>.modal-content .modal-table{
+    width: 100%;
+    margin: 40px auto;
+}
+.modal>.modal-content .modal-table th,
+.modal>.modal-content .modal-table td{
+    border: 1px solid #ddd;
+    padding: 10px 0;
+    text-align: center;
+    vertical-align: middle;
+}
+.positionImg{
+    position: relative;
+}
+.positionImg .stampImg{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: -20px;
+    right: 60px;
+    opacity: .5;
+}
+
+

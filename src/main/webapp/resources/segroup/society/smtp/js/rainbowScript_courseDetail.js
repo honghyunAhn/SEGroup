@@ -212,8 +212,10 @@ function app_final_day(app_end_date){
 	const week = new Array('일', '월', '화', '수', '목', '금', '토');
 	const today = new Date(app_end_date).getDay();
 	const todayLabel = week[today];
-    const endDay = app_end_date.replaceAll("-",".")
-    $(".endDay").html(endDay+"("+todayLabel+") 까지");
+    const endDay = app_end_date.replaceAll("-",".");
+    if(app_end_date != ""){
+    	$(".endDay").html(endDay+"("+todayLabel+") 까지");
+    }
 }
 
 //교육기간
@@ -223,12 +225,18 @@ function class_time(learn_start_date, learn_end_date, class_day, class_start_tim
 	const re_learn_end_date = learn_end_date.replaceAll("-",".");
 	const tmp_learn_date = re_learn_start_date + " ~ " + re_learn_end_date;
 	$(".learn_period").html(tmp_learn_date);
-	$(".self_period").html(" ("+(selp_period/30)+"개월)");
+	if(selp_period != ""){
+		$(".self_period").html(" ("+(Math.ceil(selp_period/30))+"개월)");
+	}
 	//요일
 	const change_week = class_day.replaceAll(",","/");
 	//요일 + 시간
-	const tmp_study_time = change_week + "&nbsp;&nbsp;" + class_start_time + " ~ " + class_end_time;
+	
+		const tmp_study_time = change_week + "&nbsp;&nbsp;" + class_start_time + " ~ " + class_end_time;
+	
+	if(class_day != ""){
 	$("#learnTime").html(tmp_study_time);
+	}
 }
 
 //졸업예정일 표시

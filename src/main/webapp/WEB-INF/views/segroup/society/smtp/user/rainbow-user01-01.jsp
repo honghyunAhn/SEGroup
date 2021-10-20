@@ -107,11 +107,11 @@
                         <input type="submit" class="btn_normal btn_xlarge bgc_point" value="로그인">
                     </form>
                     <ul class="division-menuWrap d-flex justify_center">
-                        <li><a href="/smtp/user/rainbow-user01-02">회원가입</a></li>
+                        <li><a href="/smtp/user/rainbow-user01-02-01">회원가입</a></li>
                         <li class="divBar">&nbsp;|&nbsp;</li>
-                        <li><a href="/smtp/user/rainbow-user01-03">아이디 찾기</a></li>
+                        <li><a href="/smtp/user/rainbow-user01-03-01">아이디 찾기</a></li>
                         <li class="divBar">&nbsp;|&nbsp;</li>
-                        <li><a href="/smtp/user/rainbow-user01-04">비밀번호 찾기</a></li>
+                        <li><a href="/smtp/user/rainbow-user01-04-01">비밀번호 찾기</a></li>
                     </ul>
                 </div>
             </div>

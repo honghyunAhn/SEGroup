@@ -8,7 +8,7 @@
         </div>
         <ul class="courseList d-flex flexWrap">
             <li class="cs_job">
-                <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
+                <a href="/fap/user/user_main">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
                         <div class="fc_666">브릿지 잡페어</div>

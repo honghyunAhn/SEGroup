@@ -32,8 +32,11 @@
         	switch(iden_gbn) {
         	case 'phone':	// 휴대 전화
         		window.name = 'sendJsp2';
-        		DRMOK2_window = window.open(url+'?cpid=${cpId}&rtn_url=${rtn_url}&req_info=${encReqInfo}', 'DRMOK2_window', 'width=425,height=550,scrollbars=no,toolbar=no,location=no,directories=no,status=no' );
-        		DRMOK2_window.focus();
+        		//DRMOK2_window = window.open(url+'?cpid=${cpId}&rtn_url=${rtn_url}&req_info=${encReqInfo}', 'DRMOK2_window', 'width=425,height=550,scrollbars=no,toolbar=no,location=no,directories=no,status=no' );
+        		DRMOK2_window = window.open("https://www.naver.com");
+        		console.log(DRMOK2_window);
+        		console.log(window.statusbar);
+        		DRMOK2_window.close();
         		if(DRMOK2_window == null){
         		    alert(" ※ 윈도우 XP SP2 또는 인터넷 익스플로러 7 사용자일 경우에는 \n    화면 상단에 있는 팝업 차단 알림줄을 클릭하여 팝업을 허용해 주시기 바랍니다. \n\n※ MSN,야후,구글 팝업 차단 툴바가 설치된 경우 팝업허용을 해주시기 바랍니다.");
         		}

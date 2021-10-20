@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="img-icon arrow-circle-up" id="scrollTop"></div>
 <div class="footerWrap">
     <div class="footer d-flex justify_between">
@@ -33,10 +34,10 @@
                     <a href="rainbow-cousre02.html" class="fc_point02">내일배움카드 과정</a>
                     <ul class="lnb">
                         <li><a href="/smtp/course/new-rainbow/course?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
-                        <li><a href="/smtp/course/new-rainbow/course?course_id=rainbow-course02-02">JAVA기반 웹 개발자 과정</a></li>
+                        <li><a href="/smtp/course/new-rainbow/course?course_id=c000000549">JAVA기반 웹 개발자 과정</a></li>
                     </ul>
                 </li>
-                <li class="gnb">
+                <!-- <li class="gnb">
                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre03" class="fc_point03">자격증 코스</a>
                     <ul class="lnb">
                         <li><a href="">토익/토플 접수</a></li>
@@ -44,22 +45,37 @@
                         <li><a href="">일본취업 스킬업</a></li>
                         <li><a href="">정보처리산업기사</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="gnb">
-                    <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre04" class="fc_point04">글로벌 잡매칭</a>
+                    <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre04" class="fc_point03">글로벌 잡매칭</a>
                     <ul class="lnb">
                         <li><a href="">2021 하반기 잡페어</a></li>
                     </ul>
                 </li>
                 <li class="gnb">
-                    <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-community" class="fc_point05">커뮤니티</a>
+                    <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-community" class="fc_point04">커뮤니티</a>
                     <ul class="lnb">
-                        <li><a href="">공지사항</a></li>
-                        <li><a href="">FAQ</a></li>
-                        <li><a href="">Q&A</a></li>
-                        <li><a href="">졸업생 마당</a></li>
-                        <li><a href="">오시는 길</a></li>
+                        <li><a href="/smtp/community/rainbow-community01-01">공지사항</a></li>
+                        <li><a href="/smtp/community/rainbow-community02-01">FAQ</a></li>
+                        <li><a href="/smtp/community/rainbow-community03-01">Q&A</a></li>
+                        <li><a href="/smtp/community/rainbow-community04-01">졸업생 마당</a></li>
+                        <li><a href="/smtp/community/rainbow-community05-01">오시는 길</a></li>
                     </ul>
+                </li>
+                <li class="gnb">
+                	<c:choose>
+						<c:when test="${sessionScope.user_id ne null}">
+		                 	<a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-myClass" class="fc_point05">나의강의실</a>
+		                 	<ul class="lnb">
+			                    <li class="lnb"><a href="">학습현황</a></li>
+			                    <li class="lnb"><a href="">지원현황</a></li>
+			                    <li class="lnb"><a href="">서류발급</a></li>
+			                    <li class="lnb"><a href="">결제현황/환불</a></li>
+			                    <li class="lnb"><a href="">마일리지</a></li>
+			                    <li class="lnb"><a href="">개인정보수정</a></li>
+			                </ul>
+						</c:when>
+					</c:choose>
                 </li>
             </ul>
         </div>

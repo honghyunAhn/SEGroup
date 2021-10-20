@@ -102,6 +102,87 @@ public class SmtpCommunityController {
 		return "/segroup/society/smtp/community/sub04-01";
 	}
 	
+	@RequestMapping(value = "/smtp/community/rainbow-community01-01", method = RequestMethod.GET)
+	public String rainbow_community01_01(Model model, Authentication auth,@RequestParam(defaultValue="contents") String searchOption,
+            @RequestParam(defaultValue="") String keyword,
+            @RequestParam(defaultValue="1") int curPage){
+		logger.info("공지사항 페이지 이동 컨트롤러 시작");
+		BoardPager.setBLOCK_SCALE(25);
+		BoardPager.setPAGE_SCALE(10);
+		String boardSeq="8";
+		int count= eduApplyService.countBoard(searchOption,keyword,boardSeq);
+		BoardPager boardPager = new BoardPager(count, curPage);
+		
+		int start = boardPager.getPageBegin();
+		int end = boardPager.getPageEnd();
+		
+		ArrayList<HashMap<String, Object>> boardList = (ArrayList<HashMap<String, Object>>) eduApplyService.boardListAll(start, end, searchOption, keyword, boardSeq);
+
+		 Map<String, Object> map = new HashMap<String, Object>();
+		    map.put("count", count); // 레코드의 갯수
+		    map.put("searchOption", searchOption); // 검색옵션
+		    map.put("keyword", keyword); // 검색키워드
+		    map.put("boardPager", boardPager);
+		    
+		    for(int i=0;i<boardList.size();i++){
+				
+		    	String contents=  (((String) (boardList.get(i).get("board_content_title"))).replaceAll("\\<.*?>", "").substring(0,
+						Math.min(((String) boardList.get(i).get("board_content_title")).replaceAll("\\<.*?>", "").length(), 150)));
+		    	  if(contents.length()>61){
+				    	contents=contents.substring(0,Math.min(contents.length(), 60));
+				    	contents+="....";
+				    }
+		    	  boardList.get(i).put("board_content_title", contents);        
+			}
+		    
+		    model.addAttribute("boardList", boardList);
+			model.addAttribute("map", map);
+			logger.info("공지사항 페이지 이동 컨트롤러 종료");
+		return "/segroup/society/smtp/community/rainbow-community01-01";
+	}
+	
+	@RequestMapping(value = "/smtp/community/rainbow-community01-02", method = RequestMethod.GET)
+	public String rainbow_community01_02(Model model, Authentication auth, String seq, String searchOption,HttpServletRequest request){
+		logger.debug("공지사항 게시판을 내용을 호출하는 컨트롤러 시작");
+		try{
+			eduApplyService.boardHit(Integer.parseInt(seq));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		HashMap<String, Object> detail = null;
+		if(searchOption==null){
+			detail= eduApplyService.boardDetail(seq,"8");
+		} else if(searchOption.equals("next")
+				|| searchOption.equals("previous")){
+			detail= eduApplyService.boardDetail(seq, searchOption, "8");	
+		}
+		if(detail==null){
+			String referer = request.getHeader("Referer");
+		    return "redirect:"+ referer;
+		}
+		
+		ArrayList<HashMap<String, Object>> files = null;
+		files=eduApplyService.boardFiles(detail.get("board_content_seq").toString());
+		
+		model.addAttribute("boardDetail", detail);
+		model.addAttribute("files", files);
+		model.addAttribute("path", eduApplyBoardFile);
+		logger.debug("공지사항 게시판을 내용을 호출하는 컨트롤러 종료");
+		return "/segroup/society/smtp/community/rainbow-community01-02";
+	}
+	
+	@RequestMapping(value="/smtp/community/rainbow-community02-01", method=RequestMethod.GET)
+	public String rainbow_community02_01(Model model, @RequestParam HashMap<String,Object> params) {
+		
+		logger.info("FAQ 페이지 이동 컨트롤러 시작");
+		
+		model.addAttribute("search", params);
+		
+		logger.info("FAQ 페이지 이동 컨트롤러 끝");		
+		
+		return"/segroup/society/smtp/community/rainbow-community02-01";
+	}
+	
 	@RequestMapping(value = "/smtp/community/sub04-01-01", method = RequestMethod.GET)
 	public String sub04_01_view(Model model, Authentication auth, String seq, String searchOption,HttpServletRequest request){
 
@@ -131,6 +212,15 @@ public class SmtpCommunityController {
 		model.addAttribute("path", eduApplyBoardFile);
 		logger.debug("공지사항 게시판을 내용을 호출하는 컨트롤러 종료");
 		return "/segroup/society/smtp/community/sub04-01-01";
+	}
+	
+	@RequestMapping(value="/smtp/community/rainbow-community05-01", method=RequestMethod.GET)
+	public String rainbow_community05_01() {
+		
+		logger.info("오시는길 페이지 이동 컨트롤러 시작");
+		logger.info("오시는길 페이지 이동 컨트롤러 끝");		
+		
+		return"/segroup/society/smtp/community/rainbow-community05-01";
 	}
 	
 	@RequestMapping(value="/smtp/community/courseNoticeList")
@@ -391,6 +481,45 @@ public class SmtpCommunityController {
 		return PathConstants.SEGROUP_SOCIETY + "/smtp/community/sub04-05";
 	}
 	
+	@RequestMapping(value = "/smtp/community/rainbow-community04-01", method = RequestMethod.GET)
+	public String rainbow_community04_01(Model model, Authentication auth,@RequestParam(defaultValue="contents") String searchOption,
+            @RequestParam(defaultValue="") String keyword,
+            @RequestParam(defaultValue="1") int curPage){
+		BoardPager.setBLOCK_SCALE(25);
+		BoardPager.setPAGE_SCALE(10);
+		String boardSeq="9";
+		int count=eduApplyService.countBoard(searchOption,keyword,boardSeq);
+		BoardPager boardPager = new BoardPager(count, curPage);
+		
+		int start = boardPager.getPageBegin();
+		int end = boardPager.getPageEnd();
+		
+		ArrayList<HashMap<String, Object>> boardList = (ArrayList<HashMap<String, Object>>) eduApplyService.boardListAll(start, end, searchOption, keyword, boardSeq);
+
+		 Map<String, Object> map = new HashMap<String, Object>();
+		    map.put("count", count); // 레코드의 갯수
+		    map.put("searchOption", searchOption); // 검색옵션
+		    map.put("keyword", keyword); // 검색키워드
+		    map.put("boardPager", boardPager);
+		    
+		    for(int i=0;i<boardList.size();i++){
+				
+		    	String contents=  (((String) (boardList.get(i).get("board_content_title"))).replaceAll("\\<.*?>", "").substring(0,
+						Math.min(((String) boardList.get(i).get("board_content_title")).replaceAll("\\<.*?>", "").length(), 150)));
+		    	  if(contents.length()>61){
+				    	contents=contents.substring(0,Math.min(contents.length(), 60));
+				    	contents+="....";
+				    }
+		    	  boardList.get(i).put("board_content_title", contents);        
+			}
+		    
+		    
+		    
+		    model.addAttribute("boardList", boardList);
+			model.addAttribute("map", map);
+		return PathConstants.SEGROUP_SOCIETY + "/smtp/community/rainbow-community04-01";
+	}
+	
 	@RequestMapping(value = "/smtp/community/sub04-05-01", method = RequestMethod.GET)
 	public String sub04_05_01(Model model, Authentication auth, String seq, String searchOption,HttpServletRequest request){
 
@@ -424,7 +553,106 @@ public class SmtpCommunityController {
 		return PathConstants.SEGROUP_SOCIETY + "/smtp/community/sub04-05-01";
 	}
 	
+	@RequestMapping(value = "/smtp/community/rainbow-community04-02", method = RequestMethod.GET)
+	public String rainbow_community04_02(Model model, Authentication auth, String seq, String searchOption,HttpServletRequest request){
+
+		logger.debug("졸업생마당 게시판을 내용을 호출하는 컨트롤러 시작");
+		
+		if(seq == null || seq.equals("")) {
+			return "redirect:/smtp/community/rainbow-community04-01";
+		}
+		
+		eduApplyService.boardHit(Integer.parseInt(seq));
+		HashMap<String, Object> detail = null;
+		if(searchOption==null){
+			detail= eduApplyService.boardDetail(seq,"9");
+		} else if(searchOption.equals("next")){
+			detail= eduApplyService.boardDetail(seq,searchOption,"9");	
+		} else if(searchOption.equals("previous")){
+			detail= eduApplyService.boardDetail(seq,searchOption,"9");	
+		}
+		if(detail==null){
+			String referer = request.getHeader("Referer");
+		    return "redirect:"+ referer;
+		}
+		
+		ArrayList<HashMap<String, Object>> files = null;
+		files=eduApplyService.boardFiles(detail.get("board_content_seq").toString());
+		
+		model.addAttribute("boardDetail", detail);
+		model.addAttribute("files", files);
+		model.addAttribute("path", eduApplyBoardFile);
+		logger.debug("졸업생마당 게시판을 내용을 호출하는 컨트롤러 종료");
+		return PathConstants.SEGROUP_SOCIETY + "/smtp/community/rainbow-community04-02";
+	}
 	
+	@RequestMapping(value = "/smtp/community/rainbow-community03-01", method = RequestMethod.GET)
+	public String rainbow_community03_01(Model model, Authentication auth,@RequestParam(defaultValue="contents") String searchOption,
+            @RequestParam(defaultValue="") String keyword,
+            @RequestParam(defaultValue="1") int curPage){
+		BoardPager.setBLOCK_SCALE(25);
+		BoardPager.setPAGE_SCALE(10);
+		int consulting_tp=1000; // 온라인상담 부분 검색
+		int count=eduApplyService.online_consulting_countBoard(searchOption,keyword,consulting_tp);
+		BoardPager boardPager = new BoardPager(count, curPage);
+		
+		int start = boardPager.getPageBegin();
+		int end = boardPager.getPageEnd();
+		
+		ArrayList<HashMap<String, Object>> boardList = (ArrayList<HashMap<String, Object>>) eduApplyService.online_consulting_boardListAll(start, end, searchOption, keyword, consulting_tp);
+		Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("count", count); // 레코드의 갯수
+	    map.put("searchOption", searchOption); // 검색옵션
+	    map.put("keyword", keyword); // 검색키워드
+	    map.put("boardPager", boardPager);
+		    
+		    for(int i=0;i<boardList.size();i++){
+		    	String contents=  (((String) (boardList.get(i).get("consulting_title"))).replaceAll("\\<.*?>", "").substring(0,
+						Math.min(((String) boardList.get(i).get("consulting_title")).replaceAll("\\<.*?>", "").length(), 150)));
+		    	  if(contents.length()>51){
+				    	contents=contents.substring(0,Math.min(contents.length(), 50));
+				    	contents+="....";
+				    }
+		    	  boardList.get(i).put("consulting_title", contents);        
+			}
+		    
+		    if (auth != null) {
+		    	model.addAttribute("consulting_ins_id", auth.getName());
+			}
+		    
+		    model.addAttribute("boardList", boardList);
+			model.addAttribute("map", map);
+		return PathConstants.SEGROUP_SOCIETY + "/smtp/community/rainbow-community03-01";
+	}
+	
+	@RequestMapping(value = "/smtp/community/rainbow-community03-02", method = RequestMethod.GET)
+	public String sub04_04_01(Model model, Authentication auth, int consulting_seq, String searchOption, HttpServletRequest request){
+		
+		logger.debug("온라인상담 게시판을 내용을 호출하는 컨트롤러 시작");
+		
+		eduApplyService.online_consulting_hit_update(consulting_seq);
+		HashMap<String, Object> detail = null;
+		if(searchOption==null){
+			detail= eduApplyService.online_consulting_boardDetail(consulting_seq);
+		} else if(searchOption.equals("next")){
+			detail= eduApplyService.online_consulting_boardDetail(consulting_seq,searchOption);	
+		} else if(searchOption.equals("previous")){
+			detail= eduApplyService.online_consulting_boardDetail(consulting_seq,searchOption);	
+		}
+		if(detail==null){
+			String referer = request.getHeader("Referer");
+			return "redirect:"+ referer;
+		}
+		
+		if (auth != null) {
+	    	model.addAttribute("consulting_ins_id", auth.getName());
+		}
+		
+		model.addAttribute("boardDetail", detail);
+		
+		logger.debug("온라인상담 게시판을 내용을 호출하는 컨트롤러 종료");
+		return PathConstants.SEGROUP_SOCIETY + "/smtp/community/rainbow-community03-02";
+	}
 //	@RequestMapping(value = PathConstants.SOCIETY_EDU_COMMUNITY_MEDIA_IN_IT, method = RequestMethod.GET)
 //	public String apply_media_in_it(Model model, Authentication auth,@RequestParam(defaultValue="contents") String searchOption,
 //            @RequestParam(defaultValue="") String keyword,
