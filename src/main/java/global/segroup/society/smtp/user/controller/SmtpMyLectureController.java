@@ -39,6 +39,20 @@ public class SmtpMyLectureController {
 	@Value("#{config['boardPages']}")
 	String boardPages;
 	
+	@RequestMapping(value = "/smtp/user/rainbow-class01-01", method = RequestMethod.GET)
+	public String rainbow_class01_01(Authentication auth, @RequestParam HashMap<String,Object> params, Model model ) {
+		logger.info("학습현황-학습중 페이지 이동 컨트롤러 시작");
+		String user_id = (auth!=null ? auth.getName() : null);
+		params.put("user_id",user_id);
+		
+		model.addAttribute("progressList", service.smtpSelectProgressList(params));
+		model.addAttribute("waitingList", service.smtpSelectWaitingList(params));
+		model.addAttribute("completeList", service.smtpSelectCompleteList(params));
+		
+		logger.info("학습현황-학습중 페이지 이동 컨트롤러 종료");
+		return "/segroup/society/smtp/user/rainbow-class01-01";
+	}
+	
 	@RequestMapping(value = "smtp/user/sub05-01", method = RequestMethod.GET)
 	public String sub05_01(Authentication auth, @RequestParam HashMap<String,Object> params, Model model ) {
 		logger.info("학습현황-학습중 페이지 이동 컨트롤러 시작");
@@ -52,6 +66,7 @@ public class SmtpMyLectureController {
 		logger.info("학습현황-학습중 페이지 이동 컨트롤러 종료");
 		return "/segroup/society/smtp/user/sub05-01";
 	}
+	
 	@RequestMapping(value="smtp/user/sub05-01-list", method = RequestMethod.GET)
 	public @ResponseBody Object sub05_01_list (Authentication auth,@RequestParam HashMap<String,Object> params) {
 		

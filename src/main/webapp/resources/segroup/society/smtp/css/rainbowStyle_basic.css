@@ -142,7 +142,7 @@ html {
     color: #fff;
 }
 
-.header-menu>.hdrMenu:nth-child(1)~*,
+.header-menu .hdrMenu:nth-child(1)~*,
 .fullWrapper>.full-navGroup .menuDivWrap>.menu-title-division:nth-child(1)~* {
     margin-left: 20px;
 }
@@ -209,12 +209,6 @@ html {
     display: none;
 }
 
-.fullWrapper>.full-navGroup>.header-menu {}
-
-    {
-    line-height: 40px;
-}
-
 .fullWrapper>.full-navGroup .menuDivWrap {
     margin-top: 40px;
 }
@@ -232,13 +226,13 @@ html {
     margin: 5px 0;
 }
 
-.fullWrapper>.full-navGroup .header-menu>.hdrMenu,
+.fullWrapper>.full-navGroup .header-menu .hdrMenu,
 .fullWrapper>.full-navGroup .menuDivWrap>.menu-title-division>.lnb {
     padding: 10px 0;
     opacity: 0.8;
 }
 
-.fullWrapper>.full-navGroup .header-menu>.hdrMenu:hover,
+.fullWrapper>.full-navGroup .header-menu .hdrMenu:hover,
 .fullWrapper>.full-navGroup .menuDivWrap>.menu-title-division>.lnb:hover {
     opacity: 1;
 }
@@ -1379,6 +1373,7 @@ html {
 .section_search,
 .section_table,
 .section_view,
+.section_tab,
 .section_map,
 .section_pagination,
 .section_formStyle,
@@ -1704,6 +1699,7 @@ html {
 /* subPage >> community - map */
 .section_map{}
 
+
 .section_map .map_headerWrap .map_header{
     padding: 10px;
     margin-right: 10px;
@@ -1714,6 +1710,7 @@ html {
     color: #ccc;
     background-color: #fff;
 }
+
 .section_map .map_headerWrap .map_header.active,
 .section_map .map_headerWrap .map_header:hover{
     background-color: #666;
@@ -1775,6 +1772,37 @@ html {
 }
 
 
+/* subPage >> myClass */
+
+.tab_headerWrap .tab_header{
+    padding: 10px 0;
+    border: 1px solid;
+    cursor: pointer;
+    width: calc((100% - 10px) / 3);
+    text-align: center;
+    border-radius: 5px;
+}
+
+.tab_headerWrap .tab_header:nth-child(1)~*{
+    margin-left: 10px;
+}
+
+.tab_headerWrap .tab_header.active,
+.tab_headerWrap .tab_header:hover{
+    background-color: #58b7dd;
+    color: #fff;
+}
+
+.tab_bodyWrap .tab_body:nth-child(1)~*{
+    display: none;
+}
+
+.myClass .section_table .table-list .list:hover{
+    background-color: inherit;
+    cursor: default;
+}
+
+/* subPage >> myClass >> mileage */
 
 
 /* subPage >> modal */
@@ -1788,6 +1816,7 @@ html {
     height: 100vh;
     top: 0; bottom: 0; left: 0; right: 0;
     display: none;
+    z-index: 1100;
 }
 .modal .close-modal{
     cursor: pointer;
@@ -1800,7 +1829,6 @@ html {
     top: 0; bottom: 0; left: 0; right: 0;
     background-color: #fff;
     padding: 40px;
-    z-index: 1100;
 }
 .modal>.modal-content .modal-table{
     width: 100%;

@@ -3,33 +3,30 @@ window.onload = function () {
 
     // course-detail.html >> 모집마감일 d-day
     const count = document.querySelector(".course-applyWrap .courseCount");
+    const btn = document.querySelectorAll("button.course-apply");
 
     function courseCounter() {
         const today = new Date().getTime();
         const distance = dDay - today;
         const day = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const btn = document.getElementById("applyBtn");
-        const cardinal_id = $("#cardinal_id").val();
-        const course_id = $("#course_id").val();
-        
+        // const btn = document.getElementById("applyBtn");
+
         if (day >= 1) {
             count.innerHTML = "모집 마감 ⏰ D-" + day;
-            $("#applyBtn").on('click', function(){
-            	document.location.href = "/smtp/apply/sub00-01?course_id="+ course_id +"&cardinal_id="+ cardinal_id;
-            });
         } else if (day >= 0 && day <= 1) {
-            setInterval(countTime, 1000);
-            $("#applyBtn").on('click', function(){
-            	document.location.href = "/smtp/apply/sub00-01?course_id="+ course_id +"&cardinal_id="+ cardinal_id;
-            });
-           
+            setInterval(countTime, 1000)
         } else if (day <= -1) {
             count.innerHTML = "모집 기간이 종료되었습니다."
-            btn.disable = true
-            if (btn.disable == true) {
-                btn.style.filter = 'grayscale(100%)'
-                btn.style.cursor = 'not-allowed'
+            // btn.disable = true
+            // if (btn.disable == true) {
+            //     // btn.style.filter = 'grayscale(100%)'
+            //     // btn.style.cursor = 'not-allowed'
+            // }
+            for (let i = 0; i < btn.length; i++) {
+                btn[i].classList.add("disabled");
+                btn[i].innerHTML = "지원종료";
             }
+
             clearInterval(countTime)
         }
 
@@ -156,7 +153,7 @@ window.onload = function () {
             } else {
                 if (matchMedia("screen and (max-width: 590px)").matches) {
                     reviewEl[i].style.display = 'block';
-                }else{
+                } else {
                     reviewEl[i].style.display = 'flex';
                 }
                 moreReview.innerHTML = '과정 후기 접기'

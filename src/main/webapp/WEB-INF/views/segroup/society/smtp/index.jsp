@@ -82,18 +82,6 @@
                                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre03">과정 더 보기 &nbsp;&gt;</a>
                                 </div>
                             </div>
-                            <!-- <div class="course bgc_point04">
-                                <div class="courseTitle">
-                                    <div class="img-icon globe-stand"></div>
-                                    <div>글로벌 잡매칭</div>
-                                </div>
-                                <ul class="courseList fc_333">
-                                    <li><a href="/fap/user/user_main">브릿지 잡페어</a></li>
-                                </ul>
-                                <div class="btn_moreList">
-                                    <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre04">과정 더 보기 &nbsp;&gt;</a>
-                                </div>
-                            </div> -->
                         </div>
                         <div class="btn_allList">
                             <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=course-list">전체 과정 보기 &nbsp;&gt;</a>

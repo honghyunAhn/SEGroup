@@ -24,7 +24,7 @@
         <div class="content course-detail course-point02" id="main">
             <div class="mainBackVideoWrap" onclick="togglePlay()">
                 <div class="background_video video_main">
-                    <video src="/resources/segroup/society/smtp/video/02ICT_Office.mp4" width="100%" autoplay loop muted>
+                    <video src="/resources/segroup/society/smtp/video/03course_Codes.mp4" width="100%" autoplay loop muted>
                         <!-- <source src="video/01main_Earth.mp4" type="video/"> -->
                     </video>
                     <div class="opacity_bg op08" id="scrollFixed01">
