@@ -60,10 +60,10 @@
 		                 	<a href="/smtp/user/rainbow-class01-01" class="fc_point05">나의강의실</a>
 		                 	<ul class="lnb">
 			                    <li class="lnb"><a href="/smtp/user/rainbow-class01-01">학습현황</a></li>
-			                    <li class="lnb"><a href="">지원현황</a></li>
-			                    <li class="lnb"><a href="">서류발급</a></li>
-			                    <li class="lnb"><a href="">결제현황/환불</a></li>
-			                    <li class="lnb"><a href="">마일리지</a></li>
+			                    <li class="lnb"><a href="/smtp/user/rainbow-class02-01">지원현황</a></li>
+			                    <li class="lnb"><a href="/smtp/user/rainbow-class03-01">서류발급</a></li>
+			                    <li class="lnb"><a href="/smtp/user/rainbow-user02-01">결제현황/환불</a></li>
+			                    <li class="lnb"><a href="/smtp/user/rainbow-user02-02">마일리지</a></li>
 			                    <li class="lnb"><a href="">개인정보수정</a></li>
 			                </ul>
 						</c:when>

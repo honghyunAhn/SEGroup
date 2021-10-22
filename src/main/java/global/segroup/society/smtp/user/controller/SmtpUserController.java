@@ -263,6 +263,20 @@ public class SmtpUserController {
 		return "/segroup/society/smtp/user/sub05-05";
 	}
 	
+	@RequestMapping(value = "/smtp/user/rainbow-user02-02")
+	public String rainbow_user02_02(Model model, Authentication auth, PointSearchVo searchVO  ) {
+		logger.info("마일리지 페이지 이동 컨트롤러 시작");
+		String user_id = (auth != null ? auth.getName() : null);
+		searchVO.setUser_id(user_id);
+		searchVO.setPointVisiblePages(miniPages);
+		model.addAttribute("pointList", pService.selectPointList(searchVO));
+		model.addAttribute("pointSummary",pService.selectPointSummary(searchVO.getUser_id()));
+		model.addAttribute("searchVO", searchVO);
+
+		logger.info("마일리지 페이지 이동 컨트롤러 종료");
+		return "/segroup/society/smtp/user/rainbow-user02-02";
+	}
+	
 	@RequestMapping(value = "/smtp/user/sub05-06", method = RequestMethod.GET)
 	public String sub05_06(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		logger.info("개인정보수정 페이지 이동 컨트롤러 시작");
@@ -747,6 +761,22 @@ public class SmtpUserController {
 		return "/segroup/society/smtp/user/sub05-02";
 	}
 	
+	@RequestMapping(value = "/smtp/user/rainbow-class02-01", method = RequestMethod.GET)
+	public String rainbow_class02_01(Authentication auth, Boolean message, Model model) {
+		
+		logger.info("지원현황 페이지 이동 시작");
+		
+		if(auth != null){
+			String user_id = (String) auth.getPrincipal();
+			ArrayList<HashMap<String, Object>> ssa = applyService.selectApplyResult(user_id);
+			
+			model.addAttribute("applyResult", ssa);
+			model.addAttribute("message", message);
+		}
+		logger.info("지원현황 페이지 이동 컨트롤러 종료");
+		return "/segroup/society/smtp/user/rainbow-class02-01";
+	}
+	
 	// 나의 강의실 - 지원현황 - 지원신청서 보기
 	@RequestMapping(value = "/smtp/user/sub05-02-01", method = RequestMethod.POST)
 	public String sub05_02_01(Authentication auth, String gisu_id, String app_end_date, Model model) {
@@ -779,6 +809,19 @@ public class SmtpUserController {
 		return "/segroup/society/smtp/user/sub05-03";
 	}
 	
+	@RequestMapping(value = "/smtp/user/rainbow-class03-01", method = RequestMethod.GET)
+	public String rainbow_class03_01(Authentication auth) {
+		
+		logger.info("서류발급 페이지 이동 컨트롤러 시작");
+		
+		if(auth != null){
+			HashMap<String, Object> param = new HashMap<>();
+			param.put("user_id", (String) auth.getPrincipal());
+		}
+		logger.info("서류발급 페이지 이동 컨트롤러 종료");
+		return "/segroup/society/smtp/user/rainbow-class03-01";
+	}
+	
 	@RequestMapping(value = "/smtp/user/sub05-04", method = RequestMethod.GET)
 	public String sub05_04(Authentication auth, Model model, @RequestParam HashMap<String, String> param, String urlParam) {
 		
@@ -806,6 +849,35 @@ public class SmtpUserController {
 		logger.info("결제현황/환불 페이지 이동 컨트롤러 종료");
 		
 		return "/segroup/society/smtp/user/sub05-04";
+	}
+	
+	@RequestMapping(value = "/smtp/user/rainbow-user02-01", method = RequestMethod.GET)
+	public String rainbow_class03_01(Authentication auth, Model model, @RequestParam HashMap<String, String> param, String urlParam) {
+		
+		logger.info("결제현황/환불 페이지 이동 컨트롤러 시작");
+		
+		if(auth != null) {
+			String user_id = (String) auth.getPrincipal();
+
+			if(urlParam!=null)
+				if(urlParam.equals("payComplete")) {
+					model.addAttribute("message","payComplete");
+				} else if(urlParam.equals("payError")){
+					model.addAttribute("message","payError");
+			}
+			
+			HashMap<String, Object> memberInfo = service.selectMemberInfo(user_id);
+			String user_nm = (String) memberInfo.get("USER_NM");
+			
+			model.addAttribute("user_nm", user_nm);
+			param.put("user_id", user_id);
+			ArrayList<HashMap<String, Object>> payList = service.smtpIndividualPayList(param);
+			
+			model.addAttribute("payList", payList);
+		}
+		logger.info("결제현황/환불 페이지 이동 컨트롤러 종료");
+		
+		return "/segroup/society/smtp/user/rainbow-user02-01";
 	}
 	
 	@RequestMapping(value = "/smtp/user/sub05-04-list", method = RequestMethod.GET)
