@@ -872,7 +872,7 @@ public class SmtpUserController {
 			model.addAttribute("user_nm", user_nm);
 			param.put("user_id", user_id);
 			ArrayList<HashMap<String, Object>> payList = service.smtpIndividualPayList(param);
-			
+			System.out.println(payList);
 			model.addAttribute("payList", payList);
 		}
 		logger.info("결제현황/환불 페이지 이동 컨트롤러 종료");

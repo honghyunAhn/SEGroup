@@ -1,15 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	<script type="text/javascript">
+    function printWindow() {
+    	
+    	const html = document.querySelector('html');
+    	const printContents = document.querySelector('#test').innerHTML;
+    	const printDiv = document.createElement('DIV');
+    	console.log(html);
+    	console.log(printContents);
+    	console.log(printDiv);
+    	
+    	html.appendChild(printDiv);
+    	printDiv.innerHTML = printContents;
+    	document.body.style.display = 'none';
+    	window.print();
+    	document.body.style.display = 'block';
+    	printDiv.style.display = 'none'; 
+
+    }
+
+
+    var afterPrint = function() {
+    	var course_id = $(':hidden[name="m_course_id"]').val();
+    	var cardinal_id = $(':hidden[name="m_cardinal_id"]').val();
+    	var receipt_num = $(':hidden[name="receiptNum"]').val();
+    	var receipt_date = $(':hidden[name="receiptDate"]').val();
+    	
+    	//프린트 후 일련번호 저장
+    	$.ajax({
+    			type	: "post",
+    			url		: "/lms/user/insert_receipt",
+    			data    : {
+    						'course_id' : course_id
+    						,'cardinal_id' : cardinal_id
+    						,'receipt_num' : receipt_num
+    						,'receipt_date' : receipt_date
+    					  },
+    			success	: function() {
+
+    			},
+    			error : function (request, status, error) {
+    					alert("code : "+request.status+"\n\n"+"message : "+request.responseText+"\n\n"+"error : "+error);
+    			}
+    		});
+    };
+
+    window.onafterprint = afterPrint;
+    </script>
     <div class="modal">
         <div class="sub-content modal-content course-point05" id="main">
             <div class="modal-header d-flex justify_between">
                 <h3 class="h3">영수증 출력하기</h3>
-                <div class="img-icon times close-modal" onclick="closeModal()"></div>
+                <div class="img-icon times close-modal"></div>
             </div>
+            <div class="section" id="test">
             <table class="modal-table">
                 <thead class="table-title thead">
                     <tr>
+                    	<!-- receiptNum : count 영수증 번호
+                             receiptTo : 공급 받는자
+                             receiptDate : 작성일
+                             receiptValue : 공급가액
+                             receiptTax : 세액
+                             receiptItemList : 품목
+                             receiptItemPrice : 단가
+                             receiptItemAmount : 수량
+                             receiptItemValue : 공급대가 -->
                         <th class="receiptNum" colspan="2">영수증 번호</th>
                         <th colspan="7">영 수 증 (공급받는자용)</th>
                         <th colspan="4" class="receiptTo user_nm"><span>고객명</span>&nbsp;귀하</th>
@@ -33,7 +90,7 @@
                         <th>사업장주소</th>
                         <td colspan="9" class="positionImg">
                             서울시 강남구 영동대로 513, 4층 017-1호 (삼성동, 코엑스)
-                            <img src="img/stamp.png" alt="도장" class="stampImg">
+                            <img src="/resources/segroup/society/smtp/img/stamp.png" alt="도장" class="stampImg">
                         </td>
                     </tr>
                     <tr>
@@ -82,55 +139,10 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
             <div class="section_btnWrap d-flex justify_center">
                 <button class="btn_normal btn_xlarge bgc_point" type="button"
                 onclick="printWindow()">출력하기</button>
             </div>
         </div>
-        <? include 'include/rainbow_footer.html' ?>
     </div>
-    <script type="text/javascript">
-        function printWindow() {
-
-            const html = document.querySelector('html');
-            const printContents = document.querySelector('#test').innerHTML;
-            const printDiv = document.createElement('DIV');
-
-            html.appendChild(printDiv);
-            printDiv.innerHTML = printContents;
-            document.body.style.display = 'none';
-            window.print();
-            document.body.style.display = 'block';
-            printDiv.style.display = 'none';
-
-        }
-
-
-        var afterPrint = function () {
-            var course_id = $(':hidden[name="m_course_id"]').val();
-            var cardinal_id = $(':hidden[name="m_cardinal_id"]').val();
-            var receipt_num = $(':hidden[name="receiptNum"]').val();
-            var receipt_date = $(':hidden[name="receiptDate"]').val();
-
-            //프린트 후 일련번호 저장
-            $.ajax({
-                type: "post",
-                url: "/lms/user/insert_receipt",
-                data: {
-                    'course_id': course_id,
-                    'cardinal_id': cardinal_id,
-                    'receipt_num': receipt_num,
-                    'receipt_date': receipt_date
-                },
-                success: function () {
-
-                },
-                error: function (request, status, error) {
-                    alert("code : " + request.status + "\n\n" + "message : " + request.responseText +
-                        "\n\n" + "error : " + error);
-                }
-            });
-        };
-
-        window.onafterprint = afterPrint;
-    </script>

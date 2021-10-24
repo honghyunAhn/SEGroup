@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <%@include file="../include/rainbow_head.jsp"%>
+    <style type="text/css"></style>
     <script type="text/javascript">
         var icon_displays;
 	    var target_types;
@@ -138,7 +140,7 @@
 	    	
 	    	if(user_id == '' || user_id == null) {
 	    		alert("로그인이 필요합니다.");
-	    		document.location.href = '/segroup/society/smtp/user/login';
+	    		document.location.href = '/segroup/society/smtp/user/rainbow-user01-01';
 	    		return;
 	    	}
 	    	 $('html, body').addClass("not-scroll");
@@ -253,6 +255,45 @@
 		
 	    //영수증 팝업
 	    $(function() {
+	    	// modal-popup layer
+	        $('.modal-popup').click(function() {
+	            // 모달 열기
+	            $('html, body').addClass("not-scroll");
+	            $('.modal').show()
+
+	            // 모달 >> 탭 기능
+	            var $modaltab = $('.section div.class-tabMenu>.modal-tabGroup>li'),
+	                $modalsub = $('.section div.class-tabMenu>.modal-subGroup>div'),
+	                i = 0;
+
+	            $modaltab.on('click', function() {
+	                i = $(this).index();
+	                $modalsub.hide();
+	                $modalsub.eq(i).show();
+	                $('.section .modal-tabGroup>li*').removeClass('active');
+	                $(this).addClass('active');
+	            });
+	            // 모달 >> 탭 기능 끝
+
+	            //모달 열면 탭 활성화 초기화(index 0 = active)
+	            $('.modal-tabGroup>li').removeClass('active');
+	            $('.modal-tabGroup>li:first').addClass('active');
+	            $('.modal-subGroup>div').hide();
+	            $('.modal-subGroup>div:first').show();
+	            //모달 열면 탭 활성화 초기화(index 0 = active) 끝
+	        });
+
+	        $('.modal .close-modal').click(function() {
+	            // 모달 닫기
+	            $('html, body').removeClass("not-scroll");
+	            $('.modal').hide();
+
+	            //모달 닫으면 기존 탭 활성화 초기화(index 0 = active)
+	            $('.section .tabGroup>li:first').addClass('active');
+	            $('.section .subGroup>div:first').show();
+	            //모달 닫으면 기존 탭 활성화 초기화(index 0 = active) 끝
+	        });
+	        
 	    	$('.receipt').click(function() {
 	    		var idx = $(this).closest('.idx-li').find('.c-table-num').text() - 1;
 	    		var realPayment = $(':hidden[name="realPayment"]').eq(idx).val();
@@ -261,6 +302,7 @@
 	    		var course_id = $(':hidden[name="course_id"]').eq(idx).val();
 	    		var cardinal_id  = $(':hidden[name="cardinal_id"]').eq(idx).val(); 
 	    			realPayment = numberWithCommas(realPayment);
+	    			
 	    			//무료과정 처리
 	    			if(realPayment =="") {
 	    				realPayment = "0";
@@ -277,13 +319,11 @@
 	    				success	: function(data) {
 	    					$('.receiptNum').html(data.RECEIPT_NUM);//영수증 일련번호
 	    					$('.receiptDate').html(data.RECEIPT_DATE);//발행일
-	    					
 	    					//모달창의 hidden값에 넣기
 	    					$(':hidden[name="m_course_id"]').val(course_id);
 	    					$(':hidden[name="m_cardinal_id"]').val(cardinal_id);
 	    					$(':hidden[name="receiptNum"]').val(data.RECEIPT_NUM);
 	    					$(':hidden[name="receiptDate"]').val(data.RECEIPT_DATE);
-	    					
 	    				},
 	    				error : function (request, status, error) {
 	    						alert("code : "+request.status+"\n\n"+"message : "+request.responseText+"\n\n"+"error : "+error);
@@ -313,7 +353,6 @@
 	    		$('.receiptItemPrice').html(numberWithCommas(realPayment)+"원");//단가
 	    		$('.user_nm').html('<span>' + user_nm + '</span>&nbsp;귀하');
 	    		$('html, body').addClass("not-scroll");
-	    		$('.receiptModal').show();
 	    	});
 	    });
 	
@@ -383,8 +422,8 @@
 </head>
 
 <body>
-
     <!-- 나의강의실 - 결제현황/환불 -->
+    <input type="hidden" id="serverMessage" value="${message}">
     <div class="container_rainbow">
         <!-- rainbow_header -->
         <%@include file="../include/rainbow_header.jsp"%>
@@ -392,26 +431,19 @@
             <div class="sub-content user02-01">
                 <div class="section_header">
                     <h3 class="h3">결제현황/환불</h3>
-                    <p class="margin-top10 fc_999">
-                        결제현황 및 환불 정보를 확인하실 수 있습니다.
-                    </p>
+                    <p class="margin-top10 fc_999">결제현황 및 환불 정보를 확인하실 수 있습니다.</p>
                 </div>
                 <div class="section_search">
-                    <form class="formStyle" id="searchForm" method="POST">
-                        <div class="d-flex justify_between">
-                            <input type="text" class="cusPHIn input margin-left10" name="searchKeyword"
-                                value="${search.searchKeyword}" placeholder="검색어를 입력해주세요.">
-                            <!-- 검색버튼 -->
-                            <button type="button" class="btn_normal img-icon search" id="searchBtn"></button>
-                            <c:if test="${startpage != '' && startpage != null}">
-                                <input type="hidden" id="startPage" name="startPage" value="${search.startPage}">
-                            </c:if>
-                            <c:if test="${startpage == '' || startpage == null}">
-                                <input type="hidden" id="course_search_seq" name="id" value="">
-                            </c:if>
-                        </div>
-                    </form>
-                </div>
+					<form class="formStyle" id="searchForm" method="POST" style="margin: 0px;">
+						<div class="d-flex justify_between">
+							<input type="text" class="cusPHIn input" name="searchKeyword" value="${search.searchKeyword}" placeholder="검색어를 입력해주세요.">
+							<!-- 검색버튼 -->
+							<button type="button" class="btn_normal img-icon search" id="searchBtn"></button>
+							<input type="hidden" id="startPage" name="startPage" value="${search.startPage}">
+							<input type="hidden" id="course_search_seq" name="id" value="">
+						</div>
+					</form>
+				</div>
                 <div class="section_table overX-scroll">
                     <ul class="table-title d-flex thead fc_point">
                         <li class="w50">No.</li>
@@ -424,58 +456,196 @@
                         <li class="w50">영수증</li>
                     </ul>
                     <ul class="table-list tbody">
-                        <li class="list d-flex">
-                            <div class="w50">No.</div>
-                            <div class="w350">제목제목제목제목제목제목제목제목제목제목</div>
-                            <div class="w100">결제대기</div>
-                            <div class="w200">YYYY-MM-DD</div>
-                            <div class="w150">가상계좌</div>
-                            <div class="w200">1,000,000</div>
-                            <div class="w100">
-                                <a href="" class="table-btn btn_nomal bgc_point">결제하기</a>
-                            </div>
-                            <div class="w50">-</div>
-                        </li>
-                        <li class="list d-flex">
-                            <div class="w50">No.</div>
-                            <div class="w350">제목제목제목제목제목제목제목제목제목제목</div>
-                            <div class="w100">결제완료</div>
-                            <div class="w200">YYYY-MM-DD</div>
-                            <div class="w150">가상계좌</div>
-                            <div class="w200">1,000,000</div>
-                            <div class="w100">
-                                <a href="" class="table-btn btn_nomal bgc_point">환불신청</a>
-                            </div>
-                            <div class="w50">
-                                <a href="javascript:void(0)" onclick="openModal()"
-                                    class="table-btn btn_default">출력</a>
-                            </div>
-                        </li>
-                        <li class="list d-flex">
-                            <div class="w50">No.</div>
-                            <div class="w350">제목제목제목제목제목제목제목제목제목제목</div>
-                            <div class="w100">환불대기</div>
-                            <div class="w200">YYYY-MM-DD</div>
-                            <div class="w150">가상계좌</div>
-                            <div class="w200">1,000,000</div>
-                            <div class="w100">
-                                <a href="" class="table-btn btn_nomal  bgc_point">환불현황</a>
-                            </div>
-                            <div class="w50">
-                                <a href="javascript:void(0)" onclick="openModal()"
-                                    class="table-btn btn_default">출력</a>
-                            </div>
-                        </li>
-                        <c:if test="${empty payList}">
-                            <li class="list not fc_999">결제정보가 없습니다.</li>
-                        </c:if>
-                    </ul>
+		                <c:if test = "${!empty payList }">
+		                <form name="listForm" id="listForm" method="post"></form>
+	                        <c:forEach var="item" items="${payList }" varStatus="status">
+	                        <form name="listForm2" method="post" onsubmit="return false;">
+	                        	<input type="hidden" id="pay_crc_seq_${status.index}" name="pay_crc_seq" value="${item.PAY_CRC_SEQ}">
+	                        	<input type="hidden" name="course_id" value="${item.COURSE_ID}"/>
+	                        	<input type="hidden" id="gisu_id_${status.index}" name="cardinal_id" value="${item.CARDINAL_ID}"/>
+	                        	<input type="hidden" name="realPayment" value="${item.PAY_CRC_AMOUNT }"/>
+	                        	<input type="hidden" name="courseName" value="${item.COURSE_NAME }"/>
+	                        	<input type="hidden" name="user_nm" value="${user_nm}"/>
+	                        </form> 
+	                       	<!-- 과정명 추가시 list and(+) Wrap 추가  -->
+	                       	<!-- 결제 완료(payment-complete)시 환불(refund-Y)가능 -->
+	                       	<!-- 결제 대기(payment-wait)시 환불(refund-N)불가 -->
+	                       	<!-- 환불 완료시 (refund-complete) -->
+	                       <li class="list d-flex idx-li">
+	                       		<!-- No. -->
+	                            <div class="w50 c-table-num">${status.count }</div>
+	                            
+	                           	<!-- 과정명 -->
+	                            <div class="w350">${item.CARDINAL_NAME } <c:if test="${not empty item.PAY_CRC_PAYORDER}">/ ${item.PAY_CRC_PAYORDER} 차</c:if></div>
+								
+								<!-- 결제상태 -->
+	                           	<!-- PAYMENT_STATUS 미결제: 0, 결제: 1, 환불신청: 2, 환불완료: 3 -->
+	                           	<c:choose>
+		                           	<c:when test="${item.payment_type eq 'VBank' && item.PAYMENT_STATUS eq 'F0000'}">
+		                           		<div class="w100 payment-wait"><span class="fc_999">결제대기</span></div>
+		                           	</c:when>
+	                           		<c:when test="${item.payment_type eq 'VBank' && item.PAYMENT_STATUS eq 'F0001'}">
+		                           		<div class="w100 payment-complete"><span class="fc_true">결제완료</span></div>
+	                           		</c:when>
+		                           	<c:when test="${item.PAYMENT_STATUS eq 'F0001'}">
+		                           	    <div class="w100 payment-complete"><span class="fc_true">결제완료</span></div>
+		                           	</c:when>
+		                           	<c:when test="${item.PAYMENT_STATUS eq 'F0002' }">
+		                           	    <div class="w100"><span class="fc_999">환불대기</span></div>
+		                           	</c:when>
+		                           	<c:when test="${item.PAYMENT_STATUS eq 'F0003' }">
+		                           	    <div class="w100 payment-complete"><span class="fc_false">환불완료</span></div>
+		                           	</c:when>
+		                           	<c:otherwise>
+		                           		<input type="hidden" class="start_${status.index}" value="${item.PAY_CRC_START}">
+	                            		<input type="hidden" class="end_${status.index}" value="${item.PAY_CRC_END}">
+	                            		<div class="w100 payment-wait"><span class="fc_999">결제대기</span></div>
+		                           	</c:otherwise>
+	                           	</c:choose>
+	                           
+	                           	<!-- 결제 일 -->
+	                           	<div class="w200">
+	                           		<c:choose>
+	                           			<c:when test="${not empty item.PAY_CRC_START && item.PAYMENT_STATUS != 'F0001'}">
+	                           				${item.PAY_CRC_START} ~ ${item.PAY_CRC_END}
+	                           			</c:when>
+	                           			<c:when test="${not empty item.PAY_CRC_START && item.PAYMENT_STATUS == 'F0001'}">
+	                           				<span>결제일 : ${item.PAY_INS_DT}</span>
+	                           			</c:when>
+	                           			<c:otherwise>
+	                           				-
+	                           			</c:otherwise>
+	                           		</c:choose>
+	                           	</div>
+	                           	
+	                           	<!-- 결제방식 처리 -->
+	                           <c:choose>
+		                           	<c:when test="${item.payment_type eq 'VBank'}">
+										<div class="w150">가상계좌</div>
+									</c:when>
+		                           	<c:when test="${item.payment_type eq 'Card' }">
+		                           		<div class="w150">신용카드</div>
+		                           	</c:when>
+		                          	<c:when test="${item.PRICE eq item.DIS_POINT }">
+		                           		<div class="w150">마일리지</div>
+		                           	</c:when>
+		                           	<c:otherwise>
+		                           		<div class="w150">-</div>
+		                           	</c:otherwise>
+	                           	</c:choose>
+	                           	
+								<!-- 결제 금액 -->
+								<c:choose>
+									<c:when test="${item.REAL_PAY_AMOUNT == '' || item.REAL_PAY_AMOUNT == null}">
+										<div class="w200">0원</div>
+									</c:when>
+									<c:when test="${item.REAL_PAY_AMOUNT != '' && item.REAL_PAY_AMOUNT != null}">
+										<div class="w200"><fmt:formatNumber value="${item.REAL_PAY_AMOUNT }" pattern="#,###" />원</div>
+									</c:when>
+								</c:choose>
+								
+								<!-- 환불/결제 -->
+								<c:choose>
+		                           	<c:when test="${item.payment_type eq 'VBank' && item.PAYMENT_STATUS eq 'F0000'}">
+		                           		<div class="w100">
+		                           			<a href="javascript:void(0);" onclick="javascript:checkAccount('${item.ID}','${item.COURSE_NAME}','${item.CARDINAL_NAME}','${item.PAY_CRC_AMOUNT}','${item.DIS_POINT}','${item.PAY_CRC_AMOUNT}','${item.ACCNUM}','${item.BANKNAME}');"
+		                           				class="table-btn btn_nomal  bgc_point">계좌정보</a>
+		                           		</div>
+		                           	</c:when>
+	                           		<c:when test="${item.payment_type eq 'VBank' && item.PAYMENT_STATUS eq 'F0001'}">
+		                           		<div class="w100">
+			                           		<c:choose>
+			                           			<c:when test="${item.PAY_CRC_SEQ ne null}">
+				                            		<a href="javascript:void(0);" onclick="javascript:checkRefund('/smtp/user/payback-main','${item.ID}','${item.COURSE_NAME}','${item.CARDINAL_NAME}','${item.PAY_CRC_AMOUNT}','${item.DIS_POINT}','${item.REAL_PAY_AMOUNT}','${item.PAY_CRC_SEQ}');"
+				                            			class="table-btn btn_nomal  bgc_point" id="refund_button">환불신청</a>
+			                           			</c:when>
+			                           			<c:otherwise>
+			                           				<a href="/smtp/user/payback-main?learn_id=${item.ID}&course_name=${item.COURSE_NAME}&cardinal_name=${item.CARDINAL_NAME}&price=${item.PAY_CRC_AMOUNT}&dis_point=${item.DIS_POINT}&real_payment=${item.REAL_PAY_AMOUNT}"
+			                           					class="table-btn btn_nomal  bgc_point" onclick="window.open(this.href, '_blank', 'width=960px, height=425px, toolbars=no, scrollbars=yes'); return false;"
+			                           					id="refund_button" style="text-align:center; align-self:center; width:70px;">환불신청</a>
+			                           			</c:otherwise>
+			                           		</c:choose>
+	                           			</div>
+	                           		</c:when>
+		                           	<c:when test="${item.PAYMENT_STATUS eq 'F0001'}">
+		                           		<div class="w100">
+		                           		<c:choose>
+		                           			<c:when test="${item.PAY_CRC_SEQ ne null }">
+			                            		<a href="javascript:void(0);" onclick="javascript:checkRefund('/smtp/user/payback-main','${item.ID}','${item.COURSE_NAME}','${item.CARDINAL_NAME}','${item.PAY_CRC_AMOUNT}','${item.DIS_POINT}','${item.REAL_PAY_AMOUNT}','${item.PAY_CRC_SEQ}');"
+				                            	 class="table-btn btn_nomal bgc_point" id="refund_button">환불신청</a>
+		                           			</c:when>
+		                           			<c:otherwise>
+		                           				<a href="/smtp/user/payback-main?learn_id=${item.ID}&course_name=${item.COURSE_NAME}&cardinal_name=${item.CARDINAL_NAME}&price=${item.PAY_CRC_AMOUNT}&dis_point=${item.DIS_POINT}&real_payment=${item.REAL_PAY_AMOUNT}"
+		                           				 class="table-btn btn_nomal bgc_point" id="refund_button" onclick="window.open(this.href, '_blank', 'width=960px, height=425px, toolbars=no, scrollbars=yes'); return false;">환불신청</a>
+		                           			</c:otherwise>
+		                           		</c:choose>
+		                           		</div>
+		                           	</c:when>
+		                           	<c:when test="${item.PAYMENT_STATUS eq 'F0002' }">
+		                           		<div class="w100">
+		                           			<a href="javascript:void(0);" onclick="javascript:checkRefund('/smtp/user/paybackUpdate','${item.ID}','${item.COURSE_NAME}','${item.CARDINAL_NAME}','${item.PAY_CRC_AMOUNT}','${item.DIS_POINT}','${item.REAL_PAY_AMOUNT}','${item.PAY_CRC_SEQ}');"
+		                           		 	class="table-btn btn_nomal bgc_point" id="refund_button">환불현황</a>
+		                           		 </div>
+		                           	</c:when>
+		                           	<c:when test="${item.PAYMENT_STATUS eq 'F0003' }">
+		                           		<div class="w100"><a class="table-btn btn_nomal bgc_point">환불완료</a></div>
+		                           	</c:when>
+		                           	<c:otherwise>
+	                            		<div class="w100">
+		                           			<a href="javascript:void(0);" onclick="callFunction(this);"
+		                           				id="pay-btn-${status.index}" class="table-btn btn_nomal bgc_point pay-btn-${status.index}">결제하기</a>
+		                           		</div>
+		                           	</c:otherwise>
+	                           	</c:choose>
+								
+								<!-- 출력 -->
+								<c:choose>
+		                           	<c:when test="${item.payment_type eq 'VBank' && item.PAYMENT_STATUS eq 'F0000'}">
+		                           		<div class="w50" class="table-btn btn_default"></div>
+		                           	</c:when>
+	                           		<c:when test="${item.payment_type eq 'VBank' && item.PAYMENT_STATUS eq 'F0001'}">
+	                           			<div class="w50 c-table-btn receipt">
+			                            	<a href="#" class="table-btn btn_default modal-popup" >출력</a>
+										</div>
+	                           		</c:when>
+		                           	<c:when test="${item.PAYMENT_STATUS eq 'F0001'}">
+			                            <div class="w50 c-table-btn receipt">
+			                            	<a href="#" class="table-btn btn_default modal-popup">출력</a>
+										</div>
+		                           	</c:when>
+		                           	<c:when test="${item.PAYMENT_STATUS eq 'F0002' }">
+			                            <div class="w50 c-table-btn receipt">
+			                            	<a href="#" class="table-btn btn_default modal-popup">출력</a>
+										</div>
+		                           	</c:when>
+		                           	<c:when test="${item.PAYMENT_STATUS eq 'F0003' }">
+		                           		<div class="w50 c-table-btn receipt">
+		                           			<a href="#" class="table-btn btn_default modal-popup">출력</a>
+		                           		</div>
+		                           	</c:when>
+		                           	<c:otherwise>
+		                           		<input type="hidden" class="start_${status.index}" value="${item.PAY_CRC_START}">
+	                            		<input type="hidden" class="end_${status.index}" value="${item.PAY_CRC_END}">
+		                           		<div class="w50" class="table-btn btn_default">-</div>
+		                           	</c:otherwise>
+	                           	</c:choose>
+	                        </li>
+	                    </c:forEach>
+	                  </c:if>
+	                  <c:if test="${empty payList }">
+	                  		<ul class="class-list-wrap">
+		                        <li class="listAndwrap">
+		                           <div class="class-list justify_center">결제정보가 없습니다.</div>
+		                        </li>
+	                  		</ul>
+	                  </c:if>
+	                </ul>
                 </div>
             </div>
         </div>
+        <!-- 나의강의실 - 결제현황/환불 >> 영수증 출력 modal -->
+		<%@include file="modal/rainbow-modal-printReceipt.jsp"%>
         <%@include file="../include/rainbow_footer.jsp"%>
     </div>
-    <!-- 나의강의실 - 결제현황/환불 >> 영수증 출력 modal -->
-    <%@include file="modal/rainbow-modal-printReceipt.jsp"%>
 </body>
 </html>

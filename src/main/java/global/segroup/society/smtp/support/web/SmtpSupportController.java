@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aracomm.base.common.util.CommonUtil;
 import com.aracomm.changbi.common.GlobalConst;
+import com.aracomm.changbi.mypage.vo.PointSearchVo;
 import com.aracomm.changbi.serviceCenter.service.BbsService;
 import com.google.gson.Gson;
 

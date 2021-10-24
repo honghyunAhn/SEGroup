@@ -8,6 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <%@include file="../include/rainbow_head.jsp"%>
+    <!-- Pagination을 위한 js -->
     <script type="text/javascript" src="/resources/js/jquery.twbsPagination.js"></script>
     <script type="text/javascript">
         //학습현황 list
@@ -73,7 +74,7 @@
 			var content = "";
 			if(data.progressList != null && data.progressList.length != 0) {
 				$.each(data.progressList, function(index, item) {
-					content += '<li class="listAndwrap">';
+					content += '<li class="list d-flex">';
 					content += '<form name="listForm" method="post" onsubmit="return false;">';
 					content += 		'<input type="hidden" name="courseName" value="'+ item.NAME + '"/>';
 					content += 		'<input type="hidden" name="realStartDate" value="'+ item.REAL_START_DATE + '"/>';
@@ -92,21 +93,19 @@
 					content += 		'<input type="hidden" name="completeTotal" value="'+ item.TOTAL + '"/>';
 					content += 		'<input type="hidden" name="reviewPeriod" value="'+ item.REVIEW_PERIOD + '"/>';
 					content += '</form>';
-					content += '<div class="class-list d-flex">';
-					content += 		'<div class="c-table-num justify_center">'+(index+1)+ '</div>';
-					content += 		'<div class="c-table-name-w">'+ item.NAME+ '<br>'+ item.CARDINAL_NAME +'</div>';
-					content += 		'<div class="c-table-03 justify_center">'+ item.LEARN_START_DATE + "  ~  " + item.LEARN_END_DATE + '</div>';
-					content += 		'<div class="c-table-01 c-table-btn myCourse">';
-					content += 			'<a class="btn_normal btn_pp_bg btn_small myCourse">';
+					content += '<div class="w50">'+(index+1)+ '</div>';
+					content += '<div class="w500"><p>'+ item.NAME+ ' / '+ item.CARDINAL_NAME +'</p>';
+					content += '<p>'+ item.LEARN_START_DATE + "  ~  " + item.LEARN_END_DATE + '</p></div>';
+					content += 		'<div class="w100 myCourse">';
+					content += 			'<a class="w50 btn_normal btn_xsmall bgc_point myCourse">';
 					content +=			'<span class="h5">강의실</span></a>';
 					content +=		'</div>';
-					content +=	'</div>';
 					content +=	'</li>'
 				})
 			}
 			if(content == "") {
-				content += '<li class="listAndwrap">';
-				content += 		'<div class="class-list justify_center">조회된 내용이 없습니다.</div>';
+				content += '<li class="list not fc_999">';
+				content += 		'조회된 내용이 없습니다.';
 				content += '</li>';
 			}
 			$('.progressUl').html(content);
@@ -119,10 +118,10 @@
 			var content = "";
 			if(data.waitingList != null && data.waitingList.length != 0) {
 				$.each(data.waitingList, function(index, item) {
-					content += '<li class="class-list d-flex">';
-					content += 		'<div class="c-table-num">'+(index+1)+ '</div>';
-					content += 		'<div class="c-table-name">'+ item.NAME+ '<br>'+ item.CARDINAL_NAME +'</div>';
-					content += 		'<div class="c-table-04">'+ item.LEARN_START_DATE + "  ~  " + item.LEARN_END_DATE + '</div>';
+					content += '<li class="list d-flex">';
+					content += 		'<div class="w50">'+(index+1)+ '</div>';
+					content += 		'<div class="w550"><p>'+ item.NAME+ ' / '+ item.CARDINAL_NAME +'</p>';
+					content += 		'<p>'+ item.LEARN_START_DATE + "  ~  " + item.LEARN_END_DATE + '</p></div>';
 					if(item.PAYMENT_STATE == '1') {
 						content += '<div class="c-table-01 payment-wait">대기</div>';
 					} else if (item.PAYMENT_STATE == '2') {
@@ -132,8 +131,8 @@
 				})
 			}
 			if(content == "") {
-				content += '<li class="listAndwrap">';
-				content += 		'<div class="class-list justify_center">조회된 내용이 없습니다.</div>';
+				content += '<li class="list not fc_999">';
+				content += 		'조회된 내용이 없습니다.';
 				content += '</li>';
 			}
 			$('.waitingUl').html(content);
@@ -146,7 +145,7 @@
 			var content = "";
 			if(data.completeList != null && data.completeList.length != 0) {
 				$.each(data.completeList, function(index, item) {
-					content += '<li class="listAndwrap">';
+					content += '<li class="list d-flex">';
 					content += '<form name="listForm" method="post" onsubmit="return false;">';
 					content += 		'<input type="hidden" name="courseName" value="'+ item.NAME + '"/>';
 					content += 		'<input type="hidden" name="realStartDate" value="'+ item.REAL_START_DATE + '"/>';
@@ -165,7 +164,6 @@
 					content += 		'<input type="hidden" name="completeTotal" value="'+ item.TOTAL + '"/>';
 					content += 		'<input type="hidden" name="portYn" value="'+ item.PORT_YN + '"/>';
 					content += '</form>';
-					content += '<li class="list d-flex">';
 					content += 		'<div class="w50">'+(index+1)+ '</div>';
 					content += 		'<div class="w450"><p>'+ item.NAME+ '/'+ item.CARDINAL_NAME + "</p>";
 					if(item.REVIEW_PERIOD != 0) {
@@ -174,53 +172,33 @@
 						content +=	'<p>기간만료<p></div>';
 					}
 					if(item.ISSUE_YN == 'Y') {
-						content += '<div class="c-table-01 c-table-btn">';
-						content += 		'<a href="#" class="btn_normal btn_default btn_xsmall">';
-						content += 		'<span class="h5">기간만료</span>';
-						content += 		'</a>';
-						content += '</div>';
+						content += '<div class="w100">';
+						content += 		'<p>수료</p>';
 						var now = new Date();
 						var yyyy = item.REAL_END_DATE.substr(0,4);
 						var mm = item.REAL_END_DATE.substr(5,2);
 						var dd = item.REAL_END_DATE.substr(8,2);
 						var realEndDate = new Date(yyyy, mm-1, dd);
 						if(now > realEndDate) {
-							content += '<div class="c-table-01 c-table-btn">';
-							content += 		'<a href="/smtp/user/sub05-03" class="btn_normal btn_pp btn_small">';
-							content += 		'<span class="h5">서류발급</span></a>';
+							content += 		'<a href="/smtp/user/rainbow-class03-01" class="w50 btn_default btn_xsmall fc_point">';
+							content += 		'<span class="h5">수료증</span></a>';
 							content += '</div>';
 						} else {
-							content += '<div class="c-table-01 c-table-btn">';
-							content += 		'<a href="#" class="btn_normal btn_pp btn_small"><span class="h5">복습하기</span></a>';
+							content += 		'<a href="#" class="w50 btn_default btn_xsmall fc_point"><span class="h5">복습하기</span></a>';
 							content += '</div>';
 						}
 					} else {
-						content += '<div class="c-table-01 c-table-btn">';
-						content += 		'<a href="#" class="btn_normal btn_default btn_xsmall"><span class="h5">미수료</span></a>';
+						content += '<div class="w100">';
+						content += 		'<p>미수료</p>';
 						content += '</div>';
-						var now = new Date();
-						var yyyy = item.REAL_END_DATE.substr(0,4);
-						var mm = item.REAL_END_DATE.substr(5,2);
-						var dd = item.REAL_END_DATE.substr(8,2);
-						var realEndDate = new Date(yyyy, mm-1, dd);
-						if(now > realEndDate) {
-							content += '<div class="c-table-01 c-table-btn">';
-							content += 		'<a href="#" class="btn_normal btn_default btn_xsmall">';
-							content += 		'<span class="h5">기간만료</span></a>';
-							content += '</div>';
-						} else {
-							content += '<div class="c-table-01 c-table-btn">';
-							content += 		'<a href="#" class="btn_normal btn_default btn_xsmall"><span class="h5">강의실</span></a>';
-							content += '</div>';
-						}
 					}
 					content += '</div>';
 					content += '</li>';
 				})
 			}
 			if(content == "") {
-				content += '<li class="listAndwrap">';
-				content += 		'<div class="class-list justify_center">조회된 내용이 없습니다.</div>';
+				content += '<li class="list not fc_999">';
+				content += 		'조회된 내용이 없습니다.';
 				content += '</li>';
 			}
 			$('.completeUl').html(content);
@@ -258,10 +236,12 @@
 			        totalPages: totalPages,
 			        visiblePages: visiblePages,
 			        startPage: startPage,
-			        first : "",
-				    prev : '<a href="#" class="prev"><div class="img-icon angle-left floatL"></div>PREV</a>',
-					next : '<a href="#" class="next"><div class="img-icon angle-right floatR"></div>NEXT</a>',
-					last : "",
+			        first : '<input type="button" style="margin: 0 5px;" class="btn_default fc_point" value="&lt&lt" />',
+	    	        prev : '<input type="button" style="margin: 0 5px;" class="btn_default fc_point" value="&lt" />',
+	    	        next : '<input type="button" style="margin: 0 5px;" class="btn_default fc_point" value="&gt" />',
+	    	        pageClass: 'btn_default twPaging',
+	    	        activeClass : 'btn_default fc_point',
+	    	        last : '<input type="button" style="margin: 0 5px;" class="btn_default fc_point" value="&gt&gt" />',
 			        initiateStartPageClick : false,
 			        onPageClick: function (event, page) {
 			        	$('#startPage').val(page);
@@ -371,58 +351,10 @@
                         </li>
                     </ul>
                 </div>
-                <%-- <!-- 기존 레인보우사이트 pagination 복사 >> 확인 필요 -->
-                <div class="section_pagination">
-                    <ul class="d-flex justify_center" id="pagination">
-                        <!-- **처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력-->
-                        <c:if test="${map.boardPager.curBlock > 1}">
-                            <li class="page-item">
-                                <input class="btn_default" type="button" onclick="javascript:ilist('1')" name=""
-                                    value="&lt&lt">
-                            </li>
-                        </c:if>
-
-                        <!-- **이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 -->
-                        <c:if test="${map.boardPager.curBlock > 1}">
-                            <li class="page-item">
-                                <input class="btn_default" type="button"
-                                    onclick="javascript:ilist('${map.boardPager.prevPage}')" name="" value="&lt">
-                            </li>
-                        </c:if>
-                        <!-- **하나의 블럭에서 반복문 수행 시작페이지부터 끝페이지까지 -->
-                        <c:forEach var="num" begin="${map.boardPager.blockBegin}" end="${map.boardPager.blockEnd}">
-                            <!-- **현재페이지이면 하이퍼링크 제거 -->
-                            <c:choose>
-                                <c:when test="${num == map.boardPager.curPage}">
-                                    <li class="page-item">
-                                        <input class="btn_default fc_point" type="button" name="" value="${num}">
-                                    </li>
-                                </c:when>
-                                <c:otherwise>
-                                    <li class="page-item">
-                                        <input class="btn_default" type="button" onclick="ilist('${num}')" name=""
-                                            value="${num}">
-                                    </li>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                        <!-- **다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [다음]하이퍼링크를 화면에 출력 -->
-                        <c:if test="${map.boardPager.curBlock <= map.boardPager.totBlock}">
-                            <li class="page-item">
-                                <input class="btn_default" type="button"
-                                    onclick="javascript:ilist('${map.boardPager.nextPage}')" name="" value="&gt">
-                            </li>
-                        </c:if>
-
-                        <!-- **끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝]하이퍼링크를 화면에 출력 -->
-                        <c:if test="${map.boardPager.curPage <= map.boardPager.totPage}">
-                            <li class="page-item">
-                                <input class="btn_default" type="button"
-                                    onclick="javascript:ilist('${map.boardPager.totPage}')" name="" value="&gt&gt">
-                            </li>
-                        </c:if>
-                    </ul>
-                </div> --%>
+                <!-- pagenation  -->
+				<div class="page">
+					<ul class="pagination d-flex justify_between" id="pagination"></ul>
+				</div>
             </div>
         </div>
         <%@include file="../include/rainbow_footer.jsp"%>

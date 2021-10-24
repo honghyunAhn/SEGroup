@@ -27,6 +27,7 @@ function openModal() {
 }
 
 function closeModal() {
+	alert();
   document.querySelector('.modal').style.display = "none";
   document.body.classList.remove("not-scroll");
 }

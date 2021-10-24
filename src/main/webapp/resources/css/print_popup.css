@@ -1,15 +1,15 @@
 /*--------------------------------------------------------------
-	레이어 팝업 내 프린트 영역 ( 스크린 & 프린트 공용)
+	�젅�씠�뼱 �뙘�뾽 �궡 �봽由고듃 �쁺�뿭 ( �뒪�겕由� & �봽由고듃 怨듭슜)
 ----------------------------------------------------------------*/
-	/* 공동 레이아웃 */
+	/* 怨듬룞 �젅�씠�븘�썐 */
 		.print-wrap {border:1px solid #999; padding:20px;}
 		.print-title { line-height:50px; text-align: center}
-	/* 출석 고사 수험표 - 강의실 입장 - 나의 강의실 */
+	/* 異쒖꽍 怨좎궗 �닔�뿕�몴 - 媛뺤쓽�떎 �엯�옣 - �굹�쓽 媛뺤쓽�떎 */
 		.tvs-photo { width:150px; height:180px; margin:15px auto; background-color:#e2e2e2; overflow: hidden}
 		.tvs-photo>img{width:150px; height:180px;}
 		#receipt .group-list, #receipt input{font-size:12px; font-size:.75rem}
 		#receipt input {text-align: left; }
-	/* 영수증 - 영수증/이수증 정보 - 나의 강의실 */
+	/* �쁺�닔利� - �쁺�닔利�/�씠�닔利� �젙蹂� - �굹�쓽 媛뺤쓽�떎 */
 		.receipt-issue {text-align:center; padding:15px 0}
 		.receipt-issue .date {margin:1.5em 0;}
 		.receipt-issue .issuer { height:50px; line-height:50px;}
@@ -27,7 +27,7 @@
 		.group-list>li li {border-top:1px solid #f0f0f0; min-height:40px; line-height: 40px;}
 		.group-list>li li .label {display: inline-block; width:7em; letter-spacing: -.05em; }
 		.group-list>li li:first-child {border-top:0px none}
-	/* 이수증, 수강확인증 - 영수증/이수증 정보 - 나의 강의실 */
+	/* �씠�닔利�, �닔媛뺥솗�씤利� - �쁺�닔利�/�씠�닔利� �젙蹂� - �굹�쓽 媛뺤쓽�떎 */
 		.certificate { position:relative; width:710px;height:1030px; border:0 none; padding:50px;background-repeat: no-repeat; background-position: 50% 50%; background-image: url(img/doc-bg.png); font-size:20px; font-size: 1.25em;}
 		.certificate .print-title { font-size: 40px; font-size:2.5rem; color:#000; line-height:96px; line-height: 6rem; font-weight: 900}
 		.certificate .info-list {margin-top:1cm;}
@@ -37,13 +37,13 @@
 		#certificate .info-list .label { width:auto; vertical-align: top}
 		#register-certificate .print-title { margin-bottom:1em}
 		#register-certificate .receipt-issue .issuer { margin-top:1.5em}
-	/* 성적표 - 영수증/이수증 정보 - 나의 강의실 */
+	/* �꽦�쟻�몴 - �쁺�닔利�/�씠�닔利� �젙蹂� - �굹�쓽 媛뺤쓽�떎 */
 		#scorecard .info-list { border-top:1px solid #f0f0f0; margin-top:10px}
-	/* 연수계획서 */
+	/* �뿰�닔怨꾪쉷�꽌 */
 		.learnSchedule.print-wrap {border:0 none; padding:0}
 
 /*--------------------------------------------------------------
-	프린트 전용
+	�봽由고듃 �쟾�슜
 ----------------------------------------------------------------*/
 @media print{
 	@page a4sheet{size:21.0cm 29.7cm}
@@ -53,13 +53,13 @@
 		.cl-popup-box { position:static; width:100%!important; height:auto!important; margin:0!important;margin-left:0!important; padding:0!important;}
 		.popup-body { margin:0!important; padding: 0}
 		.print-wrap { margin-bottom:0}
-		/* 나의 강의실 */
-			#offlineTVS, #receipt { width:11cm; } /* 수강증, 영수증 : 416px*/
+		/* �굹�쓽 媛뺤쓽�떎 */
+			#offlineTVS, #receipt { width:11cm; } /* �닔媛뺤쬆, �쁺�닔利� : 416px*/
 			#receipt input {border:0 none;padding:0;color:#4c4b46}
 			/*#receipt .group-list li>h5 {width:.5cm; margin:0 .2cm 0 .1cm;}
 			#receipt .group-list>li>ul { margin-left:1cm; width:9cm; }
 			#receipt .group-list>li>h5+ul {margin-left:0}*/
-			.certificate { width:19cm; height:27.6cm;} /* 이수증 */
-			#scorecard { width:19cm;} /* 성적표, 수강확인증 */
+			.certificate { width:19cm; height:27.6cm;} /* �씠�닔利� */
+			#scorecard { width:19cm;} /* �꽦�쟻�몴, �닔媛뺥솗�씤利� */
 			.learnSchedule.print-wrap {width:19cm; height:auto}
 	}

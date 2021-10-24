@@ -17,10 +17,12 @@
 		
 		/*---------------ready Func 시작----------------*/
 		$(document).ready(function() {
-			setContent(0);
 			// class nav active
 		    navLinks[4].parentElement.classList.add('current')
 		    subNav[4].classList.add('active');
+			
+			setContent(0);
+			
 			var classTabMenu = $('#mainDisplay >.myClass-tabGroup >li');
 			var i = 0;
 			classTabMenu.on('click', function () {
@@ -78,28 +80,27 @@
 				
 				$.each(data.progressList, function (index, item) {
 					
-					content += '<li class="class-list d-flex">';
+					content += '<li class="list d-flex">';
 					content += 		'<div class="hiddenDiv">';
 					content += 			'<input type="hidden" name="id" value="'+ item.ID +'"/>';
 					content += 			'<input type="hidden" name="courseId" value="'+ item.COURSE_ID +'"/>';
 					content += 			'<input type="hidden" name="cardinalId" value="'+ item.CARDINAL_ID +'"/>';
 					content += 		'</div>';
-					content += 		'<div class="c-table-num">'+(index+1)+ '</div>';
-					content += 		'<div class="c-table-name-w">'+ item.NAME+ '</div>';
-					content += 		'<div class="c-table-02">'+ item.CARDINAL_NAME + '</div>';
-					content += 		'<div class="c-table-03">'+ item.LEARN_START_DATE + " - " + item.LEARN_END_DATE + '</div>';
+					content += 		'<div class="w50">'+(index+1)+ '</div>';
+					content += 		'<div class="w500"><p>'+ item.NAME +' / '+ item.CARDINAL_NAME + '</p>';
+					content += 		'<p>' + item.LEARN_START_DATE + " ~ " + item.LEARN_END_DATE +  '</p></div>';
 					if(i == 0) {
-						content += 		'<div class="c-table-01 c-table-btn printScoreDiv">';
-						content += 			'<a class="btn_normal btn_pp btn_small btn_print">';
-						content +=			'<span class="h5">출력</span></a>';
+						content += 		'<div class="w100 printScoreDiv">';
+						content += 			'<a class="w50 btn_normal btn_xsmall bgc_point">';
+						content +=			'<span class="h5">출력하기</span></a>';
 						content +=		'</div>';
 						content +=	'</div>';
 						content +=	'</li>';
 						$('.progressUl1').html(content);
 					} else if(i == 1) {
-						content += 		'<div class="c-table-01 c-table-btn printTrainingCertificateDiv">';
-						content += 			'<a class="btn_normal btn_pp btn_small btn_print">';
-						content +=			'<span class="h5">출력</span></a>';
+						content += 		'<div class="w100 printTrainingCertificateDiv">';
+						content += 			'<a class="w50 btn_normal btn_xsmall bgc_point">';
+						content +=			'<span class="h5">출력하기</span></a>';
 						content +=		'</div>';
 						content +=	'</li>';
 						$('.progressUl2').html(content);
@@ -108,8 +109,8 @@
 				})
 			}
 			if(content == "") {
-				content += '<li class="listAndWrap">';
-				content += 		'<div class="class-list justify_center"><p>조회된 내용이 없습니다.</p></div>';
+				content += '<li class="list not fc_999">';
+				content += 		'조회된 내용이 없습니다.';
 				content +=	'</li>';
 				$('.progressUl1').html(content);
 				$('.progressUl2').html(content);
@@ -123,19 +124,18 @@
 			if(data.completeList != null && data.completeList.length != 0) {
 				$.each(data.completeList, function(index, item) {
 					if(item.ISSUE_YN == 'Y') {
-						content += '<li class="class-list d-flex">';
+						content += '<li class="list d-flex">';
 						content += 		'<div class="hiddenDiv">';
 						content += 			'<input type="hidden" name="id" value="'+ item.ID +'"/>';
 						content += 			'<input type="hidden" name="courseId" value="'+ item.COURSE_ID +'"/>';
 						content += 			'<input type="hidden" name="cardinalId" value="'+ item.CARDINAL_ID +'"/>';
 						content += 		'</div>';
-						content += 		'<div class="c-table-num">'+(index+1)+ '</div>';
-						content += 		'<div class="c-table-name-w">'+ item.NAME+ '</div>';
-						content += 		'<div class="c-table-02">'+ item.CARDINAL_NAME + '</div>';
-						content += 		'<div class="c-table-03">'+ item.REAL_START_DATE + " - " + item.REAL_END_DATE + '</div>';	
-						content += 		'<div class="c-table-01 c-table-btn printCertificateDiv">';
-						content += 			'<a href="#" class="btn_normal btn_pp btn_small btn_print modal-popup">';
-						content += 			'<span class="h5">수료증</span>';
+						content += 		'<div class="w50">'+(index+1)+ '</div>';
+						content += 		'<div class="w500"><p>'+ item.NAME+ " / " + item.CARDINAL_NAME + '</p>';
+						content += 		'<p>'+ item.REAL_START_DATE + " ~ " + item.REAL_END_DATE + '</p></div>';
+						content += 		'<div class="w100 printCertificateDiv">';
+						content += 			'<a href="#" class="w50 btn_normal btn_xsmall bgc_point">';
+						content += 			'<span class="h5">출력하기</span>';
 						content += 			'</a>';
 						content += '</div>';
 						content += '</li>';
@@ -143,8 +143,8 @@
 				})
 			}
 			if(content == "") {
-				content += '<li class="listAndWrap">';
-				content += 		'<div class="class-list justify_center"><p>조회된 내용이 없습니다.</p></div>';
+				content += '<li class="list not fc_999">';
+				content += 		'조회된 내용이 없습니다.';
 				content +=	'</li>';
 			}
 			$('.completeUl').html(content);
@@ -228,8 +228,8 @@
                         성적증명서, 연수확인증, 수료증 등 학위관련 필요서류를 발급하실 수 있습니다.
                     </p>
                 </div>
-                <div class="section_tab">
-                    <ul class="tab_headerWrap d-flex justify_center fc_point">
+                <div class="section_tab" id="mainDisplay">
+                    <ul class="tab_headerWrap d-flex justify_center fc_point myClass-tabGroup">
                         <li class="tab_header fz16 active">
                             <a tab="#tab1">성적증명서</a>
                         </li>
@@ -240,6 +240,17 @@
                             <a tab="#tab3">수료증</a>
                         </li>
                     </ul>
+                    <!-- pagination용  -->
+		            <div class="d-flex floatR">
+						<div class="class-search-down d-flex">
+							<c:if test="${startpage != '' && startpage != null}">
+								<input type="hidden" id="startPage" name="startPage" value="${startPage}">
+							</c:if>
+							<c:if test="${startpage == '' || startpage == null}">
+								<input type="hidden" id="startPage" name="startPage" value="1">
+							</c:if>
+						</div>
+					</div>
                     <ul class="tab_bodyWrap">
                         <li id="tab1" class="tab_body">
                             <div class="section_table">
@@ -248,28 +259,7 @@
                                     <li class="w450">과정명/기수명<br>학습기간</li>
                                     <li class="w100">성적증명서</li>
                                 </ul>
-                                <ul class="table-list tbody progressUl1">
-                                    <li class="list d-flex">
-                                        <div class="w50">
-                                            No.
-                                        </div>
-                                        <div class="w500">
-                                            <p>
-                                                과정명/기수명
-                                            </p>
-                                            <p>
-                                                YY-MM-DD ~ YY-MM-DD
-                                            </p>
-                                        </div>
-                                        <div class="w100">
-                                            <a href="#" class="w50 btn_normal btn_xsmall bgc_point"><span
-                                                    class="h5">출력하기</span></a>
-                                        </div>
-                                    </li>
-                                    <li class="list not fc_999">
-                                        조회된 내용이 없습니다.
-                                    </li>
-                                </ul>
+                                <ul class="table-list tbody progressUl1"></ul>
                             </div>
                         </li>
                         <li id="tab2" class="tab_body">
@@ -279,28 +269,7 @@
                                     <li class="w450">과정명/기수명<br>학습기간</li>
                                     <li class="w100">연수확인증</li>
                                 </ul>
-                                <ul class="table-list tbody progressUl2">
-                                    <li class="list d-flex">
-                                        <div class="w50">
-                                            No.
-                                        </div>
-                                        <div class="w500">
-                                            <p>
-                                                과정명/기수명
-                                            </p>
-                                            <p>
-                                                YY-MM-DD ~ YY-MM-DD
-                                            </p>
-                                        </div>
-                                        <div class="w100">
-                                            <a href="#" class="w50 btn_normal btn_xsmall bgc_point"><span
-                                                    class="h5">출력하기</span></a>
-                                        </div>
-                                    </li>
-                                    <li class="list not fc_999">
-                                        조회된 내용이 없습니다.
-                                    </li>
-                                </ul>
+                                <ul class="table-list tbody progressUl2"></ul>
                             </div>
                         </li>
                         <li id="tab3" class="tab_body">
@@ -310,83 +279,14 @@
                                     <li class="w450">과정명/기수명<br>학습기간</li>
                                     <li class="w100">수료증</li>
                                 </ul>
-                                <ul class="table-list tbody progressUl3">
-                                    <li class="list d-flex">
-                                        <div class="w50">
-                                            No.
-                                        </div>
-                                        <div class="w500">
-                                            <p>
-                                                과정명/기수명
-                                            </p>
-                                            <p>
-                                                YY-MM-DD ~ YY-MM-DD
-                                            </p>
-                                        </div>
-                                        <div class="w100">
-                                            <a href="#" class="w50 btn_normal btn_xsmall bgc_point"><span
-                                                    class="h5">출력하기</span></a>
-                                        </div>
-                                    </li>
-                                    <li class="list not fc_999">
-                                        조회된 내용이 없습니다.
-                                    </li>
-                                </ul>
+                                <ul class="table-list tbody completeUl"></ul>
                             </div>
                         </li>
                     </ul>
-                </div>
-                <!-- 기존 레인보우사이트 pagination 복사 >> 확인 필요 -->
-                <div class="section_pagination">
-                    <ul class="d-flex justify_center" id="pagination">
-                        <!-- **처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력-->
-                        <c:if test="${map.boardPager.curBlock > 1}">
-                            <li class="page-item">
-                                <input class="btn_default" type="button" onclick="javascript:ilist('1')" name=""
-                                    value="&lt&lt">
-                            </li>
-                        </c:if>
-
-                        <!-- **이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 -->
-                        <c:if test="${map.boardPager.curBlock > 1}">
-                            <li class="page-item">
-                                <input class="btn_default" type="button"
-                                    onclick="javascript:ilist('${map.boardPager.prevPage}')" name="" value="&lt">
-                            </li>
-                        </c:if>
-                        <!-- **하나의 블럭에서 반복문 수행 시작페이지부터 끝페이지까지 -->
-                        <c:forEach var="num" begin="${map.boardPager.blockBegin}" end="${map.boardPager.blockEnd}">
-                            <!-- **현재페이지이면 하이퍼링크 제거 -->
-                            <c:choose>
-                                <c:when test="${num == map.boardPager.curPage}">
-                                    <li class="page-item">
-                                        <input class="btn_default fc_point" type="button" name="" value="${num}">
-                                    </li>
-                                </c:when>
-                                <c:otherwise>
-                                    <li class="page-item">
-                                        <input class="btn_default" type="button" onclick="ilist('${num}')" name=""
-                                            value="${num}">
-                                    </li>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                        <!-- **다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [다음]하이퍼링크를 화면에 출력 -->
-                        <c:if test="${map.boardPager.curBlock <= map.boardPager.totBlock}">
-                            <li class="page-item">
-                                <input class="btn_default" type="button"
-                                    onclick="javascript:ilist('${map.boardPager.nextPage}')" name="" value="&gt">
-                            </li>
-                        </c:if>
-
-                        <!-- **끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝]하이퍼링크를 화면에 출력 -->
-                        <c:if test="${map.boardPager.curPage <= map.boardPager.totPage}">
-                            <li class="page-item">
-                                <input class="btn_default" type="button"
-                                    onclick="javascript:ilist('${map.boardPager.totPage}')" name="" value="&gt&gt">
-                            </li>
-                        </c:if>
-                        </ul>
+                    <!-- pagenation  -->
+					<div class="page">
+						<ul class="pagination d-flex justify_between" id="pagination"></ul>
+					</div>
                 </div>
             </div>
         </div>

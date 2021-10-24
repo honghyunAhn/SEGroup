@@ -2193,6 +2193,7 @@ img.mobileBanner{
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     vertical-align: middle;
+    color: red;
 }
 .table-receipt>.tbody>.receipt_price>td{
     width: 50px;

@@ -1806,16 +1806,13 @@ html {
 
 
 /* subPage >> modal */
-
-
-
 .modal{
     position: absolute;
     background-color: rgba(0,0,0,.7);
     width: 100vw;
     height: 100vh;
-    top: 0; bottom: 0; left: 0; right: 0;
     display: none;
+    top: 0; bottom: 0; left: 0; right: 0;
     z-index: 1100;
 }
 .modal .close-modal{

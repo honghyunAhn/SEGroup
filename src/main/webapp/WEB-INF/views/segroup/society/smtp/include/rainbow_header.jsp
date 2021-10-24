@@ -34,7 +34,7 @@
         </ul>
         <ul class="subHeader d-flex flexWrap course-point03">
             <li><a href="rainbow-course03-01.html">일본취업 스킬업</a></li>
-            <li><a href="fap/user/user_main">2021 하반기 잡페어</a></li>
+            <li><a href="/fap/user/user_main">2021 하반기 잡페어</a></li>
         </ul>
             <ul class="subHeader d-flex flexWrap course-point04">
             <li><a href="/smtp/community/rainbow-community01-01">공지사항</a></li>
