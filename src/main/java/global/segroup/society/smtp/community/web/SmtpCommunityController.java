@@ -626,7 +626,7 @@ public class SmtpCommunityController {
 	}
 	
 	@RequestMapping(value = "/smtp/community/rainbow-community03-02", method = RequestMethod.GET)
-	public String sub04_04_01(Model model, Authentication auth, int consulting_seq, String searchOption, HttpServletRequest request){
+	public String rainbow_community03_02(Model model, Authentication auth, int consulting_seq, String searchOption, HttpServletRequest request){
 		
 		logger.debug("온라인상담 게시판을 내용을 호출하는 컨트롤러 시작");
 		
@@ -652,6 +652,28 @@ public class SmtpCommunityController {
 		
 		logger.debug("온라인상담 게시판을 내용을 호출하는 컨트롤러 종료");
 		return PathConstants.SEGROUP_SOCIETY + "/smtp/community/rainbow-community03-02";
+	}
+	
+
+	@RequestMapping(value = "/smtp/community/rainbow-community03-03" , method = RequestMethod.GET)
+	public String rainbow_community03_03(Model model, Authentication auth){
+		
+		model.addAttribute("consulting_ins_id", auth.getName());
+		
+		return PathConstants.SEGROUP_SOCIETY + "/smtp/community/rainbow-community03-03";
+	}
+
+	@RequestMapping(value = "/smtp/community/rainbow-community03-04", method = RequestMethod.GET)
+	public String rainbow_community03_04(int consulting_seq, Model model, Authentication auth){
+		logger.debug("온라인상담 게시글 세부 내용 수정 폼 이동 컨트롤러 시작");
+		
+		HashMap<String, Object> resultMap = eduApplyService.online_consulting_boardDetail(consulting_seq);
+
+		model.addAttribute("consulting_ins_id", auth.getName());
+		model.addAttribute("contentDetail", resultMap);
+		
+		logger.debug("온라인상담 게시글 세부 내용 수정 폼 이동 컨트롤러 종료");
+		return PathConstants.SEGROUP_SOCIETY + "/smtp/community/rainbow-community03-04";
 	}
 //	@RequestMapping(value = PathConstants.SOCIETY_EDU_COMMUNITY_MEDIA_IN_IT, method = RequestMethod.GET)
 //	public String apply_media_in_it(Model model, Authentication auth,@RequestParam(defaultValue="contents") String searchOption,
