@@ -1,11 +1,11 @@
 package global.segroup.society.smtp.user.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -21,7 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.aracomm.base.common.FileDownloadView;
 import com.aracomm.base.common.util.CommonUtil;
+import com.aracomm.base.common.vo.FileVo;
+import com.aracomm.changbi.mypage.service.LectureService;
 import com.aracomm.changbi.user.service.MyLectureService;
 import com.aracomm.changbi.user.web.MyLectureController;
 
@@ -74,8 +77,8 @@ public class SmtpMyLectureController {
 		//시작 페이지 객체
 		String startPage = StringUtils.isBlank((String) params.get("startPage")) ? "1" : (String) params.get("startPage");
 		// 시작 페이지 설정
-		// 볼 수 있는 페이지 설정
 		params.put("startPage", CommonUtil.getStart(startPage, boardPages));
+		// 볼 수 있는 페이지 설정
 		params.put("visiblePages", boardPages);
 		
 		int listNum = Integer.parseInt((String) params.get("listNum"));
