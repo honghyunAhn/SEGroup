@@ -178,7 +178,7 @@ public class SmtpSupportController {
 	@RequestMapping(value = "/smtp/support/apply_online_udt", method = RequestMethod.POST)
 	public boolean smtp_apply_online_udt(Model model, Authentication auth, @ModelAttribute OnlineConsultingContents occ){
 		logger.debug("온라인 상담 수정 컨트롤러 시작");
-		
+		System.out.println("anh288 : " + occ);
 		boolean isRequested = false;
 		OnlineConsultingContents mail_occ = occ;
 
