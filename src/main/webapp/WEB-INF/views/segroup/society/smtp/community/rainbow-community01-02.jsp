@@ -10,10 +10,9 @@
     <%@include file="../include/rainbow_head.jsp" %>
     <script type="text/javascript">
 	    $(document).ready(function() {
-			/* $("#btnWrite").click(function() {
-				// 페이지 주소 변경(이동)
-				location.href = "/board/write.do";
-			}); */
+	    	// community nav active
+	        navLinks[3].parentElement.classList.add('current')
+	        subNav[3].classList.add('active');
 		});
 	
 		function goToNear(seq, nearType) {
@@ -42,29 +41,18 @@
                     <ul class="view_info margin-top10 d-flex justify_end">
                         <li>
                             <strong>게시자&nbsp;</strong>
-                            admin
-                            <!-- ${boardDetail.board_content_nm } -->
+                            ${boardDetail.board_content_nm }
                         </li>
                         <li>
                             <strong>날짜&nbsp;</strong>
-                            2021-07-13
-                            <!-- ${boardDetail.board_content_udt_dt } -->
+                            ${boardDetail.board_content_udt_dt }
                         </li>
                         <li>
                             <strong>조회수&nbsp;</strong>
-                            61
-                            <!-- ${boardDetail.board_content_hit } -->
+                            ${boardDetail.board_content_hit }
                         </li>
                     </ul>
                     <div class="view_content">
-                        ${boardDetail.board_content_ct }
-                        ${boardDetail.board_content_ct }
-                        ${boardDetail.board_content_ct }
-                        ${boardDetail.board_content_ct }
-                        ${boardDetail.board_content_ct }
-                        ${boardDetail.board_content_ct }
-                        ${boardDetail.board_content_ct }
-                        ${boardDetail.board_content_ct }
                         ${boardDetail.board_content_ct }
                     </div>
                     <c:if test="${fn:length(files) gt 0}">
@@ -100,12 +88,5 @@
         </div>
         <%@include file="../include/rainbow_footer.jsp" %>
     </div>
-
 </body>
-<script type="text/javascript">
-    // community nav active
-    navLinks[3].parentElement.classList.add('current')
-    subNav[3].classList.add('active');
- </script>
-
 </html>
