@@ -57,7 +57,7 @@
 		}
 	
 		function write_form(){
-			location.href="/smtp/community/rainbow-community03-03.do";
+			location.href="/smtp/community/rainbow-community03-03";
 		}
     </script>
 </head>
@@ -200,6 +200,10 @@
                             </li>
                         </c:if>
                     </ol>
+                </div>
+                <!-- 글쓰기 버튼 추가 -->
+                <div class="section_btnWrap d-flex justify_center">
+                    <input type="button" name="onlineConsultingWrite" id="onlineConsultingWrite" class="btn_normal btn_xlarge bgc_point" value="글쓰기">
                 </div>
             </div>
         </div>
