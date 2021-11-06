@@ -146,7 +146,7 @@
                             </c:if>
                         </div>
                     </form>
-                    <form action="/smtp/support/sub04-04-03.do" id="onlineUdtHiddenForm" method="get">
+                    <form action="/smtp/community/rainbow-community03-04" id="onlineUdtHiddenForm" method="get">
                         <input type="hidden" name="consulting_udt_id" id="consulting_udt_id"
                             value="${onlineConsultingContents.consulting_udt_id}" />
                         <input type="hidden" name="consulting_seq" value="${boardDetail.consulting_seq }" />
