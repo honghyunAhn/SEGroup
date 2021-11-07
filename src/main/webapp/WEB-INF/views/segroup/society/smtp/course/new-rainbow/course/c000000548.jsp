@@ -16,6 +16,17 @@
     		graduation("${courseInfo.LEARN_END_DATE}");
     		period("${courseInfo.APP_START_DATE}")
     		expenses("${courseInfo.PRICE}");
+    		
+    		$('.applyBtn').parent().on('click', function() {
+    			var cardinal_id = $("#cardinal_id").val();
+    			var course_id= $("#course_id").val();
+    			var aedDate = new Date("${courseInfo.APP_END_DATE}"+", 23:59:59").getTime();
+    			var today = new Date();
+    			if(aedDate < today) {
+    				return false;
+    			}
+    			document.location.href = "/smtp/apply/sub00-01?course_id="+ course_id +"&cardinal_id="+ cardinal_id;
+    		});
     	});
     </script>
 </head>
@@ -559,14 +570,14 @@
                             </div>
                         </li>
                     </ul>
-                    <button id="applyBtn" class="btn_normal bgc_point course-apply h2">
+                    <button id="applyBtn" class="btn_normal bgc_point course-apply h2 applyBtn">
                         수강신청하기
                     </button>
                 </div>
             </div>
             <div class="course-navWrap bgc_333">
                 <div class="d-flex justify_between">
-                    <button class="btn_normal bgc_point course-apply fz20">
+                    <button class="btn_normal bgc_point course-apply fz20 applyBtn">
                         수강신청하기
                     </button>
                     <a class="d-flex justify_center inquiry" href="https://pf.kakao.com/_sxoRxjs">
