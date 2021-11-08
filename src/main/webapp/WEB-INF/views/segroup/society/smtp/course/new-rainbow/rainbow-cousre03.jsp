@@ -16,7 +16,7 @@
             <%@include file="../../include/banner_add.jsp"%>
             <div class="courseWrapper">
                 <div class="courseWrap textAlign_center" id="courseFilter">
-                	<%@include file="../../include/course04.jsp"%>
+                	<%@include file="../../include/course03.jsp"%>
                 </div>
             </div>
             <%@include file="../../include/banner_full.jsp"%>
