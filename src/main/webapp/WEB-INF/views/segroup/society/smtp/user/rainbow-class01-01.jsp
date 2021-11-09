@@ -8,7 +8,6 @@
 <head>
     <meta charset="UTF-8">
     <%@include file="../include/rainbow_head.jsp"%>
-    <!-- Pagination을 위한 js -->
     <script type="text/javascript" src="/resources/js/jquery.twbsPagination.js"></script>
     <script type="text/javascript">
         //학습현황 list
