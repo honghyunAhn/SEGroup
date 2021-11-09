@@ -143,7 +143,7 @@
 	}
 
     /**
-     * 상담내용을 입력했는지
+     * 상담제목을 입력했는지
      */
     function isTitleCorrect() {
         var consulting_title = $('#consulting_title');
