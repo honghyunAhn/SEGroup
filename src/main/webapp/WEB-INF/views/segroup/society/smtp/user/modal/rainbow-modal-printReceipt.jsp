@@ -7,9 +7,6 @@
     	const html = document.querySelector('html');
     	const printContents = document.querySelector('#test').innerHTML;
     	const printDiv = document.createElement('DIV');
-    	console.log(html);
-    	console.log(printContents);
-    	console.log(printDiv);
     	
     	html.appendChild(printDiv);
     	printDiv.innerHTML = printContents;
