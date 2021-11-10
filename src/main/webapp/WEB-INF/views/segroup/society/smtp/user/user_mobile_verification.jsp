@@ -26,6 +26,7 @@ function closeThis(){
 }
 //본인인증 (서브도메인 처리)
 //document.domain = 'softsociety.net'; //(운영서버 적용시)
+document.domain = '1.235.198.60'; //(운영서버 적용시)
  
 
 jQuery(document).ready(function(){
