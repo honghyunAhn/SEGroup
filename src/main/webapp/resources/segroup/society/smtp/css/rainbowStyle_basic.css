@@ -3,6 +3,7 @@
 html {
     font-size: 15px;
 }
+
 .signUp-agree>.text-box,
 .section_table,
 .modal-table {
@@ -850,7 +851,8 @@ html {
     position: sticky;
     position: -webkit-sticky;
 }
-.disabled{
+
+.disabled {
     filter: grayscale(100%);
     cursor: not-allowed;
 }
@@ -1254,7 +1256,7 @@ html {
 }
 
 .show,
-.course-faqWrap>.faqGroup>.faq>.answerWrap.show{
+.course-faqWrap>.faqGroup>.faq>.answerWrap.show {
     display: block;
 
 }
@@ -1441,12 +1443,15 @@ html {
 .w400 {
     width: 400px;
 }
+
 .w450 {
     width: 450px;
 }
+
 .w500 {
     width: 500px;
 }
+
 .w550 {
     width: 550px;
 }
@@ -1588,11 +1593,12 @@ html {
 }
 
 /* subPage >> user - find */
-.find .result{
+.find .result {
     text-align: center;
     padding: 20px;
-    border : 1px solid #999;
+    border: 1px solid #999;
 }
+
 /* subPage >> community - notice */
 .section_search .d-flex>button.search {
     margin: 20px 10px;
@@ -1603,9 +1609,10 @@ html {
 }
 
 .overX-scroll.section_table .table-title,
-.overX-scroll.section_table .table-list{
+.overX-scroll.section_table .table-list {
     width: 1200px;
 }
+
 .section_table {}
 
 .section_table .table-title {
@@ -1619,88 +1626,116 @@ html {
     text-align: center;
     align-items: center;
 }
+
 .section_table .table-list .line-list,
-.section_table .table-title.line-title{
+.section_table .table-title.line-title {
     padding: 0;
 }
+
 .section_table>.table-list .line-list>.d-flex,
-.section_table>.table-title.line-title>.d-flex{
+.section_table>.table-title.line-title>.d-flex {
     padding: 10px;
 }
+
 .section_table .table-title>.d-flex:nth-child(1)~*,
-.section_table .table-list .line-list>.d-flex:nth-child(1)~*{
-    border-top : 1px dashed;
+.section_table .table-list .line-list>.d-flex:nth-child(1)~* {
+    border-top: 1px dashed;
 }
-.section_table .table-list .answer{
+
+.section_table .table-list .answer {
     display: none;
     align-items: baseline;
     background-color: #f7f7f7;
 }
-.section_table .table-list .answer.show{
+
+.section_table .table-list .answer.show {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
 }
-.section_table .table-list .list{
-    border-bottom : 1px solid #eee;
-    
+
+.section_table .table-list .list {
+    border-bottom: 1px solid #eee;
+
 }
-.section_table .table-list .list:hover{
-    background-color: rgba(0,0,0,.05);
+
+.section_table .table-list .list:hover {
+    background-color: rgba(0, 0, 0, .05);
     cursor: pointer;
 }
-.section_table .list.not:hover{
+
+.section_table .list.not:hover {
     background-color: inherit;
     cursor: default;
 }
-.section_table .table-list .answer:hover{
+
+.section_table .table-list .answer:hover {
     background-color: #f7f7f7;
     cursor: default;
 }
-.section_table .list .table-btn{
+
+.section_table .list .table-btn {
     width: calc(100% - 20px);
     margin: 0 5px;
-    padding: 5px; 
+    padding: 5px;
 }
-.section_pagination .page-item>input{
+
+.section_pagination .page-item>input {
     margin: 0 5px;
     cursor: pointer;
 }
 
-.section_view{}
-.section_view>.view_title{
+.section_view {}
+
+.section_view>.view_title {
     padding: 20px;
 }
-.view_info>li:nth-child(1)~*{
+
+.view_info>li:nth-child(1)~* {
     margin-left: 10px;
 }
-.section_view>.view_content{
+
+.section_view>.view_content {
     margin: 60px 0;
-    border : 1px solid #999;
+    border: 1px solid #999;
     padding: 10px 20px;
     line-height: 30px;
 }
-.view_content>.view_image{
+
+.view_content>.view_image {
     width: 300px;
     margin: 10px auto;
     text-align: center;
 }
-.view_content>.view_image>*{
+
+.view_content>.view_image img,
+.view_content img {
     max-width: 100%;
     height: auto;
 }
-.view_fileUpload{
+
+.view_fileUpload {
     border-top: 1px solid #999;
     border-bottom: 1px solid #999;
     padding: 20px;
 }
 
+/* subPage >> community - Q&A */
+.formWrap .textarea {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.community03-03 .checkWrap .check {
+    margin: 0 10px 0 0;
+    height: 20px;
+}
 
 /* subPage >> community - map */
-.section_map{}
+.section_map {}
 
 
-.section_map .map_headerWrap .map_header{
+.section_map .map_headerWrap .map_header {
     padding: 10px;
     margin-right: 10px;
     border: 1px solid;
@@ -1712,69 +1747,80 @@ html {
 }
 
 .section_map .map_headerWrap .map_header.active,
-.section_map .map_headerWrap .map_header:hover{
+.section_map .map_headerWrap .map_header:hover {
     background-color: #666;
     color: #fff;
 }
 
-.section_map .map_bodyWrap{
+.section_map .map_bodyWrap {
     border: 1px solid #666;
     padding: 20px;
 }
-.section_map .map_bodyWrap .map_body:nth-child(1)~*{
+
+.section_map .map_bodyWrap .map_body:nth-child(1)~* {
     display: none;
 }
-.section_map .map_bodyWrap .map_body>.map{
+
+.section_map .map_bodyWrap .map_body>.map {
     margin-top: 20px;
     width: 100%;
 }
-.section_map .map_bodyWrap .map_body>.map_wayWrap{
-}
-.section_map .map_bodyWrap .map_body>.map_wayWrap .map_way{
+
+.section_map .map_bodyWrap .map_body>.map_wayWrap {}
+
+.section_map .map_bodyWrap .map_body>.map_wayWrap .map_way {
     margin-top: 20px;
 }
 
-/* subPage >> community - Q&A */
-.section_view .view_question{
-    border : 1px solid #eee;
+/* subPage >> community - map >> daum map style */
+.root_daum_roughmap .wrap_controllers .tit_controllers,
+.root_daum_roughmap .wrap_controllers .wrap_btn_roadview>* {
+    width: auto;
 }
+
+
+/* subPage >> community - Q&A */
+.section_view .view_question {
+    border: 1px solid #eee;
+}
+
 .section_view .view_answer,
-.section_view .view_question{
+.section_view .view_question {
     margin: 20px 0 0;
     padding: 20px;
 }
+
 .section_view .view_answer .view_title,
 .section_view .view_answer .view_content,
 .section_view .view_question .view_title,
-.section_view .view_question .view_content{
+.section_view .view_question .view_content {
     padding: 10px;
 }
-.section_view .view_question .view_content{
-    border : 1px solid #eee;
+
+.section_view .view_question .view_content {
+    border: 1px solid #eee;
     border-top: none;
 }
-.section_view .view_answer{
-    border : 1px solid #999;
+
+.section_view .view_answer {
+    border: 1px solid #999;
     padding: 20px;
 
 }
-.section_view .view_answer .view_content{
+
+.section_view .view_answer .view_content {
     border: none;
     border-top: 1px solid #999;
     padding: 20px 0 0;
     margin-top: 20px;
 }
 
-/* subPage >> community - map >> daum map style */
-.root_daum_roughmap .wrap_controllers .tit_controllers,
-.root_daum_roughmap .wrap_controllers .wrap_btn_roadview>*{
-    width: auto;
-}
+
 
 
 /* subPage >> myClass */
 
-.tab_headerWrap .tab_header{
+.tab_headerWrap .tab_header {
     padding: 10px 0;
     border: 1px solid;
     cursor: pointer;
@@ -1783,21 +1829,21 @@ html {
     border-radius: 5px;
 }
 
-.tab_headerWrap .tab_header:nth-child(1)~*{
+.tab_headerWrap .tab_header:nth-child(1)~* {
     margin-left: 10px;
 }
 
 .tab_headerWrap .tab_header.active,
-.tab_headerWrap .tab_header:hover{
+.tab_headerWrap .tab_header:hover {
     background-color: #58b7dd;
     color: #fff;
 }
 
-.tab_bodyWrap .tab_body:nth-child(1)~*{
+.tab_bodyWrap .tab_body:nth-child(1)~* {
     display: none;
 }
 
-.myClass .section_table .table-list .list:hover{
+.myClass .section_table .table-list .list:hover {
     background-color: inherit;
     cursor: default;
 }
@@ -1806,42 +1852,63 @@ html {
 
 
 /* subPage >> modal */
-.modal{
+
+
+
+.modal {
     position: absolute;
-    background-color: rgba(0,0,0,.7);
+    background-color: rgba(0, 0, 0, .7);
     width: 100vw;
     height: 100vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: none;
-    top: 0; bottom: 0; left: 0; right: 0;
     z-index: 1100;
 }
-.modal .close-modal{
+
+.modal .close-modal {
     cursor: pointer;
 }
-.modal>.modal-content{
+
+.modal>.modal-content {
     position: absolute;
     width: 1200px;
     height: calc(100vh - 200px);
     margin: auto;
-    top: 0; bottom: 0; left: 0; right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background-color: #fff;
     padding: 40px;
+    z-index: 1100;
 }
-.modal>.modal-content .modal-table{
+
+.modal>.modal-content .modal-table,
+.modal>.modal-content .modal-view {
     width: 100%;
     margin: 40px auto;
 }
+
 .modal>.modal-content .modal-table th,
-.modal>.modal-content .modal-table td{
+.modal>.modal-content .modal-table td {
     border: 1px solid #ddd;
     padding: 10px 0;
     text-align: center;
     vertical-align: middle;
 }
-.positionImg{
+
+.modal>.modal-content .modal-view .text-box {
+    height: 590px;
+}
+
+.positionImg {
     position: relative;
 }
-.positionImg .stampImg{
+
+.positionImg .stampImg {
     position: absolute;
     width: 80px;
     height: 80px;
@@ -1850,4 +1917,35 @@ html {
     opacity: .5;
 }
 
+/* 영수증 출력 print css 적용 */
+@media print {
+    body {
+        font-family: "Noto Sans KR", "sans-serif";
+        font-size: 14px;
+        line-height: 20px;
+        color: #333;
+        word-break: keep-all;
+    }
 
+    .table-title {
+        border-top: 2px solid;
+        border-bottom: 2px solid;
+    }
+
+    .modal>.modal-content .modal-table th,
+    .modal>.modal-content .modal-table td{
+        border: 1px solid #ddd;
+        padding: 10px 0;
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    .stampImg {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        top: -20px;
+        right: 60px;
+        opacity: .5;
+    }
+}
