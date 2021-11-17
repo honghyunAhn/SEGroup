@@ -1071,7 +1071,7 @@
 	</update>
 	
 	<select id="rainbowCourseInfo" parameterType="String" resultType="hashmap">
-		SELECT A.*, M.SELP_PERIOD AS SELP_PERIOD
+		SELECT A.*, M.SELP_PERIOD AS SELP_PERIOD, M.PURPOSE AS PURPOSE
 		FROM CB_COURSE M
 		LEFT OUTER JOIN	(	SELECT A.ID AS CARDINAL_ID, A.NAME, A.APP_START_DATE, A.APP_END_DATE
 								 , A.LEARN_START_DATE, A.LEARN_END_DATE
@@ -1090,6 +1090,6 @@
 							ON A.CARDINAL_ID = B.CARDINAL_ID) B
 		ON M.ID = B.COURSE_ID
 		WHERE M.ID = #{course_id}
-        order by LEARN_END_DATE desc LIMIT 1;
+        order by APP_END_DATE desc LIMIT 1;
 	</select>
 </mapper>
