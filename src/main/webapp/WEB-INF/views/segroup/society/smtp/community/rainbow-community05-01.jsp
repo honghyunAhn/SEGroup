@@ -8,7 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <%@include file="../include/rainbow_head.jsp" %>
-    <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+    <script class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js">
+    </script>
 </head>
 
 <body>
@@ -39,7 +40,7 @@
                                 06164 서울특별시 강남구 영동대로 513(삼성동, 코엑스)4층 ICT센터
                             </p>
                             <div class="map">
-                                <div id="daumRoughmapContainer1572313765901"
+                                <div id="daumRoughmapContainer1629445244605"
                                     class="root_daum_roughmap root_daum_roughmap_landing"></div>
                             </div>
                             <div class="map_wayWrap">
@@ -109,14 +110,16 @@
                             </div>
                         </li>
                         <!-- 광주센터 -->
+
                         <li id="tab2" class="map_body">
                             <p class="fc_999">
                                 62364 광주광역시 광산구 무진대로 282 광주무역회관 7F
                             </p>
                             <div class="map">
-                                <div id="daumRoughmapContainer1612240971805"
+                                <div id="daumRoughmapContainer1629445358123"
                                     class="root_daum_roughmap root_daum_roughmap_landing"></div>
                             </div>
+
                             <div class="map_wayWrap">
                                 <div class="map_way">
                                     <div class="d-flex map-way-hdr">
@@ -170,13 +173,14 @@
                                 </div>
                             </div>
                         </li>
+
                         <!-- 부산센터 -->
                         <li id="tab3" class="map_body">
                             <p class="fc_999">
                                 48939 부산광역시 중구 충장대로 11 부산무역회관2F
                             </p>
                             <div class="map">
-                                <div id="daumRoughmapContainer1623141807900"
+                                <div id="daumRoughmapContainer1629445426784"
                                     class="root_daum_roughmap root_daum_roughmap_landing"></div>
                             </div>
                             <div class="map_wayWrap">
@@ -233,52 +237,83 @@
                         </li>
                     </ul>
                 </div>
+
+
             </div>
         </div>
         <%@include file="../include/rainbow_footer.jsp" %>
     </div>
-</body>
-<script type="text/javascript">
-    const tabList = document.querySelectorAll('.map_headerWrap .map_header a');
-    const contents = document.querySelectorAll('.map_bodyWrap .map_body')
-    let activeCont = ''; // 현재 활성화 된 컨텐츠 (기본:#tab1 활성화)
+    <script type="text/javascript">
+        const tabList = document.querySelectorAll('.map_headerWrap .map_header a');
+        const contents = document.querySelectorAll('.map_bodyWrap .map_body');
+        let activeCont = ''; // 현재 활성화 된 컨텐츠 (기본:#tab1 활성화)
 
-    for (var i = 0; i < tabList.length; i++) {
-        tabList[i].addEventListener('click', function (e) {
-            e.preventDefault();
-            for (var j = 0; j < tabList.length; j++) {
-                tabList[j].parentNode.classList.remove('active');
-                contents[j].style.display = 'none';
+        for (var i = 0; i < tabList.length; i++) {
+            tabList[i].addEventListener('click', function (e) {
+                e.preventDefault();
+                for (var j = 0; j < tabList.length; j++) {
+                    tabList[j].parentNode.classList.remove('active');
+                    contents[j].style.display = 'none';
+                }
+                this.parentNode.classList.add('active');
+                activeCont = this.getAttribute('tab');
+                document.querySelector(activeCont).style.display = 'block';
+            });
+        }
+
+        // load map
+        tabList.forEach(function (tab) {
+            var executed = false;
+
+            var secondMap = (function () {
+                return function () {
+                    if (!executed) {
+                        executed = true;
+                        new daum.roughmap.Lander({
+                            "timestamp": "1629445358123",
+                            "key": "2738v",
+                            "mapWidth": "558",
+                            "mapHeight": "300"
+                        }).render();
+                    }
+                };
+            })();
+            var thirdMap = (function () {
+                return function () {
+                    if (!executed) {
+                        executed = true;
+                        new daum.roughmap.Lander({
+                            "timestamp": "1629445426784",
+                            "key": "2738w",
+                            "mapWidth": "558",
+                            "mapHeight": "300"
+                        }).render();
+                    }
+                };
+            })();
+
+            function loadMap() {
+                let tabNum = this.getAttribute('tab');
+                if (tabNum === '#tab2') {
+                    secondMap();
+                } else if (tabNum === '#tab3') {
+                    thirdMap();
+                }
             }
-            this.parentNode.classList.add('active');
-            activeCont = this.getAttribute('tab');
-            document.querySelector(activeCont).style.display = 'block';
-        });
-    }
-    // daum map 
-    new daum.roughmap.Lander({
-        "timestamp": "1572313765901",
-        "key": "vmfe",
-        "mapWidth": "100%",
-        "mapHeight": "auto"
-    }).render();
+            tab.addEventListener("click", loadMap);
+        })
 
-    new daum.roughmap.Lander({
-        "timestamp": "1612240971805",
-        "key": "248ja",
-        "mapWidth": "100%",
-        "mapHeight": "auto"
-    }).render();
+        new daum.roughmap.Lander({
+            "timestamp": "1629445244605",
+            "key": "2738u",
+            "mapWidth": "558",
+            "mapHeight": "300"
+        }).render();
 
-    new daum.roughmap.Lander({
-        "timestamp": "1623141807900",
-        "key": "265de",
-        "mapWidth": "100%",
-        "mapHeight": "auto"
-    }).render();
-
-    // community nav active
-    navLinks[3].parentElement.classList.add('current')
-    subNav[3].classList.add('active');
-</script>
+        
+        // community nav active
+        navLinks[3].parentElement.classList.add('current')
+        subNav[3].classList.add('active');
+    </script>
+</body>
 </html>
