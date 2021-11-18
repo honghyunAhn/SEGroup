@@ -9,6 +9,7 @@
     <script src="/resources/segroup/society/smtp/js/rainbowScript_courseDetail.js"></script>
     <script type="text/javascript">
     	const dDay = new Date("${courseInfo.APP_END_DATE}"+", 23:59:59").getTime();
+    	const endDate = new Date();
     	
     	$(function() {
     		app_final_day("${courseInfo.APP_END_DATE}");
@@ -16,17 +17,6 @@
     		graduation("${courseInfo.LEARN_END_DATE}");
     		period("${courseInfo.APP_START_DATE}")
     		expenses("${courseInfo.PRICE}");
-    		
-    		$('.applyBtn').parent().on('click', function() {
-    			var cardinal_id = $("#cardinal_id").val();
-    			var course_id= $("#course_id").val();
-    			var aedDate = new Date("${courseInfo.APP_END_DATE}"+", 23:59:59").getTime();
-    			var today = new Date();
-    			if(aedDate < today) {
-    				return false;
-    			}
-    			document.location.href = "/smtp/apply/sub00-01?course_id="+ course_id +"&cardinal_id="+ cardinal_id;
-    		});
     	});
     </script>
 </head>
@@ -43,7 +33,7 @@
                     <div class="opacity_bg op08" id="scrollFixed01">
                         <div class="bannerTextWrap fz20 fc_fff">
                             <div class="fc_point">해외취업과정</div>
-                            <h2 class="h2">Digital ABC 마스터</h2>
+                            <h2 class="h2">부산 Digital ABC 마스터</h2>
                         </div>
                     </div>
                 </div>
@@ -68,7 +58,7 @@
                                 <p class="section-txt section-txt01 margin-top20">
                                     2001년 이후 한국무역협회와 함께 글로벌 ICT 전문 인력을 양성해온 Soft Engineer Society는 지역청년을 위한 교육센터를
                                     광주(2018)에
-                                    이어 부산(2021)에 개소합니다. 부산교육센터에서 첫 번째로 런칭하는 교육과정은 지난 <span id="period"></span>년간 취업률 97%를 기록했던 일본 ICT 직무
+                                    이어 부산(2021)에 개소합니다. 부산교육센터에서 첫 번째로 런칭하는 교육과정은 지난 21년간 취업률 97%를 기록했던 일본 ICT 직무
                                     취업연계과정인
                                     「Digital ABC 마스터」 과정(K-MOVE 스쿨)입니다.
                                     프로그래밍, 디지털/AI, 외국어(일본어) 등의 커리큘럼으로 구성되며 글로벌 ICT기업 정규직 취업을 목표로 하고 있습니다.
@@ -110,7 +100,7 @@
                                         </ul>
                                         <ul class="infoTd">
                                             <li>IT/일본어 전공자, 비전공자 모두 환영합니다!</li>
-                                            <li>- 2/4년제 대학 졸업자 및 예정자<span id="graduation"></span></li>
+                                            <li>- 2/4년제 대학 졸업자 및 예정자(2022.03)</li>
                                             <li>- 만 34세 이하 대한민국 청년</li>
                                         </ul>
                                     </div>
@@ -121,8 +111,8 @@
                                         </ul>
                                         <ul class="infoTd">
                                             <li>- <span class="fc_point">국민취업제도</span> 대상 과정</li>
-                                            <li>- 해외취업정착지원금<span class="fc_point">(최대 400만원 지급)</span></li> 
-                                            <li>- 부산시 외 타지역 거주자 주거 이전 시
+                                            <li>- 해외취업정착지원금<span class="fc_point">(최대 400만원 지급)</span></li><li>- 부산시 외 타
+                                                    지역 거주자 주거 이전 시
                                                     <span class="fc_point">보증금 일부지원</span>(수료 후 지원금 반납)
                                             </li>
                                         </ul>
@@ -154,6 +144,16 @@
                                             <li class="fc_999">
                                                 ※ 교육비 할인 중복 적용은 안되며 자세한 사항은 문의 바랍니다.
                                             </li>
+                                        </ul>
+                                    </div>
+                                    <div class="d-flex">
+                                        <ul class="infoTh d-flex">
+                                            <li class="img-icon bullseye-arrow"></li>
+                                            <li class="thTxt">과정문의</li>
+                                        </ul>
+                                        <ul class="infoTd">
+                                            <li>02-6000-6256/5376</li>
+                                            <li>swmaster@softsociety.net</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -324,7 +324,7 @@
                                     <h3 class="h3 section-subTitle">강사의 다른 강의를 만나보세요! 😀</h3>
                                     <ul class="courseList d-flex flexWrap">
                                         <li class="cs_ict">
-                                            <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
+                                            <a href="/smtp/course/new-rainbow/course?course_id=c000000543">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">코딩 챌린지 과정 1기</div>
@@ -333,7 +333,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
+                                            <a href="/smtp/course/new-rainbow/course?course_id=c000000526">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">SoftWare DevOps MASTER 8기</div>
@@ -342,7 +342,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
+                                            <a href="/smtp/course/new-rainbow/course?course_id=c000000548">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">Digital Ai Big-data Cloud Master 1기</div>
@@ -351,7 +351,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
+                                            <a href="/smtp/course/new-rainbow/course?course_id=c000000543">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">Smart Cloud IT MASTER 42기</div>
@@ -360,7 +360,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
+                                            <a href="/smtp/course/new-rainbow/course?course_id=c000000543">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">Smart Cloud IT MASTER 42기</div>
