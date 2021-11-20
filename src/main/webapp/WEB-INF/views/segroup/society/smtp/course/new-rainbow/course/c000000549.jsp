@@ -9,7 +9,8 @@
     <script src="/resources/segroup/society/smtp/js/rainbowScript_courseDetail.js"></script>
     <script type="text/javascript">
 	    const dDay = new Date("${courseInfo.APP_END_DATE}"+", 23:59:59").getTime();
-		
+	    const endDate = new Date();
+	    
 		$(function() {
 			app_final_day("${courseInfo.APP_END_DATE}");
 			class_time("${courseInfo.LEARN_START_DATE}", "${courseInfo.LEARN_END_DATE}", "${courseInfo.CLASS_DAY}", "${courseInfo.CLASS_START_TIME}", "${courseInfo.CLASS_END_TIME}", "${courseInfo.SELP_PERIOD}");
@@ -24,7 +25,7 @@
         <div class="content course-detail course-point02" id="main">
             <div class="mainBackVideoWrap" onclick="togglePlay()">
                 <div class="background_video video_main">
-                    <video src="/resources/segroup/society/smtp/video/c000000549.mp4" width="100%" autoplay loop muted>
+                    <video src="/resources/segroup/society/smtp/video/03course_Codes.mp4" width="100%" autoplay loop muted>
                         <!-- <source src="video/01main_Earth.mp4" type="video/"> -->
                     </video>
                     <div class="opacity_bg op08" id="scrollFixed01">
@@ -101,7 +102,7 @@
                                         </ul>
                                         <ul class="infoTd">
                                             <li><span class="learn_period"></span><span class="self_period"></span></li>
-                                            <li><span id="learnTime"></span> (점심시간 12:00 ~ 13:00)</li>
+                                            <li><span id="learnTime"></span></li>
                                         </ul>
                                     </div>
                                     <div class="d-flex">
@@ -309,7 +310,7 @@
                                     <h3 class="h3 section-subTitle">강사의 다른 강의를 만나보세요! 😀</h3>
                                     <ul class="courseList d-flex flexWrap">
                                         <li class="cs_ict">
-                                            <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
+                                            <a href="/smtp/course/new-rainbow/course?course_id=c000000543">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">코딩 챌린지 과정 1기</div>
@@ -318,7 +319,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
+                                            <a href="/smtp/course/new-rainbow/course?course_id=c000000526">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">SoftWare DevOps MASTER 8기</div>
@@ -327,7 +328,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
+                                            <a href="/smtp/course/new-rainbow/course?course_id=c000000548">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">Digital Ai Big-data Cloud Master 1기</div>
@@ -336,7 +337,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
+                                            <a href="/smtp/course/new-rainbow/course?course_id=c000000543">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">Smart Cloud IT MASTER 42기</div>
@@ -345,7 +346,7 @@
                                             </a>
                                         </li>
                                         <li class="cs_ict">
-                                            <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
+                                            <a href="/smtp/course/new-rainbow/course?course_id=c000000543">
                                                 <div class="courseImg"><img src="" alt=""></div>
                                                 <div class="courseTxt">
                                                     <div class="fc_666">Smart Cloud IT MASTER 42기</div>
@@ -548,8 +549,8 @@
                             <div class="fz20">JAVA기반 웹 개발자 과정</div>
                         </li>
                         <li class="cs-price">
-                            <div class="course-price">￦<span class="expenses"></span></div>
-                            <span class="h2">￦&nbsp;400,000</span>&nbsp;<span class="fc_999">(내일배움카드 결제시)</span>
+                            <div class="course-price">￦ <span class="expenses"></span></div>
+                            <span class="h2">￦&nbsp;<span class="mou_price"></span></span>&nbsp;<span class="fc_999">(내일배움카드 결제시)</span>
                         </li>
                         <li class="cs-term">
                             <div class="d-flex">
@@ -558,14 +559,14 @@
                             </div>
                         </li>
                     </ul>
-                    <button id="applyBtn" class="btn_normal bgc_point course-apply h2">
+                    <button id="applyBtn" class="btn_normal bgc_point course-apply h2 applyBtn">
                         수강신청하기
                     </button>
                 </div>
             </div>
             <div class="course-navWrap bgc_333">
                 <div class="d-flex justify_between">
-                    <button class="btn_normal bgc_point course-apply fz20">
+                    <button class="btn_normal bgc_point course-apply fz20 applyBtn">
                         수강신청하기
                     </button>
                     <a class="d-flex justify_center inquiry" href="">
