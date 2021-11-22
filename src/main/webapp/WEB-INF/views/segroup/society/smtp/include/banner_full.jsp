@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="fullBannerWrapper swiper-container">
-    <div class="swiper-wrapper fullBannerWrap d-flex">
-        <div class="swiper-slide fullBanner">
+    <div class="swiper-wrapper fullBannerWrap d-flex justify_center">
+        <!-- <div class="swiper-slide fullBanner">
             <a href="">
-                <img src="/resources/segroup/society/smtp/img/fullBanner01.jpg" alt="일본취업 필수과정 일본취업을 위한 JPT&JLPT 바로가기">
+                <img src="img/fullBanner01.jpg" alt="일본취업 필수과정 일본취업을 위한 JPT&JLPT 바로가기">
             </a>
-        </div>
+        </div> -->
 
         <div class="swiper-slide fullBanner">
-            <a href="/lms/main">
+            <a href="https://www.softsociety.net/lms/main">
                 <img src="/resources/segroup/society/smtp/img/fullBanner02.jpg" alt="나에게 맞는 강의가 궁금하다면? We can do it! 두잇캠퍼스 바로가기">
             </a>
         </div>
@@ -55,8 +55,12 @@
         slidesPerView: 4,
         spaceBetween: 10,
       },
+      // 1200: {
+      //   slidesPerView: 5,
+      //   spaceBetween: 10,
+      // },
       1200: {
-        slidesPerView: 5,
+        slidesPerView: 4,
         spaceBetween: 10,
       },
     },
