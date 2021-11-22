@@ -8,7 +8,7 @@
         </div>
         <ul class="courseList d-flex flexWrap">
             <li class="cs_ict">
-                <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
+                <a href="/smtp/course/new-rainbow/course?course_id=c000000543">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
                         <div class="fc_666">코딩 챌린지 과정 1기</div>
@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li class="cs_ict">
-                <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
+                <a href="/smtp/course/new-rainbow/course?course_id=c000000526">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
                         <div class="fc_666">SoftWare DevOps MASTER 8기</div>
@@ -37,16 +37,16 @@
                     </div>
                 </a>
             </li>
-            <!-- <li class="cs_ict">
-                <a href="course-detail.html">
+            <li class="cs_ict">
+                <a href="/smtp/course/new-rainbow/course?course_id=c000000527">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
-                        <div class="fc_666">Smart Cloud IT MASTER 42기</div>
+                        <div class="fc_666">미국 디지털 e-커머스 인재양성 과정 1기</div>
                         <div class="fc_666">SW/AI 해외취업연계과정</div>
-                        <div class="fc_999">[온/오프라인] 서울 강남구 코엑스</div>
+                        <div class="fc_999">[온/오프라인] 광주광역시 광주무역회관</div>
                     </div>
                 </a>
-            </li> -->
+            </li>
         </ul>
     </div>
 </div> 
