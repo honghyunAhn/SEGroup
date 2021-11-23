@@ -24,16 +24,16 @@
     </header>
     <div class="subHeaderWrap">
         <ul class="subHeader d-flex flexWrap course-point01">
-            <li><a href="rainbow-course01-01.html">코딩챌린지(사전학습반)</a></li>
-            <li><a href="rainbow-course01-02.html">광주 SWDO MASTER</a></li>
+            <li><a href="/smtp/course/new-rainbow/course?course_id=c000000543">코딩챌린지(사전학습반)</a></li>
+            <li><a href="/smtp/course/new-rainbow/course?course_id=c000000526">광주 SWDO MASTER</a></li>
             <li><a href="/smtp/course/new-rainbow/course?course_id=c000000548">부산 ABC MASTER</a></li>
+            <li><a href="/smtp/course/new-rainbow/course?course_id=c000000527">미국 디지털 e-커머스 인재양성 과정</a></li>
         </ul>
         <ul class="subHeader d-flex flexWrap course-point02">
             <li><a href="/smtp/course/new-rainbow/course?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
             <li><a href="/smtp/course/new-rainbow/course?course_id=c000000549">JAVA기반 웹 개발자 과정</a></li>
         </ul>
         <ul class="subHeader d-flex flexWrap course-point03">
-            <li><a href="rainbow-course03-01.html">일본취업 스킬업</a></li>
             <li><a href="/fap/user/user_main">2021 하반기 잡페어</a></li>
         </ul>
             <ul class="subHeader d-flex flexWrap course-point04">
@@ -85,9 +85,10 @@
                     <li class="gnb">
                         <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre01">해외취업캠퍼스</a>
                     </li>
-                    <li class="lnb"><a href="">코딩챌린지(사전학습반)</a></li>
-                    <li class="lnb"><a href="">광주 SWDO MASTER</a></li>
+                    <li class="lnb"><a href="/smtp/course/new-rainbow/course?course_id=c000000543">코딩챌린지(사전학습반)</a></li>
+                    <li class="lnb"><a href="/smtp/course/new-rainbow/course?course_id=c000000526">광주 SWDO MASTER</a></li>
                     <li class="lnb"><a href="/smtp/course/new-rainbow/course?course_id=c000000548">부산 ABC MASTER</a></li>
+                    <li class="lnb"><a href="/smtp/course/new-rainbow/course?course_id=c000000527">미국 디지털 e-커머스 인재양성 과정</a></li>
                 </ul>
                 <ul class="menu-title-division">
                     <li class="gnb">
@@ -100,7 +101,6 @@
                     <li class="gnb">
                         <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre03">글로벌 잡매칭</a>
                     </li>
-                    <li class="lnb"><a href="rainbow-course03-01.html">일본취업 스킬업</a></li>
                     <li class="lnb"><a href="/fap/user/user_main">2021 하반기 잡페어</a></li>
                 </ul>
                 <ul class="menu-title-division">
