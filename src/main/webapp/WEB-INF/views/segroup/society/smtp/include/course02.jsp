@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li class="cs_tlc">
-                <a href="/smtp/course/new-rainbow/course?course_id=course-detail">
+                <a href="/smtp/course/new-rainbow/course?course_id=c000000549">
                     <div class="courseImg"><img src="" alt=""></div>
                     <div class="courseTxt fz16">
                         <div class="fc_666">JAVA 기반 웹 개발자 과정</div>
