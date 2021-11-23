@@ -25,9 +25,10 @@
             	<li class="gnb">
                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre01" class="fc_point01">해외취업캠퍼스</a>
                     <ul class="lnb">
-                        <li><a href="">코딩챌린지(사전학습반)</a></li>
-                        <li><a href="">광주 SWDO MASTER</a></li>
+                        <li><a href="/smtp/course/new-rainbow/course?course_id=c000000543">코딩챌린지(사전학습반)</a></li>
+                        <li><a href="/smtp/course/new-rainbow/course?course_id=c000000526">광주 SWDO MASTER</a></li>
                         <li><a href="/smtp/course/new-rainbow/course?course_id=c000000548">부산 ABC MASTER</a></li>
+                        <li><a href="/smtp/course/new-rainbow/course?course_id=c000000527">미국 디지털 e-커머스 인재양성 과정</a></li>
                     </ul>
                 </li>
                 <li class="gnb">
@@ -40,7 +41,6 @@
                 <li class="gnb">
                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre03" class="fc_point03">글로벌 잡매칭</a>
                     <ul class="lnb">
-                        <li><a href="rainbow-course03-01.html">일본취업 스킬업</a></li>
                    		<li><a href="/fap/user/user_main">2021 하반기 잡페어</a></li>
                     </ul>
                 </li>
