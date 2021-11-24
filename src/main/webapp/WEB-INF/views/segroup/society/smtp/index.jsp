@@ -47,9 +47,10 @@
                                     <div>해외취업캠퍼스 </div>
                                 </div>
                                 <ul class="courseList fc_333">
-                                    <li><a href="">코딩챌린지(사전학습반)</a></li>
-                                    <li><a href="">광주 SWDO MASTER</a></li>
+                                    <li><a href="/smtp/course/new-rainbow/course?course_id=c000000543">코딩챌린지(사전학습반)</a></li>
+                                    <li><a href="/smtp/course/new-rainbow/course?course_id=c000000526">광주 SWDO MASTER</a></li>
                                     <li><a href="/smtp/course/new-rainbow/course?course_id=c000000548">부산 ABC MASTER</a></li>
+                                    <li><a href="/smtp/course/new-rainbow/course?course_id=c000000527">미국 디지털 e-커머스 인재양성 과정</a></li>
                                 </ul>
                                 <div class="btn_moreList">
                                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre01">과정 더 보기 &nbsp;&gt;</a>
@@ -61,8 +62,8 @@
                                     <div>내일배움카드 과정</div>
                                 </div>
                                 <ul class="courseList fc_333">
-                                    <li><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
-                                    <li><a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=c000000549">JAVA기반 웹 개발자 과정</a></li>
+                                    <li><a href="/smtp/course/new-rainbow/course?course_id=rainbow-course02-01">파이썬 기초 과정</a></li>
+                                    <li><a href="/smtp/course/new-rainbow/course?course_id=c000000549">JAVA기반 웹 개발자 과정</a></li>
                                 </ul>
                                 <div class="btn_moreList">
                                     <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre02">과정 더 보기 &nbsp;&gt;</a>
@@ -70,16 +71,14 @@
                             </div>
                             <div class="course bgc_point03">
                                 <div class="courseTitle">
-                                    <div class="img-icon id-card"></div>
-                                    <div>자격증 코스</div>
+                                    <div class="img-icon globe-stand"></div>
+                                    <div>글로벌 잡매칭</div>
                                 </div>
                                 <ul class="courseList fc_333">
-                                    <li><a href="">토익/토플 접수</a></li>
-                                    <li><a href="">일본취업 스킬업</a></li>
-                                    <li><a href="">정보처리자격증</a></li>
+                                    <li><a href="/fap/user/user_main">2021 하반기 잡페어</a></li>
                                 </ul>
                                 <div class="btn_moreList">
-                                    <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre03">과정 더 보기 &nbsp;&gt;</a>
+                                    <a href="rainbow-course03.html">과정 더 보기 &nbsp;&gt;</a>
                                 </div>
                             </div>
                         </div>
