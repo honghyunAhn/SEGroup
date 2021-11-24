@@ -471,7 +471,8 @@ background-position: -180px 0;
 .hand-holding-heart,
 .calendar,
 .calendar-day,
-.bullseye-arrow{
+.bullseye-arrow,
+.phone-alt{
     width: 20px;
     height: 20px;
 }
@@ -510,3 +511,4 @@ background-position: -180px 0;
 .kakao-icon40{background-position: -160px -180px;}
 .kakao-icon80{background-position: -120px -220px;}
 .arrow-circle-up{background-position: -200px -180px;}
+.phone-alt{background-position: -500px -100px;}
