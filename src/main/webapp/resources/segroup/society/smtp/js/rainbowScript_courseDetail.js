@@ -1,6 +1,5 @@
 // 2021 rainbow script_course-detail
 window.onload = function () {
-
     // course-detail.html >> 모집마감일 d-day
     const count = document.querySelector(".course-applyWrap .courseCount");
     const btn = document.querySelectorAll("button.course-apply");
@@ -133,8 +132,10 @@ window.onload = function () {
     const reviewWrap = document.querySelector('.course-reviewWrap');
     const reviewLength = reviewEl.length;
     if (reviewLength === 0) {
-        // 과정 후기 0일 때 메세지 출력, 
-        noneReview.style.display = "block";
+        // 과정 후기 0일 때 메세지 출력,
+    	if(noneReview != null){
+    		noneReview.style.display = "block";
+    	}
     } else if (reviewLength >= 3) {
         // 3이상일 때 더보기 버튼 생성 및 3개 이상의 리뷰 숨기기
         for (let i = 3; i < reviewLength; i++) {
@@ -161,8 +162,10 @@ window.onload = function () {
             }
         }
     }
-    moreButton.addEventListener("click", moreReviewToggle);
-
+    if(moreButton != null){
+    	moreButton.addEventListener("click", moreReviewToggle);
+    }
+    
     // course-detail.html >> FAQ
     const slideTarget = document.querySelectorAll(".faq");
     const hideTarget = document.querySelectorAll(".answerWrap");
@@ -202,6 +205,17 @@ window.onload = function () {
         }
         question.addEventListener("click", slideEvent);
     })
+    
+    $('.applyBtn').parent().on('click', function() {
+		var cardinal_id = $("#cardinal_id").val();
+		var course_id= $("#course_id").val();
+		var today = new Date();
+		if(dDay >= today) {
+			document.location.href = "/smtp/apply/sub00-01?course_id="+ course_id +"&cardinal_id="+ cardinal_id;
+		} else {
+			return false;
+		}
+	});
 }
 
 //모집종료 날짜
@@ -210,8 +224,12 @@ function app_final_day(app_end_date){
 	const today = new Date(app_end_date).getDay();
 	const todayLabel = week[today];
     const endDay = app_end_date.replaceAll("-",".");
-    if(app_end_date != ""){
-    	$(".endDay").html(endDay+"("+todayLabel+") 까지");
+    if(dDay >= endDate){
+    	if(app_end_date != ""){
+    		$(".endDay").html(endDay+"("+todayLabel+") 까지");
+        }
+    }else{
+    	$(".endDay").html("※ 모집공고 기간이 아닙니다.");
     }
 }
 
@@ -221,19 +239,24 @@ function class_time(learn_start_date, learn_end_date, class_day, class_start_tim
 	const re_learn_start_date = learn_start_date.replaceAll("-",".");
 	const re_learn_end_date = learn_end_date.replaceAll("-",".");
 	const tmp_learn_date = re_learn_start_date + " ~ " + re_learn_end_date;
-	$(".learn_period").html(tmp_learn_date);
-	if(selp_period != ""){
-		$(".self_period").html(" ("+(Math.ceil(selp_period/30))+"개월)");
-	}
+
 	//요일
 	const change_week = class_day.replaceAll(",","/");
+	
 	//요일 + 시간
+	const tmp_study_time = change_week + "&nbsp;&nbsp;" + class_start_time + " ~ " + class_end_time;
 	
-		const tmp_study_time = change_week + "&nbsp;&nbsp;" + class_start_time + " ~ " + class_end_time;
-	
-	if(class_day != ""){
-	$("#learnTime").html(tmp_study_time);
-	}
+	if(dDay >= endDate){
+		$(".learn_period").html(tmp_learn_date);
+    	if(class_day != ""){
+    		$("#learnTime").html(tmp_study_time);
+    	}
+    	if(selp_period != ""){
+    		$(".self_period").html(" ("+(Math.ceil(selp_period/30))+"개월)");
+    	}
+    } else {
+    	$(".learn_period").html("※ 모집공고 기간이 아닙니다.");
+    }
 }
 
 //졸업예정일 표시
@@ -268,6 +291,10 @@ function expenses(price){
 	//사전학습반, 기타협약기관
 	const etc_price = change_price((price/2));
 	$(".etc_price").html(etc_price);
+}
+
+function purpose(purpose){
+	$(".purpose").html(purpose);
 }
 
 //교육비 천단위 쉼표
