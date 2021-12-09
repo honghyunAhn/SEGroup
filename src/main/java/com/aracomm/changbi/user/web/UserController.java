@@ -89,7 +89,21 @@ public class UserController {
 	@Value("#{config['boardPages']}")
 	String boardPages;
 
-	
+	@Value("#{domain['domain.http']}")
+	private String domain;
+
+	@Value("#{domain['domain.http']}")
+	private static String staticDomain;
+
+	@Value("#{domain['domain.location']}")
+	private String location;
+
+	@Value("#{domain['domain.location']}")
+	private static String staticLocation;
+
+	@Value("#{domain['domain.key']}")
+	private String key;
+
 	/*
 	 * @RequestMapping(value = "/error/{id}") public String dispMemberMypage(Model
 	 * model, @PathVariable("id") String error) { return "error/" + error; }
@@ -221,15 +235,13 @@ public class UserController {
 		  String reqNum = day + randomStr; 
 		  String reqInfo = ""; 
 		  String encReqInfo = "";
-		 String rtn_url = "https://www.softsociety.net/lms/user/user_mobile_verification"; //(운영서버 적용시)
-//		 String rtn_url = "http://localhost:8787/lms/user/user_mobile_verification";  
+		  String rtn_url = domain + "/lms/user/user_mobile_verification"; //(운영서버 적용시)
 		  String cpId = "sesoc"; // 회원사ID 
 		  String urlCode = "01001"; // URL 코드 
 		  String reqdate = day;  // 요청일시
 		  
 		  reqInfo = urlCode + "/" + reqNum + "/" + reqdate; //암호화 시킬 데이터 '/'로 구분해서 합친다.	 
-		 encReqInfo = mscr.msgEncrypt(reqInfo, "/usr/local/cert/sesocCert.der");	//(운영서버 적용시)	
-		 //encReqInfo = mscr.msgEncrypt(reqInfo,"D:/sesocCert.der");
+		  encReqInfo = mscr.msgEncrypt(reqInfo, location);
 		  
 		   //deprecated 되서 수정함 - 2019.03.05 이종호
 		   //encReqInfo = URLEncoder.encode(encReqInfo);
@@ -275,8 +287,7 @@ public class UserController {
 		String encPriInfo = request.getParameter("priinfo");
 
 		MsgCrypto mscr = new MsgCrypto();
-		String rstInfo = mscr.msgDecrypt(encPriInfo,"/usr/local/cert/sesocPri.key","sesoc@2018","EUC-KR"); //(운영서버 적용시)
-		//String rstInfo = mscr.msgDecrypt(encPriInfo,"D:/sesocPri.key","sesoc@2018","EUC-KR");
+		String rstInfo = mscr.msgDecrypt(encPriInfo,key,"sesoc@2018","EUC-KR"); //(운영서버 적용시)
 		String[] rstInfoArray = rstInfo.split("\\$");
 		if (rstInfoArray.length > 3) {
 			model.addAttribute("mobileVerification", rstInfoArray);
@@ -536,15 +547,13 @@ public class UserController {
 		  String reqNum = day + randomStr; 
 		  String reqInfo = ""; 
 		  String encReqInfo = "";
-		 String rtn_url = "https://www.softsociety.net/lms/user/user_mobile_verification"; //(운영서버 적용시)
-		 //String rtn_url = "http://localhost:8787/lms/user/user_mobile_verification";  
+		  String rtn_url = staticDomain + "/lms/user/user_mobile_verification"; //(운영서버 적용시)
 		  String cpId = "sesoc"; // 회원사ID 
 		  String urlCode = "01001"; // URL 코드 
 		  String reqdate = day;  // 요청일시
 		  
 		  reqInfo = urlCode + "/" + reqNum + "/" + reqdate; //암호화 시킬 데이터 '/'로 구분해서 합친다.	 
-		  encReqInfo = mscr.msgEncrypt(reqInfo, "/usr/local/cert/sesocCert.der");	//(운영서버 적용시)	
-		  //encReqInfo = mscr.msgEncrypt(reqInfo,"D:/sesocCert.der");
+		  encReqInfo = mscr.msgEncrypt(reqInfo, staticLocation);
 		  
 		   //deprecated 되서 수정함 - 2019.03.05 이종호
 		   //encReqInfo = URLEncoder.encode(encReqInfo);
