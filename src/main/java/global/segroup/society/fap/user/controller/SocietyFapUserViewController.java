@@ -118,6 +118,13 @@ public class SocietyFapUserViewController implements PathConstants {
 	
 	@Value("#{props['usr.local.cert']}")
 	private String cert;
+
+	@Value("#{domain['domain.http']}")
+	String domain;
+	
+	@Value("#{domain['domain.location']}")
+	private String location;
+
 	
 	//공지사항 게시판 코드
 	private static final String BOARD_NOTICE_CODE = "A1700";
@@ -507,13 +514,13 @@ public class SocietyFapUserViewController implements PathConstants {
         String reqNum = day + randomStr;
         String reqInfo    = "";
 		String encReqInfo = "";
-		String rtn_url = "https://www.softsociety.net/edu/user/user_mobile_verification";
+		String rtn_url = domain + "/edu/user/user_mobile_verification";
 		String cpId       = "sesoc";        // 회원사ID
 		String urlCode    = "01001";     // URL 코드
 		String reqdate    = day;        // 요청일시
 
 		reqInfo = urlCode + "/" + reqNum + "/" + reqdate;  //암호화 시킬 데이터 '/'로 구분해서 합친다.
-		encReqInfo = mscr.msgEncrypt(reqInfo, cert+"/sesocCert.der");
+		encReqInfo = mscr.msgEncrypt(reqInfo, location);
 		
 		//deprecated 되서 수정함 - 2019.03.05 이종호
 		//encReqInfo = URLEncoder.encode(encReqInfo);
@@ -598,13 +605,13 @@ public class SocietyFapUserViewController implements PathConstants {
         String reqNum = day + randomStr;
         String reqInfo    = "";
 		String encReqInfo = "";
-		String rtn_url = "https://www.softsociety.net/edu/user/user_mobile_verification";
+		String rtn_url = domain + "/edu/user/user_mobile_verification";
 		String cpId       = "sesoc";        // 회원사ID
 		String urlCode    = "01001";     // URL 코드
 		String reqdate    = day;        // 요청일시
 
 		reqInfo = urlCode + "/" + reqNum + "/" + reqdate;  //암호화 시킬 데이터 '/'로 구분해서 합친다.
-		encReqInfo = mscr.msgEncrypt(reqInfo, cert+"/sesocCert.der");
+		encReqInfo = mscr.msgEncrypt(reqInfo, location);
 		
 		//deprecated 되서 수정함 - 2019.03.05 이종호
 		//encReqInfo = URLEncoder.encode(encReqInfo);
