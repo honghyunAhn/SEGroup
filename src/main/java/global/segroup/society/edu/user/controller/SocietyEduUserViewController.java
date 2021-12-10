@@ -1,6 +1,3 @@
-/**
- * 
- */
 package global.segroup.society.edu.user.controller;
 
 import java.io.UnsupportedEncodingException;
@@ -23,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
@@ -70,6 +68,16 @@ public class SocietyEduUserViewController implements PathConstants {
 
 	@Autowired
 	private AESEncryptor aesEncryptor;
+
+	@Value("#{domain['domain.http']}")
+	String domain;
+
+	@Value("#{domain['domain.location']}")
+	private String location;
+
+	@Value("#{domain['domain.key']}")
+	private String key;
+
 	
 	/**
 	 * @Method Name : login_form
@@ -313,13 +321,13 @@ public class SocietyEduUserViewController implements PathConstants {
         String reqNum = day + randomStr;
         String reqInfo    = "";
 		String encReqInfo = "";
-		String rtn_url = "http://www.softsociety.net/edu/user/user_mobile_verification";
+		String rtn_url = domain + "/edu/user/user_mobile_verification";
 		String cpId       = "sesoc";        // 회원사ID
 		String urlCode    = "01001";     // URL 코드
 		String reqdate    = day;        // 요청일시
 
 		reqInfo = urlCode + "/" + reqNum + "/" + reqdate;  //암호화 시킬 데이터 '/'로 구분해서 합친다.
-		encReqInfo = mscr.msgEncrypt(reqInfo,"/usr/local/cert/sesocCert.der");
+		encReqInfo = mscr.msgEncrypt(reqInfo, location);
 		
 		//deprecated 되서 수정함 - 2019.03.05 이종호
 		//encReqInfo = URLEncoder.encode(encReqInfo);
@@ -353,7 +361,7 @@ public class SocietyEduUserViewController implements PathConstants {
 		String encPriInfo = request.getParameter("priinfo");
 
 		MsgCrypto mscr = new MsgCrypto();
-		String rstInfo = mscr.msgDecrypt(encPriInfo,"/usr/local/cert/sesocPri.key","sesoc@2018","EUC-KR");
+		String rstInfo = mscr.msgDecrypt(encPriInfo, key,"sesoc@2018","EUC-KR");
 		String[] rstInfoArray = rstInfo.split("\\$");
 		if (rstInfoArray.length > 3) {
 			model.addAttribute("mobileVerification", rstInfoArray);
@@ -431,13 +439,13 @@ public class SocietyEduUserViewController implements PathConstants {
 		        String reqNum = day + randomStr;
 		        String reqInfo    = "";
 				String encReqInfo = "";
-				String rtn_url = "http://www.softsociety.net/edu/user/user_mobile_verification";
+				String rtn_url = domain + "/edu/user/user_mobile_verification";
 				String cpId       = "sesoc";        // 회원사ID
 				String urlCode    = "01001";     // URL 코드
 				String reqdate    = day;        // 요청일시
 
 				reqInfo = urlCode + "/" + reqNum + "/" + reqdate;  //암호화 시킬 데이터 '/'로 구분해서 합친다.
-				encReqInfo = mscr.msgEncrypt(reqInfo,"/usr/local/cert/sesocCert.der");
+				encReqInfo = mscr.msgEncrypt(reqInfo, location);
 				
 				//deprecated 되서 수정함 - 2019.03.05 이종호
 				//encReqInfo = URLEncoder.encode(encReqInfo);
