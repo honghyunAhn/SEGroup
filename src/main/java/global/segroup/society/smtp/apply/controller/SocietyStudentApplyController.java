@@ -57,20 +57,54 @@ public class SocietyStudentApplyController {
 			model.addAttribute("gisu_id", cardinal_id);
 			model.addAttribute("gisu_nm", gisuInfo.get("gisu_nm"));
 			model.addAttribute("app_end_date", gisuInfo.get("app_end_date"));
-			return "/segroup/society/smtp/apply/sub00-01";
+			return "/segroup/society/smtp/apply/rainbow-apply01-01";
 		case 1 :
 			gisuInfo = ssaService.selectGisuInfo(cardinal_id);
 			redirectAttributes.addAttribute("gisu_id", cardinal_id);
 			redirectAttributes.addAttribute("app_end_date", gisuInfo.get("app_end_date"));
 			redirectAttributes.addAttribute("message", true);
-			return "redirect:/smtp/apply/sub00-02";
+			return "redirect:/smtp/apply/rainbow-apply01-03";
 		case 2 :
 			redirectAttributes.addAttribute("message", true);
-			return "redirect:/smtp/user/sub05-02";
+			return "redirect:/smtp/user/rainbow-class02-01";
 		}
-		return "/segroup/society/smtp/apply/sub00-01"; // case3: 로그인 안되어 있는 경우로, 지원서 페이지 인터셉터로 로그인 페이지로 넘어감.
+		return "/segroup/society/smtp/apply/rainbow-apply01-01"; // case3: 로그인 안되어 있는 경우로, 지원서 페이지 인터셉터로 로그인 페이지로 넘어감.
 	}
 	
+	// 지원신청서로 이동
+	@RequestMapping(value = "/smtp/apply/rainbow-apply01-01", method = RequestMethod.GET)
+	public String rainbow_apply01_01(Authentication auth, Model model, String course_id, String cardinal_id, RedirectAttributes redirectAttributes){
+		
+		int result = checkApplyState(auth, cardinal_id);
+		HashMap<String, Object> gisuInfo = null;
+		
+		switch(result) {
+		case 0 :
+			User loginUser = new User();
+			String loginId = (String)auth.getPrincipal();
+			loginUser = ssaService.selectUserById(loginId);
+			gisuInfo = ssaService.selectGisuInfo(cardinal_id);
+			
+			model.addAttribute("detail", loginUser);
+			model.addAttribute("crc_id", course_id);
+			model.addAttribute("gisu_id", cardinal_id);
+			model.addAttribute("gisu_nm", gisuInfo.get("gisu_nm"));
+			model.addAttribute("app_end_date", gisuInfo.get("app_end_date"));
+			return "/segroup/society/smtp/apply/rainbow-apply01-01";
+		case 1 :
+			gisuInfo = ssaService.selectGisuInfo(cardinal_id);
+			redirectAttributes.addAttribute("gisu_id", cardinal_id);
+			redirectAttributes.addAttribute("app_end_date", gisuInfo.get("app_end_date"));
+			redirectAttributes.addAttribute("message", true);
+			//수정하기부분
+			return "redirect:/smtp/apply/rainbow-apply01-03";
+		case 2 :
+			redirectAttributes.addAttribute("message", true);
+			return "redirect:/smtp/user/rainbow-class02-01";
+		}
+		return "/segroup/society/smtp/apply/rainbow-apply01-01"; // case3: 로그인 안되어 있는 경우로, 지원서 페이지 인터셉터로 로그인 페이지로 넘어감.
+	}
+		
 	// 지원 상태 확인 : result값  -->  0:지원이력 없음, 1:지원하였으나 결과가 나오지 않은 경우, 2:지원결과가 나온 경우, 3:로그인 필요
 	@ResponseBody
 	@RequestMapping(value = "/smtp/apply/checkApplyState", method = RequestMethod.POST)
@@ -111,6 +145,23 @@ public class SocietyStudentApplyController {
 		return "/segroup/society/smtp/apply/sub00-02";
 	}
 	
+	// 지원신청서 수정
+	@RequestMapping(value = "/smtp/apply/rainbow-apply01-03", method = RequestMethod.GET)
+	public String rainbow_apply01_03(Authentication auth, @RequestParam HashMap<String, Object> param, Model model){
+		
+		if(auth != null){
+			param.put("user_id", (String)auth.getPrincipal());
+			HashMap<String, Object> applyForm = ssaService.selectSmtpApply(param);
+			
+			Gson gson = new Gson();
+			model.addAttribute("apply", gson.toJson(applyForm));
+			model.addAttribute("data", applyForm);
+			model.addAttribute("app_end_date", param.get("app_end_date"));
+			model.addAttribute("message", param.get("message"));
+		}
+		return "/segroup/society/smtp/apply/rainbow-apply01-03";
+	}
+	
 	/**
 	 * @Method Name : apply_insert
 	 * @Date : 2020. 8. 6.
@@ -133,7 +184,7 @@ public class SocietyStudentApplyController {
 		
 		boolean result = ssaService.apply_insert(ssaForm, ssaEduHistory, ssaCareer, ssaStudy, ssaLanguage, ssaLicense, ssaSes, ssaKmove, ssaOverseas, ssaIntroduce, app_end_date, param);
 		if(result) {
-			return "redirect:/smtp/user/sub05-02";
+			return "redirect:/smtp/user/rainbow-class02-01";
 		} else {
 			return "/segroup/society/smtp/apply/insertFail";
 		}
@@ -167,7 +218,7 @@ public class SocietyStudentApplyController {
 		
 		boolean result = ssaService.apply_insert(ssaForm, ssaEduHistory, ssaCareer, ssaStudy, ssaLanguage, ssaLicense, ssaSes, ssaKmove, ssaOverseas, ssaIntroduce, app_end_date, param);
 		if(result) {
-			return "redirect:/smtp/user/sub05-02";
+			return "redirect:/smtp/user/rainbow-class02-01";
 		} else {
 			return "/segroup/society/smtp/apply/insertFail";
 		}
