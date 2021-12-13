@@ -79,7 +79,22 @@ public class SmtpUserController {
 	
 	@Value("#{config['boardPages']}")
 	String boardPages;
-	
+
+	@Value("#{domain['domain.http']}")
+	private static String staticDomain;
+
+	@Value("#{domain['domain.http']}")
+	private String domain;
+
+	@Value("#{domain['domain.location']}")
+	private String location;
+
+	@Value("#{domain['domain.location']}")
+	private static String staticLocation;
+
+	@Value("#{domain['domain.key']}")
+	private String key;
+
 	//포인트 처리 관련 서비스
 	@Autowired
 	private PointService pService;
@@ -97,7 +112,7 @@ public class SmtpUserController {
 	
 	@Autowired
 	private SocietyEduUserService seuService;
-	
+
 	//전화 본인인증
 	public static void mobileVerificationInfo(Model model){
 		  //날짜 생성 
@@ -121,14 +136,13 @@ public class SmtpUserController {
 		  String reqNum = day + randomStr; 
 		  String reqInfo = ""; 
 		  String encReqInfo = "";
-		 String rtn_url = "https://www.softsociety.net/lms/user/user_mobile_verification"; //(운영서버 적용시)
-		 //String rtn_url = "http://localhost:8787/lms/user/user_mobile_verification";  
+		  String rtn_url = staticDomain + "/lms/user/user_mobile_verification"; //(운영서버 적용시)
 		  String cpId = "sesoc"; // 회원사ID 
 		  String urlCode = "01001"; // URL 코드 
 		  String reqdate = day;  // 요청일시
 		  
 		  reqInfo = urlCode + "/" + reqNum + "/" + reqdate; //암호화 시킬 데이터 '/'로 구분해서 합친다.	 
-		  encReqInfo = mscr.msgEncrypt(reqInfo, "/usr/local/cert/sesocCert.der");	//(운영서버 적용시)	
+		  encReqInfo = mscr.msgEncrypt(reqInfo, staticLocation);	//(운영서버 적용시)	
 		  //encReqInfo = mscr.msgEncrypt(reqInfo,"D:/sesocCert.der");
 		  
 		   //deprecated 되서 수정함 - 2019.03.05 이종호
@@ -440,14 +454,13 @@ public class SmtpUserController {
 		  String reqNum = day + randomStr; 
 		  String reqInfo = ""; 
 		  String encReqInfo = "";
-		 String rtn_url = "https://www.softsociety.net/smtp/user/user_mobile_verification"; //(운영서버 적용시)
-//		 String rtn_url = "http://localhost:8080/smtp/user/user_mobile_verification";  
+		  String rtn_url = domain + "/smtp/user/user_mobile_verification"; //(운영서버 적용시)
 		  String cpId = "sesoc"; // 회원사ID 
 		  String urlCode = "01001"; // URL 코드 
 		  String reqdate = day;  // 요청일시
 		  
 		  reqInfo = urlCode + "/" + reqNum + "/" + reqdate; //암호화 시킬 데이터 '/'로 구분해서 합친다.	 
-		 encReqInfo = mscr.msgEncrypt(reqInfo, "/usr/local/cert/sesocCert.der");	//(운영서버 적용시)	
+		 encReqInfo = mscr.msgEncrypt(reqInfo, location);	//(운영서버 적용시)	
 //		 encReqInfo = mscr.msgEncrypt(reqInfo,"D:/sesocCert.der");
 		  
 		   //deprecated 되서 수정함 - 2019.03.05 이종호
@@ -494,15 +507,14 @@ public class SmtpUserController {
 		  String reqNum = day + randomStr; 
 		  String reqInfo = ""; 
 		  String encReqInfo = "";
-		  //String rtn_url = "https://www.softsociety.net/smtp/user/user_mobile_verification"; //(운영서버 적용시)
-		  String rtn_url = "http://1.235.198.60/smtp/user/user_mobile_verification"; //(로컬 적용시)
+		  String rtn_url = domain + "/smtp/user/user_mobile_verification"; //(로컬 적용시)
 		  String cpId = "sesoc"; // 회원사ID 
 		  String urlCode = "01001"; // URL 코드 
 		  String reqdate = day;  // 요청일시
 		  
 		  reqInfo = urlCode + "/" + reqNum + "/" + reqdate; //암호화 시킬 데이터 '/'로 구분해서 합친다.	 
-		  encReqInfo = mscr.msgEncrypt(reqInfo, "/usr/local/cert/sesocCert.der");	//(운영서버 적용시)	
-		  //encReqInfo = mscr.msgEncrypt(reqInfo,"D:/sesocCert.der"); //(로컬 적용시)
+		  //encReqInfo = mscr.msgEncrypt(reqInfo, "/usr/local/cert/sesocCert.der");	//(운영서버 적용시)	
+		  encReqInfo = mscr.msgEncrypt(reqInfo,location); //(로컬 적용시)
 		  
 		   //deprecated 되서 수정함 - 2019.03.05 이종호
 		   //encReqInfo = URLEncoder.encode(encReqInfo);
@@ -531,8 +543,7 @@ public class SmtpUserController {
 		String encPriInfo = request.getParameter("priinfo");
 
 		MsgCrypto mscr = new MsgCrypto();
-		String rstInfo = mscr.msgDecrypt(encPriInfo,"/usr/local/cert/sesocPri.key","sesoc@2018","EUC-KR"); //(운영서버 적용시)
-		//String rstInfo = mscr.msgDecrypt(encPriInfo,"D:/sesocPri.key","sesoc@2018","EUC-KR");
+		String rstInfo = mscr.msgDecrypt(encPriInfo,key,"sesoc@2018","EUC-KR"); //(운영서버 적용시)
 		String[] rstInfoArray = rstInfo.split("\\$");
 		if (rstInfoArray.length > 3) {
 			model.addAttribute("mobileVerification", rstInfoArray);
@@ -796,6 +807,25 @@ public class SmtpUserController {
 		return "/segroup/society/smtp/user/sub05-02-01";
 	}
 	
+	// 나의 강의실 - 지원현황 - 지원신청서 보기
+	@RequestMapping(value = "/smtp/user/rainbow-apply01-02", method = RequestMethod.POST)
+	public String rainbow_apply01_02(Authentication auth, String gisu_id, String app_end_date, Model model) {
+
+		logger.info("지원신청서 보기 컨트롤러 시작");
+		
+		if(auth != null){
+			HashMap<String, Object> param = new HashMap<>();
+			param.put("user_id", (String) auth.getPrincipal());
+			param.put("gisu_id", gisu_id);
+			
+			HashMap<String, Object> applyForm = applyService.selectSmtpApply(param);
+			model.addAttribute("apply", applyForm);
+			model.addAttribute("app_end_date", app_end_date);
+		}
+		logger.info("지원신청서 보기 컨트롤러 종료");
+		return "/segroup/society/smtp/apply/rainbow-apply01-02";
+	}
+			
 	@RequestMapping(value = "/smtp/user/sub05-03", method = RequestMethod.GET)
 	public String sub05_03(Authentication auth) {
 		
