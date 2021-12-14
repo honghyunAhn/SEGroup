@@ -39,8 +39,8 @@ const JOB_OBJECTIVE_LENGTH = 50;
 const EDU_COURSE_NM_LENGTH = 50;
 
 //본인인증 (서브도메인 처리)
-//document.domain = 'sesoc.global';
-document.domain = 'softsociety.net';
+<spring:eval expression="@domain['domain']" var="domain"/>
+document.domain = "${domain}";
 
 	$(function() {
 		cleanDatepicker();
@@ -971,15 +971,13 @@ document.domain = 'softsociety.net';
 		alert('본인인증을 완료하였습니다.');
 		$('#redMessage').html("본인인증을 완료하였습니다.");
 	}
-
-	var url = "https://www.mobile-ok.com/popup/common/hscert.jsp";   //운영
-	// var url = "http://dev.mobile-ok.com/popup/common/hscert.jsp";  //개발
+	<spring:eval expression="@domain['domain.mobile']" var="mobile"/>	
+	var url = '${mobile}';   
 	var DRMOK_window;
 
 	function openDRMOKWindow(){
 		window.name = 'sendJsp';
-		var url = "https://www.mobile-ok.com/popup/common/hscert.jsp";   //운영
-		// var url = "http://dev.mobile-ok.com/popup/common/hscert.jsp";  //개발
+		var url = '${mobile}';
 		DRMOK_window = window.open(url+'?cpid=${cpId}&rtn_url=${rtn_url}&req_info=${encReqInfo}', 'DRMOKWindow', 'width=425,height=550,scrollbars=no,toolbar=no,location=no,directories=no,status=no' );
 		DRMOK_window.focus();
 

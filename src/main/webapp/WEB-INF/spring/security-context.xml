@@ -154,6 +154,15 @@
 		<intercept-url pattern="/smtp/apply" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102','A0108')" />
 		<intercept-url pattern="/smtp/apply/sub00-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
 		<intercept-url pattern="/smtp/apply/sub00-02" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
+		<intercept-url pattern="/smtp/apply/rainbow-apply01-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
+		<intercept-url pattern="/smtp/user/rainbow-class01-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
+		<intercept-url pattern="/smtp/user/rainbow-class02-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
+		<intercept-url pattern="/smtp/user/rainbow-class03-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
+		<intercept-url pattern="/smtp/user/rainbow-user02-01" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
+		<intercept-url pattern="/smtp/user/rainbow-user02-02" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
+		<intercept-url pattern="/smtp/user/rainbow-user02-03" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
+		<intercept-url pattern="/smtp/community/rainbow-community03-04" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
+		<intercept-url pattern="/smtp/community/rainbow-community03-03" access="hasAnyRole('A0100','A0101','A0105','A0106','A0107','A0108','A0102')" />
 		
 		<intercept-url pattern="/smtp/course/**" access="permitAll"/>
 		<intercept-url pattern="/smtp/community/**" access="permitAll"/>
@@ -167,8 +176,8 @@
 			username-parameter="user_id"
 			password-parameter="user_pw"
 			login-processing-url="/smtp/user/login"
-			authentication-failure-url="/smtp/user/rainbow-user01-01?error=1"
-			default-target-url="/smtp/user/user_login_success"	/>
+			authentication-failure-url="/smtp/user/rainbow-user01-01?error=1" 
+			default-target-url="/smtp/user/user_login_success"/>
 		
 		<logout
 			logout-url="/smtp/logout"
