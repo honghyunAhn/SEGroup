@@ -36,6 +36,7 @@
 	<util:properties id="props" location="classpath:file.properties" />
 	<util:properties id="mail" location="classpath:mail.properties" />
 	<util:properties id="board" location="classpath:board.properties" />
+	<util:properties id="domain" location="classpath:domain.properties" />
 	
 	
 	<aop:aspectj-autoproxy/>
