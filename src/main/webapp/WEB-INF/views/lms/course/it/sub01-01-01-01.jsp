@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -25,6 +26,8 @@
 	<script src="<c:url value="/resources/lms/js/jquery-3.3.1.min.js" />"></script>
 	<script src="<c:url value="/resources/lms/js/common.js" />"></script>
 	<script type="text/javascript">
+	<spring:eval expression="@domain['domain']" var="domain"/>
+	document.domain="${domain}";	
 	$(function() {
 		//서브 페이지 네비
 		// .sub-nav .lnb>a의 클래스가 sub02-01이면
