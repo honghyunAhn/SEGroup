@@ -91,8 +91,8 @@
 	            </ul>
 	            <ul class="menu-title-division">
 	                <li class="gnb">내일배움카드과정</li>
-	                <li class="lnb"><a href="javascript:alert('준비중입니다.');">JAVA 기반 웹 개발자 과정</a></li>
-	                <li class="lnb"><a href="javascript:alert('준비중입니다.');">파이썬 기초 과정</a></li>
+	                <li class="lnb"><a href="/smtp/community/sub04-01-01.do?seq=10141">JAVA 기반 웹 개발자 과정</a></li>
+	                <li class="lnb"><a href="/smtp/community/sub04-01-01.do?seq=10141">파이썬 기초 과정</a></li>
 	            </ul>
 	            <ul class="menu-title-division">
 	                <li class="gnb">미국 인턴십</li>
@@ -152,8 +152,8 @@
                 <!-- <li class="hdrSubMenu"><a onclick="javascript:page_move('/smtp/course/scmaster/scmaster-info','c000000525');" href="javascript:void(0);">SCIT-서울</a></li> -->
             </ul>
             <ul class="header-subMenu">
-            	<li class="hdrSubMenu"><a href="javascript:alert('준비중입니다.');">JAVA 기반 웹 개발자과정</a></li>
-                <li class="hdrSubMenu"><a href="javascript:alert('준비중입니다.');">파이썬 기초 과정</a></li>
+            	<li class="hdrSubMenu"><a href="/smtp/community/sub04-01-01.do?seq=10141">JAVA 기반 웹 개발자과정</a></li>
+                <li class="hdrSubMenu"><a href="/smtp/community/sub04-01-01.do?seq=10141">파이썬 기초 과정</a></li>
             </ul>
             <ul class="header-subMenu">
                 <li class="hdrSubMenu"><a href="/smtp/course/scmaster/scmaster-info?course_id=c000000527">美 융복합 SW인력 양성과정</a></li>
