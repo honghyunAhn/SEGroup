@@ -458,7 +458,7 @@
                 <div class="course-applyWrap" id="scrollFixed03">
                     <div class="courseImgWrap">
                         <div class="courseImg">
-                            <img src="/resources/segroup/society/smtp/img/course_thumb03.jpg" alt="">
+                            <img src="/resources/segroup/society/smtp/img/course01-02.jpg" alt="">
                             <div class="bgc_point fz18 courseCount">개설 준비 중인 과정입니다.</div>
                         </div>
                     </div>
