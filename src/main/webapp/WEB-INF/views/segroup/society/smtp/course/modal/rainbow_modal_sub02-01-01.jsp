@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<script type="text/javascript">
+    <spring:eval expression="@domain['domain']" var="domain"/>
+    <spring:eval expression="@domain['domain.http']" var="http"/>
+</script>
+    document.domain="${domain}";	
 <div class="header d-flex justify_between">
 	<div class="titleBar h3" id="class-name-bar"></div>
 	<!-- <h3 class="h3"></h3> -->
@@ -288,7 +294,7 @@
 				<input type="hidden" name="buyeremail" value="${buyeremail}">
 				<input type="hidden" name="timestamp" value="${timestamp}">
 				<input type="hidden" name="signature" value="${signature}">
-				<input type="hidden" name="returnUrl" value="https://www.softsociety.net/smtp/course/payInfo">
+				<input type="hidden" name="returnUrl" value="${http}/smtp/course/payInfo">
 <!-- 				<input type="hidden" name="returnUrl" value="http://localhost:8080/smtp/course/payInfo"> -->
 				<input type="hidden" name="mKey" value="${mKey}"> 
 				<input type="hidden" name="gopaymethod" id="gopaymethod" value="">
