@@ -539,7 +539,7 @@
                     <div class="courseImgWrap">
                     
                         <div class="courseImg">
-                            <img src="/resources/segroup/society/smtp/img/course_thumb03.jpg" alt="">
+                            <img src="/resources/segroup/society/smtp/img/course02-01.jpg" alt="">
                             <div class="bgc_point fz18 courseCount"></div>
                         </div>
                     </div>
