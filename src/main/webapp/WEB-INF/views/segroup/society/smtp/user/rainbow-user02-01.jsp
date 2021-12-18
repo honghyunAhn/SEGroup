@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -642,9 +643,18 @@
 	                </ul>
                 </div>
             </div>
+            <!-- 나의강의실 - 결제현황/환불 >> 결제하기 modal -->
+			<%@include file="./modal/rainbow-modal-payment.jsp"%>
+
+			<!-- 나의강의실 - 결제현황/환불 >> 환불신청 modal -->
+			<%@include file="./modal/rainbow-modal-refundRequest.jsp"%>
+
+			<!-- 나의강의실 - 결제현황/환불 >> 환불현황 modal -->
+			<%@include file="./modal/rainbow-modal-refundChange.jsp"%>
+
+			<!-- 나의강의실 - 결제현황/환불 >> 영수증 출력 modal -->
+			<%@include file="./modal/rainbow-modal-printReceipt.jsp"%>
         </div>
-        <!-- 나의강의실 - 결제현황/환불 >> 영수증 출력 modal -->
-		<%@include file="modal/rainbow-modal-printReceipt.jsp"%>
         <%@include file="../include/rainbow_footer.jsp"%>
     </div>
 </body>
