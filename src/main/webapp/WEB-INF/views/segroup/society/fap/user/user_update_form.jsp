@@ -32,8 +32,8 @@ const JOB_OBJECTIVE_LENGTH = 50;
 const EDU_COURSE_NM_LENGTH = 50;
 
 //본인인증 (서브도메인 처리)
-//document.domain = 'sesoc.global';
-document.domain = 'softsociety.net';
+<spring:eval expression="@domain['domain']" var="domain"/>
+document.domain = "${domain}";
 
 var first_email = "";
 
@@ -1331,7 +1331,8 @@ var first_email = "";
 		
 	}
 	
-	var url = 'http://dev.mobile-ok.com/popup/common/hscert.jsp';  //개발
+	<spring:eval expression="@domain['domain.mobile']" var="mobile"/>	
+	var url = '${mobile}'; 
 	var DRMOK_window;
 
 	function openDRMOKWindow(){
