@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 	<script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
+	<script language="javascript" type="text/javascript">
+		<spring:eval expression="@domain['domain']" var="domain"/>
+		<spring:eval expression="@domain['domain.http']" var="http"/>
+	</script>
+	document.domain="${domain}";
 	<!-- ActionするFormBox -->
 	<form id="SendPayForm_id" name="" method="post">
 		<input type="hidden" name="version" value="1.0">
@@ -17,7 +23,7 @@
 		<input type="hidden" name="buyeremail" value="${buyeremail}">
 		<input type="hidden" name="timestamp" value="${timestamp}">
 		<input type="hidden" name="signature" value="${signature}">
-		<input type="hidden" name="returnUrl" value="https://www.softsociety.net/smtp/course/payInfo">
+		<input type="hidden" name="returnUrl" value=`${http}/smtp/course/payInfo`>
 		<input type="hidden" name="mKey" value="${mKey}">
 		<input type="hidden" name="gopaymethod" id="gopaymethod" value="">
 		<input type="hidden" id="offerPeriod" name="offerPeriod" value="${offerPeriod}">
