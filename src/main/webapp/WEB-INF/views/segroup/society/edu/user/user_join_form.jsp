@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -17,9 +18,8 @@
 <script src="<c:url value="/resources/segroup/js/angular.min.js" />"></script>
 <script src="<c:url value="/resources/segroup/society/edu/js/slidebanner.js" />"></script>
 <script type="text/javascript">
-//본인인증 (서브도메인 처리)
-//document.domain = 'sesoc.global';
-document.domain = 'softsociety.net';
+<spring:eval expression="@domain['domain']" var="domain"/>
+document.domain = "${domain}";
 
 // 정규표현식
 var phone_regex = /^\d{3}\d{3,4}\d{4}$/;
@@ -374,13 +374,12 @@ window.CallVerified = function() {
 	});
 }); */
 
-//var url = "http://dev.mobile-ok.com/popup/common/hscert.jsp";  //개발
-var url = "https://www.mobile-ok.com/popup/common/hscert.jsp";   //운영
+<spring:eval expression="@domain['domain.mobile']" var="mobile"/>
+	var url = '${mobile}';  
 
   var DRMOK_window;
   function openDRMOKWindow(){ 
-	//var url = "http://dev.mobile-ok.com/popup/common/hscert.jsp";  //개발
-	  var url = "https://www.mobile-ok.com/popup/common/hscert.jsp";   //운영
+	  var url = '${mobile}';     //운영
   window.name = 'sendJsp';
     DRMOK_window = window.open(url+'?cpid=${cpId}&rtn_url=${rtn_url}&req_info=${encReqInfo}', 'DRMOKWindow', 'width=425,height=550,scrollbars=no,toolbar=no,location=no,directories=no,status=no' );
   DRMOK_window.focus();
