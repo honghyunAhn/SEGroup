@@ -62,7 +62,7 @@
                                     <li class="thTxt">모집기간</li>
                                 </ul>
                                 <ul class="infoTd">
-                                    <li>2021.07.28(수) 까지</li>
+                                    <li>2021.10.08(수) 까지</li>
                                 </ul>
                             </div>
                             <div class="d-flex jus">
@@ -71,7 +71,7 @@
                                     <li class="thTxt">교육기간</li>
                                 </ul>
                                 <ul class="infoTd">
-                                    <li>2021.07.30 ~ 2022.05.27</li>
+                                    <li>2021.09.28 ~ 2022.06.30</li>
                                     <li>월/화/수/목 08:30 ~ 18:00</li>
                                 </ul>
                             </div>
@@ -341,7 +341,7 @@
         	
         	<div class="btn_normal btn_xlarge btn_swdo" style="margin: 120px auto">
             	<a class="applyBtn fz20">지원하기</a>
-            	<input type="hidden" value="n000000581" name="cardinal_id">
+            	<input type="hidden" value="n000000607" name="cardinal_id">
             	<input type="hidden" value="Fri Jul 16 2021 00:00:00 GMT+0900 (대한민국 표준시)" name="aedDate">
             </div>
         </div>
