@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
     <meta charset="UTF-8">
-    
     <%@include file="../include/rainbow_head.jsp"%>
     <script type="text/javascript">
-    	//document.domain = 'softsociety.net'; //(운영서버 적용시)
-        document.domain = '1.235.198.60'; //(개발서버 적용시)
+        <spring:eval expression="@domain['domain']" var="domain"/>
+	    document.domain = "${domain}";
 		$(document).ready(function(){
         	//다음 버튼 숨김(인증을 통해야 이동할 수 있도록)
         	$("#goSubmit").hide();
@@ -25,8 +25,8 @@
         });
     	
 		//본인 인증 팝업
-        //var url = "https://www.mobile-ok.com/popup/common/hscert.jsp"; //운영
-        var url = "https://dev.mobile-ok.com/popup/common/hscert.jsp"; //로컬
+        <spring:eval expression="@domain['domain.mobile']" var="mobile"/>	
+	    var url = '${mobile}'; 
         var DRMOK2_window;
         
         function popIdentity(iden_gbn) {
@@ -34,11 +34,7 @@
         	case 'phone':	// 휴대 전화
         		window.name = 'sendJsp2';
         		DRMOK2_window = window.open(url+'?cpid=${cpId}&rtn_url=${rtn_url}&req_info=${encReqInfo}', 'DRMOK2_window', 'width=425,height=550,scrollbars=no,toolbar=no,location=no,directories=no,status=no' );
-        		//DRMOK2_window = window.open("https://www.naver.com");
-        		console.log(DRMOK2_window);
-        		console.log(window.statusbar);
         		DRMOK2_window.focus();
-                //DRMOK2_window.close();
         		if(DRMOK2_window == null){
         		    alert(" ※ 윈도우 XP SP2 또는 인터넷 익스플로러 7 사용자일 경우에는 \n    화면 상단에 있는 팝업 차단 알림줄을 클릭하여 팝업을 허용해 주시기 바랍니다. \n\n※ MSN,야후,구글 팝업 차단 툴바가 설치된 경우 팝업허용을 해주시기 바랍니다.");
         		}
@@ -48,11 +44,12 @@
         }
         
         window.CallVerified = function() {
-     		//alert('본인인증을 완료하였습니다.');      
-     		$('#redMessage').html("본인인증을 완료하였습니다.");
-     		//$("#goSubmit").trigger("click");
-     		$("#goSubmit").show();
-     		$("#validBtn").hide();
+     		alert('본인인증을 완료하였습니다.');      
+            DRMOK2_window.close();
+            $('#redMessage').html("본인인증을 완료하였습니다.");
+            $("#goSubmit").trigger("click");  //주석
+     		//$("#goSubmit").show();  //살리고
+     		//$("#validBtn").hide();  //살리고
      	}
      	
    	</script>
