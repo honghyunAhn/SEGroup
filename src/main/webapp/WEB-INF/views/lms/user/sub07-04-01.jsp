@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -289,7 +290,8 @@
 		}
 		
 		//전화번호 변경시 본인인증 
-		var url = 'http://dev.mobile-ok.com/popup/common/hscert.jsp';  
+		<spring:eval expression="@domain['domain.mobile']" var="mobile"/>
+		var url = '${mobile}';  
 		var DRMOK_window;
       
 		function openDRMOKWindow(){			
