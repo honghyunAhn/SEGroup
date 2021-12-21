@@ -34,6 +34,7 @@
             <li><a href="/smtp/course/new-rainbow/course?course_id=c000000549">JAVA기반 웹 개발자 과정</a></li>
         </ul>
         <ul class="subHeader d-flex flexWrap course-point03">
+        	<li><a href="/smtp/course/new-rainbow/course?course_id=c000000552">일본취업 스킬업</a></li>
             <li><a href="/fap/user/user_main">2021 하반기 잡페어</a></li>
         </ul>
             <ul class="subHeader d-flex flexWrap course-point04">
@@ -101,6 +102,7 @@
                     <li class="gnb">
                         <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre03">글로벌 잡매칭</a>
                     </li>
+                    <li class="lnb"><a href="/smtp/course/new-rainbow/course?course_id=c000000552">일본취업 스킬업</a></li>
                     <li class="lnb"><a href="/fap/user/user_main">2021 하반기 잡페어</a></li>
                 </ul>
                 <ul class="menu-title-division">
