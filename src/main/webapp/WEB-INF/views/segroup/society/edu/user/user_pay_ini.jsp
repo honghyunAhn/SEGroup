@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -25,6 +26,9 @@
 <script
 	src="<c:url value="/resources/segroup/society/edu/js/slidebanner.js" />"></script>
 <script type="text/javascript">
+	<spring:eval expression="@domain['domain']" var="domain"/>	
+	<spring:eval expression="@domain['domain.http']" var="http"/>
+	document.domain="${domain}";
 	/**
 	 * 결제를 진행한다
 	 */
@@ -140,8 +144,7 @@ h4 {
 				<input type="hidden" name="buyeremail" value="${user.user_email}">
 				<input type="hidden" name="timestamp" value="${timestamp}">
 				<input type="hidden" name="signature" value="${signature}">
-				<input type="hidden" name="returnUrl"
-					value="https://www.softsociety.net/edu/user/user_pay_info">
+				<input type="hidden" name="returnUrl" value="${http}/edu/user/user_pay_info">
 				<!--  <input type="hidden" name="closeUrl" value="www.naver.com" >  -->
 				<input type="hidden" name="mKey" value="${mKey}"> <input
 					type="hidden" name="gopaymethod" id="gopaymethod" value="">
