@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="ko" class="mv-html">
 <head>
@@ -22,8 +23,8 @@
 	src="<c:url value="/resources/segroup/society/edu/js/slidebanner.js" />"></script>
 <script type="text/javascript">
 //본인인증 (서브도메인 처리)
-//document.domain = 'sesoc.global';
-document.domain = 'softsociety.net';
+<spring:eval expression="@domain['domain']" var="domain"/>
+document.domain ="${domain}";
 
 jQuery(document).ready(function(){  
 	$('#user_phone',opener.document).val("${mobileVerification[3]}"); //휴대전화
