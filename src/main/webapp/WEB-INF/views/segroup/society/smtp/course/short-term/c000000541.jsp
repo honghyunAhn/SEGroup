@@ -25,8 +25,8 @@
     <script src="/resources/segroup/society/smtp/js/rainbow_pageInfo_common.js"></script>
     <script src="/resources/segroup/society/smtp/js/rainbow_pageInfo_shortTerm.js"></script>
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-
     <script type="text/javascript">
+        document.domain='softsociety.net';
 	  	//공통 변수
 		var course_id = '${courseInfo.id}';
 		var applyFormYn = '${courseInfo.applyform_yn}';
