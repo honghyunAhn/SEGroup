@@ -75,10 +75,11 @@
                                     <div>글로벌 잡매칭</div>
                                 </div>
                                 <ul class="courseList fc_333">
+                                	<li><a href="/smtp/course/new-rainbow/course?course_id=c000000552">일본취업 스킬업</a></li>
                                     <li><a href="/fap/user/user_main">2021 하반기 잡페어</a></li>
                                 </ul>
                                 <div class="btn_moreList">
-                                    <a href="rainbow-course03.html">과정 더 보기 &nbsp;&gt;</a>
+                                    <a href="/smtp/course/new-rainbow/new-rainbow-info?course_id=rainbow-cousre03">과정 더 보기 &nbsp;&gt;</a>
                                 </div>
                             </div>
                         </div>
