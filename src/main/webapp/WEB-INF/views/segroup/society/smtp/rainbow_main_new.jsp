@@ -149,8 +149,8 @@
  	                                </div>
  	                            </div>
  	                        </div> -->
- 	                        <!-- <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg01.jpg">
- 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg01_mobile.jpg"> -->
+ 	                        <!-- <img class="webBanner" src="/resources/segroup/society/smtp/img/mainBannerImg09.jpg">
+ 	                        <img class="mobileBanner" src="/resources/segroup/society/smtp/img/mainBannerImg09_mobile.jpg"> -->
  	                        <div class="bannerTextWrap d-flex justify_center fz20">
 	                        	<a class="button btn_normal" href="/smtp/course/scmaster/scmaster-info?course_id=c000000526">광주과정 바로가기</a>
 	                        	<a class="button btn_normal" href="/smtp/course/scmaster/scmaster-info?course_id=c000000548">부산과정 바로가기</a>
@@ -220,31 +220,52 @@
 			<div class="courseWrapper">
 				<div class="title_barPoint_wh fz40">모집과정</div>
 				<div class="d-flex flexWrap courseWrap">
-<!-- 					<div class="course"> -->
-<!-- 						<a href="/smtp/course/short-term/short-term-info?course_id=c000000543"> -->
-<!-- 							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb01.jpg"> -->
-<!-- 						</a> -->
-						<!-- <div class="course-txt">
-							<div class="course-name">3주 완성! 코딩 챌린지 과정</div>
-							<div class="course-term">모집마감 2021.07.04 까지</div>
-						</div> -->
-<!-- 					</div> -->
+					<div class="course">
+						<a href="/smtp/course/short-term/short-term-info?course_id=c000000543">
+							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb05.jpg">
+						</a>
+						<div class="course-txt">
+							<div class="course-name">코딩챌린지 과정</div>
+							<div class="course-term">모집마감 2021.09.27 까지</div>
+							<!-- 학습기간 : 2021.07.20 ~ 2022.05.26 -->
+						</div>
+					</div>
+					<div class="course">
+						<a href="/smtp/community/sub04-01-01.do?seq=10141">
+							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb06.jpg">
+						</a>
+						<div class="course-txt">
+							<div class="course-name">파이썬 기초 과정</div>
+							<div class="course-term">모집마감 2021.10.03 까지</div>
+							<!-- 학습기간 : 2021.07.20 ~ 2022.05.26 -->
+						</div>
+					</div>
+					<div class="course">
+						<a href="/smtp/community/sub04-01-01.do?seq=10141">
+							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb07.jpg">
+						</a>
+						<div class="course-txt">
+							<div class="course-name">Java기반 웹 개발자과정</div>
+							<div class="course-term">모집마감 2021.10.03 까지</div>
+							<!-- 학습기간 : 2021.07.20 ~ 2022.05.26 -->
+						</div>
+					</div>
 					<div class="course">
 						<a href="/smtp/course/scmaster/scmaster-info?course_id=c000000526">
 							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb02.jpg">
 						</a>
 						<div class="course-txt">
 							<div class="course-name">[광주] SoftWare DevOps 마스터 과정</div>
-							<div class="course-term">모집마감 2021.07.28 까지</div>
+							<div class="course-term">모집마감 2021.10.08 까지</div>
 						</div>
 					</div>
 					<div class="course">
-						<a href="/smtp/course/scmaster/scmaster-info?course_id=c000000548">
-							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb03.jpg">
+						<a href="/smtp/course/scmaster/scmaster-info?course_id=c000000527">
+							<img class="course-img" src="/resources/segroup/society/smtp/img/course_thumb04.jpg">
 						</a>
 						<div class="course-txt">
-							<div class="course-name">[부산] Digital ABC 마스터 과정</div>
-							<div class="course-term">모집마감 2021.07.28 까지</div>
+							<div class="course-name">[광주] 미국 지디털커머스 인재양성 과정</div>
+							<div class="course-term">모집마감 2021.11.12 까지</div>
 							<!-- 학습기간 : 2021.07.20 ~ 2022.05.26 -->
 						</div>
 					</div>
