@@ -266,7 +266,7 @@
                     <c:choose>
                         <c:when test="${!empty applyResult }">
                             <c:forEach var="item" items="${applyResult }" varStatus="status">
-                                <form name="listForm" id="listForm_${status.index}" action="/smtp/user/sub05-02-01"
+                                <form name="listForm" id="listForm_${status.index}" action="/smtp/user/rainbow-apply01-02"
                                     method="post">
                                     <input type="hidden" id="gisu_id_${status.index}" name="gisu_id"
                                         value="${item.gisu_id}" />

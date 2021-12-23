@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -22,7 +24,8 @@
     <script src="/resources/segroup/society/smtp/js/rainbow_script.js"></script>
     <script src="/resources/segroup/society/smtp/js/rainbow_script_responsive.js"></script>
     <script type="text/javascript">
-    	//document.domain = 'softsociety.net'; //(운영서버 적용시)
+    <spring:eval expression="@domain['domain']" var="domain"/>
+        document.domain = "${domain}";
 		$(document).ready(function(){
         	
         	//다음 버튼 숨김(인증을 통해야 이동할 수 있도록)
@@ -39,7 +42,8 @@
         });
     	
 		//본인 인증 팝업
-        var url = "https://www.mobile-ok.com/popup/common/hscert.jsp"; //운영
+        <spring:eval expression="@domain['domain.mobile']" var="mobile"/>
+        var url = "${mobile}"; //운영
         var DRMOK2_window;
         
         function popIdentity(iden_gbn) {
