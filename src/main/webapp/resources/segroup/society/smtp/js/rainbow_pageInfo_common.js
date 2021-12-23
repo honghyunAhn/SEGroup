@@ -126,7 +126,7 @@ function setContent(validCardinals, applyFormYn) {
 			if(applyFormYn == "Y") {
 				content +=		'<div class="btn_normal btn_large btn_eg">';
 				//SWDO,ABC
-				if(course_id == 'c000000526' || course_id == 'c000000548' || course_id == 'c000000525') {
+				if(course_id == 'c000000526' || course_id == 'c000000548' || course_id == 'c000000525' || course_id == 'c000000527') {
 					content +=			'<a class="applyBtn">지원하기</a>';
 					
 					var btn = '<div class="btn_normal btn_large btn_eg course_btn"><a class="applyBtn">지원하기</a>';

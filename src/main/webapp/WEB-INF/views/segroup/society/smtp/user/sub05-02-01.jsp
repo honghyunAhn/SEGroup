@@ -104,7 +104,7 @@
 		    	    $('.resumeBtn').click(function() {
 		    	    	var crc_id = "${apply.crc_id}";
 		        		var gisu_id = "${apply.gisu_id}";
-		    	    	location.href = '<c:url value="/smtp/apply/sub00-02?gisu_id=' + gisu_id + '&app_end_date=' + end_date +'" />';
+		    	    	location.href = '<c:url value="/smtp/apply/rainbow-apply01-03?gisu_id=' + gisu_id + '&app_end_date=' + end_date +'" />';
 		    	    });
 				}
 			});

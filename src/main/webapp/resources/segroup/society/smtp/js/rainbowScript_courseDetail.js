@@ -211,7 +211,7 @@ window.onload = function () {
 		var course_id= $("#course_id").val();
 		var today = new Date();
 		if(dDay >= today) {
-			document.location.href = "/smtp/apply/sub00-01?course_id="+ course_id +"&cardinal_id="+ cardinal_id;
+			document.location.href = "/smtp/apply/rainbow-apply01-01?course_id="+ course_id +"&cardinal_id="+ cardinal_id;
 		} else {
 			return false;
 		}

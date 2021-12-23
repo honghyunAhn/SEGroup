@@ -392,17 +392,19 @@ $(function() {
         };*/
     });
 	
-    // 지원신청서 resumeAside_scroll
-	$(window).scroll(function(){
-		var scr = $(window).scrollTop();
-		var asideScr = $(this).scrollTop();
-		
-		if(asideScr > 1900){
-			$('.container_rainbow .resumeAside').css({"position" : "absolute", "top" : "auto", "bottom" : "380px"});
-		}
-		else{
-		$('.container_rainbow .resumeAside').css({"position" : "fixed", "top" : "120px", "bottom" : "auto"});
-		}
+    //지원신청서 resumeAside_scroll
+	document.addEventListener('scroll', function () {
+	    const scroll = document.documentElement.scrollTop;
+	    const applyContainer = document.querySelector(".course-applyContainer").offsetHeight;
+	    const menuHeight = document.querySelector(".headerWrap").offsetHeight;
+	    const aside = document.querySelector(".resumeAside");
+	    const containerHeight = applyContainer - menuHeight - '500';
+	    // side 지원신청 bar -> fixed
+	    if (scroll >= containerHeight || scroll >= applyContainer) {
+	        aside.classList.add("scrollFixed")
+	    } else {
+	        aside.classList.remove("scrollFixed")
+	    }
 	});
 
 }); //readyFunction 끝

@@ -86,7 +86,8 @@ html {
 .header,
 .fullWrapper>.full-navGroup,
 .mainBackVideoWrap>.background_video>.opacity_bg>.bannerTextWrap,
-.subHeaderWrap>.subHeader {
+.subHeaderWrap>.subHeader,
+.course-applyContainer {
     width: 1200px;
     margin: 0 auto;
 }
@@ -679,7 +680,8 @@ html {
 .courseWrapper>.courseWrap .courseFilterWrap>.courseList>li>a>.courseImg {
     border-radius: 10px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
-    min-height: calc((280px / 3) * 2);
+    height: calc((280px / 3) * 2);
+    overflow: hidden;
 }
 
 .courseWrapper>.courseWrap .courseFilterWrap>.courseList>li>a>.courseImg>img {
@@ -714,12 +716,8 @@ html {
 .courseWrapper>.courseWrap .courseFilterWrap>.courseList>li>a>.courseImg>img {}
 
 .courseList>li>a>.courseTxt {
-    width: calc(100% - 40px);
-    margin: -20px auto 0;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, .7);
-    border-radius: 10px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+    margin: 10px auto 0;
+    background-color: #fff;
     line-height: 30px;
 }
 
@@ -1952,6 +1950,7 @@ html {
 }
 
 /* applyContainer 지원신청 */
+
 .resumePhotoWrap>.imgBtnWrap>.imgBtn>.resumePhoto{
     z-index: -1;
 }
@@ -1966,13 +1965,14 @@ html {
 }
 
 .course-applyContainer{
-	width : 1200px;
     color: #112831;
+    position: relative;
+    padding: 60px 0;
 }
 
 .course-applyContainer>.resumeSection {
     width: 890px;
-    position: relative;
+    /* position: relative; */
 }
 .course-applyContainer>.resumeAside{
     width: 290px;
@@ -1984,9 +1984,9 @@ html {
     padding: 20px;
     background-color : #fff;
 }
-.course-applyContainer>.resumeAside.scrollSticky {
-    position: sticky;
-    position: -webkit-sticky;
+.course-applyContainer>.resumeAside.scrollFixed {
+    position: absolute;
+    bottom: 60px;
 }
 
 /* resumeHeader */
@@ -2011,37 +2011,41 @@ html {
     margin-right: 10px;
 }
 .resumeWrap .resumeSection{
-    padding: 20px 0;
+    padding: 0;
 }
 .resumeSection .resumeFormWrap{
     width: 100%;
+    justify-content: space-between;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
 }
-.resumeFormWrap>.row:nth-child(1)~*{
-    margin-top: 10px;
+.resumeFormWrap>.row{
+    margin: 10px 0;
 }
 .form100{
-    width: 100%;
+    width: calc(100% - 10px);
 }
 .form80{
-    width: 80%;
+    width: calc(80% - 10px);
 }
 .form50{
-    width: 50%
+    width: calc(50% - 10px);
 }
 .form33{
-    width: 33.33%;
+    width: calc(33.33% - 10px);
 }
 .form25{
-    width: 25%;
+    width: calc(25% - 10px);
 }
 .form20{
-    width: 20%;
+    width: calc(20% - 10px);
 }
 .resumeForm_text{
     padding: 10px;
     border: 1px solid #ddd;
-    margin-right: 10px;
+    margin: 0 5px;
 }
+
 .resumeForm_load{
     background-color: #eee;
     cursor: default;
@@ -2052,7 +2056,7 @@ html {
  
 .resumePhotoWrap{
     width: 150px;
-    margin-right: 10px;
+    margin: 10px 5px;
 }
 .resumePhotoWrap>.imgBox{
     position: relative;
@@ -2107,40 +2111,24 @@ html {
 
 
 
-
-
-
-
-/* 여기아래는 history */
-
-
-
-
-
-
-
-
-/* content_resumeForm_section */
-
-
-
-
 /* 정보입력칸 너비 */
 
-.resumeFormWrap>.resumeForm>.resumeForm_text:last-child,
-.resumeFormWrap>.resumeForm>.resumeForm_text>.rsm_input>.rsm_radio:last-child{
-    margin-right: 0;
-}
+
 
 .resumeFormWrap>.resumeForm>.resumeForm_text>.rsm_input,
 .resumeFormWrap>.resumeForm>.resumeForm_text>.rsm_selectBox{
     width: 100%;
-    height: 20px;
     /* font-size: 16px; */
     font-size: 1.143rem;
     color: #777;
     border: 0;
+    border-bottom: 1px solid;
     margin-top: 8px;
+    padding: 8px 0;
+}
+
+.resumeForm_text .h5{
+    margin-left: 10px;
 }
 .resumeFormWrap>.resumeForm>.resumeForm_text>.rsm_input>.rsm_radio{
     margin-right: 10px;
@@ -2162,8 +2150,7 @@ html {
     background: linear-gradient(#f7f7f7, rgba(255,255,255,0));
 }
 .resumeSection>.resumeForm_addBtn>.h4{
-    color: #11283B;
-    margin-left: 5px;
+    margin-left: 10px;
     line-height: 20px;
 }
 .resumeSection>.resumeFormContainer>.resumeFormWrapper{
@@ -2172,7 +2159,7 @@ html {
     width: 100%;
 }
 .resumeSection>.resumeFormContainer>.resumeFormWrapper:not(.necessary){
-    display: none;
+    /* display: none; */
 }
 /* 항목 추가될 때 적용되는 style */
 .resumeSection>.resumeFormContainer>.resumeFormWrapper:nth-child(1)~*{
@@ -2182,12 +2169,12 @@ html {
 
 .resumeSection>.resumeFormContainer>.resumeFormWrapper>.img-icon{
     position: absolute;
-    right: 10px; top: -10px;
+    right: 10px;
 }
-.resumeSection>.resumeFormContainer>.resumeForm_addStyle>.resumeForm_delBtn{
+/* .resumeSection>.resumeFormContainer>.resumeForm_addStyle>.resumeForm_delBtn{
     top: 10px;
 }
-
+ */
 /* content_resumeForm_section > profile 기본정보 */
 
 .rsm_profile .resumeFormWrap>.resumeForm>.resumeForm_text>.rsm_input>.rsm_radio>.rsm_input{
@@ -2224,9 +2211,10 @@ html {
 }
 .rsm_introduction .resumeForm>.rsm_textarea{
     resize: none;
-    width: calc(100% - 22px);
+    width: calc(100% - 32px);
     border: 1px solid #ddd;
     padding: 10px;
+    margin: 0 5px;
 }
 /* content_resumeForm_section > evidence 증빙자료 업로드 */
 .rsm_evidence .resumeFormWrapper{
@@ -2234,7 +2222,7 @@ html {
 }
 .rsm_evidence .resumeFormWrapper>.resumeForm_noticeWrap{
     position: absolute;
-    top: -50px;
+    top: -72px;
     right: 0;
 }
 
@@ -2298,7 +2286,6 @@ html {
 .resumeNav>.resumeNav_header{
     border-top: 1px solid;
     border-bottom: 1px solid;
-    /* color: #9B9EA0; */
     text-align: center;
     padding: 10px;
 }
@@ -2313,12 +2300,6 @@ html {
     width: calc(100% - 25px);
 }
 
-/* 비활성화 */
-.resumeNav>.resumeNav_content>.resumeNav_listWrap>li.d-flex>.passive{}
-.resumeNav>.resumeNav_content>.resumeNav_listWrap>li.d-flex>.passive>a{
-    color: #ccc;
-}
-
 .resumeNav_button{
     width: 100%;
     text-align: center;
@@ -2326,4 +2307,14 @@ html {
     color: #fff;
     line-height: 40px;
     cursor: pointer;
+}
+
+.apply01-02 .rsm_education .resumeForm_text .rsm_input,
+.apply01-02 .rsm_language .resumeForm_text .rsm_input{
+    width: 100%;
+}
+.apply01-02 input,
+.apply01-02 .rsm_label,
+.apply01-02 textarea{
+    cursor: default;
 }
