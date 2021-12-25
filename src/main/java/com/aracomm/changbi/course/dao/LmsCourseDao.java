@@ -109,5 +109,7 @@ public interface LmsCourseDao {
 	
 	//코스페이지 정보 select
 	public HashMap<String, String> rainbowCourseInfo(String course_id);
+	//납부 금액
+	public HashMap<String, String> eduCurriculumPay(String cardinal_id);
 	
 }
