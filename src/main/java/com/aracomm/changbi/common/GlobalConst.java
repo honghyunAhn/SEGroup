@@ -8,7 +8,7 @@ public class GlobalConst {
 	public static int COOKIE_VIEWCOURSES_MAX = 20;					// 상세내용 조회한 과정 id리스트를 몇개까지 저장할 것인지
 
 	/** 파일업로드 **/
-
+	//주석 테스트
 	/** ajax 응답 **/
 	/** 공통코드 **/
 	public final static String CODE_GROUP_EMAIL = "email";			// 이메일도메인
