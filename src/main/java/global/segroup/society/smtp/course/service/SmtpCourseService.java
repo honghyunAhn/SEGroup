@@ -202,4 +202,8 @@ public class SmtpCourseService {
 	public HashMap<String, String> rainbowCourseInfo(String course_id) {
 		return dao.rainbowCourseInfo(course_id);
 	}
+	//납부 금액
+	public HashMap<String, String> eduCurriculumPay(String cardinal_id) {
+		return dao.eduCurriculumPay(cardinal_id);
+	}
 }
