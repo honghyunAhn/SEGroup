@@ -1092,4 +1092,10 @@
 		WHERE M.ID = #{course_id}
         order by APP_END_DATE desc LIMIT 1;
 	</select>
+	
+	<select id="eduCurriculumPay" parameterType="String" resultType="hashmap">
+		select *
+		from EDU_CURRICULUM_PAY_TB
+		where CARDINAL_ID = #{cardinal_id}
+	</select>
 </mapper>
