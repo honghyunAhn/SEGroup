@@ -63,7 +63,6 @@
                     <div class="view_content">
                         <div class="view_image imageContent">
                             ${boardDetail.board_content_ct }
-                            <img src="/resources/segroup/society/smtp/img/banner_thumb03.jpg" alt="">
                         </div>
                     </div>
                     <c:if test="${fn:length(files) gt 0}">
