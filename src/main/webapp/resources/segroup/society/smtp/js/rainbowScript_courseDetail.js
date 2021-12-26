@@ -206,7 +206,7 @@ window.onload = function () {
         question.addEventListener("click", slideEvent);
     })
     
-    $('.applyBtn').parent().on('click', function() {
+    $('.applyBtn').on('click', function() {
 		var cardinal_id = $("#cardinal_id").val();
 		var course_id= $("#course_id").val();
 		var today = new Date();
@@ -243,8 +243,11 @@ function class_time(learn_start_date, learn_end_date, class_day, class_start_tim
 	//요일
 	const change_week = class_day.replaceAll(",","/");
 	
+	let tmp_study_time = "";
 	//요일 + 시간
-	const tmp_study_time = change_week + "&nbsp;&nbsp;" + class_start_time + " ~ " + class_end_time;
+	if(class_start_time != null && class_end_time != null){
+		tmp_study_time = change_week + "&nbsp;&nbsp;" + class_start_time + " ~ " + class_end_time;
+	}
 	
 	if(dDay >= endDate){
 		$(".learn_period").html(tmp_learn_date);
@@ -279,9 +282,9 @@ function period(app_start_date){
 }
 
 //교육비
-function expenses(price){
+function expenses(price, crcPrice){
 	//기본 교육비
-	const re_price = change_price(price);
+	const re_price = "￦&nbsp"+change_price(price);
 	$(".expenses").html(re_price);
 	
 	//MOU대학교 교육비
@@ -291,6 +294,12 @@ function expenses(price){
 	//사전학습반, 기타협약기관
 	const etc_price = change_price((price/2));
 	$(".etc_price").html(etc_price);
+	
+	if(crcPrice !== undefined){
+		const crc_price = "<span class='h2'>￦&nbsp;"+change_price(crcPrice)+"</span></span>&nbsp;<span class='fc_999'>(교육비 할인 제도 적용시)</span>";
+		$(".crc_price").html(crc_price);
+	}
+	
 }
 
 function purpose(purpose){
