@@ -116,7 +116,7 @@
 
         // 서버에 신청 서비스 요청
         function ajaxSubmit() {
-            alert("Ajax 신청서비스 들어가기 전~!");
+            //alert("Ajax 신청서비스 들어가기 전~!");
             $.LoadingOverlay("show");
 
             $.ajax({
@@ -125,7 +125,6 @@
                 success: function (isRequested) {
                     $.LoadingOverlay("hide");
                     if (isRequested) {
-                        alert('온라인상담 수정이 완료되었습니다.');
                         goToBack();
                     } else {
                         alert('서버에 에러가 발생했습니다. 재시도 후에도 에러발생시 홈페이지 담당자에게 문의해주십시요.');
@@ -154,8 +153,9 @@
                     <h3 class="h3">❔ QnA</h3>
                 </div>
                 <div class="section_formStyle join">
-                    <input type="hidden" id="consulting_seq" name="consulting_seq"  value="${contentDetail.consulting_seq }" />
+                    
                     <form class="formStyle" id="multiForm" action="/smtp/support/apply_online_udt" name="multiForm" onsubmit="return checkOnSubmit();" method="post">
+                        <input type="hidden" id="consulting_seq" name="consulting_seq"  value="${contentDetail.consulting_seq }" />
                         <div class="formWrap">
                             <label class="label" for="ip_2">게시자</label>
                             <input class="input ip_2" type="text" id="consulting_ins_id" name="consulting_ins_id"
