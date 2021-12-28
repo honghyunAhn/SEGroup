@@ -16,7 +16,7 @@
 			class_time("${courseInfo.LEARN_START_DATE}", "${courseInfo.LEARN_END_DATE}", "${courseInfo.CLASS_DAY}", "${courseInfo.CLASS_START_TIME}", "${courseInfo.CLASS_END_TIME}" , "${courseInfo.SELP_PERIOD}");
 			graduation("${courseInfo.LEARN_END_DATE}");
 			period("${courseInfo.APP_START_DATE}")
-			expenses("${courseInfo.PRICE}");
+			expenses("${courseInfo.PRICE}", "${edu_curriculum_pay.PAY_CRC_AMOUNT}");
 		});
     </script>
 </head>
@@ -468,8 +468,8 @@
                             <div class="fz20">광주 SoftWareDevOps MASTER</div>
                         </li>
                         <li class="cs-price">
-                            <div class="course-price">￦ <span class="expenses"></span></div>
-                            <span class="h2">￦&nbsp;<span class="mou_price"></span></span>&nbsp;<span class="fc_999">(교육비 할인 제도 적용시)</span>
+                        	<div class="course-price"><span class="expenses"></span></div>
+                            <div class="crc_price"></div>
                         </li>
                         <li class="cs-term">
                             <div class="d-flex">
