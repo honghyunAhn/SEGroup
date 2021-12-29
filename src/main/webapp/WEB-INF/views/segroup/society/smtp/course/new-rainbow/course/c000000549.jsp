@@ -13,8 +13,10 @@
 	    
 		$(function() {
 			app_final_day("${courseInfo.APP_END_DATE}");
-			class_time("${courseInfo.LEARN_START_DATE}", "${courseInfo.LEARN_END_DATE}", "${courseInfo.CLASS_DAY}", "${courseInfo.CLASS_START_TIME}", "${courseInfo.CLASS_END_TIME}", "${courseInfo.SELP_PERIOD}");
-			expenses("${courseInfo.PRICE}");
+    		class_time("${courseInfo.LEARN_START_DATE}", "${courseInfo.LEARN_END_DATE}", "${courseInfo.CLASS_DAY}", "${courseInfo.CLASS_START_TIME}", "${courseInfo.CLASS_END_TIME}" , "${courseInfo.SELP_PERIOD}");
+    		graduation("${courseInfo.LEARN_END_DATE}");
+    		period("${courseInfo.APP_START_DATE}")
+    		expenses("${courseInfo.PRICE}", "${edu_curriculum_pay.PAY_CRC_AMOUNT}");
 		});
     </script>
 </head>
@@ -549,8 +551,8 @@
                             <div class="fz20">JAVA기반 웹 개발자 과정</div>
                         </li>
                         <li class="cs-price">
-                            <div class="course-price">￦ <span class="expenses"></span></div>
-                            <span class="h2">￦&nbsp;<span class="mou_price"></span></span>&nbsp;<span class="fc_999">(내일배움카드 결제시)</span>
+                            <div class="course-price"><span class="expenses"></span></div>
+                            <div class="crc_price"></div>
                         </li>
                         <li class="cs-term">
                             <div class="d-flex">
