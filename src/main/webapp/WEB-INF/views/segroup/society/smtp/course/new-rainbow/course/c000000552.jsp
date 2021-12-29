@@ -531,8 +531,8 @@
                             <div class="fz20">일본취업 스킬업</div>
                         </li>
                         <li class="cs-price">
-                            <div class="course-price">￦ <span class="expenses"></span></div>
-                            <span class="h2">￦&nbsp;<span class="mou_price"></span></span>&nbsp;<span class="fc_999">(교육비 할인 제도 적용시)</span>
+                            <div class="course-price"><span class="expenses"></span></div>
+                            <div class="crc_price"></div>
                         </li>
                         <li class="cs-term">
                             <div class="d-flex">
