@@ -549,8 +549,8 @@
                             <div class="fz20">파이썬 기초 과정</div>
                         </li>
                         <li class="cs-price">
-                            <div class="course-price">￦ <span class="expenses"></span></div>
-                            <span class="h2">￦&nbsp;<span class="mou_price"></span></span>&nbsp;<span class="fc_999">(내일배움카드 결제시)</span>
+                            <div class="course-price"><span class="expenses"></span></div>
+                            <div class="crc_price"></div>
                         </li>
                         <li class="cs-term">
                             <div class="d-flex">

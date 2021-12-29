@@ -9,7 +9,6 @@
 <head>
     <meta charset="UTF-8">
     <%@include file="../include/rainbow_head.jsp"%>
-    <style type="text/css"></style>
     <script type="text/javascript">
         var icon_displays;
 	    var target_types;
